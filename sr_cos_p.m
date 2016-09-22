@@ -4,6 +4,7 @@
 % There are L samples per symbol period.
 % alpha is the roll-off factor.
 %
+% Taken from: http://www.ece.utah.edu/~farhang/sdrbook.html
 function h = sr_cos_p(N, L, alpha)
     t = (-N/2:1:N/2) / L;
     h = zeros(size(t));

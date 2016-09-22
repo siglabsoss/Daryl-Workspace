@@ -8,6 +8,8 @@
 %   N: filter order (filter length = N+1)
 %   M: number of samples per symbol period Tb
 %   alpha: roll-off factor (between 0 and 1)
+%
+% Taken from: http://www.ece.utah.edu/~farhang/sdrbook.html
 function h=sr_Nyquist_p(N,M,alpha,gamma);
 f2=(1/2/M)*(1+alpha);
 h0=sr_cos_p(N,M,alpha);
