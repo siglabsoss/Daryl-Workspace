@@ -77,7 +77,7 @@ function [fbout, fbstate] = synthesis_fb(symbols, prototype, N, fbstate)
     
     % Grab size again in case we reshaped
     [Ns, Nfft] = size(symbols);
-    
+        
     % Error check
     if nargin > 2
         if N ~= Nfft

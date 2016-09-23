@@ -59,6 +59,7 @@ y = x .* exp(2j*pi*delta_f/L*(0:length(x)-1).') + v;
 h2 = [ zeros(L-1, 1); h ];
 z = analysis_fb(y, h2, L);
 
+% Demodulate from the carrier frequency offset
 demod = repmat(exp(-2j*pi*delta_f*(0:Ns-1).'), 1, L);
 z = z .* demod;
 

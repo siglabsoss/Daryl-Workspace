@@ -13,7 +13,7 @@ K = 6;
 % Oversampling Factor/FFT Size
 L = 256;
 % Noise Std. Dev.
-sigma = 0.1;
+sigma = 0.0;
 % Number of Active Subcarriers (Centered at DC)
 Na = 64;
 % Number of symbols to transmit
@@ -74,17 +74,24 @@ z1 = analysis_fb(y, h2, L);
 h3 = [ zeros(L - 1 + L / 2, 1); h ];
 z2 = analysis_fb(y, h3, L);
 
+z = zeros(size(z1));
+z(1:end-1,1:2:end) = z2(2:end,1:2:end);
+z(:,2:2:end) = z1(:,2:2:end);
+
 figure()
-plot(real(z1(K:end,1))); hold on;
-plot(imag(z1(K:end,1)), 'r'); hold off;
+imshow(sign(real(z)))
+
+figure()
+plot(real(z(K:end,1))); hold on;
+plot(imag(z(K:end,1)), 'r'); hold off;
 
 figure()
 subplot(2,1,1)
-plot(real(z1(K:end,2)), imag(z1(K:end,2)), '.');
+plot(real(z(K:end,3)), imag(z(K:end,3)), '.');
 xlim([-1.5, 1.5])
 ylim([-1.5, 1.5])
 subplot(2,1,2)
-plot(real(z2(K+1:end,3)), imag(z2(K+1:end,3)), 'm.');
+plot(real(z(K:end,2)), imag(z(K:end,2)), 'r.');
 xlim([-1.5, 1.5])
 ylim([-1.5, 1.5])
 
