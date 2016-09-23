@@ -6,9 +6,7 @@
 
 %% Parameters
 
-% Number of Symbol Periods for Filter Design
-K = 6;
-% Oversampling Factor/FFT Size
+% FFT Size
 L = 256;
 % Noise Std. Dev.
 sigma = 0.1;
