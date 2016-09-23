@@ -1,7 +1,7 @@
 % SMT Simulation
 % AWGN channel
 %
-% This is an example of FMT modulation. The prototype filters have a 
+% This is an example of SMT modulation. The prototype filters have a 
 % roll-off of 1.0 for simplicity. This allows the filter bank to be
 % critically sampled. Various parameters are provided below.
 %
@@ -15,7 +15,7 @@ L = 256;
 % Noise Std. Dev.
 sigma = 0.1;
 % Number of Active Subcarriers (Centered at DC)
-Na = 64;
+Na = 63;
 % Number of symbols to transmit
 Ns = 1000;
 
@@ -34,7 +34,7 @@ else
     active_even(2:2:Na/2) = 1.0;
     active_even(L-Na/2+1:2:L) = 1.0;
     active_odd(1:2:Na/2) = 1.0;
-    active_odd(L-Na/2:2:L) = 1.0;
+    active_odd(L-Na/2+2:2:L) = 1.0;
 end
 
 Na_even = sum(active_even);
@@ -55,7 +55,7 @@ end
 %% Synthesis Filter Bank (TX)
 x_even = synthesis_fb(s_even, h, L);
 x_odd = synthesis_fb(s_odd, h, L);
-x = [ x_even; zeros(L/2,1) ] + [ zeros(L/2, 1); x_odd ];
+x = [ x_even; zeros(L/2, 1) ] + [ zeros(L/2, 1); x_odd ];
 
 %% Channel Model
 v = sigma * (randn(size(x)) + 1j*randn(size(x))) / sqrt(2);
