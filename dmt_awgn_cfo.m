@@ -1,5 +1,5 @@
 % DMT Simulation
-% AWGN channel
+% AWGN channel + Carrier Frequency Offset
 %
 % This is an example of DMT modulation. The cyclic prefix is 
 %
