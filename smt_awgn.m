@@ -15,7 +15,7 @@ L = 256;
 % Noise Std. Dev.
 sigma = 0.1;
 % Number of Active Subcarriers (Centered at DC)
-Na = 63;
+Na = 64;
 % Number of symbols to transmit
 Ns = 1000;
 
