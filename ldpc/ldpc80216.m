@@ -21,12 +21,12 @@ ldpc80216_template = [
 
 [u, v] = size(ldpc80216_template);
 
-P = zeros(z*u, z*v);
+H = zeros(z*u, z*v);
 
 for row = 1:u
     for col = 1:v
         if ldpc80216_template(row, col) >= 0
-            P(z*(row-1)+1:z*row, z*(col-1)+1:z*col) = circshift(eyeZ, ldpc80216_template(row, col));
+            H(z*(row-1)+1:z*row, z*(col-1)+1:z*col) = circshift(eyeZ, ldpc80216_template(row, col));
         end
     end
 end
