@@ -49,10 +49,6 @@ a = A * s;
 % Use back substitution to compute b = inv(T) * (A * s)
 % TODO: Replace inv(T) with back substitution
 b = inv(T) * (A * s);
-% b = gf(zeros(m - g, 1));
-% for index = 2:(n - m)/g
-%     b((index-1)*g+1:index*g) = a((index-1)*g+1:index*g) + a((index-2)*g+1:(index-1)*g);
-% end
 
 % Compute c = -E * (inv(T) * (A * s))
 % TODO: Replace matrix multiply by sparse matrix multiply
@@ -82,3 +78,4 @@ p2(:) = inv(T) * r;
 
 % Concatenate to yield codeword
 c = [ s ; p1; p2 ];
+
