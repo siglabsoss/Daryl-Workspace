@@ -30,10 +30,10 @@ for row = 1:m-g
     for col = 1:n-m
         if A(row, col) ~= 0
             if first == 1
-                fprintf(fid, '%d', col);
+                fprintf(fid, '%d', col-1);
                 first = 0;
             else
-                fprintf(fid, ', %d', col);
+                fprintf(fid, ', %d', col-1);
             end
         end
         if row ~= m-g
@@ -52,10 +52,10 @@ for row = 1:m-g
     for col = 1:m-g
         if E(row, col) ~= 0
             if first == 1
-                fprintf(fid, '%d', col);
+                fprintf(fid, '%d', col-1);
                 first = 0;
             else
-                fprintf(fid, ', %d', col);
+                fprintf(fid, ', %d', col-1);
             end
         end
         if row ~= m-g
@@ -74,10 +74,10 @@ for row = 1:g
     for col = 1:n-m
         if C(row, col) ~= 0
             if first == 1
-                fprintf(fid, '%d', col);
+                fprintf(fid, '%d', col-1);
                 first = 0;
             else
-                fprintf(fid, ', %d', col);
+                fprintf(fid, ', %d', col-1);
             end
         end
         if row ~= g 
@@ -98,10 +98,10 @@ for row = 1:g
     for col = 1:g
         if inv_phi(row, col) ~= 0
             if first == 1
-                fprintf(fid, '%d', col);
+                fprintf(fid, '%d', col-1);
                 first = 0;
             else
-                fprintf(fid, ', %d', col);
+                fprintf(fid, ', %d', col-1);
             end
         end
         if col ~= g 
@@ -120,10 +120,10 @@ for row = 1:m-g
     for col = 1:g
         if B(row, col) ~= 0
             if first == 1
-                fprintf(fid, '%d', col);
+                fprintf(fid, '%d', col-1);
                 first = 0;
             else
-                fprintf(fid, ', %d', col);
+                fprintf(fid, ', %d', col-1);
             end
         end
         if col ~= m-g
