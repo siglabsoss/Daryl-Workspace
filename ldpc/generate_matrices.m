@@ -89,6 +89,8 @@ end
 fclose(fid);
 
 % Store dense inv(phi) matrix to Compute p1 = -inv(phi) * E * (inv(T) * (A * s))
+% TODO: Use a dense matrix format here... Probably that will simplify things in
+%       the hardware implementation.
 fid = fopen('matrix_inv_phi.txt', 'w+');
 
 for row = 1:g
