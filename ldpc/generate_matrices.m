@@ -36,9 +36,9 @@ for row = 1:m-g
                 fprintf(fid, ', %d', col-1);
             end
         end
-        if row ~= m-g
-            fprintf(fid, '\n');
-        end
+    end
+    if row ~= m-g
+        fprintf(fid, '\n');
     end
 end
 
@@ -58,9 +58,9 @@ for row = 1:m-g
                 fprintf(fid, ', %d', col-1);
             end
         end
-        if row ~= m-g
-            fprintf(fid, '\n');
-        end
+    end
+    if row ~= m-g
+        fprintf(fid, '\n');
     end
 end
 
@@ -80,9 +80,9 @@ for row = 1:g
                 fprintf(fid, ', %d', col-1);
             end
         end
-        if row ~= g 
-            fprintf(fid, '\n');
-        end
+    end
+    if row ~= g 
+        fprintf(fid, '\n');
     end
 end
 
@@ -104,9 +104,9 @@ for row = 1:g
                 fprintf(fid, ', %d', col-1);
             end
         end
-        if col ~= g 
-            fprintf(fid, '\n');
-        end
+    end
+    if row ~= g 
+        fprintf(fid, '\n');
     end
 end
 
@@ -126,9 +126,9 @@ for row = 1:m-g
                 fprintf(fid, ', %d', col-1);
             end
         end
-        if col ~= m-g
-            fprintf(fid, '\n');
-        end
+    end
+    if row ~= m-g
+        fprintf(fid, '\n');
     end
 end
 
