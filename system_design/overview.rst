@@ -41,6 +41,8 @@ everyone can understand quickly and easily.
 | when we are talking about the design. Ambiguity is the enemy.|
 +--------------------------------------------------------------+
 
+Without further ado, let's get started...
+
 **************************
 Port Direction Inference
 **************************
@@ -87,6 +89,9 @@ would declare it as follows::
         input wire logic          ready_i
     );
 
+The same holds true for signals local to a module. If there is an
+active low signal local to a module, use the suffix *_n* to
+distinguish it from other local active high logic signals.
 
 **************************
 Default Net Type
@@ -318,9 +323,9 @@ A SystemVerilog interface that exemplifies this is given next::
 Do not name signals bvalid and bready unless they have the semantics
 indicated in this section. It will just confuse us.
 
-##################
-Block Descriptions
-##################
+#################################
+System Block/Module Descriptions
+#################################
 
 ******************
 Generic Blocks
