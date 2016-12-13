@@ -13,16 +13,16 @@ port.
 
 Here is an example::
 
-    module test {
-        input wire logic          clock_i;
-        input wire logic          reset_i;
-        input wire logic [15:0]   data_i;
-        input wire logic          valid_i;
-        output     logic          ready_o;
-        output     logic [31:0]   data_o;
-        output     logic          valid_o;
-        input wire logic          ready_i;
-    };
+    module test (
+        input wire logic          clock_i,
+        input wire logic          reset_i,
+        input wire logic [15:0]   data_i,
+        input wire logic          valid_i,
+        output     logic          ready_o,
+        output     logic [31:0]   data_o,
+        output     logic          valid_o,
+        input wire logic          ready_i
+    );
 
 **************************
 Polarity Inference
@@ -37,16 +37,16 @@ The polarity inference suffix is applied before the port direction
 suffix. For example, if we had a module with an active low reset, we
 would declare it as follows::
 
-    module test {
-        input wire logic          clock_i;
-        input wire logic          reset_n_i;
-        input wire logic [15:0]   data_i;
-        input wire logic          valid_i;
-        output     logic          ready_o;
-        output     logic [31:0]   data_o;
-        output     logic          valid_o;
-        input wire logic          ready_i;
-    };
+    module test (
+        input wire logic          clock_i,
+        input wire logic          reset_n_i,
+        input wire logic [15:0]   data_i,
+        input wire logic          valid_i,
+        output     logic          ready_o,
+        output     logic [31:0]   data_o,
+        output     logic          valid_o,
+        input wire logic          ready_i
+    );
 
 
 **************************
@@ -195,7 +195,7 @@ If SystemVerilog interfaces are not well supported by the tools,
 then we will just mimic them by using the names with prefixes. For
 example::
 
-    module upstream_module(
+    module upstream_module (
         input  wire logic       clock_i,
         input  wire logic       reset_i,
         output      logic [7:0] sample_data_o,
@@ -204,7 +204,7 @@ example::
     );
     endmodule;
 
-    module downstream_module(
+    module downstream_module (
         input  logic wire           clock_i,
         output logic                reset_i,
         input wire logic      [7:0] sample_data_i,
