@@ -132,7 +132,7 @@ use the following to adhere to the convention::
         quad, inph
     };
 
-Or equivalently:
+Or equivalently::
 
     logic [31:0] complex_sample;
     assign complex_sample[31:16] = quad;
