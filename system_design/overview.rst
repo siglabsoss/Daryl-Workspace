@@ -69,6 +69,11 @@ An example of invoking this on an empty module is::
 
     `default_nettype wire
 
+Be sure to set the default back to wire before the end of the file.
+Otherwise, the parser/synthesizer/simulator may have unpredictable
+behavior on other modules. This is because the default net type is a
+global directive.
+
 **************************
 Complex-Valued Conventions
 **************************
@@ -126,6 +131,12 @@ use the following to adhere to the convention::
     assign complex_sample = {
         quad, inph
     };
+
+Or equivalently:
+
+    logic [31:0] complex_sample;
+    assign complex_sample[31:16] = quad;
+    assign complex_sample[15:0] = inph;
 
 **********************
 Valid/Ready Handshake
