@@ -47,7 +47,7 @@ fclose(fid);
 % Store sparse E matrix to compute -E * (inv(T) * (A * s))
 fid = fopen('matrix_E.txt', 'w+');
 
-for row = 1:m-g
+for row = 1:g
     first = 1;
     for col = 1:m-g
         if E(row, col) ~= 0
@@ -59,7 +59,7 @@ for row = 1:m-g
             end
         end
     end
-    if row ~= m-g
+    if row ~= g
         fprintf(fid, '\n');
     end
 end
