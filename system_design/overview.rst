@@ -150,13 +150,15 @@ For example, if there is an in_phase and quadrature field
 on a complex baseband signal, then both are likely to be
 associated with the same valid/ready handshake.
 
-Why we need common interfaces:
-
-    We need common interfaces to ensure interoperability of our
-    blocks. This will also aid in reordering them if required.
-    Plus, it helps us as developers share a common language for
-    the design. This helps us to avoid ambiguity and hand-waving
-    when we are talking about the design. Ambiguity is the enemy.
++--------------------------------------------------------------+
+| Why do we need common well-defined interfaces?               |
++==============================================================+
+| We need common interfaces to ensure interoperability of our  |
+| blocks. This will also aid in reordering them if required.   |
+| Plus, it helps us as developers share a common language for  |
+| the design. This helps us to avoid ambiguity and hand-waving |
+| when we are talking about the design. Ambiguity is the enemy.|
++--------------------------------------------------------------+
 
 The basic idea of the valid/ready handshake is that data is
 transferred on a clock cycle when valid and ready are both
