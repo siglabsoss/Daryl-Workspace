@@ -2,6 +2,45 @@
 Interface/Format Descriptions
 #############################
 
+This document combines three purposes. Maybe it should be split
+up later... The first purpose is to describe some basic ideas
+for the codebase to ensure consistency so we can all understand
+the HDL written by each other. The other purpose is to start
+detailing out the interfaces for the various blocks that we will
+be using. Finally, I am starting preliminary descriptions of the
+blocks and the interfaces that they will support.
+
+Before getting started, I want to clear up a few things. Most of
+what is included in this document is applicable to the signal
+processing sections of the design. It may not be applicable to
+other sections. Always do what makes the most sense. The
+suggestions here are things that I have found to be helpful.
+Part of the help is simply having a consistent codebase that
+everyone can understand quickly and easily.
+
++--------------------------------------------------------------+
+| Are these hard-and-fast rules or are they flexible?          |
++==============================================================+
+| Ultimately, the designer/developer has flexibility to do what|
+| he or she feels is correct. Just be ready to defend the      |
+| decision if someone challenges it. In the end, we want       |
+| designs that make sense, so do what makes sense. Usually,    |
+| following these guidelines is correct. The goal is to keep   |
+| your HDL consistent, portable, flexible, and easy for others |
+| to understand. If these goals are serviced better by breaking|
+| some rules, then do what makes sense.                        |
++--------------------------------------------------------------+
+
++--------------------------------------------------------------+
+| Why do we need common well-defined interfaces?               |
++==============================================================+
+| We need common interfaces to ensure interoperability of our  |
+| blocks. This will also aid in reordering them if required.   |
+| Plus, it helps us as developers share a common language for  |
+| the design. This helps us to avoid ambiguity and hand-waving |
+| when we are talking about the design. Ambiguity is the enemy.|
++--------------------------------------------------------------+
+
 **************************
 Port Direction Inference
 **************************
@@ -150,16 +189,6 @@ For example, if there is an in_phase and quadrature field
 on a complex baseband signal, then both are likely to be
 associated with the same valid/ready handshake.
 
-+--------------------------------------------------------------+
-| Why do we need common well-defined interfaces?               |
-+==============================================================+
-| We need common interfaces to ensure interoperability of our  |
-| blocks. This will also aid in reordering them if required.   |
-| Plus, it helps us as developers share a common language for  |
-| the design. This helps us to avoid ambiguity and hand-waving |
-| when we are talking about the design. Ambiguity is the enemy.|
-+--------------------------------------------------------------+
-
 The basic idea of the valid/ready handshake is that data is
 transferred on a clock cycle when valid and ready are both
 high. Data is not transferred on a clock cycle when this is
@@ -218,11 +247,11 @@ example::
     endmodule;
 
     module downstream_module (
-        input  logic wire           clock_i,
-        output logic                reset_i,
-        input wire logic      [7:0] sample_data_i,
-        input wire logic            sample_valid_i,
-        output  logic wire          sample_ready_o
+        input  wire logic       clock_i,
+        output      logic       reset_i,
+        input  wire logic [7:0] sample_data_i,
+        input  wire logic       sample_valid_i,
+        output      logic       sample_ready_o
     );
     endmodule;
 
@@ -242,15 +271,27 @@ Valid/Ready Bursting
 
 The Valid/Ready Bursting interface allows complete blocks to be
 transferred contiguously between blocks. For example, the FFT output
-and a buffering mechanism used to add the cyclic prefix might use
-this type of bursting interface.
+and a buffering mechanism used to insert the cyclic prefix might use
+this type of bursting interface. While the samples leaving the
+cyclic prefix insertion block might use the Valid/Ready Handshake
+already established.
 
-The signals are analogous the simple valid/ready handshake described
+The signals are analogous the simple Valid/Ready Handshake described
 above, but we have changed their names to indicate that they are part
 of the burst interface. We prefixed their names with a *b* to set them
 apart from the handshaking signals. This is to avoid developer confusion.
 
-The
+For this interface, when bvalid and bready are both high, a burst is
+initiated. Following this, bready should go low, while bvalid remains
+high until the entire burst has been transferred. The downstream block
+must consume the entire burst (the bready signal indicated that it had
+sufficient space). The bvalid signal remains high for the duration of
+the burst. If another burst is ready, the bvalid signal will remain
+high after the burst is complete. The same rules as in the Valid/Ready
+Handshake apply here to avoid lock up. The bvalid signal cannot wait
+on the bready signal. Once bvalid is asserted, it cannot be deasserted
+until the transfer has occurred (except in the case of a reset being
+asserted).
 
 A SystemVerilog interface that exemplifies this is given next::
 
@@ -273,6 +314,9 @@ A SystemVerilog interface that exemplifies this is given next::
         );
 
     endinterface: intf_burst
+
+Do not name signals bvalid and bready unless they have the semantics
+indicated in this section. It will just confuse us.
 
 ##################
 Block Descriptions
