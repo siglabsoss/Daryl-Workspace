@@ -14,14 +14,14 @@ port.
 Here is an example::
 
     module test {
-        logic wire          clock_i;
-        logic wire          reset_i;
-        logic wire [15:0]   data_i;
-        logic wire          valid_i;
-        logic               ready_o;
-        logic      [31:0]   data_o;
-        logic               valid_o;
-        logic wire          ready_i;
+        input wire logic          clock_i;
+        input wire logic          reset_i;
+        input wire logic [15:0]   data_i;
+        input wire logic          valid_i;
+        output     logic          ready_o;
+        output     logic [31:0]   data_o;
+        output     logic          valid_o;
+        input wire logic          ready_i;
     };
 
 **************************
@@ -38,15 +38,15 @@ suffix. For example, if we had a module with an active low reset, we
 would declare it as follows::
 
     module test {
-        logic wire          clock_i;
-        logic wire          reset_n_i;
-        logic wire [15:0]   data_i;
-        logic wire          valid_i;
-        logic               ready_o;
-        logic      [31:0]   data_o;
-        logic               valid_o;
-        logic wire          ready_y;
-    }
+        input wire logic          clock_i;
+        input wire logic          reset_n_i;
+        input wire logic [15:0]   data_i;
+        input wire logic          valid_i;
+        output     logic          ready_o;
+        output     logic [31:0]   data_o;
+        output     logic          valid_o;
+        input wire logic          ready_i;
+    };
 
 
 **************************
@@ -196,24 +196,24 @@ then we will just mimic them by using the names with prefixes. For
 example::
 
     module upstream_module(
-        input  logic wire          clock_i,
-        input  wire logic               clock_o,
-        output logic      [7:0]    sample_data_o,
-        output logic               sample_valid_o,
-        input  logic wire          ready
+        input  wire logic       clock_i,
+        input  wire logic       reset_i,
+        output      logic [7:0] sample_data_o,
+        output      logic       sample_valid_o,
+        input  wire logic       sample_ready_i
     );
     endmodule;
 
     module downstream_module(
-        input  logic wire          clock_i,
-        output logic               clock_o,
-        output logic      [7:0]    sample_data_o,
-        output logic               sample_valid_o,
-        input  logic wire          ready
+        input  logic wire           clock_i,
+        output logic                reset_i,
+        input wire logic      [7:0] sample_data_i,
+        input wire logic            sample_valid_i,
+        output  logic wire          sample_ready_o
     );
     endmodule;
 
-Some blocks will only support flow regulation in one way direction
+Some blocks will only support flow regulation in one direction
 or the other (either upstream or downstream only). These can be
 implemented by tying a ready/valid signal high or by simply leaving
 it off the port map. Anything left off the port map is assumed to
