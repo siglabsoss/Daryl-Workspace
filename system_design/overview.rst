@@ -47,22 +47,22 @@ Without further ado, let's get started...
 Port Direction Inference
 **************************
 
-Port directions are inferred by their suffix. A suffix of *_i*
-indicates that the port is an input. A suffix of *_o* indicates
-that the port is an output. A suffix of *_io* indicates an inout
+Port directions are inferred by their prefix. A prefix of *i_*
+indicates that the port is an input. A prefix of *o_* indicates
+that the port is an output. A prefix of *b_* indicates an inout
 port.
 
 Here is an example::
 
     module test (
-        input wire logic          clock_i,
-        input wire logic          reset_i,
-        input wire logic [15:0]   data_i,
-        input wire logic          valid_i,
-        output     logic          ready_o,
-        output     logic [31:0]   data_o,
-        output     logic          valid_o,
-        input wire logic          ready_i
+        input wire logic          i_clock,
+        input wire logic          i_reset,
+        input wire logic [15:0]   i_data,
+        input wire logic          i_valid,
+        output     logic          o_ready,
+        output     logic [31:0]   o_data,
+        output     logic          o_valid,
+        input wire logic          i_ready
     );
 
 **************************
@@ -74,19 +74,19 @@ Port polarity is inferred by a suffix or a lack thereof. The suffix
 an active high signal. This is optional, since by default, we assume
 all signals are active high.
 
-The polarity inference suffix is applied before the port direction
-suffix. For example, if we had a module with an active low reset, we
+The polarity inference suffix is applied along with the port direction
+prefix. For example, if we had a module with an active low reset, we
 would declare it as follows::
 
     module test (
-        input wire logic          clock_i,
-        input wire logic          reset_n_i,
-        input wire logic [15:0]   data_i,
-        input wire logic          valid_i,
-        output     logic          ready_o,
-        output     logic [31:0]   data_o,
-        output     logic          valid_o,
-        input wire logic          ready_i
+        input wire logic          i_clock,
+        input wire logic          i_reset_n,
+        input wire logic [15:0]   i_data,
+        input wire logic          i_valid,
+        output     logic          o_ready,
+        output     logic [31:0]   o_data,
+        output     logic          o_valid,
+        input wire logic          i_ready
     );
 
 The same holds true for signals local to a module. If there is an
@@ -269,20 +269,20 @@ then we will just mimic them by using the names with prefixes. For
 example::
 
     module upstream_module (
-        input  wire logic       clock_i,
-        input  wire logic       reset_i,
-        output      logic [7:0] sample_data_o,
-        output      logic       sample_valid_o,
-        input  wire logic       sample_ready_i
+        input  wire logic       i_clock,
+        input  wire logic       i_reset,
+        output      logic [7:0] o_sample_data,
+        output      logic       o_sample_valid,
+        input  wire logic       i_sample_ready
     );
     endmodule;
 
     module downstream_module (
-        input  wire logic       clock_i,
-        output      logic       reset_i,
-        input  wire logic [7:0] sample_data_i,
-        input  wire logic       sample_valid_i,
-        output      logic       sample_ready_o
+        input  wire logic       i_clock,
+        output      logic       i_reset,
+        input  wire logic [7:0] i_sample_data,
+        input  wire logic       i_sample_valid,
+        output      logic       o_sample_ready
     );
     endmodule;
 
@@ -384,13 +384,13 @@ for event scheduling.
 
 Ports:
 
-* clock_i (clock)
+* i_clock (clock)
 
-* reset_i (1-bit input)
+* i_reset (1-bit input)
 
-* enable_i (1-bit input)
+* i_enable (1-bit input)
 
-* timer_count_o (64-bit output)
+* o_timer_count (64-bit output)
 
 Associated Registers:
 
@@ -424,21 +424,21 @@ of the DAC.
 
 Ports:
 
-* clock_i (clock)
+* i_clock (clock)
 
-* reset_i (active-high reset)
+* i_reset (active-high reset)
 
-* byte_i (8-bit input)
+* i_byte (8-bit input)
 
-* byte_valid_i (1-bit input)
+* i_byte_valid (1-bit input)
 
-* byte_ready_o (1-bit output)
+* o_byte_ready (1-bit output)
 
-* byte_o (8-bit input)
+* o_byte (8-bit input)
 
-* byte_valid_o (1-bit output)
+* o_byte_valid (1-bit output)
 
-* byte_ready_i (1-bit output)
+* i_byte_ready (1-bit output)
 
 Associated Registers:
 
@@ -459,21 +459,21 @@ scrambles them to produce 8-bit outputs.
 
 Ports:
 
-* clock_i (clock)
+* i_clock (clock)
 
-* reset_i (active-high reset)
+* i_reset (active-high reset)
 
-* byte_i (8-bit input)
+* i_byte (8-bit input)
 
-* byte_valid_i (1-bit input)
+* i_byte_valid (1-bit input)
 
-* byte_ready_o (1-bit output)
+* o_byte_ready (1-bit output)
 
-* byte_o (8-bit output)
+* o_byte (8-bit output)
 
-* byte_valid_o (1-bit output)
+* o_byte_valid (1-bit output)
 
-* byte_ready_i (1-bit input)
+* i_byte_ready (1-bit input)
 
 ==================
 LDPC Encoder
@@ -515,19 +515,19 @@ the system doesn't raise the enable right away.
 
 Ports:
 
-* sample_inph_i (16-bit input)
+* i_sample_inph (16-bit input)
 
-* sample_quad_i (16-bit input)
+* i_sample_quad (16-bit input)
 
-* sample_ready_o (1-bit output)
+* o_sample_ready (1-bit output)
 
-* sample_inph_o (16-bit output)
+* o_sample_inph (16-bit output)
 
-* sample_quad_o (16-bit output)
+* o_sample_quad (16-bit output)
 
-* enable_i (1-bit input)
+* i_enable (1-bit input)
 
-* reset_i (1-bit input)
+* i_reset (1-bit input)
 
 Associated registers:
 
