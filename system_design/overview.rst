@@ -183,6 +183,32 @@ Or equivalently::
     assign complex_sample[15:0] = inph;
 
 **********************
+Polarity Convention
+**********************
+
+Logic signals are active high unless there is a compelling reason
+to make them active low. Active low logic must be indicated with the
+*_n* suffix as noted in the Polarity Inference section.
+
+When interfacing to another chip that requires an active low signal,
+the internal logic in the FPGA should be active high and then
+inverted at the chip boundary unless there is a very good reason.
+
+When exposing active low pins to software via a register interface,
+the signal should be inverted in the FPGA so that the software sees
+it as active high.
+
+**********************
+Reset Convention
+**********************
+
+Resets should be synchronous unless there is a compelling reason
+to make them otherwise. If a reset is asserted asynchronously, it
+should still be deasserted synchronously in the clock domain that
+it resides in. This should be handled by the HDL in that module.
+For most modules, synchronous resets are preferred.
+
+**********************
 Valid/Ready Handshake
 **********************
 
@@ -323,6 +349,17 @@ A SystemVerilog interface that exemplifies this is given next::
 Do not name signals bvalid and bready unless they have the semantics
 indicated in this section. It will just confuse us.
 
+The burst size is not part of the interface, but is an important part
+of the module. It will either be a fixed number built in to the module
+or a module parameter (if it can be changed when instantiated). If it
+is fixed in the module, then it will typically be included in the
+module name. For example, if the bursts represent frames of an FFT
+and the size is fixed at 1024. Then the FFT module should be named
+something like fft_1024. On the other hand, if the size is
+parameterizable, then it should be added to the parameter list when
+instantiating the module. This will make the burst length clear to
+the uninitated, and make the code more user friendly.
+
 #################################
 System Block/Module Descriptions
 #################################
@@ -442,6 +479,8 @@ Ports:
 LDPC Encoder
 ==================
 
+
+
 ==================
 QAM Symbol Mapper
 ==================
@@ -467,7 +506,8 @@ on the upstream blocks and pass only zeros until a set
 of conditions is met. There is a condition to turn it
 on at a specific count of the system clock. There is a
 condition to turn it off after it has been on for a
-specific set of clock counts.
+specific set of clock counts (corresponding to the
+rotation of the turnstile).
 
 The sample turnstile assumes that data is always ready
 for its consumption. In general, this should be true if
