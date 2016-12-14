@@ -275,7 +275,7 @@ example::
         output      logic       o_sample_valid,
         input  wire logic       i_sample_ready
     );
-    endmodule;
+    endmodule
 
     module downstream_module (
         input  wire logic       i_clock,
@@ -284,7 +284,7 @@ example::
         input  wire logic       i_sample_valid,
         output      logic       o_sample_ready
     );
-    endmodule;
+    endmodule
 
 Some blocks will only support flow regulation in one direction
 or the other (either upstream or downstream only). These can be
@@ -300,29 +300,34 @@ indicated in this section. It will just confuse us.
 Valid/Ready Bursting
 **********************
 
-The Valid/Ready Bursting interface allows complete blocks to be
-transferred contiguously between blocks. For example, the FFT output
-and a buffering mechanism used to insert the cyclic prefix might use
-this type of bursting interface. While the samples leaving the
-cyclic prefix insertion block might use the Valid/Ready Handshake
-already established.
+The Valid/Ready Bursting interface indicates that a burst transaction
+is required. Using this interface creates a contractual agreement
+between two blocks that the burst will occur completely without
+push back or gaps in the transmission. It is also possible to
+use the Valid/Ready Handshake for bursts, but the contract between
+those blocks is that push back and gaps in the valid signal are
+allowed. For example, the FFT output and a cyclic prefix buffer
+might use this type of bursting interface.
 
-The signals are analogous the simple Valid/Ready Handshake described
-above, but we have changed their names to indicate that they are part
-of the burst interface. We prefixed their names with a *b* to set them
-apart from the handshaking signals. This is to avoid developer confusion.
+There is a one-to-one correspondence between the signals in the
+Valid/Ready Burst and the signals in the Valid/Ready Handshake
+described above, but we have changed their names to indicate that
+they are part of the burst interface. We prefixed their names
+with a *b* to set them apart from the handshaking signals. Thus,
+the signal names are bvalid, bready, and bdata. This prefix is
+to help avoid developer confusion.
 
 For this interface, when bvalid and bready are both high, a burst is
 initiated. Following this, bready should go low, while bvalid remains
 high until the entire burst has been transferred. The downstream block
-must consume the entire burst (the bready signal indicated that it had
-sufficient space). The bvalid signal remains high for the duration of
-the burst. If another burst is ready, the bvalid signal will remain
-high after the burst is complete. The same rules as in the Valid/Ready
-Handshake apply here to avoid lock up. The bvalid signal cannot wait
-on the bready signal. Once bvalid is asserted, it cannot be deasserted
-until the transfer has occurred (except in the case of a reset being
-asserted).
+must consume the entire burst (if bready is asserted, then the block
+is advertising that it has sufficient space). The bvalid signal
+remains high for the duration of the burst. If another burst is
+ready, the bvalid signal will remain high after the burst is complete.
+The same rules as in the Valid/Ready Handshake apply here to avoid lock
+up. The bvalid signal cannot wait on the bready signal. Once bvalid is
+asserted, it cannot be deasserted until the transfer has occurred
+(except in the case of a reset being asserted).
 
 A SystemVerilog interface that exemplifies this is given next::
 
@@ -345,6 +350,26 @@ A SystemVerilog interface that exemplifies this is given next::
         );
 
     endinterface: intf_burst
+
+And a pair of verilog modules that exemplifies this is given here::
+
+    module upstream_module (
+        input  wire logic        i_clock,
+        input  wire logic        i_reset,
+        output      logic [31:0] o_sample_bdata,
+        output      logic        o_sample_bvalid,
+        input  wire logic        i_sample_bready
+    );
+    endmodule
+
+    module downstream_module (
+        input  wire logic        i_clock,
+        output      logic        i_reset,
+        input  wire logic [31:0] i_sample_bdata,
+        input  wire logic        i_sample_bvalid,
+        output      logic        o_sample_bready
+    );
+    endmodule
 
 Do not name signals bvalid and bready unless they have the semantics
 indicated in this section. It will just confuse us.
