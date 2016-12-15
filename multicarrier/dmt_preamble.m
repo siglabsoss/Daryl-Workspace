@@ -8,13 +8,13 @@
 % FFT Size
 L = 256;
 % Noise Std. Dev.
-sigma = 0.1;
+sigma = 1.1;
 % Cyclic Prefix Length
 Ncp = 20;
 % Number of Active Subcarriers (Centered at DC)
 Na = 64;
 % Number of symbols to transmit
-Ns = 1000;
+Ns = 100;
 
 %% Generate symbol sequence
 active = zeros(L, 1);
@@ -35,7 +35,7 @@ coded_sc(active ~= 0) = pn;
 s = sign(randn(Ns, 1));
 
 %% IFFT + CP
-Nx = (L + Ncp) * Ns;
+Nx = 2 * (L + Ncp) * Ns;
 x = zeros(Nx, 1);
 for index = 1:Ns
     S = sqrt(L) * s(index) * ifft(coded_sc);
@@ -44,7 +44,7 @@ for index = 1:Ns
 end
 
 %% Channel Model
-h = [ 1 0 0 0 ]; % Impulse (No) Channel Model
+h = [ 1 0 0.5 0 ]; % Impulse (No) Channel Model
 y = conv(x, h);
 v = sigma * (randn(size(y)) + 1j*randn(size(y))) / sqrt(2);
 y = y + v;
@@ -56,6 +56,7 @@ y = y + v;
 % plot(real(y)); hold on;
 % plot(imag(y), 'r'); hold off;
 
+%% Perform autocorrelation to convert OFDM symbols to rectangle pulse shaped BPSK symbols
 y_buf = zeros(L + Ncp - 1, 1);
 y_acorr = zeros(Nx, 1);
 y_acorr_accum = 0.0;
@@ -76,8 +77,30 @@ end
 % plot(real(y_acorr)); hold on;
 % plot(imag(y_acorr), 'r'); hold off;
 
-% Plot averaged autocorrelation samples
+% Plot averaged autocorrelation samples (frequency offset is amount of
+% rotation in the plateau region).
 figure()
 plot(real(y_acorr_avg_output)); hold on;
 plot(imag(y_acorr_avg_output), 'r'); hold off;
 
+%% Now, perform matched filtering with the known PN sequence.
+
+% The received sequence is actually a differentially encoded
+% version of the BPSK symbols, so we need a differentially
+% encoded matched filter.
+s_mf = s(1:end-1) .* conj(s(2:end));
+s_mf = flipud(s_mf);
+mf_output = zeros(Nx, 1);
+code_buf = zeros((L + Ncp) * (Ns - 1), 1);
+for index = 1:Nx-1
+    code_buf(2:end) = code_buf(1:end-1);
+    code_buf(1) = y_acorr_avg_output(index);
+    mf_output(index) = s_mf' * code_buf(1:L + Ncp:end);
+end
+
+% Plot matched filter output. Correct timing is found at peak.
+figure()
+subplot(2,1,1);
+plot(abs(mf_output));
+subplot(2,1,2);
+plot(angle(mf_output), 'r');
