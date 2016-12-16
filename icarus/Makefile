@@ -1,6 +1,6 @@
 SIM=iverilog
 HDL_DIR=hdl
-BUILD_DIR=sim
+BUILD_DIR=icsim
 LIB_DIR=/usr/local/diamond/3.8_x64/cae_library/simulation/verilog/ecp5u
 OPTS=-g2012
 
