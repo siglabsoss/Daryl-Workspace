@@ -2,22 +2,22 @@
 
 Ncp = 100;
 Nfft = 1024;
-Na = 999;
-Ns = 109;
-sigma_n = 1.0;
+Na = 50;
+Ns = 50;
+sigma_n = sqrt(1);
 
 a = rand(Na, 1);
 pilot = zeros(Nfft, 1);
 
 if mod(Na, 2) == 0
-    kcnt = 1
+    kcnt = 1;
     for k = -Na/2:Na/2-1
         pilot = pilot + exp(2j*pi*(a(kcnt)+k*(0:Nfft-1).'/Nfft));
         kcnt = kcnt + 1;
     end
 else
     if Na > 1
-        kcnt = 1
+        kcnt = 1;
         for k = -(Na-1)/2:Na/2-1
             pilot = pilot + exp(2j*pi*(a(kcnt)+k*(0:Nfft-1).'/Nfft));
             kcnt = kcnt + 1;
@@ -29,9 +29,9 @@ end
 pilot = pilot / sqrt(Na);
 
 if mod(Ns, 2) == 0
-    s = exp(j*pi*257*(0:Ns-1).^2/Ns).' / sqrt(Ns);
+    s = exp(257j*pi*(0:Ns-1).^2/Ns).' / sqrt(Ns);
 else
-    s = exp(j*pi*257*(0:Ns-1).*(1:Ns)/Ns).' / sqrt(Ns);
+    s = exp(257j*pi*(0:Ns-1).*(1:Ns)/Ns).' / sqrt(Ns);
 end
 
 x = zeros((Nfft + Ncp) * Ns, 1);
