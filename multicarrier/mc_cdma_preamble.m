@@ -2,9 +2,9 @@
 
 Ncp = 100;
 Nfft = 1024;
-Na = 1020;
+Na = 999;
 Ns = 109;
-sigma_n = 0.1;
+sigma_n = 1.0;
 
 a = rand(Na, 1);
 pilot = zeros(Nfft, 1);
@@ -17,8 +17,10 @@ if mod(Na, 2) == 0
     end
 else
     if Na > 1
+        kcnt = 1
         for k = -(Na-1)/2:Na/2-1
             pilot = pilot + exp(2j*pi*(a(kcnt)+k*(0:Nfft-1).'/Nfft));
+            kcnt = kcnt + 1;
         end
     else
         pilot = exp(2j*pi*(a(1)+(0:Nfft-1).'/Nfft));
@@ -39,13 +41,13 @@ for ns = 1:Ns
     x((ns-1)*(Nfft+Ncp)+1:(ns-1)*(Nfft+Ncp)+Ncp) = s(ns) * pilot(Nfft-Ncp+1:Nfft);
 end
 
-figure();
-plot(real(x)); hold on;
-plot(imag(x), 'r'); hold off;
-
-figure()
-Css = xcorr([s;s;s], s);
-plot(abs(Css));
+% figure();
+% plot(real(x)); hold on;
+% plot(imag(x), 'r'); hold off;
+% 
+% figure()
+% Css = xcorr([s;s;s], s);
+% plot(abs(Css));
 
 channel = [1 0 0 0];
 Kn = length(x) + length(channel) - 1;
