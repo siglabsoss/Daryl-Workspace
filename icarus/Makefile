@@ -16,3 +16,4 @@ tb_skid: $(TEST_DIR)/tb_skid.sv $(HDL_DIR)/skid.sv
 clean:
 	@rm -f $(BUILD_DIR)/test
 	@rm -f $(BUILD_DIR)/tb_skid
+	@rm -f *.vcd *.lxt2
