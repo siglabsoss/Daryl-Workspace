@@ -48,7 +48,6 @@ logic [31:0] run_count = 0;
 
 task reset_all;
     i_reset = 1'b1;
-    i_in_data = 1;
     i_in_valid = 1'b0;
     i_out_ready = 1'b0;
     #10000;
@@ -76,15 +75,16 @@ initial begin: stimulus
     $display("Test 2 Started!");
     increment_value = 2;
     reset_all();
-    i_in_valid = 1'b1;
+    @(negedge i_clock) i_in_valid = 1'b1;
     #10000;
     if (o_out_data != 0) begin
         if (o_out_valid == 1'b1) begin
+            $display("cycle number: %d", $stime);
             $display("Error: Test 2 failed! Data output received while ready signal low.");
             glbl_err_count++;
         end
     end
-    i_out_ready = 1'b1;
+    @(negedge i_clock) i_out_ready = 1'b1;
     i_in_valid = 1'b0;
     #10000;
     if (o_out_data == 0) begin
@@ -125,15 +125,16 @@ end
 // Tests the output sequence to make sure it matches the input
 logic [31:0] local_err_count = 0;
 logic [31:0] stored_value = 0;
+logic        increment_i_in_data = 1'b0;
 always @(posedge i_clock) begin: seq_check
     if (i_reset == 1'b1) begin
         stored_value <= 0;
         run_count <= 0;
+        increment_i_in_data <= 1'b0;
     end else begin
-        // Increment input sequence
-        if ((i_in_valid & o_in_ready) == 1'b1) begin
-            i_in_data <= i_in_data + increment_value;
-        end
+        // Flag input counter to be incremented
+        increment_i_in_data <= i_in_valid & o_in_ready;
+
         // Validate incrementing output sequence
         if ((o_out_valid & i_out_ready) == 1'b1) begin
             $display("Detected...");
@@ -146,6 +147,15 @@ always @(posedge i_clock) begin: seq_check
             run_count <= run_count + 1;
             stored_value <= stored_value + increment_value;
         end
+    end
+end
+
+// Increment input counter
+always @(negedge i_clock) begin: incrementer
+    if (i_reset == 1'b1) begin
+        i_in_data <= 0;
+    end else if (increment_i_in_data == 1'b1) begin
+        i_in_data <= i_in_data + increment_value;
     end
 end
 
