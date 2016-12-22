@@ -1,0 +1,15 @@
+LXT2 info: dumpfile skid.vcd opened for output.
+Test 1 Started!
+Test 1 Done!
+Test 2 Started!
+@     51015:     0
+@     51020:     2
+Detected...
+@     61015:     4
+Detected...
+Error: Output of          2 expected, but received     0.
+Detected...
+Error: Output of          4 expected, but received     0.
+Error: Test 2 failed! Received more data than was taken in.
+Test 2 Done!
+Simuation done!
