@@ -103,7 +103,7 @@ initial begin: stimulus
     @(negedge i_clock) begin
         i_out_ready = 1'b1;
     end
-    #20;
+    #20; // 2 samples
     @(negedge i_clock) begin
         i_out_ready = 1'b0;
     end
@@ -111,7 +111,7 @@ initial begin: stimulus
     @(negedge i_clock) begin
         i_out_ready = 1'b1;
     end
-    #40;
+    #40; // plus 4 samples
     @(negedge i_clock) begin
         i_out_ready = 1'b0;
     end
@@ -119,7 +119,7 @@ initial begin: stimulus
     @(negedge i_clock) begin
         i_out_ready = 1'b1;
     end
-    #100;
+    #100; // plus 10 samples
     @(negedge i_clock) begin
         i_out_ready = 1'b0;
     end
@@ -141,7 +141,7 @@ initial begin: stimulus
     #1000;
     @(negedge i_clock) begin
         i_in_valid = 1'b1;
-    end
+    end // 5 samples
     #50;
     @(negedge i_clock) begin
         i_in_valid = 1'b0;
@@ -150,14 +150,14 @@ initial begin: stimulus
     @(negedge i_clock) begin
         i_in_valid = 1'b1;
     end
-    #50;
+    #50; // plus 5 samples
     @(negedge i_clock) begin
         i_in_valid = 1'b0;
     end
     #200;
     @(negedge i_clock) begin
         i_in_valid = 1'b1;
-    end
+    end // plus 35 samples
     #350;
     @(negedge i_clock) begin
         i_in_valid = 1'b0;
@@ -170,9 +170,12 @@ initial begin: stimulus
     $display("Test 4 Done!");
 
     // Test 5: Input and output can deal with bursty signals simultaneously.
+    $display("Test 5 Started!");
     increment_value = 5;
     reset_all();
     #1000;
+
+    $display("Test 5 Done!");
 
     // Finished
     #10000;
