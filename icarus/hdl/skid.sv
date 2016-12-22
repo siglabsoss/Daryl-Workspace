@@ -51,7 +51,6 @@ always @(posedge i_clock) begin
         skid_reg <= 0;
         o_in_ready <= 1'b0;
     end else begin
-        //#1
         // Update state machine
         curr_state <= next_state;
         // Update output interface signals

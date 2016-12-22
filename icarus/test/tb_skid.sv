@@ -91,7 +91,10 @@ initial begin: stimulus
         glbl_err_count++;
     end
 
+    $display("Test 2 Done!");
+
     // Test 3: Output can deal with a bursty ready signal.
+    $display("Test 3 Started!");
     increment_value = 3;
     reset_all();
     #1000;
@@ -116,20 +119,62 @@ initial begin: stimulus
     @(negedge i_clock) begin
         i_out_ready = 1'b1;
     end
-
-    $display("Test 2 Done!");
+    #100;
+    @(negedge i_clock) begin
+        i_out_ready = 1'b0;
+    end
+    #50;
+    if (run_count != 16) begin
+        $display("Error: Test 3 failed! Received more data than expected.");
+        glbl_err_count++;
+    end
+    //$display("    %d, %d", uut.out_data_reg, uut.skid_reg);
+    $display("Test 3 Done!");
 
     // Test 4: Input can deal with a bursty valid signal.
+    $display("Test 4 Started!");
     increment_value = 4;
     reset_all();
+    @(negedge i_clock) begin
+        i_out_ready = 1'b1;
+    end
     #1000;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b1;
+    end
+    #50;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+    end
+    #100;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b1;
+    end
+    #50;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+    end
+    #200;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b1;
+    end
+    #350;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+    end
+    #400;
+    if (run_count != 45) begin
+        $display("Error: Test 4 failed! Received %d samples, expected 45.", run_count);
+        glbl_err_count++;
+    end
+    $display("Test 4 Done!");
 
     // Test 5: Input and output can deal with bursty signals simultaneously.
     increment_value = 5;
     reset_all();
     #1000;
 
-    // Finished.
+    // Finished
     #10000;
     $display("Simulation done!");
     $finish();
@@ -155,6 +200,7 @@ always @(posedge i_clock) begin: seq_check
                 $display("Error: Output of %d expected, but received %d.", stored_value, o_out_data);
                 local_err_count++;
             end
+            //$display("    %d", uut.out_data_reg);
 
             // Increment value for next time
             run_count <= run_count + 1;
