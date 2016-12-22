@@ -2,7 +2,7 @@ clear all;
 Nfft = 1024;
 Ncp = Nfft/8;
 Na = 1;
-Ns = 511;% needs to be a prime number wrt u for the Zadoff-Chu sequence
+Ns = 109;% needs to be a prime number wrt u for the Zadoff-Chu sequence
 u=13; %root of Zadoff-Chu sequence
 sigma_n = 0.1;
 a = rand(Na, 1);

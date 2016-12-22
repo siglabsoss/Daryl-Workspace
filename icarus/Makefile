@@ -8,10 +8,10 @@ OPTS=-g2012 -DSIMULATION
 all: test tb_skid
 
 test: $(HDL_DIR)/test.sv
-	$(SIM) $< $(LIB_DIR)/LUT4.v $(LIB_DIR)/lut_mux4.v $(OPTS) -o $(BUILD_DIR)/$@ -s $@
+	$(SIM) $(LIB_DIR)/LUT4.v $(LIB_DIR)/lut_mux4.v $(OPTS) -o $(BUILD_DIR)/$@ -s $@ $<
 
 tb_skid: $(TEST_DIR)/tb_skid.sv $(HDL_DIR)/skid.sv
-	$(SIM) $^ $(OPTS) -o $(BUILD_DIR)/$@ -s $@
+	$(SIM) $(OPTS) -o $(BUILD_DIR)/$@ -s $@ $(TEST_DIR)/tb_skid.sv $(HDL_DIR)/skid.sv
 
 clean:
 	@rm -f $(BUILD_DIR)/test
