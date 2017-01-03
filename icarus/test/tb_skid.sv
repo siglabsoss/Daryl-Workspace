@@ -174,7 +174,45 @@ initial begin: stimulus
     increment_value = 5;
     reset_all();
     #1000;
-
+    @(negedge i_clock) begin
+        i_in_valid = 1'b1;
+        i_out_ready = 1'b1;
+    end // 5 samples
+    #50;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+        i_out_ready = 1'b1;
+    end
+    #100;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b1;
+        i_out_ready = 1'b0;
+    end
+    #50; // plus one sample (in buffer)
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+        i_out_ready = 1'b0;
+    end
+    #200;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+        i_out_ready = 1'b1;
+    end
+    #350;
+    @(negedge i_clock) begin
+        i_in_valid = 1'b1;
+        i_out_ready = 1'b1;
+    end
+    #400; // plus 40 samples
+    @(negedge i_clock) begin
+        i_in_valid = 1'b0;
+        i_out_ready = 1'b0;
+    end
+    #1000;
+    if (run_count != 46) begin
+        $display("Error: Test 4 failed! Received %d samples, expected 45.", run_count);
+        glbl_err_count++;
+    end
     $display("Test 5 Done!");
 
     // Finished
