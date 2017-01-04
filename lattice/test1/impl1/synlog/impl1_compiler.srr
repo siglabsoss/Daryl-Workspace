@@ -1,0 +1,64 @@
+Synopsys HDL Compiler, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v" (library work)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv" (library work)
+@I::"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv" (library work)
+Verilog syntax check successful!
+Options changed - recompiling
+Selecting top level module top_skid
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+
+@N: CL201 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Trying to extract state machine for register curr_state.
+Extracted state machine for register curr_state
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 72MB peak: 73MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:38 2017
+
+###########################################################]
+Synopsys Netlist Linker, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:38 2017
+
+###########################################################]
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:38 2017
+
+###########################################################]

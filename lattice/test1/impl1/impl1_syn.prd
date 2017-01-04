@@ -1,0 +1,11 @@
+#--  Synopsys, Inc.
+#--  Version L-2016.03L-1
+#--  Project file \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1_syn.prd
+#
+### Watch Implementation type ###
+#
+watch_impl -all
+#
+### Watch Implementation properties ###
+#
+watch_prop -clear

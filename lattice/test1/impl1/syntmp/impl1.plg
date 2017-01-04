@@ -1,0 +1,16 @@
+@P:  Worst Slack : -0.308
+@P:  top_skid|i_clock - Estimated Frequency : 486.4 MHz
+@P:  top_skid|i_clock - Requested Frequency : 572.2 MHz
+@P:  top_skid|i_clock - Estimated Period : 2.056
+@P:  top_skid|i_clock - Requested Period : 1.748
+@P:  top_skid|i_clock - Slack : -0.308
+@P:  Worst Slack(min analysis) : 0.497
+@P:  top_skid|i_clock - Estimated Frequency(min analysis) : 486.4 MHz
+@P:  top_skid|i_clock - Requested Frequency(min analysis) : 572.2 MHz
+@P:  top_skid|i_clock - Estimated Period(min analysis) : 2.056
+@P:  top_skid|i_clock - Requested Period(min analysis) : 1.748
+@P:  top_skid|i_clock - Slack(min analysis) : -0.308
+@P:  Total Area : 80.0
+@P:  Total Area : 0.0
+@P:  Total Area : 0.0
+@P:  CPU Time : 0h:00m:00s

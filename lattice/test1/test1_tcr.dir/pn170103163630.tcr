@@ -1,0 +1,8 @@
+#Start recording tcl command: 1/3/2017 13:30:33
+#Project Location: //SIGLABSMACHINE/shared/Daryl-Workspace/lattice/test1; Project name: test1
+prj_project new -name "test1" -impl "impl1" -dev LFE5UM5G-45F-8BG381C -synthesis "synplify"
+prj_project save
+file copy -force -- "//siglabsmachine/shared/Daryl-Workspace/icarus/hdl/skid.sv" "//SIGLABSMACHINE/shared/Daryl-Workspace/lattice/test1/impl1/source"
+prj_src add "//SIGLABSMACHINE/shared/Daryl-Workspace/lattice/test1/impl1/source/skid.sv"
+launch_synplify_prj impl1
+#Stop recording: 1/3/2017 16:36:30

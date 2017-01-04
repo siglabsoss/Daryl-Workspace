@@ -1,0 +1,7 @@
+C:\lscc\diamond\3.8_x64\synpbase\bin64\syn_nfilter.exe  -link  -multisrs  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_comp.srs  -osyn  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_mult.srs  -log  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_multi_srs_gen.srr 
+rc:0 success:1 runtime:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_comp.srs|io:i|time:1483482037|size:4791|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_mult.srs|io:o|time:1483482039|size:3008|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_multi_srs_gen.srr|io:o|time:1483482039|size:852|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\bin\syn_nfilter.exe|io:i|time:1467795316|size:3115520|exec:1
+file:C:\lscc\diamond\3.8_x64\synpbase\bin64\syn_nfilter.exe|io:i|time:1467795518|size:4189696|exec:1

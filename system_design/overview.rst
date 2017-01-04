@@ -43,6 +43,37 @@ everyone can understand quickly and easily.
 
 Without further ado, let's get started...
 
+******************************
+Registers at Block Interfaces
+******************************
+
+It is a good idea to have registers at the interfaces of larger
+blocks in the design hierarchy. This means that the input and
+output signals are all tied to registers. This makes it easier
+to guarantee that a design will meet timing. Unfortunately, it
+may not always be possible.
+
+If combinatorial outputs are required for some reason (i.e.,
+to meet a real-time schedule at the same rate as the clock
+frequency), then use them. If they are not required, then
+please register your outputs.
+
+If there is a choice between either registering inputs or
+outputs, it should be preferred to register the output. If we
+are all consistent about this, then it will allow us to have
+much better (consistent) estimates of the clock periods that
+we are able to achieve with our blocks.
+
+Note: Combinatorial inputs/outputs are okay for submodules
+that are components of a larger module. The timing of the
+larger module should be verified after synthesis. Then these
+submodules become a part of it (i.e., they are not necessarily
+intended for reuse elsewhere in the design).
+
+The goal here is to keep timing estimates consistent and
+to keep our blocks modular so we can reuse code when possible
+in different parts of the design.
+
 **************************
 Port Direction Inference
 **************************

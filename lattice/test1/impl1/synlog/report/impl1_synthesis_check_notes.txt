@@ -1,0 +1,34 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+@N: CL201 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Trying to extract state machine for register curr_state.
+@N|Running in 64-bit mode
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N|Running in 64-bit mode
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_1(verilog)); safe FSM implementation is not required.
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_0(verilog)); safe FSM implementation is not required.
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MT206 |Auto Constrain mode is enabled
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_1(verilog)); safe FSM implementation is not required.
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_0(verilog)); safe FSM implementation is not required.
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@N: FX1056 |Writing EDF file: \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+

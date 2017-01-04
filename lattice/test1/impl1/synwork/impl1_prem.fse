@@ -1,0 +1,24 @@
+
+fsm_encoding {6460461} sequential
+
+fsm_state_encoding {6460461} 00 {00}
+
+fsm_state_encoding {6460461} ST_IDLE {01}
+
+fsm_state_encoding {6460461} ST_PASSTHRU {10}
+
+fsm_state_encoding {6460461} ST_HALT {11}
+
+fsm_registers {6460461} {curr_state[1]}  {curr_state[0]} 
+
+fsm_encoding {6460461} sequential
+
+fsm_state_encoding {6460461} 00 {00}
+
+fsm_state_encoding {6460461} ST_IDLE {01}
+
+fsm_state_encoding {6460461} ST_PASSTHRU {10}
+
+fsm_state_encoding {6460461} ST_HALT {11}
+
+fsm_registers {6460461} {curr_state[1]}  {curr_state[0]} 

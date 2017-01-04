@@ -1,0 +1,653 @@
+#Build: Synplify Pro L-2016.03L-1, Build 097R, Jul  4 2016
+#install: C:\lscc\diamond\3.8_x64\synpbase
+#OS: Windows 7 6.1
+#Hostname: USER-PC
+
+# Tue Jan 03 14:20:38 2017
+
+#Implementation: impl1
+
+Synopsys HDL Compiler, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v" (library work)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv" (library work)
+@I::"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv" (library work)
+Verilog syntax check successful!
+Options changed - recompiling
+Selecting top level module top_skid
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+
+@N: CL201 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Trying to extract state machine for register curr_state.
+Extracted state machine for register curr_state
+State machine has 4 reachable states with original encodings of:
+   00
+   01
+   10
+   11
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 72MB peak: 73MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:38 2017
+
+###########################################################]
+Synopsys Netlist Linker, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:38 2017
+
+###########################################################]
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:38 2017
+
+###########################################################]
+Synopsys Netlist Linker, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+File \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_comp.srs changed - recompiling
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:20:39 2017
+
+###########################################################]
+Pre-mapping Report
+
+Synopsys Lattice Technology Pre-mapping, Version maplat, Build 1498R, Built Jul  5 2016 10:30:31
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.03L-1
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@A: MF827 |No constraint file specified.
+@L: \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1_scck.rpt 
+Printing clock  summary report in "\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1_scck.rpt" file 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 112MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 114MB)
+
+ICG Latch Removal Summary:
+Number of ICG latches removed:	0
+Number of ICG latches not removed:	0
+syn_allowed_resources : blockrams=108  set on top level netlist top_skid
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+
+
+Clock Summary
+*****************
+
+Start                Requested     Requested     Clock        Clock                     Clock
+Clock                Frequency     Period        Type         Group                     Load 
+---------------------------------------------------------------------------------------------
+top_skid|i_clock     683.7 MHz     1.463         inferred     Autoconstr_clkgroup_0     76   
+=============================================================================================
+
+@W: MT529 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Found inferred clock top_skid|i_clock which controls 76 sequential elements including skid_0_inst.o_out_valid. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+
+Finished Pre Mapping Phase.
+
+Starting constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+Encoding state machine curr_state[3:0] (in view: work.skid_1(verilog))
+original code -> new code
+   00 -> 00
+   01 -> 01
+   10 -> 10
+   11 -> 11
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_1(verilog)); safe FSM implementation is not required.
+Encoding state machine curr_state[3:0] (in view: work.skid_0(verilog))
+original code -> new code
+   00 -> 00
+   01 -> 01
+   10 -> 10
+   11 -> 11
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_0(verilog)); safe FSM implementation is not required.
+None
+None
+
+Finished constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 55MB peak: 141MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Jan 03 14:20:40 2017
+
+###########################################################]
+Map & Optimize Report
+
+Synopsys Lattice Technology Mapper, Version maplat, Build 1498R, Built Jul  5 2016 10:30:31
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.03L-1
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 111MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 113MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 138MB peak: 141MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N: MT206 |Auto Constrain mode is enabled
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+Encoding state machine curr_state[3:0] (in view: work.skid_1(verilog))
+original code -> new code
+   00 -> 00
+   01 -> 01
+   10 -> 10
+   11 -> 11
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_1(verilog)); safe FSM implementation is not required.
+Encoding state machine curr_state[3:0] (in view: work.skid_0(verilog))
+original code -> new code
+   00 -> 00
+   01 -> 01
+   10 -> 10
+   11 -> 11
+@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_0(verilog)); safe FSM implementation is not required.
+
+Starting factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:00s		    -0.66ns		  86 /        72
+   2		0h:00m:00s		    -0.66ns		  82 /        72
+
+   3		0h:00m:00s		    -0.66ns		  82 /        72
+
+
+   4		0h:00m:00s		    -0.66ns		  82 /        72
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_15_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_14_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_13_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_12_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_11_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_10_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_9_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_8_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_7_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_6_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_5_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_4_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_3_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_2_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_1_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Boundary register skid_1_inst.out_data_reg_0_.fb (in view: work.top_skid(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+
+
+@S |Clock Optimization Summary
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+1 non-gated/non-generated clock tree(s) driving 72 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+================================ Non-Gated/Non-Generated Clocks ================================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance         
+------------------------------------------------------------------------------------------------
+@K:CKID0001       i_clock             port                   72         skid_0_inst_o_in_readyio
+================================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 107MB peak: 141MB)
+
+Writing Analyst data base \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 138MB peak: 141MB)
+
+Writing EDIF Netlist and constraint files
+@N: FX1056 |Writing EDF file: \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi
+L-2016.03L-1
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 144MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 144MB)
+
+@W: MT420 |Found inferred clock top_skid|i_clock with period 1.75ns. Please declare a user-defined clock on object "p:i_clock"
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Tue Jan 03 14:20:41 2017
+#
+
+
+Top view:               top_skid
+Requested Frequency:    572.2 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: -0.308
+
+                     Requested     Estimated     Requested     Estimated                Clock        Clock                
+Starting Clock       Frequency     Frequency     Period        Period        Slack      Type         Group                
+--------------------------------------------------------------------------------------------------------------------------
+top_skid|i_clock     572.2 MHz     486.4 MHz     1.748         2.056         -0.308     inferred     Autoconstr_clkgroup_0
+==========================================================================================================================
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                              |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+---------------------------------------------------------------------------------------------------------------------------
+Starting          Ending            |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+---------------------------------------------------------------------------------------------------------------------------
+top_skid|i_clock  top_skid|i_clock  |  1.748       -0.308  |  No paths    -      |  No paths    -      |  No paths    -    
+===========================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: top_skid|i_clock
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                Starting                                                   Arrival           
+Instance                        Reference            Type        Pin     Net               Time        Slack 
+                                Clock                                                                        
+-------------------------------------------------------------------------------------------------------------
+skid_0_inst.curr_state[1]       top_skid|i_clock     FD1S3AX     Q       curr_state[1]     0.979       -0.308
+skid_1_inst.curr_state[1]       top_skid|i_clock     FD1S3AX     Q       curr_state[1]     0.979       -0.308
+skid_0_inst.curr_state[0]       top_skid|i_clock     FD1S3AX     Q       curr_state[0]     0.951       -0.280
+skid_1_inst.curr_state[0]       top_skid|i_clock     FD1S3AX     Q       curr_state[0]     0.951       -0.280
+skid_0_inst.o_out_valid         top_skid|i_clock     FD1S3IX     Q       mid_valid         0.888       -0.217
+skid_1_inst.o_in_ready          top_skid|i_clock     FD1S3IX     Q       mid_ready         0.883       -0.212
+skid_0_inst.out_data_reg[0]     top_skid|i_clock     FD1P3IX     Q       mid_data[0]       0.798       0.396 
+skid_0_inst.out_data_reg[1]     top_skid|i_clock     FD1P3IX     Q       mid_data[1]       0.798       0.396 
+skid_0_inst.out_data_reg[2]     top_skid|i_clock     FD1P3IX     Q       mid_data[2]       0.798       0.396 
+skid_0_inst.out_data_reg[3]     top_skid|i_clock     FD1P3IX     Q       mid_data[3]       0.798       0.396 
+=============================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                Starting                                                       Required           
+Instance                        Reference            Type        Pin     Net                   Time         Slack 
+                                Clock                                                                             
+------------------------------------------------------------------------------------------------------------------
+skid_0_inst.curr_state[0]       top_skid|i_clock     FD1S3AX     D       curr_state_nss[0]     1.537        -0.308
+skid_1_inst.curr_state[0]       top_skid|i_clock     FD1S3AX     D       curr_state_nss[0]     1.537        -0.308
+skid_1_inst.curr_state[1]       top_skid|i_clock     FD1S3AX     D       curr_state_nss[1]     1.537        -0.280
+skid_0_inst.curr_state[1]       top_skid|i_clock     FD1S3AX     D       curr_state_nss[1]     1.537        -0.280
+skid_0_inst.out_data_reg[0]     top_skid|i_clock     FD1P3IX     SP      N_63_i                1.565        -0.122
+skid_0_inst.out_data_reg[1]     top_skid|i_clock     FD1P3IX     SP      N_63_i                1.565        -0.122
+skid_0_inst.out_data_reg[2]     top_skid|i_clock     FD1P3IX     SP      N_63_i                1.565        -0.122
+skid_0_inst.out_data_reg[3]     top_skid|i_clock     FD1P3IX     SP      N_63_i                1.565        -0.122
+skid_0_inst.out_data_reg[4]     top_skid|i_clock     FD1P3IX     SP      N_63_i                1.565        -0.122
+skid_0_inst.out_data_reg[5]     top_skid|i_clock     FD1P3IX     SP      N_63_i                1.565        -0.122
+==================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      1.748
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         1.537
+
+    - Propagation time:                      1.845
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.308
+
+    Number of logic level(s):                2
+    Starting point:                          skid_0_inst.curr_state[1] / Q
+    Ending point:                            skid_0_inst.curr_state[0] / D
+    The start point is clocked by            top_skid|i_clock [rising] on pin CK
+    The end   point is clocked by            top_skid|i_clock [rising] on pin CK
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+skid_0_inst.curr_state[1]             FD1S3AX      Q        Out     0.979     0.979       -         
+curr_state[1]                         Net          -        -       -         -           38        
+skid_0_inst.curr_state_srsts_1[0]     ORCALUT4     D        In      0.000     0.979       -         
+skid_0_inst.curr_state_srsts_1[0]     ORCALUT4     Z        Out     0.523     1.502       -         
+curr_state_srsts_1[0]                 Net          -        -       -         -           1         
+skid_0_inst.curr_state_srsts[0]       ORCALUT4     B        In      0.000     1.502       -         
+skid_0_inst.curr_state_srsts[0]       ORCALUT4     Z        Out     0.343     1.845       -         
+curr_state_nss[0]                     Net          -        -       -         -           1         
+skid_0_inst.curr_state[0]             FD1S3AX      D        In      0.000     1.845       -         
+====================================================================================================
+
+
+Path information for path number 2: 
+      Requested Period:                      1.748
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         1.537
+
+    - Propagation time:                      1.845
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.308
+
+    Number of logic level(s):                2
+    Starting point:                          skid_1_inst.curr_state[1] / Q
+    Ending point:                            skid_1_inst.curr_state[0] / D
+    The start point is clocked by            top_skid|i_clock [rising] on pin CK
+    The end   point is clocked by            top_skid|i_clock [rising] on pin CK
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+skid_1_inst.curr_state[1]             FD1S3AX      Q        Out     0.979     0.979       -         
+curr_state[1]                         Net          -        -       -         -           38        
+skid_1_inst.curr_state_srsts_1[0]     ORCALUT4     D        In      0.000     0.979       -         
+skid_1_inst.curr_state_srsts_1[0]     ORCALUT4     Z        Out     0.523     1.502       -         
+curr_state_srsts_1[0]                 Net          -        -       -         -           1         
+skid_1_inst.curr_state_srsts[0]       ORCALUT4     B        In      0.000     1.502       -         
+skid_1_inst.curr_state_srsts[0]       ORCALUT4     Z        Out     0.343     1.845       -         
+curr_state_nss[0]                     Net          -        -       -         -           1         
+skid_1_inst.curr_state[0]             FD1S3AX      D        In      0.000     1.845       -         
+====================================================================================================
+
+
+Path information for path number 3: 
+      Requested Period:                      1.748
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         1.537
+
+    - Propagation time:                      1.817
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.280
+
+    Number of logic level(s):                2
+    Starting point:                          skid_0_inst.curr_state[0] / Q
+    Ending point:                            skid_0_inst.curr_state[0] / D
+    The start point is clocked by            top_skid|i_clock [rising] on pin CK
+    The end   point is clocked by            top_skid|i_clock [rising] on pin CK
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+skid_0_inst.curr_state[0]             FD1S3AX      Q        Out     0.951     0.951       -         
+curr_state[0]                         Net          -        -       -         -           22        
+skid_0_inst.curr_state_srsts_1[0]     ORCALUT4     C        In      0.000     0.951       -         
+skid_0_inst.curr_state_srsts_1[0]     ORCALUT4     Z        Out     0.523     1.474       -         
+curr_state_srsts_1[0]                 Net          -        -       -         -           1         
+skid_0_inst.curr_state_srsts[0]       ORCALUT4     B        In      0.000     1.474       -         
+skid_0_inst.curr_state_srsts[0]       ORCALUT4     Z        Out     0.343     1.817       -         
+curr_state_nss[0]                     Net          -        -       -         -           1         
+skid_0_inst.curr_state[0]             FD1S3AX      D        In      0.000     1.817       -         
+====================================================================================================
+
+
+Path information for path number 4: 
+      Requested Period:                      1.748
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         1.537
+
+    - Propagation time:                      1.817
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.280
+
+    Number of logic level(s):                2
+    Starting point:                          skid_1_inst.curr_state[0] / Q
+    Ending point:                            skid_1_inst.curr_state[0] / D
+    The start point is clocked by            top_skid|i_clock [rising] on pin CK
+    The end   point is clocked by            top_skid|i_clock [rising] on pin CK
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+skid_1_inst.curr_state[0]             FD1S3AX      Q        Out     0.951     0.951       -         
+curr_state[0]                         Net          -        -       -         -           22        
+skid_1_inst.curr_state_srsts_1[0]     ORCALUT4     C        In      0.000     0.951       -         
+skid_1_inst.curr_state_srsts_1[0]     ORCALUT4     Z        Out     0.523     1.474       -         
+curr_state_srsts_1[0]                 Net          -        -       -         -           1         
+skid_1_inst.curr_state_srsts[0]       ORCALUT4     B        In      0.000     1.474       -         
+skid_1_inst.curr_state_srsts[0]       ORCALUT4     Z        Out     0.343     1.817       -         
+curr_state_nss[0]                     Net          -        -       -         -           1         
+skid_1_inst.curr_state[0]             FD1S3AX      D        In      0.000     1.817       -         
+====================================================================================================
+
+
+Path information for path number 5: 
+      Requested Period:                      1.748
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         1.537
+
+    - Propagation time:                      1.817
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.280
+
+    Number of logic level(s):                2
+    Starting point:                          skid_0_inst.curr_state[0] / Q
+    Ending point:                            skid_0_inst.curr_state[1] / D
+    The start point is clocked by            top_skid|i_clock [rising] on pin CK
+    The end   point is clocked by            top_skid|i_clock [rising] on pin CK
+
+Instance / Net                                     Pin      Pin               Arrival     No. of    
+Name                                  Type         Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------
+skid_0_inst.curr_state[0]             FD1S3AX      Q        Out     0.951     0.951       -         
+curr_state[0]                         Net          -        -       -         -           22        
+skid_0_inst.curr_state_srsts_1[1]     ORCALUT4     C        In      0.000     0.951       -         
+skid_0_inst.curr_state_srsts_1[1]     ORCALUT4     Z        Out     0.523     1.474       -         
+curr_state_srsts_1[1]                 Net          -        -       -         -           1         
+skid_0_inst.curr_state_srsts[1]       ORCALUT4     D        In      0.000     1.474       -         
+skid_0_inst.curr_state_srsts[1]       ORCALUT4     Z        Out     0.343     1.817       -         
+curr_state_nss[1]                     Net          -        -       -         -           1         
+skid_0_inst.curr_state[1]             FD1S3AX      D        In      0.000     1.817       -         
+====================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Constraints that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 144MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 144MB)
+
+---------------------------------------
+Resource Usage Report
+Part: lfe5um5g_45f-8
+
+Register bits: 72 of 43848 (0%)
+PIC Latch:       0
+I/O cells:       38
+
+
+Details:
+FD1P3IX:        48
+FD1S3AX:        4
+FD1S3IX:        2
+GSR:            1
+IB:             20
+OB:             18
+OFS1P3IX:       18
+ORCALUT4:       80
+PUR:            1
+VHI:            3
+VLO:            1
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 31MB peak: 144MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Jan 03 14:20:41 2017
+
+###########################################################]
+Synopsys HDL Compiler, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v" (library work)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.8_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv" (library work)
+@I::"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv" (library work)
+Verilog syntax check successful!
+Options changed - recompiling
+Selecting top level module top_skid
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 71MB peak: 73MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:21:30 2017
+
+###########################################################]
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 03 14:21:30 2017
+
+###########################################################]

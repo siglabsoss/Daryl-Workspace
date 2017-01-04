@@ -1,0 +1,135 @@
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Tue Jan 03 14:20:41 2017
+#
+
+
+Top view:               top_skid
+Requested Frequency:    572.2 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: 0.497
+
+                     Requested     Estimated     Requested     Estimated                Clock        Clock                
+Starting Clock       Frequency     Frequency     Period        Period        Slack      Type         Group                
+--------------------------------------------------------------------------------------------------------------------------
+top_skid|i_clock     572.2 MHz     486.4 MHz     1.748         2.056         -0.308     inferred     Autoconstr_clkgroup_0
+==========================================================================================================================
+
+
+
+Clock Relationships
+*******************
+
+Clocks                              |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+--------------------------------------------------------------------------------------------------------------------------
+Starting          Ending            |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+--------------------------------------------------------------------------------------------------------------------------
+top_skid|i_clock  top_skid|i_clock  |  0.000       0.497  |  No paths    -      |  No paths    -      |  No paths    -    
+==========================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: top_skid|i_clock
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                            Starting                                                 Arrival          
+Instance                    Reference            Type        Pin     Net             Time        Slack
+                            Clock                                                                     
+------------------------------------------------------------------------------------------------------
+skid_1_inst.skid_reg[0]     top_skid|i_clock     FD1P3IX     Q       skid_reg[0]     0.527       0.497
+skid_1_inst.skid_reg[1]     top_skid|i_clock     FD1P3IX     Q       skid_reg[1]     0.527       0.497
+skid_1_inst.skid_reg[2]     top_skid|i_clock     FD1P3IX     Q       skid_reg[2]     0.527       0.497
+skid_1_inst.skid_reg[3]     top_skid|i_clock     FD1P3IX     Q       skid_reg[3]     0.527       0.497
+skid_1_inst.skid_reg[4]     top_skid|i_clock     FD1P3IX     Q       skid_reg[4]     0.527       0.497
+skid_1_inst.skid_reg[5]     top_skid|i_clock     FD1P3IX     Q       skid_reg[5]     0.527       0.497
+skid_1_inst.skid_reg[6]     top_skid|i_clock     FD1P3IX     Q       skid_reg[6]     0.527       0.497
+skid_1_inst.skid_reg[7]     top_skid|i_clock     FD1P3IX     Q       skid_reg[7]     0.527       0.497
+skid_1_inst.skid_reg[8]     top_skid|i_clock     FD1P3IX     Q       skid_reg[8]     0.527       0.497
+skid_1_inst.skid_reg[9]     top_skid|i_clock     FD1P3IX     Q       skid_reg[9]     0.527       0.497
+======================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                  Starting                                             Required          
+Instance                          Reference            Type         Pin     Net        Time         Slack
+                                  Clock                                                                  
+---------------------------------------------------------------------------------------------------------
+skid_1_inst_out_data_regio[0]     top_skid|i_clock     OFS1P3IX     D       N_35_i     0.148        0.497
+skid_1_inst_out_data_regio[1]     top_skid|i_clock     OFS1P3IX     D       N_33_i     0.148        0.497
+skid_1_inst_out_data_regio[2]     top_skid|i_clock     OFS1P3IX     D       N_31_i     0.148        0.497
+skid_1_inst_out_data_regio[3]     top_skid|i_clock     OFS1P3IX     D       N_29_i     0.148        0.497
+skid_1_inst_out_data_regio[4]     top_skid|i_clock     OFS1P3IX     D       N_27_i     0.148        0.497
+skid_1_inst_out_data_regio[5]     top_skid|i_clock     OFS1P3IX     D       N_25_i     0.148        0.497
+skid_1_inst_out_data_regio[6]     top_skid|i_clock     OFS1P3IX     D       N_23_i     0.148        0.497
+skid_1_inst_out_data_regio[7]     top_skid|i_clock     OFS1P3IX     D       N_21_i     0.148        0.497
+skid_1_inst_out_data_regio[8]     top_skid|i_clock     OFS1P3IX     D       N_19_i     0.148        0.497
+skid_1_inst_out_data_regio[9]     top_skid|i_clock     OFS1P3IX     D       N_17_i     0.148        0.497
+=========================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+    Propagation time:                        0.645
+    + Clock delay at starting point:         0.000 (ideal)
+    - Requested Period:                      0.000
+    - Hold time:                             0.148
+    - Clock delay at ending point:           0.000 (ideal)
+    = Slack (critical) :                     0.497
+
+    Number of logic level(s):                1
+    Starting point:                          skid_1_inst.skid_reg[0] / Q
+    Ending point:                            skid_1_inst_out_data_regio[0] / D
+    The start point is clocked by            top_skid|i_clock [rising] on pin CK
+    The end   point is clocked by            top_skid|i_clock [rising] on pin SCLK
+
+Instance / Net                                   Pin      Pin               Arrival     No. of    
+Name                                Type         Name     Dir     Delay     Time        Fan Out(s)
+--------------------------------------------------------------------------------------------------
+skid_1_inst.skid_reg[0]             FD1P3IX      Q        Out     0.527     0.527       -         
+skid_reg[0]                         Net          -        -       -         -           1         
+skid_1_inst.skid_reg_RNI6AE6[0]     ORCALUT4     D        In      0.000     0.527       -         
+skid_1_inst.skid_reg_RNI6AE6[0]     ORCALUT4     Z        Out     0.118     0.645       -         
+N_35_i                              Net          -        -       -         -           1         
+skid_1_inst_out_data_regio[0]       OFS1P3IX     D        In      0.000     0.645       -         
+==================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Constraints that could not be applied
+None

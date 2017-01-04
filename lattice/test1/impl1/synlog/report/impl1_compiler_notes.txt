@@ -1,0 +1,11 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+@N: CL201 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Trying to extract state machine for register curr_state.
+@N|Running in 64-bit mode
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Selected library: work cell: top_skid view verilog as top level
+

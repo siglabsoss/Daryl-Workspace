@@ -1,0 +1,5 @@
+Selecting top level module top_skid
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\skid.sv":5:7:5:10|Synthesizing module skid in library work.
+
+@N: CG364 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\source\top_skid.sv":5:7:5:14|Synthesizing module top_skid in library work.
+
