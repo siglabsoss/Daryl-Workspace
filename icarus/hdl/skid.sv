@@ -39,13 +39,12 @@ logic             next_out_valid;
 logic [WIDTH-1:0] next_skid_reg;
 logic             next_in_ready;
 
-// Register containing same data as output
+// Register containing same data that is at output
 logic [WIDTH-1:0] out_data_reg;
 
 always @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
         curr_state <= ST_START;
-        o_out_data <= 0;
         o_out_valid <= 1'b0;
         out_data_reg <= 0;
         skid_reg <= 0;
@@ -53,8 +52,6 @@ always @(posedge i_clock) begin
     end else begin
         // Update state machine
         curr_state <= next_state;
-        // Update output interface signals
-        o_out_data <= next_out_data;
         out_data_reg <= next_out_data;
         o_out_valid <= next_out_valid;
         // Update skid buffer signals
@@ -123,6 +120,9 @@ always @(*) begin
     end
     endcase
 end
+
+// Wire output data signal to output port
+assign o_out_data = out_data_reg;
 
 endmodule: skid
 
