@@ -72,6 +72,8 @@ logic [WIDTH-1:0] output_values [0:NUM_WORDS-1] = {
     18724
 };
 
+integer count = 0;
+
 initial begin: stimulus
     i_reset = 1'b1;
     #1000;
@@ -119,7 +121,7 @@ initial begin: stimulus
     test_number = 3;
     reset_all();
     #1000;
-    for (integer count = 0; count < NUM_WORDS; count = count + 1) begin
+    for (count = 0; count < NUM_WORDS; count = count + 1) begin
         @(negedge i_clock) begin
             i_in_data = input_values[count];
             i_in_valid = 1'b1;
