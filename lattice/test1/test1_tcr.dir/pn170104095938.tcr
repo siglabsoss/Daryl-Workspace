@@ -1,0 +1,4 @@
+#Start recording tcl command: 1/4/2017 09:34:05
+#Project Location: Z:/Daryl-Workspace/lattice/test1; Project name: test1
+prj_project open "Z:/Daryl-Workspace/lattice/test1/test1.ldf"
+#Stop recording: 1/4/2017 09:59:38

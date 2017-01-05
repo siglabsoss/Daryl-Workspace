@@ -3,7 +3,10 @@
     <Options/>
     <Implementation title="impl1" dir="impl1" description="impl1" synthesis="synplify" default_strategy="Strategy1">
         <Options/>
-        <Source name="impl1/source/skid.sv" type="Verilog" type_short="Verilog">
+        <Source name="impl1/source/skid.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="ahdl_test/ahdl_test.spf" type="Simulation Project File" type_short="SPF">
             <Options/>
         </Source>
         <Source name="test1.lpf" type="Logic Preference" type_short="LPF">

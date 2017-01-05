@@ -34,7 +34,7 @@ always_ff @ (posedge i_clock) begin
                 reg_data_reg <= '0;
             end else begin
                 word_count <= word_count + 1;
-                reg_data_reg <= i_in_data;
+                reg_data_reg <= reg_data_reg ^ i_in_data;
             end
             // Register output for feedback
             out_data_reg <= reg_data_reg ^ i_in_data;

@@ -1,0 +1,1 @@
+C:/lscc/diamond/3.8_x64/bin/nt64/moduleparser.exe -PROJ ahdl_test -pf C:/lscc/diamond/3.8_x64/cae_library/synthesis/vhdl/ecp5um.vhd -lib ecp5um -pkg C:/lscc/diamond/3.8_x64/cae_library/vhdl_packages/vdbs -lst Z:/Daryl-Workspace/lattice/test1/ahdl_test/source_files.lst

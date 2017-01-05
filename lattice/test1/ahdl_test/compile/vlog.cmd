@@ -1,0 +1,1 @@
+-o Z:/Daryl-Workspace/lattice/test1/ahdl_test/compile -lc Z:/Daryl-Workspace/lattice/test1/ahdl_test/library.cfg -fl Z:/Daryl-Workspace/lattice/test1/ahdl_test/projlib.cfg -pli "C:/lscc/diamond/3.8_x64/active-hdl/bin/systf.dll" -epr Z:/Daryl-Workspace/lattice/test1/ahdl_test/compile/ahdl_test.epr -work ahdl_test -lib work +access +r ./source/skid.v 

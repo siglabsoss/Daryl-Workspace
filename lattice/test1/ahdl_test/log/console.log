@@ -1,0 +1,103 @@
+# Design Explorer: Shortcut to "Z:\Daryl-Workspace\lattice\test1\ahdl_test\ahdl_test.aws" design added.
+designverincludedir -clear
+designverlibrarysim -PL -clear
+designverlibrarysim -L -clear
+designverlibrarysim -PL pmi_work
+designverlibrarysim ovi_ecp5um
+designverdefinemacro -clear
+addfile Z:/Daryl-Workspace/lattice/test1/impl1/source/skid.v
+# Adding file Z:\Daryl-Workspace\lattice\test1\impl1\source\skid.v ... Done
+vlib Z:/Daryl-Workspace/lattice/test1/ahdl_test/work
+# Warning: Cannot create library
+# Error: Library 'work' not found.
+adel -all
+# Library contents cleared.
+vlog -dbg -work work Z:/Daryl-Workspace/lattice/test1/impl1/source/skid.v
+# Error: ALOG: Cannot find library at `work'.
+vsim +access +r -PL pmi_work -L ovi_ecp5um
+# Error: VSIM: cannot select specified top-level
+add wave *
+# Error: Accelerated Waveform: Simulation database is not connected. Initialize simulation or load simulation database by opening waveform file (AWC, ASDB).
+# Error: Simulation not initialized.
+#     while executing
+# "error "Simulation not initialized.""
+#     (procedure "run" line 6)
+#     invoked from within
+# "run 1000ns"
+#     (file "Z:/Daryl-Workspace/lattice/test1/ahdl_test/ahdl_test.ado" line 25)
+#     invoked from within
+# "source {Z:/Daryl-Workspace/lattice/test1/ahdl_test/ahdl_test.ado}"
+#     invoked from within
+# "interp eval $slave "source $source_file""
+alog -O2 -sve -msg 5 -sv2k12 -work ahdl_test -c $dsn/../impl1/source/skid.v
+# Error: ALOG: Unknown switch: -c (for vlog)
+alog -O2 -sve -msg 5 -sv2k12 -work ahdl_test $dsn/../impl1/source/skid.v
+# Pass 1. Scanning modules hierarchy.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Parameters in case labels, will not check for overlapping labels (Z:/Daryl-Workspace/lattice/test1/ahdl_test/../impl1/source/skid.v, ln 67).
+# Running Optimizer.
+# ELB/DAG code generating.
+# Unit top modules: skid.
+# $root top modules: skid.
+# Compile success 0 Errors 0 Warnings  Analysis time: 1[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+vlib work
+# Adding library O.K.
+vlog skid.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Error: VCP1010 Cannot find source file: skid.v
+# Compile failure 1 Errors 0 Warnings  Analysis time: 0[s].
+pwd
+# Z:\Daryl-Workspace\lattice\test1
+vlog
+# Error: VCP0503 At least one input file name is required in command line.
+# Compile failure 1 Errors 0 Warnings  Analysis time: 0[s].
+ls
+# Error: invalid command name ls
+vlog src/skid.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Error: VCP1010 Cannot find source file: src/skid.v
+# Compile failure 1 Errors 0 Warnings  Analysis time: 0[s].
+vlog ./src/skid.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Error: VCP1010 Cannot find source file: ./src/skid.v
+# Compile failure 1 Errors 0 Warnings  Analysis time: 0[s].
+vlog ./source/skid.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Error: VCP1010 Cannot find source file: ./source/skid.v
+# Compile failure 1 Errors 0 Warnings  Analysis time: 0[s].
+vlog ./impl1/source/skid.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Parameters in case labels, will not check for overlapping labels (./impl1/source/skid.v, ln 67).
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: skid.
+# $root top modules: skid.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+help vsim
+vlog ./source/skid.v +access +r -lib work -log sim.log
+# Error: ALOG: Unknown switch: -lib (for vlog)
+
+vlog +access +r -lib work -log sim.log ./source/skid.v
+# Error: ALOG: Unknown switch: -lib (for vlog)
+vlog -lib work +access +r ./source/skid.v
+# Error: ALOG: Unknown switch: -lib (for vlog)
+# Library Manager: Library "ahdl_test" contents cleared.
+# Library Manager: Library "ahdl_test" contents cleared.
+vlib
+# Error: vlib: not enough parameters
+# Error: Usage:
+# Error: vlib -help
+# Error: vlib [-adf] [-global] [<logical_name>] <physical_name> | -compact <logical_name>
