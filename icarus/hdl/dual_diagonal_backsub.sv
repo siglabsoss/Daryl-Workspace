@@ -15,27 +15,29 @@ module dual_diagonal_backsub #(
 );
 
 logic [$clog2(NUM_WORDS)-1:0] word_count;
-logic [WIDTH-1:0]             reg_data;
+logic [WIDTH-1:0]             reg_data_reg;
+logic [WIDTH-1:0]             out_data_reg;
+logic                         out_valid_reg;
 
-always_ff @ (posedge clock) begin
-    if (reset == 1'b1) begin
+always_ff @ (posedge i_clock) begin
+    if (i_reset == 1'b1) begin
         // Reset state
         out_data_reg <= '0;
         out_valid_reg <= 1'b0;
         word_count <= '0;
-        reg_data <= '0;
+        reg_data_reg <= '0;
     end else begin
         if (i_in_valid == 1'b1) begin
             // Reset on vector alignment
             if (word_count == NUM_WORDS-1) begin
                 word_count <= '0;
-                reg_data <= '0;
+                reg_data_reg <= '0;
             end else begin
                 word_count <= word_count + 1;
-                reg_data <= i_in_data;
+                reg_data_reg <= i_in_data;
             end
             // Register output for feedback
-            out_data_reg <= reg_data ^ i_in_data;
+            out_data_reg <= reg_data_reg ^ i_in_data;
         end
         // Propagate valid signal
         out_valid_reg <= i_in_valid;

@@ -5,7 +5,7 @@ BUILD_DIR=icsim
 LIB_DIR=/usr/local/diamond/3.8_x64/cae_library/simulation/verilog/ecp5u
 OPTS=-g2012 -DSIMULATION
 
-all: test tb_skid
+all: test tb_skid tb_dual_diagonal_backsub
 
 test: $(HDL_DIR)/test.sv
 	$(SIM) $(LIB_DIR)/LUT4.v $(LIB_DIR)/lut_mux4.v $(OPTS) -o $(BUILD_DIR)/$@ -s $@ $<

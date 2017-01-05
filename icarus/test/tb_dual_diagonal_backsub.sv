@@ -39,6 +39,7 @@ logic [31:0] run_count = 0;
 
 task reset_all;
     i_reset = 1'b1;
+    i_in_data = 0;
     i_in_valid = 1'b0;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
@@ -77,18 +78,13 @@ end
 // Tests the output sequence to make sure it matches the input
 logic [31:0] local_err_count = 0;
 logic [31:0] stored_value = 0;
-logic        increment_i_in_data = 1'b0;
 always @(posedge i_clock) begin: seq_check
     if (i_reset == 1'b1) begin
         stored_value <= 0;
         run_count <= 0;
-        increment_i_in_data <= 1'b0;
     end else begin
-        // Flag input counter to be incremented
-        increment_i_in_data <= i_in_valid & o_in_ready;
-
         // Validate incrementing output sequence
-        if ((o_out_valid & i_out_ready) == 1'b1) begin
+        if (o_out_valid == 1'b1) begin
             if (o_out_data != stored_value) begin
                 $display("Error: Output of %d expected, but received %d.", stored_value, o_out_data);
                 local_err_count++;
