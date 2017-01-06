@@ -204,11 +204,11 @@ always @(posedge i_clock) begin: seq_check
     end
 end
 
-// Do this in your test bench
-initial begin
-    $dumpfile("dual_diagonal_backsub.vcd");
-    $dumpvars;
-end
+// // Do this in your test bench
+// initial begin
+//     $dumpfile("dual_diagonal_backsub.vcd");
+//     $dumpvars;
+// end
 
 endmodule: tb_dual_diagonal_backsub
 
