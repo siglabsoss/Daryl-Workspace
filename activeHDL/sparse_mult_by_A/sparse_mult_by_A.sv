@@ -213,7 +213,8 @@ always_comb begin
             ping_storage_data_93,
             ping_storage_data_94,
             ping_storage_data_95
-        };1: o_output_data = { 
+        };
+        1: o_output_data = { 
             ping_storage_data_96,
             ping_storage_data_97,
             ping_storage_data_98,
@@ -310,7 +311,8 @@ always_comb begin
             ping_storage_data_189,
             ping_storage_data_190,
             ping_storage_data_191
-        };2: o_output_data = { 
+        };
+        2: o_output_data = { 
             ping_storage_data_192,
             ping_storage_data_193,
             ping_storage_data_194,
@@ -407,7 +409,8 @@ always_comb begin
             ping_storage_data_285,
             ping_storage_data_286,
             ping_storage_data_287
-        };3: o_output_data = { 
+        };
+        3: o_output_data = { 
             ping_storage_data_288,
             ping_storage_data_289,
             ping_storage_data_290,
@@ -504,7 +507,8 @@ always_comb begin
             ping_storage_data_381,
             ping_storage_data_382,
             ping_storage_data_383
-        };4: o_output_data = { 
+        };
+        4: o_output_data = { 
             ping_storage_data_384,
             ping_storage_data_385,
             ping_storage_data_386,
@@ -601,7 +605,8 @@ always_comb begin
             ping_storage_data_477,
             ping_storage_data_478,
             ping_storage_data_479
-        };5: o_output_data = { 
+        };
+        5: o_output_data = { 
             ping_storage_data_480,
             ping_storage_data_481,
             ping_storage_data_482,
@@ -698,7 +703,8 @@ always_comb begin
             ping_storage_data_573,
             ping_storage_data_574,
             ping_storage_data_575
-        };6: o_output_data = { 
+        };
+        6: o_output_data = { 
             ping_storage_data_576,
             ping_storage_data_577,
             ping_storage_data_578,
@@ -795,7 +801,8 @@ always_comb begin
             ping_storage_data_669,
             ping_storage_data_670,
             ping_storage_data_671
-        };7: o_output_data = { 
+        };
+        7: o_output_data = { 
             ping_storage_data_672,
             ping_storage_data_673,
             ping_storage_data_674,
@@ -892,7 +899,8 @@ always_comb begin
             ping_storage_data_765,
             ping_storage_data_766,
             ping_storage_data_767
-        };8: o_output_data = { 
+        };
+        8: o_output_data = { 
             ping_storage_data_768,
             ping_storage_data_769,
             ping_storage_data_770,
@@ -989,7 +997,8 @@ always_comb begin
             ping_storage_data_861,
             ping_storage_data_862,
             ping_storage_data_863
-        };9: o_output_data = { 
+        };
+        9: o_output_data = { 
             ping_storage_data_864,
             ping_storage_data_865,
             ping_storage_data_866,
@@ -1086,7 +1095,8 @@ always_comb begin
             ping_storage_data_957,
             ping_storage_data_958,
             ping_storage_data_959
-        };default: o_output_data = { 
+        };
+        default: o_output_data = { 
             ping_storage_data_960,
             ping_storage_data_961,
             ping_storage_data_962,
@@ -2271,7 +2281,7 @@ always_comb begin
             pong_storage_data_1054,
             pong_storage_data_1055
         };
-                endcase
+        endcase
         o_output_valid = 1'b1;
     end
     ST_WAIT: begin
