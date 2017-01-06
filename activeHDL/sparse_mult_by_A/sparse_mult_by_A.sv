@@ -3,7 +3,7 @@
 
 `default_nettype none
 
-module sparse_mult #(
+module sparse_mult_ #(
     parameter integer IN_WIDTH = 8,  // SHOULD BE A POWER OF 2
     parameter integer OUT_WIDTH = 96  // SHOULD BE A POWER OF 2
 ) (
@@ -112,7 +112,7 @@ always_comb begin
     case (readout_state)
     ST_PING: begin
         if ((output_count == OUTPUT_LENGTH - 1)
-                && (output_ready == 1'b1)) begin
+                && (i_output_ready == 1'b1)) begin
             next_readout_state = ping_is_full ? ST_PING : ST_WAIT;
         end
         case (output_count)
@@ -1199,7 +1199,7 @@ always_comb begin
     end
     ST_PONG: begin
         if ((output_count == OUTPUT_LENGTH - 1)
-                && (output_ready == 1'b1)) begin
+                && (i_output_ready == 1'b1)) begin
             next_readout_state = ping_is_full ? ST_PING : ST_WAIT;
         end
         case (output_count)
@@ -2305,7 +2305,7 @@ logic ping_storage_data_0;
 logic pong_storage_data_0;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             98 / IN_WIDTH: ping_storage_data_0 <= ping_storage_data_0 ^ input_data(98 % IN_WIDTH);
@@ -2330,7 +2330,7 @@ logic ping_storage_data_1;
 logic pong_storage_data_1;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             99 / IN_WIDTH: ping_storage_data_1 <= ping_storage_data_1 ^ input_data(99 % IN_WIDTH);
@@ -2355,7 +2355,7 @@ logic ping_storage_data_2;
 logic pong_storage_data_2;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             100 / IN_WIDTH: ping_storage_data_2 <= ping_storage_data_2 ^ input_data(100 % IN_WIDTH);
@@ -2380,7 +2380,7 @@ logic ping_storage_data_3;
 logic pong_storage_data_3;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             101 / IN_WIDTH: ping_storage_data_3 <= ping_storage_data_3 ^ input_data(101 % IN_WIDTH);
@@ -2405,7 +2405,7 @@ logic ping_storage_data_4;
 logic pong_storage_data_4;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             102 / IN_WIDTH: ping_storage_data_4 <= ping_storage_data_4 ^ input_data(102 % IN_WIDTH);
@@ -2430,7 +2430,7 @@ logic ping_storage_data_5;
 logic pong_storage_data_5;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             103 / IN_WIDTH: ping_storage_data_5 <= ping_storage_data_5 ^ input_data(103 % IN_WIDTH);
@@ -2455,7 +2455,7 @@ logic ping_storage_data_6;
 logic pong_storage_data_6;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             104 / IN_WIDTH: ping_storage_data_6 <= ping_storage_data_6 ^ input_data(104 % IN_WIDTH);
@@ -2480,7 +2480,7 @@ logic ping_storage_data_7;
 logic pong_storage_data_7;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             105 / IN_WIDTH: ping_storage_data_7 <= ping_storage_data_7 ^ input_data(105 % IN_WIDTH);
@@ -2505,7 +2505,7 @@ logic ping_storage_data_8;
 logic pong_storage_data_8;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             106 / IN_WIDTH: ping_storage_data_8 <= ping_storage_data_8 ^ input_data(106 % IN_WIDTH);
@@ -2530,7 +2530,7 @@ logic ping_storage_data_9;
 logic pong_storage_data_9;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             107 / IN_WIDTH: ping_storage_data_9 <= ping_storage_data_9 ^ input_data(107 % IN_WIDTH);
@@ -2555,7 +2555,7 @@ logic ping_storage_data_10;
 logic pong_storage_data_10;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             108 / IN_WIDTH: ping_storage_data_10 <= ping_storage_data_10 ^ input_data(108 % IN_WIDTH);
@@ -2580,7 +2580,7 @@ logic ping_storage_data_11;
 logic pong_storage_data_11;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             109 / IN_WIDTH: ping_storage_data_11 <= ping_storage_data_11 ^ input_data(109 % IN_WIDTH);
@@ -2605,7 +2605,7 @@ logic ping_storage_data_12;
 logic pong_storage_data_12;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             110 / IN_WIDTH: ping_storage_data_12 <= ping_storage_data_12 ^ input_data(110 % IN_WIDTH);
@@ -2630,7 +2630,7 @@ logic ping_storage_data_13;
 logic pong_storage_data_13;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             111 / IN_WIDTH: ping_storage_data_13 <= ping_storage_data_13 ^ input_data(111 % IN_WIDTH);
@@ -2655,7 +2655,7 @@ logic ping_storage_data_14;
 logic pong_storage_data_14;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             112 / IN_WIDTH: ping_storage_data_14 <= ping_storage_data_14 ^ input_data(112 % IN_WIDTH);
@@ -2680,7 +2680,7 @@ logic ping_storage_data_15;
 logic pong_storage_data_15;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             113 / IN_WIDTH: ping_storage_data_15 <= ping_storage_data_15 ^ input_data(113 % IN_WIDTH);
@@ -2705,7 +2705,7 @@ logic ping_storage_data_16;
 logic pong_storage_data_16;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             114 / IN_WIDTH: ping_storage_data_16 <= ping_storage_data_16 ^ input_data(114 % IN_WIDTH);
@@ -2730,7 +2730,7 @@ logic ping_storage_data_17;
 logic pong_storage_data_17;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             115 / IN_WIDTH: ping_storage_data_17 <= ping_storage_data_17 ^ input_data(115 % IN_WIDTH);
@@ -2755,7 +2755,7 @@ logic ping_storage_data_18;
 logic pong_storage_data_18;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             116 / IN_WIDTH: ping_storage_data_18 <= ping_storage_data_18 ^ input_data(116 % IN_WIDTH);
@@ -2780,7 +2780,7 @@ logic ping_storage_data_19;
 logic pong_storage_data_19;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             117 / IN_WIDTH: ping_storage_data_19 <= ping_storage_data_19 ^ input_data(117 % IN_WIDTH);
@@ -2805,7 +2805,7 @@ logic ping_storage_data_20;
 logic pong_storage_data_20;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             118 / IN_WIDTH: ping_storage_data_20 <= ping_storage_data_20 ^ input_data(118 % IN_WIDTH);
@@ -2830,7 +2830,7 @@ logic ping_storage_data_21;
 logic pong_storage_data_21;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             119 / IN_WIDTH: ping_storage_data_21 <= ping_storage_data_21 ^ input_data(119 % IN_WIDTH);
@@ -2855,7 +2855,7 @@ logic ping_storage_data_22;
 logic pong_storage_data_22;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             120 / IN_WIDTH: ping_storage_data_22 <= ping_storage_data_22 ^ input_data(120 % IN_WIDTH);
@@ -2880,7 +2880,7 @@ logic ping_storage_data_23;
 logic pong_storage_data_23;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             121 / IN_WIDTH: ping_storage_data_23 <= ping_storage_data_23 ^ input_data(121 % IN_WIDTH);
@@ -2905,7 +2905,7 @@ logic ping_storage_data_24;
 logic pong_storage_data_24;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             122 / IN_WIDTH: ping_storage_data_24 <= ping_storage_data_24 ^ input_data(122 % IN_WIDTH);
@@ -2930,7 +2930,7 @@ logic ping_storage_data_25;
 logic pong_storage_data_25;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             123 / IN_WIDTH: ping_storage_data_25 <= ping_storage_data_25 ^ input_data(123 % IN_WIDTH);
@@ -2955,7 +2955,7 @@ logic ping_storage_data_26;
 logic pong_storage_data_26;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             124 / IN_WIDTH: ping_storage_data_26 <= ping_storage_data_26 ^ input_data(124 % IN_WIDTH);
@@ -2980,7 +2980,7 @@ logic ping_storage_data_27;
 logic pong_storage_data_27;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             125 / IN_WIDTH: ping_storage_data_27 <= ping_storage_data_27 ^ input_data(125 % IN_WIDTH);
@@ -3005,7 +3005,7 @@ logic ping_storage_data_28;
 logic pong_storage_data_28;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             126 / IN_WIDTH: ping_storage_data_28 <= ping_storage_data_28 ^ input_data(126 % IN_WIDTH);
@@ -3030,7 +3030,7 @@ logic ping_storage_data_29;
 logic pong_storage_data_29;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             127 / IN_WIDTH: ping_storage_data_29 <= ping_storage_data_29 ^ input_data(127 % IN_WIDTH);
@@ -3055,7 +3055,7 @@ logic ping_storage_data_30;
 logic pong_storage_data_30;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             128 / IN_WIDTH: ping_storage_data_30 <= ping_storage_data_30 ^ input_data(128 % IN_WIDTH);
@@ -3080,7 +3080,7 @@ logic ping_storage_data_31;
 logic pong_storage_data_31;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             129 / IN_WIDTH: ping_storage_data_31 <= ping_storage_data_31 ^ input_data(129 % IN_WIDTH);
@@ -3105,7 +3105,7 @@ logic ping_storage_data_32;
 logic pong_storage_data_32;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             130 / IN_WIDTH: ping_storage_data_32 <= ping_storage_data_32 ^ input_data(130 % IN_WIDTH);
@@ -3130,7 +3130,7 @@ logic ping_storage_data_33;
 logic pong_storage_data_33;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             131 / IN_WIDTH: ping_storage_data_33 <= ping_storage_data_33 ^ input_data(131 % IN_WIDTH);
@@ -3155,7 +3155,7 @@ logic ping_storage_data_34;
 logic pong_storage_data_34;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             132 / IN_WIDTH: ping_storage_data_34 <= ping_storage_data_34 ^ input_data(132 % IN_WIDTH);
@@ -3180,7 +3180,7 @@ logic ping_storage_data_35;
 logic pong_storage_data_35;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             133 / IN_WIDTH: ping_storage_data_35 <= ping_storage_data_35 ^ input_data(133 % IN_WIDTH);
@@ -3205,7 +3205,7 @@ logic ping_storage_data_36;
 logic pong_storage_data_36;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             134 / IN_WIDTH: ping_storage_data_36 <= ping_storage_data_36 ^ input_data(134 % IN_WIDTH);
@@ -3230,7 +3230,7 @@ logic ping_storage_data_37;
 logic pong_storage_data_37;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             135 / IN_WIDTH: ping_storage_data_37 <= ping_storage_data_37 ^ input_data(135 % IN_WIDTH);
@@ -3255,7 +3255,7 @@ logic ping_storage_data_38;
 logic pong_storage_data_38;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             136 / IN_WIDTH: ping_storage_data_38 <= ping_storage_data_38 ^ input_data(136 % IN_WIDTH);
@@ -3280,7 +3280,7 @@ logic ping_storage_data_39;
 logic pong_storage_data_39;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             137 / IN_WIDTH: ping_storage_data_39 <= ping_storage_data_39 ^ input_data(137 % IN_WIDTH);
@@ -3305,7 +3305,7 @@ logic ping_storage_data_40;
 logic pong_storage_data_40;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             138 / IN_WIDTH: ping_storage_data_40 <= ping_storage_data_40 ^ input_data(138 % IN_WIDTH);
@@ -3330,7 +3330,7 @@ logic ping_storage_data_41;
 logic pong_storage_data_41;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             139 / IN_WIDTH: ping_storage_data_41 <= ping_storage_data_41 ^ input_data(139 % IN_WIDTH);
@@ -3355,7 +3355,7 @@ logic ping_storage_data_42;
 logic pong_storage_data_42;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             140 / IN_WIDTH: ping_storage_data_42 <= ping_storage_data_42 ^ input_data(140 % IN_WIDTH);
@@ -3380,7 +3380,7 @@ logic ping_storage_data_43;
 logic pong_storage_data_43;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             141 / IN_WIDTH: ping_storage_data_43 <= ping_storage_data_43 ^ input_data(141 % IN_WIDTH);
@@ -3405,7 +3405,7 @@ logic ping_storage_data_44;
 logic pong_storage_data_44;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             142 / IN_WIDTH: ping_storage_data_44 <= ping_storage_data_44 ^ input_data(142 % IN_WIDTH);
@@ -3430,7 +3430,7 @@ logic ping_storage_data_45;
 logic pong_storage_data_45;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             143 / IN_WIDTH: ping_storage_data_45 <= ping_storage_data_45 ^ input_data(143 % IN_WIDTH);
@@ -3455,7 +3455,7 @@ logic ping_storage_data_46;
 logic pong_storage_data_46;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             144 / IN_WIDTH: ping_storage_data_46 <= ping_storage_data_46 ^ input_data(144 % IN_WIDTH);
@@ -3480,7 +3480,7 @@ logic ping_storage_data_47;
 logic pong_storage_data_47;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             145 / IN_WIDTH: ping_storage_data_47 <= ping_storage_data_47 ^ input_data(145 % IN_WIDTH);
@@ -3505,7 +3505,7 @@ logic ping_storage_data_48;
 logic pong_storage_data_48;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             146 / IN_WIDTH: ping_storage_data_48 <= ping_storage_data_48 ^ input_data(146 % IN_WIDTH);
@@ -3530,7 +3530,7 @@ logic ping_storage_data_49;
 logic pong_storage_data_49;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             147 / IN_WIDTH: ping_storage_data_49 <= ping_storage_data_49 ^ input_data(147 % IN_WIDTH);
@@ -3555,7 +3555,7 @@ logic ping_storage_data_50;
 logic pong_storage_data_50;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             148 / IN_WIDTH: ping_storage_data_50 <= ping_storage_data_50 ^ input_data(148 % IN_WIDTH);
@@ -3580,7 +3580,7 @@ logic ping_storage_data_51;
 logic pong_storage_data_51;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             149 / IN_WIDTH: ping_storage_data_51 <= ping_storage_data_51 ^ input_data(149 % IN_WIDTH);
@@ -3605,7 +3605,7 @@ logic ping_storage_data_52;
 logic pong_storage_data_52;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             150 / IN_WIDTH: ping_storage_data_52 <= ping_storage_data_52 ^ input_data(150 % IN_WIDTH);
@@ -3630,7 +3630,7 @@ logic ping_storage_data_53;
 logic pong_storage_data_53;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             151 / IN_WIDTH: ping_storage_data_53 <= ping_storage_data_53 ^ input_data(151 % IN_WIDTH);
@@ -3655,7 +3655,7 @@ logic ping_storage_data_54;
 logic pong_storage_data_54;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             152 / IN_WIDTH: ping_storage_data_54 <= ping_storage_data_54 ^ input_data(152 % IN_WIDTH);
@@ -3680,7 +3680,7 @@ logic ping_storage_data_55;
 logic pong_storage_data_55;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             153 / IN_WIDTH: ping_storage_data_55 <= ping_storage_data_55 ^ input_data(153 % IN_WIDTH);
@@ -3705,7 +3705,7 @@ logic ping_storage_data_56;
 logic pong_storage_data_56;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             154 / IN_WIDTH: ping_storage_data_56 <= ping_storage_data_56 ^ input_data(154 % IN_WIDTH);
@@ -3730,7 +3730,7 @@ logic ping_storage_data_57;
 logic pong_storage_data_57;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             155 / IN_WIDTH: ping_storage_data_57 <= ping_storage_data_57 ^ input_data(155 % IN_WIDTH);
@@ -3755,7 +3755,7 @@ logic ping_storage_data_58;
 logic pong_storage_data_58;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             156 / IN_WIDTH: ping_storage_data_58 <= ping_storage_data_58 ^ input_data(156 % IN_WIDTH);
@@ -3780,7 +3780,7 @@ logic ping_storage_data_59;
 logic pong_storage_data_59;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             157 / IN_WIDTH: ping_storage_data_59 <= ping_storage_data_59 ^ input_data(157 % IN_WIDTH);
@@ -3805,7 +3805,7 @@ logic ping_storage_data_60;
 logic pong_storage_data_60;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             158 / IN_WIDTH: ping_storage_data_60 <= ping_storage_data_60 ^ input_data(158 % IN_WIDTH);
@@ -3830,7 +3830,7 @@ logic ping_storage_data_61;
 logic pong_storage_data_61;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             159 / IN_WIDTH: ping_storage_data_61 <= ping_storage_data_61 ^ input_data(159 % IN_WIDTH);
@@ -3855,7 +3855,7 @@ logic ping_storage_data_62;
 logic pong_storage_data_62;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             160 / IN_WIDTH: ping_storage_data_62 <= ping_storage_data_62 ^ input_data(160 % IN_WIDTH);
@@ -3880,7 +3880,7 @@ logic ping_storage_data_63;
 logic pong_storage_data_63;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             161 / IN_WIDTH: ping_storage_data_63 <= ping_storage_data_63 ^ input_data(161 % IN_WIDTH);
@@ -3905,7 +3905,7 @@ logic ping_storage_data_64;
 logic pong_storage_data_64;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             162 / IN_WIDTH: ping_storage_data_64 <= ping_storage_data_64 ^ input_data(162 % IN_WIDTH);
@@ -3930,7 +3930,7 @@ logic ping_storage_data_65;
 logic pong_storage_data_65;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             163 / IN_WIDTH: ping_storage_data_65 <= ping_storage_data_65 ^ input_data(163 % IN_WIDTH);
@@ -3955,7 +3955,7 @@ logic ping_storage_data_66;
 logic pong_storage_data_66;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             164 / IN_WIDTH: ping_storage_data_66 <= ping_storage_data_66 ^ input_data(164 % IN_WIDTH);
@@ -3980,7 +3980,7 @@ logic ping_storage_data_67;
 logic pong_storage_data_67;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             165 / IN_WIDTH: ping_storage_data_67 <= ping_storage_data_67 ^ input_data(165 % IN_WIDTH);
@@ -4005,7 +4005,7 @@ logic ping_storage_data_68;
 logic pong_storage_data_68;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             166 / IN_WIDTH: ping_storage_data_68 <= ping_storage_data_68 ^ input_data(166 % IN_WIDTH);
@@ -4030,7 +4030,7 @@ logic ping_storage_data_69;
 logic pong_storage_data_69;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             167 / IN_WIDTH: ping_storage_data_69 <= ping_storage_data_69 ^ input_data(167 % IN_WIDTH);
@@ -4055,7 +4055,7 @@ logic ping_storage_data_70;
 logic pong_storage_data_70;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             168 / IN_WIDTH: ping_storage_data_70 <= ping_storage_data_70 ^ input_data(168 % IN_WIDTH);
@@ -4080,7 +4080,7 @@ logic ping_storage_data_71;
 logic pong_storage_data_71;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             169 / IN_WIDTH: ping_storage_data_71 <= ping_storage_data_71 ^ input_data(169 % IN_WIDTH);
@@ -4105,7 +4105,7 @@ logic ping_storage_data_72;
 logic pong_storage_data_72;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             170 / IN_WIDTH: ping_storage_data_72 <= ping_storage_data_72 ^ input_data(170 % IN_WIDTH);
@@ -4130,7 +4130,7 @@ logic ping_storage_data_73;
 logic pong_storage_data_73;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             171 / IN_WIDTH: ping_storage_data_73 <= ping_storage_data_73 ^ input_data(171 % IN_WIDTH);
@@ -4155,7 +4155,7 @@ logic ping_storage_data_74;
 logic pong_storage_data_74;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             172 / IN_WIDTH: ping_storage_data_74 <= ping_storage_data_74 ^ input_data(172 % IN_WIDTH);
@@ -4180,7 +4180,7 @@ logic ping_storage_data_75;
 logic pong_storage_data_75;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             173 / IN_WIDTH: ping_storage_data_75 <= ping_storage_data_75 ^ input_data(173 % IN_WIDTH);
@@ -4205,7 +4205,7 @@ logic ping_storage_data_76;
 logic pong_storage_data_76;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             174 / IN_WIDTH: ping_storage_data_76 <= ping_storage_data_76 ^ input_data(174 % IN_WIDTH);
@@ -4230,7 +4230,7 @@ logic ping_storage_data_77;
 logic pong_storage_data_77;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             175 / IN_WIDTH: ping_storage_data_77 <= ping_storage_data_77 ^ input_data(175 % IN_WIDTH);
@@ -4255,7 +4255,7 @@ logic ping_storage_data_78;
 logic pong_storage_data_78;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             176 / IN_WIDTH: ping_storage_data_78 <= ping_storage_data_78 ^ input_data(176 % IN_WIDTH);
@@ -4280,7 +4280,7 @@ logic ping_storage_data_79;
 logic pong_storage_data_79;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             177 / IN_WIDTH: ping_storage_data_79 <= ping_storage_data_79 ^ input_data(177 % IN_WIDTH);
@@ -4305,7 +4305,7 @@ logic ping_storage_data_80;
 logic pong_storage_data_80;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             178 / IN_WIDTH: ping_storage_data_80 <= ping_storage_data_80 ^ input_data(178 % IN_WIDTH);
@@ -4330,7 +4330,7 @@ logic ping_storage_data_81;
 logic pong_storage_data_81;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             179 / IN_WIDTH: ping_storage_data_81 <= ping_storage_data_81 ^ input_data(179 % IN_WIDTH);
@@ -4355,7 +4355,7 @@ logic ping_storage_data_82;
 logic pong_storage_data_82;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             180 / IN_WIDTH: ping_storage_data_82 <= ping_storage_data_82 ^ input_data(180 % IN_WIDTH);
@@ -4380,7 +4380,7 @@ logic ping_storage_data_83;
 logic pong_storage_data_83;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             181 / IN_WIDTH: ping_storage_data_83 <= ping_storage_data_83 ^ input_data(181 % IN_WIDTH);
@@ -4405,7 +4405,7 @@ logic ping_storage_data_84;
 logic pong_storage_data_84;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             182 / IN_WIDTH: ping_storage_data_84 <= ping_storage_data_84 ^ input_data(182 % IN_WIDTH);
@@ -4430,7 +4430,7 @@ logic ping_storage_data_85;
 logic pong_storage_data_85;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             183 / IN_WIDTH: ping_storage_data_85 <= ping_storage_data_85 ^ input_data(183 % IN_WIDTH);
@@ -4455,7 +4455,7 @@ logic ping_storage_data_86;
 logic pong_storage_data_86;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             184 / IN_WIDTH: ping_storage_data_86 <= ping_storage_data_86 ^ input_data(184 % IN_WIDTH);
@@ -4480,7 +4480,7 @@ logic ping_storage_data_87;
 logic pong_storage_data_87;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             185 / IN_WIDTH: ping_storage_data_87 <= ping_storage_data_87 ^ input_data(185 % IN_WIDTH);
@@ -4505,7 +4505,7 @@ logic ping_storage_data_88;
 logic pong_storage_data_88;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             186 / IN_WIDTH: ping_storage_data_88 <= ping_storage_data_88 ^ input_data(186 % IN_WIDTH);
@@ -4530,7 +4530,7 @@ logic ping_storage_data_89;
 logic pong_storage_data_89;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             187 / IN_WIDTH: ping_storage_data_89 <= ping_storage_data_89 ^ input_data(187 % IN_WIDTH);
@@ -4555,7 +4555,7 @@ logic ping_storage_data_90;
 logic pong_storage_data_90;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             188 / IN_WIDTH: ping_storage_data_90 <= ping_storage_data_90 ^ input_data(188 % IN_WIDTH);
@@ -4580,7 +4580,7 @@ logic ping_storage_data_91;
 logic pong_storage_data_91;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             189 / IN_WIDTH: ping_storage_data_91 <= ping_storage_data_91 ^ input_data(189 % IN_WIDTH);
@@ -4605,7 +4605,7 @@ logic ping_storage_data_92;
 logic pong_storage_data_92;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             190 / IN_WIDTH: ping_storage_data_92 <= ping_storage_data_92 ^ input_data(190 % IN_WIDTH);
@@ -4630,7 +4630,7 @@ logic ping_storage_data_93;
 logic pong_storage_data_93;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             191 / IN_WIDTH: ping_storage_data_93 <= ping_storage_data_93 ^ input_data(191 % IN_WIDTH);
@@ -4655,7 +4655,7 @@ logic ping_storage_data_94;
 logic pong_storage_data_94;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             96 / IN_WIDTH: ping_storage_data_94 <= ping_storage_data_94 ^ input_data(96 % IN_WIDTH);
@@ -4680,7 +4680,7 @@ logic ping_storage_data_95;
 logic pong_storage_data_95;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             97 / IN_WIDTH: ping_storage_data_95 <= ping_storage_data_95 ^ input_data(97 % IN_WIDTH);
@@ -4705,7 +4705,7 @@ logic ping_storage_data_96;
 logic pong_storage_data_96;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             165 / IN_WIDTH: ping_storage_data_96 <= ping_storage_data_96 ^ input_data(165 % IN_WIDTH);
@@ -4732,7 +4732,7 @@ logic ping_storage_data_97;
 logic pong_storage_data_97;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             166 / IN_WIDTH: ping_storage_data_97 <= ping_storage_data_97 ^ input_data(166 % IN_WIDTH);
@@ -4759,7 +4759,7 @@ logic ping_storage_data_98;
 logic pong_storage_data_98;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             167 / IN_WIDTH: ping_storage_data_98 <= ping_storage_data_98 ^ input_data(167 % IN_WIDTH);
@@ -4786,7 +4786,7 @@ logic ping_storage_data_99;
 logic pong_storage_data_99;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             168 / IN_WIDTH: ping_storage_data_99 <= ping_storage_data_99 ^ input_data(168 % IN_WIDTH);
@@ -4813,7 +4813,7 @@ logic ping_storage_data_100;
 logic pong_storage_data_100;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             169 / IN_WIDTH: ping_storage_data_100 <= ping_storage_data_100 ^ input_data(169 % IN_WIDTH);
@@ -4840,7 +4840,7 @@ logic ping_storage_data_101;
 logic pong_storage_data_101;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             170 / IN_WIDTH: ping_storage_data_101 <= ping_storage_data_101 ^ input_data(170 % IN_WIDTH);
@@ -4867,7 +4867,7 @@ logic ping_storage_data_102;
 logic pong_storage_data_102;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             171 / IN_WIDTH: ping_storage_data_102 <= ping_storage_data_102 ^ input_data(171 % IN_WIDTH);
@@ -4894,7 +4894,7 @@ logic ping_storage_data_103;
 logic pong_storage_data_103;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             172 / IN_WIDTH: ping_storage_data_103 <= ping_storage_data_103 ^ input_data(172 % IN_WIDTH);
@@ -4921,7 +4921,7 @@ logic ping_storage_data_104;
 logic pong_storage_data_104;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             173 / IN_WIDTH: ping_storage_data_104 <= ping_storage_data_104 ^ input_data(173 % IN_WIDTH);
@@ -4948,7 +4948,7 @@ logic ping_storage_data_105;
 logic pong_storage_data_105;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             174 / IN_WIDTH: ping_storage_data_105 <= ping_storage_data_105 ^ input_data(174 % IN_WIDTH);
@@ -4975,7 +4975,7 @@ logic ping_storage_data_106;
 logic pong_storage_data_106;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             175 / IN_WIDTH: ping_storage_data_106 <= ping_storage_data_106 ^ input_data(175 % IN_WIDTH);
@@ -5002,7 +5002,7 @@ logic ping_storage_data_107;
 logic pong_storage_data_107;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             176 / IN_WIDTH: ping_storage_data_107 <= ping_storage_data_107 ^ input_data(176 % IN_WIDTH);
@@ -5029,7 +5029,7 @@ logic ping_storage_data_108;
 logic pong_storage_data_108;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             177 / IN_WIDTH: ping_storage_data_108 <= ping_storage_data_108 ^ input_data(177 % IN_WIDTH);
@@ -5056,7 +5056,7 @@ logic ping_storage_data_109;
 logic pong_storage_data_109;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             178 / IN_WIDTH: ping_storage_data_109 <= ping_storage_data_109 ^ input_data(178 % IN_WIDTH);
@@ -5083,7 +5083,7 @@ logic ping_storage_data_110;
 logic pong_storage_data_110;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             179 / IN_WIDTH: ping_storage_data_110 <= ping_storage_data_110 ^ input_data(179 % IN_WIDTH);
@@ -5110,7 +5110,7 @@ logic ping_storage_data_111;
 logic pong_storage_data_111;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             180 / IN_WIDTH: ping_storage_data_111 <= ping_storage_data_111 ^ input_data(180 % IN_WIDTH);
@@ -5137,7 +5137,7 @@ logic ping_storage_data_112;
 logic pong_storage_data_112;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             181 / IN_WIDTH: ping_storage_data_112 <= ping_storage_data_112 ^ input_data(181 % IN_WIDTH);
@@ -5164,7 +5164,7 @@ logic ping_storage_data_113;
 logic pong_storage_data_113;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             182 / IN_WIDTH: ping_storage_data_113 <= ping_storage_data_113 ^ input_data(182 % IN_WIDTH);
@@ -5191,7 +5191,7 @@ logic ping_storage_data_114;
 logic pong_storage_data_114;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             183 / IN_WIDTH: ping_storage_data_114 <= ping_storage_data_114 ^ input_data(183 % IN_WIDTH);
@@ -5218,7 +5218,7 @@ logic ping_storage_data_115;
 logic pong_storage_data_115;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             184 / IN_WIDTH: ping_storage_data_115 <= ping_storage_data_115 ^ input_data(184 % IN_WIDTH);
@@ -5245,7 +5245,7 @@ logic ping_storage_data_116;
 logic pong_storage_data_116;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             185 / IN_WIDTH: ping_storage_data_116 <= ping_storage_data_116 ^ input_data(185 % IN_WIDTH);
@@ -5272,7 +5272,7 @@ logic ping_storage_data_117;
 logic pong_storage_data_117;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             186 / IN_WIDTH: ping_storage_data_117 <= ping_storage_data_117 ^ input_data(186 % IN_WIDTH);
@@ -5299,7 +5299,7 @@ logic ping_storage_data_118;
 logic pong_storage_data_118;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             187 / IN_WIDTH: ping_storage_data_118 <= ping_storage_data_118 ^ input_data(187 % IN_WIDTH);
@@ -5326,7 +5326,7 @@ logic ping_storage_data_119;
 logic pong_storage_data_119;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             188 / IN_WIDTH: ping_storage_data_119 <= ping_storage_data_119 ^ input_data(188 % IN_WIDTH);
@@ -5353,7 +5353,7 @@ logic ping_storage_data_120;
 logic pong_storage_data_120;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             189 / IN_WIDTH: ping_storage_data_120 <= ping_storage_data_120 ^ input_data(189 % IN_WIDTH);
@@ -5380,7 +5380,7 @@ logic ping_storage_data_121;
 logic pong_storage_data_121;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             190 / IN_WIDTH: ping_storage_data_121 <= ping_storage_data_121 ^ input_data(190 % IN_WIDTH);
@@ -5407,7 +5407,7 @@ logic ping_storage_data_122;
 logic pong_storage_data_122;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             191 / IN_WIDTH: ping_storage_data_122 <= ping_storage_data_122 ^ input_data(191 % IN_WIDTH);
@@ -5434,7 +5434,7 @@ logic ping_storage_data_123;
 logic pong_storage_data_123;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             96 / IN_WIDTH: ping_storage_data_123 <= ping_storage_data_123 ^ input_data(96 % IN_WIDTH);
@@ -5461,7 +5461,7 @@ logic ping_storage_data_124;
 logic pong_storage_data_124;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             97 / IN_WIDTH: ping_storage_data_124 <= ping_storage_data_124 ^ input_data(97 % IN_WIDTH);
@@ -5488,7 +5488,7 @@ logic ping_storage_data_125;
 logic pong_storage_data_125;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             98 / IN_WIDTH: ping_storage_data_125 <= ping_storage_data_125 ^ input_data(98 % IN_WIDTH);
@@ -5515,7 +5515,7 @@ logic ping_storage_data_126;
 logic pong_storage_data_126;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             99 / IN_WIDTH: ping_storage_data_126 <= ping_storage_data_126 ^ input_data(99 % IN_WIDTH);
@@ -5542,7 +5542,7 @@ logic ping_storage_data_127;
 logic pong_storage_data_127;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             100 / IN_WIDTH: ping_storage_data_127 <= ping_storage_data_127 ^ input_data(100 % IN_WIDTH);
@@ -5569,7 +5569,7 @@ logic ping_storage_data_128;
 logic pong_storage_data_128;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             101 / IN_WIDTH: ping_storage_data_128 <= ping_storage_data_128 ^ input_data(101 % IN_WIDTH);
@@ -5596,7 +5596,7 @@ logic ping_storage_data_129;
 logic pong_storage_data_129;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             102 / IN_WIDTH: ping_storage_data_129 <= ping_storage_data_129 ^ input_data(102 % IN_WIDTH);
@@ -5623,7 +5623,7 @@ logic ping_storage_data_130;
 logic pong_storage_data_130;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             103 / IN_WIDTH: ping_storage_data_130 <= ping_storage_data_130 ^ input_data(103 % IN_WIDTH);
@@ -5650,7 +5650,7 @@ logic ping_storage_data_131;
 logic pong_storage_data_131;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             104 / IN_WIDTH: ping_storage_data_131 <= ping_storage_data_131 ^ input_data(104 % IN_WIDTH);
@@ -5677,7 +5677,7 @@ logic ping_storage_data_132;
 logic pong_storage_data_132;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             105 / IN_WIDTH: ping_storage_data_132 <= ping_storage_data_132 ^ input_data(105 % IN_WIDTH);
@@ -5704,7 +5704,7 @@ logic ping_storage_data_133;
 logic pong_storage_data_133;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             106 / IN_WIDTH: ping_storage_data_133 <= ping_storage_data_133 ^ input_data(106 % IN_WIDTH);
@@ -5731,7 +5731,7 @@ logic ping_storage_data_134;
 logic pong_storage_data_134;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             107 / IN_WIDTH: ping_storage_data_134 <= ping_storage_data_134 ^ input_data(107 % IN_WIDTH);
@@ -5758,7 +5758,7 @@ logic ping_storage_data_135;
 logic pong_storage_data_135;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             108 / IN_WIDTH: ping_storage_data_135 <= ping_storage_data_135 ^ input_data(108 % IN_WIDTH);
@@ -5785,7 +5785,7 @@ logic ping_storage_data_136;
 logic pong_storage_data_136;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             109 / IN_WIDTH: ping_storage_data_136 <= ping_storage_data_136 ^ input_data(109 % IN_WIDTH);
@@ -5812,7 +5812,7 @@ logic ping_storage_data_137;
 logic pong_storage_data_137;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             110 / IN_WIDTH: ping_storage_data_137 <= ping_storage_data_137 ^ input_data(110 % IN_WIDTH);
@@ -5839,7 +5839,7 @@ logic ping_storage_data_138;
 logic pong_storage_data_138;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             111 / IN_WIDTH: ping_storage_data_138 <= ping_storage_data_138 ^ input_data(111 % IN_WIDTH);
@@ -5866,7 +5866,7 @@ logic ping_storage_data_139;
 logic pong_storage_data_139;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             112 / IN_WIDTH: ping_storage_data_139 <= ping_storage_data_139 ^ input_data(112 % IN_WIDTH);
@@ -5893,7 +5893,7 @@ logic ping_storage_data_140;
 logic pong_storage_data_140;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             113 / IN_WIDTH: ping_storage_data_140 <= ping_storage_data_140 ^ input_data(113 % IN_WIDTH);
@@ -5920,7 +5920,7 @@ logic ping_storage_data_141;
 logic pong_storage_data_141;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             114 / IN_WIDTH: ping_storage_data_141 <= ping_storage_data_141 ^ input_data(114 % IN_WIDTH);
@@ -5947,7 +5947,7 @@ logic ping_storage_data_142;
 logic pong_storage_data_142;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             115 / IN_WIDTH: ping_storage_data_142 <= ping_storage_data_142 ^ input_data(115 % IN_WIDTH);
@@ -5974,7 +5974,7 @@ logic ping_storage_data_143;
 logic pong_storage_data_143;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             116 / IN_WIDTH: ping_storage_data_143 <= ping_storage_data_143 ^ input_data(116 % IN_WIDTH);
@@ -6001,7 +6001,7 @@ logic ping_storage_data_144;
 logic pong_storage_data_144;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             117 / IN_WIDTH: ping_storage_data_144 <= ping_storage_data_144 ^ input_data(117 % IN_WIDTH);
@@ -6028,7 +6028,7 @@ logic ping_storage_data_145;
 logic pong_storage_data_145;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             118 / IN_WIDTH: ping_storage_data_145 <= ping_storage_data_145 ^ input_data(118 % IN_WIDTH);
@@ -6055,7 +6055,7 @@ logic ping_storage_data_146;
 logic pong_storage_data_146;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             119 / IN_WIDTH: ping_storage_data_146 <= ping_storage_data_146 ^ input_data(119 % IN_WIDTH);
@@ -6082,7 +6082,7 @@ logic ping_storage_data_147;
 logic pong_storage_data_147;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             120 / IN_WIDTH: ping_storage_data_147 <= ping_storage_data_147 ^ input_data(120 % IN_WIDTH);
@@ -6109,7 +6109,7 @@ logic ping_storage_data_148;
 logic pong_storage_data_148;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             121 / IN_WIDTH: ping_storage_data_148 <= ping_storage_data_148 ^ input_data(121 % IN_WIDTH);
@@ -6136,7 +6136,7 @@ logic ping_storage_data_149;
 logic pong_storage_data_149;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             122 / IN_WIDTH: ping_storage_data_149 <= ping_storage_data_149 ^ input_data(122 % IN_WIDTH);
@@ -6163,7 +6163,7 @@ logic ping_storage_data_150;
 logic pong_storage_data_150;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             123 / IN_WIDTH: ping_storage_data_150 <= ping_storage_data_150 ^ input_data(123 % IN_WIDTH);
@@ -6190,7 +6190,7 @@ logic ping_storage_data_151;
 logic pong_storage_data_151;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             124 / IN_WIDTH: ping_storage_data_151 <= ping_storage_data_151 ^ input_data(124 % IN_WIDTH);
@@ -6217,7 +6217,7 @@ logic ping_storage_data_152;
 logic pong_storage_data_152;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             125 / IN_WIDTH: ping_storage_data_152 <= ping_storage_data_152 ^ input_data(125 % IN_WIDTH);
@@ -6244,7 +6244,7 @@ logic ping_storage_data_153;
 logic pong_storage_data_153;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             126 / IN_WIDTH: ping_storage_data_153 <= ping_storage_data_153 ^ input_data(126 % IN_WIDTH);
@@ -6271,7 +6271,7 @@ logic ping_storage_data_154;
 logic pong_storage_data_154;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             127 / IN_WIDTH: ping_storage_data_154 <= ping_storage_data_154 ^ input_data(127 % IN_WIDTH);
@@ -6298,7 +6298,7 @@ logic ping_storage_data_155;
 logic pong_storage_data_155;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             128 / IN_WIDTH: ping_storage_data_155 <= ping_storage_data_155 ^ input_data(128 % IN_WIDTH);
@@ -6325,7 +6325,7 @@ logic ping_storage_data_156;
 logic pong_storage_data_156;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             129 / IN_WIDTH: ping_storage_data_156 <= ping_storage_data_156 ^ input_data(129 % IN_WIDTH);
@@ -6352,7 +6352,7 @@ logic ping_storage_data_157;
 logic pong_storage_data_157;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             130 / IN_WIDTH: ping_storage_data_157 <= ping_storage_data_157 ^ input_data(130 % IN_WIDTH);
@@ -6379,7 +6379,7 @@ logic ping_storage_data_158;
 logic pong_storage_data_158;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             131 / IN_WIDTH: ping_storage_data_158 <= ping_storage_data_158 ^ input_data(131 % IN_WIDTH);
@@ -6406,7 +6406,7 @@ logic ping_storage_data_159;
 logic pong_storage_data_159;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             132 / IN_WIDTH: ping_storage_data_159 <= ping_storage_data_159 ^ input_data(132 % IN_WIDTH);
@@ -6433,7 +6433,7 @@ logic ping_storage_data_160;
 logic pong_storage_data_160;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             133 / IN_WIDTH: ping_storage_data_160 <= ping_storage_data_160 ^ input_data(133 % IN_WIDTH);
@@ -6460,7 +6460,7 @@ logic ping_storage_data_161;
 logic pong_storage_data_161;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             134 / IN_WIDTH: ping_storage_data_161 <= ping_storage_data_161 ^ input_data(134 % IN_WIDTH);
@@ -6487,7 +6487,7 @@ logic ping_storage_data_162;
 logic pong_storage_data_162;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             135 / IN_WIDTH: ping_storage_data_162 <= ping_storage_data_162 ^ input_data(135 % IN_WIDTH);
@@ -6514,7 +6514,7 @@ logic ping_storage_data_163;
 logic pong_storage_data_163;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             136 / IN_WIDTH: ping_storage_data_163 <= ping_storage_data_163 ^ input_data(136 % IN_WIDTH);
@@ -6541,7 +6541,7 @@ logic ping_storage_data_164;
 logic pong_storage_data_164;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             137 / IN_WIDTH: ping_storage_data_164 <= ping_storage_data_164 ^ input_data(137 % IN_WIDTH);
@@ -6568,7 +6568,7 @@ logic ping_storage_data_165;
 logic pong_storage_data_165;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             138 / IN_WIDTH: ping_storage_data_165 <= ping_storage_data_165 ^ input_data(138 % IN_WIDTH);
@@ -6595,7 +6595,7 @@ logic ping_storage_data_166;
 logic pong_storage_data_166;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             139 / IN_WIDTH: ping_storage_data_166 <= ping_storage_data_166 ^ input_data(139 % IN_WIDTH);
@@ -6622,7 +6622,7 @@ logic ping_storage_data_167;
 logic pong_storage_data_167;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             140 / IN_WIDTH: ping_storage_data_167 <= ping_storage_data_167 ^ input_data(140 % IN_WIDTH);
@@ -6649,7 +6649,7 @@ logic ping_storage_data_168;
 logic pong_storage_data_168;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             141 / IN_WIDTH: ping_storage_data_168 <= ping_storage_data_168 ^ input_data(141 % IN_WIDTH);
@@ -6676,7 +6676,7 @@ logic ping_storage_data_169;
 logic pong_storage_data_169;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             142 / IN_WIDTH: ping_storage_data_169 <= ping_storage_data_169 ^ input_data(142 % IN_WIDTH);
@@ -6703,7 +6703,7 @@ logic ping_storage_data_170;
 logic pong_storage_data_170;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             143 / IN_WIDTH: ping_storage_data_170 <= ping_storage_data_170 ^ input_data(143 % IN_WIDTH);
@@ -6730,7 +6730,7 @@ logic ping_storage_data_171;
 logic pong_storage_data_171;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             144 / IN_WIDTH: ping_storage_data_171 <= ping_storage_data_171 ^ input_data(144 % IN_WIDTH);
@@ -6757,7 +6757,7 @@ logic ping_storage_data_172;
 logic pong_storage_data_172;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             145 / IN_WIDTH: ping_storage_data_172 <= ping_storage_data_172 ^ input_data(145 % IN_WIDTH);
@@ -6784,7 +6784,7 @@ logic ping_storage_data_173;
 logic pong_storage_data_173;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             146 / IN_WIDTH: ping_storage_data_173 <= ping_storage_data_173 ^ input_data(146 % IN_WIDTH);
@@ -6811,7 +6811,7 @@ logic ping_storage_data_174;
 logic pong_storage_data_174;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             147 / IN_WIDTH: ping_storage_data_174 <= ping_storage_data_174 ^ input_data(147 % IN_WIDTH);
@@ -6838,7 +6838,7 @@ logic ping_storage_data_175;
 logic pong_storage_data_175;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             148 / IN_WIDTH: ping_storage_data_175 <= ping_storage_data_175 ^ input_data(148 % IN_WIDTH);
@@ -6865,7 +6865,7 @@ logic ping_storage_data_176;
 logic pong_storage_data_176;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             149 / IN_WIDTH: ping_storage_data_176 <= ping_storage_data_176 ^ input_data(149 % IN_WIDTH);
@@ -6892,7 +6892,7 @@ logic ping_storage_data_177;
 logic pong_storage_data_177;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             150 / IN_WIDTH: ping_storage_data_177 <= ping_storage_data_177 ^ input_data(150 % IN_WIDTH);
@@ -6919,7 +6919,7 @@ logic ping_storage_data_178;
 logic pong_storage_data_178;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             151 / IN_WIDTH: ping_storage_data_178 <= ping_storage_data_178 ^ input_data(151 % IN_WIDTH);
@@ -6946,7 +6946,7 @@ logic ping_storage_data_179;
 logic pong_storage_data_179;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             152 / IN_WIDTH: ping_storage_data_179 <= ping_storage_data_179 ^ input_data(152 % IN_WIDTH);
@@ -6973,7 +6973,7 @@ logic ping_storage_data_180;
 logic pong_storage_data_180;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             153 / IN_WIDTH: ping_storage_data_180 <= ping_storage_data_180 ^ input_data(153 % IN_WIDTH);
@@ -7000,7 +7000,7 @@ logic ping_storage_data_181;
 logic pong_storage_data_181;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             154 / IN_WIDTH: ping_storage_data_181 <= ping_storage_data_181 ^ input_data(154 % IN_WIDTH);
@@ -7027,7 +7027,7 @@ logic ping_storage_data_182;
 logic pong_storage_data_182;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             155 / IN_WIDTH: ping_storage_data_182 <= ping_storage_data_182 ^ input_data(155 % IN_WIDTH);
@@ -7054,7 +7054,7 @@ logic ping_storage_data_183;
 logic pong_storage_data_183;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             156 / IN_WIDTH: ping_storage_data_183 <= ping_storage_data_183 ^ input_data(156 % IN_WIDTH);
@@ -7081,7 +7081,7 @@ logic ping_storage_data_184;
 logic pong_storage_data_184;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             157 / IN_WIDTH: ping_storage_data_184 <= ping_storage_data_184 ^ input_data(157 % IN_WIDTH);
@@ -7108,7 +7108,7 @@ logic ping_storage_data_185;
 logic pong_storage_data_185;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             158 / IN_WIDTH: ping_storage_data_185 <= ping_storage_data_185 ^ input_data(158 % IN_WIDTH);
@@ -7135,7 +7135,7 @@ logic ping_storage_data_186;
 logic pong_storage_data_186;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             159 / IN_WIDTH: ping_storage_data_186 <= ping_storage_data_186 ^ input_data(159 % IN_WIDTH);
@@ -7162,7 +7162,7 @@ logic ping_storage_data_187;
 logic pong_storage_data_187;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             160 / IN_WIDTH: ping_storage_data_187 <= ping_storage_data_187 ^ input_data(160 % IN_WIDTH);
@@ -7189,7 +7189,7 @@ logic ping_storage_data_188;
 logic pong_storage_data_188;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             161 / IN_WIDTH: ping_storage_data_188 <= ping_storage_data_188 ^ input_data(161 % IN_WIDTH);
@@ -7216,7 +7216,7 @@ logic ping_storage_data_189;
 logic pong_storage_data_189;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             162 / IN_WIDTH: ping_storage_data_189 <= ping_storage_data_189 ^ input_data(162 % IN_WIDTH);
@@ -7243,7 +7243,7 @@ logic ping_storage_data_190;
 logic pong_storage_data_190;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             163 / IN_WIDTH: ping_storage_data_190 <= ping_storage_data_190 ^ input_data(163 % IN_WIDTH);
@@ -7270,7 +7270,7 @@ logic ping_storage_data_191;
 logic pong_storage_data_191;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             164 / IN_WIDTH: ping_storage_data_191 <= ping_storage_data_191 ^ input_data(164 % IN_WIDTH);
@@ -7297,7 +7297,7 @@ logic ping_storage_data_192;
 logic pong_storage_data_192;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             360 / IN_WIDTH: ping_storage_data_192 <= ping_storage_data_192 ^ input_data(360 % IN_WIDTH);
@@ -7324,7 +7324,7 @@ logic ping_storage_data_193;
 logic pong_storage_data_193;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             361 / IN_WIDTH: ping_storage_data_193 <= ping_storage_data_193 ^ input_data(361 % IN_WIDTH);
@@ -7351,7 +7351,7 @@ logic ping_storage_data_194;
 logic pong_storage_data_194;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             362 / IN_WIDTH: ping_storage_data_194 <= ping_storage_data_194 ^ input_data(362 % IN_WIDTH);
@@ -7378,7 +7378,7 @@ logic ping_storage_data_195;
 logic pong_storage_data_195;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             363 / IN_WIDTH: ping_storage_data_195 <= ping_storage_data_195 ^ input_data(363 % IN_WIDTH);
@@ -7405,7 +7405,7 @@ logic ping_storage_data_196;
 logic pong_storage_data_196;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             364 / IN_WIDTH: ping_storage_data_196 <= ping_storage_data_196 ^ input_data(364 % IN_WIDTH);
@@ -7432,7 +7432,7 @@ logic ping_storage_data_197;
 logic pong_storage_data_197;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             365 / IN_WIDTH: ping_storage_data_197 <= ping_storage_data_197 ^ input_data(365 % IN_WIDTH);
@@ -7459,7 +7459,7 @@ logic ping_storage_data_198;
 logic pong_storage_data_198;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             366 / IN_WIDTH: ping_storage_data_198 <= ping_storage_data_198 ^ input_data(366 % IN_WIDTH);
@@ -7486,7 +7486,7 @@ logic ping_storage_data_199;
 logic pong_storage_data_199;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             367 / IN_WIDTH: ping_storage_data_199 <= ping_storage_data_199 ^ input_data(367 % IN_WIDTH);
@@ -7513,7 +7513,7 @@ logic ping_storage_data_200;
 logic pong_storage_data_200;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             368 / IN_WIDTH: ping_storage_data_200 <= ping_storage_data_200 ^ input_data(368 % IN_WIDTH);
@@ -7540,7 +7540,7 @@ logic ping_storage_data_201;
 logic pong_storage_data_201;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             369 / IN_WIDTH: ping_storage_data_201 <= ping_storage_data_201 ^ input_data(369 % IN_WIDTH);
@@ -7567,7 +7567,7 @@ logic ping_storage_data_202;
 logic pong_storage_data_202;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             370 / IN_WIDTH: ping_storage_data_202 <= ping_storage_data_202 ^ input_data(370 % IN_WIDTH);
@@ -7594,7 +7594,7 @@ logic ping_storage_data_203;
 logic pong_storage_data_203;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             371 / IN_WIDTH: ping_storage_data_203 <= ping_storage_data_203 ^ input_data(371 % IN_WIDTH);
@@ -7621,7 +7621,7 @@ logic ping_storage_data_204;
 logic pong_storage_data_204;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             372 / IN_WIDTH: ping_storage_data_204 <= ping_storage_data_204 ^ input_data(372 % IN_WIDTH);
@@ -7648,7 +7648,7 @@ logic ping_storage_data_205;
 logic pong_storage_data_205;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             373 / IN_WIDTH: ping_storage_data_205 <= ping_storage_data_205 ^ input_data(373 % IN_WIDTH);
@@ -7675,7 +7675,7 @@ logic ping_storage_data_206;
 logic pong_storage_data_206;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             374 / IN_WIDTH: ping_storage_data_206 <= ping_storage_data_206 ^ input_data(374 % IN_WIDTH);
@@ -7702,7 +7702,7 @@ logic ping_storage_data_207;
 logic pong_storage_data_207;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             375 / IN_WIDTH: ping_storage_data_207 <= ping_storage_data_207 ^ input_data(375 % IN_WIDTH);
@@ -7729,7 +7729,7 @@ logic ping_storage_data_208;
 logic pong_storage_data_208;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             376 / IN_WIDTH: ping_storage_data_208 <= ping_storage_data_208 ^ input_data(376 % IN_WIDTH);
@@ -7756,7 +7756,7 @@ logic ping_storage_data_209;
 logic pong_storage_data_209;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             377 / IN_WIDTH: ping_storage_data_209 <= ping_storage_data_209 ^ input_data(377 % IN_WIDTH);
@@ -7783,7 +7783,7 @@ logic ping_storage_data_210;
 logic pong_storage_data_210;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             378 / IN_WIDTH: ping_storage_data_210 <= ping_storage_data_210 ^ input_data(378 % IN_WIDTH);
@@ -7810,7 +7810,7 @@ logic ping_storage_data_211;
 logic pong_storage_data_211;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             379 / IN_WIDTH: ping_storage_data_211 <= ping_storage_data_211 ^ input_data(379 % IN_WIDTH);
@@ -7837,7 +7837,7 @@ logic ping_storage_data_212;
 logic pong_storage_data_212;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             380 / IN_WIDTH: ping_storage_data_212 <= ping_storage_data_212 ^ input_data(380 % IN_WIDTH);
@@ -7864,7 +7864,7 @@ logic ping_storage_data_213;
 logic pong_storage_data_213;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             381 / IN_WIDTH: ping_storage_data_213 <= ping_storage_data_213 ^ input_data(381 % IN_WIDTH);
@@ -7891,7 +7891,7 @@ logic ping_storage_data_214;
 logic pong_storage_data_214;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             382 / IN_WIDTH: ping_storage_data_214 <= ping_storage_data_214 ^ input_data(382 % IN_WIDTH);
@@ -7918,7 +7918,7 @@ logic ping_storage_data_215;
 logic pong_storage_data_215;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             383 / IN_WIDTH: ping_storage_data_215 <= ping_storage_data_215 ^ input_data(383 % IN_WIDTH);
@@ -7945,7 +7945,7 @@ logic ping_storage_data_216;
 logic pong_storage_data_216;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             288 / IN_WIDTH: ping_storage_data_216 <= ping_storage_data_216 ^ input_data(288 % IN_WIDTH);
@@ -7972,7 +7972,7 @@ logic ping_storage_data_217;
 logic pong_storage_data_217;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             289 / IN_WIDTH: ping_storage_data_217 <= ping_storage_data_217 ^ input_data(289 % IN_WIDTH);
@@ -7999,7 +7999,7 @@ logic ping_storage_data_218;
 logic pong_storage_data_218;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             290 / IN_WIDTH: ping_storage_data_218 <= ping_storage_data_218 ^ input_data(290 % IN_WIDTH);
@@ -8026,7 +8026,7 @@ logic ping_storage_data_219;
 logic pong_storage_data_219;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             291 / IN_WIDTH: ping_storage_data_219 <= ping_storage_data_219 ^ input_data(291 % IN_WIDTH);
@@ -8053,7 +8053,7 @@ logic ping_storage_data_220;
 logic pong_storage_data_220;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             292 / IN_WIDTH: ping_storage_data_220 <= ping_storage_data_220 ^ input_data(292 % IN_WIDTH);
@@ -8080,7 +8080,7 @@ logic ping_storage_data_221;
 logic pong_storage_data_221;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             293 / IN_WIDTH: ping_storage_data_221 <= ping_storage_data_221 ^ input_data(293 % IN_WIDTH);
@@ -8107,7 +8107,7 @@ logic ping_storage_data_222;
 logic pong_storage_data_222;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             294 / IN_WIDTH: ping_storage_data_222 <= ping_storage_data_222 ^ input_data(294 % IN_WIDTH);
@@ -8134,7 +8134,7 @@ logic ping_storage_data_223;
 logic pong_storage_data_223;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             295 / IN_WIDTH: ping_storage_data_223 <= ping_storage_data_223 ^ input_data(295 % IN_WIDTH);
@@ -8161,7 +8161,7 @@ logic ping_storage_data_224;
 logic pong_storage_data_224;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             296 / IN_WIDTH: ping_storage_data_224 <= ping_storage_data_224 ^ input_data(296 % IN_WIDTH);
@@ -8188,7 +8188,7 @@ logic ping_storage_data_225;
 logic pong_storage_data_225;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             297 / IN_WIDTH: ping_storage_data_225 <= ping_storage_data_225 ^ input_data(297 % IN_WIDTH);
@@ -8215,7 +8215,7 @@ logic ping_storage_data_226;
 logic pong_storage_data_226;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             298 / IN_WIDTH: ping_storage_data_226 <= ping_storage_data_226 ^ input_data(298 % IN_WIDTH);
@@ -8242,7 +8242,7 @@ logic ping_storage_data_227;
 logic pong_storage_data_227;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             299 / IN_WIDTH: ping_storage_data_227 <= ping_storage_data_227 ^ input_data(299 % IN_WIDTH);
@@ -8269,7 +8269,7 @@ logic ping_storage_data_228;
 logic pong_storage_data_228;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             300 / IN_WIDTH: ping_storage_data_228 <= ping_storage_data_228 ^ input_data(300 % IN_WIDTH);
@@ -8296,7 +8296,7 @@ logic ping_storage_data_229;
 logic pong_storage_data_229;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             301 / IN_WIDTH: ping_storage_data_229 <= ping_storage_data_229 ^ input_data(301 % IN_WIDTH);
@@ -8323,7 +8323,7 @@ logic ping_storage_data_230;
 logic pong_storage_data_230;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             302 / IN_WIDTH: ping_storage_data_230 <= ping_storage_data_230 ^ input_data(302 % IN_WIDTH);
@@ -8350,7 +8350,7 @@ logic ping_storage_data_231;
 logic pong_storage_data_231;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             303 / IN_WIDTH: ping_storage_data_231 <= ping_storage_data_231 ^ input_data(303 % IN_WIDTH);
@@ -8377,7 +8377,7 @@ logic ping_storage_data_232;
 logic pong_storage_data_232;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             304 / IN_WIDTH: ping_storage_data_232 <= ping_storage_data_232 ^ input_data(304 % IN_WIDTH);
@@ -8404,7 +8404,7 @@ logic ping_storage_data_233;
 logic pong_storage_data_233;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             305 / IN_WIDTH: ping_storage_data_233 <= ping_storage_data_233 ^ input_data(305 % IN_WIDTH);
@@ -8431,7 +8431,7 @@ logic ping_storage_data_234;
 logic pong_storage_data_234;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             306 / IN_WIDTH: ping_storage_data_234 <= ping_storage_data_234 ^ input_data(306 % IN_WIDTH);
@@ -8458,7 +8458,7 @@ logic ping_storage_data_235;
 logic pong_storage_data_235;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             307 / IN_WIDTH: ping_storage_data_235 <= ping_storage_data_235 ^ input_data(307 % IN_WIDTH);
@@ -8485,7 +8485,7 @@ logic ping_storage_data_236;
 logic pong_storage_data_236;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             308 / IN_WIDTH: ping_storage_data_236 <= ping_storage_data_236 ^ input_data(308 % IN_WIDTH);
@@ -8512,7 +8512,7 @@ logic ping_storage_data_237;
 logic pong_storage_data_237;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             309 / IN_WIDTH: ping_storage_data_237 <= ping_storage_data_237 ^ input_data(309 % IN_WIDTH);
@@ -8539,7 +8539,7 @@ logic ping_storage_data_238;
 logic pong_storage_data_238;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             310 / IN_WIDTH: ping_storage_data_238 <= ping_storage_data_238 ^ input_data(310 % IN_WIDTH);
@@ -8566,7 +8566,7 @@ logic ping_storage_data_239;
 logic pong_storage_data_239;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             311 / IN_WIDTH: ping_storage_data_239 <= ping_storage_data_239 ^ input_data(311 % IN_WIDTH);
@@ -8593,7 +8593,7 @@ logic ping_storage_data_240;
 logic pong_storage_data_240;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             312 / IN_WIDTH: ping_storage_data_240 <= ping_storage_data_240 ^ input_data(312 % IN_WIDTH);
@@ -8620,7 +8620,7 @@ logic ping_storage_data_241;
 logic pong_storage_data_241;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             313 / IN_WIDTH: ping_storage_data_241 <= ping_storage_data_241 ^ input_data(313 % IN_WIDTH);
@@ -8647,7 +8647,7 @@ logic ping_storage_data_242;
 logic pong_storage_data_242;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             314 / IN_WIDTH: ping_storage_data_242 <= ping_storage_data_242 ^ input_data(314 % IN_WIDTH);
@@ -8674,7 +8674,7 @@ logic ping_storage_data_243;
 logic pong_storage_data_243;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             315 / IN_WIDTH: ping_storage_data_243 <= ping_storage_data_243 ^ input_data(315 % IN_WIDTH);
@@ -8701,7 +8701,7 @@ logic ping_storage_data_244;
 logic pong_storage_data_244;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             316 / IN_WIDTH: ping_storage_data_244 <= ping_storage_data_244 ^ input_data(316 % IN_WIDTH);
@@ -8728,7 +8728,7 @@ logic ping_storage_data_245;
 logic pong_storage_data_245;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             317 / IN_WIDTH: ping_storage_data_245 <= ping_storage_data_245 ^ input_data(317 % IN_WIDTH);
@@ -8755,7 +8755,7 @@ logic ping_storage_data_246;
 logic pong_storage_data_246;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             318 / IN_WIDTH: ping_storage_data_246 <= ping_storage_data_246 ^ input_data(318 % IN_WIDTH);
@@ -8782,7 +8782,7 @@ logic ping_storage_data_247;
 logic pong_storage_data_247;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             319 / IN_WIDTH: ping_storage_data_247 <= ping_storage_data_247 ^ input_data(319 % IN_WIDTH);
@@ -8809,7 +8809,7 @@ logic ping_storage_data_248;
 logic pong_storage_data_248;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             320 / IN_WIDTH: ping_storage_data_248 <= ping_storage_data_248 ^ input_data(320 % IN_WIDTH);
@@ -8836,7 +8836,7 @@ logic ping_storage_data_249;
 logic pong_storage_data_249;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             321 / IN_WIDTH: ping_storage_data_249 <= ping_storage_data_249 ^ input_data(321 % IN_WIDTH);
@@ -8863,7 +8863,7 @@ logic ping_storage_data_250;
 logic pong_storage_data_250;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             322 / IN_WIDTH: ping_storage_data_250 <= ping_storage_data_250 ^ input_data(322 % IN_WIDTH);
@@ -8890,7 +8890,7 @@ logic ping_storage_data_251;
 logic pong_storage_data_251;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             323 / IN_WIDTH: ping_storage_data_251 <= ping_storage_data_251 ^ input_data(323 % IN_WIDTH);
@@ -8917,7 +8917,7 @@ logic ping_storage_data_252;
 logic pong_storage_data_252;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             324 / IN_WIDTH: ping_storage_data_252 <= ping_storage_data_252 ^ input_data(324 % IN_WIDTH);
@@ -8944,7 +8944,7 @@ logic ping_storage_data_253;
 logic pong_storage_data_253;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             325 / IN_WIDTH: ping_storage_data_253 <= ping_storage_data_253 ^ input_data(325 % IN_WIDTH);
@@ -8971,7 +8971,7 @@ logic ping_storage_data_254;
 logic pong_storage_data_254;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             326 / IN_WIDTH: ping_storage_data_254 <= ping_storage_data_254 ^ input_data(326 % IN_WIDTH);
@@ -8998,7 +8998,7 @@ logic ping_storage_data_255;
 logic pong_storage_data_255;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             327 / IN_WIDTH: ping_storage_data_255 <= ping_storage_data_255 ^ input_data(327 % IN_WIDTH);
@@ -9025,7 +9025,7 @@ logic ping_storage_data_256;
 logic pong_storage_data_256;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             328 / IN_WIDTH: ping_storage_data_256 <= ping_storage_data_256 ^ input_data(328 % IN_WIDTH);
@@ -9052,7 +9052,7 @@ logic ping_storage_data_257;
 logic pong_storage_data_257;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             329 / IN_WIDTH: ping_storage_data_257 <= ping_storage_data_257 ^ input_data(329 % IN_WIDTH);
@@ -9079,7 +9079,7 @@ logic ping_storage_data_258;
 logic pong_storage_data_258;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             330 / IN_WIDTH: ping_storage_data_258 <= ping_storage_data_258 ^ input_data(330 % IN_WIDTH);
@@ -9106,7 +9106,7 @@ logic ping_storage_data_259;
 logic pong_storage_data_259;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             331 / IN_WIDTH: ping_storage_data_259 <= ping_storage_data_259 ^ input_data(331 % IN_WIDTH);
@@ -9133,7 +9133,7 @@ logic ping_storage_data_260;
 logic pong_storage_data_260;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             332 / IN_WIDTH: ping_storage_data_260 <= ping_storage_data_260 ^ input_data(332 % IN_WIDTH);
@@ -9160,7 +9160,7 @@ logic ping_storage_data_261;
 logic pong_storage_data_261;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             333 / IN_WIDTH: ping_storage_data_261 <= ping_storage_data_261 ^ input_data(333 % IN_WIDTH);
@@ -9187,7 +9187,7 @@ logic ping_storage_data_262;
 logic pong_storage_data_262;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             334 / IN_WIDTH: ping_storage_data_262 <= ping_storage_data_262 ^ input_data(334 % IN_WIDTH);
@@ -9214,7 +9214,7 @@ logic ping_storage_data_263;
 logic pong_storage_data_263;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             335 / IN_WIDTH: ping_storage_data_263 <= ping_storage_data_263 ^ input_data(335 % IN_WIDTH);
@@ -9241,7 +9241,7 @@ logic ping_storage_data_264;
 logic pong_storage_data_264;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             336 / IN_WIDTH: ping_storage_data_264 <= ping_storage_data_264 ^ input_data(336 % IN_WIDTH);
@@ -9268,7 +9268,7 @@ logic ping_storage_data_265;
 logic pong_storage_data_265;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             337 / IN_WIDTH: ping_storage_data_265 <= ping_storage_data_265 ^ input_data(337 % IN_WIDTH);
@@ -9295,7 +9295,7 @@ logic ping_storage_data_266;
 logic pong_storage_data_266;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             338 / IN_WIDTH: ping_storage_data_266 <= ping_storage_data_266 ^ input_data(338 % IN_WIDTH);
@@ -9322,7 +9322,7 @@ logic ping_storage_data_267;
 logic pong_storage_data_267;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             339 / IN_WIDTH: ping_storage_data_267 <= ping_storage_data_267 ^ input_data(339 % IN_WIDTH);
@@ -9349,7 +9349,7 @@ logic ping_storage_data_268;
 logic pong_storage_data_268;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             340 / IN_WIDTH: ping_storage_data_268 <= ping_storage_data_268 ^ input_data(340 % IN_WIDTH);
@@ -9376,7 +9376,7 @@ logic ping_storage_data_269;
 logic pong_storage_data_269;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             341 / IN_WIDTH: ping_storage_data_269 <= ping_storage_data_269 ^ input_data(341 % IN_WIDTH);
@@ -9403,7 +9403,7 @@ logic ping_storage_data_270;
 logic pong_storage_data_270;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             342 / IN_WIDTH: ping_storage_data_270 <= ping_storage_data_270 ^ input_data(342 % IN_WIDTH);
@@ -9430,7 +9430,7 @@ logic ping_storage_data_271;
 logic pong_storage_data_271;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             343 / IN_WIDTH: ping_storage_data_271 <= ping_storage_data_271 ^ input_data(343 % IN_WIDTH);
@@ -9457,7 +9457,7 @@ logic ping_storage_data_272;
 logic pong_storage_data_272;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             344 / IN_WIDTH: ping_storage_data_272 <= ping_storage_data_272 ^ input_data(344 % IN_WIDTH);
@@ -9484,7 +9484,7 @@ logic ping_storage_data_273;
 logic pong_storage_data_273;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             345 / IN_WIDTH: ping_storage_data_273 <= ping_storage_data_273 ^ input_data(345 % IN_WIDTH);
@@ -9511,7 +9511,7 @@ logic ping_storage_data_274;
 logic pong_storage_data_274;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             346 / IN_WIDTH: ping_storage_data_274 <= ping_storage_data_274 ^ input_data(346 % IN_WIDTH);
@@ -9538,7 +9538,7 @@ logic ping_storage_data_275;
 logic pong_storage_data_275;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             347 / IN_WIDTH: ping_storage_data_275 <= ping_storage_data_275 ^ input_data(347 % IN_WIDTH);
@@ -9565,7 +9565,7 @@ logic ping_storage_data_276;
 logic pong_storage_data_276;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             348 / IN_WIDTH: ping_storage_data_276 <= ping_storage_data_276 ^ input_data(348 % IN_WIDTH);
@@ -9592,7 +9592,7 @@ logic ping_storage_data_277;
 logic pong_storage_data_277;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             349 / IN_WIDTH: ping_storage_data_277 <= ping_storage_data_277 ^ input_data(349 % IN_WIDTH);
@@ -9619,7 +9619,7 @@ logic ping_storage_data_278;
 logic pong_storage_data_278;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             350 / IN_WIDTH: ping_storage_data_278 <= ping_storage_data_278 ^ input_data(350 % IN_WIDTH);
@@ -9646,7 +9646,7 @@ logic ping_storage_data_279;
 logic pong_storage_data_279;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             351 / IN_WIDTH: ping_storage_data_279 <= ping_storage_data_279 ^ input_data(351 % IN_WIDTH);
@@ -9673,7 +9673,7 @@ logic ping_storage_data_280;
 logic pong_storage_data_280;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             352 / IN_WIDTH: ping_storage_data_280 <= ping_storage_data_280 ^ input_data(352 % IN_WIDTH);
@@ -9700,7 +9700,7 @@ logic ping_storage_data_281;
 logic pong_storage_data_281;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             353 / IN_WIDTH: ping_storage_data_281 <= ping_storage_data_281 ^ input_data(353 % IN_WIDTH);
@@ -9727,7 +9727,7 @@ logic ping_storage_data_282;
 logic pong_storage_data_282;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             354 / IN_WIDTH: ping_storage_data_282 <= ping_storage_data_282 ^ input_data(354 % IN_WIDTH);
@@ -9754,7 +9754,7 @@ logic ping_storage_data_283;
 logic pong_storage_data_283;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             355 / IN_WIDTH: ping_storage_data_283 <= ping_storage_data_283 ^ input_data(355 % IN_WIDTH);
@@ -9781,7 +9781,7 @@ logic ping_storage_data_284;
 logic pong_storage_data_284;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             356 / IN_WIDTH: ping_storage_data_284 <= ping_storage_data_284 ^ input_data(356 % IN_WIDTH);
@@ -9808,7 +9808,7 @@ logic ping_storage_data_285;
 logic pong_storage_data_285;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             357 / IN_WIDTH: ping_storage_data_285 <= ping_storage_data_285 ^ input_data(357 % IN_WIDTH);
@@ -9835,7 +9835,7 @@ logic ping_storage_data_286;
 logic pong_storage_data_286;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             358 / IN_WIDTH: ping_storage_data_286 <= ping_storage_data_286 ^ input_data(358 % IN_WIDTH);
@@ -9862,7 +9862,7 @@ logic ping_storage_data_287;
 logic pong_storage_data_287;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             359 / IN_WIDTH: ping_storage_data_287 <= ping_storage_data_287 ^ input_data(359 % IN_WIDTH);
@@ -9889,7 +9889,7 @@ logic ping_storage_data_288;
 logic pong_storage_data_288;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             35 / IN_WIDTH: ping_storage_data_288 <= ping_storage_data_288 ^ input_data(35 % IN_WIDTH);
@@ -9914,7 +9914,7 @@ logic ping_storage_data_289;
 logic pong_storage_data_289;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             36 / IN_WIDTH: ping_storage_data_289 <= ping_storage_data_289 ^ input_data(36 % IN_WIDTH);
@@ -9939,7 +9939,7 @@ logic ping_storage_data_290;
 logic pong_storage_data_290;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             37 / IN_WIDTH: ping_storage_data_290 <= ping_storage_data_290 ^ input_data(37 % IN_WIDTH);
@@ -9964,7 +9964,7 @@ logic ping_storage_data_291;
 logic pong_storage_data_291;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             38 / IN_WIDTH: ping_storage_data_291 <= ping_storage_data_291 ^ input_data(38 % IN_WIDTH);
@@ -9989,7 +9989,7 @@ logic ping_storage_data_292;
 logic pong_storage_data_292;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             39 / IN_WIDTH: ping_storage_data_292 <= ping_storage_data_292 ^ input_data(39 % IN_WIDTH);
@@ -10014,7 +10014,7 @@ logic ping_storage_data_293;
 logic pong_storage_data_293;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             40 / IN_WIDTH: ping_storage_data_293 <= ping_storage_data_293 ^ input_data(40 % IN_WIDTH);
@@ -10039,7 +10039,7 @@ logic ping_storage_data_294;
 logic pong_storage_data_294;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             41 / IN_WIDTH: ping_storage_data_294 <= ping_storage_data_294 ^ input_data(41 % IN_WIDTH);
@@ -10064,7 +10064,7 @@ logic ping_storage_data_295;
 logic pong_storage_data_295;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             42 / IN_WIDTH: ping_storage_data_295 <= ping_storage_data_295 ^ input_data(42 % IN_WIDTH);
@@ -10089,7 +10089,7 @@ logic ping_storage_data_296;
 logic pong_storage_data_296;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             43 / IN_WIDTH: ping_storage_data_296 <= ping_storage_data_296 ^ input_data(43 % IN_WIDTH);
@@ -10114,7 +10114,7 @@ logic ping_storage_data_297;
 logic pong_storage_data_297;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             44 / IN_WIDTH: ping_storage_data_297 <= ping_storage_data_297 ^ input_data(44 % IN_WIDTH);
@@ -10139,7 +10139,7 @@ logic ping_storage_data_298;
 logic pong_storage_data_298;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             45 / IN_WIDTH: ping_storage_data_298 <= ping_storage_data_298 ^ input_data(45 % IN_WIDTH);
@@ -10164,7 +10164,7 @@ logic ping_storage_data_299;
 logic pong_storage_data_299;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             46 / IN_WIDTH: ping_storage_data_299 <= ping_storage_data_299 ^ input_data(46 % IN_WIDTH);
@@ -10189,7 +10189,7 @@ logic ping_storage_data_300;
 logic pong_storage_data_300;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             47 / IN_WIDTH: ping_storage_data_300 <= ping_storage_data_300 ^ input_data(47 % IN_WIDTH);
@@ -10214,7 +10214,7 @@ logic ping_storage_data_301;
 logic pong_storage_data_301;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             48 / IN_WIDTH: ping_storage_data_301 <= ping_storage_data_301 ^ input_data(48 % IN_WIDTH);
@@ -10239,7 +10239,7 @@ logic ping_storage_data_302;
 logic pong_storage_data_302;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             49 / IN_WIDTH: ping_storage_data_302 <= ping_storage_data_302 ^ input_data(49 % IN_WIDTH);
@@ -10264,7 +10264,7 @@ logic ping_storage_data_303;
 logic pong_storage_data_303;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             50 / IN_WIDTH: ping_storage_data_303 <= ping_storage_data_303 ^ input_data(50 % IN_WIDTH);
@@ -10289,7 +10289,7 @@ logic ping_storage_data_304;
 logic pong_storage_data_304;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             51 / IN_WIDTH: ping_storage_data_304 <= ping_storage_data_304 ^ input_data(51 % IN_WIDTH);
@@ -10314,7 +10314,7 @@ logic ping_storage_data_305;
 logic pong_storage_data_305;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             52 / IN_WIDTH: ping_storage_data_305 <= ping_storage_data_305 ^ input_data(52 % IN_WIDTH);
@@ -10339,7 +10339,7 @@ logic ping_storage_data_306;
 logic pong_storage_data_306;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             53 / IN_WIDTH: ping_storage_data_306 <= ping_storage_data_306 ^ input_data(53 % IN_WIDTH);
@@ -10364,7 +10364,7 @@ logic ping_storage_data_307;
 logic pong_storage_data_307;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             54 / IN_WIDTH: ping_storage_data_307 <= ping_storage_data_307 ^ input_data(54 % IN_WIDTH);
@@ -10389,7 +10389,7 @@ logic ping_storage_data_308;
 logic pong_storage_data_308;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             55 / IN_WIDTH: ping_storage_data_308 <= ping_storage_data_308 ^ input_data(55 % IN_WIDTH);
@@ -10414,7 +10414,7 @@ logic ping_storage_data_309;
 logic pong_storage_data_309;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             56 / IN_WIDTH: ping_storage_data_309 <= ping_storage_data_309 ^ input_data(56 % IN_WIDTH);
@@ -10439,7 +10439,7 @@ logic ping_storage_data_310;
 logic pong_storage_data_310;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             57 / IN_WIDTH: ping_storage_data_310 <= ping_storage_data_310 ^ input_data(57 % IN_WIDTH);
@@ -10464,7 +10464,7 @@ logic ping_storage_data_311;
 logic pong_storage_data_311;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             58 / IN_WIDTH: ping_storage_data_311 <= ping_storage_data_311 ^ input_data(58 % IN_WIDTH);
@@ -10489,7 +10489,7 @@ logic ping_storage_data_312;
 logic pong_storage_data_312;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             59 / IN_WIDTH: ping_storage_data_312 <= ping_storage_data_312 ^ input_data(59 % IN_WIDTH);
@@ -10514,7 +10514,7 @@ logic ping_storage_data_313;
 logic pong_storage_data_313;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             60 / IN_WIDTH: ping_storage_data_313 <= ping_storage_data_313 ^ input_data(60 % IN_WIDTH);
@@ -10539,7 +10539,7 @@ logic ping_storage_data_314;
 logic pong_storage_data_314;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             61 / IN_WIDTH: ping_storage_data_314 <= ping_storage_data_314 ^ input_data(61 % IN_WIDTH);
@@ -10564,7 +10564,7 @@ logic ping_storage_data_315;
 logic pong_storage_data_315;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             62 / IN_WIDTH: ping_storage_data_315 <= ping_storage_data_315 ^ input_data(62 % IN_WIDTH);
@@ -10589,7 +10589,7 @@ logic ping_storage_data_316;
 logic pong_storage_data_316;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             63 / IN_WIDTH: ping_storage_data_316 <= ping_storage_data_316 ^ input_data(63 % IN_WIDTH);
@@ -10614,7 +10614,7 @@ logic ping_storage_data_317;
 logic pong_storage_data_317;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             64 / IN_WIDTH: ping_storage_data_317 <= ping_storage_data_317 ^ input_data(64 % IN_WIDTH);
@@ -10639,7 +10639,7 @@ logic ping_storage_data_318;
 logic pong_storage_data_318;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             65 / IN_WIDTH: ping_storage_data_318 <= ping_storage_data_318 ^ input_data(65 % IN_WIDTH);
@@ -10664,7 +10664,7 @@ logic ping_storage_data_319;
 logic pong_storage_data_319;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             66 / IN_WIDTH: ping_storage_data_319 <= ping_storage_data_319 ^ input_data(66 % IN_WIDTH);
@@ -10689,7 +10689,7 @@ logic ping_storage_data_320;
 logic pong_storage_data_320;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             67 / IN_WIDTH: ping_storage_data_320 <= ping_storage_data_320 ^ input_data(67 % IN_WIDTH);
@@ -10714,7 +10714,7 @@ logic ping_storage_data_321;
 logic pong_storage_data_321;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             68 / IN_WIDTH: ping_storage_data_321 <= ping_storage_data_321 ^ input_data(68 % IN_WIDTH);
@@ -10739,7 +10739,7 @@ logic ping_storage_data_322;
 logic pong_storage_data_322;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             69 / IN_WIDTH: ping_storage_data_322 <= ping_storage_data_322 ^ input_data(69 % IN_WIDTH);
@@ -10764,7 +10764,7 @@ logic ping_storage_data_323;
 logic pong_storage_data_323;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             70 / IN_WIDTH: ping_storage_data_323 <= ping_storage_data_323 ^ input_data(70 % IN_WIDTH);
@@ -10789,7 +10789,7 @@ logic ping_storage_data_324;
 logic pong_storage_data_324;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             71 / IN_WIDTH: ping_storage_data_324 <= ping_storage_data_324 ^ input_data(71 % IN_WIDTH);
@@ -10814,7 +10814,7 @@ logic ping_storage_data_325;
 logic pong_storage_data_325;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             72 / IN_WIDTH: ping_storage_data_325 <= ping_storage_data_325 ^ input_data(72 % IN_WIDTH);
@@ -10839,7 +10839,7 @@ logic ping_storage_data_326;
 logic pong_storage_data_326;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             73 / IN_WIDTH: ping_storage_data_326 <= ping_storage_data_326 ^ input_data(73 % IN_WIDTH);
@@ -10864,7 +10864,7 @@ logic ping_storage_data_327;
 logic pong_storage_data_327;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             74 / IN_WIDTH: ping_storage_data_327 <= ping_storage_data_327 ^ input_data(74 % IN_WIDTH);
@@ -10889,7 +10889,7 @@ logic ping_storage_data_328;
 logic pong_storage_data_328;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             75 / IN_WIDTH: ping_storage_data_328 <= ping_storage_data_328 ^ input_data(75 % IN_WIDTH);
@@ -10914,7 +10914,7 @@ logic ping_storage_data_329;
 logic pong_storage_data_329;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             76 / IN_WIDTH: ping_storage_data_329 <= ping_storage_data_329 ^ input_data(76 % IN_WIDTH);
@@ -10939,7 +10939,7 @@ logic ping_storage_data_330;
 logic pong_storage_data_330;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             77 / IN_WIDTH: ping_storage_data_330 <= ping_storage_data_330 ^ input_data(77 % IN_WIDTH);
@@ -10964,7 +10964,7 @@ logic ping_storage_data_331;
 logic pong_storage_data_331;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             78 / IN_WIDTH: ping_storage_data_331 <= ping_storage_data_331 ^ input_data(78 % IN_WIDTH);
@@ -10989,7 +10989,7 @@ logic ping_storage_data_332;
 logic pong_storage_data_332;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             79 / IN_WIDTH: ping_storage_data_332 <= ping_storage_data_332 ^ input_data(79 % IN_WIDTH);
@@ -11014,7 +11014,7 @@ logic ping_storage_data_333;
 logic pong_storage_data_333;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             80 / IN_WIDTH: ping_storage_data_333 <= ping_storage_data_333 ^ input_data(80 % IN_WIDTH);
@@ -11039,7 +11039,7 @@ logic ping_storage_data_334;
 logic pong_storage_data_334;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             81 / IN_WIDTH: ping_storage_data_334 <= ping_storage_data_334 ^ input_data(81 % IN_WIDTH);
@@ -11064,7 +11064,7 @@ logic ping_storage_data_335;
 logic pong_storage_data_335;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             82 / IN_WIDTH: ping_storage_data_335 <= ping_storage_data_335 ^ input_data(82 % IN_WIDTH);
@@ -11089,7 +11089,7 @@ logic ping_storage_data_336;
 logic pong_storage_data_336;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             83 / IN_WIDTH: ping_storage_data_336 <= ping_storage_data_336 ^ input_data(83 % IN_WIDTH);
@@ -11114,7 +11114,7 @@ logic ping_storage_data_337;
 logic pong_storage_data_337;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             84 / IN_WIDTH: ping_storage_data_337 <= ping_storage_data_337 ^ input_data(84 % IN_WIDTH);
@@ -11139,7 +11139,7 @@ logic ping_storage_data_338;
 logic pong_storage_data_338;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             85 / IN_WIDTH: ping_storage_data_338 <= ping_storage_data_338 ^ input_data(85 % IN_WIDTH);
@@ -11164,7 +11164,7 @@ logic ping_storage_data_339;
 logic pong_storage_data_339;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             86 / IN_WIDTH: ping_storage_data_339 <= ping_storage_data_339 ^ input_data(86 % IN_WIDTH);
@@ -11189,7 +11189,7 @@ logic ping_storage_data_340;
 logic pong_storage_data_340;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             87 / IN_WIDTH: ping_storage_data_340 <= ping_storage_data_340 ^ input_data(87 % IN_WIDTH);
@@ -11214,7 +11214,7 @@ logic ping_storage_data_341;
 logic pong_storage_data_341;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             88 / IN_WIDTH: ping_storage_data_341 <= ping_storage_data_341 ^ input_data(88 % IN_WIDTH);
@@ -11239,7 +11239,7 @@ logic ping_storage_data_342;
 logic pong_storage_data_342;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             89 / IN_WIDTH: ping_storage_data_342 <= ping_storage_data_342 ^ input_data(89 % IN_WIDTH);
@@ -11264,7 +11264,7 @@ logic ping_storage_data_343;
 logic pong_storage_data_343;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             90 / IN_WIDTH: ping_storage_data_343 <= ping_storage_data_343 ^ input_data(90 % IN_WIDTH);
@@ -11289,7 +11289,7 @@ logic ping_storage_data_344;
 logic pong_storage_data_344;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             91 / IN_WIDTH: ping_storage_data_344 <= ping_storage_data_344 ^ input_data(91 % IN_WIDTH);
@@ -11314,7 +11314,7 @@ logic ping_storage_data_345;
 logic pong_storage_data_345;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             92 / IN_WIDTH: ping_storage_data_345 <= ping_storage_data_345 ^ input_data(92 % IN_WIDTH);
@@ -11339,7 +11339,7 @@ logic ping_storage_data_346;
 logic pong_storage_data_346;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             93 / IN_WIDTH: ping_storage_data_346 <= ping_storage_data_346 ^ input_data(93 % IN_WIDTH);
@@ -11364,7 +11364,7 @@ logic ping_storage_data_347;
 logic pong_storage_data_347;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             94 / IN_WIDTH: ping_storage_data_347 <= ping_storage_data_347 ^ input_data(94 % IN_WIDTH);
@@ -11389,7 +11389,7 @@ logic ping_storage_data_348;
 logic pong_storage_data_348;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             95 / IN_WIDTH: ping_storage_data_348 <= ping_storage_data_348 ^ input_data(95 % IN_WIDTH);
@@ -11414,7 +11414,7 @@ logic ping_storage_data_349;
 logic pong_storage_data_349;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             0 / IN_WIDTH: ping_storage_data_349 <= ping_storage_data_349 ^ input_data(0 % IN_WIDTH);
@@ -11439,7 +11439,7 @@ logic ping_storage_data_350;
 logic pong_storage_data_350;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             1 / IN_WIDTH: ping_storage_data_350 <= ping_storage_data_350 ^ input_data(1 % IN_WIDTH);
@@ -11464,7 +11464,7 @@ logic ping_storage_data_351;
 logic pong_storage_data_351;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             2 / IN_WIDTH: ping_storage_data_351 <= ping_storage_data_351 ^ input_data(2 % IN_WIDTH);
@@ -11489,7 +11489,7 @@ logic ping_storage_data_352;
 logic pong_storage_data_352;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             3 / IN_WIDTH: ping_storage_data_352 <= ping_storage_data_352 ^ input_data(3 % IN_WIDTH);
@@ -11514,7 +11514,7 @@ logic ping_storage_data_353;
 logic pong_storage_data_353;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             4 / IN_WIDTH: ping_storage_data_353 <= ping_storage_data_353 ^ input_data(4 % IN_WIDTH);
@@ -11539,7 +11539,7 @@ logic ping_storage_data_354;
 logic pong_storage_data_354;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             5 / IN_WIDTH: ping_storage_data_354 <= ping_storage_data_354 ^ input_data(5 % IN_WIDTH);
@@ -11564,7 +11564,7 @@ logic ping_storage_data_355;
 logic pong_storage_data_355;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             6 / IN_WIDTH: ping_storage_data_355 <= ping_storage_data_355 ^ input_data(6 % IN_WIDTH);
@@ -11589,7 +11589,7 @@ logic ping_storage_data_356;
 logic pong_storage_data_356;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             7 / IN_WIDTH: ping_storage_data_356 <= ping_storage_data_356 ^ input_data(7 % IN_WIDTH);
@@ -11614,7 +11614,7 @@ logic ping_storage_data_357;
 logic pong_storage_data_357;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             8 / IN_WIDTH: ping_storage_data_357 <= ping_storage_data_357 ^ input_data(8 % IN_WIDTH);
@@ -11639,7 +11639,7 @@ logic ping_storage_data_358;
 logic pong_storage_data_358;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             9 / IN_WIDTH: ping_storage_data_358 <= ping_storage_data_358 ^ input_data(9 % IN_WIDTH);
@@ -11664,7 +11664,7 @@ logic ping_storage_data_359;
 logic pong_storage_data_359;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             10 / IN_WIDTH: ping_storage_data_359 <= ping_storage_data_359 ^ input_data(10 % IN_WIDTH);
@@ -11689,7 +11689,7 @@ logic ping_storage_data_360;
 logic pong_storage_data_360;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             11 / IN_WIDTH: ping_storage_data_360 <= ping_storage_data_360 ^ input_data(11 % IN_WIDTH);
@@ -11714,7 +11714,7 @@ logic ping_storage_data_361;
 logic pong_storage_data_361;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             12 / IN_WIDTH: ping_storage_data_361 <= ping_storage_data_361 ^ input_data(12 % IN_WIDTH);
@@ -11739,7 +11739,7 @@ logic ping_storage_data_362;
 logic pong_storage_data_362;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             13 / IN_WIDTH: ping_storage_data_362 <= ping_storage_data_362 ^ input_data(13 % IN_WIDTH);
@@ -11764,7 +11764,7 @@ logic ping_storage_data_363;
 logic pong_storage_data_363;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             14 / IN_WIDTH: ping_storage_data_363 <= ping_storage_data_363 ^ input_data(14 % IN_WIDTH);
@@ -11789,7 +11789,7 @@ logic ping_storage_data_364;
 logic pong_storage_data_364;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             15 / IN_WIDTH: ping_storage_data_364 <= ping_storage_data_364 ^ input_data(15 % IN_WIDTH);
@@ -11814,7 +11814,7 @@ logic ping_storage_data_365;
 logic pong_storage_data_365;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             16 / IN_WIDTH: ping_storage_data_365 <= ping_storage_data_365 ^ input_data(16 % IN_WIDTH);
@@ -11839,7 +11839,7 @@ logic ping_storage_data_366;
 logic pong_storage_data_366;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             17 / IN_WIDTH: ping_storage_data_366 <= ping_storage_data_366 ^ input_data(17 % IN_WIDTH);
@@ -11864,7 +11864,7 @@ logic ping_storage_data_367;
 logic pong_storage_data_367;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             18 / IN_WIDTH: ping_storage_data_367 <= ping_storage_data_367 ^ input_data(18 % IN_WIDTH);
@@ -11889,7 +11889,7 @@ logic ping_storage_data_368;
 logic pong_storage_data_368;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             19 / IN_WIDTH: ping_storage_data_368 <= ping_storage_data_368 ^ input_data(19 % IN_WIDTH);
@@ -11914,7 +11914,7 @@ logic ping_storage_data_369;
 logic pong_storage_data_369;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             20 / IN_WIDTH: ping_storage_data_369 <= ping_storage_data_369 ^ input_data(20 % IN_WIDTH);
@@ -11939,7 +11939,7 @@ logic ping_storage_data_370;
 logic pong_storage_data_370;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             21 / IN_WIDTH: ping_storage_data_370 <= ping_storage_data_370 ^ input_data(21 % IN_WIDTH);
@@ -11964,7 +11964,7 @@ logic ping_storage_data_371;
 logic pong_storage_data_371;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             22 / IN_WIDTH: ping_storage_data_371 <= ping_storage_data_371 ^ input_data(22 % IN_WIDTH);
@@ -11989,7 +11989,7 @@ logic ping_storage_data_372;
 logic pong_storage_data_372;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             23 / IN_WIDTH: ping_storage_data_372 <= ping_storage_data_372 ^ input_data(23 % IN_WIDTH);
@@ -12014,7 +12014,7 @@ logic ping_storage_data_373;
 logic pong_storage_data_373;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             24 / IN_WIDTH: ping_storage_data_373 <= ping_storage_data_373 ^ input_data(24 % IN_WIDTH);
@@ -12039,7 +12039,7 @@ logic ping_storage_data_374;
 logic pong_storage_data_374;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             25 / IN_WIDTH: ping_storage_data_374 <= ping_storage_data_374 ^ input_data(25 % IN_WIDTH);
@@ -12064,7 +12064,7 @@ logic ping_storage_data_375;
 logic pong_storage_data_375;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             26 / IN_WIDTH: ping_storage_data_375 <= ping_storage_data_375 ^ input_data(26 % IN_WIDTH);
@@ -12089,7 +12089,7 @@ logic ping_storage_data_376;
 logic pong_storage_data_376;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             27 / IN_WIDTH: ping_storage_data_376 <= ping_storage_data_376 ^ input_data(27 % IN_WIDTH);
@@ -12114,7 +12114,7 @@ logic ping_storage_data_377;
 logic pong_storage_data_377;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             28 / IN_WIDTH: ping_storage_data_377 <= ping_storage_data_377 ^ input_data(28 % IN_WIDTH);
@@ -12139,7 +12139,7 @@ logic ping_storage_data_378;
 logic pong_storage_data_378;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             29 / IN_WIDTH: ping_storage_data_378 <= ping_storage_data_378 ^ input_data(29 % IN_WIDTH);
@@ -12164,7 +12164,7 @@ logic ping_storage_data_379;
 logic pong_storage_data_379;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             30 / IN_WIDTH: ping_storage_data_379 <= ping_storage_data_379 ^ input_data(30 % IN_WIDTH);
@@ -12189,7 +12189,7 @@ logic ping_storage_data_380;
 logic pong_storage_data_380;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             31 / IN_WIDTH: ping_storage_data_380 <= ping_storage_data_380 ^ input_data(31 % IN_WIDTH);
@@ -12214,7 +12214,7 @@ logic ping_storage_data_381;
 logic pong_storage_data_381;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             32 / IN_WIDTH: ping_storage_data_381 <= ping_storage_data_381 ^ input_data(32 % IN_WIDTH);
@@ -12239,7 +12239,7 @@ logic ping_storage_data_382;
 logic pong_storage_data_382;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             33 / IN_WIDTH: ping_storage_data_382 <= ping_storage_data_382 ^ input_data(33 % IN_WIDTH);
@@ -12264,7 +12264,7 @@ logic ping_storage_data_383;
 logic pong_storage_data_383;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             34 / IN_WIDTH: ping_storage_data_383 <= ping_storage_data_383 ^ input_data(34 % IN_WIDTH);
@@ -12289,7 +12289,7 @@ logic ping_storage_data_384;
 logic pong_storage_data_384;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             249 / IN_WIDTH: ping_storage_data_384 <= ping_storage_data_384 ^ input_data(249 % IN_WIDTH);
@@ -12314,7 +12314,7 @@ logic ping_storage_data_385;
 logic pong_storage_data_385;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             250 / IN_WIDTH: ping_storage_data_385 <= ping_storage_data_385 ^ input_data(250 % IN_WIDTH);
@@ -12339,7 +12339,7 @@ logic ping_storage_data_386;
 logic pong_storage_data_386;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             251 / IN_WIDTH: ping_storage_data_386 <= ping_storage_data_386 ^ input_data(251 % IN_WIDTH);
@@ -12364,7 +12364,7 @@ logic ping_storage_data_387;
 logic pong_storage_data_387;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             252 / IN_WIDTH: ping_storage_data_387 <= ping_storage_data_387 ^ input_data(252 % IN_WIDTH);
@@ -12389,7 +12389,7 @@ logic ping_storage_data_388;
 logic pong_storage_data_388;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             253 / IN_WIDTH: ping_storage_data_388 <= ping_storage_data_388 ^ input_data(253 % IN_WIDTH);
@@ -12414,7 +12414,7 @@ logic ping_storage_data_389;
 logic pong_storage_data_389;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             254 / IN_WIDTH: ping_storage_data_389 <= ping_storage_data_389 ^ input_data(254 % IN_WIDTH);
@@ -12439,7 +12439,7 @@ logic ping_storage_data_390;
 logic pong_storage_data_390;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             255 / IN_WIDTH: ping_storage_data_390 <= ping_storage_data_390 ^ input_data(255 % IN_WIDTH);
@@ -12464,7 +12464,7 @@ logic ping_storage_data_391;
 logic pong_storage_data_391;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             256 / IN_WIDTH: ping_storage_data_391 <= ping_storage_data_391 ^ input_data(256 % IN_WIDTH);
@@ -12489,7 +12489,7 @@ logic ping_storage_data_392;
 logic pong_storage_data_392;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             257 / IN_WIDTH: ping_storage_data_392 <= ping_storage_data_392 ^ input_data(257 % IN_WIDTH);
@@ -12514,7 +12514,7 @@ logic ping_storage_data_393;
 logic pong_storage_data_393;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             258 / IN_WIDTH: ping_storage_data_393 <= ping_storage_data_393 ^ input_data(258 % IN_WIDTH);
@@ -12539,7 +12539,7 @@ logic ping_storage_data_394;
 logic pong_storage_data_394;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             259 / IN_WIDTH: ping_storage_data_394 <= ping_storage_data_394 ^ input_data(259 % IN_WIDTH);
@@ -12564,7 +12564,7 @@ logic ping_storage_data_395;
 logic pong_storage_data_395;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             260 / IN_WIDTH: ping_storage_data_395 <= ping_storage_data_395 ^ input_data(260 % IN_WIDTH);
@@ -12589,7 +12589,7 @@ logic ping_storage_data_396;
 logic pong_storage_data_396;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             261 / IN_WIDTH: ping_storage_data_396 <= ping_storage_data_396 ^ input_data(261 % IN_WIDTH);
@@ -12614,7 +12614,7 @@ logic ping_storage_data_397;
 logic pong_storage_data_397;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             262 / IN_WIDTH: ping_storage_data_397 <= ping_storage_data_397 ^ input_data(262 % IN_WIDTH);
@@ -12639,7 +12639,7 @@ logic ping_storage_data_398;
 logic pong_storage_data_398;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             263 / IN_WIDTH: ping_storage_data_398 <= ping_storage_data_398 ^ input_data(263 % IN_WIDTH);
@@ -12664,7 +12664,7 @@ logic ping_storage_data_399;
 logic pong_storage_data_399;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             264 / IN_WIDTH: ping_storage_data_399 <= ping_storage_data_399 ^ input_data(264 % IN_WIDTH);
@@ -12689,7 +12689,7 @@ logic ping_storage_data_400;
 logic pong_storage_data_400;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             265 / IN_WIDTH: ping_storage_data_400 <= ping_storage_data_400 ^ input_data(265 % IN_WIDTH);
@@ -12714,7 +12714,7 @@ logic ping_storage_data_401;
 logic pong_storage_data_401;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             266 / IN_WIDTH: ping_storage_data_401 <= ping_storage_data_401 ^ input_data(266 % IN_WIDTH);
@@ -12739,7 +12739,7 @@ logic ping_storage_data_402;
 logic pong_storage_data_402;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             267 / IN_WIDTH: ping_storage_data_402 <= ping_storage_data_402 ^ input_data(267 % IN_WIDTH);
@@ -12764,7 +12764,7 @@ logic ping_storage_data_403;
 logic pong_storage_data_403;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             268 / IN_WIDTH: ping_storage_data_403 <= ping_storage_data_403 ^ input_data(268 % IN_WIDTH);
@@ -12789,7 +12789,7 @@ logic ping_storage_data_404;
 logic pong_storage_data_404;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             269 / IN_WIDTH: ping_storage_data_404 <= ping_storage_data_404 ^ input_data(269 % IN_WIDTH);
@@ -12814,7 +12814,7 @@ logic ping_storage_data_405;
 logic pong_storage_data_405;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             270 / IN_WIDTH: ping_storage_data_405 <= ping_storage_data_405 ^ input_data(270 % IN_WIDTH);
@@ -12839,7 +12839,7 @@ logic ping_storage_data_406;
 logic pong_storage_data_406;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             271 / IN_WIDTH: ping_storage_data_406 <= ping_storage_data_406 ^ input_data(271 % IN_WIDTH);
@@ -12864,7 +12864,7 @@ logic ping_storage_data_407;
 logic pong_storage_data_407;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             272 / IN_WIDTH: ping_storage_data_407 <= ping_storage_data_407 ^ input_data(272 % IN_WIDTH);
@@ -12889,7 +12889,7 @@ logic ping_storage_data_408;
 logic pong_storage_data_408;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             273 / IN_WIDTH: ping_storage_data_408 <= ping_storage_data_408 ^ input_data(273 % IN_WIDTH);
@@ -12914,7 +12914,7 @@ logic ping_storage_data_409;
 logic pong_storage_data_409;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             274 / IN_WIDTH: ping_storage_data_409 <= ping_storage_data_409 ^ input_data(274 % IN_WIDTH);
@@ -12939,7 +12939,7 @@ logic ping_storage_data_410;
 logic pong_storage_data_410;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             275 / IN_WIDTH: ping_storage_data_410 <= ping_storage_data_410 ^ input_data(275 % IN_WIDTH);
@@ -12964,7 +12964,7 @@ logic ping_storage_data_411;
 logic pong_storage_data_411;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             276 / IN_WIDTH: ping_storage_data_411 <= ping_storage_data_411 ^ input_data(276 % IN_WIDTH);
@@ -12989,7 +12989,7 @@ logic ping_storage_data_412;
 logic pong_storage_data_412;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             277 / IN_WIDTH: ping_storage_data_412 <= ping_storage_data_412 ^ input_data(277 % IN_WIDTH);
@@ -13014,7 +13014,7 @@ logic ping_storage_data_413;
 logic pong_storage_data_413;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             278 / IN_WIDTH: ping_storage_data_413 <= ping_storage_data_413 ^ input_data(278 % IN_WIDTH);
@@ -13039,7 +13039,7 @@ logic ping_storage_data_414;
 logic pong_storage_data_414;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             279 / IN_WIDTH: ping_storage_data_414 <= ping_storage_data_414 ^ input_data(279 % IN_WIDTH);
@@ -13064,7 +13064,7 @@ logic ping_storage_data_415;
 logic pong_storage_data_415;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             280 / IN_WIDTH: ping_storage_data_415 <= ping_storage_data_415 ^ input_data(280 % IN_WIDTH);
@@ -13089,7 +13089,7 @@ logic ping_storage_data_416;
 logic pong_storage_data_416;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             281 / IN_WIDTH: ping_storage_data_416 <= ping_storage_data_416 ^ input_data(281 % IN_WIDTH);
@@ -13114,7 +13114,7 @@ logic ping_storage_data_417;
 logic pong_storage_data_417;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             282 / IN_WIDTH: ping_storage_data_417 <= ping_storage_data_417 ^ input_data(282 % IN_WIDTH);
@@ -13139,7 +13139,7 @@ logic ping_storage_data_418;
 logic pong_storage_data_418;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             283 / IN_WIDTH: ping_storage_data_418 <= ping_storage_data_418 ^ input_data(283 % IN_WIDTH);
@@ -13164,7 +13164,7 @@ logic ping_storage_data_419;
 logic pong_storage_data_419;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             284 / IN_WIDTH: ping_storage_data_419 <= ping_storage_data_419 ^ input_data(284 % IN_WIDTH);
@@ -13189,7 +13189,7 @@ logic ping_storage_data_420;
 logic pong_storage_data_420;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             285 / IN_WIDTH: ping_storage_data_420 <= ping_storage_data_420 ^ input_data(285 % IN_WIDTH);
@@ -13214,7 +13214,7 @@ logic ping_storage_data_421;
 logic pong_storage_data_421;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             286 / IN_WIDTH: ping_storage_data_421 <= ping_storage_data_421 ^ input_data(286 % IN_WIDTH);
@@ -13239,7 +13239,7 @@ logic ping_storage_data_422;
 logic pong_storage_data_422;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             287 / IN_WIDTH: ping_storage_data_422 <= ping_storage_data_422 ^ input_data(287 % IN_WIDTH);
@@ -13264,7 +13264,7 @@ logic ping_storage_data_423;
 logic pong_storage_data_423;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             192 / IN_WIDTH: ping_storage_data_423 <= ping_storage_data_423 ^ input_data(192 % IN_WIDTH);
@@ -13289,7 +13289,7 @@ logic ping_storage_data_424;
 logic pong_storage_data_424;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             193 / IN_WIDTH: ping_storage_data_424 <= ping_storage_data_424 ^ input_data(193 % IN_WIDTH);
@@ -13314,7 +13314,7 @@ logic ping_storage_data_425;
 logic pong_storage_data_425;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             194 / IN_WIDTH: ping_storage_data_425 <= ping_storage_data_425 ^ input_data(194 % IN_WIDTH);
@@ -13339,7 +13339,7 @@ logic ping_storage_data_426;
 logic pong_storage_data_426;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             195 / IN_WIDTH: ping_storage_data_426 <= ping_storage_data_426 ^ input_data(195 % IN_WIDTH);
@@ -13364,7 +13364,7 @@ logic ping_storage_data_427;
 logic pong_storage_data_427;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             196 / IN_WIDTH: ping_storage_data_427 <= ping_storage_data_427 ^ input_data(196 % IN_WIDTH);
@@ -13389,7 +13389,7 @@ logic ping_storage_data_428;
 logic pong_storage_data_428;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             197 / IN_WIDTH: ping_storage_data_428 <= ping_storage_data_428 ^ input_data(197 % IN_WIDTH);
@@ -13414,7 +13414,7 @@ logic ping_storage_data_429;
 logic pong_storage_data_429;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             198 / IN_WIDTH: ping_storage_data_429 <= ping_storage_data_429 ^ input_data(198 % IN_WIDTH);
@@ -13439,7 +13439,7 @@ logic ping_storage_data_430;
 logic pong_storage_data_430;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             199 / IN_WIDTH: ping_storage_data_430 <= ping_storage_data_430 ^ input_data(199 % IN_WIDTH);
@@ -13464,7 +13464,7 @@ logic ping_storage_data_431;
 logic pong_storage_data_431;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             200 / IN_WIDTH: ping_storage_data_431 <= ping_storage_data_431 ^ input_data(200 % IN_WIDTH);
@@ -13489,7 +13489,7 @@ logic ping_storage_data_432;
 logic pong_storage_data_432;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             201 / IN_WIDTH: ping_storage_data_432 <= ping_storage_data_432 ^ input_data(201 % IN_WIDTH);
@@ -13514,7 +13514,7 @@ logic ping_storage_data_433;
 logic pong_storage_data_433;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             202 / IN_WIDTH: ping_storage_data_433 <= ping_storage_data_433 ^ input_data(202 % IN_WIDTH);
@@ -13539,7 +13539,7 @@ logic ping_storage_data_434;
 logic pong_storage_data_434;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             203 / IN_WIDTH: ping_storage_data_434 <= ping_storage_data_434 ^ input_data(203 % IN_WIDTH);
@@ -13564,7 +13564,7 @@ logic ping_storage_data_435;
 logic pong_storage_data_435;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             204 / IN_WIDTH: ping_storage_data_435 <= ping_storage_data_435 ^ input_data(204 % IN_WIDTH);
@@ -13589,7 +13589,7 @@ logic ping_storage_data_436;
 logic pong_storage_data_436;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             205 / IN_WIDTH: ping_storage_data_436 <= ping_storage_data_436 ^ input_data(205 % IN_WIDTH);
@@ -13614,7 +13614,7 @@ logic ping_storage_data_437;
 logic pong_storage_data_437;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             206 / IN_WIDTH: ping_storage_data_437 <= ping_storage_data_437 ^ input_data(206 % IN_WIDTH);
@@ -13639,7 +13639,7 @@ logic ping_storage_data_438;
 logic pong_storage_data_438;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             207 / IN_WIDTH: ping_storage_data_438 <= ping_storage_data_438 ^ input_data(207 % IN_WIDTH);
@@ -13664,7 +13664,7 @@ logic ping_storage_data_439;
 logic pong_storage_data_439;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             208 / IN_WIDTH: ping_storage_data_439 <= ping_storage_data_439 ^ input_data(208 % IN_WIDTH);
@@ -13689,7 +13689,7 @@ logic ping_storage_data_440;
 logic pong_storage_data_440;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             209 / IN_WIDTH: ping_storage_data_440 <= ping_storage_data_440 ^ input_data(209 % IN_WIDTH);
@@ -13714,7 +13714,7 @@ logic ping_storage_data_441;
 logic pong_storage_data_441;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             210 / IN_WIDTH: ping_storage_data_441 <= ping_storage_data_441 ^ input_data(210 % IN_WIDTH);
@@ -13739,7 +13739,7 @@ logic ping_storage_data_442;
 logic pong_storage_data_442;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             211 / IN_WIDTH: ping_storage_data_442 <= ping_storage_data_442 ^ input_data(211 % IN_WIDTH);
@@ -13764,7 +13764,7 @@ logic ping_storage_data_443;
 logic pong_storage_data_443;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             212 / IN_WIDTH: ping_storage_data_443 <= ping_storage_data_443 ^ input_data(212 % IN_WIDTH);
@@ -13789,7 +13789,7 @@ logic ping_storage_data_444;
 logic pong_storage_data_444;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             213 / IN_WIDTH: ping_storage_data_444 <= ping_storage_data_444 ^ input_data(213 % IN_WIDTH);
@@ -13814,7 +13814,7 @@ logic ping_storage_data_445;
 logic pong_storage_data_445;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             214 / IN_WIDTH: ping_storage_data_445 <= ping_storage_data_445 ^ input_data(214 % IN_WIDTH);
@@ -13839,7 +13839,7 @@ logic ping_storage_data_446;
 logic pong_storage_data_446;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             215 / IN_WIDTH: ping_storage_data_446 <= ping_storage_data_446 ^ input_data(215 % IN_WIDTH);
@@ -13864,7 +13864,7 @@ logic ping_storage_data_447;
 logic pong_storage_data_447;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             216 / IN_WIDTH: ping_storage_data_447 <= ping_storage_data_447 ^ input_data(216 % IN_WIDTH);
@@ -13889,7 +13889,7 @@ logic ping_storage_data_448;
 logic pong_storage_data_448;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             217 / IN_WIDTH: ping_storage_data_448 <= ping_storage_data_448 ^ input_data(217 % IN_WIDTH);
@@ -13914,7 +13914,7 @@ logic ping_storage_data_449;
 logic pong_storage_data_449;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             218 / IN_WIDTH: ping_storage_data_449 <= ping_storage_data_449 ^ input_data(218 % IN_WIDTH);
@@ -13939,7 +13939,7 @@ logic ping_storage_data_450;
 logic pong_storage_data_450;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             219 / IN_WIDTH: ping_storage_data_450 <= ping_storage_data_450 ^ input_data(219 % IN_WIDTH);
@@ -13964,7 +13964,7 @@ logic ping_storage_data_451;
 logic pong_storage_data_451;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             220 / IN_WIDTH: ping_storage_data_451 <= ping_storage_data_451 ^ input_data(220 % IN_WIDTH);
@@ -13989,7 +13989,7 @@ logic ping_storage_data_452;
 logic pong_storage_data_452;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             221 / IN_WIDTH: ping_storage_data_452 <= ping_storage_data_452 ^ input_data(221 % IN_WIDTH);
@@ -14014,7 +14014,7 @@ logic ping_storage_data_453;
 logic pong_storage_data_453;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             222 / IN_WIDTH: ping_storage_data_453 <= ping_storage_data_453 ^ input_data(222 % IN_WIDTH);
@@ -14039,7 +14039,7 @@ logic ping_storage_data_454;
 logic pong_storage_data_454;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             223 / IN_WIDTH: ping_storage_data_454 <= ping_storage_data_454 ^ input_data(223 % IN_WIDTH);
@@ -14064,7 +14064,7 @@ logic ping_storage_data_455;
 logic pong_storage_data_455;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             224 / IN_WIDTH: ping_storage_data_455 <= ping_storage_data_455 ^ input_data(224 % IN_WIDTH);
@@ -14089,7 +14089,7 @@ logic ping_storage_data_456;
 logic pong_storage_data_456;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             225 / IN_WIDTH: ping_storage_data_456 <= ping_storage_data_456 ^ input_data(225 % IN_WIDTH);
@@ -14114,7 +14114,7 @@ logic ping_storage_data_457;
 logic pong_storage_data_457;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             226 / IN_WIDTH: ping_storage_data_457 <= ping_storage_data_457 ^ input_data(226 % IN_WIDTH);
@@ -14139,7 +14139,7 @@ logic ping_storage_data_458;
 logic pong_storage_data_458;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             227 / IN_WIDTH: ping_storage_data_458 <= ping_storage_data_458 ^ input_data(227 % IN_WIDTH);
@@ -14164,7 +14164,7 @@ logic ping_storage_data_459;
 logic pong_storage_data_459;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             228 / IN_WIDTH: ping_storage_data_459 <= ping_storage_data_459 ^ input_data(228 % IN_WIDTH);
@@ -14189,7 +14189,7 @@ logic ping_storage_data_460;
 logic pong_storage_data_460;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             229 / IN_WIDTH: ping_storage_data_460 <= ping_storage_data_460 ^ input_data(229 % IN_WIDTH);
@@ -14214,7 +14214,7 @@ logic ping_storage_data_461;
 logic pong_storage_data_461;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             230 / IN_WIDTH: ping_storage_data_461 <= ping_storage_data_461 ^ input_data(230 % IN_WIDTH);
@@ -14239,7 +14239,7 @@ logic ping_storage_data_462;
 logic pong_storage_data_462;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             231 / IN_WIDTH: ping_storage_data_462 <= ping_storage_data_462 ^ input_data(231 % IN_WIDTH);
@@ -14264,7 +14264,7 @@ logic ping_storage_data_463;
 logic pong_storage_data_463;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             232 / IN_WIDTH: ping_storage_data_463 <= ping_storage_data_463 ^ input_data(232 % IN_WIDTH);
@@ -14289,7 +14289,7 @@ logic ping_storage_data_464;
 logic pong_storage_data_464;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             233 / IN_WIDTH: ping_storage_data_464 <= ping_storage_data_464 ^ input_data(233 % IN_WIDTH);
@@ -14314,7 +14314,7 @@ logic ping_storage_data_465;
 logic pong_storage_data_465;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             234 / IN_WIDTH: ping_storage_data_465 <= ping_storage_data_465 ^ input_data(234 % IN_WIDTH);
@@ -14339,7 +14339,7 @@ logic ping_storage_data_466;
 logic pong_storage_data_466;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             235 / IN_WIDTH: ping_storage_data_466 <= ping_storage_data_466 ^ input_data(235 % IN_WIDTH);
@@ -14364,7 +14364,7 @@ logic ping_storage_data_467;
 logic pong_storage_data_467;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             236 / IN_WIDTH: ping_storage_data_467 <= ping_storage_data_467 ^ input_data(236 % IN_WIDTH);
@@ -14389,7 +14389,7 @@ logic ping_storage_data_468;
 logic pong_storage_data_468;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             237 / IN_WIDTH: ping_storage_data_468 <= ping_storage_data_468 ^ input_data(237 % IN_WIDTH);
@@ -14414,7 +14414,7 @@ logic ping_storage_data_469;
 logic pong_storage_data_469;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             238 / IN_WIDTH: ping_storage_data_469 <= ping_storage_data_469 ^ input_data(238 % IN_WIDTH);
@@ -14439,7 +14439,7 @@ logic ping_storage_data_470;
 logic pong_storage_data_470;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             239 / IN_WIDTH: ping_storage_data_470 <= ping_storage_data_470 ^ input_data(239 % IN_WIDTH);
@@ -14464,7 +14464,7 @@ logic ping_storage_data_471;
 logic pong_storage_data_471;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             240 / IN_WIDTH: ping_storage_data_471 <= ping_storage_data_471 ^ input_data(240 % IN_WIDTH);
@@ -14489,7 +14489,7 @@ logic ping_storage_data_472;
 logic pong_storage_data_472;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             241 / IN_WIDTH: ping_storage_data_472 <= ping_storage_data_472 ^ input_data(241 % IN_WIDTH);
@@ -14514,7 +14514,7 @@ logic ping_storage_data_473;
 logic pong_storage_data_473;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             242 / IN_WIDTH: ping_storage_data_473 <= ping_storage_data_473 ^ input_data(242 % IN_WIDTH);
@@ -14539,7 +14539,7 @@ logic ping_storage_data_474;
 logic pong_storage_data_474;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             243 / IN_WIDTH: ping_storage_data_474 <= ping_storage_data_474 ^ input_data(243 % IN_WIDTH);
@@ -14564,7 +14564,7 @@ logic ping_storage_data_475;
 logic pong_storage_data_475;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             244 / IN_WIDTH: ping_storage_data_475 <= ping_storage_data_475 ^ input_data(244 % IN_WIDTH);
@@ -14589,7 +14589,7 @@ logic ping_storage_data_476;
 logic pong_storage_data_476;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             245 / IN_WIDTH: ping_storage_data_476 <= ping_storage_data_476 ^ input_data(245 % IN_WIDTH);
@@ -14614,7 +14614,7 @@ logic ping_storage_data_477;
 logic pong_storage_data_477;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             246 / IN_WIDTH: ping_storage_data_477 <= ping_storage_data_477 ^ input_data(246 % IN_WIDTH);
@@ -14639,7 +14639,7 @@ logic ping_storage_data_478;
 logic pong_storage_data_478;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             247 / IN_WIDTH: ping_storage_data_478 <= ping_storage_data_478 ^ input_data(247 % IN_WIDTH);
@@ -14664,7 +14664,7 @@ logic ping_storage_data_479;
 logic pong_storage_data_479;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             248 / IN_WIDTH: ping_storage_data_479 <= ping_storage_data_479 ^ input_data(248 % IN_WIDTH);
@@ -14689,7 +14689,7 @@ logic ping_storage_data_480;
 logic pong_storage_data_480;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             434 / IN_WIDTH: ping_storage_data_480 <= ping_storage_data_480 ^ input_data(434 % IN_WIDTH);
@@ -14714,7 +14714,7 @@ logic ping_storage_data_481;
 logic pong_storage_data_481;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             435 / IN_WIDTH: ping_storage_data_481 <= ping_storage_data_481 ^ input_data(435 % IN_WIDTH);
@@ -14739,7 +14739,7 @@ logic ping_storage_data_482;
 logic pong_storage_data_482;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             436 / IN_WIDTH: ping_storage_data_482 <= ping_storage_data_482 ^ input_data(436 % IN_WIDTH);
@@ -14764,7 +14764,7 @@ logic ping_storage_data_483;
 logic pong_storage_data_483;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             437 / IN_WIDTH: ping_storage_data_483 <= ping_storage_data_483 ^ input_data(437 % IN_WIDTH);
@@ -14789,7 +14789,7 @@ logic ping_storage_data_484;
 logic pong_storage_data_484;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             438 / IN_WIDTH: ping_storage_data_484 <= ping_storage_data_484 ^ input_data(438 % IN_WIDTH);
@@ -14814,7 +14814,7 @@ logic ping_storage_data_485;
 logic pong_storage_data_485;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             439 / IN_WIDTH: ping_storage_data_485 <= ping_storage_data_485 ^ input_data(439 % IN_WIDTH);
@@ -14839,7 +14839,7 @@ logic ping_storage_data_486;
 logic pong_storage_data_486;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             440 / IN_WIDTH: ping_storage_data_486 <= ping_storage_data_486 ^ input_data(440 % IN_WIDTH);
@@ -14864,7 +14864,7 @@ logic ping_storage_data_487;
 logic pong_storage_data_487;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             441 / IN_WIDTH: ping_storage_data_487 <= ping_storage_data_487 ^ input_data(441 % IN_WIDTH);
@@ -14889,7 +14889,7 @@ logic ping_storage_data_488;
 logic pong_storage_data_488;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             442 / IN_WIDTH: ping_storage_data_488 <= ping_storage_data_488 ^ input_data(442 % IN_WIDTH);
@@ -14914,7 +14914,7 @@ logic ping_storage_data_489;
 logic pong_storage_data_489;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             443 / IN_WIDTH: ping_storage_data_489 <= ping_storage_data_489 ^ input_data(443 % IN_WIDTH);
@@ -14939,7 +14939,7 @@ logic ping_storage_data_490;
 logic pong_storage_data_490;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             444 / IN_WIDTH: ping_storage_data_490 <= ping_storage_data_490 ^ input_data(444 % IN_WIDTH);
@@ -14964,7 +14964,7 @@ logic ping_storage_data_491;
 logic pong_storage_data_491;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             445 / IN_WIDTH: ping_storage_data_491 <= ping_storage_data_491 ^ input_data(445 % IN_WIDTH);
@@ -14989,7 +14989,7 @@ logic ping_storage_data_492;
 logic pong_storage_data_492;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             446 / IN_WIDTH: ping_storage_data_492 <= ping_storage_data_492 ^ input_data(446 % IN_WIDTH);
@@ -15014,7 +15014,7 @@ logic ping_storage_data_493;
 logic pong_storage_data_493;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             447 / IN_WIDTH: ping_storage_data_493 <= ping_storage_data_493 ^ input_data(447 % IN_WIDTH);
@@ -15039,7 +15039,7 @@ logic ping_storage_data_494;
 logic pong_storage_data_494;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             448 / IN_WIDTH: ping_storage_data_494 <= ping_storage_data_494 ^ input_data(448 % IN_WIDTH);
@@ -15064,7 +15064,7 @@ logic ping_storage_data_495;
 logic pong_storage_data_495;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             449 / IN_WIDTH: ping_storage_data_495 <= ping_storage_data_495 ^ input_data(449 % IN_WIDTH);
@@ -15089,7 +15089,7 @@ logic ping_storage_data_496;
 logic pong_storage_data_496;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             450 / IN_WIDTH: ping_storage_data_496 <= ping_storage_data_496 ^ input_data(450 % IN_WIDTH);
@@ -15114,7 +15114,7 @@ logic ping_storage_data_497;
 logic pong_storage_data_497;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             451 / IN_WIDTH: ping_storage_data_497 <= ping_storage_data_497 ^ input_data(451 % IN_WIDTH);
@@ -15139,7 +15139,7 @@ logic ping_storage_data_498;
 logic pong_storage_data_498;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             452 / IN_WIDTH: ping_storage_data_498 <= ping_storage_data_498 ^ input_data(452 % IN_WIDTH);
@@ -15164,7 +15164,7 @@ logic ping_storage_data_499;
 logic pong_storage_data_499;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             453 / IN_WIDTH: ping_storage_data_499 <= ping_storage_data_499 ^ input_data(453 % IN_WIDTH);
@@ -15189,7 +15189,7 @@ logic ping_storage_data_500;
 logic pong_storage_data_500;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             454 / IN_WIDTH: ping_storage_data_500 <= ping_storage_data_500 ^ input_data(454 % IN_WIDTH);
@@ -15214,7 +15214,7 @@ logic ping_storage_data_501;
 logic pong_storage_data_501;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             455 / IN_WIDTH: ping_storage_data_501 <= ping_storage_data_501 ^ input_data(455 % IN_WIDTH);
@@ -15239,7 +15239,7 @@ logic ping_storage_data_502;
 logic pong_storage_data_502;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             456 / IN_WIDTH: ping_storage_data_502 <= ping_storage_data_502 ^ input_data(456 % IN_WIDTH);
@@ -15264,7 +15264,7 @@ logic ping_storage_data_503;
 logic pong_storage_data_503;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             457 / IN_WIDTH: ping_storage_data_503 <= ping_storage_data_503 ^ input_data(457 % IN_WIDTH);
@@ -15289,7 +15289,7 @@ logic ping_storage_data_504;
 logic pong_storage_data_504;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             458 / IN_WIDTH: ping_storage_data_504 <= ping_storage_data_504 ^ input_data(458 % IN_WIDTH);
@@ -15314,7 +15314,7 @@ logic ping_storage_data_505;
 logic pong_storage_data_505;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             459 / IN_WIDTH: ping_storage_data_505 <= ping_storage_data_505 ^ input_data(459 % IN_WIDTH);
@@ -15339,7 +15339,7 @@ logic ping_storage_data_506;
 logic pong_storage_data_506;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             460 / IN_WIDTH: ping_storage_data_506 <= ping_storage_data_506 ^ input_data(460 % IN_WIDTH);
@@ -15364,7 +15364,7 @@ logic ping_storage_data_507;
 logic pong_storage_data_507;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             461 / IN_WIDTH: ping_storage_data_507 <= ping_storage_data_507 ^ input_data(461 % IN_WIDTH);
@@ -15389,7 +15389,7 @@ logic ping_storage_data_508;
 logic pong_storage_data_508;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             462 / IN_WIDTH: ping_storage_data_508 <= ping_storage_data_508 ^ input_data(462 % IN_WIDTH);
@@ -15414,7 +15414,7 @@ logic ping_storage_data_509;
 logic pong_storage_data_509;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             463 / IN_WIDTH: ping_storage_data_509 <= ping_storage_data_509 ^ input_data(463 % IN_WIDTH);
@@ -15439,7 +15439,7 @@ logic ping_storage_data_510;
 logic pong_storage_data_510;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             464 / IN_WIDTH: ping_storage_data_510 <= ping_storage_data_510 ^ input_data(464 % IN_WIDTH);
@@ -15464,7 +15464,7 @@ logic ping_storage_data_511;
 logic pong_storage_data_511;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             465 / IN_WIDTH: ping_storage_data_511 <= ping_storage_data_511 ^ input_data(465 % IN_WIDTH);
@@ -15489,7 +15489,7 @@ logic ping_storage_data_512;
 logic pong_storage_data_512;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             466 / IN_WIDTH: ping_storage_data_512 <= ping_storage_data_512 ^ input_data(466 % IN_WIDTH);
@@ -15514,7 +15514,7 @@ logic ping_storage_data_513;
 logic pong_storage_data_513;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             467 / IN_WIDTH: ping_storage_data_513 <= ping_storage_data_513 ^ input_data(467 % IN_WIDTH);
@@ -15539,7 +15539,7 @@ logic ping_storage_data_514;
 logic pong_storage_data_514;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             468 / IN_WIDTH: ping_storage_data_514 <= ping_storage_data_514 ^ input_data(468 % IN_WIDTH);
@@ -15564,7 +15564,7 @@ logic ping_storage_data_515;
 logic pong_storage_data_515;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             469 / IN_WIDTH: ping_storage_data_515 <= ping_storage_data_515 ^ input_data(469 % IN_WIDTH);
@@ -15589,7 +15589,7 @@ logic ping_storage_data_516;
 logic pong_storage_data_516;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             470 / IN_WIDTH: ping_storage_data_516 <= ping_storage_data_516 ^ input_data(470 % IN_WIDTH);
@@ -15614,7 +15614,7 @@ logic ping_storage_data_517;
 logic pong_storage_data_517;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             471 / IN_WIDTH: ping_storage_data_517 <= ping_storage_data_517 ^ input_data(471 % IN_WIDTH);
@@ -15639,7 +15639,7 @@ logic ping_storage_data_518;
 logic pong_storage_data_518;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             472 / IN_WIDTH: ping_storage_data_518 <= ping_storage_data_518 ^ input_data(472 % IN_WIDTH);
@@ -15664,7 +15664,7 @@ logic ping_storage_data_519;
 logic pong_storage_data_519;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             473 / IN_WIDTH: ping_storage_data_519 <= ping_storage_data_519 ^ input_data(473 % IN_WIDTH);
@@ -15689,7 +15689,7 @@ logic ping_storage_data_520;
 logic pong_storage_data_520;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             474 / IN_WIDTH: ping_storage_data_520 <= ping_storage_data_520 ^ input_data(474 % IN_WIDTH);
@@ -15714,7 +15714,7 @@ logic ping_storage_data_521;
 logic pong_storage_data_521;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             475 / IN_WIDTH: ping_storage_data_521 <= ping_storage_data_521 ^ input_data(475 % IN_WIDTH);
@@ -15739,7 +15739,7 @@ logic ping_storage_data_522;
 logic pong_storage_data_522;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             476 / IN_WIDTH: ping_storage_data_522 <= ping_storage_data_522 ^ input_data(476 % IN_WIDTH);
@@ -15764,7 +15764,7 @@ logic ping_storage_data_523;
 logic pong_storage_data_523;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             477 / IN_WIDTH: ping_storage_data_523 <= ping_storage_data_523 ^ input_data(477 % IN_WIDTH);
@@ -15789,7 +15789,7 @@ logic ping_storage_data_524;
 logic pong_storage_data_524;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             478 / IN_WIDTH: ping_storage_data_524 <= ping_storage_data_524 ^ input_data(478 % IN_WIDTH);
@@ -15814,7 +15814,7 @@ logic ping_storage_data_525;
 logic pong_storage_data_525;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             479 / IN_WIDTH: ping_storage_data_525 <= ping_storage_data_525 ^ input_data(479 % IN_WIDTH);
@@ -15839,7 +15839,7 @@ logic ping_storage_data_526;
 logic pong_storage_data_526;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             384 / IN_WIDTH: ping_storage_data_526 <= ping_storage_data_526 ^ input_data(384 % IN_WIDTH);
@@ -15864,7 +15864,7 @@ logic ping_storage_data_527;
 logic pong_storage_data_527;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             385 / IN_WIDTH: ping_storage_data_527 <= ping_storage_data_527 ^ input_data(385 % IN_WIDTH);
@@ -15889,7 +15889,7 @@ logic ping_storage_data_528;
 logic pong_storage_data_528;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             386 / IN_WIDTH: ping_storage_data_528 <= ping_storage_data_528 ^ input_data(386 % IN_WIDTH);
@@ -15914,7 +15914,7 @@ logic ping_storage_data_529;
 logic pong_storage_data_529;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             387 / IN_WIDTH: ping_storage_data_529 <= ping_storage_data_529 ^ input_data(387 % IN_WIDTH);
@@ -15939,7 +15939,7 @@ logic ping_storage_data_530;
 logic pong_storage_data_530;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             388 / IN_WIDTH: ping_storage_data_530 <= ping_storage_data_530 ^ input_data(388 % IN_WIDTH);
@@ -15964,7 +15964,7 @@ logic ping_storage_data_531;
 logic pong_storage_data_531;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             389 / IN_WIDTH: ping_storage_data_531 <= ping_storage_data_531 ^ input_data(389 % IN_WIDTH);
@@ -15989,7 +15989,7 @@ logic ping_storage_data_532;
 logic pong_storage_data_532;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             390 / IN_WIDTH: ping_storage_data_532 <= ping_storage_data_532 ^ input_data(390 % IN_WIDTH);
@@ -16014,7 +16014,7 @@ logic ping_storage_data_533;
 logic pong_storage_data_533;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             391 / IN_WIDTH: ping_storage_data_533 <= ping_storage_data_533 ^ input_data(391 % IN_WIDTH);
@@ -16039,7 +16039,7 @@ logic ping_storage_data_534;
 logic pong_storage_data_534;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             392 / IN_WIDTH: ping_storage_data_534 <= ping_storage_data_534 ^ input_data(392 % IN_WIDTH);
@@ -16064,7 +16064,7 @@ logic ping_storage_data_535;
 logic pong_storage_data_535;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             393 / IN_WIDTH: ping_storage_data_535 <= ping_storage_data_535 ^ input_data(393 % IN_WIDTH);
@@ -16089,7 +16089,7 @@ logic ping_storage_data_536;
 logic pong_storage_data_536;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             394 / IN_WIDTH: ping_storage_data_536 <= ping_storage_data_536 ^ input_data(394 % IN_WIDTH);
@@ -16114,7 +16114,7 @@ logic ping_storage_data_537;
 logic pong_storage_data_537;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             395 / IN_WIDTH: ping_storage_data_537 <= ping_storage_data_537 ^ input_data(395 % IN_WIDTH);
@@ -16139,7 +16139,7 @@ logic ping_storage_data_538;
 logic pong_storage_data_538;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             396 / IN_WIDTH: ping_storage_data_538 <= ping_storage_data_538 ^ input_data(396 % IN_WIDTH);
@@ -16164,7 +16164,7 @@ logic ping_storage_data_539;
 logic pong_storage_data_539;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             397 / IN_WIDTH: ping_storage_data_539 <= ping_storage_data_539 ^ input_data(397 % IN_WIDTH);
@@ -16189,7 +16189,7 @@ logic ping_storage_data_540;
 logic pong_storage_data_540;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             398 / IN_WIDTH: ping_storage_data_540 <= ping_storage_data_540 ^ input_data(398 % IN_WIDTH);
@@ -16214,7 +16214,7 @@ logic ping_storage_data_541;
 logic pong_storage_data_541;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             399 / IN_WIDTH: ping_storage_data_541 <= ping_storage_data_541 ^ input_data(399 % IN_WIDTH);
@@ -16239,7 +16239,7 @@ logic ping_storage_data_542;
 logic pong_storage_data_542;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             400 / IN_WIDTH: ping_storage_data_542 <= ping_storage_data_542 ^ input_data(400 % IN_WIDTH);
@@ -16264,7 +16264,7 @@ logic ping_storage_data_543;
 logic pong_storage_data_543;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             401 / IN_WIDTH: ping_storage_data_543 <= ping_storage_data_543 ^ input_data(401 % IN_WIDTH);
@@ -16289,7 +16289,7 @@ logic ping_storage_data_544;
 logic pong_storage_data_544;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             402 / IN_WIDTH: ping_storage_data_544 <= ping_storage_data_544 ^ input_data(402 % IN_WIDTH);
@@ -16314,7 +16314,7 @@ logic ping_storage_data_545;
 logic pong_storage_data_545;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             403 / IN_WIDTH: ping_storage_data_545 <= ping_storage_data_545 ^ input_data(403 % IN_WIDTH);
@@ -16339,7 +16339,7 @@ logic ping_storage_data_546;
 logic pong_storage_data_546;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             404 / IN_WIDTH: ping_storage_data_546 <= ping_storage_data_546 ^ input_data(404 % IN_WIDTH);
@@ -16364,7 +16364,7 @@ logic ping_storage_data_547;
 logic pong_storage_data_547;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             405 / IN_WIDTH: ping_storage_data_547 <= ping_storage_data_547 ^ input_data(405 % IN_WIDTH);
@@ -16389,7 +16389,7 @@ logic ping_storage_data_548;
 logic pong_storage_data_548;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             406 / IN_WIDTH: ping_storage_data_548 <= ping_storage_data_548 ^ input_data(406 % IN_WIDTH);
@@ -16414,7 +16414,7 @@ logic ping_storage_data_549;
 logic pong_storage_data_549;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             407 / IN_WIDTH: ping_storage_data_549 <= ping_storage_data_549 ^ input_data(407 % IN_WIDTH);
@@ -16439,7 +16439,7 @@ logic ping_storage_data_550;
 logic pong_storage_data_550;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             408 / IN_WIDTH: ping_storage_data_550 <= ping_storage_data_550 ^ input_data(408 % IN_WIDTH);
@@ -16464,7 +16464,7 @@ logic ping_storage_data_551;
 logic pong_storage_data_551;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             409 / IN_WIDTH: ping_storage_data_551 <= ping_storage_data_551 ^ input_data(409 % IN_WIDTH);
@@ -16489,7 +16489,7 @@ logic ping_storage_data_552;
 logic pong_storage_data_552;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             410 / IN_WIDTH: ping_storage_data_552 <= ping_storage_data_552 ^ input_data(410 % IN_WIDTH);
@@ -16514,7 +16514,7 @@ logic ping_storage_data_553;
 logic pong_storage_data_553;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             411 / IN_WIDTH: ping_storage_data_553 <= ping_storage_data_553 ^ input_data(411 % IN_WIDTH);
@@ -16539,7 +16539,7 @@ logic ping_storage_data_554;
 logic pong_storage_data_554;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             412 / IN_WIDTH: ping_storage_data_554 <= ping_storage_data_554 ^ input_data(412 % IN_WIDTH);
@@ -16564,7 +16564,7 @@ logic ping_storage_data_555;
 logic pong_storage_data_555;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             413 / IN_WIDTH: ping_storage_data_555 <= ping_storage_data_555 ^ input_data(413 % IN_WIDTH);
@@ -16589,7 +16589,7 @@ logic ping_storage_data_556;
 logic pong_storage_data_556;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             414 / IN_WIDTH: ping_storage_data_556 <= ping_storage_data_556 ^ input_data(414 % IN_WIDTH);
@@ -16614,7 +16614,7 @@ logic ping_storage_data_557;
 logic pong_storage_data_557;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             415 / IN_WIDTH: ping_storage_data_557 <= ping_storage_data_557 ^ input_data(415 % IN_WIDTH);
@@ -16639,7 +16639,7 @@ logic ping_storage_data_558;
 logic pong_storage_data_558;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             416 / IN_WIDTH: ping_storage_data_558 <= ping_storage_data_558 ^ input_data(416 % IN_WIDTH);
@@ -16664,7 +16664,7 @@ logic ping_storage_data_559;
 logic pong_storage_data_559;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             417 / IN_WIDTH: ping_storage_data_559 <= ping_storage_data_559 ^ input_data(417 % IN_WIDTH);
@@ -16689,7 +16689,7 @@ logic ping_storage_data_560;
 logic pong_storage_data_560;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             418 / IN_WIDTH: ping_storage_data_560 <= ping_storage_data_560 ^ input_data(418 % IN_WIDTH);
@@ -16714,7 +16714,7 @@ logic ping_storage_data_561;
 logic pong_storage_data_561;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             419 / IN_WIDTH: ping_storage_data_561 <= ping_storage_data_561 ^ input_data(419 % IN_WIDTH);
@@ -16739,7 +16739,7 @@ logic ping_storage_data_562;
 logic pong_storage_data_562;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             420 / IN_WIDTH: ping_storage_data_562 <= ping_storage_data_562 ^ input_data(420 % IN_WIDTH);
@@ -16764,7 +16764,7 @@ logic ping_storage_data_563;
 logic pong_storage_data_563;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             421 / IN_WIDTH: ping_storage_data_563 <= ping_storage_data_563 ^ input_data(421 % IN_WIDTH);
@@ -16789,7 +16789,7 @@ logic ping_storage_data_564;
 logic pong_storage_data_564;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             422 / IN_WIDTH: ping_storage_data_564 <= ping_storage_data_564 ^ input_data(422 % IN_WIDTH);
@@ -16814,7 +16814,7 @@ logic ping_storage_data_565;
 logic pong_storage_data_565;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             423 / IN_WIDTH: ping_storage_data_565 <= ping_storage_data_565 ^ input_data(423 % IN_WIDTH);
@@ -16839,7 +16839,7 @@ logic ping_storage_data_566;
 logic pong_storage_data_566;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             424 / IN_WIDTH: ping_storage_data_566 <= ping_storage_data_566 ^ input_data(424 % IN_WIDTH);
@@ -16864,7 +16864,7 @@ logic ping_storage_data_567;
 logic pong_storage_data_567;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             425 / IN_WIDTH: ping_storage_data_567 <= ping_storage_data_567 ^ input_data(425 % IN_WIDTH);
@@ -16889,7 +16889,7 @@ logic ping_storage_data_568;
 logic pong_storage_data_568;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             426 / IN_WIDTH: ping_storage_data_568 <= ping_storage_data_568 ^ input_data(426 % IN_WIDTH);
@@ -16914,7 +16914,7 @@ logic ping_storage_data_569;
 logic pong_storage_data_569;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             427 / IN_WIDTH: ping_storage_data_569 <= ping_storage_data_569 ^ input_data(427 % IN_WIDTH);
@@ -16939,7 +16939,7 @@ logic ping_storage_data_570;
 logic pong_storage_data_570;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             428 / IN_WIDTH: ping_storage_data_570 <= ping_storage_data_570 ^ input_data(428 % IN_WIDTH);
@@ -16964,7 +16964,7 @@ logic ping_storage_data_571;
 logic pong_storage_data_571;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             429 / IN_WIDTH: ping_storage_data_571 <= ping_storage_data_571 ^ input_data(429 % IN_WIDTH);
@@ -16989,7 +16989,7 @@ logic ping_storage_data_572;
 logic pong_storage_data_572;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             430 / IN_WIDTH: ping_storage_data_572 <= ping_storage_data_572 ^ input_data(430 % IN_WIDTH);
@@ -17014,7 +17014,7 @@ logic ping_storage_data_573;
 logic pong_storage_data_573;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             431 / IN_WIDTH: ping_storage_data_573 <= ping_storage_data_573 ^ input_data(431 % IN_WIDTH);
@@ -17039,7 +17039,7 @@ logic ping_storage_data_574;
 logic pong_storage_data_574;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             432 / IN_WIDTH: ping_storage_data_574 <= ping_storage_data_574 ^ input_data(432 % IN_WIDTH);
@@ -17064,7 +17064,7 @@ logic ping_storage_data_575;
 logic pong_storage_data_575;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             433 / IN_WIDTH: ping_storage_data_575 <= ping_storage_data_575 ^ input_data(433 % IN_WIDTH);
@@ -17089,7 +17089,7 @@ logic ping_storage_data_576;
 logic pong_storage_data_576;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             193 / IN_WIDTH: ping_storage_data_576 <= ping_storage_data_576 ^ input_data(193 % IN_WIDTH);
@@ -17114,7 +17114,7 @@ logic ping_storage_data_577;
 logic pong_storage_data_577;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             194 / IN_WIDTH: ping_storage_data_577 <= ping_storage_data_577 ^ input_data(194 % IN_WIDTH);
@@ -17139,7 +17139,7 @@ logic ping_storage_data_578;
 logic pong_storage_data_578;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             195 / IN_WIDTH: ping_storage_data_578 <= ping_storage_data_578 ^ input_data(195 % IN_WIDTH);
@@ -17164,7 +17164,7 @@ logic ping_storage_data_579;
 logic pong_storage_data_579;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             196 / IN_WIDTH: ping_storage_data_579 <= ping_storage_data_579 ^ input_data(196 % IN_WIDTH);
@@ -17189,7 +17189,7 @@ logic ping_storage_data_580;
 logic pong_storage_data_580;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             197 / IN_WIDTH: ping_storage_data_580 <= ping_storage_data_580 ^ input_data(197 % IN_WIDTH);
@@ -17214,7 +17214,7 @@ logic ping_storage_data_581;
 logic pong_storage_data_581;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             198 / IN_WIDTH: ping_storage_data_581 <= ping_storage_data_581 ^ input_data(198 % IN_WIDTH);
@@ -17239,7 +17239,7 @@ logic ping_storage_data_582;
 logic pong_storage_data_582;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             199 / IN_WIDTH: ping_storage_data_582 <= ping_storage_data_582 ^ input_data(199 % IN_WIDTH);
@@ -17264,7 +17264,7 @@ logic ping_storage_data_583;
 logic pong_storage_data_583;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             200 / IN_WIDTH: ping_storage_data_583 <= ping_storage_data_583 ^ input_data(200 % IN_WIDTH);
@@ -17289,7 +17289,7 @@ logic ping_storage_data_584;
 logic pong_storage_data_584;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             201 / IN_WIDTH: ping_storage_data_584 <= ping_storage_data_584 ^ input_data(201 % IN_WIDTH);
@@ -17314,7 +17314,7 @@ logic ping_storage_data_585;
 logic pong_storage_data_585;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             202 / IN_WIDTH: ping_storage_data_585 <= ping_storage_data_585 ^ input_data(202 % IN_WIDTH);
@@ -17339,7 +17339,7 @@ logic ping_storage_data_586;
 logic pong_storage_data_586;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             203 / IN_WIDTH: ping_storage_data_586 <= ping_storage_data_586 ^ input_data(203 % IN_WIDTH);
@@ -17364,7 +17364,7 @@ logic ping_storage_data_587;
 logic pong_storage_data_587;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             204 / IN_WIDTH: ping_storage_data_587 <= ping_storage_data_587 ^ input_data(204 % IN_WIDTH);
@@ -17389,7 +17389,7 @@ logic ping_storage_data_588;
 logic pong_storage_data_588;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             205 / IN_WIDTH: ping_storage_data_588 <= ping_storage_data_588 ^ input_data(205 % IN_WIDTH);
@@ -17414,7 +17414,7 @@ logic ping_storage_data_589;
 logic pong_storage_data_589;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             206 / IN_WIDTH: ping_storage_data_589 <= ping_storage_data_589 ^ input_data(206 % IN_WIDTH);
@@ -17439,7 +17439,7 @@ logic ping_storage_data_590;
 logic pong_storage_data_590;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             207 / IN_WIDTH: ping_storage_data_590 <= ping_storage_data_590 ^ input_data(207 % IN_WIDTH);
@@ -17464,7 +17464,7 @@ logic ping_storage_data_591;
 logic pong_storage_data_591;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             208 / IN_WIDTH: ping_storage_data_591 <= ping_storage_data_591 ^ input_data(208 % IN_WIDTH);
@@ -17489,7 +17489,7 @@ logic ping_storage_data_592;
 logic pong_storage_data_592;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             209 / IN_WIDTH: ping_storage_data_592 <= ping_storage_data_592 ^ input_data(209 % IN_WIDTH);
@@ -17514,7 +17514,7 @@ logic ping_storage_data_593;
 logic pong_storage_data_593;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             210 / IN_WIDTH: ping_storage_data_593 <= ping_storage_data_593 ^ input_data(210 % IN_WIDTH);
@@ -17539,7 +17539,7 @@ logic ping_storage_data_594;
 logic pong_storage_data_594;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             211 / IN_WIDTH: ping_storage_data_594 <= ping_storage_data_594 ^ input_data(211 % IN_WIDTH);
@@ -17564,7 +17564,7 @@ logic ping_storage_data_595;
 logic pong_storage_data_595;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             212 / IN_WIDTH: ping_storage_data_595 <= ping_storage_data_595 ^ input_data(212 % IN_WIDTH);
@@ -17589,7 +17589,7 @@ logic ping_storage_data_596;
 logic pong_storage_data_596;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             213 / IN_WIDTH: ping_storage_data_596 <= ping_storage_data_596 ^ input_data(213 % IN_WIDTH);
@@ -17614,7 +17614,7 @@ logic ping_storage_data_597;
 logic pong_storage_data_597;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             214 / IN_WIDTH: ping_storage_data_597 <= ping_storage_data_597 ^ input_data(214 % IN_WIDTH);
@@ -17639,7 +17639,7 @@ logic ping_storage_data_598;
 logic pong_storage_data_598;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             215 / IN_WIDTH: ping_storage_data_598 <= ping_storage_data_598 ^ input_data(215 % IN_WIDTH);
@@ -17664,7 +17664,7 @@ logic ping_storage_data_599;
 logic pong_storage_data_599;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             216 / IN_WIDTH: ping_storage_data_599 <= ping_storage_data_599 ^ input_data(216 % IN_WIDTH);
@@ -17689,7 +17689,7 @@ logic ping_storage_data_600;
 logic pong_storage_data_600;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             217 / IN_WIDTH: ping_storage_data_600 <= ping_storage_data_600 ^ input_data(217 % IN_WIDTH);
@@ -17714,7 +17714,7 @@ logic ping_storage_data_601;
 logic pong_storage_data_601;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             218 / IN_WIDTH: ping_storage_data_601 <= ping_storage_data_601 ^ input_data(218 % IN_WIDTH);
@@ -17739,7 +17739,7 @@ logic ping_storage_data_602;
 logic pong_storage_data_602;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             219 / IN_WIDTH: ping_storage_data_602 <= ping_storage_data_602 ^ input_data(219 % IN_WIDTH);
@@ -17764,7 +17764,7 @@ logic ping_storage_data_603;
 logic pong_storage_data_603;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             220 / IN_WIDTH: ping_storage_data_603 <= ping_storage_data_603 ^ input_data(220 % IN_WIDTH);
@@ -17789,7 +17789,7 @@ logic ping_storage_data_604;
 logic pong_storage_data_604;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             221 / IN_WIDTH: ping_storage_data_604 <= ping_storage_data_604 ^ input_data(221 % IN_WIDTH);
@@ -17814,7 +17814,7 @@ logic ping_storage_data_605;
 logic pong_storage_data_605;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             222 / IN_WIDTH: ping_storage_data_605 <= ping_storage_data_605 ^ input_data(222 % IN_WIDTH);
@@ -17839,7 +17839,7 @@ logic ping_storage_data_606;
 logic pong_storage_data_606;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             223 / IN_WIDTH: ping_storage_data_606 <= ping_storage_data_606 ^ input_data(223 % IN_WIDTH);
@@ -17864,7 +17864,7 @@ logic ping_storage_data_607;
 logic pong_storage_data_607;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             224 / IN_WIDTH: ping_storage_data_607 <= ping_storage_data_607 ^ input_data(224 % IN_WIDTH);
@@ -17889,7 +17889,7 @@ logic ping_storage_data_608;
 logic pong_storage_data_608;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             225 / IN_WIDTH: ping_storage_data_608 <= ping_storage_data_608 ^ input_data(225 % IN_WIDTH);
@@ -17914,7 +17914,7 @@ logic ping_storage_data_609;
 logic pong_storage_data_609;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             226 / IN_WIDTH: ping_storage_data_609 <= ping_storage_data_609 ^ input_data(226 % IN_WIDTH);
@@ -17939,7 +17939,7 @@ logic ping_storage_data_610;
 logic pong_storage_data_610;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             227 / IN_WIDTH: ping_storage_data_610 <= ping_storage_data_610 ^ input_data(227 % IN_WIDTH);
@@ -17964,7 +17964,7 @@ logic ping_storage_data_611;
 logic pong_storage_data_611;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             228 / IN_WIDTH: ping_storage_data_611 <= ping_storage_data_611 ^ input_data(228 % IN_WIDTH);
@@ -17989,7 +17989,7 @@ logic ping_storage_data_612;
 logic pong_storage_data_612;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             229 / IN_WIDTH: ping_storage_data_612 <= ping_storage_data_612 ^ input_data(229 % IN_WIDTH);
@@ -18014,7 +18014,7 @@ logic ping_storage_data_613;
 logic pong_storage_data_613;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             230 / IN_WIDTH: ping_storage_data_613 <= ping_storage_data_613 ^ input_data(230 % IN_WIDTH);
@@ -18039,7 +18039,7 @@ logic ping_storage_data_614;
 logic pong_storage_data_614;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             231 / IN_WIDTH: ping_storage_data_614 <= ping_storage_data_614 ^ input_data(231 % IN_WIDTH);
@@ -18064,7 +18064,7 @@ logic ping_storage_data_615;
 logic pong_storage_data_615;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             232 / IN_WIDTH: ping_storage_data_615 <= ping_storage_data_615 ^ input_data(232 % IN_WIDTH);
@@ -18089,7 +18089,7 @@ logic ping_storage_data_616;
 logic pong_storage_data_616;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             233 / IN_WIDTH: ping_storage_data_616 <= ping_storage_data_616 ^ input_data(233 % IN_WIDTH);
@@ -18114,7 +18114,7 @@ logic ping_storage_data_617;
 logic pong_storage_data_617;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             234 / IN_WIDTH: ping_storage_data_617 <= ping_storage_data_617 ^ input_data(234 % IN_WIDTH);
@@ -18139,7 +18139,7 @@ logic ping_storage_data_618;
 logic pong_storage_data_618;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             235 / IN_WIDTH: ping_storage_data_618 <= ping_storage_data_618 ^ input_data(235 % IN_WIDTH);
@@ -18164,7 +18164,7 @@ logic ping_storage_data_619;
 logic pong_storage_data_619;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             236 / IN_WIDTH: ping_storage_data_619 <= ping_storage_data_619 ^ input_data(236 % IN_WIDTH);
@@ -18189,7 +18189,7 @@ logic ping_storage_data_620;
 logic pong_storage_data_620;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             237 / IN_WIDTH: ping_storage_data_620 <= ping_storage_data_620 ^ input_data(237 % IN_WIDTH);
@@ -18214,7 +18214,7 @@ logic ping_storage_data_621;
 logic pong_storage_data_621;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             238 / IN_WIDTH: ping_storage_data_621 <= ping_storage_data_621 ^ input_data(238 % IN_WIDTH);
@@ -18239,7 +18239,7 @@ logic ping_storage_data_622;
 logic pong_storage_data_622;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             239 / IN_WIDTH: ping_storage_data_622 <= ping_storage_data_622 ^ input_data(239 % IN_WIDTH);
@@ -18264,7 +18264,7 @@ logic ping_storage_data_623;
 logic pong_storage_data_623;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             240 / IN_WIDTH: ping_storage_data_623 <= ping_storage_data_623 ^ input_data(240 % IN_WIDTH);
@@ -18289,7 +18289,7 @@ logic ping_storage_data_624;
 logic pong_storage_data_624;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             241 / IN_WIDTH: ping_storage_data_624 <= ping_storage_data_624 ^ input_data(241 % IN_WIDTH);
@@ -18314,7 +18314,7 @@ logic ping_storage_data_625;
 logic pong_storage_data_625;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             242 / IN_WIDTH: ping_storage_data_625 <= ping_storage_data_625 ^ input_data(242 % IN_WIDTH);
@@ -18339,7 +18339,7 @@ logic ping_storage_data_626;
 logic pong_storage_data_626;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             243 / IN_WIDTH: ping_storage_data_626 <= ping_storage_data_626 ^ input_data(243 % IN_WIDTH);
@@ -18364,7 +18364,7 @@ logic ping_storage_data_627;
 logic pong_storage_data_627;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             244 / IN_WIDTH: ping_storage_data_627 <= ping_storage_data_627 ^ input_data(244 % IN_WIDTH);
@@ -18389,7 +18389,7 @@ logic ping_storage_data_628;
 logic pong_storage_data_628;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             245 / IN_WIDTH: ping_storage_data_628 <= ping_storage_data_628 ^ input_data(245 % IN_WIDTH);
@@ -18414,7 +18414,7 @@ logic ping_storage_data_629;
 logic pong_storage_data_629;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             246 / IN_WIDTH: ping_storage_data_629 <= ping_storage_data_629 ^ input_data(246 % IN_WIDTH);
@@ -18439,7 +18439,7 @@ logic ping_storage_data_630;
 logic pong_storage_data_630;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             247 / IN_WIDTH: ping_storage_data_630 <= ping_storage_data_630 ^ input_data(247 % IN_WIDTH);
@@ -18464,7 +18464,7 @@ logic ping_storage_data_631;
 logic pong_storage_data_631;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             248 / IN_WIDTH: ping_storage_data_631 <= ping_storage_data_631 ^ input_data(248 % IN_WIDTH);
@@ -18489,7 +18489,7 @@ logic ping_storage_data_632;
 logic pong_storage_data_632;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             249 / IN_WIDTH: ping_storage_data_632 <= ping_storage_data_632 ^ input_data(249 % IN_WIDTH);
@@ -18514,7 +18514,7 @@ logic ping_storage_data_633;
 logic pong_storage_data_633;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             250 / IN_WIDTH: ping_storage_data_633 <= ping_storage_data_633 ^ input_data(250 % IN_WIDTH);
@@ -18539,7 +18539,7 @@ logic ping_storage_data_634;
 logic pong_storage_data_634;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             251 / IN_WIDTH: ping_storage_data_634 <= ping_storage_data_634 ^ input_data(251 % IN_WIDTH);
@@ -18564,7 +18564,7 @@ logic ping_storage_data_635;
 logic pong_storage_data_635;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             252 / IN_WIDTH: ping_storage_data_635 <= ping_storage_data_635 ^ input_data(252 % IN_WIDTH);
@@ -18589,7 +18589,7 @@ logic ping_storage_data_636;
 logic pong_storage_data_636;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             253 / IN_WIDTH: ping_storage_data_636 <= ping_storage_data_636 ^ input_data(253 % IN_WIDTH);
@@ -18614,7 +18614,7 @@ logic ping_storage_data_637;
 logic pong_storage_data_637;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             254 / IN_WIDTH: ping_storage_data_637 <= ping_storage_data_637 ^ input_data(254 % IN_WIDTH);
@@ -18639,7 +18639,7 @@ logic ping_storage_data_638;
 logic pong_storage_data_638;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             255 / IN_WIDTH: ping_storage_data_638 <= ping_storage_data_638 ^ input_data(255 % IN_WIDTH);
@@ -18664,7 +18664,7 @@ logic ping_storage_data_639;
 logic pong_storage_data_639;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             256 / IN_WIDTH: ping_storage_data_639 <= ping_storage_data_639 ^ input_data(256 % IN_WIDTH);
@@ -18689,7 +18689,7 @@ logic ping_storage_data_640;
 logic pong_storage_data_640;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             257 / IN_WIDTH: ping_storage_data_640 <= ping_storage_data_640 ^ input_data(257 % IN_WIDTH);
@@ -18714,7 +18714,7 @@ logic ping_storage_data_641;
 logic pong_storage_data_641;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             258 / IN_WIDTH: ping_storage_data_641 <= ping_storage_data_641 ^ input_data(258 % IN_WIDTH);
@@ -18739,7 +18739,7 @@ logic ping_storage_data_642;
 logic pong_storage_data_642;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             259 / IN_WIDTH: ping_storage_data_642 <= ping_storage_data_642 ^ input_data(259 % IN_WIDTH);
@@ -18764,7 +18764,7 @@ logic ping_storage_data_643;
 logic pong_storage_data_643;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             260 / IN_WIDTH: ping_storage_data_643 <= ping_storage_data_643 ^ input_data(260 % IN_WIDTH);
@@ -18789,7 +18789,7 @@ logic ping_storage_data_644;
 logic pong_storage_data_644;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             261 / IN_WIDTH: ping_storage_data_644 <= ping_storage_data_644 ^ input_data(261 % IN_WIDTH);
@@ -18814,7 +18814,7 @@ logic ping_storage_data_645;
 logic pong_storage_data_645;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             262 / IN_WIDTH: ping_storage_data_645 <= ping_storage_data_645 ^ input_data(262 % IN_WIDTH);
@@ -18839,7 +18839,7 @@ logic ping_storage_data_646;
 logic pong_storage_data_646;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             263 / IN_WIDTH: ping_storage_data_646 <= ping_storage_data_646 ^ input_data(263 % IN_WIDTH);
@@ -18864,7 +18864,7 @@ logic ping_storage_data_647;
 logic pong_storage_data_647;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             264 / IN_WIDTH: ping_storage_data_647 <= ping_storage_data_647 ^ input_data(264 % IN_WIDTH);
@@ -18889,7 +18889,7 @@ logic ping_storage_data_648;
 logic pong_storage_data_648;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             265 / IN_WIDTH: ping_storage_data_648 <= ping_storage_data_648 ^ input_data(265 % IN_WIDTH);
@@ -18914,7 +18914,7 @@ logic ping_storage_data_649;
 logic pong_storage_data_649;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             266 / IN_WIDTH: ping_storage_data_649 <= ping_storage_data_649 ^ input_data(266 % IN_WIDTH);
@@ -18939,7 +18939,7 @@ logic ping_storage_data_650;
 logic pong_storage_data_650;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             267 / IN_WIDTH: ping_storage_data_650 <= ping_storage_data_650 ^ input_data(267 % IN_WIDTH);
@@ -18964,7 +18964,7 @@ logic ping_storage_data_651;
 logic pong_storage_data_651;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             268 / IN_WIDTH: ping_storage_data_651 <= ping_storage_data_651 ^ input_data(268 % IN_WIDTH);
@@ -18989,7 +18989,7 @@ logic ping_storage_data_652;
 logic pong_storage_data_652;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             269 / IN_WIDTH: ping_storage_data_652 <= ping_storage_data_652 ^ input_data(269 % IN_WIDTH);
@@ -19014,7 +19014,7 @@ logic ping_storage_data_653;
 logic pong_storage_data_653;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             270 / IN_WIDTH: ping_storage_data_653 <= ping_storage_data_653 ^ input_data(270 % IN_WIDTH);
@@ -19039,7 +19039,7 @@ logic ping_storage_data_654;
 logic pong_storage_data_654;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             271 / IN_WIDTH: ping_storage_data_654 <= ping_storage_data_654 ^ input_data(271 % IN_WIDTH);
@@ -19064,7 +19064,7 @@ logic ping_storage_data_655;
 logic pong_storage_data_655;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             272 / IN_WIDTH: ping_storage_data_655 <= ping_storage_data_655 ^ input_data(272 % IN_WIDTH);
@@ -19089,7 +19089,7 @@ logic ping_storage_data_656;
 logic pong_storage_data_656;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             273 / IN_WIDTH: ping_storage_data_656 <= ping_storage_data_656 ^ input_data(273 % IN_WIDTH);
@@ -19114,7 +19114,7 @@ logic ping_storage_data_657;
 logic pong_storage_data_657;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             274 / IN_WIDTH: ping_storage_data_657 <= ping_storage_data_657 ^ input_data(274 % IN_WIDTH);
@@ -19139,7 +19139,7 @@ logic ping_storage_data_658;
 logic pong_storage_data_658;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             275 / IN_WIDTH: ping_storage_data_658 <= ping_storage_data_658 ^ input_data(275 % IN_WIDTH);
@@ -19164,7 +19164,7 @@ logic ping_storage_data_659;
 logic pong_storage_data_659;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             276 / IN_WIDTH: ping_storage_data_659 <= ping_storage_data_659 ^ input_data(276 % IN_WIDTH);
@@ -19189,7 +19189,7 @@ logic ping_storage_data_660;
 logic pong_storage_data_660;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             277 / IN_WIDTH: ping_storage_data_660 <= ping_storage_data_660 ^ input_data(277 % IN_WIDTH);
@@ -19214,7 +19214,7 @@ logic ping_storage_data_661;
 logic pong_storage_data_661;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             278 / IN_WIDTH: ping_storage_data_661 <= ping_storage_data_661 ^ input_data(278 % IN_WIDTH);
@@ -19239,7 +19239,7 @@ logic ping_storage_data_662;
 logic pong_storage_data_662;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             279 / IN_WIDTH: ping_storage_data_662 <= ping_storage_data_662 ^ input_data(279 % IN_WIDTH);
@@ -19264,7 +19264,7 @@ logic ping_storage_data_663;
 logic pong_storage_data_663;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             280 / IN_WIDTH: ping_storage_data_663 <= ping_storage_data_663 ^ input_data(280 % IN_WIDTH);
@@ -19289,7 +19289,7 @@ logic ping_storage_data_664;
 logic pong_storage_data_664;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             281 / IN_WIDTH: ping_storage_data_664 <= ping_storage_data_664 ^ input_data(281 % IN_WIDTH);
@@ -19314,7 +19314,7 @@ logic ping_storage_data_665;
 logic pong_storage_data_665;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             282 / IN_WIDTH: ping_storage_data_665 <= ping_storage_data_665 ^ input_data(282 % IN_WIDTH);
@@ -19339,7 +19339,7 @@ logic ping_storage_data_666;
 logic pong_storage_data_666;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             283 / IN_WIDTH: ping_storage_data_666 <= ping_storage_data_666 ^ input_data(283 % IN_WIDTH);
@@ -19364,7 +19364,7 @@ logic ping_storage_data_667;
 logic pong_storage_data_667;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             284 / IN_WIDTH: ping_storage_data_667 <= ping_storage_data_667 ^ input_data(284 % IN_WIDTH);
@@ -19389,7 +19389,7 @@ logic ping_storage_data_668;
 logic pong_storage_data_668;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             285 / IN_WIDTH: ping_storage_data_668 <= ping_storage_data_668 ^ input_data(285 % IN_WIDTH);
@@ -19414,7 +19414,7 @@ logic ping_storage_data_669;
 logic pong_storage_data_669;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             286 / IN_WIDTH: ping_storage_data_669 <= ping_storage_data_669 ^ input_data(286 % IN_WIDTH);
@@ -19439,7 +19439,7 @@ logic ping_storage_data_670;
 logic pong_storage_data_670;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             287 / IN_WIDTH: ping_storage_data_670 <= ping_storage_data_670 ^ input_data(287 % IN_WIDTH);
@@ -19464,7 +19464,7 @@ logic ping_storage_data_671;
 logic pong_storage_data_671;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             192 / IN_WIDTH: ping_storage_data_671 <= ping_storage_data_671 ^ input_data(192 % IN_WIDTH);
@@ -19489,7 +19489,7 @@ logic ping_storage_data_672;
 logic pong_storage_data_672;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             181 / IN_WIDTH: ping_storage_data_672 <= ping_storage_data_672 ^ input_data(181 % IN_WIDTH);
@@ -19514,7 +19514,7 @@ logic ping_storage_data_673;
 logic pong_storage_data_673;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             182 / IN_WIDTH: ping_storage_data_673 <= ping_storage_data_673 ^ input_data(182 % IN_WIDTH);
@@ -19539,7 +19539,7 @@ logic ping_storage_data_674;
 logic pong_storage_data_674;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             183 / IN_WIDTH: ping_storage_data_674 <= ping_storage_data_674 ^ input_data(183 % IN_WIDTH);
@@ -19564,7 +19564,7 @@ logic ping_storage_data_675;
 logic pong_storage_data_675;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             184 / IN_WIDTH: ping_storage_data_675 <= ping_storage_data_675 ^ input_data(184 % IN_WIDTH);
@@ -19589,7 +19589,7 @@ logic ping_storage_data_676;
 logic pong_storage_data_676;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             185 / IN_WIDTH: ping_storage_data_676 <= ping_storage_data_676 ^ input_data(185 % IN_WIDTH);
@@ -19614,7 +19614,7 @@ logic ping_storage_data_677;
 logic pong_storage_data_677;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             186 / IN_WIDTH: ping_storage_data_677 <= ping_storage_data_677 ^ input_data(186 % IN_WIDTH);
@@ -19639,7 +19639,7 @@ logic ping_storage_data_678;
 logic pong_storage_data_678;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             187 / IN_WIDTH: ping_storage_data_678 <= ping_storage_data_678 ^ input_data(187 % IN_WIDTH);
@@ -19664,7 +19664,7 @@ logic ping_storage_data_679;
 logic pong_storage_data_679;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             188 / IN_WIDTH: ping_storage_data_679 <= ping_storage_data_679 ^ input_data(188 % IN_WIDTH);
@@ -19689,7 +19689,7 @@ logic ping_storage_data_680;
 logic pong_storage_data_680;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             189 / IN_WIDTH: ping_storage_data_680 <= ping_storage_data_680 ^ input_data(189 % IN_WIDTH);
@@ -19714,7 +19714,7 @@ logic ping_storage_data_681;
 logic pong_storage_data_681;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             190 / IN_WIDTH: ping_storage_data_681 <= ping_storage_data_681 ^ input_data(190 % IN_WIDTH);
@@ -19739,7 +19739,7 @@ logic ping_storage_data_682;
 logic pong_storage_data_682;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             191 / IN_WIDTH: ping_storage_data_682 <= ping_storage_data_682 ^ input_data(191 % IN_WIDTH);
@@ -19764,7 +19764,7 @@ logic ping_storage_data_683;
 logic pong_storage_data_683;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             96 / IN_WIDTH: ping_storage_data_683 <= ping_storage_data_683 ^ input_data(96 % IN_WIDTH);
@@ -19789,7 +19789,7 @@ logic ping_storage_data_684;
 logic pong_storage_data_684;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             97 / IN_WIDTH: ping_storage_data_684 <= ping_storage_data_684 ^ input_data(97 % IN_WIDTH);
@@ -19814,7 +19814,7 @@ logic ping_storage_data_685;
 logic pong_storage_data_685;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             98 / IN_WIDTH: ping_storage_data_685 <= ping_storage_data_685 ^ input_data(98 % IN_WIDTH);
@@ -19839,7 +19839,7 @@ logic ping_storage_data_686;
 logic pong_storage_data_686;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             99 / IN_WIDTH: ping_storage_data_686 <= ping_storage_data_686 ^ input_data(99 % IN_WIDTH);
@@ -19864,7 +19864,7 @@ logic ping_storage_data_687;
 logic pong_storage_data_687;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             100 / IN_WIDTH: ping_storage_data_687 <= ping_storage_data_687 ^ input_data(100 % IN_WIDTH);
@@ -19889,7 +19889,7 @@ logic ping_storage_data_688;
 logic pong_storage_data_688;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             101 / IN_WIDTH: ping_storage_data_688 <= ping_storage_data_688 ^ input_data(101 % IN_WIDTH);
@@ -19914,7 +19914,7 @@ logic ping_storage_data_689;
 logic pong_storage_data_689;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             102 / IN_WIDTH: ping_storage_data_689 <= ping_storage_data_689 ^ input_data(102 % IN_WIDTH);
@@ -19939,7 +19939,7 @@ logic ping_storage_data_690;
 logic pong_storage_data_690;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             103 / IN_WIDTH: ping_storage_data_690 <= ping_storage_data_690 ^ input_data(103 % IN_WIDTH);
@@ -19964,7 +19964,7 @@ logic ping_storage_data_691;
 logic pong_storage_data_691;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             104 / IN_WIDTH: ping_storage_data_691 <= ping_storage_data_691 ^ input_data(104 % IN_WIDTH);
@@ -19989,7 +19989,7 @@ logic ping_storage_data_692;
 logic pong_storage_data_692;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             105 / IN_WIDTH: ping_storage_data_692 <= ping_storage_data_692 ^ input_data(105 % IN_WIDTH);
@@ -20014,7 +20014,7 @@ logic ping_storage_data_693;
 logic pong_storage_data_693;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             106 / IN_WIDTH: ping_storage_data_693 <= ping_storage_data_693 ^ input_data(106 % IN_WIDTH);
@@ -20039,7 +20039,7 @@ logic ping_storage_data_694;
 logic pong_storage_data_694;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             107 / IN_WIDTH: ping_storage_data_694 <= ping_storage_data_694 ^ input_data(107 % IN_WIDTH);
@@ -20064,7 +20064,7 @@ logic ping_storage_data_695;
 logic pong_storage_data_695;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             108 / IN_WIDTH: ping_storage_data_695 <= ping_storage_data_695 ^ input_data(108 % IN_WIDTH);
@@ -20089,7 +20089,7 @@ logic ping_storage_data_696;
 logic pong_storage_data_696;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             109 / IN_WIDTH: ping_storage_data_696 <= ping_storage_data_696 ^ input_data(109 % IN_WIDTH);
@@ -20114,7 +20114,7 @@ logic ping_storage_data_697;
 logic pong_storage_data_697;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             110 / IN_WIDTH: ping_storage_data_697 <= ping_storage_data_697 ^ input_data(110 % IN_WIDTH);
@@ -20139,7 +20139,7 @@ logic ping_storage_data_698;
 logic pong_storage_data_698;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             111 / IN_WIDTH: ping_storage_data_698 <= ping_storage_data_698 ^ input_data(111 % IN_WIDTH);
@@ -20164,7 +20164,7 @@ logic ping_storage_data_699;
 logic pong_storage_data_699;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             112 / IN_WIDTH: ping_storage_data_699 <= ping_storage_data_699 ^ input_data(112 % IN_WIDTH);
@@ -20189,7 +20189,7 @@ logic ping_storage_data_700;
 logic pong_storage_data_700;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             113 / IN_WIDTH: ping_storage_data_700 <= ping_storage_data_700 ^ input_data(113 % IN_WIDTH);
@@ -20214,7 +20214,7 @@ logic ping_storage_data_701;
 logic pong_storage_data_701;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             114 / IN_WIDTH: ping_storage_data_701 <= ping_storage_data_701 ^ input_data(114 % IN_WIDTH);
@@ -20239,7 +20239,7 @@ logic ping_storage_data_702;
 logic pong_storage_data_702;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             115 / IN_WIDTH: ping_storage_data_702 <= ping_storage_data_702 ^ input_data(115 % IN_WIDTH);
@@ -20264,7 +20264,7 @@ logic ping_storage_data_703;
 logic pong_storage_data_703;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             116 / IN_WIDTH: ping_storage_data_703 <= ping_storage_data_703 ^ input_data(116 % IN_WIDTH);
@@ -20289,7 +20289,7 @@ logic ping_storage_data_704;
 logic pong_storage_data_704;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             117 / IN_WIDTH: ping_storage_data_704 <= ping_storage_data_704 ^ input_data(117 % IN_WIDTH);
@@ -20314,7 +20314,7 @@ logic ping_storage_data_705;
 logic pong_storage_data_705;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             118 / IN_WIDTH: ping_storage_data_705 <= ping_storage_data_705 ^ input_data(118 % IN_WIDTH);
@@ -20339,7 +20339,7 @@ logic ping_storage_data_706;
 logic pong_storage_data_706;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             119 / IN_WIDTH: ping_storage_data_706 <= ping_storage_data_706 ^ input_data(119 % IN_WIDTH);
@@ -20364,7 +20364,7 @@ logic ping_storage_data_707;
 logic pong_storage_data_707;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             120 / IN_WIDTH: ping_storage_data_707 <= ping_storage_data_707 ^ input_data(120 % IN_WIDTH);
@@ -20389,7 +20389,7 @@ logic ping_storage_data_708;
 logic pong_storage_data_708;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             121 / IN_WIDTH: ping_storage_data_708 <= ping_storage_data_708 ^ input_data(121 % IN_WIDTH);
@@ -20414,7 +20414,7 @@ logic ping_storage_data_709;
 logic pong_storage_data_709;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             122 / IN_WIDTH: ping_storage_data_709 <= ping_storage_data_709 ^ input_data(122 % IN_WIDTH);
@@ -20439,7 +20439,7 @@ logic ping_storage_data_710;
 logic pong_storage_data_710;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             123 / IN_WIDTH: ping_storage_data_710 <= ping_storage_data_710 ^ input_data(123 % IN_WIDTH);
@@ -20464,7 +20464,7 @@ logic ping_storage_data_711;
 logic pong_storage_data_711;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             124 / IN_WIDTH: ping_storage_data_711 <= ping_storage_data_711 ^ input_data(124 % IN_WIDTH);
@@ -20489,7 +20489,7 @@ logic ping_storage_data_712;
 logic pong_storage_data_712;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             125 / IN_WIDTH: ping_storage_data_712 <= ping_storage_data_712 ^ input_data(125 % IN_WIDTH);
@@ -20514,7 +20514,7 @@ logic ping_storage_data_713;
 logic pong_storage_data_713;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             126 / IN_WIDTH: ping_storage_data_713 <= ping_storage_data_713 ^ input_data(126 % IN_WIDTH);
@@ -20539,7 +20539,7 @@ logic ping_storage_data_714;
 logic pong_storage_data_714;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             127 / IN_WIDTH: ping_storage_data_714 <= ping_storage_data_714 ^ input_data(127 % IN_WIDTH);
@@ -20564,7 +20564,7 @@ logic ping_storage_data_715;
 logic pong_storage_data_715;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             128 / IN_WIDTH: ping_storage_data_715 <= ping_storage_data_715 ^ input_data(128 % IN_WIDTH);
@@ -20589,7 +20589,7 @@ logic ping_storage_data_716;
 logic pong_storage_data_716;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             129 / IN_WIDTH: ping_storage_data_716 <= ping_storage_data_716 ^ input_data(129 % IN_WIDTH);
@@ -20614,7 +20614,7 @@ logic ping_storage_data_717;
 logic pong_storage_data_717;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             130 / IN_WIDTH: ping_storage_data_717 <= ping_storage_data_717 ^ input_data(130 % IN_WIDTH);
@@ -20639,7 +20639,7 @@ logic ping_storage_data_718;
 logic pong_storage_data_718;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             131 / IN_WIDTH: ping_storage_data_718 <= ping_storage_data_718 ^ input_data(131 % IN_WIDTH);
@@ -20664,7 +20664,7 @@ logic ping_storage_data_719;
 logic pong_storage_data_719;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             132 / IN_WIDTH: ping_storage_data_719 <= ping_storage_data_719 ^ input_data(132 % IN_WIDTH);
@@ -20689,7 +20689,7 @@ logic ping_storage_data_720;
 logic pong_storage_data_720;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             133 / IN_WIDTH: ping_storage_data_720 <= ping_storage_data_720 ^ input_data(133 % IN_WIDTH);
@@ -20714,7 +20714,7 @@ logic ping_storage_data_721;
 logic pong_storage_data_721;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             134 / IN_WIDTH: ping_storage_data_721 <= ping_storage_data_721 ^ input_data(134 % IN_WIDTH);
@@ -20739,7 +20739,7 @@ logic ping_storage_data_722;
 logic pong_storage_data_722;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             135 / IN_WIDTH: ping_storage_data_722 <= ping_storage_data_722 ^ input_data(135 % IN_WIDTH);
@@ -20764,7 +20764,7 @@ logic ping_storage_data_723;
 logic pong_storage_data_723;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             136 / IN_WIDTH: ping_storage_data_723 <= ping_storage_data_723 ^ input_data(136 % IN_WIDTH);
@@ -20789,7 +20789,7 @@ logic ping_storage_data_724;
 logic pong_storage_data_724;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             137 / IN_WIDTH: ping_storage_data_724 <= ping_storage_data_724 ^ input_data(137 % IN_WIDTH);
@@ -20814,7 +20814,7 @@ logic ping_storage_data_725;
 logic pong_storage_data_725;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             138 / IN_WIDTH: ping_storage_data_725 <= ping_storage_data_725 ^ input_data(138 % IN_WIDTH);
@@ -20839,7 +20839,7 @@ logic ping_storage_data_726;
 logic pong_storage_data_726;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             139 / IN_WIDTH: ping_storage_data_726 <= ping_storage_data_726 ^ input_data(139 % IN_WIDTH);
@@ -20864,7 +20864,7 @@ logic ping_storage_data_727;
 logic pong_storage_data_727;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             140 / IN_WIDTH: ping_storage_data_727 <= ping_storage_data_727 ^ input_data(140 % IN_WIDTH);
@@ -20889,7 +20889,7 @@ logic ping_storage_data_728;
 logic pong_storage_data_728;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             141 / IN_WIDTH: ping_storage_data_728 <= ping_storage_data_728 ^ input_data(141 % IN_WIDTH);
@@ -20914,7 +20914,7 @@ logic ping_storage_data_729;
 logic pong_storage_data_729;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             142 / IN_WIDTH: ping_storage_data_729 <= ping_storage_data_729 ^ input_data(142 % IN_WIDTH);
@@ -20939,7 +20939,7 @@ logic ping_storage_data_730;
 logic pong_storage_data_730;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             143 / IN_WIDTH: ping_storage_data_730 <= ping_storage_data_730 ^ input_data(143 % IN_WIDTH);
@@ -20964,7 +20964,7 @@ logic ping_storage_data_731;
 logic pong_storage_data_731;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             144 / IN_WIDTH: ping_storage_data_731 <= ping_storage_data_731 ^ input_data(144 % IN_WIDTH);
@@ -20989,7 +20989,7 @@ logic ping_storage_data_732;
 logic pong_storage_data_732;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             145 / IN_WIDTH: ping_storage_data_732 <= ping_storage_data_732 ^ input_data(145 % IN_WIDTH);
@@ -21014,7 +21014,7 @@ logic ping_storage_data_733;
 logic pong_storage_data_733;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             146 / IN_WIDTH: ping_storage_data_733 <= ping_storage_data_733 ^ input_data(146 % IN_WIDTH);
@@ -21039,7 +21039,7 @@ logic ping_storage_data_734;
 logic pong_storage_data_734;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             147 / IN_WIDTH: ping_storage_data_734 <= ping_storage_data_734 ^ input_data(147 % IN_WIDTH);
@@ -21064,7 +21064,7 @@ logic ping_storage_data_735;
 logic pong_storage_data_735;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             148 / IN_WIDTH: ping_storage_data_735 <= ping_storage_data_735 ^ input_data(148 % IN_WIDTH);
@@ -21089,7 +21089,7 @@ logic ping_storage_data_736;
 logic pong_storage_data_736;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             149 / IN_WIDTH: ping_storage_data_736 <= ping_storage_data_736 ^ input_data(149 % IN_WIDTH);
@@ -21114,7 +21114,7 @@ logic ping_storage_data_737;
 logic pong_storage_data_737;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             150 / IN_WIDTH: ping_storage_data_737 <= ping_storage_data_737 ^ input_data(150 % IN_WIDTH);
@@ -21139,7 +21139,7 @@ logic ping_storage_data_738;
 logic pong_storage_data_738;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             151 / IN_WIDTH: ping_storage_data_738 <= ping_storage_data_738 ^ input_data(151 % IN_WIDTH);
@@ -21164,7 +21164,7 @@ logic ping_storage_data_739;
 logic pong_storage_data_739;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             152 / IN_WIDTH: ping_storage_data_739 <= ping_storage_data_739 ^ input_data(152 % IN_WIDTH);
@@ -21189,7 +21189,7 @@ logic ping_storage_data_740;
 logic pong_storage_data_740;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             153 / IN_WIDTH: ping_storage_data_740 <= ping_storage_data_740 ^ input_data(153 % IN_WIDTH);
@@ -21214,7 +21214,7 @@ logic ping_storage_data_741;
 logic pong_storage_data_741;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             154 / IN_WIDTH: ping_storage_data_741 <= ping_storage_data_741 ^ input_data(154 % IN_WIDTH);
@@ -21239,7 +21239,7 @@ logic ping_storage_data_742;
 logic pong_storage_data_742;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             155 / IN_WIDTH: ping_storage_data_742 <= ping_storage_data_742 ^ input_data(155 % IN_WIDTH);
@@ -21264,7 +21264,7 @@ logic ping_storage_data_743;
 logic pong_storage_data_743;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             156 / IN_WIDTH: ping_storage_data_743 <= ping_storage_data_743 ^ input_data(156 % IN_WIDTH);
@@ -21289,7 +21289,7 @@ logic ping_storage_data_744;
 logic pong_storage_data_744;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             157 / IN_WIDTH: ping_storage_data_744 <= ping_storage_data_744 ^ input_data(157 % IN_WIDTH);
@@ -21314,7 +21314,7 @@ logic ping_storage_data_745;
 logic pong_storage_data_745;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             158 / IN_WIDTH: ping_storage_data_745 <= ping_storage_data_745 ^ input_data(158 % IN_WIDTH);
@@ -21339,7 +21339,7 @@ logic ping_storage_data_746;
 logic pong_storage_data_746;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             159 / IN_WIDTH: ping_storage_data_746 <= ping_storage_data_746 ^ input_data(159 % IN_WIDTH);
@@ -21364,7 +21364,7 @@ logic ping_storage_data_747;
 logic pong_storage_data_747;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             160 / IN_WIDTH: ping_storage_data_747 <= ping_storage_data_747 ^ input_data(160 % IN_WIDTH);
@@ -21389,7 +21389,7 @@ logic ping_storage_data_748;
 logic pong_storage_data_748;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             161 / IN_WIDTH: ping_storage_data_748 <= ping_storage_data_748 ^ input_data(161 % IN_WIDTH);
@@ -21414,7 +21414,7 @@ logic ping_storage_data_749;
 logic pong_storage_data_749;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             162 / IN_WIDTH: ping_storage_data_749 <= ping_storage_data_749 ^ input_data(162 % IN_WIDTH);
@@ -21439,7 +21439,7 @@ logic ping_storage_data_750;
 logic pong_storage_data_750;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             163 / IN_WIDTH: ping_storage_data_750 <= ping_storage_data_750 ^ input_data(163 % IN_WIDTH);
@@ -21464,7 +21464,7 @@ logic ping_storage_data_751;
 logic pong_storage_data_751;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             164 / IN_WIDTH: ping_storage_data_751 <= ping_storage_data_751 ^ input_data(164 % IN_WIDTH);
@@ -21489,7 +21489,7 @@ logic ping_storage_data_752;
 logic pong_storage_data_752;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             165 / IN_WIDTH: ping_storage_data_752 <= ping_storage_data_752 ^ input_data(165 % IN_WIDTH);
@@ -21514,7 +21514,7 @@ logic ping_storage_data_753;
 logic pong_storage_data_753;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             166 / IN_WIDTH: ping_storage_data_753 <= ping_storage_data_753 ^ input_data(166 % IN_WIDTH);
@@ -21539,7 +21539,7 @@ logic ping_storage_data_754;
 logic pong_storage_data_754;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             167 / IN_WIDTH: ping_storage_data_754 <= ping_storage_data_754 ^ input_data(167 % IN_WIDTH);
@@ -21564,7 +21564,7 @@ logic ping_storage_data_755;
 logic pong_storage_data_755;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             168 / IN_WIDTH: ping_storage_data_755 <= ping_storage_data_755 ^ input_data(168 % IN_WIDTH);
@@ -21589,7 +21589,7 @@ logic ping_storage_data_756;
 logic pong_storage_data_756;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             169 / IN_WIDTH: ping_storage_data_756 <= ping_storage_data_756 ^ input_data(169 % IN_WIDTH);
@@ -21614,7 +21614,7 @@ logic ping_storage_data_757;
 logic pong_storage_data_757;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             170 / IN_WIDTH: ping_storage_data_757 <= ping_storage_data_757 ^ input_data(170 % IN_WIDTH);
@@ -21639,7 +21639,7 @@ logic ping_storage_data_758;
 logic pong_storage_data_758;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             171 / IN_WIDTH: ping_storage_data_758 <= ping_storage_data_758 ^ input_data(171 % IN_WIDTH);
@@ -21664,7 +21664,7 @@ logic ping_storage_data_759;
 logic pong_storage_data_759;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             172 / IN_WIDTH: ping_storage_data_759 <= ping_storage_data_759 ^ input_data(172 % IN_WIDTH);
@@ -21689,7 +21689,7 @@ logic ping_storage_data_760;
 logic pong_storage_data_760;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             173 / IN_WIDTH: ping_storage_data_760 <= ping_storage_data_760 ^ input_data(173 % IN_WIDTH);
@@ -21714,7 +21714,7 @@ logic ping_storage_data_761;
 logic pong_storage_data_761;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             174 / IN_WIDTH: ping_storage_data_761 <= ping_storage_data_761 ^ input_data(174 % IN_WIDTH);
@@ -21739,7 +21739,7 @@ logic ping_storage_data_762;
 logic pong_storage_data_762;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             175 / IN_WIDTH: ping_storage_data_762 <= ping_storage_data_762 ^ input_data(175 % IN_WIDTH);
@@ -21764,7 +21764,7 @@ logic ping_storage_data_763;
 logic pong_storage_data_763;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             176 / IN_WIDTH: ping_storage_data_763 <= ping_storage_data_763 ^ input_data(176 % IN_WIDTH);
@@ -21789,7 +21789,7 @@ logic ping_storage_data_764;
 logic pong_storage_data_764;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             177 / IN_WIDTH: ping_storage_data_764 <= ping_storage_data_764 ^ input_data(177 % IN_WIDTH);
@@ -21814,7 +21814,7 @@ logic ping_storage_data_765;
 logic pong_storage_data_765;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             178 / IN_WIDTH: ping_storage_data_765 <= ping_storage_data_765 ^ input_data(178 % IN_WIDTH);
@@ -21839,7 +21839,7 @@ logic ping_storage_data_766;
 logic pong_storage_data_766;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             179 / IN_WIDTH: ping_storage_data_766 <= ping_storage_data_766 ^ input_data(179 % IN_WIDTH);
@@ -21864,7 +21864,7 @@ logic ping_storage_data_767;
 logic pong_storage_data_767;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             180 / IN_WIDTH: ping_storage_data_767 <= ping_storage_data_767 ^ input_data(180 % IN_WIDTH);
@@ -21889,7 +21889,7 @@ logic ping_storage_data_768;
 logic pong_storage_data_768;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             84 / IN_WIDTH: ping_storage_data_768 <= ping_storage_data_768 ^ input_data(84 % IN_WIDTH);
@@ -21916,7 +21916,7 @@ logic ping_storage_data_769;
 logic pong_storage_data_769;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             85 / IN_WIDTH: ping_storage_data_769 <= ping_storage_data_769 ^ input_data(85 % IN_WIDTH);
@@ -21943,7 +21943,7 @@ logic ping_storage_data_770;
 logic pong_storage_data_770;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             86 / IN_WIDTH: ping_storage_data_770 <= ping_storage_data_770 ^ input_data(86 % IN_WIDTH);
@@ -21970,7 +21970,7 @@ logic ping_storage_data_771;
 logic pong_storage_data_771;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             87 / IN_WIDTH: ping_storage_data_771 <= ping_storage_data_771 ^ input_data(87 % IN_WIDTH);
@@ -21997,7 +21997,7 @@ logic ping_storage_data_772;
 logic pong_storage_data_772;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             88 / IN_WIDTH: ping_storage_data_772 <= ping_storage_data_772 ^ input_data(88 % IN_WIDTH);
@@ -22024,7 +22024,7 @@ logic ping_storage_data_773;
 logic pong_storage_data_773;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             89 / IN_WIDTH: ping_storage_data_773 <= ping_storage_data_773 ^ input_data(89 % IN_WIDTH);
@@ -22051,7 +22051,7 @@ logic ping_storage_data_774;
 logic pong_storage_data_774;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             90 / IN_WIDTH: ping_storage_data_774 <= ping_storage_data_774 ^ input_data(90 % IN_WIDTH);
@@ -22078,7 +22078,7 @@ logic ping_storage_data_775;
 logic pong_storage_data_775;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             91 / IN_WIDTH: ping_storage_data_775 <= ping_storage_data_775 ^ input_data(91 % IN_WIDTH);
@@ -22105,7 +22105,7 @@ logic ping_storage_data_776;
 logic pong_storage_data_776;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             92 / IN_WIDTH: ping_storage_data_776 <= ping_storage_data_776 ^ input_data(92 % IN_WIDTH);
@@ -22132,7 +22132,7 @@ logic ping_storage_data_777;
 logic pong_storage_data_777;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             93 / IN_WIDTH: ping_storage_data_777 <= ping_storage_data_777 ^ input_data(93 % IN_WIDTH);
@@ -22159,7 +22159,7 @@ logic ping_storage_data_778;
 logic pong_storage_data_778;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             94 / IN_WIDTH: ping_storage_data_778 <= ping_storage_data_778 ^ input_data(94 % IN_WIDTH);
@@ -22186,7 +22186,7 @@ logic ping_storage_data_779;
 logic pong_storage_data_779;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             95 / IN_WIDTH: ping_storage_data_779 <= ping_storage_data_779 ^ input_data(95 % IN_WIDTH);
@@ -22213,7 +22213,7 @@ logic ping_storage_data_780;
 logic pong_storage_data_780;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             0 / IN_WIDTH: ping_storage_data_780 <= ping_storage_data_780 ^ input_data(0 % IN_WIDTH);
@@ -22240,7 +22240,7 @@ logic ping_storage_data_781;
 logic pong_storage_data_781;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             1 / IN_WIDTH: ping_storage_data_781 <= ping_storage_data_781 ^ input_data(1 % IN_WIDTH);
@@ -22267,7 +22267,7 @@ logic ping_storage_data_782;
 logic pong_storage_data_782;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             2 / IN_WIDTH: ping_storage_data_782 <= ping_storage_data_782 ^ input_data(2 % IN_WIDTH);
@@ -22294,7 +22294,7 @@ logic ping_storage_data_783;
 logic pong_storage_data_783;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             3 / IN_WIDTH: ping_storage_data_783 <= ping_storage_data_783 ^ input_data(3 % IN_WIDTH);
@@ -22321,7 +22321,7 @@ logic ping_storage_data_784;
 logic pong_storage_data_784;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             4 / IN_WIDTH: ping_storage_data_784 <= ping_storage_data_784 ^ input_data(4 % IN_WIDTH);
@@ -22348,7 +22348,7 @@ logic ping_storage_data_785;
 logic pong_storage_data_785;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             5 / IN_WIDTH: ping_storage_data_785 <= ping_storage_data_785 ^ input_data(5 % IN_WIDTH);
@@ -22375,7 +22375,7 @@ logic ping_storage_data_786;
 logic pong_storage_data_786;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             6 / IN_WIDTH: ping_storage_data_786 <= ping_storage_data_786 ^ input_data(6 % IN_WIDTH);
@@ -22402,7 +22402,7 @@ logic ping_storage_data_787;
 logic pong_storage_data_787;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             7 / IN_WIDTH: ping_storage_data_787 <= ping_storage_data_787 ^ input_data(7 % IN_WIDTH);
@@ -22429,7 +22429,7 @@ logic ping_storage_data_788;
 logic pong_storage_data_788;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             8 / IN_WIDTH: ping_storage_data_788 <= ping_storage_data_788 ^ input_data(8 % IN_WIDTH);
@@ -22456,7 +22456,7 @@ logic ping_storage_data_789;
 logic pong_storage_data_789;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             9 / IN_WIDTH: ping_storage_data_789 <= ping_storage_data_789 ^ input_data(9 % IN_WIDTH);
@@ -22483,7 +22483,7 @@ logic ping_storage_data_790;
 logic pong_storage_data_790;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             10 / IN_WIDTH: ping_storage_data_790 <= ping_storage_data_790 ^ input_data(10 % IN_WIDTH);
@@ -22510,7 +22510,7 @@ logic ping_storage_data_791;
 logic pong_storage_data_791;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             11 / IN_WIDTH: ping_storage_data_791 <= ping_storage_data_791 ^ input_data(11 % IN_WIDTH);
@@ -22537,7 +22537,7 @@ logic ping_storage_data_792;
 logic pong_storage_data_792;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             12 / IN_WIDTH: ping_storage_data_792 <= ping_storage_data_792 ^ input_data(12 % IN_WIDTH);
@@ -22564,7 +22564,7 @@ logic ping_storage_data_793;
 logic pong_storage_data_793;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             13 / IN_WIDTH: ping_storage_data_793 <= ping_storage_data_793 ^ input_data(13 % IN_WIDTH);
@@ -22591,7 +22591,7 @@ logic ping_storage_data_794;
 logic pong_storage_data_794;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             14 / IN_WIDTH: ping_storage_data_794 <= ping_storage_data_794 ^ input_data(14 % IN_WIDTH);
@@ -22618,7 +22618,7 @@ logic ping_storage_data_795;
 logic pong_storage_data_795;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             15 / IN_WIDTH: ping_storage_data_795 <= ping_storage_data_795 ^ input_data(15 % IN_WIDTH);
@@ -22645,7 +22645,7 @@ logic ping_storage_data_796;
 logic pong_storage_data_796;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             16 / IN_WIDTH: ping_storage_data_796 <= ping_storage_data_796 ^ input_data(16 % IN_WIDTH);
@@ -22672,7 +22672,7 @@ logic ping_storage_data_797;
 logic pong_storage_data_797;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             17 / IN_WIDTH: ping_storage_data_797 <= ping_storage_data_797 ^ input_data(17 % IN_WIDTH);
@@ -22699,7 +22699,7 @@ logic ping_storage_data_798;
 logic pong_storage_data_798;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             18 / IN_WIDTH: ping_storage_data_798 <= ping_storage_data_798 ^ input_data(18 % IN_WIDTH);
@@ -22726,7 +22726,7 @@ logic ping_storage_data_799;
 logic pong_storage_data_799;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             19 / IN_WIDTH: ping_storage_data_799 <= ping_storage_data_799 ^ input_data(19 % IN_WIDTH);
@@ -22753,7 +22753,7 @@ logic ping_storage_data_800;
 logic pong_storage_data_800;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             20 / IN_WIDTH: ping_storage_data_800 <= ping_storage_data_800 ^ input_data(20 % IN_WIDTH);
@@ -22780,7 +22780,7 @@ logic ping_storage_data_801;
 logic pong_storage_data_801;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             21 / IN_WIDTH: ping_storage_data_801 <= ping_storage_data_801 ^ input_data(21 % IN_WIDTH);
@@ -22807,7 +22807,7 @@ logic ping_storage_data_802;
 logic pong_storage_data_802;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             22 / IN_WIDTH: ping_storage_data_802 <= ping_storage_data_802 ^ input_data(22 % IN_WIDTH);
@@ -22834,7 +22834,7 @@ logic ping_storage_data_803;
 logic pong_storage_data_803;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             23 / IN_WIDTH: ping_storage_data_803 <= ping_storage_data_803 ^ input_data(23 % IN_WIDTH);
@@ -22861,7 +22861,7 @@ logic ping_storage_data_804;
 logic pong_storage_data_804;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             24 / IN_WIDTH: ping_storage_data_804 <= ping_storage_data_804 ^ input_data(24 % IN_WIDTH);
@@ -22888,7 +22888,7 @@ logic ping_storage_data_805;
 logic pong_storage_data_805;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             25 / IN_WIDTH: ping_storage_data_805 <= ping_storage_data_805 ^ input_data(25 % IN_WIDTH);
@@ -22915,7 +22915,7 @@ logic ping_storage_data_806;
 logic pong_storage_data_806;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             26 / IN_WIDTH: ping_storage_data_806 <= ping_storage_data_806 ^ input_data(26 % IN_WIDTH);
@@ -22942,7 +22942,7 @@ logic ping_storage_data_807;
 logic pong_storage_data_807;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             27 / IN_WIDTH: ping_storage_data_807 <= ping_storage_data_807 ^ input_data(27 % IN_WIDTH);
@@ -22969,7 +22969,7 @@ logic ping_storage_data_808;
 logic pong_storage_data_808;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             28 / IN_WIDTH: ping_storage_data_808 <= ping_storage_data_808 ^ input_data(28 % IN_WIDTH);
@@ -22996,7 +22996,7 @@ logic ping_storage_data_809;
 logic pong_storage_data_809;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             29 / IN_WIDTH: ping_storage_data_809 <= ping_storage_data_809 ^ input_data(29 % IN_WIDTH);
@@ -23023,7 +23023,7 @@ logic ping_storage_data_810;
 logic pong_storage_data_810;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             30 / IN_WIDTH: ping_storage_data_810 <= ping_storage_data_810 ^ input_data(30 % IN_WIDTH);
@@ -23050,7 +23050,7 @@ logic ping_storage_data_811;
 logic pong_storage_data_811;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             31 / IN_WIDTH: ping_storage_data_811 <= ping_storage_data_811 ^ input_data(31 % IN_WIDTH);
@@ -23077,7 +23077,7 @@ logic ping_storage_data_812;
 logic pong_storage_data_812;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             32 / IN_WIDTH: ping_storage_data_812 <= ping_storage_data_812 ^ input_data(32 % IN_WIDTH);
@@ -23104,7 +23104,7 @@ logic ping_storage_data_813;
 logic pong_storage_data_813;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             33 / IN_WIDTH: ping_storage_data_813 <= ping_storage_data_813 ^ input_data(33 % IN_WIDTH);
@@ -23131,7 +23131,7 @@ logic ping_storage_data_814;
 logic pong_storage_data_814;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             34 / IN_WIDTH: ping_storage_data_814 <= ping_storage_data_814 ^ input_data(34 % IN_WIDTH);
@@ -23158,7 +23158,7 @@ logic ping_storage_data_815;
 logic pong_storage_data_815;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             35 / IN_WIDTH: ping_storage_data_815 <= ping_storage_data_815 ^ input_data(35 % IN_WIDTH);
@@ -23185,7 +23185,7 @@ logic ping_storage_data_816;
 logic pong_storage_data_816;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             36 / IN_WIDTH: ping_storage_data_816 <= ping_storage_data_816 ^ input_data(36 % IN_WIDTH);
@@ -23212,7 +23212,7 @@ logic ping_storage_data_817;
 logic pong_storage_data_817;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             37 / IN_WIDTH: ping_storage_data_817 <= ping_storage_data_817 ^ input_data(37 % IN_WIDTH);
@@ -23239,7 +23239,7 @@ logic ping_storage_data_818;
 logic pong_storage_data_818;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             38 / IN_WIDTH: ping_storage_data_818 <= ping_storage_data_818 ^ input_data(38 % IN_WIDTH);
@@ -23266,7 +23266,7 @@ logic ping_storage_data_819;
 logic pong_storage_data_819;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             39 / IN_WIDTH: ping_storage_data_819 <= ping_storage_data_819 ^ input_data(39 % IN_WIDTH);
@@ -23293,7 +23293,7 @@ logic ping_storage_data_820;
 logic pong_storage_data_820;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             40 / IN_WIDTH: ping_storage_data_820 <= ping_storage_data_820 ^ input_data(40 % IN_WIDTH);
@@ -23320,7 +23320,7 @@ logic ping_storage_data_821;
 logic pong_storage_data_821;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             41 / IN_WIDTH: ping_storage_data_821 <= ping_storage_data_821 ^ input_data(41 % IN_WIDTH);
@@ -23347,7 +23347,7 @@ logic ping_storage_data_822;
 logic pong_storage_data_822;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             42 / IN_WIDTH: ping_storage_data_822 <= ping_storage_data_822 ^ input_data(42 % IN_WIDTH);
@@ -23374,7 +23374,7 @@ logic ping_storage_data_823;
 logic pong_storage_data_823;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             43 / IN_WIDTH: ping_storage_data_823 <= ping_storage_data_823 ^ input_data(43 % IN_WIDTH);
@@ -23401,7 +23401,7 @@ logic ping_storage_data_824;
 logic pong_storage_data_824;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             44 / IN_WIDTH: ping_storage_data_824 <= ping_storage_data_824 ^ input_data(44 % IN_WIDTH);
@@ -23428,7 +23428,7 @@ logic ping_storage_data_825;
 logic pong_storage_data_825;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             45 / IN_WIDTH: ping_storage_data_825 <= ping_storage_data_825 ^ input_data(45 % IN_WIDTH);
@@ -23455,7 +23455,7 @@ logic ping_storage_data_826;
 logic pong_storage_data_826;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             46 / IN_WIDTH: ping_storage_data_826 <= ping_storage_data_826 ^ input_data(46 % IN_WIDTH);
@@ -23482,7 +23482,7 @@ logic ping_storage_data_827;
 logic pong_storage_data_827;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             47 / IN_WIDTH: ping_storage_data_827 <= ping_storage_data_827 ^ input_data(47 % IN_WIDTH);
@@ -23509,7 +23509,7 @@ logic ping_storage_data_828;
 logic pong_storage_data_828;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             48 / IN_WIDTH: ping_storage_data_828 <= ping_storage_data_828 ^ input_data(48 % IN_WIDTH);
@@ -23536,7 +23536,7 @@ logic ping_storage_data_829;
 logic pong_storage_data_829;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             49 / IN_WIDTH: ping_storage_data_829 <= ping_storage_data_829 ^ input_data(49 % IN_WIDTH);
@@ -23563,7 +23563,7 @@ logic ping_storage_data_830;
 logic pong_storage_data_830;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             50 / IN_WIDTH: ping_storage_data_830 <= ping_storage_data_830 ^ input_data(50 % IN_WIDTH);
@@ -23590,7 +23590,7 @@ logic ping_storage_data_831;
 logic pong_storage_data_831;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             51 / IN_WIDTH: ping_storage_data_831 <= ping_storage_data_831 ^ input_data(51 % IN_WIDTH);
@@ -23617,7 +23617,7 @@ logic ping_storage_data_832;
 logic pong_storage_data_832;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             52 / IN_WIDTH: ping_storage_data_832 <= ping_storage_data_832 ^ input_data(52 % IN_WIDTH);
@@ -23644,7 +23644,7 @@ logic ping_storage_data_833;
 logic pong_storage_data_833;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             53 / IN_WIDTH: ping_storage_data_833 <= ping_storage_data_833 ^ input_data(53 % IN_WIDTH);
@@ -23671,7 +23671,7 @@ logic ping_storage_data_834;
 logic pong_storage_data_834;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             54 / IN_WIDTH: ping_storage_data_834 <= ping_storage_data_834 ^ input_data(54 % IN_WIDTH);
@@ -23698,7 +23698,7 @@ logic ping_storage_data_835;
 logic pong_storage_data_835;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             55 / IN_WIDTH: ping_storage_data_835 <= ping_storage_data_835 ^ input_data(55 % IN_WIDTH);
@@ -23725,7 +23725,7 @@ logic ping_storage_data_836;
 logic pong_storage_data_836;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             56 / IN_WIDTH: ping_storage_data_836 <= ping_storage_data_836 ^ input_data(56 % IN_WIDTH);
@@ -23752,7 +23752,7 @@ logic ping_storage_data_837;
 logic pong_storage_data_837;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             57 / IN_WIDTH: ping_storage_data_837 <= ping_storage_data_837 ^ input_data(57 % IN_WIDTH);
@@ -23779,7 +23779,7 @@ logic ping_storage_data_838;
 logic pong_storage_data_838;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             58 / IN_WIDTH: ping_storage_data_838 <= ping_storage_data_838 ^ input_data(58 % IN_WIDTH);
@@ -23806,7 +23806,7 @@ logic ping_storage_data_839;
 logic pong_storage_data_839;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             59 / IN_WIDTH: ping_storage_data_839 <= ping_storage_data_839 ^ input_data(59 % IN_WIDTH);
@@ -23833,7 +23833,7 @@ logic ping_storage_data_840;
 logic pong_storage_data_840;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             60 / IN_WIDTH: ping_storage_data_840 <= ping_storage_data_840 ^ input_data(60 % IN_WIDTH);
@@ -23860,7 +23860,7 @@ logic ping_storage_data_841;
 logic pong_storage_data_841;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             61 / IN_WIDTH: ping_storage_data_841 <= ping_storage_data_841 ^ input_data(61 % IN_WIDTH);
@@ -23887,7 +23887,7 @@ logic ping_storage_data_842;
 logic pong_storage_data_842;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             62 / IN_WIDTH: ping_storage_data_842 <= ping_storage_data_842 ^ input_data(62 % IN_WIDTH);
@@ -23914,7 +23914,7 @@ logic ping_storage_data_843;
 logic pong_storage_data_843;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             63 / IN_WIDTH: ping_storage_data_843 <= ping_storage_data_843 ^ input_data(63 % IN_WIDTH);
@@ -23941,7 +23941,7 @@ logic ping_storage_data_844;
 logic pong_storage_data_844;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             64 / IN_WIDTH: ping_storage_data_844 <= ping_storage_data_844 ^ input_data(64 % IN_WIDTH);
@@ -23968,7 +23968,7 @@ logic ping_storage_data_845;
 logic pong_storage_data_845;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             65 / IN_WIDTH: ping_storage_data_845 <= ping_storage_data_845 ^ input_data(65 % IN_WIDTH);
@@ -23995,7 +23995,7 @@ logic ping_storage_data_846;
 logic pong_storage_data_846;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             66 / IN_WIDTH: ping_storage_data_846 <= ping_storage_data_846 ^ input_data(66 % IN_WIDTH);
@@ -24022,7 +24022,7 @@ logic ping_storage_data_847;
 logic pong_storage_data_847;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             67 / IN_WIDTH: ping_storage_data_847 <= ping_storage_data_847 ^ input_data(67 % IN_WIDTH);
@@ -24049,7 +24049,7 @@ logic ping_storage_data_848;
 logic pong_storage_data_848;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             68 / IN_WIDTH: ping_storage_data_848 <= ping_storage_data_848 ^ input_data(68 % IN_WIDTH);
@@ -24076,7 +24076,7 @@ logic ping_storage_data_849;
 logic pong_storage_data_849;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             69 / IN_WIDTH: ping_storage_data_849 <= ping_storage_data_849 ^ input_data(69 % IN_WIDTH);
@@ -24103,7 +24103,7 @@ logic ping_storage_data_850;
 logic pong_storage_data_850;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             70 / IN_WIDTH: ping_storage_data_850 <= ping_storage_data_850 ^ input_data(70 % IN_WIDTH);
@@ -24130,7 +24130,7 @@ logic ping_storage_data_851;
 logic pong_storage_data_851;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             71 / IN_WIDTH: ping_storage_data_851 <= ping_storage_data_851 ^ input_data(71 % IN_WIDTH);
@@ -24157,7 +24157,7 @@ logic ping_storage_data_852;
 logic pong_storage_data_852;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             72 / IN_WIDTH: ping_storage_data_852 <= ping_storage_data_852 ^ input_data(72 % IN_WIDTH);
@@ -24184,7 +24184,7 @@ logic ping_storage_data_853;
 logic pong_storage_data_853;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             73 / IN_WIDTH: ping_storage_data_853 <= ping_storage_data_853 ^ input_data(73 % IN_WIDTH);
@@ -24211,7 +24211,7 @@ logic ping_storage_data_854;
 logic pong_storage_data_854;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             74 / IN_WIDTH: ping_storage_data_854 <= ping_storage_data_854 ^ input_data(74 % IN_WIDTH);
@@ -24238,7 +24238,7 @@ logic ping_storage_data_855;
 logic pong_storage_data_855;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             75 / IN_WIDTH: ping_storage_data_855 <= ping_storage_data_855 ^ input_data(75 % IN_WIDTH);
@@ -24265,7 +24265,7 @@ logic ping_storage_data_856;
 logic pong_storage_data_856;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             76 / IN_WIDTH: ping_storage_data_856 <= ping_storage_data_856 ^ input_data(76 % IN_WIDTH);
@@ -24292,7 +24292,7 @@ logic ping_storage_data_857;
 logic pong_storage_data_857;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             77 / IN_WIDTH: ping_storage_data_857 <= ping_storage_data_857 ^ input_data(77 % IN_WIDTH);
@@ -24319,7 +24319,7 @@ logic ping_storage_data_858;
 logic pong_storage_data_858;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             78 / IN_WIDTH: ping_storage_data_858 <= ping_storage_data_858 ^ input_data(78 % IN_WIDTH);
@@ -24346,7 +24346,7 @@ logic ping_storage_data_859;
 logic pong_storage_data_859;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             79 / IN_WIDTH: ping_storage_data_859 <= ping_storage_data_859 ^ input_data(79 % IN_WIDTH);
@@ -24373,7 +24373,7 @@ logic ping_storage_data_860;
 logic pong_storage_data_860;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             80 / IN_WIDTH: ping_storage_data_860 <= ping_storage_data_860 ^ input_data(80 % IN_WIDTH);
@@ -24400,7 +24400,7 @@ logic ping_storage_data_861;
 logic pong_storage_data_861;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             81 / IN_WIDTH: ping_storage_data_861 <= ping_storage_data_861 ^ input_data(81 % IN_WIDTH);
@@ -24427,7 +24427,7 @@ logic ping_storage_data_862;
 logic pong_storage_data_862;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             82 / IN_WIDTH: ping_storage_data_862 <= ping_storage_data_862 ^ input_data(82 % IN_WIDTH);
@@ -24454,7 +24454,7 @@ logic ping_storage_data_863;
 logic pong_storage_data_863;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             83 / IN_WIDTH: ping_storage_data_863 <= ping_storage_data_863 ^ input_data(83 % IN_WIDTH);
@@ -24481,7 +24481,7 @@ logic ping_storage_data_864;
 logic pong_storage_data_864;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             482 / IN_WIDTH: ping_storage_data_864 <= ping_storage_data_864 ^ input_data(482 % IN_WIDTH);
@@ -24506,7 +24506,7 @@ logic ping_storage_data_865;
 logic pong_storage_data_865;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             483 / IN_WIDTH: ping_storage_data_865 <= ping_storage_data_865 ^ input_data(483 % IN_WIDTH);
@@ -24531,7 +24531,7 @@ logic ping_storage_data_866;
 logic pong_storage_data_866;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             484 / IN_WIDTH: ping_storage_data_866 <= ping_storage_data_866 ^ input_data(484 % IN_WIDTH);
@@ -24556,7 +24556,7 @@ logic ping_storage_data_867;
 logic pong_storage_data_867;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             485 / IN_WIDTH: ping_storage_data_867 <= ping_storage_data_867 ^ input_data(485 % IN_WIDTH);
@@ -24581,7 +24581,7 @@ logic ping_storage_data_868;
 logic pong_storage_data_868;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             486 / IN_WIDTH: ping_storage_data_868 <= ping_storage_data_868 ^ input_data(486 % IN_WIDTH);
@@ -24606,7 +24606,7 @@ logic ping_storage_data_869;
 logic pong_storage_data_869;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             487 / IN_WIDTH: ping_storage_data_869 <= ping_storage_data_869 ^ input_data(487 % IN_WIDTH);
@@ -24631,7 +24631,7 @@ logic ping_storage_data_870;
 logic pong_storage_data_870;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             488 / IN_WIDTH: ping_storage_data_870 <= ping_storage_data_870 ^ input_data(488 % IN_WIDTH);
@@ -24656,7 +24656,7 @@ logic ping_storage_data_871;
 logic pong_storage_data_871;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             489 / IN_WIDTH: ping_storage_data_871 <= ping_storage_data_871 ^ input_data(489 % IN_WIDTH);
@@ -24681,7 +24681,7 @@ logic ping_storage_data_872;
 logic pong_storage_data_872;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             490 / IN_WIDTH: ping_storage_data_872 <= ping_storage_data_872 ^ input_data(490 % IN_WIDTH);
@@ -24706,7 +24706,7 @@ logic ping_storage_data_873;
 logic pong_storage_data_873;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             491 / IN_WIDTH: ping_storage_data_873 <= ping_storage_data_873 ^ input_data(491 % IN_WIDTH);
@@ -24731,7 +24731,7 @@ logic ping_storage_data_874;
 logic pong_storage_data_874;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             492 / IN_WIDTH: ping_storage_data_874 <= ping_storage_data_874 ^ input_data(492 % IN_WIDTH);
@@ -24756,7 +24756,7 @@ logic ping_storage_data_875;
 logic pong_storage_data_875;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             493 / IN_WIDTH: ping_storage_data_875 <= ping_storage_data_875 ^ input_data(493 % IN_WIDTH);
@@ -24781,7 +24781,7 @@ logic ping_storage_data_876;
 logic pong_storage_data_876;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             494 / IN_WIDTH: ping_storage_data_876 <= ping_storage_data_876 ^ input_data(494 % IN_WIDTH);
@@ -24806,7 +24806,7 @@ logic ping_storage_data_877;
 logic pong_storage_data_877;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             495 / IN_WIDTH: ping_storage_data_877 <= ping_storage_data_877 ^ input_data(495 % IN_WIDTH);
@@ -24831,7 +24831,7 @@ logic ping_storage_data_878;
 logic pong_storage_data_878;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             496 / IN_WIDTH: ping_storage_data_878 <= ping_storage_data_878 ^ input_data(496 % IN_WIDTH);
@@ -24856,7 +24856,7 @@ logic ping_storage_data_879;
 logic pong_storage_data_879;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             497 / IN_WIDTH: ping_storage_data_879 <= ping_storage_data_879 ^ input_data(497 % IN_WIDTH);
@@ -24881,7 +24881,7 @@ logic ping_storage_data_880;
 logic pong_storage_data_880;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             498 / IN_WIDTH: ping_storage_data_880 <= ping_storage_data_880 ^ input_data(498 % IN_WIDTH);
@@ -24906,7 +24906,7 @@ logic ping_storage_data_881;
 logic pong_storage_data_881;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             499 / IN_WIDTH: ping_storage_data_881 <= ping_storage_data_881 ^ input_data(499 % IN_WIDTH);
@@ -24931,7 +24931,7 @@ logic ping_storage_data_882;
 logic pong_storage_data_882;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             500 / IN_WIDTH: ping_storage_data_882 <= ping_storage_data_882 ^ input_data(500 % IN_WIDTH);
@@ -24956,7 +24956,7 @@ logic ping_storage_data_883;
 logic pong_storage_data_883;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             501 / IN_WIDTH: ping_storage_data_883 <= ping_storage_data_883 ^ input_data(501 % IN_WIDTH);
@@ -24981,7 +24981,7 @@ logic ping_storage_data_884;
 logic pong_storage_data_884;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             502 / IN_WIDTH: ping_storage_data_884 <= ping_storage_data_884 ^ input_data(502 % IN_WIDTH);
@@ -25006,7 +25006,7 @@ logic ping_storage_data_885;
 logic pong_storage_data_885;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             503 / IN_WIDTH: ping_storage_data_885 <= ping_storage_data_885 ^ input_data(503 % IN_WIDTH);
@@ -25031,7 +25031,7 @@ logic ping_storage_data_886;
 logic pong_storage_data_886;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             504 / IN_WIDTH: ping_storage_data_886 <= ping_storage_data_886 ^ input_data(504 % IN_WIDTH);
@@ -25056,7 +25056,7 @@ logic ping_storage_data_887;
 logic pong_storage_data_887;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             505 / IN_WIDTH: ping_storage_data_887 <= ping_storage_data_887 ^ input_data(505 % IN_WIDTH);
@@ -25081,7 +25081,7 @@ logic ping_storage_data_888;
 logic pong_storage_data_888;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             506 / IN_WIDTH: ping_storage_data_888 <= ping_storage_data_888 ^ input_data(506 % IN_WIDTH);
@@ -25106,7 +25106,7 @@ logic ping_storage_data_889;
 logic pong_storage_data_889;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             507 / IN_WIDTH: ping_storage_data_889 <= ping_storage_data_889 ^ input_data(507 % IN_WIDTH);
@@ -25131,7 +25131,7 @@ logic ping_storage_data_890;
 logic pong_storage_data_890;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             508 / IN_WIDTH: ping_storage_data_890 <= ping_storage_data_890 ^ input_data(508 % IN_WIDTH);
@@ -25156,7 +25156,7 @@ logic ping_storage_data_891;
 logic pong_storage_data_891;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             509 / IN_WIDTH: ping_storage_data_891 <= ping_storage_data_891 ^ input_data(509 % IN_WIDTH);
@@ -25181,7 +25181,7 @@ logic ping_storage_data_892;
 logic pong_storage_data_892;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             510 / IN_WIDTH: ping_storage_data_892 <= ping_storage_data_892 ^ input_data(510 % IN_WIDTH);
@@ -25206,7 +25206,7 @@ logic ping_storage_data_893;
 logic pong_storage_data_893;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             511 / IN_WIDTH: ping_storage_data_893 <= ping_storage_data_893 ^ input_data(511 % IN_WIDTH);
@@ -25231,7 +25231,7 @@ logic ping_storage_data_894;
 logic pong_storage_data_894;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             512 / IN_WIDTH: ping_storage_data_894 <= ping_storage_data_894 ^ input_data(512 % IN_WIDTH);
@@ -25256,7 +25256,7 @@ logic ping_storage_data_895;
 logic pong_storage_data_895;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             513 / IN_WIDTH: ping_storage_data_895 <= ping_storage_data_895 ^ input_data(513 % IN_WIDTH);
@@ -25281,7 +25281,7 @@ logic ping_storage_data_896;
 logic pong_storage_data_896;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             514 / IN_WIDTH: ping_storage_data_896 <= ping_storage_data_896 ^ input_data(514 % IN_WIDTH);
@@ -25306,7 +25306,7 @@ logic ping_storage_data_897;
 logic pong_storage_data_897;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             515 / IN_WIDTH: ping_storage_data_897 <= ping_storage_data_897 ^ input_data(515 % IN_WIDTH);
@@ -25331,7 +25331,7 @@ logic ping_storage_data_898;
 logic pong_storage_data_898;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             516 / IN_WIDTH: ping_storage_data_898 <= ping_storage_data_898 ^ input_data(516 % IN_WIDTH);
@@ -25356,7 +25356,7 @@ logic ping_storage_data_899;
 logic pong_storage_data_899;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             517 / IN_WIDTH: ping_storage_data_899 <= ping_storage_data_899 ^ input_data(517 % IN_WIDTH);
@@ -25381,7 +25381,7 @@ logic ping_storage_data_900;
 logic pong_storage_data_900;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             518 / IN_WIDTH: ping_storage_data_900 <= ping_storage_data_900 ^ input_data(518 % IN_WIDTH);
@@ -25406,7 +25406,7 @@ logic ping_storage_data_901;
 logic pong_storage_data_901;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             519 / IN_WIDTH: ping_storage_data_901 <= ping_storage_data_901 ^ input_data(519 % IN_WIDTH);
@@ -25431,7 +25431,7 @@ logic ping_storage_data_902;
 logic pong_storage_data_902;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             520 / IN_WIDTH: ping_storage_data_902 <= ping_storage_data_902 ^ input_data(520 % IN_WIDTH);
@@ -25456,7 +25456,7 @@ logic ping_storage_data_903;
 logic pong_storage_data_903;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             521 / IN_WIDTH: ping_storage_data_903 <= ping_storage_data_903 ^ input_data(521 % IN_WIDTH);
@@ -25481,7 +25481,7 @@ logic ping_storage_data_904;
 logic pong_storage_data_904;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             522 / IN_WIDTH: ping_storage_data_904 <= ping_storage_data_904 ^ input_data(522 % IN_WIDTH);
@@ -25506,7 +25506,7 @@ logic ping_storage_data_905;
 logic pong_storage_data_905;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             523 / IN_WIDTH: ping_storage_data_905 <= ping_storage_data_905 ^ input_data(523 % IN_WIDTH);
@@ -25531,7 +25531,7 @@ logic ping_storage_data_906;
 logic pong_storage_data_906;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             524 / IN_WIDTH: ping_storage_data_906 <= ping_storage_data_906 ^ input_data(524 % IN_WIDTH);
@@ -25556,7 +25556,7 @@ logic ping_storage_data_907;
 logic pong_storage_data_907;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             525 / IN_WIDTH: ping_storage_data_907 <= ping_storage_data_907 ^ input_data(525 % IN_WIDTH);
@@ -25581,7 +25581,7 @@ logic ping_storage_data_908;
 logic pong_storage_data_908;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             526 / IN_WIDTH: ping_storage_data_908 <= ping_storage_data_908 ^ input_data(526 % IN_WIDTH);
@@ -25606,7 +25606,7 @@ logic ping_storage_data_909;
 logic pong_storage_data_909;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             527 / IN_WIDTH: ping_storage_data_909 <= ping_storage_data_909 ^ input_data(527 % IN_WIDTH);
@@ -25631,7 +25631,7 @@ logic ping_storage_data_910;
 logic pong_storage_data_910;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             528 / IN_WIDTH: ping_storage_data_910 <= ping_storage_data_910 ^ input_data(528 % IN_WIDTH);
@@ -25656,7 +25656,7 @@ logic ping_storage_data_911;
 logic pong_storage_data_911;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             529 / IN_WIDTH: ping_storage_data_911 <= ping_storage_data_911 ^ input_data(529 % IN_WIDTH);
@@ -25681,7 +25681,7 @@ logic ping_storage_data_912;
 logic pong_storage_data_912;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             530 / IN_WIDTH: ping_storage_data_912 <= ping_storage_data_912 ^ input_data(530 % IN_WIDTH);
@@ -25706,7 +25706,7 @@ logic ping_storage_data_913;
 logic pong_storage_data_913;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             531 / IN_WIDTH: ping_storage_data_913 <= ping_storage_data_913 ^ input_data(531 % IN_WIDTH);
@@ -25731,7 +25731,7 @@ logic ping_storage_data_914;
 logic pong_storage_data_914;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             532 / IN_WIDTH: ping_storage_data_914 <= ping_storage_data_914 ^ input_data(532 % IN_WIDTH);
@@ -25756,7 +25756,7 @@ logic ping_storage_data_915;
 logic pong_storage_data_915;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             533 / IN_WIDTH: ping_storage_data_915 <= ping_storage_data_915 ^ input_data(533 % IN_WIDTH);
@@ -25781,7 +25781,7 @@ logic ping_storage_data_916;
 logic pong_storage_data_916;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             534 / IN_WIDTH: ping_storage_data_916 <= ping_storage_data_916 ^ input_data(534 % IN_WIDTH);
@@ -25806,7 +25806,7 @@ logic ping_storage_data_917;
 logic pong_storage_data_917;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             535 / IN_WIDTH: ping_storage_data_917 <= ping_storage_data_917 ^ input_data(535 % IN_WIDTH);
@@ -25831,7 +25831,7 @@ logic ping_storage_data_918;
 logic pong_storage_data_918;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             536 / IN_WIDTH: ping_storage_data_918 <= ping_storage_data_918 ^ input_data(536 % IN_WIDTH);
@@ -25856,7 +25856,7 @@ logic ping_storage_data_919;
 logic pong_storage_data_919;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             537 / IN_WIDTH: ping_storage_data_919 <= ping_storage_data_919 ^ input_data(537 % IN_WIDTH);
@@ -25881,7 +25881,7 @@ logic ping_storage_data_920;
 logic pong_storage_data_920;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             538 / IN_WIDTH: ping_storage_data_920 <= ping_storage_data_920 ^ input_data(538 % IN_WIDTH);
@@ -25906,7 +25906,7 @@ logic ping_storage_data_921;
 logic pong_storage_data_921;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             539 / IN_WIDTH: ping_storage_data_921 <= ping_storage_data_921 ^ input_data(539 % IN_WIDTH);
@@ -25931,7 +25931,7 @@ logic ping_storage_data_922;
 logic pong_storage_data_922;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             540 / IN_WIDTH: ping_storage_data_922 <= ping_storage_data_922 ^ input_data(540 % IN_WIDTH);
@@ -25956,7 +25956,7 @@ logic ping_storage_data_923;
 logic pong_storage_data_923;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             541 / IN_WIDTH: ping_storage_data_923 <= ping_storage_data_923 ^ input_data(541 % IN_WIDTH);
@@ -25981,7 +25981,7 @@ logic ping_storage_data_924;
 logic pong_storage_data_924;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             542 / IN_WIDTH: ping_storage_data_924 <= ping_storage_data_924 ^ input_data(542 % IN_WIDTH);
@@ -26006,7 +26006,7 @@ logic ping_storage_data_925;
 logic pong_storage_data_925;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             543 / IN_WIDTH: ping_storage_data_925 <= ping_storage_data_925 ^ input_data(543 % IN_WIDTH);
@@ -26031,7 +26031,7 @@ logic ping_storage_data_926;
 logic pong_storage_data_926;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             544 / IN_WIDTH: ping_storage_data_926 <= ping_storage_data_926 ^ input_data(544 % IN_WIDTH);
@@ -26056,7 +26056,7 @@ logic ping_storage_data_927;
 logic pong_storage_data_927;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             545 / IN_WIDTH: ping_storage_data_927 <= ping_storage_data_927 ^ input_data(545 % IN_WIDTH);
@@ -26081,7 +26081,7 @@ logic ping_storage_data_928;
 logic pong_storage_data_928;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             546 / IN_WIDTH: ping_storage_data_928 <= ping_storage_data_928 ^ input_data(546 % IN_WIDTH);
@@ -26106,7 +26106,7 @@ logic ping_storage_data_929;
 logic pong_storage_data_929;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             547 / IN_WIDTH: ping_storage_data_929 <= ping_storage_data_929 ^ input_data(547 % IN_WIDTH);
@@ -26131,7 +26131,7 @@ logic ping_storage_data_930;
 logic pong_storage_data_930;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             548 / IN_WIDTH: ping_storage_data_930 <= ping_storage_data_930 ^ input_data(548 % IN_WIDTH);
@@ -26156,7 +26156,7 @@ logic ping_storage_data_931;
 logic pong_storage_data_931;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             549 / IN_WIDTH: ping_storage_data_931 <= ping_storage_data_931 ^ input_data(549 % IN_WIDTH);
@@ -26181,7 +26181,7 @@ logic ping_storage_data_932;
 logic pong_storage_data_932;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             550 / IN_WIDTH: ping_storage_data_932 <= ping_storage_data_932 ^ input_data(550 % IN_WIDTH);
@@ -26206,7 +26206,7 @@ logic ping_storage_data_933;
 logic pong_storage_data_933;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             551 / IN_WIDTH: ping_storage_data_933 <= ping_storage_data_933 ^ input_data(551 % IN_WIDTH);
@@ -26231,7 +26231,7 @@ logic ping_storage_data_934;
 logic pong_storage_data_934;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             552 / IN_WIDTH: ping_storage_data_934 <= ping_storage_data_934 ^ input_data(552 % IN_WIDTH);
@@ -26256,7 +26256,7 @@ logic ping_storage_data_935;
 logic pong_storage_data_935;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             553 / IN_WIDTH: ping_storage_data_935 <= ping_storage_data_935 ^ input_data(553 % IN_WIDTH);
@@ -26281,7 +26281,7 @@ logic ping_storage_data_936;
 logic pong_storage_data_936;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             554 / IN_WIDTH: ping_storage_data_936 <= ping_storage_data_936 ^ input_data(554 % IN_WIDTH);
@@ -26306,7 +26306,7 @@ logic ping_storage_data_937;
 logic pong_storage_data_937;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             555 / IN_WIDTH: ping_storage_data_937 <= ping_storage_data_937 ^ input_data(555 % IN_WIDTH);
@@ -26331,7 +26331,7 @@ logic ping_storage_data_938;
 logic pong_storage_data_938;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             556 / IN_WIDTH: ping_storage_data_938 <= ping_storage_data_938 ^ input_data(556 % IN_WIDTH);
@@ -26356,7 +26356,7 @@ logic ping_storage_data_939;
 logic pong_storage_data_939;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             557 / IN_WIDTH: ping_storage_data_939 <= ping_storage_data_939 ^ input_data(557 % IN_WIDTH);
@@ -26381,7 +26381,7 @@ logic ping_storage_data_940;
 logic pong_storage_data_940;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             558 / IN_WIDTH: ping_storage_data_940 <= ping_storage_data_940 ^ input_data(558 % IN_WIDTH);
@@ -26406,7 +26406,7 @@ logic ping_storage_data_941;
 logic pong_storage_data_941;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             559 / IN_WIDTH: ping_storage_data_941 <= ping_storage_data_941 ^ input_data(559 % IN_WIDTH);
@@ -26431,7 +26431,7 @@ logic ping_storage_data_942;
 logic pong_storage_data_942;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             560 / IN_WIDTH: ping_storage_data_942 <= ping_storage_data_942 ^ input_data(560 % IN_WIDTH);
@@ -26456,7 +26456,7 @@ logic ping_storage_data_943;
 logic pong_storage_data_943;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             561 / IN_WIDTH: ping_storage_data_943 <= ping_storage_data_943 ^ input_data(561 % IN_WIDTH);
@@ -26481,7 +26481,7 @@ logic ping_storage_data_944;
 logic pong_storage_data_944;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             562 / IN_WIDTH: ping_storage_data_944 <= ping_storage_data_944 ^ input_data(562 % IN_WIDTH);
@@ -26506,7 +26506,7 @@ logic ping_storage_data_945;
 logic pong_storage_data_945;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             563 / IN_WIDTH: ping_storage_data_945 <= ping_storage_data_945 ^ input_data(563 % IN_WIDTH);
@@ -26531,7 +26531,7 @@ logic ping_storage_data_946;
 logic pong_storage_data_946;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             564 / IN_WIDTH: ping_storage_data_946 <= ping_storage_data_946 ^ input_data(564 % IN_WIDTH);
@@ -26556,7 +26556,7 @@ logic ping_storage_data_947;
 logic pong_storage_data_947;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             565 / IN_WIDTH: ping_storage_data_947 <= ping_storage_data_947 ^ input_data(565 % IN_WIDTH);
@@ -26581,7 +26581,7 @@ logic ping_storage_data_948;
 logic pong_storage_data_948;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             566 / IN_WIDTH: ping_storage_data_948 <= ping_storage_data_948 ^ input_data(566 % IN_WIDTH);
@@ -26606,7 +26606,7 @@ logic ping_storage_data_949;
 logic pong_storage_data_949;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             567 / IN_WIDTH: ping_storage_data_949 <= ping_storage_data_949 ^ input_data(567 % IN_WIDTH);
@@ -26631,7 +26631,7 @@ logic ping_storage_data_950;
 logic pong_storage_data_950;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             568 / IN_WIDTH: ping_storage_data_950 <= ping_storage_data_950 ^ input_data(568 % IN_WIDTH);
@@ -26656,7 +26656,7 @@ logic ping_storage_data_951;
 logic pong_storage_data_951;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             569 / IN_WIDTH: ping_storage_data_951 <= ping_storage_data_951 ^ input_data(569 % IN_WIDTH);
@@ -26681,7 +26681,7 @@ logic ping_storage_data_952;
 logic pong_storage_data_952;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             570 / IN_WIDTH: ping_storage_data_952 <= ping_storage_data_952 ^ input_data(570 % IN_WIDTH);
@@ -26706,7 +26706,7 @@ logic ping_storage_data_953;
 logic pong_storage_data_953;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             571 / IN_WIDTH: ping_storage_data_953 <= ping_storage_data_953 ^ input_data(571 % IN_WIDTH);
@@ -26731,7 +26731,7 @@ logic ping_storage_data_954;
 logic pong_storage_data_954;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             572 / IN_WIDTH: ping_storage_data_954 <= ping_storage_data_954 ^ input_data(572 % IN_WIDTH);
@@ -26756,7 +26756,7 @@ logic ping_storage_data_955;
 logic pong_storage_data_955;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             573 / IN_WIDTH: ping_storage_data_955 <= ping_storage_data_955 ^ input_data(573 % IN_WIDTH);
@@ -26781,7 +26781,7 @@ logic ping_storage_data_956;
 logic pong_storage_data_956;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             574 / IN_WIDTH: ping_storage_data_956 <= ping_storage_data_956 ^ input_data(574 % IN_WIDTH);
@@ -26806,7 +26806,7 @@ logic ping_storage_data_957;
 logic pong_storage_data_957;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             575 / IN_WIDTH: ping_storage_data_957 <= ping_storage_data_957 ^ input_data(575 % IN_WIDTH);
@@ -26831,7 +26831,7 @@ logic ping_storage_data_958;
 logic pong_storage_data_958;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             480 / IN_WIDTH: ping_storage_data_958 <= ping_storage_data_958 ^ input_data(480 % IN_WIDTH);
@@ -26856,7 +26856,7 @@ logic ping_storage_data_959;
 logic pong_storage_data_959;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             481 / IN_WIDTH: ping_storage_data_959 <= ping_storage_data_959 ^ input_data(481 % IN_WIDTH);
@@ -26881,7 +26881,7 @@ logic ping_storage_data_960;
 logic pong_storage_data_960;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             281 / IN_WIDTH: ping_storage_data_960 <= ping_storage_data_960 ^ input_data(281 % IN_WIDTH);
@@ -26906,7 +26906,7 @@ logic ping_storage_data_961;
 logic pong_storage_data_961;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             282 / IN_WIDTH: ping_storage_data_961 <= ping_storage_data_961 ^ input_data(282 % IN_WIDTH);
@@ -26931,7 +26931,7 @@ logic ping_storage_data_962;
 logic pong_storage_data_962;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             283 / IN_WIDTH: ping_storage_data_962 <= ping_storage_data_962 ^ input_data(283 % IN_WIDTH);
@@ -26956,7 +26956,7 @@ logic ping_storage_data_963;
 logic pong_storage_data_963;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             284 / IN_WIDTH: ping_storage_data_963 <= ping_storage_data_963 ^ input_data(284 % IN_WIDTH);
@@ -26981,7 +26981,7 @@ logic ping_storage_data_964;
 logic pong_storage_data_964;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             285 / IN_WIDTH: ping_storage_data_964 <= ping_storage_data_964 ^ input_data(285 % IN_WIDTH);
@@ -27006,7 +27006,7 @@ logic ping_storage_data_965;
 logic pong_storage_data_965;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             286 / IN_WIDTH: ping_storage_data_965 <= ping_storage_data_965 ^ input_data(286 % IN_WIDTH);
@@ -27031,7 +27031,7 @@ logic ping_storage_data_966;
 logic pong_storage_data_966;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             287 / IN_WIDTH: ping_storage_data_966 <= ping_storage_data_966 ^ input_data(287 % IN_WIDTH);
@@ -27056,7 +27056,7 @@ logic ping_storage_data_967;
 logic pong_storage_data_967;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             192 / IN_WIDTH: ping_storage_data_967 <= ping_storage_data_967 ^ input_data(192 % IN_WIDTH);
@@ -27081,7 +27081,7 @@ logic ping_storage_data_968;
 logic pong_storage_data_968;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             193 / IN_WIDTH: ping_storage_data_968 <= ping_storage_data_968 ^ input_data(193 % IN_WIDTH);
@@ -27106,7 +27106,7 @@ logic ping_storage_data_969;
 logic pong_storage_data_969;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             194 / IN_WIDTH: ping_storage_data_969 <= ping_storage_data_969 ^ input_data(194 % IN_WIDTH);
@@ -27131,7 +27131,7 @@ logic ping_storage_data_970;
 logic pong_storage_data_970;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             195 / IN_WIDTH: ping_storage_data_970 <= ping_storage_data_970 ^ input_data(195 % IN_WIDTH);
@@ -27156,7 +27156,7 @@ logic ping_storage_data_971;
 logic pong_storage_data_971;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             196 / IN_WIDTH: ping_storage_data_971 <= ping_storage_data_971 ^ input_data(196 % IN_WIDTH);
@@ -27181,7 +27181,7 @@ logic ping_storage_data_972;
 logic pong_storage_data_972;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             197 / IN_WIDTH: ping_storage_data_972 <= ping_storage_data_972 ^ input_data(197 % IN_WIDTH);
@@ -27206,7 +27206,7 @@ logic ping_storage_data_973;
 logic pong_storage_data_973;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             198 / IN_WIDTH: ping_storage_data_973 <= ping_storage_data_973 ^ input_data(198 % IN_WIDTH);
@@ -27231,7 +27231,7 @@ logic ping_storage_data_974;
 logic pong_storage_data_974;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             199 / IN_WIDTH: ping_storage_data_974 <= ping_storage_data_974 ^ input_data(199 % IN_WIDTH);
@@ -27256,7 +27256,7 @@ logic ping_storage_data_975;
 logic pong_storage_data_975;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             200 / IN_WIDTH: ping_storage_data_975 <= ping_storage_data_975 ^ input_data(200 % IN_WIDTH);
@@ -27281,7 +27281,7 @@ logic ping_storage_data_976;
 logic pong_storage_data_976;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             201 / IN_WIDTH: ping_storage_data_976 <= ping_storage_data_976 ^ input_data(201 % IN_WIDTH);
@@ -27306,7 +27306,7 @@ logic ping_storage_data_977;
 logic pong_storage_data_977;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             202 / IN_WIDTH: ping_storage_data_977 <= ping_storage_data_977 ^ input_data(202 % IN_WIDTH);
@@ -27331,7 +27331,7 @@ logic ping_storage_data_978;
 logic pong_storage_data_978;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             203 / IN_WIDTH: ping_storage_data_978 <= ping_storage_data_978 ^ input_data(203 % IN_WIDTH);
@@ -27356,7 +27356,7 @@ logic ping_storage_data_979;
 logic pong_storage_data_979;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             204 / IN_WIDTH: ping_storage_data_979 <= ping_storage_data_979 ^ input_data(204 % IN_WIDTH);
@@ -27381,7 +27381,7 @@ logic ping_storage_data_980;
 logic pong_storage_data_980;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             205 / IN_WIDTH: ping_storage_data_980 <= ping_storage_data_980 ^ input_data(205 % IN_WIDTH);
@@ -27406,7 +27406,7 @@ logic ping_storage_data_981;
 logic pong_storage_data_981;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             206 / IN_WIDTH: ping_storage_data_981 <= ping_storage_data_981 ^ input_data(206 % IN_WIDTH);
@@ -27431,7 +27431,7 @@ logic ping_storage_data_982;
 logic pong_storage_data_982;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             207 / IN_WIDTH: ping_storage_data_982 <= ping_storage_data_982 ^ input_data(207 % IN_WIDTH);
@@ -27456,7 +27456,7 @@ logic ping_storage_data_983;
 logic pong_storage_data_983;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             208 / IN_WIDTH: ping_storage_data_983 <= ping_storage_data_983 ^ input_data(208 % IN_WIDTH);
@@ -27481,7 +27481,7 @@ logic ping_storage_data_984;
 logic pong_storage_data_984;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             209 / IN_WIDTH: ping_storage_data_984 <= ping_storage_data_984 ^ input_data(209 % IN_WIDTH);
@@ -27506,7 +27506,7 @@ logic ping_storage_data_985;
 logic pong_storage_data_985;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             210 / IN_WIDTH: ping_storage_data_985 <= ping_storage_data_985 ^ input_data(210 % IN_WIDTH);
@@ -27531,7 +27531,7 @@ logic ping_storage_data_986;
 logic pong_storage_data_986;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             211 / IN_WIDTH: ping_storage_data_986 <= ping_storage_data_986 ^ input_data(211 % IN_WIDTH);
@@ -27556,7 +27556,7 @@ logic ping_storage_data_987;
 logic pong_storage_data_987;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             212 / IN_WIDTH: ping_storage_data_987 <= ping_storage_data_987 ^ input_data(212 % IN_WIDTH);
@@ -27581,7 +27581,7 @@ logic ping_storage_data_988;
 logic pong_storage_data_988;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             213 / IN_WIDTH: ping_storage_data_988 <= ping_storage_data_988 ^ input_data(213 % IN_WIDTH);
@@ -27606,7 +27606,7 @@ logic ping_storage_data_989;
 logic pong_storage_data_989;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             214 / IN_WIDTH: ping_storage_data_989 <= ping_storage_data_989 ^ input_data(214 % IN_WIDTH);
@@ -27631,7 +27631,7 @@ logic ping_storage_data_990;
 logic pong_storage_data_990;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             215 / IN_WIDTH: ping_storage_data_990 <= ping_storage_data_990 ^ input_data(215 % IN_WIDTH);
@@ -27656,7 +27656,7 @@ logic ping_storage_data_991;
 logic pong_storage_data_991;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             216 / IN_WIDTH: ping_storage_data_991 <= ping_storage_data_991 ^ input_data(216 % IN_WIDTH);
@@ -27681,7 +27681,7 @@ logic ping_storage_data_992;
 logic pong_storage_data_992;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             217 / IN_WIDTH: ping_storage_data_992 <= ping_storage_data_992 ^ input_data(217 % IN_WIDTH);
@@ -27706,7 +27706,7 @@ logic ping_storage_data_993;
 logic pong_storage_data_993;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             218 / IN_WIDTH: ping_storage_data_993 <= ping_storage_data_993 ^ input_data(218 % IN_WIDTH);
@@ -27731,7 +27731,7 @@ logic ping_storage_data_994;
 logic pong_storage_data_994;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             219 / IN_WIDTH: ping_storage_data_994 <= ping_storage_data_994 ^ input_data(219 % IN_WIDTH);
@@ -27756,7 +27756,7 @@ logic ping_storage_data_995;
 logic pong_storage_data_995;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             220 / IN_WIDTH: ping_storage_data_995 <= ping_storage_data_995 ^ input_data(220 % IN_WIDTH);
@@ -27781,7 +27781,7 @@ logic ping_storage_data_996;
 logic pong_storage_data_996;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             221 / IN_WIDTH: ping_storage_data_996 <= ping_storage_data_996 ^ input_data(221 % IN_WIDTH);
@@ -27806,7 +27806,7 @@ logic ping_storage_data_997;
 logic pong_storage_data_997;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             222 / IN_WIDTH: ping_storage_data_997 <= ping_storage_data_997 ^ input_data(222 % IN_WIDTH);
@@ -27831,7 +27831,7 @@ logic ping_storage_data_998;
 logic pong_storage_data_998;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             223 / IN_WIDTH: ping_storage_data_998 <= ping_storage_data_998 ^ input_data(223 % IN_WIDTH);
@@ -27856,7 +27856,7 @@ logic ping_storage_data_999;
 logic pong_storage_data_999;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             224 / IN_WIDTH: ping_storage_data_999 <= ping_storage_data_999 ^ input_data(224 % IN_WIDTH);
@@ -27881,7 +27881,7 @@ logic ping_storage_data_1000;
 logic pong_storage_data_1000;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             225 / IN_WIDTH: ping_storage_data_1000 <= ping_storage_data_1000 ^ input_data(225 % IN_WIDTH);
@@ -27906,7 +27906,7 @@ logic ping_storage_data_1001;
 logic pong_storage_data_1001;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             226 / IN_WIDTH: ping_storage_data_1001 <= ping_storage_data_1001 ^ input_data(226 % IN_WIDTH);
@@ -27931,7 +27931,7 @@ logic ping_storage_data_1002;
 logic pong_storage_data_1002;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             227 / IN_WIDTH: ping_storage_data_1002 <= ping_storage_data_1002 ^ input_data(227 % IN_WIDTH);
@@ -27956,7 +27956,7 @@ logic ping_storage_data_1003;
 logic pong_storage_data_1003;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             228 / IN_WIDTH: ping_storage_data_1003 <= ping_storage_data_1003 ^ input_data(228 % IN_WIDTH);
@@ -27981,7 +27981,7 @@ logic ping_storage_data_1004;
 logic pong_storage_data_1004;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             229 / IN_WIDTH: ping_storage_data_1004 <= ping_storage_data_1004 ^ input_data(229 % IN_WIDTH);
@@ -28006,7 +28006,7 @@ logic ping_storage_data_1005;
 logic pong_storage_data_1005;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             230 / IN_WIDTH: ping_storage_data_1005 <= ping_storage_data_1005 ^ input_data(230 % IN_WIDTH);
@@ -28031,7 +28031,7 @@ logic ping_storage_data_1006;
 logic pong_storage_data_1006;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             231 / IN_WIDTH: ping_storage_data_1006 <= ping_storage_data_1006 ^ input_data(231 % IN_WIDTH);
@@ -28056,7 +28056,7 @@ logic ping_storage_data_1007;
 logic pong_storage_data_1007;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             232 / IN_WIDTH: ping_storage_data_1007 <= ping_storage_data_1007 ^ input_data(232 % IN_WIDTH);
@@ -28081,7 +28081,7 @@ logic ping_storage_data_1008;
 logic pong_storage_data_1008;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             233 / IN_WIDTH: ping_storage_data_1008 <= ping_storage_data_1008 ^ input_data(233 % IN_WIDTH);
@@ -28106,7 +28106,7 @@ logic ping_storage_data_1009;
 logic pong_storage_data_1009;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             234 / IN_WIDTH: ping_storage_data_1009 <= ping_storage_data_1009 ^ input_data(234 % IN_WIDTH);
@@ -28131,7 +28131,7 @@ logic ping_storage_data_1010;
 logic pong_storage_data_1010;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             235 / IN_WIDTH: ping_storage_data_1010 <= ping_storage_data_1010 ^ input_data(235 % IN_WIDTH);
@@ -28156,7 +28156,7 @@ logic ping_storage_data_1011;
 logic pong_storage_data_1011;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             236 / IN_WIDTH: ping_storage_data_1011 <= ping_storage_data_1011 ^ input_data(236 % IN_WIDTH);
@@ -28181,7 +28181,7 @@ logic ping_storage_data_1012;
 logic pong_storage_data_1012;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             237 / IN_WIDTH: ping_storage_data_1012 <= ping_storage_data_1012 ^ input_data(237 % IN_WIDTH);
@@ -28206,7 +28206,7 @@ logic ping_storage_data_1013;
 logic pong_storage_data_1013;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             238 / IN_WIDTH: ping_storage_data_1013 <= ping_storage_data_1013 ^ input_data(238 % IN_WIDTH);
@@ -28231,7 +28231,7 @@ logic ping_storage_data_1014;
 logic pong_storage_data_1014;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             239 / IN_WIDTH: ping_storage_data_1014 <= ping_storage_data_1014 ^ input_data(239 % IN_WIDTH);
@@ -28256,7 +28256,7 @@ logic ping_storage_data_1015;
 logic pong_storage_data_1015;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             240 / IN_WIDTH: ping_storage_data_1015 <= ping_storage_data_1015 ^ input_data(240 % IN_WIDTH);
@@ -28281,7 +28281,7 @@ logic ping_storage_data_1016;
 logic pong_storage_data_1016;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             241 / IN_WIDTH: ping_storage_data_1016 <= ping_storage_data_1016 ^ input_data(241 % IN_WIDTH);
@@ -28306,7 +28306,7 @@ logic ping_storage_data_1017;
 logic pong_storage_data_1017;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             242 / IN_WIDTH: ping_storage_data_1017 <= ping_storage_data_1017 ^ input_data(242 % IN_WIDTH);
@@ -28331,7 +28331,7 @@ logic ping_storage_data_1018;
 logic pong_storage_data_1018;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             243 / IN_WIDTH: ping_storage_data_1018 <= ping_storage_data_1018 ^ input_data(243 % IN_WIDTH);
@@ -28356,7 +28356,7 @@ logic ping_storage_data_1019;
 logic pong_storage_data_1019;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             244 / IN_WIDTH: ping_storage_data_1019 <= ping_storage_data_1019 ^ input_data(244 % IN_WIDTH);
@@ -28381,7 +28381,7 @@ logic ping_storage_data_1020;
 logic pong_storage_data_1020;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             245 / IN_WIDTH: ping_storage_data_1020 <= ping_storage_data_1020 ^ input_data(245 % IN_WIDTH);
@@ -28406,7 +28406,7 @@ logic ping_storage_data_1021;
 logic pong_storage_data_1021;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             246 / IN_WIDTH: ping_storage_data_1021 <= ping_storage_data_1021 ^ input_data(246 % IN_WIDTH);
@@ -28431,7 +28431,7 @@ logic ping_storage_data_1022;
 logic pong_storage_data_1022;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             247 / IN_WIDTH: ping_storage_data_1022 <= ping_storage_data_1022 ^ input_data(247 % IN_WIDTH);
@@ -28456,7 +28456,7 @@ logic ping_storage_data_1023;
 logic pong_storage_data_1023;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             248 / IN_WIDTH: ping_storage_data_1023 <= ping_storage_data_1023 ^ input_data(248 % IN_WIDTH);
@@ -28481,7 +28481,7 @@ logic ping_storage_data_1024;
 logic pong_storage_data_1024;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             249 / IN_WIDTH: ping_storage_data_1024 <= ping_storage_data_1024 ^ input_data(249 % IN_WIDTH);
@@ -28506,7 +28506,7 @@ logic ping_storage_data_1025;
 logic pong_storage_data_1025;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             250 / IN_WIDTH: ping_storage_data_1025 <= ping_storage_data_1025 ^ input_data(250 % IN_WIDTH);
@@ -28531,7 +28531,7 @@ logic ping_storage_data_1026;
 logic pong_storage_data_1026;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             251 / IN_WIDTH: ping_storage_data_1026 <= ping_storage_data_1026 ^ input_data(251 % IN_WIDTH);
@@ -28556,7 +28556,7 @@ logic ping_storage_data_1027;
 logic pong_storage_data_1027;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             252 / IN_WIDTH: ping_storage_data_1027 <= ping_storage_data_1027 ^ input_data(252 % IN_WIDTH);
@@ -28581,7 +28581,7 @@ logic ping_storage_data_1028;
 logic pong_storage_data_1028;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             253 / IN_WIDTH: ping_storage_data_1028 <= ping_storage_data_1028 ^ input_data(253 % IN_WIDTH);
@@ -28606,7 +28606,7 @@ logic ping_storage_data_1029;
 logic pong_storage_data_1029;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             254 / IN_WIDTH: ping_storage_data_1029 <= ping_storage_data_1029 ^ input_data(254 % IN_WIDTH);
@@ -28631,7 +28631,7 @@ logic ping_storage_data_1030;
 logic pong_storage_data_1030;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             255 / IN_WIDTH: ping_storage_data_1030 <= ping_storage_data_1030 ^ input_data(255 % IN_WIDTH);
@@ -28656,7 +28656,7 @@ logic ping_storage_data_1031;
 logic pong_storage_data_1031;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             256 / IN_WIDTH: ping_storage_data_1031 <= ping_storage_data_1031 ^ input_data(256 % IN_WIDTH);
@@ -28681,7 +28681,7 @@ logic ping_storage_data_1032;
 logic pong_storage_data_1032;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             257 / IN_WIDTH: ping_storage_data_1032 <= ping_storage_data_1032 ^ input_data(257 % IN_WIDTH);
@@ -28706,7 +28706,7 @@ logic ping_storage_data_1033;
 logic pong_storage_data_1033;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             258 / IN_WIDTH: ping_storage_data_1033 <= ping_storage_data_1033 ^ input_data(258 % IN_WIDTH);
@@ -28731,7 +28731,7 @@ logic ping_storage_data_1034;
 logic pong_storage_data_1034;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             259 / IN_WIDTH: ping_storage_data_1034 <= ping_storage_data_1034 ^ input_data(259 % IN_WIDTH);
@@ -28756,7 +28756,7 @@ logic ping_storage_data_1035;
 logic pong_storage_data_1035;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             260 / IN_WIDTH: ping_storage_data_1035 <= ping_storage_data_1035 ^ input_data(260 % IN_WIDTH);
@@ -28781,7 +28781,7 @@ logic ping_storage_data_1036;
 logic pong_storage_data_1036;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             261 / IN_WIDTH: ping_storage_data_1036 <= ping_storage_data_1036 ^ input_data(261 % IN_WIDTH);
@@ -28806,7 +28806,7 @@ logic ping_storage_data_1037;
 logic pong_storage_data_1037;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             262 / IN_WIDTH: ping_storage_data_1037 <= ping_storage_data_1037 ^ input_data(262 % IN_WIDTH);
@@ -28831,7 +28831,7 @@ logic ping_storage_data_1038;
 logic pong_storage_data_1038;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             263 / IN_WIDTH: ping_storage_data_1038 <= ping_storage_data_1038 ^ input_data(263 % IN_WIDTH);
@@ -28856,7 +28856,7 @@ logic ping_storage_data_1039;
 logic pong_storage_data_1039;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             264 / IN_WIDTH: ping_storage_data_1039 <= ping_storage_data_1039 ^ input_data(264 % IN_WIDTH);
@@ -28881,7 +28881,7 @@ logic ping_storage_data_1040;
 logic pong_storage_data_1040;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             265 / IN_WIDTH: ping_storage_data_1040 <= ping_storage_data_1040 ^ input_data(265 % IN_WIDTH);
@@ -28906,7 +28906,7 @@ logic ping_storage_data_1041;
 logic pong_storage_data_1041;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             266 / IN_WIDTH: ping_storage_data_1041 <= ping_storage_data_1041 ^ input_data(266 % IN_WIDTH);
@@ -28931,7 +28931,7 @@ logic ping_storage_data_1042;
 logic pong_storage_data_1042;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             267 / IN_WIDTH: ping_storage_data_1042 <= ping_storage_data_1042 ^ input_data(267 % IN_WIDTH);
@@ -28956,7 +28956,7 @@ logic ping_storage_data_1043;
 logic pong_storage_data_1043;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             268 / IN_WIDTH: ping_storage_data_1043 <= ping_storage_data_1043 ^ input_data(268 % IN_WIDTH);
@@ -28981,7 +28981,7 @@ logic ping_storage_data_1044;
 logic pong_storage_data_1044;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             269 / IN_WIDTH: ping_storage_data_1044 <= ping_storage_data_1044 ^ input_data(269 % IN_WIDTH);
@@ -29006,7 +29006,7 @@ logic ping_storage_data_1045;
 logic pong_storage_data_1045;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             270 / IN_WIDTH: ping_storage_data_1045 <= ping_storage_data_1045 ^ input_data(270 % IN_WIDTH);
@@ -29031,7 +29031,7 @@ logic ping_storage_data_1046;
 logic pong_storage_data_1046;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             271 / IN_WIDTH: ping_storage_data_1046 <= ping_storage_data_1046 ^ input_data(271 % IN_WIDTH);
@@ -29056,7 +29056,7 @@ logic ping_storage_data_1047;
 logic pong_storage_data_1047;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             272 / IN_WIDTH: ping_storage_data_1047 <= ping_storage_data_1047 ^ input_data(272 % IN_WIDTH);
@@ -29081,7 +29081,7 @@ logic ping_storage_data_1048;
 logic pong_storage_data_1048;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             273 / IN_WIDTH: ping_storage_data_1048 <= ping_storage_data_1048 ^ input_data(273 % IN_WIDTH);
@@ -29106,7 +29106,7 @@ logic ping_storage_data_1049;
 logic pong_storage_data_1049;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             274 / IN_WIDTH: ping_storage_data_1049 <= ping_storage_data_1049 ^ input_data(274 % IN_WIDTH);
@@ -29131,7 +29131,7 @@ logic ping_storage_data_1050;
 logic pong_storage_data_1050;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             275 / IN_WIDTH: ping_storage_data_1050 <= ping_storage_data_1050 ^ input_data(275 % IN_WIDTH);
@@ -29156,7 +29156,7 @@ logic ping_storage_data_1051;
 logic pong_storage_data_1051;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             276 / IN_WIDTH: ping_storage_data_1051 <= ping_storage_data_1051 ^ input_data(276 % IN_WIDTH);
@@ -29181,7 +29181,7 @@ logic ping_storage_data_1052;
 logic pong_storage_data_1052;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             277 / IN_WIDTH: ping_storage_data_1052 <= ping_storage_data_1052 ^ input_data(277 % IN_WIDTH);
@@ -29206,7 +29206,7 @@ logic ping_storage_data_1053;
 logic pong_storage_data_1053;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             278 / IN_WIDTH: ping_storage_data_1053 <= ping_storage_data_1053 ^ input_data(278 % IN_WIDTH);
@@ -29231,7 +29231,7 @@ logic ping_storage_data_1054;
 logic pong_storage_data_1054;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             279 / IN_WIDTH: ping_storage_data_1054 <= ping_storage_data_1054 ^ input_data(279 % IN_WIDTH);
@@ -29256,7 +29256,7 @@ logic ping_storage_data_1055;
 logic pong_storage_data_1055;
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin
             case (input_count)
             280 / IN_WIDTH: ping_storage_data_1055 <= ping_storage_data_1055 ^ input_data(280 % IN_WIDTH);
@@ -29278,6 +29278,6 @@ always_ff @ (posedge clock) begin
 end
 
 
-endmodule: sparse_mult
+endmodule: sparse_mult_
 
 `default_nettype wire
