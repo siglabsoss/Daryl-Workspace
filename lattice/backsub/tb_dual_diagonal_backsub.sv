@@ -191,7 +191,7 @@ always @(posedge i_clock) begin: seq_check
             end
         end
         // Validate all zero sequence
-        if ((o_out_valid == 1'b1) && (test_number == 3)) begin
+        if ((o_out_valid == 1'b1) && (test_number == 4)) begin
             if (o_out_data != output_values[run_count % NUM_WORDS]) begin
                 $display("Error: Output of %d expected, but received %d.", output_values[run_count], o_out_data);
                 local_err_count++;
