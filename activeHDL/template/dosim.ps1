@@ -5,9 +5,9 @@ function Compile-Verilog
 
 	if ($LastExitCode -ne 0) {
 		echo "                                                                "
-		echo "            ####################################################"
-		echo "             Compilation of tb_dual_diagonal_backsub.sv failed! "
-		echo "            ####################################################"
+		echo "    ############################################################"
+		echo "      Compilation of " + $Filename + " failed! "
+		echo "    ############################################################"
 		echo "                                                                "
 		exit
 	}
@@ -17,8 +17,8 @@ function Compile-Verilog
 vlib work
 
 # Compile the Verilog Files
-Compile-Verilog tb_dual_diagonal_backsub.sv
-Compile-Verilog dual_diagonal_backsub.sv
+Compile-Verilog tb_my_module.sv
+Compile-Verilog my_module.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do
