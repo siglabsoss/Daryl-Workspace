@@ -3,7 +3,7 @@
 
 `default_nettype none
 
-module sparse_mult #(
+module sparse_mult_{{ postfix }} #(
     parameter integer IN_WIDTH = {{ input_width }},  // SHOULD BE A POWER OF 2
     parameter integer OUT_WIDTH = {{ output_width }}  // SHOULD BE A POWER OF 2
 ) (
@@ -112,7 +112,7 @@ always_comb begin
     case (readout_state)
     ST_PING: begin
         if ((output_count == OUTPUT_LENGTH - 1)
-                && (output_ready == 1'b1)) begin
+                && (i_output_ready == 1'b1)) begin
             next_readout_state = ping_is_full ? ST_PING : ST_WAIT;
         end
         case (output_count)
@@ -124,7 +124,7 @@ always_comb begin
     end
     ST_PONG: begin
         if ((output_count == OUTPUT_LENGTH - 1)
-                && (output_ready == 1'b1)) begin
+                && (i_output_ready == 1'b1)) begin
             next_readout_state = ping_is_full ? ST_PING : ST_WAIT;
         end
         case (output_count)
@@ -155,7 +155,7 @@ logic ping_storage_data_{{ loop.index0 }};
 logic pong_storage_data_{{ loop.index0 }};
 
 always_ff @ (posedge clock) begin
-    if ((input_valid & input_ready) == 1'b1) begin
+    if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin{% set outer_loop_index = loop.index0 %}
             case (input_count){% for next_nonzero_element in row %}
             {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }} ^ input_data({{ next_nonzero_element }} % IN_WIDTH);{% endfor %}
@@ -171,6 +171,6 @@ always_ff @ (posedge clock) begin
 end
 {% endfor %}
 
-endmodule: sparse_mult
+endmodule: sparse_mult_{{ postfix }}
 
 `default_nettype wire
