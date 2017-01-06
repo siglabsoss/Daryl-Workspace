@@ -1290,7 +1290,8 @@ always_comb begin
             pong_storage_data_93,
             pong_storage_data_94,
             pong_storage_data_95
-        };1: o_output_data = { 
+        };
+        1: o_output_data = { 
             pong_storage_data_96,
             pong_storage_data_97,
             pong_storage_data_98,
@@ -1387,7 +1388,8 @@ always_comb begin
             pong_storage_data_189,
             pong_storage_data_190,
             pong_storage_data_191
-        };2: o_output_data = { 
+        };
+        2: o_output_data = { 
             pong_storage_data_192,
             pong_storage_data_193,
             pong_storage_data_194,
@@ -1484,7 +1486,8 @@ always_comb begin
             pong_storage_data_285,
             pong_storage_data_286,
             pong_storage_data_287
-        };3: o_output_data = { 
+        };
+        3: o_output_data = { 
             pong_storage_data_288,
             pong_storage_data_289,
             pong_storage_data_290,
@@ -1581,7 +1584,8 @@ always_comb begin
             pong_storage_data_381,
             pong_storage_data_382,
             pong_storage_data_383
-        };4: o_output_data = { 
+        };
+        4: o_output_data = { 
             pong_storage_data_384,
             pong_storage_data_385,
             pong_storage_data_386,
@@ -1678,7 +1682,8 @@ always_comb begin
             pong_storage_data_477,
             pong_storage_data_478,
             pong_storage_data_479
-        };5: o_output_data = { 
+        };
+        5: o_output_data = { 
             pong_storage_data_480,
             pong_storage_data_481,
             pong_storage_data_482,
@@ -1775,7 +1780,8 @@ always_comb begin
             pong_storage_data_573,
             pong_storage_data_574,
             pong_storage_data_575
-        };6: o_output_data = { 
+        };
+        6: o_output_data = { 
             pong_storage_data_576,
             pong_storage_data_577,
             pong_storage_data_578,
@@ -1872,7 +1878,8 @@ always_comb begin
             pong_storage_data_669,
             pong_storage_data_670,
             pong_storage_data_671
-        };7: o_output_data = { 
+        };
+        7: o_output_data = { 
             pong_storage_data_672,
             pong_storage_data_673,
             pong_storage_data_674,
@@ -1969,7 +1976,8 @@ always_comb begin
             pong_storage_data_765,
             pong_storage_data_766,
             pong_storage_data_767
-        };8: o_output_data = { 
+        };
+        8: o_output_data = { 
             pong_storage_data_768,
             pong_storage_data_769,
             pong_storage_data_770,
@@ -2066,7 +2074,8 @@ always_comb begin
             pong_storage_data_861,
             pong_storage_data_862,
             pong_storage_data_863
-        };9: o_output_data = { 
+        };
+        9: o_output_data = { 
             pong_storage_data_864,
             pong_storage_data_865,
             pong_storage_data_866,
@@ -2163,7 +2172,8 @@ always_comb begin
             pong_storage_data_957,
             pong_storage_data_958,
             pong_storage_data_959
-        };default: o_output_data = { 
+        };
+        default: o_output_data = { 
             pong_storage_data_960,
             pong_storage_data_961,
             pong_storage_data_962,
@@ -2261,7 +2271,7 @@ always_comb begin
             pong_storage_data_1054,
             pong_storage_data_1055
         };
-        endcase
+                endcase
         o_output_valid = 1'b1;
     end
     ST_WAIT: begin
