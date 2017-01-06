@@ -7,12 +7,12 @@ module sparse_mult_{{ postfix }} #(
     parameter integer IN_WIDTH = {{ input_width }},  // SHOULD BE A POWER OF 2
     parameter integer OUT_WIDTH = {{ output_width }}  // SHOULD BE A POWER OF 2
 ) (
-    input  wire logic [IN_WIDTH-1:0]    i_data,
-    input  wire logic                   i_valid,
-    output      logic                   o_ready,
-    output      logic [OUT_WIDTH-1:0]   o_data,
-    output      logic                   o_valid,
-    input  wire logic                   i_ready,
+    input  wire logic [IN_WIDTH-1:0]    i_input_data,
+    input  wire logic                   i_input_valid,
+    output      logic                   o_input_ready,
+    output      logic [OUT_WIDTH-1:0]   o_output_data,
+    output      logic                   o_output_valid,
+    input  wire logic                   i_output_ready,
     input  wire logic                   i_clock,
     input  wire logic                   i_reset
 );
@@ -154,16 +154,16 @@ end
 logic ping_storage_data_{{ loop.index0 }};
 logic pong_storage_data_{{ loop.index0 }};
 
-always_ff @ (posedge clock) begin
+always_ff @ (posedge i_clock) begin
     if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin{% set outer_loop_index = loop.index0 %}
             case (input_count){% for next_nonzero_element in row %}
-            {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }} ^ input_data({{ next_nonzero_element }} % IN_WIDTH);{% endfor %}
+            {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }} ^ i_input_data({{ next_nonzero_element }} % IN_WIDTH);{% endfor %}
             default: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }};
             endcase
         end else begin
             case (input_count){% for next_nonzero_element in row %}
-            {{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= pong_storage_data_{{ outer_loop_index }} ^ input_data({{ next_nonzero_element }} % IN_WIDTH);{% endfor %}
+            {{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= pong_storage_data_{{ outer_loop_index }} ^ i_input_data({{ next_nonzero_element }} % IN_WIDTH);{% endfor %}
             default: pong_storage_data_{{ outer_loop_index }} <= pong_storage_data_{{ outer_loop_index }};
             endcase
         end
