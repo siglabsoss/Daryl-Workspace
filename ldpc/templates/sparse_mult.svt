@@ -155,7 +155,10 @@ logic ping_storage_data_{{ loop.index0 }};
 logic pong_storage_data_{{ loop.index0 }};
 
 always_ff @ (posedge i_clock) begin
-    if ((i_input_valid & o_input_ready) == 1'b1) begin
+    if (i_reset == 1'b1) begin
+        ping_storage_data_{{ loop.index0 }} <= 1'b0;
+        pong_storage_data_{{ loop.index0 }} <= 1'b0;
+    end else if ((i_input_valid & o_input_ready) == 1'b1) begin
         if (input_is_ping == 1'b1) begin{% set outer_loop_index = loop.index0 %}
             case (input_count){% for next_nonzero_element in row %}
             {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
