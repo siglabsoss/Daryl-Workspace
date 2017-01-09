@@ -6,7 +6,8 @@ function Compile-Verilog
 	if ($LastExitCode -ne 0) {
 		echo "                                                                "
 		echo "    ############################################################"
-		echo "      Compilation of " + $Filename + " failed! "
+		$msg = "      Compilation of " + $Filename + " failed! "
+		echo $msg
 		echo "    ############################################################"
 		echo "                                                                "
 		exit
@@ -17,8 +18,8 @@ function Compile-Verilog
 vlib work
 
 # Compile the Verilog Files
-Compile-Verilog tb_my_module.sv
-Compile-Verilog my_module.sv
+Compile-Verilog tb_sparse_mult_by_A.sv
+Compile-Verilog sparse_mult_by_A.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do
