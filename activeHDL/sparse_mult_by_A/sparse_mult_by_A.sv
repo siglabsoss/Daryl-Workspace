@@ -3,7 +3,7 @@
 
 `default_nettype none
 
-module sparse_mult_ #(
+module sparse_mult_by_A #(
     parameter integer IN_WIDTH = 8,  // SHOULD BE A POWER OF 2
     parameter integer OUT_WIDTH = 96  // SHOULD BE A POWER OF 2
 ) (
@@ -20,10 +20,6 @@ module sparse_mult_ #(
 localparam integer INPUT_LENGTH = 144;
 localparam integer OUTPUT_LENGTH = 11;
 
-// Track which buffer is currently input
-logic input_is_ping;
-// Track which buffer is currently output
-logic output_is_ping;
 // Track which buffers are full on current clock cycle
 logic ping_is_full;
 logic pong_is_full;
@@ -74,16 +70,16 @@ always_ff @ (posedge i_clock) begin
     end
 end
 
-logic [5:0] ;
+logic [5:0] ping_pong_test;
 logic       last_cycle_in;
 logic       last_cycle_out;
+assign last_cycle_in = (input_count == INPUT_LENGTH-1);
+assign last_cycle_out = (output_count == OUTPUT_LENGTH-1);
 assign ping_pong_test = {
     last_cycle_in, last_cycle_out,
     i_input_valid, o_input_ready,
     o_output_valid, i_output_ready
 };
-assign last_cycle_in = (input_count == INPUT_LENGTH-1);
-assign last_cycle_out = (output_count == OUTPUT_LENGTH-1);
 always_ff @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
         ping_is_full <= 1'b0;
@@ -104,6 +100,14 @@ always_ff @(posedge i_clock) begin
                 pong_is_full <= 1'b0;
             end
         end
+        6'b111111:
+            if (readout_state == ST_PING) begin
+                ping_is_full <= 1'b0;
+                pong_is_full <= 1'b1;
+            end else begin
+                ping_is_full <= 1'b1;
+                pong_is_full <= 1'b0;
+            end
         default: begin
             ping_is_full <= ping_is_full;
             pong_is_full <= pong_is_full;
@@ -32495,6 +32499,6 @@ always_ff @ (posedge i_clock) begin
 end
 
 
-endmodule: sparse_mult_
+endmodule: sparse_mult_by_A
 
 `default_nettype wire
