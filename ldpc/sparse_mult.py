@@ -16,6 +16,7 @@ with open('matrix_A.txt', 'r') as fid:
 os.system('rm -f sparse_mult_by_A.sv')
 with open('sparse_mult_by_A.sv', 'w') as fid:
     print(temp.render(
+            postfix='by_A',
             date=time.strftime("%m/%d/%Y"),
             input_width=8,
             output_width=96,
