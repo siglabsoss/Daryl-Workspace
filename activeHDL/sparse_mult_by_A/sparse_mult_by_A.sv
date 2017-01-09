@@ -2362,7 +2362,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_0 <= 1'b0;
         pong_storage_data_0 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             98 / IN_WIDTH: ping_storage_data_0 <= ping_storage_data_0 ^ i_input_data[98 % IN_WIDTH];
             215 / IN_WIDTH: ping_storage_data_0 <= ping_storage_data_0 ^ i_input_data[215 % IN_WIDTH];
@@ -2390,7 +2390,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1 <= 1'b0;
         pong_storage_data_1 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             99 / IN_WIDTH: ping_storage_data_1 <= ping_storage_data_1 ^ i_input_data[99 % IN_WIDTH];
             216 / IN_WIDTH: ping_storage_data_1 <= ping_storage_data_1 ^ i_input_data[216 % IN_WIDTH];
@@ -2418,7 +2418,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_2 <= 1'b0;
         pong_storage_data_2 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             100 / IN_WIDTH: ping_storage_data_2 <= ping_storage_data_2 ^ i_input_data[100 % IN_WIDTH];
             217 / IN_WIDTH: ping_storage_data_2 <= ping_storage_data_2 ^ i_input_data[217 % IN_WIDTH];
@@ -2446,7 +2446,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_3 <= 1'b0;
         pong_storage_data_3 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             101 / IN_WIDTH: ping_storage_data_3 <= ping_storage_data_3 ^ i_input_data[101 % IN_WIDTH];
             218 / IN_WIDTH: ping_storage_data_3 <= ping_storage_data_3 ^ i_input_data[218 % IN_WIDTH];
@@ -2474,7 +2474,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_4 <= 1'b0;
         pong_storage_data_4 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             102 / IN_WIDTH: ping_storage_data_4 <= ping_storage_data_4 ^ i_input_data[102 % IN_WIDTH];
             219 / IN_WIDTH: ping_storage_data_4 <= ping_storage_data_4 ^ i_input_data[219 % IN_WIDTH];
@@ -2502,7 +2502,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_5 <= 1'b0;
         pong_storage_data_5 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             103 / IN_WIDTH: ping_storage_data_5 <= ping_storage_data_5 ^ i_input_data[103 % IN_WIDTH];
             220 / IN_WIDTH: ping_storage_data_5 <= ping_storage_data_5 ^ i_input_data[220 % IN_WIDTH];
@@ -2530,7 +2530,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_6 <= 1'b0;
         pong_storage_data_6 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             104 / IN_WIDTH: ping_storage_data_6 <= ping_storage_data_6 ^ i_input_data[104 % IN_WIDTH];
             221 / IN_WIDTH: ping_storage_data_6 <= ping_storage_data_6 ^ i_input_data[221 % IN_WIDTH];
@@ -2558,7 +2558,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_7 <= 1'b0;
         pong_storage_data_7 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             105 / IN_WIDTH: ping_storage_data_7 <= ping_storage_data_7 ^ i_input_data[105 % IN_WIDTH];
             222 / IN_WIDTH: ping_storage_data_7 <= ping_storage_data_7 ^ i_input_data[222 % IN_WIDTH];
@@ -2586,7 +2586,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_8 <= 1'b0;
         pong_storage_data_8 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             106 / IN_WIDTH: ping_storage_data_8 <= ping_storage_data_8 ^ i_input_data[106 % IN_WIDTH];
             223 / IN_WIDTH: ping_storage_data_8 <= ping_storage_data_8 ^ i_input_data[223 % IN_WIDTH];
@@ -2614,7 +2614,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_9 <= 1'b0;
         pong_storage_data_9 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             107 / IN_WIDTH: ping_storage_data_9 <= ping_storage_data_9 ^ i_input_data[107 % IN_WIDTH];
             224 / IN_WIDTH: ping_storage_data_9 <= ping_storage_data_9 ^ i_input_data[224 % IN_WIDTH];
@@ -2642,7 +2642,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_10 <= 1'b0;
         pong_storage_data_10 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             108 / IN_WIDTH: ping_storage_data_10 <= ping_storage_data_10 ^ i_input_data[108 % IN_WIDTH];
             225 / IN_WIDTH: ping_storage_data_10 <= ping_storage_data_10 ^ i_input_data[225 % IN_WIDTH];
@@ -2670,7 +2670,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_11 <= 1'b0;
         pong_storage_data_11 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             109 / IN_WIDTH: ping_storage_data_11 <= ping_storage_data_11 ^ i_input_data[109 % IN_WIDTH];
             226 / IN_WIDTH: ping_storage_data_11 <= ping_storage_data_11 ^ i_input_data[226 % IN_WIDTH];
@@ -2698,7 +2698,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_12 <= 1'b0;
         pong_storage_data_12 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             110 / IN_WIDTH: ping_storage_data_12 <= ping_storage_data_12 ^ i_input_data[110 % IN_WIDTH];
             227 / IN_WIDTH: ping_storage_data_12 <= ping_storage_data_12 ^ i_input_data[227 % IN_WIDTH];
@@ -2726,7 +2726,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_13 <= 1'b0;
         pong_storage_data_13 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             111 / IN_WIDTH: ping_storage_data_13 <= ping_storage_data_13 ^ i_input_data[111 % IN_WIDTH];
             228 / IN_WIDTH: ping_storage_data_13 <= ping_storage_data_13 ^ i_input_data[228 % IN_WIDTH];
@@ -2754,7 +2754,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_14 <= 1'b0;
         pong_storage_data_14 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             112 / IN_WIDTH: ping_storage_data_14 <= ping_storage_data_14 ^ i_input_data[112 % IN_WIDTH];
             229 / IN_WIDTH: ping_storage_data_14 <= ping_storage_data_14 ^ i_input_data[229 % IN_WIDTH];
@@ -2782,7 +2782,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_15 <= 1'b0;
         pong_storage_data_15 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             113 / IN_WIDTH: ping_storage_data_15 <= ping_storage_data_15 ^ i_input_data[113 % IN_WIDTH];
             230 / IN_WIDTH: ping_storage_data_15 <= ping_storage_data_15 ^ i_input_data[230 % IN_WIDTH];
@@ -2810,7 +2810,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_16 <= 1'b0;
         pong_storage_data_16 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             114 / IN_WIDTH: ping_storage_data_16 <= ping_storage_data_16 ^ i_input_data[114 % IN_WIDTH];
             231 / IN_WIDTH: ping_storage_data_16 <= ping_storage_data_16 ^ i_input_data[231 % IN_WIDTH];
@@ -2838,7 +2838,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_17 <= 1'b0;
         pong_storage_data_17 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             115 / IN_WIDTH: ping_storage_data_17 <= ping_storage_data_17 ^ i_input_data[115 % IN_WIDTH];
             232 / IN_WIDTH: ping_storage_data_17 <= ping_storage_data_17 ^ i_input_data[232 % IN_WIDTH];
@@ -2866,7 +2866,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_18 <= 1'b0;
         pong_storage_data_18 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             116 / IN_WIDTH: ping_storage_data_18 <= ping_storage_data_18 ^ i_input_data[116 % IN_WIDTH];
             233 / IN_WIDTH: ping_storage_data_18 <= ping_storage_data_18 ^ i_input_data[233 % IN_WIDTH];
@@ -2894,7 +2894,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_19 <= 1'b0;
         pong_storage_data_19 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             117 / IN_WIDTH: ping_storage_data_19 <= ping_storage_data_19 ^ i_input_data[117 % IN_WIDTH];
             234 / IN_WIDTH: ping_storage_data_19 <= ping_storage_data_19 ^ i_input_data[234 % IN_WIDTH];
@@ -2922,7 +2922,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_20 <= 1'b0;
         pong_storage_data_20 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             118 / IN_WIDTH: ping_storage_data_20 <= ping_storage_data_20 ^ i_input_data[118 % IN_WIDTH];
             235 / IN_WIDTH: ping_storage_data_20 <= ping_storage_data_20 ^ i_input_data[235 % IN_WIDTH];
@@ -2950,7 +2950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_21 <= 1'b0;
         pong_storage_data_21 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             119 / IN_WIDTH: ping_storage_data_21 <= ping_storage_data_21 ^ i_input_data[119 % IN_WIDTH];
             236 / IN_WIDTH: ping_storage_data_21 <= ping_storage_data_21 ^ i_input_data[236 % IN_WIDTH];
@@ -2978,7 +2978,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_22 <= 1'b0;
         pong_storage_data_22 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             120 / IN_WIDTH: ping_storage_data_22 <= ping_storage_data_22 ^ i_input_data[120 % IN_WIDTH];
             237 / IN_WIDTH: ping_storage_data_22 <= ping_storage_data_22 ^ i_input_data[237 % IN_WIDTH];
@@ -3006,7 +3006,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_23 <= 1'b0;
         pong_storage_data_23 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             121 / IN_WIDTH: ping_storage_data_23 <= ping_storage_data_23 ^ i_input_data[121 % IN_WIDTH];
             238 / IN_WIDTH: ping_storage_data_23 <= ping_storage_data_23 ^ i_input_data[238 % IN_WIDTH];
@@ -3034,7 +3034,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_24 <= 1'b0;
         pong_storage_data_24 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             122 / IN_WIDTH: ping_storage_data_24 <= ping_storage_data_24 ^ i_input_data[122 % IN_WIDTH];
             239 / IN_WIDTH: ping_storage_data_24 <= ping_storage_data_24 ^ i_input_data[239 % IN_WIDTH];
@@ -3062,7 +3062,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_25 <= 1'b0;
         pong_storage_data_25 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             123 / IN_WIDTH: ping_storage_data_25 <= ping_storage_data_25 ^ i_input_data[123 % IN_WIDTH];
             240 / IN_WIDTH: ping_storage_data_25 <= ping_storage_data_25 ^ i_input_data[240 % IN_WIDTH];
@@ -3090,7 +3090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_26 <= 1'b0;
         pong_storage_data_26 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             124 / IN_WIDTH: ping_storage_data_26 <= ping_storage_data_26 ^ i_input_data[124 % IN_WIDTH];
             241 / IN_WIDTH: ping_storage_data_26 <= ping_storage_data_26 ^ i_input_data[241 % IN_WIDTH];
@@ -3118,7 +3118,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_27 <= 1'b0;
         pong_storage_data_27 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             125 / IN_WIDTH: ping_storage_data_27 <= ping_storage_data_27 ^ i_input_data[125 % IN_WIDTH];
             242 / IN_WIDTH: ping_storage_data_27 <= ping_storage_data_27 ^ i_input_data[242 % IN_WIDTH];
@@ -3146,7 +3146,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_28 <= 1'b0;
         pong_storage_data_28 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             126 / IN_WIDTH: ping_storage_data_28 <= ping_storage_data_28 ^ i_input_data[126 % IN_WIDTH];
             243 / IN_WIDTH: ping_storage_data_28 <= ping_storage_data_28 ^ i_input_data[243 % IN_WIDTH];
@@ -3174,7 +3174,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_29 <= 1'b0;
         pong_storage_data_29 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             127 / IN_WIDTH: ping_storage_data_29 <= ping_storage_data_29 ^ i_input_data[127 % IN_WIDTH];
             244 / IN_WIDTH: ping_storage_data_29 <= ping_storage_data_29 ^ i_input_data[244 % IN_WIDTH];
@@ -3202,7 +3202,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_30 <= 1'b0;
         pong_storage_data_30 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             128 / IN_WIDTH: ping_storage_data_30 <= ping_storage_data_30 ^ i_input_data[128 % IN_WIDTH];
             245 / IN_WIDTH: ping_storage_data_30 <= ping_storage_data_30 ^ i_input_data[245 % IN_WIDTH];
@@ -3230,7 +3230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_31 <= 1'b0;
         pong_storage_data_31 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             129 / IN_WIDTH: ping_storage_data_31 <= ping_storage_data_31 ^ i_input_data[129 % IN_WIDTH];
             246 / IN_WIDTH: ping_storage_data_31 <= ping_storage_data_31 ^ i_input_data[246 % IN_WIDTH];
@@ -3258,7 +3258,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_32 <= 1'b0;
         pong_storage_data_32 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             130 / IN_WIDTH: ping_storage_data_32 <= ping_storage_data_32 ^ i_input_data[130 % IN_WIDTH];
             247 / IN_WIDTH: ping_storage_data_32 <= ping_storage_data_32 ^ i_input_data[247 % IN_WIDTH];
@@ -3286,7 +3286,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_33 <= 1'b0;
         pong_storage_data_33 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             131 / IN_WIDTH: ping_storage_data_33 <= ping_storage_data_33 ^ i_input_data[131 % IN_WIDTH];
             248 / IN_WIDTH: ping_storage_data_33 <= ping_storage_data_33 ^ i_input_data[248 % IN_WIDTH];
@@ -3314,7 +3314,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_34 <= 1'b0;
         pong_storage_data_34 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             132 / IN_WIDTH: ping_storage_data_34 <= ping_storage_data_34 ^ i_input_data[132 % IN_WIDTH];
             249 / IN_WIDTH: ping_storage_data_34 <= ping_storage_data_34 ^ i_input_data[249 % IN_WIDTH];
@@ -3342,7 +3342,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_35 <= 1'b0;
         pong_storage_data_35 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             133 / IN_WIDTH: ping_storage_data_35 <= ping_storage_data_35 ^ i_input_data[133 % IN_WIDTH];
             250 / IN_WIDTH: ping_storage_data_35 <= ping_storage_data_35 ^ i_input_data[250 % IN_WIDTH];
@@ -3370,7 +3370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_36 <= 1'b0;
         pong_storage_data_36 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             134 / IN_WIDTH: ping_storage_data_36 <= ping_storage_data_36 ^ i_input_data[134 % IN_WIDTH];
             251 / IN_WIDTH: ping_storage_data_36 <= ping_storage_data_36 ^ i_input_data[251 % IN_WIDTH];
@@ -3398,7 +3398,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_37 <= 1'b0;
         pong_storage_data_37 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             135 / IN_WIDTH: ping_storage_data_37 <= ping_storage_data_37 ^ i_input_data[135 % IN_WIDTH];
             252 / IN_WIDTH: ping_storage_data_37 <= ping_storage_data_37 ^ i_input_data[252 % IN_WIDTH];
@@ -3426,7 +3426,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_38 <= 1'b0;
         pong_storage_data_38 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             136 / IN_WIDTH: ping_storage_data_38 <= ping_storage_data_38 ^ i_input_data[136 % IN_WIDTH];
             253 / IN_WIDTH: ping_storage_data_38 <= ping_storage_data_38 ^ i_input_data[253 % IN_WIDTH];
@@ -3454,7 +3454,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_39 <= 1'b0;
         pong_storage_data_39 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             137 / IN_WIDTH: ping_storage_data_39 <= ping_storage_data_39 ^ i_input_data[137 % IN_WIDTH];
             254 / IN_WIDTH: ping_storage_data_39 <= ping_storage_data_39 ^ i_input_data[254 % IN_WIDTH];
@@ -3482,7 +3482,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_40 <= 1'b0;
         pong_storage_data_40 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             138 / IN_WIDTH: ping_storage_data_40 <= ping_storage_data_40 ^ i_input_data[138 % IN_WIDTH];
             255 / IN_WIDTH: ping_storage_data_40 <= ping_storage_data_40 ^ i_input_data[255 % IN_WIDTH];
@@ -3510,7 +3510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_41 <= 1'b0;
         pong_storage_data_41 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             139 / IN_WIDTH: ping_storage_data_41 <= ping_storage_data_41 ^ i_input_data[139 % IN_WIDTH];
             256 / IN_WIDTH: ping_storage_data_41 <= ping_storage_data_41 ^ i_input_data[256 % IN_WIDTH];
@@ -3538,7 +3538,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_42 <= 1'b0;
         pong_storage_data_42 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             140 / IN_WIDTH: ping_storage_data_42 <= ping_storage_data_42 ^ i_input_data[140 % IN_WIDTH];
             257 / IN_WIDTH: ping_storage_data_42 <= ping_storage_data_42 ^ i_input_data[257 % IN_WIDTH];
@@ -3566,7 +3566,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_43 <= 1'b0;
         pong_storage_data_43 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             141 / IN_WIDTH: ping_storage_data_43 <= ping_storage_data_43 ^ i_input_data[141 % IN_WIDTH];
             258 / IN_WIDTH: ping_storage_data_43 <= ping_storage_data_43 ^ i_input_data[258 % IN_WIDTH];
@@ -3594,7 +3594,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_44 <= 1'b0;
         pong_storage_data_44 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             142 / IN_WIDTH: ping_storage_data_44 <= ping_storage_data_44 ^ i_input_data[142 % IN_WIDTH];
             259 / IN_WIDTH: ping_storage_data_44 <= ping_storage_data_44 ^ i_input_data[259 % IN_WIDTH];
@@ -3622,7 +3622,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_45 <= 1'b0;
         pong_storage_data_45 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             143 / IN_WIDTH: ping_storage_data_45 <= ping_storage_data_45 ^ i_input_data[143 % IN_WIDTH];
             260 / IN_WIDTH: ping_storage_data_45 <= ping_storage_data_45 ^ i_input_data[260 % IN_WIDTH];
@@ -3650,7 +3650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_46 <= 1'b0;
         pong_storage_data_46 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             144 / IN_WIDTH: ping_storage_data_46 <= ping_storage_data_46 ^ i_input_data[144 % IN_WIDTH];
             261 / IN_WIDTH: ping_storage_data_46 <= ping_storage_data_46 ^ i_input_data[261 % IN_WIDTH];
@@ -3678,7 +3678,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_47 <= 1'b0;
         pong_storage_data_47 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             145 / IN_WIDTH: ping_storage_data_47 <= ping_storage_data_47 ^ i_input_data[145 % IN_WIDTH];
             262 / IN_WIDTH: ping_storage_data_47 <= ping_storage_data_47 ^ i_input_data[262 % IN_WIDTH];
@@ -3706,7 +3706,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_48 <= 1'b0;
         pong_storage_data_48 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             146 / IN_WIDTH: ping_storage_data_48 <= ping_storage_data_48 ^ i_input_data[146 % IN_WIDTH];
             263 / IN_WIDTH: ping_storage_data_48 <= ping_storage_data_48 ^ i_input_data[263 % IN_WIDTH];
@@ -3734,7 +3734,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_49 <= 1'b0;
         pong_storage_data_49 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             147 / IN_WIDTH: ping_storage_data_49 <= ping_storage_data_49 ^ i_input_data[147 % IN_WIDTH];
             264 / IN_WIDTH: ping_storage_data_49 <= ping_storage_data_49 ^ i_input_data[264 % IN_WIDTH];
@@ -3762,7 +3762,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_50 <= 1'b0;
         pong_storage_data_50 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             148 / IN_WIDTH: ping_storage_data_50 <= ping_storage_data_50 ^ i_input_data[148 % IN_WIDTH];
             265 / IN_WIDTH: ping_storage_data_50 <= ping_storage_data_50 ^ i_input_data[265 % IN_WIDTH];
@@ -3790,7 +3790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_51 <= 1'b0;
         pong_storage_data_51 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             149 / IN_WIDTH: ping_storage_data_51 <= ping_storage_data_51 ^ i_input_data[149 % IN_WIDTH];
             266 / IN_WIDTH: ping_storage_data_51 <= ping_storage_data_51 ^ i_input_data[266 % IN_WIDTH];
@@ -3818,7 +3818,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_52 <= 1'b0;
         pong_storage_data_52 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             150 / IN_WIDTH: ping_storage_data_52 <= ping_storage_data_52 ^ i_input_data[150 % IN_WIDTH];
             267 / IN_WIDTH: ping_storage_data_52 <= ping_storage_data_52 ^ i_input_data[267 % IN_WIDTH];
@@ -3846,7 +3846,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_53 <= 1'b0;
         pong_storage_data_53 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             151 / IN_WIDTH: ping_storage_data_53 <= ping_storage_data_53 ^ i_input_data[151 % IN_WIDTH];
             268 / IN_WIDTH: ping_storage_data_53 <= ping_storage_data_53 ^ i_input_data[268 % IN_WIDTH];
@@ -3874,7 +3874,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_54 <= 1'b0;
         pong_storage_data_54 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             152 / IN_WIDTH: ping_storage_data_54 <= ping_storage_data_54 ^ i_input_data[152 % IN_WIDTH];
             269 / IN_WIDTH: ping_storage_data_54 <= ping_storage_data_54 ^ i_input_data[269 % IN_WIDTH];
@@ -3902,7 +3902,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_55 <= 1'b0;
         pong_storage_data_55 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             153 / IN_WIDTH: ping_storage_data_55 <= ping_storage_data_55 ^ i_input_data[153 % IN_WIDTH];
             270 / IN_WIDTH: ping_storage_data_55 <= ping_storage_data_55 ^ i_input_data[270 % IN_WIDTH];
@@ -3930,7 +3930,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_56 <= 1'b0;
         pong_storage_data_56 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             154 / IN_WIDTH: ping_storage_data_56 <= ping_storage_data_56 ^ i_input_data[154 % IN_WIDTH];
             271 / IN_WIDTH: ping_storage_data_56 <= ping_storage_data_56 ^ i_input_data[271 % IN_WIDTH];
@@ -3958,7 +3958,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_57 <= 1'b0;
         pong_storage_data_57 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             155 / IN_WIDTH: ping_storage_data_57 <= ping_storage_data_57 ^ i_input_data[155 % IN_WIDTH];
             272 / IN_WIDTH: ping_storage_data_57 <= ping_storage_data_57 ^ i_input_data[272 % IN_WIDTH];
@@ -3986,7 +3986,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_58 <= 1'b0;
         pong_storage_data_58 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             156 / IN_WIDTH: ping_storage_data_58 <= ping_storage_data_58 ^ i_input_data[156 % IN_WIDTH];
             273 / IN_WIDTH: ping_storage_data_58 <= ping_storage_data_58 ^ i_input_data[273 % IN_WIDTH];
@@ -4014,7 +4014,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_59 <= 1'b0;
         pong_storage_data_59 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             157 / IN_WIDTH: ping_storage_data_59 <= ping_storage_data_59 ^ i_input_data[157 % IN_WIDTH];
             274 / IN_WIDTH: ping_storage_data_59 <= ping_storage_data_59 ^ i_input_data[274 % IN_WIDTH];
@@ -4042,7 +4042,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_60 <= 1'b0;
         pong_storage_data_60 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             158 / IN_WIDTH: ping_storage_data_60 <= ping_storage_data_60 ^ i_input_data[158 % IN_WIDTH];
             275 / IN_WIDTH: ping_storage_data_60 <= ping_storage_data_60 ^ i_input_data[275 % IN_WIDTH];
@@ -4070,7 +4070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_61 <= 1'b0;
         pong_storage_data_61 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             159 / IN_WIDTH: ping_storage_data_61 <= ping_storage_data_61 ^ i_input_data[159 % IN_WIDTH];
             276 / IN_WIDTH: ping_storage_data_61 <= ping_storage_data_61 ^ i_input_data[276 % IN_WIDTH];
@@ -4098,7 +4098,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_62 <= 1'b0;
         pong_storage_data_62 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             160 / IN_WIDTH: ping_storage_data_62 <= ping_storage_data_62 ^ i_input_data[160 % IN_WIDTH];
             277 / IN_WIDTH: ping_storage_data_62 <= ping_storage_data_62 ^ i_input_data[277 % IN_WIDTH];
@@ -4126,7 +4126,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_63 <= 1'b0;
         pong_storage_data_63 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             161 / IN_WIDTH: ping_storage_data_63 <= ping_storage_data_63 ^ i_input_data[161 % IN_WIDTH];
             278 / IN_WIDTH: ping_storage_data_63 <= ping_storage_data_63 ^ i_input_data[278 % IN_WIDTH];
@@ -4154,7 +4154,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_64 <= 1'b0;
         pong_storage_data_64 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             162 / IN_WIDTH: ping_storage_data_64 <= ping_storage_data_64 ^ i_input_data[162 % IN_WIDTH];
             279 / IN_WIDTH: ping_storage_data_64 <= ping_storage_data_64 ^ i_input_data[279 % IN_WIDTH];
@@ -4182,7 +4182,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_65 <= 1'b0;
         pong_storage_data_65 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             163 / IN_WIDTH: ping_storage_data_65 <= ping_storage_data_65 ^ i_input_data[163 % IN_WIDTH];
             280 / IN_WIDTH: ping_storage_data_65 <= ping_storage_data_65 ^ i_input_data[280 % IN_WIDTH];
@@ -4210,7 +4210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_66 <= 1'b0;
         pong_storage_data_66 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             164 / IN_WIDTH: ping_storage_data_66 <= ping_storage_data_66 ^ i_input_data[164 % IN_WIDTH];
             281 / IN_WIDTH: ping_storage_data_66 <= ping_storage_data_66 ^ i_input_data[281 % IN_WIDTH];
@@ -4238,7 +4238,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_67 <= 1'b0;
         pong_storage_data_67 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             165 / IN_WIDTH: ping_storage_data_67 <= ping_storage_data_67 ^ i_input_data[165 % IN_WIDTH];
             282 / IN_WIDTH: ping_storage_data_67 <= ping_storage_data_67 ^ i_input_data[282 % IN_WIDTH];
@@ -4266,7 +4266,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_68 <= 1'b0;
         pong_storage_data_68 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             166 / IN_WIDTH: ping_storage_data_68 <= ping_storage_data_68 ^ i_input_data[166 % IN_WIDTH];
             283 / IN_WIDTH: ping_storage_data_68 <= ping_storage_data_68 ^ i_input_data[283 % IN_WIDTH];
@@ -4294,7 +4294,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_69 <= 1'b0;
         pong_storage_data_69 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             167 / IN_WIDTH: ping_storage_data_69 <= ping_storage_data_69 ^ i_input_data[167 % IN_WIDTH];
             284 / IN_WIDTH: ping_storage_data_69 <= ping_storage_data_69 ^ i_input_data[284 % IN_WIDTH];
@@ -4322,7 +4322,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_70 <= 1'b0;
         pong_storage_data_70 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             168 / IN_WIDTH: ping_storage_data_70 <= ping_storage_data_70 ^ i_input_data[168 % IN_WIDTH];
             285 / IN_WIDTH: ping_storage_data_70 <= ping_storage_data_70 ^ i_input_data[285 % IN_WIDTH];
@@ -4350,7 +4350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_71 <= 1'b0;
         pong_storage_data_71 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             169 / IN_WIDTH: ping_storage_data_71 <= ping_storage_data_71 ^ i_input_data[169 % IN_WIDTH];
             286 / IN_WIDTH: ping_storage_data_71 <= ping_storage_data_71 ^ i_input_data[286 % IN_WIDTH];
@@ -4378,7 +4378,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_72 <= 1'b0;
         pong_storage_data_72 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             170 / IN_WIDTH: ping_storage_data_72 <= ping_storage_data_72 ^ i_input_data[170 % IN_WIDTH];
             287 / IN_WIDTH: ping_storage_data_72 <= ping_storage_data_72 ^ i_input_data[287 % IN_WIDTH];
@@ -4406,7 +4406,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_73 <= 1'b0;
         pong_storage_data_73 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             171 / IN_WIDTH: ping_storage_data_73 <= ping_storage_data_73 ^ i_input_data[171 % IN_WIDTH];
             192 / IN_WIDTH: ping_storage_data_73 <= ping_storage_data_73 ^ i_input_data[192 % IN_WIDTH];
@@ -4434,7 +4434,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_74 <= 1'b0;
         pong_storage_data_74 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             172 / IN_WIDTH: ping_storage_data_74 <= ping_storage_data_74 ^ i_input_data[172 % IN_WIDTH];
             193 / IN_WIDTH: ping_storage_data_74 <= ping_storage_data_74 ^ i_input_data[193 % IN_WIDTH];
@@ -4462,7 +4462,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_75 <= 1'b0;
         pong_storage_data_75 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             173 / IN_WIDTH: ping_storage_data_75 <= ping_storage_data_75 ^ i_input_data[173 % IN_WIDTH];
             194 / IN_WIDTH: ping_storage_data_75 <= ping_storage_data_75 ^ i_input_data[194 % IN_WIDTH];
@@ -4490,7 +4490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_76 <= 1'b0;
         pong_storage_data_76 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             174 / IN_WIDTH: ping_storage_data_76 <= ping_storage_data_76 ^ i_input_data[174 % IN_WIDTH];
             195 / IN_WIDTH: ping_storage_data_76 <= ping_storage_data_76 ^ i_input_data[195 % IN_WIDTH];
@@ -4518,7 +4518,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_77 <= 1'b0;
         pong_storage_data_77 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             175 / IN_WIDTH: ping_storage_data_77 <= ping_storage_data_77 ^ i_input_data[175 % IN_WIDTH];
             196 / IN_WIDTH: ping_storage_data_77 <= ping_storage_data_77 ^ i_input_data[196 % IN_WIDTH];
@@ -4546,7 +4546,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_78 <= 1'b0;
         pong_storage_data_78 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             176 / IN_WIDTH: ping_storage_data_78 <= ping_storage_data_78 ^ i_input_data[176 % IN_WIDTH];
             197 / IN_WIDTH: ping_storage_data_78 <= ping_storage_data_78 ^ i_input_data[197 % IN_WIDTH];
@@ -4574,7 +4574,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_79 <= 1'b0;
         pong_storage_data_79 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             177 / IN_WIDTH: ping_storage_data_79 <= ping_storage_data_79 ^ i_input_data[177 % IN_WIDTH];
             198 / IN_WIDTH: ping_storage_data_79 <= ping_storage_data_79 ^ i_input_data[198 % IN_WIDTH];
@@ -4602,7 +4602,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_80 <= 1'b0;
         pong_storage_data_80 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             178 / IN_WIDTH: ping_storage_data_80 <= ping_storage_data_80 ^ i_input_data[178 % IN_WIDTH];
             199 / IN_WIDTH: ping_storage_data_80 <= ping_storage_data_80 ^ i_input_data[199 % IN_WIDTH];
@@ -4630,7 +4630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_81 <= 1'b0;
         pong_storage_data_81 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             179 / IN_WIDTH: ping_storage_data_81 <= ping_storage_data_81 ^ i_input_data[179 % IN_WIDTH];
             200 / IN_WIDTH: ping_storage_data_81 <= ping_storage_data_81 ^ i_input_data[200 % IN_WIDTH];
@@ -4658,7 +4658,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_82 <= 1'b0;
         pong_storage_data_82 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             180 / IN_WIDTH: ping_storage_data_82 <= ping_storage_data_82 ^ i_input_data[180 % IN_WIDTH];
             201 / IN_WIDTH: ping_storage_data_82 <= ping_storage_data_82 ^ i_input_data[201 % IN_WIDTH];
@@ -4686,7 +4686,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_83 <= 1'b0;
         pong_storage_data_83 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             181 / IN_WIDTH: ping_storage_data_83 <= ping_storage_data_83 ^ i_input_data[181 % IN_WIDTH];
             202 / IN_WIDTH: ping_storage_data_83 <= ping_storage_data_83 ^ i_input_data[202 % IN_WIDTH];
@@ -4714,7 +4714,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_84 <= 1'b0;
         pong_storage_data_84 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             182 / IN_WIDTH: ping_storage_data_84 <= ping_storage_data_84 ^ i_input_data[182 % IN_WIDTH];
             203 / IN_WIDTH: ping_storage_data_84 <= ping_storage_data_84 ^ i_input_data[203 % IN_WIDTH];
@@ -4742,7 +4742,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_85 <= 1'b0;
         pong_storage_data_85 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             183 / IN_WIDTH: ping_storage_data_85 <= ping_storage_data_85 ^ i_input_data[183 % IN_WIDTH];
             204 / IN_WIDTH: ping_storage_data_85 <= ping_storage_data_85 ^ i_input_data[204 % IN_WIDTH];
@@ -4770,7 +4770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_86 <= 1'b0;
         pong_storage_data_86 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             184 / IN_WIDTH: ping_storage_data_86 <= ping_storage_data_86 ^ i_input_data[184 % IN_WIDTH];
             205 / IN_WIDTH: ping_storage_data_86 <= ping_storage_data_86 ^ i_input_data[205 % IN_WIDTH];
@@ -4798,7 +4798,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_87 <= 1'b0;
         pong_storage_data_87 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             185 / IN_WIDTH: ping_storage_data_87 <= ping_storage_data_87 ^ i_input_data[185 % IN_WIDTH];
             206 / IN_WIDTH: ping_storage_data_87 <= ping_storage_data_87 ^ i_input_data[206 % IN_WIDTH];
@@ -4826,7 +4826,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_88 <= 1'b0;
         pong_storage_data_88 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             186 / IN_WIDTH: ping_storage_data_88 <= ping_storage_data_88 ^ i_input_data[186 % IN_WIDTH];
             207 / IN_WIDTH: ping_storage_data_88 <= ping_storage_data_88 ^ i_input_data[207 % IN_WIDTH];
@@ -4854,7 +4854,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_89 <= 1'b0;
         pong_storage_data_89 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             187 / IN_WIDTH: ping_storage_data_89 <= ping_storage_data_89 ^ i_input_data[187 % IN_WIDTH];
             208 / IN_WIDTH: ping_storage_data_89 <= ping_storage_data_89 ^ i_input_data[208 % IN_WIDTH];
@@ -4882,7 +4882,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_90 <= 1'b0;
         pong_storage_data_90 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             188 / IN_WIDTH: ping_storage_data_90 <= ping_storage_data_90 ^ i_input_data[188 % IN_WIDTH];
             209 / IN_WIDTH: ping_storage_data_90 <= ping_storage_data_90 ^ i_input_data[209 % IN_WIDTH];
@@ -4910,7 +4910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_91 <= 1'b0;
         pong_storage_data_91 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             189 / IN_WIDTH: ping_storage_data_91 <= ping_storage_data_91 ^ i_input_data[189 % IN_WIDTH];
             210 / IN_WIDTH: ping_storage_data_91 <= ping_storage_data_91 ^ i_input_data[210 % IN_WIDTH];
@@ -4938,7 +4938,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_92 <= 1'b0;
         pong_storage_data_92 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             190 / IN_WIDTH: ping_storage_data_92 <= ping_storage_data_92 ^ i_input_data[190 % IN_WIDTH];
             211 / IN_WIDTH: ping_storage_data_92 <= ping_storage_data_92 ^ i_input_data[211 % IN_WIDTH];
@@ -4966,7 +4966,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_93 <= 1'b0;
         pong_storage_data_93 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             191 / IN_WIDTH: ping_storage_data_93 <= ping_storage_data_93 ^ i_input_data[191 % IN_WIDTH];
             212 / IN_WIDTH: ping_storage_data_93 <= ping_storage_data_93 ^ i_input_data[212 % IN_WIDTH];
@@ -4994,7 +4994,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_94 <= 1'b0;
         pong_storage_data_94 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             96 / IN_WIDTH: ping_storage_data_94 <= ping_storage_data_94 ^ i_input_data[96 % IN_WIDTH];
             213 / IN_WIDTH: ping_storage_data_94 <= ping_storage_data_94 ^ i_input_data[213 % IN_WIDTH];
@@ -5022,7 +5022,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_95 <= 1'b0;
         pong_storage_data_95 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             97 / IN_WIDTH: ping_storage_data_95 <= ping_storage_data_95 ^ i_input_data[97 % IN_WIDTH];
             214 / IN_WIDTH: ping_storage_data_95 <= ping_storage_data_95 ^ i_input_data[214 % IN_WIDTH];
@@ -5050,7 +5050,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_96 <= 1'b0;
         pong_storage_data_96 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             165 / IN_WIDTH: ping_storage_data_96 <= ping_storage_data_96 ^ i_input_data[165 % IN_WIDTH];
             554 / IN_WIDTH: ping_storage_data_96 <= ping_storage_data_96 ^ i_input_data[554 % IN_WIDTH];
@@ -5080,7 +5080,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_97 <= 1'b0;
         pong_storage_data_97 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             166 / IN_WIDTH: ping_storage_data_97 <= ping_storage_data_97 ^ i_input_data[166 % IN_WIDTH];
             555 / IN_WIDTH: ping_storage_data_97 <= ping_storage_data_97 ^ i_input_data[555 % IN_WIDTH];
@@ -5110,7 +5110,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_98 <= 1'b0;
         pong_storage_data_98 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             167 / IN_WIDTH: ping_storage_data_98 <= ping_storage_data_98 ^ i_input_data[167 % IN_WIDTH];
             556 / IN_WIDTH: ping_storage_data_98 <= ping_storage_data_98 ^ i_input_data[556 % IN_WIDTH];
@@ -5140,7 +5140,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_99 <= 1'b0;
         pong_storage_data_99 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             168 / IN_WIDTH: ping_storage_data_99 <= ping_storage_data_99 ^ i_input_data[168 % IN_WIDTH];
             557 / IN_WIDTH: ping_storage_data_99 <= ping_storage_data_99 ^ i_input_data[557 % IN_WIDTH];
@@ -5170,7 +5170,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_100 <= 1'b0;
         pong_storage_data_100 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             169 / IN_WIDTH: ping_storage_data_100 <= ping_storage_data_100 ^ i_input_data[169 % IN_WIDTH];
             558 / IN_WIDTH: ping_storage_data_100 <= ping_storage_data_100 ^ i_input_data[558 % IN_WIDTH];
@@ -5200,7 +5200,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_101 <= 1'b0;
         pong_storage_data_101 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             170 / IN_WIDTH: ping_storage_data_101 <= ping_storage_data_101 ^ i_input_data[170 % IN_WIDTH];
             559 / IN_WIDTH: ping_storage_data_101 <= ping_storage_data_101 ^ i_input_data[559 % IN_WIDTH];
@@ -5230,7 +5230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_102 <= 1'b0;
         pong_storage_data_102 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             171 / IN_WIDTH: ping_storage_data_102 <= ping_storage_data_102 ^ i_input_data[171 % IN_WIDTH];
             560 / IN_WIDTH: ping_storage_data_102 <= ping_storage_data_102 ^ i_input_data[560 % IN_WIDTH];
@@ -5260,7 +5260,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_103 <= 1'b0;
         pong_storage_data_103 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             172 / IN_WIDTH: ping_storage_data_103 <= ping_storage_data_103 ^ i_input_data[172 % IN_WIDTH];
             561 / IN_WIDTH: ping_storage_data_103 <= ping_storage_data_103 ^ i_input_data[561 % IN_WIDTH];
@@ -5290,7 +5290,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_104 <= 1'b0;
         pong_storage_data_104 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             173 / IN_WIDTH: ping_storage_data_104 <= ping_storage_data_104 ^ i_input_data[173 % IN_WIDTH];
             562 / IN_WIDTH: ping_storage_data_104 <= ping_storage_data_104 ^ i_input_data[562 % IN_WIDTH];
@@ -5320,7 +5320,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_105 <= 1'b0;
         pong_storage_data_105 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             174 / IN_WIDTH: ping_storage_data_105 <= ping_storage_data_105 ^ i_input_data[174 % IN_WIDTH];
             563 / IN_WIDTH: ping_storage_data_105 <= ping_storage_data_105 ^ i_input_data[563 % IN_WIDTH];
@@ -5350,7 +5350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_106 <= 1'b0;
         pong_storage_data_106 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             175 / IN_WIDTH: ping_storage_data_106 <= ping_storage_data_106 ^ i_input_data[175 % IN_WIDTH];
             564 / IN_WIDTH: ping_storage_data_106 <= ping_storage_data_106 ^ i_input_data[564 % IN_WIDTH];
@@ -5380,7 +5380,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_107 <= 1'b0;
         pong_storage_data_107 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             176 / IN_WIDTH: ping_storage_data_107 <= ping_storage_data_107 ^ i_input_data[176 % IN_WIDTH];
             565 / IN_WIDTH: ping_storage_data_107 <= ping_storage_data_107 ^ i_input_data[565 % IN_WIDTH];
@@ -5410,7 +5410,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_108 <= 1'b0;
         pong_storage_data_108 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             177 / IN_WIDTH: ping_storage_data_108 <= ping_storage_data_108 ^ i_input_data[177 % IN_WIDTH];
             566 / IN_WIDTH: ping_storage_data_108 <= ping_storage_data_108 ^ i_input_data[566 % IN_WIDTH];
@@ -5440,7 +5440,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_109 <= 1'b0;
         pong_storage_data_109 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             178 / IN_WIDTH: ping_storage_data_109 <= ping_storage_data_109 ^ i_input_data[178 % IN_WIDTH];
             567 / IN_WIDTH: ping_storage_data_109 <= ping_storage_data_109 ^ i_input_data[567 % IN_WIDTH];
@@ -5470,7 +5470,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_110 <= 1'b0;
         pong_storage_data_110 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             179 / IN_WIDTH: ping_storage_data_110 <= ping_storage_data_110 ^ i_input_data[179 % IN_WIDTH];
             568 / IN_WIDTH: ping_storage_data_110 <= ping_storage_data_110 ^ i_input_data[568 % IN_WIDTH];
@@ -5500,7 +5500,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_111 <= 1'b0;
         pong_storage_data_111 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             180 / IN_WIDTH: ping_storage_data_111 <= ping_storage_data_111 ^ i_input_data[180 % IN_WIDTH];
             569 / IN_WIDTH: ping_storage_data_111 <= ping_storage_data_111 ^ i_input_data[569 % IN_WIDTH];
@@ -5530,7 +5530,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_112 <= 1'b0;
         pong_storage_data_112 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             181 / IN_WIDTH: ping_storage_data_112 <= ping_storage_data_112 ^ i_input_data[181 % IN_WIDTH];
             570 / IN_WIDTH: ping_storage_data_112 <= ping_storage_data_112 ^ i_input_data[570 % IN_WIDTH];
@@ -5560,7 +5560,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_113 <= 1'b0;
         pong_storage_data_113 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             182 / IN_WIDTH: ping_storage_data_113 <= ping_storage_data_113 ^ i_input_data[182 % IN_WIDTH];
             571 / IN_WIDTH: ping_storage_data_113 <= ping_storage_data_113 ^ i_input_data[571 % IN_WIDTH];
@@ -5590,7 +5590,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_114 <= 1'b0;
         pong_storage_data_114 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             183 / IN_WIDTH: ping_storage_data_114 <= ping_storage_data_114 ^ i_input_data[183 % IN_WIDTH];
             572 / IN_WIDTH: ping_storage_data_114 <= ping_storage_data_114 ^ i_input_data[572 % IN_WIDTH];
@@ -5620,7 +5620,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_115 <= 1'b0;
         pong_storage_data_115 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             184 / IN_WIDTH: ping_storage_data_115 <= ping_storage_data_115 ^ i_input_data[184 % IN_WIDTH];
             573 / IN_WIDTH: ping_storage_data_115 <= ping_storage_data_115 ^ i_input_data[573 % IN_WIDTH];
@@ -5650,7 +5650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_116 <= 1'b0;
         pong_storage_data_116 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             185 / IN_WIDTH: ping_storage_data_116 <= ping_storage_data_116 ^ i_input_data[185 % IN_WIDTH];
             574 / IN_WIDTH: ping_storage_data_116 <= ping_storage_data_116 ^ i_input_data[574 % IN_WIDTH];
@@ -5680,7 +5680,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_117 <= 1'b0;
         pong_storage_data_117 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             186 / IN_WIDTH: ping_storage_data_117 <= ping_storage_data_117 ^ i_input_data[186 % IN_WIDTH];
             575 / IN_WIDTH: ping_storage_data_117 <= ping_storage_data_117 ^ i_input_data[575 % IN_WIDTH];
@@ -5710,7 +5710,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_118 <= 1'b0;
         pong_storage_data_118 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             187 / IN_WIDTH: ping_storage_data_118 <= ping_storage_data_118 ^ i_input_data[187 % IN_WIDTH];
             480 / IN_WIDTH: ping_storage_data_118 <= ping_storage_data_118 ^ i_input_data[480 % IN_WIDTH];
@@ -5740,7 +5740,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_119 <= 1'b0;
         pong_storage_data_119 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             188 / IN_WIDTH: ping_storage_data_119 <= ping_storage_data_119 ^ i_input_data[188 % IN_WIDTH];
             481 / IN_WIDTH: ping_storage_data_119 <= ping_storage_data_119 ^ i_input_data[481 % IN_WIDTH];
@@ -5770,7 +5770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_120 <= 1'b0;
         pong_storage_data_120 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             189 / IN_WIDTH: ping_storage_data_120 <= ping_storage_data_120 ^ i_input_data[189 % IN_WIDTH];
             482 / IN_WIDTH: ping_storage_data_120 <= ping_storage_data_120 ^ i_input_data[482 % IN_WIDTH];
@@ -5800,7 +5800,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_121 <= 1'b0;
         pong_storage_data_121 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             190 / IN_WIDTH: ping_storage_data_121 <= ping_storage_data_121 ^ i_input_data[190 % IN_WIDTH];
             483 / IN_WIDTH: ping_storage_data_121 <= ping_storage_data_121 ^ i_input_data[483 % IN_WIDTH];
@@ -5830,7 +5830,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_122 <= 1'b0;
         pong_storage_data_122 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             191 / IN_WIDTH: ping_storage_data_122 <= ping_storage_data_122 ^ i_input_data[191 % IN_WIDTH];
             484 / IN_WIDTH: ping_storage_data_122 <= ping_storage_data_122 ^ i_input_data[484 % IN_WIDTH];
@@ -5860,7 +5860,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_123 <= 1'b0;
         pong_storage_data_123 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             96 / IN_WIDTH: ping_storage_data_123 <= ping_storage_data_123 ^ i_input_data[96 % IN_WIDTH];
             485 / IN_WIDTH: ping_storage_data_123 <= ping_storage_data_123 ^ i_input_data[485 % IN_WIDTH];
@@ -5890,7 +5890,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_124 <= 1'b0;
         pong_storage_data_124 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             97 / IN_WIDTH: ping_storage_data_124 <= ping_storage_data_124 ^ i_input_data[97 % IN_WIDTH];
             486 / IN_WIDTH: ping_storage_data_124 <= ping_storage_data_124 ^ i_input_data[486 % IN_WIDTH];
@@ -5920,7 +5920,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_125 <= 1'b0;
         pong_storage_data_125 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             98 / IN_WIDTH: ping_storage_data_125 <= ping_storage_data_125 ^ i_input_data[98 % IN_WIDTH];
             487 / IN_WIDTH: ping_storage_data_125 <= ping_storage_data_125 ^ i_input_data[487 % IN_WIDTH];
@@ -5950,7 +5950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_126 <= 1'b0;
         pong_storage_data_126 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             99 / IN_WIDTH: ping_storage_data_126 <= ping_storage_data_126 ^ i_input_data[99 % IN_WIDTH];
             488 / IN_WIDTH: ping_storage_data_126 <= ping_storage_data_126 ^ i_input_data[488 % IN_WIDTH];
@@ -5980,7 +5980,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_127 <= 1'b0;
         pong_storage_data_127 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             100 / IN_WIDTH: ping_storage_data_127 <= ping_storage_data_127 ^ i_input_data[100 % IN_WIDTH];
             489 / IN_WIDTH: ping_storage_data_127 <= ping_storage_data_127 ^ i_input_data[489 % IN_WIDTH];
@@ -6010,7 +6010,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_128 <= 1'b0;
         pong_storage_data_128 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             101 / IN_WIDTH: ping_storage_data_128 <= ping_storage_data_128 ^ i_input_data[101 % IN_WIDTH];
             490 / IN_WIDTH: ping_storage_data_128 <= ping_storage_data_128 ^ i_input_data[490 % IN_WIDTH];
@@ -6040,7 +6040,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_129 <= 1'b0;
         pong_storage_data_129 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             102 / IN_WIDTH: ping_storage_data_129 <= ping_storage_data_129 ^ i_input_data[102 % IN_WIDTH];
             491 / IN_WIDTH: ping_storage_data_129 <= ping_storage_data_129 ^ i_input_data[491 % IN_WIDTH];
@@ -6070,7 +6070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_130 <= 1'b0;
         pong_storage_data_130 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             103 / IN_WIDTH: ping_storage_data_130 <= ping_storage_data_130 ^ i_input_data[103 % IN_WIDTH];
             492 / IN_WIDTH: ping_storage_data_130 <= ping_storage_data_130 ^ i_input_data[492 % IN_WIDTH];
@@ -6100,7 +6100,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_131 <= 1'b0;
         pong_storage_data_131 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             104 / IN_WIDTH: ping_storage_data_131 <= ping_storage_data_131 ^ i_input_data[104 % IN_WIDTH];
             493 / IN_WIDTH: ping_storage_data_131 <= ping_storage_data_131 ^ i_input_data[493 % IN_WIDTH];
@@ -6130,7 +6130,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_132 <= 1'b0;
         pong_storage_data_132 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             105 / IN_WIDTH: ping_storage_data_132 <= ping_storage_data_132 ^ i_input_data[105 % IN_WIDTH];
             494 / IN_WIDTH: ping_storage_data_132 <= ping_storage_data_132 ^ i_input_data[494 % IN_WIDTH];
@@ -6160,7 +6160,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_133 <= 1'b0;
         pong_storage_data_133 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             106 / IN_WIDTH: ping_storage_data_133 <= ping_storage_data_133 ^ i_input_data[106 % IN_WIDTH];
             495 / IN_WIDTH: ping_storage_data_133 <= ping_storage_data_133 ^ i_input_data[495 % IN_WIDTH];
@@ -6190,7 +6190,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_134 <= 1'b0;
         pong_storage_data_134 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             107 / IN_WIDTH: ping_storage_data_134 <= ping_storage_data_134 ^ i_input_data[107 % IN_WIDTH];
             496 / IN_WIDTH: ping_storage_data_134 <= ping_storage_data_134 ^ i_input_data[496 % IN_WIDTH];
@@ -6220,7 +6220,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_135 <= 1'b0;
         pong_storage_data_135 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             108 / IN_WIDTH: ping_storage_data_135 <= ping_storage_data_135 ^ i_input_data[108 % IN_WIDTH];
             497 / IN_WIDTH: ping_storage_data_135 <= ping_storage_data_135 ^ i_input_data[497 % IN_WIDTH];
@@ -6250,7 +6250,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_136 <= 1'b0;
         pong_storage_data_136 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             109 / IN_WIDTH: ping_storage_data_136 <= ping_storage_data_136 ^ i_input_data[109 % IN_WIDTH];
             498 / IN_WIDTH: ping_storage_data_136 <= ping_storage_data_136 ^ i_input_data[498 % IN_WIDTH];
@@ -6280,7 +6280,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_137 <= 1'b0;
         pong_storage_data_137 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             110 / IN_WIDTH: ping_storage_data_137 <= ping_storage_data_137 ^ i_input_data[110 % IN_WIDTH];
             499 / IN_WIDTH: ping_storage_data_137 <= ping_storage_data_137 ^ i_input_data[499 % IN_WIDTH];
@@ -6310,7 +6310,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_138 <= 1'b0;
         pong_storage_data_138 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             111 / IN_WIDTH: ping_storage_data_138 <= ping_storage_data_138 ^ i_input_data[111 % IN_WIDTH];
             500 / IN_WIDTH: ping_storage_data_138 <= ping_storage_data_138 ^ i_input_data[500 % IN_WIDTH];
@@ -6340,7 +6340,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_139 <= 1'b0;
         pong_storage_data_139 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             112 / IN_WIDTH: ping_storage_data_139 <= ping_storage_data_139 ^ i_input_data[112 % IN_WIDTH];
             501 / IN_WIDTH: ping_storage_data_139 <= ping_storage_data_139 ^ i_input_data[501 % IN_WIDTH];
@@ -6370,7 +6370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_140 <= 1'b0;
         pong_storage_data_140 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             113 / IN_WIDTH: ping_storage_data_140 <= ping_storage_data_140 ^ i_input_data[113 % IN_WIDTH];
             502 / IN_WIDTH: ping_storage_data_140 <= ping_storage_data_140 ^ i_input_data[502 % IN_WIDTH];
@@ -6400,7 +6400,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_141 <= 1'b0;
         pong_storage_data_141 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             114 / IN_WIDTH: ping_storage_data_141 <= ping_storage_data_141 ^ i_input_data[114 % IN_WIDTH];
             503 / IN_WIDTH: ping_storage_data_141 <= ping_storage_data_141 ^ i_input_data[503 % IN_WIDTH];
@@ -6430,7 +6430,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_142 <= 1'b0;
         pong_storage_data_142 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             115 / IN_WIDTH: ping_storage_data_142 <= ping_storage_data_142 ^ i_input_data[115 % IN_WIDTH];
             504 / IN_WIDTH: ping_storage_data_142 <= ping_storage_data_142 ^ i_input_data[504 % IN_WIDTH];
@@ -6460,7 +6460,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_143 <= 1'b0;
         pong_storage_data_143 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             116 / IN_WIDTH: ping_storage_data_143 <= ping_storage_data_143 ^ i_input_data[116 % IN_WIDTH];
             505 / IN_WIDTH: ping_storage_data_143 <= ping_storage_data_143 ^ i_input_data[505 % IN_WIDTH];
@@ -6490,7 +6490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_144 <= 1'b0;
         pong_storage_data_144 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             117 / IN_WIDTH: ping_storage_data_144 <= ping_storage_data_144 ^ i_input_data[117 % IN_WIDTH];
             506 / IN_WIDTH: ping_storage_data_144 <= ping_storage_data_144 ^ i_input_data[506 % IN_WIDTH];
@@ -6520,7 +6520,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_145 <= 1'b0;
         pong_storage_data_145 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             118 / IN_WIDTH: ping_storage_data_145 <= ping_storage_data_145 ^ i_input_data[118 % IN_WIDTH];
             507 / IN_WIDTH: ping_storage_data_145 <= ping_storage_data_145 ^ i_input_data[507 % IN_WIDTH];
@@ -6550,7 +6550,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_146 <= 1'b0;
         pong_storage_data_146 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             119 / IN_WIDTH: ping_storage_data_146 <= ping_storage_data_146 ^ i_input_data[119 % IN_WIDTH];
             508 / IN_WIDTH: ping_storage_data_146 <= ping_storage_data_146 ^ i_input_data[508 % IN_WIDTH];
@@ -6580,7 +6580,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_147 <= 1'b0;
         pong_storage_data_147 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             120 / IN_WIDTH: ping_storage_data_147 <= ping_storage_data_147 ^ i_input_data[120 % IN_WIDTH];
             509 / IN_WIDTH: ping_storage_data_147 <= ping_storage_data_147 ^ i_input_data[509 % IN_WIDTH];
@@ -6610,7 +6610,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_148 <= 1'b0;
         pong_storage_data_148 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             121 / IN_WIDTH: ping_storage_data_148 <= ping_storage_data_148 ^ i_input_data[121 % IN_WIDTH];
             510 / IN_WIDTH: ping_storage_data_148 <= ping_storage_data_148 ^ i_input_data[510 % IN_WIDTH];
@@ -6640,7 +6640,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_149 <= 1'b0;
         pong_storage_data_149 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             122 / IN_WIDTH: ping_storage_data_149 <= ping_storage_data_149 ^ i_input_data[122 % IN_WIDTH];
             511 / IN_WIDTH: ping_storage_data_149 <= ping_storage_data_149 ^ i_input_data[511 % IN_WIDTH];
@@ -6670,7 +6670,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_150 <= 1'b0;
         pong_storage_data_150 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             123 / IN_WIDTH: ping_storage_data_150 <= ping_storage_data_150 ^ i_input_data[123 % IN_WIDTH];
             512 / IN_WIDTH: ping_storage_data_150 <= ping_storage_data_150 ^ i_input_data[512 % IN_WIDTH];
@@ -6700,7 +6700,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_151 <= 1'b0;
         pong_storage_data_151 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             124 / IN_WIDTH: ping_storage_data_151 <= ping_storage_data_151 ^ i_input_data[124 % IN_WIDTH];
             513 / IN_WIDTH: ping_storage_data_151 <= ping_storage_data_151 ^ i_input_data[513 % IN_WIDTH];
@@ -6730,7 +6730,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_152 <= 1'b0;
         pong_storage_data_152 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             125 / IN_WIDTH: ping_storage_data_152 <= ping_storage_data_152 ^ i_input_data[125 % IN_WIDTH];
             514 / IN_WIDTH: ping_storage_data_152 <= ping_storage_data_152 ^ i_input_data[514 % IN_WIDTH];
@@ -6760,7 +6760,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_153 <= 1'b0;
         pong_storage_data_153 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             126 / IN_WIDTH: ping_storage_data_153 <= ping_storage_data_153 ^ i_input_data[126 % IN_WIDTH];
             515 / IN_WIDTH: ping_storage_data_153 <= ping_storage_data_153 ^ i_input_data[515 % IN_WIDTH];
@@ -6790,7 +6790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_154 <= 1'b0;
         pong_storage_data_154 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             127 / IN_WIDTH: ping_storage_data_154 <= ping_storage_data_154 ^ i_input_data[127 % IN_WIDTH];
             516 / IN_WIDTH: ping_storage_data_154 <= ping_storage_data_154 ^ i_input_data[516 % IN_WIDTH];
@@ -6820,7 +6820,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_155 <= 1'b0;
         pong_storage_data_155 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             128 / IN_WIDTH: ping_storage_data_155 <= ping_storage_data_155 ^ i_input_data[128 % IN_WIDTH];
             517 / IN_WIDTH: ping_storage_data_155 <= ping_storage_data_155 ^ i_input_data[517 % IN_WIDTH];
@@ -6850,7 +6850,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_156 <= 1'b0;
         pong_storage_data_156 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             129 / IN_WIDTH: ping_storage_data_156 <= ping_storage_data_156 ^ i_input_data[129 % IN_WIDTH];
             518 / IN_WIDTH: ping_storage_data_156 <= ping_storage_data_156 ^ i_input_data[518 % IN_WIDTH];
@@ -6880,7 +6880,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_157 <= 1'b0;
         pong_storage_data_157 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             130 / IN_WIDTH: ping_storage_data_157 <= ping_storage_data_157 ^ i_input_data[130 % IN_WIDTH];
             519 / IN_WIDTH: ping_storage_data_157 <= ping_storage_data_157 ^ i_input_data[519 % IN_WIDTH];
@@ -6910,7 +6910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_158 <= 1'b0;
         pong_storage_data_158 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             131 / IN_WIDTH: ping_storage_data_158 <= ping_storage_data_158 ^ i_input_data[131 % IN_WIDTH];
             520 / IN_WIDTH: ping_storage_data_158 <= ping_storage_data_158 ^ i_input_data[520 % IN_WIDTH];
@@ -6940,7 +6940,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_159 <= 1'b0;
         pong_storage_data_159 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             132 / IN_WIDTH: ping_storage_data_159 <= ping_storage_data_159 ^ i_input_data[132 % IN_WIDTH];
             521 / IN_WIDTH: ping_storage_data_159 <= ping_storage_data_159 ^ i_input_data[521 % IN_WIDTH];
@@ -6970,7 +6970,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_160 <= 1'b0;
         pong_storage_data_160 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             133 / IN_WIDTH: ping_storage_data_160 <= ping_storage_data_160 ^ i_input_data[133 % IN_WIDTH];
             522 / IN_WIDTH: ping_storage_data_160 <= ping_storage_data_160 ^ i_input_data[522 % IN_WIDTH];
@@ -7000,7 +7000,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_161 <= 1'b0;
         pong_storage_data_161 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             134 / IN_WIDTH: ping_storage_data_161 <= ping_storage_data_161 ^ i_input_data[134 % IN_WIDTH];
             523 / IN_WIDTH: ping_storage_data_161 <= ping_storage_data_161 ^ i_input_data[523 % IN_WIDTH];
@@ -7030,7 +7030,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_162 <= 1'b0;
         pong_storage_data_162 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             135 / IN_WIDTH: ping_storage_data_162 <= ping_storage_data_162 ^ i_input_data[135 % IN_WIDTH];
             524 / IN_WIDTH: ping_storage_data_162 <= ping_storage_data_162 ^ i_input_data[524 % IN_WIDTH];
@@ -7060,7 +7060,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_163 <= 1'b0;
         pong_storage_data_163 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             136 / IN_WIDTH: ping_storage_data_163 <= ping_storage_data_163 ^ i_input_data[136 % IN_WIDTH];
             525 / IN_WIDTH: ping_storage_data_163 <= ping_storage_data_163 ^ i_input_data[525 % IN_WIDTH];
@@ -7090,7 +7090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_164 <= 1'b0;
         pong_storage_data_164 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             137 / IN_WIDTH: ping_storage_data_164 <= ping_storage_data_164 ^ i_input_data[137 % IN_WIDTH];
             526 / IN_WIDTH: ping_storage_data_164 <= ping_storage_data_164 ^ i_input_data[526 % IN_WIDTH];
@@ -7120,7 +7120,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_165 <= 1'b0;
         pong_storage_data_165 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             138 / IN_WIDTH: ping_storage_data_165 <= ping_storage_data_165 ^ i_input_data[138 % IN_WIDTH];
             527 / IN_WIDTH: ping_storage_data_165 <= ping_storage_data_165 ^ i_input_data[527 % IN_WIDTH];
@@ -7150,7 +7150,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_166 <= 1'b0;
         pong_storage_data_166 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             139 / IN_WIDTH: ping_storage_data_166 <= ping_storage_data_166 ^ i_input_data[139 % IN_WIDTH];
             528 / IN_WIDTH: ping_storage_data_166 <= ping_storage_data_166 ^ i_input_data[528 % IN_WIDTH];
@@ -7180,7 +7180,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_167 <= 1'b0;
         pong_storage_data_167 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             140 / IN_WIDTH: ping_storage_data_167 <= ping_storage_data_167 ^ i_input_data[140 % IN_WIDTH];
             529 / IN_WIDTH: ping_storage_data_167 <= ping_storage_data_167 ^ i_input_data[529 % IN_WIDTH];
@@ -7210,7 +7210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_168 <= 1'b0;
         pong_storage_data_168 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             141 / IN_WIDTH: ping_storage_data_168 <= ping_storage_data_168 ^ i_input_data[141 % IN_WIDTH];
             530 / IN_WIDTH: ping_storage_data_168 <= ping_storage_data_168 ^ i_input_data[530 % IN_WIDTH];
@@ -7240,7 +7240,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_169 <= 1'b0;
         pong_storage_data_169 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             142 / IN_WIDTH: ping_storage_data_169 <= ping_storage_data_169 ^ i_input_data[142 % IN_WIDTH];
             531 / IN_WIDTH: ping_storage_data_169 <= ping_storage_data_169 ^ i_input_data[531 % IN_WIDTH];
@@ -7270,7 +7270,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_170 <= 1'b0;
         pong_storage_data_170 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             143 / IN_WIDTH: ping_storage_data_170 <= ping_storage_data_170 ^ i_input_data[143 % IN_WIDTH];
             532 / IN_WIDTH: ping_storage_data_170 <= ping_storage_data_170 ^ i_input_data[532 % IN_WIDTH];
@@ -7300,7 +7300,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_171 <= 1'b0;
         pong_storage_data_171 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             144 / IN_WIDTH: ping_storage_data_171 <= ping_storage_data_171 ^ i_input_data[144 % IN_WIDTH];
             533 / IN_WIDTH: ping_storage_data_171 <= ping_storage_data_171 ^ i_input_data[533 % IN_WIDTH];
@@ -7330,7 +7330,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_172 <= 1'b0;
         pong_storage_data_172 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             145 / IN_WIDTH: ping_storage_data_172 <= ping_storage_data_172 ^ i_input_data[145 % IN_WIDTH];
             534 / IN_WIDTH: ping_storage_data_172 <= ping_storage_data_172 ^ i_input_data[534 % IN_WIDTH];
@@ -7360,7 +7360,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_173 <= 1'b0;
         pong_storage_data_173 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             146 / IN_WIDTH: ping_storage_data_173 <= ping_storage_data_173 ^ i_input_data[146 % IN_WIDTH];
             535 / IN_WIDTH: ping_storage_data_173 <= ping_storage_data_173 ^ i_input_data[535 % IN_WIDTH];
@@ -7390,7 +7390,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_174 <= 1'b0;
         pong_storage_data_174 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             147 / IN_WIDTH: ping_storage_data_174 <= ping_storage_data_174 ^ i_input_data[147 % IN_WIDTH];
             536 / IN_WIDTH: ping_storage_data_174 <= ping_storage_data_174 ^ i_input_data[536 % IN_WIDTH];
@@ -7420,7 +7420,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_175 <= 1'b0;
         pong_storage_data_175 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             148 / IN_WIDTH: ping_storage_data_175 <= ping_storage_data_175 ^ i_input_data[148 % IN_WIDTH];
             537 / IN_WIDTH: ping_storage_data_175 <= ping_storage_data_175 ^ i_input_data[537 % IN_WIDTH];
@@ -7450,7 +7450,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_176 <= 1'b0;
         pong_storage_data_176 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             149 / IN_WIDTH: ping_storage_data_176 <= ping_storage_data_176 ^ i_input_data[149 % IN_WIDTH];
             538 / IN_WIDTH: ping_storage_data_176 <= ping_storage_data_176 ^ i_input_data[538 % IN_WIDTH];
@@ -7480,7 +7480,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_177 <= 1'b0;
         pong_storage_data_177 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             150 / IN_WIDTH: ping_storage_data_177 <= ping_storage_data_177 ^ i_input_data[150 % IN_WIDTH];
             539 / IN_WIDTH: ping_storage_data_177 <= ping_storage_data_177 ^ i_input_data[539 % IN_WIDTH];
@@ -7510,7 +7510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_178 <= 1'b0;
         pong_storage_data_178 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             151 / IN_WIDTH: ping_storage_data_178 <= ping_storage_data_178 ^ i_input_data[151 % IN_WIDTH];
             540 / IN_WIDTH: ping_storage_data_178 <= ping_storage_data_178 ^ i_input_data[540 % IN_WIDTH];
@@ -7540,7 +7540,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_179 <= 1'b0;
         pong_storage_data_179 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             152 / IN_WIDTH: ping_storage_data_179 <= ping_storage_data_179 ^ i_input_data[152 % IN_WIDTH];
             541 / IN_WIDTH: ping_storage_data_179 <= ping_storage_data_179 ^ i_input_data[541 % IN_WIDTH];
@@ -7570,7 +7570,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_180 <= 1'b0;
         pong_storage_data_180 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             153 / IN_WIDTH: ping_storage_data_180 <= ping_storage_data_180 ^ i_input_data[153 % IN_WIDTH];
             542 / IN_WIDTH: ping_storage_data_180 <= ping_storage_data_180 ^ i_input_data[542 % IN_WIDTH];
@@ -7600,7 +7600,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_181 <= 1'b0;
         pong_storage_data_181 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             154 / IN_WIDTH: ping_storage_data_181 <= ping_storage_data_181 ^ i_input_data[154 % IN_WIDTH];
             543 / IN_WIDTH: ping_storage_data_181 <= ping_storage_data_181 ^ i_input_data[543 % IN_WIDTH];
@@ -7630,7 +7630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_182 <= 1'b0;
         pong_storage_data_182 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             155 / IN_WIDTH: ping_storage_data_182 <= ping_storage_data_182 ^ i_input_data[155 % IN_WIDTH];
             544 / IN_WIDTH: ping_storage_data_182 <= ping_storage_data_182 ^ i_input_data[544 % IN_WIDTH];
@@ -7660,7 +7660,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_183 <= 1'b0;
         pong_storage_data_183 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             156 / IN_WIDTH: ping_storage_data_183 <= ping_storage_data_183 ^ i_input_data[156 % IN_WIDTH];
             545 / IN_WIDTH: ping_storage_data_183 <= ping_storage_data_183 ^ i_input_data[545 % IN_WIDTH];
@@ -7690,7 +7690,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_184 <= 1'b0;
         pong_storage_data_184 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             157 / IN_WIDTH: ping_storage_data_184 <= ping_storage_data_184 ^ i_input_data[157 % IN_WIDTH];
             546 / IN_WIDTH: ping_storage_data_184 <= ping_storage_data_184 ^ i_input_data[546 % IN_WIDTH];
@@ -7720,7 +7720,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_185 <= 1'b0;
         pong_storage_data_185 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             158 / IN_WIDTH: ping_storage_data_185 <= ping_storage_data_185 ^ i_input_data[158 % IN_WIDTH];
             547 / IN_WIDTH: ping_storage_data_185 <= ping_storage_data_185 ^ i_input_data[547 % IN_WIDTH];
@@ -7750,7 +7750,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_186 <= 1'b0;
         pong_storage_data_186 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             159 / IN_WIDTH: ping_storage_data_186 <= ping_storage_data_186 ^ i_input_data[159 % IN_WIDTH];
             548 / IN_WIDTH: ping_storage_data_186 <= ping_storage_data_186 ^ i_input_data[548 % IN_WIDTH];
@@ -7780,7 +7780,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_187 <= 1'b0;
         pong_storage_data_187 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             160 / IN_WIDTH: ping_storage_data_187 <= ping_storage_data_187 ^ i_input_data[160 % IN_WIDTH];
             549 / IN_WIDTH: ping_storage_data_187 <= ping_storage_data_187 ^ i_input_data[549 % IN_WIDTH];
@@ -7810,7 +7810,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_188 <= 1'b0;
         pong_storage_data_188 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             161 / IN_WIDTH: ping_storage_data_188 <= ping_storage_data_188 ^ i_input_data[161 % IN_WIDTH];
             550 / IN_WIDTH: ping_storage_data_188 <= ping_storage_data_188 ^ i_input_data[550 % IN_WIDTH];
@@ -7840,7 +7840,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_189 <= 1'b0;
         pong_storage_data_189 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             162 / IN_WIDTH: ping_storage_data_189 <= ping_storage_data_189 ^ i_input_data[162 % IN_WIDTH];
             551 / IN_WIDTH: ping_storage_data_189 <= ping_storage_data_189 ^ i_input_data[551 % IN_WIDTH];
@@ -7870,7 +7870,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_190 <= 1'b0;
         pong_storage_data_190 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             163 / IN_WIDTH: ping_storage_data_190 <= ping_storage_data_190 ^ i_input_data[163 % IN_WIDTH];
             552 / IN_WIDTH: ping_storage_data_190 <= ping_storage_data_190 ^ i_input_data[552 % IN_WIDTH];
@@ -7900,7 +7900,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_191 <= 1'b0;
         pong_storage_data_191 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             164 / IN_WIDTH: ping_storage_data_191 <= ping_storage_data_191 ^ i_input_data[164 % IN_WIDTH];
             553 / IN_WIDTH: ping_storage_data_191 <= ping_storage_data_191 ^ i_input_data[553 % IN_WIDTH];
@@ -7930,7 +7930,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_192 <= 1'b0;
         pong_storage_data_192 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             360 / IN_WIDTH: ping_storage_data_192 <= ping_storage_data_192 ^ i_input_data[360 % IN_WIDTH];
             458 / IN_WIDTH: ping_storage_data_192 <= ping_storage_data_192 ^ i_input_data[458 % IN_WIDTH];
@@ -7960,7 +7960,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_193 <= 1'b0;
         pong_storage_data_193 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             361 / IN_WIDTH: ping_storage_data_193 <= ping_storage_data_193 ^ i_input_data[361 % IN_WIDTH];
             459 / IN_WIDTH: ping_storage_data_193 <= ping_storage_data_193 ^ i_input_data[459 % IN_WIDTH];
@@ -7990,7 +7990,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_194 <= 1'b0;
         pong_storage_data_194 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             362 / IN_WIDTH: ping_storage_data_194 <= ping_storage_data_194 ^ i_input_data[362 % IN_WIDTH];
             460 / IN_WIDTH: ping_storage_data_194 <= ping_storage_data_194 ^ i_input_data[460 % IN_WIDTH];
@@ -8020,7 +8020,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_195 <= 1'b0;
         pong_storage_data_195 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             363 / IN_WIDTH: ping_storage_data_195 <= ping_storage_data_195 ^ i_input_data[363 % IN_WIDTH];
             461 / IN_WIDTH: ping_storage_data_195 <= ping_storage_data_195 ^ i_input_data[461 % IN_WIDTH];
@@ -8050,7 +8050,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_196 <= 1'b0;
         pong_storage_data_196 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             364 / IN_WIDTH: ping_storage_data_196 <= ping_storage_data_196 ^ i_input_data[364 % IN_WIDTH];
             462 / IN_WIDTH: ping_storage_data_196 <= ping_storage_data_196 ^ i_input_data[462 % IN_WIDTH];
@@ -8080,7 +8080,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_197 <= 1'b0;
         pong_storage_data_197 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             365 / IN_WIDTH: ping_storage_data_197 <= ping_storage_data_197 ^ i_input_data[365 % IN_WIDTH];
             463 / IN_WIDTH: ping_storage_data_197 <= ping_storage_data_197 ^ i_input_data[463 % IN_WIDTH];
@@ -8110,7 +8110,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_198 <= 1'b0;
         pong_storage_data_198 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             366 / IN_WIDTH: ping_storage_data_198 <= ping_storage_data_198 ^ i_input_data[366 % IN_WIDTH];
             464 / IN_WIDTH: ping_storage_data_198 <= ping_storage_data_198 ^ i_input_data[464 % IN_WIDTH];
@@ -8140,7 +8140,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_199 <= 1'b0;
         pong_storage_data_199 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             367 / IN_WIDTH: ping_storage_data_199 <= ping_storage_data_199 ^ i_input_data[367 % IN_WIDTH];
             465 / IN_WIDTH: ping_storage_data_199 <= ping_storage_data_199 ^ i_input_data[465 % IN_WIDTH];
@@ -8170,7 +8170,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_200 <= 1'b0;
         pong_storage_data_200 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             368 / IN_WIDTH: ping_storage_data_200 <= ping_storage_data_200 ^ i_input_data[368 % IN_WIDTH];
             466 / IN_WIDTH: ping_storage_data_200 <= ping_storage_data_200 ^ i_input_data[466 % IN_WIDTH];
@@ -8200,7 +8200,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_201 <= 1'b0;
         pong_storage_data_201 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             369 / IN_WIDTH: ping_storage_data_201 <= ping_storage_data_201 ^ i_input_data[369 % IN_WIDTH];
             467 / IN_WIDTH: ping_storage_data_201 <= ping_storage_data_201 ^ i_input_data[467 % IN_WIDTH];
@@ -8230,7 +8230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_202 <= 1'b0;
         pong_storage_data_202 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             370 / IN_WIDTH: ping_storage_data_202 <= ping_storage_data_202 ^ i_input_data[370 % IN_WIDTH];
             468 / IN_WIDTH: ping_storage_data_202 <= ping_storage_data_202 ^ i_input_data[468 % IN_WIDTH];
@@ -8260,7 +8260,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_203 <= 1'b0;
         pong_storage_data_203 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             371 / IN_WIDTH: ping_storage_data_203 <= ping_storage_data_203 ^ i_input_data[371 % IN_WIDTH];
             469 / IN_WIDTH: ping_storage_data_203 <= ping_storage_data_203 ^ i_input_data[469 % IN_WIDTH];
@@ -8290,7 +8290,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_204 <= 1'b0;
         pong_storage_data_204 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             372 / IN_WIDTH: ping_storage_data_204 <= ping_storage_data_204 ^ i_input_data[372 % IN_WIDTH];
             470 / IN_WIDTH: ping_storage_data_204 <= ping_storage_data_204 ^ i_input_data[470 % IN_WIDTH];
@@ -8320,7 +8320,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_205 <= 1'b0;
         pong_storage_data_205 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             373 / IN_WIDTH: ping_storage_data_205 <= ping_storage_data_205 ^ i_input_data[373 % IN_WIDTH];
             471 / IN_WIDTH: ping_storage_data_205 <= ping_storage_data_205 ^ i_input_data[471 % IN_WIDTH];
@@ -8350,7 +8350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_206 <= 1'b0;
         pong_storage_data_206 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             374 / IN_WIDTH: ping_storage_data_206 <= ping_storage_data_206 ^ i_input_data[374 % IN_WIDTH];
             472 / IN_WIDTH: ping_storage_data_206 <= ping_storage_data_206 ^ i_input_data[472 % IN_WIDTH];
@@ -8380,7 +8380,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_207 <= 1'b0;
         pong_storage_data_207 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             375 / IN_WIDTH: ping_storage_data_207 <= ping_storage_data_207 ^ i_input_data[375 % IN_WIDTH];
             473 / IN_WIDTH: ping_storage_data_207 <= ping_storage_data_207 ^ i_input_data[473 % IN_WIDTH];
@@ -8410,7 +8410,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_208 <= 1'b0;
         pong_storage_data_208 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             376 / IN_WIDTH: ping_storage_data_208 <= ping_storage_data_208 ^ i_input_data[376 % IN_WIDTH];
             474 / IN_WIDTH: ping_storage_data_208 <= ping_storage_data_208 ^ i_input_data[474 % IN_WIDTH];
@@ -8440,7 +8440,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_209 <= 1'b0;
         pong_storage_data_209 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             377 / IN_WIDTH: ping_storage_data_209 <= ping_storage_data_209 ^ i_input_data[377 % IN_WIDTH];
             475 / IN_WIDTH: ping_storage_data_209 <= ping_storage_data_209 ^ i_input_data[475 % IN_WIDTH];
@@ -8470,7 +8470,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_210 <= 1'b0;
         pong_storage_data_210 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             378 / IN_WIDTH: ping_storage_data_210 <= ping_storage_data_210 ^ i_input_data[378 % IN_WIDTH];
             476 / IN_WIDTH: ping_storage_data_210 <= ping_storage_data_210 ^ i_input_data[476 % IN_WIDTH];
@@ -8500,7 +8500,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_211 <= 1'b0;
         pong_storage_data_211 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             379 / IN_WIDTH: ping_storage_data_211 <= ping_storage_data_211 ^ i_input_data[379 % IN_WIDTH];
             477 / IN_WIDTH: ping_storage_data_211 <= ping_storage_data_211 ^ i_input_data[477 % IN_WIDTH];
@@ -8530,7 +8530,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_212 <= 1'b0;
         pong_storage_data_212 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             380 / IN_WIDTH: ping_storage_data_212 <= ping_storage_data_212 ^ i_input_data[380 % IN_WIDTH];
             478 / IN_WIDTH: ping_storage_data_212 <= ping_storage_data_212 ^ i_input_data[478 % IN_WIDTH];
@@ -8560,7 +8560,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_213 <= 1'b0;
         pong_storage_data_213 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             381 / IN_WIDTH: ping_storage_data_213 <= ping_storage_data_213 ^ i_input_data[381 % IN_WIDTH];
             479 / IN_WIDTH: ping_storage_data_213 <= ping_storage_data_213 ^ i_input_data[479 % IN_WIDTH];
@@ -8590,7 +8590,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_214 <= 1'b0;
         pong_storage_data_214 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             382 / IN_WIDTH: ping_storage_data_214 <= ping_storage_data_214 ^ i_input_data[382 % IN_WIDTH];
             384 / IN_WIDTH: ping_storage_data_214 <= ping_storage_data_214 ^ i_input_data[384 % IN_WIDTH];
@@ -8620,7 +8620,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_215 <= 1'b0;
         pong_storage_data_215 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             383 / IN_WIDTH: ping_storage_data_215 <= ping_storage_data_215 ^ i_input_data[383 % IN_WIDTH];
             385 / IN_WIDTH: ping_storage_data_215 <= ping_storage_data_215 ^ i_input_data[385 % IN_WIDTH];
@@ -8650,7 +8650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_216 <= 1'b0;
         pong_storage_data_216 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             288 / IN_WIDTH: ping_storage_data_216 <= ping_storage_data_216 ^ i_input_data[288 % IN_WIDTH];
             386 / IN_WIDTH: ping_storage_data_216 <= ping_storage_data_216 ^ i_input_data[386 % IN_WIDTH];
@@ -8680,7 +8680,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_217 <= 1'b0;
         pong_storage_data_217 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             289 / IN_WIDTH: ping_storage_data_217 <= ping_storage_data_217 ^ i_input_data[289 % IN_WIDTH];
             387 / IN_WIDTH: ping_storage_data_217 <= ping_storage_data_217 ^ i_input_data[387 % IN_WIDTH];
@@ -8710,7 +8710,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_218 <= 1'b0;
         pong_storage_data_218 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             290 / IN_WIDTH: ping_storage_data_218 <= ping_storage_data_218 ^ i_input_data[290 % IN_WIDTH];
             388 / IN_WIDTH: ping_storage_data_218 <= ping_storage_data_218 ^ i_input_data[388 % IN_WIDTH];
@@ -8740,7 +8740,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_219 <= 1'b0;
         pong_storage_data_219 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             291 / IN_WIDTH: ping_storage_data_219 <= ping_storage_data_219 ^ i_input_data[291 % IN_WIDTH];
             389 / IN_WIDTH: ping_storage_data_219 <= ping_storage_data_219 ^ i_input_data[389 % IN_WIDTH];
@@ -8770,7 +8770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_220 <= 1'b0;
         pong_storage_data_220 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             292 / IN_WIDTH: ping_storage_data_220 <= ping_storage_data_220 ^ i_input_data[292 % IN_WIDTH];
             390 / IN_WIDTH: ping_storage_data_220 <= ping_storage_data_220 ^ i_input_data[390 % IN_WIDTH];
@@ -8800,7 +8800,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_221 <= 1'b0;
         pong_storage_data_221 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             293 / IN_WIDTH: ping_storage_data_221 <= ping_storage_data_221 ^ i_input_data[293 % IN_WIDTH];
             391 / IN_WIDTH: ping_storage_data_221 <= ping_storage_data_221 ^ i_input_data[391 % IN_WIDTH];
@@ -8830,7 +8830,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_222 <= 1'b0;
         pong_storage_data_222 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             294 / IN_WIDTH: ping_storage_data_222 <= ping_storage_data_222 ^ i_input_data[294 % IN_WIDTH];
             392 / IN_WIDTH: ping_storage_data_222 <= ping_storage_data_222 ^ i_input_data[392 % IN_WIDTH];
@@ -8860,7 +8860,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_223 <= 1'b0;
         pong_storage_data_223 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             295 / IN_WIDTH: ping_storage_data_223 <= ping_storage_data_223 ^ i_input_data[295 % IN_WIDTH];
             393 / IN_WIDTH: ping_storage_data_223 <= ping_storage_data_223 ^ i_input_data[393 % IN_WIDTH];
@@ -8890,7 +8890,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_224 <= 1'b0;
         pong_storage_data_224 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             296 / IN_WIDTH: ping_storage_data_224 <= ping_storage_data_224 ^ i_input_data[296 % IN_WIDTH];
             394 / IN_WIDTH: ping_storage_data_224 <= ping_storage_data_224 ^ i_input_data[394 % IN_WIDTH];
@@ -8920,7 +8920,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_225 <= 1'b0;
         pong_storage_data_225 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             297 / IN_WIDTH: ping_storage_data_225 <= ping_storage_data_225 ^ i_input_data[297 % IN_WIDTH];
             395 / IN_WIDTH: ping_storage_data_225 <= ping_storage_data_225 ^ i_input_data[395 % IN_WIDTH];
@@ -8950,7 +8950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_226 <= 1'b0;
         pong_storage_data_226 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             298 / IN_WIDTH: ping_storage_data_226 <= ping_storage_data_226 ^ i_input_data[298 % IN_WIDTH];
             396 / IN_WIDTH: ping_storage_data_226 <= ping_storage_data_226 ^ i_input_data[396 % IN_WIDTH];
@@ -8980,7 +8980,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_227 <= 1'b0;
         pong_storage_data_227 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             299 / IN_WIDTH: ping_storage_data_227 <= ping_storage_data_227 ^ i_input_data[299 % IN_WIDTH];
             397 / IN_WIDTH: ping_storage_data_227 <= ping_storage_data_227 ^ i_input_data[397 % IN_WIDTH];
@@ -9010,7 +9010,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_228 <= 1'b0;
         pong_storage_data_228 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             300 / IN_WIDTH: ping_storage_data_228 <= ping_storage_data_228 ^ i_input_data[300 % IN_WIDTH];
             398 / IN_WIDTH: ping_storage_data_228 <= ping_storage_data_228 ^ i_input_data[398 % IN_WIDTH];
@@ -9040,7 +9040,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_229 <= 1'b0;
         pong_storage_data_229 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             301 / IN_WIDTH: ping_storage_data_229 <= ping_storage_data_229 ^ i_input_data[301 % IN_WIDTH];
             399 / IN_WIDTH: ping_storage_data_229 <= ping_storage_data_229 ^ i_input_data[399 % IN_WIDTH];
@@ -9070,7 +9070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_230 <= 1'b0;
         pong_storage_data_230 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             302 / IN_WIDTH: ping_storage_data_230 <= ping_storage_data_230 ^ i_input_data[302 % IN_WIDTH];
             400 / IN_WIDTH: ping_storage_data_230 <= ping_storage_data_230 ^ i_input_data[400 % IN_WIDTH];
@@ -9100,7 +9100,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_231 <= 1'b0;
         pong_storage_data_231 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             303 / IN_WIDTH: ping_storage_data_231 <= ping_storage_data_231 ^ i_input_data[303 % IN_WIDTH];
             401 / IN_WIDTH: ping_storage_data_231 <= ping_storage_data_231 ^ i_input_data[401 % IN_WIDTH];
@@ -9130,7 +9130,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_232 <= 1'b0;
         pong_storage_data_232 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             304 / IN_WIDTH: ping_storage_data_232 <= ping_storage_data_232 ^ i_input_data[304 % IN_WIDTH];
             402 / IN_WIDTH: ping_storage_data_232 <= ping_storage_data_232 ^ i_input_data[402 % IN_WIDTH];
@@ -9160,7 +9160,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_233 <= 1'b0;
         pong_storage_data_233 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             305 / IN_WIDTH: ping_storage_data_233 <= ping_storage_data_233 ^ i_input_data[305 % IN_WIDTH];
             403 / IN_WIDTH: ping_storage_data_233 <= ping_storage_data_233 ^ i_input_data[403 % IN_WIDTH];
@@ -9190,7 +9190,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_234 <= 1'b0;
         pong_storage_data_234 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             306 / IN_WIDTH: ping_storage_data_234 <= ping_storage_data_234 ^ i_input_data[306 % IN_WIDTH];
             404 / IN_WIDTH: ping_storage_data_234 <= ping_storage_data_234 ^ i_input_data[404 % IN_WIDTH];
@@ -9220,7 +9220,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_235 <= 1'b0;
         pong_storage_data_235 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             307 / IN_WIDTH: ping_storage_data_235 <= ping_storage_data_235 ^ i_input_data[307 % IN_WIDTH];
             405 / IN_WIDTH: ping_storage_data_235 <= ping_storage_data_235 ^ i_input_data[405 % IN_WIDTH];
@@ -9250,7 +9250,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_236 <= 1'b0;
         pong_storage_data_236 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             308 / IN_WIDTH: ping_storage_data_236 <= ping_storage_data_236 ^ i_input_data[308 % IN_WIDTH];
             406 / IN_WIDTH: ping_storage_data_236 <= ping_storage_data_236 ^ i_input_data[406 % IN_WIDTH];
@@ -9280,7 +9280,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_237 <= 1'b0;
         pong_storage_data_237 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             309 / IN_WIDTH: ping_storage_data_237 <= ping_storage_data_237 ^ i_input_data[309 % IN_WIDTH];
             407 / IN_WIDTH: ping_storage_data_237 <= ping_storage_data_237 ^ i_input_data[407 % IN_WIDTH];
@@ -9310,7 +9310,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_238 <= 1'b0;
         pong_storage_data_238 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             310 / IN_WIDTH: ping_storage_data_238 <= ping_storage_data_238 ^ i_input_data[310 % IN_WIDTH];
             408 / IN_WIDTH: ping_storage_data_238 <= ping_storage_data_238 ^ i_input_data[408 % IN_WIDTH];
@@ -9340,7 +9340,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_239 <= 1'b0;
         pong_storage_data_239 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             311 / IN_WIDTH: ping_storage_data_239 <= ping_storage_data_239 ^ i_input_data[311 % IN_WIDTH];
             409 / IN_WIDTH: ping_storage_data_239 <= ping_storage_data_239 ^ i_input_data[409 % IN_WIDTH];
@@ -9370,7 +9370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_240 <= 1'b0;
         pong_storage_data_240 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             312 / IN_WIDTH: ping_storage_data_240 <= ping_storage_data_240 ^ i_input_data[312 % IN_WIDTH];
             410 / IN_WIDTH: ping_storage_data_240 <= ping_storage_data_240 ^ i_input_data[410 % IN_WIDTH];
@@ -9400,7 +9400,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_241 <= 1'b0;
         pong_storage_data_241 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             313 / IN_WIDTH: ping_storage_data_241 <= ping_storage_data_241 ^ i_input_data[313 % IN_WIDTH];
             411 / IN_WIDTH: ping_storage_data_241 <= ping_storage_data_241 ^ i_input_data[411 % IN_WIDTH];
@@ -9430,7 +9430,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_242 <= 1'b0;
         pong_storage_data_242 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             314 / IN_WIDTH: ping_storage_data_242 <= ping_storage_data_242 ^ i_input_data[314 % IN_WIDTH];
             412 / IN_WIDTH: ping_storage_data_242 <= ping_storage_data_242 ^ i_input_data[412 % IN_WIDTH];
@@ -9460,7 +9460,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_243 <= 1'b0;
         pong_storage_data_243 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             315 / IN_WIDTH: ping_storage_data_243 <= ping_storage_data_243 ^ i_input_data[315 % IN_WIDTH];
             413 / IN_WIDTH: ping_storage_data_243 <= ping_storage_data_243 ^ i_input_data[413 % IN_WIDTH];
@@ -9490,7 +9490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_244 <= 1'b0;
         pong_storage_data_244 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             316 / IN_WIDTH: ping_storage_data_244 <= ping_storage_data_244 ^ i_input_data[316 % IN_WIDTH];
             414 / IN_WIDTH: ping_storage_data_244 <= ping_storage_data_244 ^ i_input_data[414 % IN_WIDTH];
@@ -9520,7 +9520,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_245 <= 1'b0;
         pong_storage_data_245 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             317 / IN_WIDTH: ping_storage_data_245 <= ping_storage_data_245 ^ i_input_data[317 % IN_WIDTH];
             415 / IN_WIDTH: ping_storage_data_245 <= ping_storage_data_245 ^ i_input_data[415 % IN_WIDTH];
@@ -9550,7 +9550,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_246 <= 1'b0;
         pong_storage_data_246 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             318 / IN_WIDTH: ping_storage_data_246 <= ping_storage_data_246 ^ i_input_data[318 % IN_WIDTH];
             416 / IN_WIDTH: ping_storage_data_246 <= ping_storage_data_246 ^ i_input_data[416 % IN_WIDTH];
@@ -9580,7 +9580,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_247 <= 1'b0;
         pong_storage_data_247 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             319 / IN_WIDTH: ping_storage_data_247 <= ping_storage_data_247 ^ i_input_data[319 % IN_WIDTH];
             417 / IN_WIDTH: ping_storage_data_247 <= ping_storage_data_247 ^ i_input_data[417 % IN_WIDTH];
@@ -9610,7 +9610,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_248 <= 1'b0;
         pong_storage_data_248 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             320 / IN_WIDTH: ping_storage_data_248 <= ping_storage_data_248 ^ i_input_data[320 % IN_WIDTH];
             418 / IN_WIDTH: ping_storage_data_248 <= ping_storage_data_248 ^ i_input_data[418 % IN_WIDTH];
@@ -9640,7 +9640,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_249 <= 1'b0;
         pong_storage_data_249 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             321 / IN_WIDTH: ping_storage_data_249 <= ping_storage_data_249 ^ i_input_data[321 % IN_WIDTH];
             419 / IN_WIDTH: ping_storage_data_249 <= ping_storage_data_249 ^ i_input_data[419 % IN_WIDTH];
@@ -9670,7 +9670,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_250 <= 1'b0;
         pong_storage_data_250 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             322 / IN_WIDTH: ping_storage_data_250 <= ping_storage_data_250 ^ i_input_data[322 % IN_WIDTH];
             420 / IN_WIDTH: ping_storage_data_250 <= ping_storage_data_250 ^ i_input_data[420 % IN_WIDTH];
@@ -9700,7 +9700,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_251 <= 1'b0;
         pong_storage_data_251 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             323 / IN_WIDTH: ping_storage_data_251 <= ping_storage_data_251 ^ i_input_data[323 % IN_WIDTH];
             421 / IN_WIDTH: ping_storage_data_251 <= ping_storage_data_251 ^ i_input_data[421 % IN_WIDTH];
@@ -9730,7 +9730,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_252 <= 1'b0;
         pong_storage_data_252 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             324 / IN_WIDTH: ping_storage_data_252 <= ping_storage_data_252 ^ i_input_data[324 % IN_WIDTH];
             422 / IN_WIDTH: ping_storage_data_252 <= ping_storage_data_252 ^ i_input_data[422 % IN_WIDTH];
@@ -9760,7 +9760,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_253 <= 1'b0;
         pong_storage_data_253 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             325 / IN_WIDTH: ping_storage_data_253 <= ping_storage_data_253 ^ i_input_data[325 % IN_WIDTH];
             423 / IN_WIDTH: ping_storage_data_253 <= ping_storage_data_253 ^ i_input_data[423 % IN_WIDTH];
@@ -9790,7 +9790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_254 <= 1'b0;
         pong_storage_data_254 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             326 / IN_WIDTH: ping_storage_data_254 <= ping_storage_data_254 ^ i_input_data[326 % IN_WIDTH];
             424 / IN_WIDTH: ping_storage_data_254 <= ping_storage_data_254 ^ i_input_data[424 % IN_WIDTH];
@@ -9820,7 +9820,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_255 <= 1'b0;
         pong_storage_data_255 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             327 / IN_WIDTH: ping_storage_data_255 <= ping_storage_data_255 ^ i_input_data[327 % IN_WIDTH];
             425 / IN_WIDTH: ping_storage_data_255 <= ping_storage_data_255 ^ i_input_data[425 % IN_WIDTH];
@@ -9850,7 +9850,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_256 <= 1'b0;
         pong_storage_data_256 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             328 / IN_WIDTH: ping_storage_data_256 <= ping_storage_data_256 ^ i_input_data[328 % IN_WIDTH];
             426 / IN_WIDTH: ping_storage_data_256 <= ping_storage_data_256 ^ i_input_data[426 % IN_WIDTH];
@@ -9880,7 +9880,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_257 <= 1'b0;
         pong_storage_data_257 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             329 / IN_WIDTH: ping_storage_data_257 <= ping_storage_data_257 ^ i_input_data[329 % IN_WIDTH];
             427 / IN_WIDTH: ping_storage_data_257 <= ping_storage_data_257 ^ i_input_data[427 % IN_WIDTH];
@@ -9910,7 +9910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_258 <= 1'b0;
         pong_storage_data_258 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             330 / IN_WIDTH: ping_storage_data_258 <= ping_storage_data_258 ^ i_input_data[330 % IN_WIDTH];
             428 / IN_WIDTH: ping_storage_data_258 <= ping_storage_data_258 ^ i_input_data[428 % IN_WIDTH];
@@ -9940,7 +9940,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_259 <= 1'b0;
         pong_storage_data_259 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             331 / IN_WIDTH: ping_storage_data_259 <= ping_storage_data_259 ^ i_input_data[331 % IN_WIDTH];
             429 / IN_WIDTH: ping_storage_data_259 <= ping_storage_data_259 ^ i_input_data[429 % IN_WIDTH];
@@ -9970,7 +9970,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_260 <= 1'b0;
         pong_storage_data_260 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             332 / IN_WIDTH: ping_storage_data_260 <= ping_storage_data_260 ^ i_input_data[332 % IN_WIDTH];
             430 / IN_WIDTH: ping_storage_data_260 <= ping_storage_data_260 ^ i_input_data[430 % IN_WIDTH];
@@ -10000,7 +10000,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_261 <= 1'b0;
         pong_storage_data_261 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             333 / IN_WIDTH: ping_storage_data_261 <= ping_storage_data_261 ^ i_input_data[333 % IN_WIDTH];
             431 / IN_WIDTH: ping_storage_data_261 <= ping_storage_data_261 ^ i_input_data[431 % IN_WIDTH];
@@ -10030,7 +10030,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_262 <= 1'b0;
         pong_storage_data_262 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             334 / IN_WIDTH: ping_storage_data_262 <= ping_storage_data_262 ^ i_input_data[334 % IN_WIDTH];
             432 / IN_WIDTH: ping_storage_data_262 <= ping_storage_data_262 ^ i_input_data[432 % IN_WIDTH];
@@ -10060,7 +10060,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_263 <= 1'b0;
         pong_storage_data_263 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             335 / IN_WIDTH: ping_storage_data_263 <= ping_storage_data_263 ^ i_input_data[335 % IN_WIDTH];
             433 / IN_WIDTH: ping_storage_data_263 <= ping_storage_data_263 ^ i_input_data[433 % IN_WIDTH];
@@ -10090,7 +10090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_264 <= 1'b0;
         pong_storage_data_264 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             336 / IN_WIDTH: ping_storage_data_264 <= ping_storage_data_264 ^ i_input_data[336 % IN_WIDTH];
             434 / IN_WIDTH: ping_storage_data_264 <= ping_storage_data_264 ^ i_input_data[434 % IN_WIDTH];
@@ -10120,7 +10120,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_265 <= 1'b0;
         pong_storage_data_265 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             337 / IN_WIDTH: ping_storage_data_265 <= ping_storage_data_265 ^ i_input_data[337 % IN_WIDTH];
             435 / IN_WIDTH: ping_storage_data_265 <= ping_storage_data_265 ^ i_input_data[435 % IN_WIDTH];
@@ -10150,7 +10150,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_266 <= 1'b0;
         pong_storage_data_266 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             338 / IN_WIDTH: ping_storage_data_266 <= ping_storage_data_266 ^ i_input_data[338 % IN_WIDTH];
             436 / IN_WIDTH: ping_storage_data_266 <= ping_storage_data_266 ^ i_input_data[436 % IN_WIDTH];
@@ -10180,7 +10180,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_267 <= 1'b0;
         pong_storage_data_267 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             339 / IN_WIDTH: ping_storage_data_267 <= ping_storage_data_267 ^ i_input_data[339 % IN_WIDTH];
             437 / IN_WIDTH: ping_storage_data_267 <= ping_storage_data_267 ^ i_input_data[437 % IN_WIDTH];
@@ -10210,7 +10210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_268 <= 1'b0;
         pong_storage_data_268 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             340 / IN_WIDTH: ping_storage_data_268 <= ping_storage_data_268 ^ i_input_data[340 % IN_WIDTH];
             438 / IN_WIDTH: ping_storage_data_268 <= ping_storage_data_268 ^ i_input_data[438 % IN_WIDTH];
@@ -10240,7 +10240,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_269 <= 1'b0;
         pong_storage_data_269 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             341 / IN_WIDTH: ping_storage_data_269 <= ping_storage_data_269 ^ i_input_data[341 % IN_WIDTH];
             439 / IN_WIDTH: ping_storage_data_269 <= ping_storage_data_269 ^ i_input_data[439 % IN_WIDTH];
@@ -10270,7 +10270,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_270 <= 1'b0;
         pong_storage_data_270 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             342 / IN_WIDTH: ping_storage_data_270 <= ping_storage_data_270 ^ i_input_data[342 % IN_WIDTH];
             440 / IN_WIDTH: ping_storage_data_270 <= ping_storage_data_270 ^ i_input_data[440 % IN_WIDTH];
@@ -10300,7 +10300,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_271 <= 1'b0;
         pong_storage_data_271 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             343 / IN_WIDTH: ping_storage_data_271 <= ping_storage_data_271 ^ i_input_data[343 % IN_WIDTH];
             441 / IN_WIDTH: ping_storage_data_271 <= ping_storage_data_271 ^ i_input_data[441 % IN_WIDTH];
@@ -10330,7 +10330,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_272 <= 1'b0;
         pong_storage_data_272 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             344 / IN_WIDTH: ping_storage_data_272 <= ping_storage_data_272 ^ i_input_data[344 % IN_WIDTH];
             442 / IN_WIDTH: ping_storage_data_272 <= ping_storage_data_272 ^ i_input_data[442 % IN_WIDTH];
@@ -10360,7 +10360,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_273 <= 1'b0;
         pong_storage_data_273 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             345 / IN_WIDTH: ping_storage_data_273 <= ping_storage_data_273 ^ i_input_data[345 % IN_WIDTH];
             443 / IN_WIDTH: ping_storage_data_273 <= ping_storage_data_273 ^ i_input_data[443 % IN_WIDTH];
@@ -10390,7 +10390,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_274 <= 1'b0;
         pong_storage_data_274 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             346 / IN_WIDTH: ping_storage_data_274 <= ping_storage_data_274 ^ i_input_data[346 % IN_WIDTH];
             444 / IN_WIDTH: ping_storage_data_274 <= ping_storage_data_274 ^ i_input_data[444 % IN_WIDTH];
@@ -10420,7 +10420,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_275 <= 1'b0;
         pong_storage_data_275 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             347 / IN_WIDTH: ping_storage_data_275 <= ping_storage_data_275 ^ i_input_data[347 % IN_WIDTH];
             445 / IN_WIDTH: ping_storage_data_275 <= ping_storage_data_275 ^ i_input_data[445 % IN_WIDTH];
@@ -10450,7 +10450,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_276 <= 1'b0;
         pong_storage_data_276 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             348 / IN_WIDTH: ping_storage_data_276 <= ping_storage_data_276 ^ i_input_data[348 % IN_WIDTH];
             446 / IN_WIDTH: ping_storage_data_276 <= ping_storage_data_276 ^ i_input_data[446 % IN_WIDTH];
@@ -10480,7 +10480,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_277 <= 1'b0;
         pong_storage_data_277 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             349 / IN_WIDTH: ping_storage_data_277 <= ping_storage_data_277 ^ i_input_data[349 % IN_WIDTH];
             447 / IN_WIDTH: ping_storage_data_277 <= ping_storage_data_277 ^ i_input_data[447 % IN_WIDTH];
@@ -10510,7 +10510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_278 <= 1'b0;
         pong_storage_data_278 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             350 / IN_WIDTH: ping_storage_data_278 <= ping_storage_data_278 ^ i_input_data[350 % IN_WIDTH];
             448 / IN_WIDTH: ping_storage_data_278 <= ping_storage_data_278 ^ i_input_data[448 % IN_WIDTH];
@@ -10540,7 +10540,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_279 <= 1'b0;
         pong_storage_data_279 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             351 / IN_WIDTH: ping_storage_data_279 <= ping_storage_data_279 ^ i_input_data[351 % IN_WIDTH];
             449 / IN_WIDTH: ping_storage_data_279 <= ping_storage_data_279 ^ i_input_data[449 % IN_WIDTH];
@@ -10570,7 +10570,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_280 <= 1'b0;
         pong_storage_data_280 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             352 / IN_WIDTH: ping_storage_data_280 <= ping_storage_data_280 ^ i_input_data[352 % IN_WIDTH];
             450 / IN_WIDTH: ping_storage_data_280 <= ping_storage_data_280 ^ i_input_data[450 % IN_WIDTH];
@@ -10600,7 +10600,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_281 <= 1'b0;
         pong_storage_data_281 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             353 / IN_WIDTH: ping_storage_data_281 <= ping_storage_data_281 ^ i_input_data[353 % IN_WIDTH];
             451 / IN_WIDTH: ping_storage_data_281 <= ping_storage_data_281 ^ i_input_data[451 % IN_WIDTH];
@@ -10630,7 +10630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_282 <= 1'b0;
         pong_storage_data_282 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             354 / IN_WIDTH: ping_storage_data_282 <= ping_storage_data_282 ^ i_input_data[354 % IN_WIDTH];
             452 / IN_WIDTH: ping_storage_data_282 <= ping_storage_data_282 ^ i_input_data[452 % IN_WIDTH];
@@ -10660,7 +10660,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_283 <= 1'b0;
         pong_storage_data_283 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             355 / IN_WIDTH: ping_storage_data_283 <= ping_storage_data_283 ^ i_input_data[355 % IN_WIDTH];
             453 / IN_WIDTH: ping_storage_data_283 <= ping_storage_data_283 ^ i_input_data[453 % IN_WIDTH];
@@ -10690,7 +10690,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_284 <= 1'b0;
         pong_storage_data_284 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             356 / IN_WIDTH: ping_storage_data_284 <= ping_storage_data_284 ^ i_input_data[356 % IN_WIDTH];
             454 / IN_WIDTH: ping_storage_data_284 <= ping_storage_data_284 ^ i_input_data[454 % IN_WIDTH];
@@ -10720,7 +10720,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_285 <= 1'b0;
         pong_storage_data_285 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             357 / IN_WIDTH: ping_storage_data_285 <= ping_storage_data_285 ^ i_input_data[357 % IN_WIDTH];
             455 / IN_WIDTH: ping_storage_data_285 <= ping_storage_data_285 ^ i_input_data[455 % IN_WIDTH];
@@ -10750,7 +10750,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_286 <= 1'b0;
         pong_storage_data_286 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             358 / IN_WIDTH: ping_storage_data_286 <= ping_storage_data_286 ^ i_input_data[358 % IN_WIDTH];
             456 / IN_WIDTH: ping_storage_data_286 <= ping_storage_data_286 ^ i_input_data[456 % IN_WIDTH];
@@ -10780,7 +10780,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_287 <= 1'b0;
         pong_storage_data_287 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             359 / IN_WIDTH: ping_storage_data_287 <= ping_storage_data_287 ^ i_input_data[359 % IN_WIDTH];
             457 / IN_WIDTH: ping_storage_data_287 <= ping_storage_data_287 ^ i_input_data[457 % IN_WIDTH];
@@ -10810,7 +10810,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_288 <= 1'b0;
         pong_storage_data_288 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             35 / IN_WIDTH: ping_storage_data_288 <= ping_storage_data_288 ^ i_input_data[35 % IN_WIDTH];
             241 / IN_WIDTH: ping_storage_data_288 <= ping_storage_data_288 ^ i_input_data[241 % IN_WIDTH];
@@ -10838,7 +10838,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_289 <= 1'b0;
         pong_storage_data_289 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             36 / IN_WIDTH: ping_storage_data_289 <= ping_storage_data_289 ^ i_input_data[36 % IN_WIDTH];
             242 / IN_WIDTH: ping_storage_data_289 <= ping_storage_data_289 ^ i_input_data[242 % IN_WIDTH];
@@ -10866,7 +10866,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_290 <= 1'b0;
         pong_storage_data_290 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             37 / IN_WIDTH: ping_storage_data_290 <= ping_storage_data_290 ^ i_input_data[37 % IN_WIDTH];
             243 / IN_WIDTH: ping_storage_data_290 <= ping_storage_data_290 ^ i_input_data[243 % IN_WIDTH];
@@ -10894,7 +10894,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_291 <= 1'b0;
         pong_storage_data_291 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             38 / IN_WIDTH: ping_storage_data_291 <= ping_storage_data_291 ^ i_input_data[38 % IN_WIDTH];
             244 / IN_WIDTH: ping_storage_data_291 <= ping_storage_data_291 ^ i_input_data[244 % IN_WIDTH];
@@ -10922,7 +10922,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_292 <= 1'b0;
         pong_storage_data_292 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             39 / IN_WIDTH: ping_storage_data_292 <= ping_storage_data_292 ^ i_input_data[39 % IN_WIDTH];
             245 / IN_WIDTH: ping_storage_data_292 <= ping_storage_data_292 ^ i_input_data[245 % IN_WIDTH];
@@ -10950,7 +10950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_293 <= 1'b0;
         pong_storage_data_293 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             40 / IN_WIDTH: ping_storage_data_293 <= ping_storage_data_293 ^ i_input_data[40 % IN_WIDTH];
             246 / IN_WIDTH: ping_storage_data_293 <= ping_storage_data_293 ^ i_input_data[246 % IN_WIDTH];
@@ -10978,7 +10978,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_294 <= 1'b0;
         pong_storage_data_294 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             41 / IN_WIDTH: ping_storage_data_294 <= ping_storage_data_294 ^ i_input_data[41 % IN_WIDTH];
             247 / IN_WIDTH: ping_storage_data_294 <= ping_storage_data_294 ^ i_input_data[247 % IN_WIDTH];
@@ -11006,7 +11006,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_295 <= 1'b0;
         pong_storage_data_295 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             42 / IN_WIDTH: ping_storage_data_295 <= ping_storage_data_295 ^ i_input_data[42 % IN_WIDTH];
             248 / IN_WIDTH: ping_storage_data_295 <= ping_storage_data_295 ^ i_input_data[248 % IN_WIDTH];
@@ -11034,7 +11034,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_296 <= 1'b0;
         pong_storage_data_296 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             43 / IN_WIDTH: ping_storage_data_296 <= ping_storage_data_296 ^ i_input_data[43 % IN_WIDTH];
             249 / IN_WIDTH: ping_storage_data_296 <= ping_storage_data_296 ^ i_input_data[249 % IN_WIDTH];
@@ -11062,7 +11062,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_297 <= 1'b0;
         pong_storage_data_297 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             44 / IN_WIDTH: ping_storage_data_297 <= ping_storage_data_297 ^ i_input_data[44 % IN_WIDTH];
             250 / IN_WIDTH: ping_storage_data_297 <= ping_storage_data_297 ^ i_input_data[250 % IN_WIDTH];
@@ -11090,7 +11090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_298 <= 1'b0;
         pong_storage_data_298 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             45 / IN_WIDTH: ping_storage_data_298 <= ping_storage_data_298 ^ i_input_data[45 % IN_WIDTH];
             251 / IN_WIDTH: ping_storage_data_298 <= ping_storage_data_298 ^ i_input_data[251 % IN_WIDTH];
@@ -11118,7 +11118,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_299 <= 1'b0;
         pong_storage_data_299 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             46 / IN_WIDTH: ping_storage_data_299 <= ping_storage_data_299 ^ i_input_data[46 % IN_WIDTH];
             252 / IN_WIDTH: ping_storage_data_299 <= ping_storage_data_299 ^ i_input_data[252 % IN_WIDTH];
@@ -11146,7 +11146,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_300 <= 1'b0;
         pong_storage_data_300 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             47 / IN_WIDTH: ping_storage_data_300 <= ping_storage_data_300 ^ i_input_data[47 % IN_WIDTH];
             253 / IN_WIDTH: ping_storage_data_300 <= ping_storage_data_300 ^ i_input_data[253 % IN_WIDTH];
@@ -11174,7 +11174,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_301 <= 1'b0;
         pong_storage_data_301 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             48 / IN_WIDTH: ping_storage_data_301 <= ping_storage_data_301 ^ i_input_data[48 % IN_WIDTH];
             254 / IN_WIDTH: ping_storage_data_301 <= ping_storage_data_301 ^ i_input_data[254 % IN_WIDTH];
@@ -11202,7 +11202,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_302 <= 1'b0;
         pong_storage_data_302 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             49 / IN_WIDTH: ping_storage_data_302 <= ping_storage_data_302 ^ i_input_data[49 % IN_WIDTH];
             255 / IN_WIDTH: ping_storage_data_302 <= ping_storage_data_302 ^ i_input_data[255 % IN_WIDTH];
@@ -11230,7 +11230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_303 <= 1'b0;
         pong_storage_data_303 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             50 / IN_WIDTH: ping_storage_data_303 <= ping_storage_data_303 ^ i_input_data[50 % IN_WIDTH];
             256 / IN_WIDTH: ping_storage_data_303 <= ping_storage_data_303 ^ i_input_data[256 % IN_WIDTH];
@@ -11258,7 +11258,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_304 <= 1'b0;
         pong_storage_data_304 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             51 / IN_WIDTH: ping_storage_data_304 <= ping_storage_data_304 ^ i_input_data[51 % IN_WIDTH];
             257 / IN_WIDTH: ping_storage_data_304 <= ping_storage_data_304 ^ i_input_data[257 % IN_WIDTH];
@@ -11286,7 +11286,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_305 <= 1'b0;
         pong_storage_data_305 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             52 / IN_WIDTH: ping_storage_data_305 <= ping_storage_data_305 ^ i_input_data[52 % IN_WIDTH];
             258 / IN_WIDTH: ping_storage_data_305 <= ping_storage_data_305 ^ i_input_data[258 % IN_WIDTH];
@@ -11314,7 +11314,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_306 <= 1'b0;
         pong_storage_data_306 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             53 / IN_WIDTH: ping_storage_data_306 <= ping_storage_data_306 ^ i_input_data[53 % IN_WIDTH];
             259 / IN_WIDTH: ping_storage_data_306 <= ping_storage_data_306 ^ i_input_data[259 % IN_WIDTH];
@@ -11342,7 +11342,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_307 <= 1'b0;
         pong_storage_data_307 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             54 / IN_WIDTH: ping_storage_data_307 <= ping_storage_data_307 ^ i_input_data[54 % IN_WIDTH];
             260 / IN_WIDTH: ping_storage_data_307 <= ping_storage_data_307 ^ i_input_data[260 % IN_WIDTH];
@@ -11370,7 +11370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_308 <= 1'b0;
         pong_storage_data_308 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             55 / IN_WIDTH: ping_storage_data_308 <= ping_storage_data_308 ^ i_input_data[55 % IN_WIDTH];
             261 / IN_WIDTH: ping_storage_data_308 <= ping_storage_data_308 ^ i_input_data[261 % IN_WIDTH];
@@ -11398,7 +11398,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_309 <= 1'b0;
         pong_storage_data_309 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             56 / IN_WIDTH: ping_storage_data_309 <= ping_storage_data_309 ^ i_input_data[56 % IN_WIDTH];
             262 / IN_WIDTH: ping_storage_data_309 <= ping_storage_data_309 ^ i_input_data[262 % IN_WIDTH];
@@ -11426,7 +11426,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_310 <= 1'b0;
         pong_storage_data_310 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             57 / IN_WIDTH: ping_storage_data_310 <= ping_storage_data_310 ^ i_input_data[57 % IN_WIDTH];
             263 / IN_WIDTH: ping_storage_data_310 <= ping_storage_data_310 ^ i_input_data[263 % IN_WIDTH];
@@ -11454,7 +11454,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_311 <= 1'b0;
         pong_storage_data_311 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             58 / IN_WIDTH: ping_storage_data_311 <= ping_storage_data_311 ^ i_input_data[58 % IN_WIDTH];
             264 / IN_WIDTH: ping_storage_data_311 <= ping_storage_data_311 ^ i_input_data[264 % IN_WIDTH];
@@ -11482,7 +11482,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_312 <= 1'b0;
         pong_storage_data_312 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             59 / IN_WIDTH: ping_storage_data_312 <= ping_storage_data_312 ^ i_input_data[59 % IN_WIDTH];
             265 / IN_WIDTH: ping_storage_data_312 <= ping_storage_data_312 ^ i_input_data[265 % IN_WIDTH];
@@ -11510,7 +11510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_313 <= 1'b0;
         pong_storage_data_313 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             60 / IN_WIDTH: ping_storage_data_313 <= ping_storage_data_313 ^ i_input_data[60 % IN_WIDTH];
             266 / IN_WIDTH: ping_storage_data_313 <= ping_storage_data_313 ^ i_input_data[266 % IN_WIDTH];
@@ -11538,7 +11538,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_314 <= 1'b0;
         pong_storage_data_314 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             61 / IN_WIDTH: ping_storage_data_314 <= ping_storage_data_314 ^ i_input_data[61 % IN_WIDTH];
             267 / IN_WIDTH: ping_storage_data_314 <= ping_storage_data_314 ^ i_input_data[267 % IN_WIDTH];
@@ -11566,7 +11566,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_315 <= 1'b0;
         pong_storage_data_315 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             62 / IN_WIDTH: ping_storage_data_315 <= ping_storage_data_315 ^ i_input_data[62 % IN_WIDTH];
             268 / IN_WIDTH: ping_storage_data_315 <= ping_storage_data_315 ^ i_input_data[268 % IN_WIDTH];
@@ -11594,7 +11594,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_316 <= 1'b0;
         pong_storage_data_316 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             63 / IN_WIDTH: ping_storage_data_316 <= ping_storage_data_316 ^ i_input_data[63 % IN_WIDTH];
             269 / IN_WIDTH: ping_storage_data_316 <= ping_storage_data_316 ^ i_input_data[269 % IN_WIDTH];
@@ -11622,7 +11622,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_317 <= 1'b0;
         pong_storage_data_317 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             64 / IN_WIDTH: ping_storage_data_317 <= ping_storage_data_317 ^ i_input_data[64 % IN_WIDTH];
             270 / IN_WIDTH: ping_storage_data_317 <= ping_storage_data_317 ^ i_input_data[270 % IN_WIDTH];
@@ -11650,7 +11650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_318 <= 1'b0;
         pong_storage_data_318 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             65 / IN_WIDTH: ping_storage_data_318 <= ping_storage_data_318 ^ i_input_data[65 % IN_WIDTH];
             271 / IN_WIDTH: ping_storage_data_318 <= ping_storage_data_318 ^ i_input_data[271 % IN_WIDTH];
@@ -11678,7 +11678,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_319 <= 1'b0;
         pong_storage_data_319 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             66 / IN_WIDTH: ping_storage_data_319 <= ping_storage_data_319 ^ i_input_data[66 % IN_WIDTH];
             272 / IN_WIDTH: ping_storage_data_319 <= ping_storage_data_319 ^ i_input_data[272 % IN_WIDTH];
@@ -11706,7 +11706,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_320 <= 1'b0;
         pong_storage_data_320 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             67 / IN_WIDTH: ping_storage_data_320 <= ping_storage_data_320 ^ i_input_data[67 % IN_WIDTH];
             273 / IN_WIDTH: ping_storage_data_320 <= ping_storage_data_320 ^ i_input_data[273 % IN_WIDTH];
@@ -11734,7 +11734,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_321 <= 1'b0;
         pong_storage_data_321 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             68 / IN_WIDTH: ping_storage_data_321 <= ping_storage_data_321 ^ i_input_data[68 % IN_WIDTH];
             274 / IN_WIDTH: ping_storage_data_321 <= ping_storage_data_321 ^ i_input_data[274 % IN_WIDTH];
@@ -11762,7 +11762,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_322 <= 1'b0;
         pong_storage_data_322 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             69 / IN_WIDTH: ping_storage_data_322 <= ping_storage_data_322 ^ i_input_data[69 % IN_WIDTH];
             275 / IN_WIDTH: ping_storage_data_322 <= ping_storage_data_322 ^ i_input_data[275 % IN_WIDTH];
@@ -11790,7 +11790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_323 <= 1'b0;
         pong_storage_data_323 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             70 / IN_WIDTH: ping_storage_data_323 <= ping_storage_data_323 ^ i_input_data[70 % IN_WIDTH];
             276 / IN_WIDTH: ping_storage_data_323 <= ping_storage_data_323 ^ i_input_data[276 % IN_WIDTH];
@@ -11818,7 +11818,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_324 <= 1'b0;
         pong_storage_data_324 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             71 / IN_WIDTH: ping_storage_data_324 <= ping_storage_data_324 ^ i_input_data[71 % IN_WIDTH];
             277 / IN_WIDTH: ping_storage_data_324 <= ping_storage_data_324 ^ i_input_data[277 % IN_WIDTH];
@@ -11846,7 +11846,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_325 <= 1'b0;
         pong_storage_data_325 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             72 / IN_WIDTH: ping_storage_data_325 <= ping_storage_data_325 ^ i_input_data[72 % IN_WIDTH];
             278 / IN_WIDTH: ping_storage_data_325 <= ping_storage_data_325 ^ i_input_data[278 % IN_WIDTH];
@@ -11874,7 +11874,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_326 <= 1'b0;
         pong_storage_data_326 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             73 / IN_WIDTH: ping_storage_data_326 <= ping_storage_data_326 ^ i_input_data[73 % IN_WIDTH];
             279 / IN_WIDTH: ping_storage_data_326 <= ping_storage_data_326 ^ i_input_data[279 % IN_WIDTH];
@@ -11902,7 +11902,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_327 <= 1'b0;
         pong_storage_data_327 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             74 / IN_WIDTH: ping_storage_data_327 <= ping_storage_data_327 ^ i_input_data[74 % IN_WIDTH];
             280 / IN_WIDTH: ping_storage_data_327 <= ping_storage_data_327 ^ i_input_data[280 % IN_WIDTH];
@@ -11930,7 +11930,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_328 <= 1'b0;
         pong_storage_data_328 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             75 / IN_WIDTH: ping_storage_data_328 <= ping_storage_data_328 ^ i_input_data[75 % IN_WIDTH];
             281 / IN_WIDTH: ping_storage_data_328 <= ping_storage_data_328 ^ i_input_data[281 % IN_WIDTH];
@@ -11958,7 +11958,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_329 <= 1'b0;
         pong_storage_data_329 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             76 / IN_WIDTH: ping_storage_data_329 <= ping_storage_data_329 ^ i_input_data[76 % IN_WIDTH];
             282 / IN_WIDTH: ping_storage_data_329 <= ping_storage_data_329 ^ i_input_data[282 % IN_WIDTH];
@@ -11986,7 +11986,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_330 <= 1'b0;
         pong_storage_data_330 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             77 / IN_WIDTH: ping_storage_data_330 <= ping_storage_data_330 ^ i_input_data[77 % IN_WIDTH];
             283 / IN_WIDTH: ping_storage_data_330 <= ping_storage_data_330 ^ i_input_data[283 % IN_WIDTH];
@@ -12014,7 +12014,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_331 <= 1'b0;
         pong_storage_data_331 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             78 / IN_WIDTH: ping_storage_data_331 <= ping_storage_data_331 ^ i_input_data[78 % IN_WIDTH];
             284 / IN_WIDTH: ping_storage_data_331 <= ping_storage_data_331 ^ i_input_data[284 % IN_WIDTH];
@@ -12042,7 +12042,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_332 <= 1'b0;
         pong_storage_data_332 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             79 / IN_WIDTH: ping_storage_data_332 <= ping_storage_data_332 ^ i_input_data[79 % IN_WIDTH];
             285 / IN_WIDTH: ping_storage_data_332 <= ping_storage_data_332 ^ i_input_data[285 % IN_WIDTH];
@@ -12070,7 +12070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_333 <= 1'b0;
         pong_storage_data_333 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             80 / IN_WIDTH: ping_storage_data_333 <= ping_storage_data_333 ^ i_input_data[80 % IN_WIDTH];
             286 / IN_WIDTH: ping_storage_data_333 <= ping_storage_data_333 ^ i_input_data[286 % IN_WIDTH];
@@ -12098,7 +12098,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_334 <= 1'b0;
         pong_storage_data_334 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             81 / IN_WIDTH: ping_storage_data_334 <= ping_storage_data_334 ^ i_input_data[81 % IN_WIDTH];
             287 / IN_WIDTH: ping_storage_data_334 <= ping_storage_data_334 ^ i_input_data[287 % IN_WIDTH];
@@ -12126,7 +12126,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_335 <= 1'b0;
         pong_storage_data_335 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             82 / IN_WIDTH: ping_storage_data_335 <= ping_storage_data_335 ^ i_input_data[82 % IN_WIDTH];
             192 / IN_WIDTH: ping_storage_data_335 <= ping_storage_data_335 ^ i_input_data[192 % IN_WIDTH];
@@ -12154,7 +12154,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_336 <= 1'b0;
         pong_storage_data_336 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             83 / IN_WIDTH: ping_storage_data_336 <= ping_storage_data_336 ^ i_input_data[83 % IN_WIDTH];
             193 / IN_WIDTH: ping_storage_data_336 <= ping_storage_data_336 ^ i_input_data[193 % IN_WIDTH];
@@ -12182,7 +12182,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_337 <= 1'b0;
         pong_storage_data_337 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             84 / IN_WIDTH: ping_storage_data_337 <= ping_storage_data_337 ^ i_input_data[84 % IN_WIDTH];
             194 / IN_WIDTH: ping_storage_data_337 <= ping_storage_data_337 ^ i_input_data[194 % IN_WIDTH];
@@ -12210,7 +12210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_338 <= 1'b0;
         pong_storage_data_338 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             85 / IN_WIDTH: ping_storage_data_338 <= ping_storage_data_338 ^ i_input_data[85 % IN_WIDTH];
             195 / IN_WIDTH: ping_storage_data_338 <= ping_storage_data_338 ^ i_input_data[195 % IN_WIDTH];
@@ -12238,7 +12238,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_339 <= 1'b0;
         pong_storage_data_339 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             86 / IN_WIDTH: ping_storage_data_339 <= ping_storage_data_339 ^ i_input_data[86 % IN_WIDTH];
             196 / IN_WIDTH: ping_storage_data_339 <= ping_storage_data_339 ^ i_input_data[196 % IN_WIDTH];
@@ -12266,7 +12266,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_340 <= 1'b0;
         pong_storage_data_340 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             87 / IN_WIDTH: ping_storage_data_340 <= ping_storage_data_340 ^ i_input_data[87 % IN_WIDTH];
             197 / IN_WIDTH: ping_storage_data_340 <= ping_storage_data_340 ^ i_input_data[197 % IN_WIDTH];
@@ -12294,7 +12294,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_341 <= 1'b0;
         pong_storage_data_341 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             88 / IN_WIDTH: ping_storage_data_341 <= ping_storage_data_341 ^ i_input_data[88 % IN_WIDTH];
             198 / IN_WIDTH: ping_storage_data_341 <= ping_storage_data_341 ^ i_input_data[198 % IN_WIDTH];
@@ -12322,7 +12322,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_342 <= 1'b0;
         pong_storage_data_342 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             89 / IN_WIDTH: ping_storage_data_342 <= ping_storage_data_342 ^ i_input_data[89 % IN_WIDTH];
             199 / IN_WIDTH: ping_storage_data_342 <= ping_storage_data_342 ^ i_input_data[199 % IN_WIDTH];
@@ -12350,7 +12350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_343 <= 1'b0;
         pong_storage_data_343 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             90 / IN_WIDTH: ping_storage_data_343 <= ping_storage_data_343 ^ i_input_data[90 % IN_WIDTH];
             200 / IN_WIDTH: ping_storage_data_343 <= ping_storage_data_343 ^ i_input_data[200 % IN_WIDTH];
@@ -12378,7 +12378,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_344 <= 1'b0;
         pong_storage_data_344 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             91 / IN_WIDTH: ping_storage_data_344 <= ping_storage_data_344 ^ i_input_data[91 % IN_WIDTH];
             201 / IN_WIDTH: ping_storage_data_344 <= ping_storage_data_344 ^ i_input_data[201 % IN_WIDTH];
@@ -12406,7 +12406,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_345 <= 1'b0;
         pong_storage_data_345 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             92 / IN_WIDTH: ping_storage_data_345 <= ping_storage_data_345 ^ i_input_data[92 % IN_WIDTH];
             202 / IN_WIDTH: ping_storage_data_345 <= ping_storage_data_345 ^ i_input_data[202 % IN_WIDTH];
@@ -12434,7 +12434,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_346 <= 1'b0;
         pong_storage_data_346 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             93 / IN_WIDTH: ping_storage_data_346 <= ping_storage_data_346 ^ i_input_data[93 % IN_WIDTH];
             203 / IN_WIDTH: ping_storage_data_346 <= ping_storage_data_346 ^ i_input_data[203 % IN_WIDTH];
@@ -12462,7 +12462,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_347 <= 1'b0;
         pong_storage_data_347 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             94 / IN_WIDTH: ping_storage_data_347 <= ping_storage_data_347 ^ i_input_data[94 % IN_WIDTH];
             204 / IN_WIDTH: ping_storage_data_347 <= ping_storage_data_347 ^ i_input_data[204 % IN_WIDTH];
@@ -12490,7 +12490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_348 <= 1'b0;
         pong_storage_data_348 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             95 / IN_WIDTH: ping_storage_data_348 <= ping_storage_data_348 ^ i_input_data[95 % IN_WIDTH];
             205 / IN_WIDTH: ping_storage_data_348 <= ping_storage_data_348 ^ i_input_data[205 % IN_WIDTH];
@@ -12518,7 +12518,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_349 <= 1'b0;
         pong_storage_data_349 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             0 / IN_WIDTH: ping_storage_data_349 <= ping_storage_data_349 ^ i_input_data[0 % IN_WIDTH];
             206 / IN_WIDTH: ping_storage_data_349 <= ping_storage_data_349 ^ i_input_data[206 % IN_WIDTH];
@@ -12546,7 +12546,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_350 <= 1'b0;
         pong_storage_data_350 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             1 / IN_WIDTH: ping_storage_data_350 <= ping_storage_data_350 ^ i_input_data[1 % IN_WIDTH];
             207 / IN_WIDTH: ping_storage_data_350 <= ping_storage_data_350 ^ i_input_data[207 % IN_WIDTH];
@@ -12574,7 +12574,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_351 <= 1'b0;
         pong_storage_data_351 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             2 / IN_WIDTH: ping_storage_data_351 <= ping_storage_data_351 ^ i_input_data[2 % IN_WIDTH];
             208 / IN_WIDTH: ping_storage_data_351 <= ping_storage_data_351 ^ i_input_data[208 % IN_WIDTH];
@@ -12602,7 +12602,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_352 <= 1'b0;
         pong_storage_data_352 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             3 / IN_WIDTH: ping_storage_data_352 <= ping_storage_data_352 ^ i_input_data[3 % IN_WIDTH];
             209 / IN_WIDTH: ping_storage_data_352 <= ping_storage_data_352 ^ i_input_data[209 % IN_WIDTH];
@@ -12630,7 +12630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_353 <= 1'b0;
         pong_storage_data_353 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             4 / IN_WIDTH: ping_storage_data_353 <= ping_storage_data_353 ^ i_input_data[4 % IN_WIDTH];
             210 / IN_WIDTH: ping_storage_data_353 <= ping_storage_data_353 ^ i_input_data[210 % IN_WIDTH];
@@ -12658,7 +12658,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_354 <= 1'b0;
         pong_storage_data_354 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             5 / IN_WIDTH: ping_storage_data_354 <= ping_storage_data_354 ^ i_input_data[5 % IN_WIDTH];
             211 / IN_WIDTH: ping_storage_data_354 <= ping_storage_data_354 ^ i_input_data[211 % IN_WIDTH];
@@ -12686,7 +12686,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_355 <= 1'b0;
         pong_storage_data_355 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             6 / IN_WIDTH: ping_storage_data_355 <= ping_storage_data_355 ^ i_input_data[6 % IN_WIDTH];
             212 / IN_WIDTH: ping_storage_data_355 <= ping_storage_data_355 ^ i_input_data[212 % IN_WIDTH];
@@ -12714,7 +12714,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_356 <= 1'b0;
         pong_storage_data_356 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             7 / IN_WIDTH: ping_storage_data_356 <= ping_storage_data_356 ^ i_input_data[7 % IN_WIDTH];
             213 / IN_WIDTH: ping_storage_data_356 <= ping_storage_data_356 ^ i_input_data[213 % IN_WIDTH];
@@ -12742,7 +12742,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_357 <= 1'b0;
         pong_storage_data_357 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             8 / IN_WIDTH: ping_storage_data_357 <= ping_storage_data_357 ^ i_input_data[8 % IN_WIDTH];
             214 / IN_WIDTH: ping_storage_data_357 <= ping_storage_data_357 ^ i_input_data[214 % IN_WIDTH];
@@ -12770,7 +12770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_358 <= 1'b0;
         pong_storage_data_358 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             9 / IN_WIDTH: ping_storage_data_358 <= ping_storage_data_358 ^ i_input_data[9 % IN_WIDTH];
             215 / IN_WIDTH: ping_storage_data_358 <= ping_storage_data_358 ^ i_input_data[215 % IN_WIDTH];
@@ -12798,7 +12798,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_359 <= 1'b0;
         pong_storage_data_359 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             10 / IN_WIDTH: ping_storage_data_359 <= ping_storage_data_359 ^ i_input_data[10 % IN_WIDTH];
             216 / IN_WIDTH: ping_storage_data_359 <= ping_storage_data_359 ^ i_input_data[216 % IN_WIDTH];
@@ -12826,7 +12826,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_360 <= 1'b0;
         pong_storage_data_360 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             11 / IN_WIDTH: ping_storage_data_360 <= ping_storage_data_360 ^ i_input_data[11 % IN_WIDTH];
             217 / IN_WIDTH: ping_storage_data_360 <= ping_storage_data_360 ^ i_input_data[217 % IN_WIDTH];
@@ -12854,7 +12854,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_361 <= 1'b0;
         pong_storage_data_361 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             12 / IN_WIDTH: ping_storage_data_361 <= ping_storage_data_361 ^ i_input_data[12 % IN_WIDTH];
             218 / IN_WIDTH: ping_storage_data_361 <= ping_storage_data_361 ^ i_input_data[218 % IN_WIDTH];
@@ -12882,7 +12882,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_362 <= 1'b0;
         pong_storage_data_362 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             13 / IN_WIDTH: ping_storage_data_362 <= ping_storage_data_362 ^ i_input_data[13 % IN_WIDTH];
             219 / IN_WIDTH: ping_storage_data_362 <= ping_storage_data_362 ^ i_input_data[219 % IN_WIDTH];
@@ -12910,7 +12910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_363 <= 1'b0;
         pong_storage_data_363 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             14 / IN_WIDTH: ping_storage_data_363 <= ping_storage_data_363 ^ i_input_data[14 % IN_WIDTH];
             220 / IN_WIDTH: ping_storage_data_363 <= ping_storage_data_363 ^ i_input_data[220 % IN_WIDTH];
@@ -12938,7 +12938,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_364 <= 1'b0;
         pong_storage_data_364 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             15 / IN_WIDTH: ping_storage_data_364 <= ping_storage_data_364 ^ i_input_data[15 % IN_WIDTH];
             221 / IN_WIDTH: ping_storage_data_364 <= ping_storage_data_364 ^ i_input_data[221 % IN_WIDTH];
@@ -12966,7 +12966,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_365 <= 1'b0;
         pong_storage_data_365 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             16 / IN_WIDTH: ping_storage_data_365 <= ping_storage_data_365 ^ i_input_data[16 % IN_WIDTH];
             222 / IN_WIDTH: ping_storage_data_365 <= ping_storage_data_365 ^ i_input_data[222 % IN_WIDTH];
@@ -12994,7 +12994,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_366 <= 1'b0;
         pong_storage_data_366 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             17 / IN_WIDTH: ping_storage_data_366 <= ping_storage_data_366 ^ i_input_data[17 % IN_WIDTH];
             223 / IN_WIDTH: ping_storage_data_366 <= ping_storage_data_366 ^ i_input_data[223 % IN_WIDTH];
@@ -13022,7 +13022,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_367 <= 1'b0;
         pong_storage_data_367 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             18 / IN_WIDTH: ping_storage_data_367 <= ping_storage_data_367 ^ i_input_data[18 % IN_WIDTH];
             224 / IN_WIDTH: ping_storage_data_367 <= ping_storage_data_367 ^ i_input_data[224 % IN_WIDTH];
@@ -13050,7 +13050,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_368 <= 1'b0;
         pong_storage_data_368 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             19 / IN_WIDTH: ping_storage_data_368 <= ping_storage_data_368 ^ i_input_data[19 % IN_WIDTH];
             225 / IN_WIDTH: ping_storage_data_368 <= ping_storage_data_368 ^ i_input_data[225 % IN_WIDTH];
@@ -13078,7 +13078,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_369 <= 1'b0;
         pong_storage_data_369 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             20 / IN_WIDTH: ping_storage_data_369 <= ping_storage_data_369 ^ i_input_data[20 % IN_WIDTH];
             226 / IN_WIDTH: ping_storage_data_369 <= ping_storage_data_369 ^ i_input_data[226 % IN_WIDTH];
@@ -13106,7 +13106,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_370 <= 1'b0;
         pong_storage_data_370 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             21 / IN_WIDTH: ping_storage_data_370 <= ping_storage_data_370 ^ i_input_data[21 % IN_WIDTH];
             227 / IN_WIDTH: ping_storage_data_370 <= ping_storage_data_370 ^ i_input_data[227 % IN_WIDTH];
@@ -13134,7 +13134,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_371 <= 1'b0;
         pong_storage_data_371 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             22 / IN_WIDTH: ping_storage_data_371 <= ping_storage_data_371 ^ i_input_data[22 % IN_WIDTH];
             228 / IN_WIDTH: ping_storage_data_371 <= ping_storage_data_371 ^ i_input_data[228 % IN_WIDTH];
@@ -13162,7 +13162,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_372 <= 1'b0;
         pong_storage_data_372 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             23 / IN_WIDTH: ping_storage_data_372 <= ping_storage_data_372 ^ i_input_data[23 % IN_WIDTH];
             229 / IN_WIDTH: ping_storage_data_372 <= ping_storage_data_372 ^ i_input_data[229 % IN_WIDTH];
@@ -13190,7 +13190,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_373 <= 1'b0;
         pong_storage_data_373 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             24 / IN_WIDTH: ping_storage_data_373 <= ping_storage_data_373 ^ i_input_data[24 % IN_WIDTH];
             230 / IN_WIDTH: ping_storage_data_373 <= ping_storage_data_373 ^ i_input_data[230 % IN_WIDTH];
@@ -13218,7 +13218,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_374 <= 1'b0;
         pong_storage_data_374 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             25 / IN_WIDTH: ping_storage_data_374 <= ping_storage_data_374 ^ i_input_data[25 % IN_WIDTH];
             231 / IN_WIDTH: ping_storage_data_374 <= ping_storage_data_374 ^ i_input_data[231 % IN_WIDTH];
@@ -13246,7 +13246,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_375 <= 1'b0;
         pong_storage_data_375 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             26 / IN_WIDTH: ping_storage_data_375 <= ping_storage_data_375 ^ i_input_data[26 % IN_WIDTH];
             232 / IN_WIDTH: ping_storage_data_375 <= ping_storage_data_375 ^ i_input_data[232 % IN_WIDTH];
@@ -13274,7 +13274,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_376 <= 1'b0;
         pong_storage_data_376 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             27 / IN_WIDTH: ping_storage_data_376 <= ping_storage_data_376 ^ i_input_data[27 % IN_WIDTH];
             233 / IN_WIDTH: ping_storage_data_376 <= ping_storage_data_376 ^ i_input_data[233 % IN_WIDTH];
@@ -13302,7 +13302,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_377 <= 1'b0;
         pong_storage_data_377 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             28 / IN_WIDTH: ping_storage_data_377 <= ping_storage_data_377 ^ i_input_data[28 % IN_WIDTH];
             234 / IN_WIDTH: ping_storage_data_377 <= ping_storage_data_377 ^ i_input_data[234 % IN_WIDTH];
@@ -13330,7 +13330,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_378 <= 1'b0;
         pong_storage_data_378 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             29 / IN_WIDTH: ping_storage_data_378 <= ping_storage_data_378 ^ i_input_data[29 % IN_WIDTH];
             235 / IN_WIDTH: ping_storage_data_378 <= ping_storage_data_378 ^ i_input_data[235 % IN_WIDTH];
@@ -13358,7 +13358,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_379 <= 1'b0;
         pong_storage_data_379 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             30 / IN_WIDTH: ping_storage_data_379 <= ping_storage_data_379 ^ i_input_data[30 % IN_WIDTH];
             236 / IN_WIDTH: ping_storage_data_379 <= ping_storage_data_379 ^ i_input_data[236 % IN_WIDTH];
@@ -13386,7 +13386,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_380 <= 1'b0;
         pong_storage_data_380 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             31 / IN_WIDTH: ping_storage_data_380 <= ping_storage_data_380 ^ i_input_data[31 % IN_WIDTH];
             237 / IN_WIDTH: ping_storage_data_380 <= ping_storage_data_380 ^ i_input_data[237 % IN_WIDTH];
@@ -13414,7 +13414,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_381 <= 1'b0;
         pong_storage_data_381 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             32 / IN_WIDTH: ping_storage_data_381 <= ping_storage_data_381 ^ i_input_data[32 % IN_WIDTH];
             238 / IN_WIDTH: ping_storage_data_381 <= ping_storage_data_381 ^ i_input_data[238 % IN_WIDTH];
@@ -13442,7 +13442,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_382 <= 1'b0;
         pong_storage_data_382 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             33 / IN_WIDTH: ping_storage_data_382 <= ping_storage_data_382 ^ i_input_data[33 % IN_WIDTH];
             239 / IN_WIDTH: ping_storage_data_382 <= ping_storage_data_382 ^ i_input_data[239 % IN_WIDTH];
@@ -13470,7 +13470,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_383 <= 1'b0;
         pong_storage_data_383 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             34 / IN_WIDTH: ping_storage_data_383 <= ping_storage_data_383 ^ i_input_data[34 % IN_WIDTH];
             240 / IN_WIDTH: ping_storage_data_383 <= ping_storage_data_383 ^ i_input_data[240 % IN_WIDTH];
@@ -13498,7 +13498,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_384 <= 1'b0;
         pong_storage_data_384 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             249 / IN_WIDTH: ping_storage_data_384 <= ping_storage_data_384 ^ i_input_data[249 % IN_WIDTH];
             588 / IN_WIDTH: ping_storage_data_384 <= ping_storage_data_384 ^ i_input_data[588 % IN_WIDTH];
@@ -13526,7 +13526,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_385 <= 1'b0;
         pong_storage_data_385 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             250 / IN_WIDTH: ping_storage_data_385 <= ping_storage_data_385 ^ i_input_data[250 % IN_WIDTH];
             589 / IN_WIDTH: ping_storage_data_385 <= ping_storage_data_385 ^ i_input_data[589 % IN_WIDTH];
@@ -13554,7 +13554,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_386 <= 1'b0;
         pong_storage_data_386 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             251 / IN_WIDTH: ping_storage_data_386 <= ping_storage_data_386 ^ i_input_data[251 % IN_WIDTH];
             590 / IN_WIDTH: ping_storage_data_386 <= ping_storage_data_386 ^ i_input_data[590 % IN_WIDTH];
@@ -13582,7 +13582,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_387 <= 1'b0;
         pong_storage_data_387 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             252 / IN_WIDTH: ping_storage_data_387 <= ping_storage_data_387 ^ i_input_data[252 % IN_WIDTH];
             591 / IN_WIDTH: ping_storage_data_387 <= ping_storage_data_387 ^ i_input_data[591 % IN_WIDTH];
@@ -13610,7 +13610,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_388 <= 1'b0;
         pong_storage_data_388 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             253 / IN_WIDTH: ping_storage_data_388 <= ping_storage_data_388 ^ i_input_data[253 % IN_WIDTH];
             592 / IN_WIDTH: ping_storage_data_388 <= ping_storage_data_388 ^ i_input_data[592 % IN_WIDTH];
@@ -13638,7 +13638,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_389 <= 1'b0;
         pong_storage_data_389 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             254 / IN_WIDTH: ping_storage_data_389 <= ping_storage_data_389 ^ i_input_data[254 % IN_WIDTH];
             593 / IN_WIDTH: ping_storage_data_389 <= ping_storage_data_389 ^ i_input_data[593 % IN_WIDTH];
@@ -13666,7 +13666,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_390 <= 1'b0;
         pong_storage_data_390 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             255 / IN_WIDTH: ping_storage_data_390 <= ping_storage_data_390 ^ i_input_data[255 % IN_WIDTH];
             594 / IN_WIDTH: ping_storage_data_390 <= ping_storage_data_390 ^ i_input_data[594 % IN_WIDTH];
@@ -13694,7 +13694,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_391 <= 1'b0;
         pong_storage_data_391 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             256 / IN_WIDTH: ping_storage_data_391 <= ping_storage_data_391 ^ i_input_data[256 % IN_WIDTH];
             595 / IN_WIDTH: ping_storage_data_391 <= ping_storage_data_391 ^ i_input_data[595 % IN_WIDTH];
@@ -13722,7 +13722,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_392 <= 1'b0;
         pong_storage_data_392 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             257 / IN_WIDTH: ping_storage_data_392 <= ping_storage_data_392 ^ i_input_data[257 % IN_WIDTH];
             596 / IN_WIDTH: ping_storage_data_392 <= ping_storage_data_392 ^ i_input_data[596 % IN_WIDTH];
@@ -13750,7 +13750,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_393 <= 1'b0;
         pong_storage_data_393 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             258 / IN_WIDTH: ping_storage_data_393 <= ping_storage_data_393 ^ i_input_data[258 % IN_WIDTH];
             597 / IN_WIDTH: ping_storage_data_393 <= ping_storage_data_393 ^ i_input_data[597 % IN_WIDTH];
@@ -13778,7 +13778,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_394 <= 1'b0;
         pong_storage_data_394 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             259 / IN_WIDTH: ping_storage_data_394 <= ping_storage_data_394 ^ i_input_data[259 % IN_WIDTH];
             598 / IN_WIDTH: ping_storage_data_394 <= ping_storage_data_394 ^ i_input_data[598 % IN_WIDTH];
@@ -13806,7 +13806,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_395 <= 1'b0;
         pong_storage_data_395 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             260 / IN_WIDTH: ping_storage_data_395 <= ping_storage_data_395 ^ i_input_data[260 % IN_WIDTH];
             599 / IN_WIDTH: ping_storage_data_395 <= ping_storage_data_395 ^ i_input_data[599 % IN_WIDTH];
@@ -13834,7 +13834,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_396 <= 1'b0;
         pong_storage_data_396 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             261 / IN_WIDTH: ping_storage_data_396 <= ping_storage_data_396 ^ i_input_data[261 % IN_WIDTH];
             600 / IN_WIDTH: ping_storage_data_396 <= ping_storage_data_396 ^ i_input_data[600 % IN_WIDTH];
@@ -13862,7 +13862,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_397 <= 1'b0;
         pong_storage_data_397 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             262 / IN_WIDTH: ping_storage_data_397 <= ping_storage_data_397 ^ i_input_data[262 % IN_WIDTH];
             601 / IN_WIDTH: ping_storage_data_397 <= ping_storage_data_397 ^ i_input_data[601 % IN_WIDTH];
@@ -13890,7 +13890,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_398 <= 1'b0;
         pong_storage_data_398 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             263 / IN_WIDTH: ping_storage_data_398 <= ping_storage_data_398 ^ i_input_data[263 % IN_WIDTH];
             602 / IN_WIDTH: ping_storage_data_398 <= ping_storage_data_398 ^ i_input_data[602 % IN_WIDTH];
@@ -13918,7 +13918,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_399 <= 1'b0;
         pong_storage_data_399 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             264 / IN_WIDTH: ping_storage_data_399 <= ping_storage_data_399 ^ i_input_data[264 % IN_WIDTH];
             603 / IN_WIDTH: ping_storage_data_399 <= ping_storage_data_399 ^ i_input_data[603 % IN_WIDTH];
@@ -13946,7 +13946,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_400 <= 1'b0;
         pong_storage_data_400 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             265 / IN_WIDTH: ping_storage_data_400 <= ping_storage_data_400 ^ i_input_data[265 % IN_WIDTH];
             604 / IN_WIDTH: ping_storage_data_400 <= ping_storage_data_400 ^ i_input_data[604 % IN_WIDTH];
@@ -13974,7 +13974,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_401 <= 1'b0;
         pong_storage_data_401 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             266 / IN_WIDTH: ping_storage_data_401 <= ping_storage_data_401 ^ i_input_data[266 % IN_WIDTH];
             605 / IN_WIDTH: ping_storage_data_401 <= ping_storage_data_401 ^ i_input_data[605 % IN_WIDTH];
@@ -14002,7 +14002,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_402 <= 1'b0;
         pong_storage_data_402 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             267 / IN_WIDTH: ping_storage_data_402 <= ping_storage_data_402 ^ i_input_data[267 % IN_WIDTH];
             606 / IN_WIDTH: ping_storage_data_402 <= ping_storage_data_402 ^ i_input_data[606 % IN_WIDTH];
@@ -14030,7 +14030,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_403 <= 1'b0;
         pong_storage_data_403 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             268 / IN_WIDTH: ping_storage_data_403 <= ping_storage_data_403 ^ i_input_data[268 % IN_WIDTH];
             607 / IN_WIDTH: ping_storage_data_403 <= ping_storage_data_403 ^ i_input_data[607 % IN_WIDTH];
@@ -14058,7 +14058,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_404 <= 1'b0;
         pong_storage_data_404 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             269 / IN_WIDTH: ping_storage_data_404 <= ping_storage_data_404 ^ i_input_data[269 % IN_WIDTH];
             608 / IN_WIDTH: ping_storage_data_404 <= ping_storage_data_404 ^ i_input_data[608 % IN_WIDTH];
@@ -14086,7 +14086,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_405 <= 1'b0;
         pong_storage_data_405 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             270 / IN_WIDTH: ping_storage_data_405 <= ping_storage_data_405 ^ i_input_data[270 % IN_WIDTH];
             609 / IN_WIDTH: ping_storage_data_405 <= ping_storage_data_405 ^ i_input_data[609 % IN_WIDTH];
@@ -14114,7 +14114,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_406 <= 1'b0;
         pong_storage_data_406 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             271 / IN_WIDTH: ping_storage_data_406 <= ping_storage_data_406 ^ i_input_data[271 % IN_WIDTH];
             610 / IN_WIDTH: ping_storage_data_406 <= ping_storage_data_406 ^ i_input_data[610 % IN_WIDTH];
@@ -14142,7 +14142,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_407 <= 1'b0;
         pong_storage_data_407 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             272 / IN_WIDTH: ping_storage_data_407 <= ping_storage_data_407 ^ i_input_data[272 % IN_WIDTH];
             611 / IN_WIDTH: ping_storage_data_407 <= ping_storage_data_407 ^ i_input_data[611 % IN_WIDTH];
@@ -14170,7 +14170,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_408 <= 1'b0;
         pong_storage_data_408 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             273 / IN_WIDTH: ping_storage_data_408 <= ping_storage_data_408 ^ i_input_data[273 % IN_WIDTH];
             612 / IN_WIDTH: ping_storage_data_408 <= ping_storage_data_408 ^ i_input_data[612 % IN_WIDTH];
@@ -14198,7 +14198,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_409 <= 1'b0;
         pong_storage_data_409 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             274 / IN_WIDTH: ping_storage_data_409 <= ping_storage_data_409 ^ i_input_data[274 % IN_WIDTH];
             613 / IN_WIDTH: ping_storage_data_409 <= ping_storage_data_409 ^ i_input_data[613 % IN_WIDTH];
@@ -14226,7 +14226,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_410 <= 1'b0;
         pong_storage_data_410 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             275 / IN_WIDTH: ping_storage_data_410 <= ping_storage_data_410 ^ i_input_data[275 % IN_WIDTH];
             614 / IN_WIDTH: ping_storage_data_410 <= ping_storage_data_410 ^ i_input_data[614 % IN_WIDTH];
@@ -14254,7 +14254,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_411 <= 1'b0;
         pong_storage_data_411 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             276 / IN_WIDTH: ping_storage_data_411 <= ping_storage_data_411 ^ i_input_data[276 % IN_WIDTH];
             615 / IN_WIDTH: ping_storage_data_411 <= ping_storage_data_411 ^ i_input_data[615 % IN_WIDTH];
@@ -14282,7 +14282,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_412 <= 1'b0;
         pong_storage_data_412 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             277 / IN_WIDTH: ping_storage_data_412 <= ping_storage_data_412 ^ i_input_data[277 % IN_WIDTH];
             616 / IN_WIDTH: ping_storage_data_412 <= ping_storage_data_412 ^ i_input_data[616 % IN_WIDTH];
@@ -14310,7 +14310,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_413 <= 1'b0;
         pong_storage_data_413 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             278 / IN_WIDTH: ping_storage_data_413 <= ping_storage_data_413 ^ i_input_data[278 % IN_WIDTH];
             617 / IN_WIDTH: ping_storage_data_413 <= ping_storage_data_413 ^ i_input_data[617 % IN_WIDTH];
@@ -14338,7 +14338,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_414 <= 1'b0;
         pong_storage_data_414 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             279 / IN_WIDTH: ping_storage_data_414 <= ping_storage_data_414 ^ i_input_data[279 % IN_WIDTH];
             618 / IN_WIDTH: ping_storage_data_414 <= ping_storage_data_414 ^ i_input_data[618 % IN_WIDTH];
@@ -14366,7 +14366,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_415 <= 1'b0;
         pong_storage_data_415 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             280 / IN_WIDTH: ping_storage_data_415 <= ping_storage_data_415 ^ i_input_data[280 % IN_WIDTH];
             619 / IN_WIDTH: ping_storage_data_415 <= ping_storage_data_415 ^ i_input_data[619 % IN_WIDTH];
@@ -14394,7 +14394,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_416 <= 1'b0;
         pong_storage_data_416 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             281 / IN_WIDTH: ping_storage_data_416 <= ping_storage_data_416 ^ i_input_data[281 % IN_WIDTH];
             620 / IN_WIDTH: ping_storage_data_416 <= ping_storage_data_416 ^ i_input_data[620 % IN_WIDTH];
@@ -14422,7 +14422,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_417 <= 1'b0;
         pong_storage_data_417 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             282 / IN_WIDTH: ping_storage_data_417 <= ping_storage_data_417 ^ i_input_data[282 % IN_WIDTH];
             621 / IN_WIDTH: ping_storage_data_417 <= ping_storage_data_417 ^ i_input_data[621 % IN_WIDTH];
@@ -14450,7 +14450,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_418 <= 1'b0;
         pong_storage_data_418 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             283 / IN_WIDTH: ping_storage_data_418 <= ping_storage_data_418 ^ i_input_data[283 % IN_WIDTH];
             622 / IN_WIDTH: ping_storage_data_418 <= ping_storage_data_418 ^ i_input_data[622 % IN_WIDTH];
@@ -14478,7 +14478,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_419 <= 1'b0;
         pong_storage_data_419 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             284 / IN_WIDTH: ping_storage_data_419 <= ping_storage_data_419 ^ i_input_data[284 % IN_WIDTH];
             623 / IN_WIDTH: ping_storage_data_419 <= ping_storage_data_419 ^ i_input_data[623 % IN_WIDTH];
@@ -14506,7 +14506,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_420 <= 1'b0;
         pong_storage_data_420 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             285 / IN_WIDTH: ping_storage_data_420 <= ping_storage_data_420 ^ i_input_data[285 % IN_WIDTH];
             624 / IN_WIDTH: ping_storage_data_420 <= ping_storage_data_420 ^ i_input_data[624 % IN_WIDTH];
@@ -14534,7 +14534,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_421 <= 1'b0;
         pong_storage_data_421 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             286 / IN_WIDTH: ping_storage_data_421 <= ping_storage_data_421 ^ i_input_data[286 % IN_WIDTH];
             625 / IN_WIDTH: ping_storage_data_421 <= ping_storage_data_421 ^ i_input_data[625 % IN_WIDTH];
@@ -14562,7 +14562,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_422 <= 1'b0;
         pong_storage_data_422 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             287 / IN_WIDTH: ping_storage_data_422 <= ping_storage_data_422 ^ i_input_data[287 % IN_WIDTH];
             626 / IN_WIDTH: ping_storage_data_422 <= ping_storage_data_422 ^ i_input_data[626 % IN_WIDTH];
@@ -14590,7 +14590,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_423 <= 1'b0;
         pong_storage_data_423 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             192 / IN_WIDTH: ping_storage_data_423 <= ping_storage_data_423 ^ i_input_data[192 % IN_WIDTH];
             627 / IN_WIDTH: ping_storage_data_423 <= ping_storage_data_423 ^ i_input_data[627 % IN_WIDTH];
@@ -14618,7 +14618,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_424 <= 1'b0;
         pong_storage_data_424 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             193 / IN_WIDTH: ping_storage_data_424 <= ping_storage_data_424 ^ i_input_data[193 % IN_WIDTH];
             628 / IN_WIDTH: ping_storage_data_424 <= ping_storage_data_424 ^ i_input_data[628 % IN_WIDTH];
@@ -14646,7 +14646,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_425 <= 1'b0;
         pong_storage_data_425 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             194 / IN_WIDTH: ping_storage_data_425 <= ping_storage_data_425 ^ i_input_data[194 % IN_WIDTH];
             629 / IN_WIDTH: ping_storage_data_425 <= ping_storage_data_425 ^ i_input_data[629 % IN_WIDTH];
@@ -14674,7 +14674,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_426 <= 1'b0;
         pong_storage_data_426 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             195 / IN_WIDTH: ping_storage_data_426 <= ping_storage_data_426 ^ i_input_data[195 % IN_WIDTH];
             630 / IN_WIDTH: ping_storage_data_426 <= ping_storage_data_426 ^ i_input_data[630 % IN_WIDTH];
@@ -14702,7 +14702,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_427 <= 1'b0;
         pong_storage_data_427 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             196 / IN_WIDTH: ping_storage_data_427 <= ping_storage_data_427 ^ i_input_data[196 % IN_WIDTH];
             631 / IN_WIDTH: ping_storage_data_427 <= ping_storage_data_427 ^ i_input_data[631 % IN_WIDTH];
@@ -14730,7 +14730,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_428 <= 1'b0;
         pong_storage_data_428 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             197 / IN_WIDTH: ping_storage_data_428 <= ping_storage_data_428 ^ i_input_data[197 % IN_WIDTH];
             632 / IN_WIDTH: ping_storage_data_428 <= ping_storage_data_428 ^ i_input_data[632 % IN_WIDTH];
@@ -14758,7 +14758,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_429 <= 1'b0;
         pong_storage_data_429 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             198 / IN_WIDTH: ping_storage_data_429 <= ping_storage_data_429 ^ i_input_data[198 % IN_WIDTH];
             633 / IN_WIDTH: ping_storage_data_429 <= ping_storage_data_429 ^ i_input_data[633 % IN_WIDTH];
@@ -14786,7 +14786,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_430 <= 1'b0;
         pong_storage_data_430 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             199 / IN_WIDTH: ping_storage_data_430 <= ping_storage_data_430 ^ i_input_data[199 % IN_WIDTH];
             634 / IN_WIDTH: ping_storage_data_430 <= ping_storage_data_430 ^ i_input_data[634 % IN_WIDTH];
@@ -14814,7 +14814,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_431 <= 1'b0;
         pong_storage_data_431 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             200 / IN_WIDTH: ping_storage_data_431 <= ping_storage_data_431 ^ i_input_data[200 % IN_WIDTH];
             635 / IN_WIDTH: ping_storage_data_431 <= ping_storage_data_431 ^ i_input_data[635 % IN_WIDTH];
@@ -14842,7 +14842,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_432 <= 1'b0;
         pong_storage_data_432 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             201 / IN_WIDTH: ping_storage_data_432 <= ping_storage_data_432 ^ i_input_data[201 % IN_WIDTH];
             636 / IN_WIDTH: ping_storage_data_432 <= ping_storage_data_432 ^ i_input_data[636 % IN_WIDTH];
@@ -14870,7 +14870,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_433 <= 1'b0;
         pong_storage_data_433 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             202 / IN_WIDTH: ping_storage_data_433 <= ping_storage_data_433 ^ i_input_data[202 % IN_WIDTH];
             637 / IN_WIDTH: ping_storage_data_433 <= ping_storage_data_433 ^ i_input_data[637 % IN_WIDTH];
@@ -14898,7 +14898,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_434 <= 1'b0;
         pong_storage_data_434 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             203 / IN_WIDTH: ping_storage_data_434 <= ping_storage_data_434 ^ i_input_data[203 % IN_WIDTH];
             638 / IN_WIDTH: ping_storage_data_434 <= ping_storage_data_434 ^ i_input_data[638 % IN_WIDTH];
@@ -14926,7 +14926,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_435 <= 1'b0;
         pong_storage_data_435 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             204 / IN_WIDTH: ping_storage_data_435 <= ping_storage_data_435 ^ i_input_data[204 % IN_WIDTH];
             639 / IN_WIDTH: ping_storage_data_435 <= ping_storage_data_435 ^ i_input_data[639 % IN_WIDTH];
@@ -14954,7 +14954,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_436 <= 1'b0;
         pong_storage_data_436 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             205 / IN_WIDTH: ping_storage_data_436 <= ping_storage_data_436 ^ i_input_data[205 % IN_WIDTH];
             640 / IN_WIDTH: ping_storage_data_436 <= ping_storage_data_436 ^ i_input_data[640 % IN_WIDTH];
@@ -14982,7 +14982,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_437 <= 1'b0;
         pong_storage_data_437 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             206 / IN_WIDTH: ping_storage_data_437 <= ping_storage_data_437 ^ i_input_data[206 % IN_WIDTH];
             641 / IN_WIDTH: ping_storage_data_437 <= ping_storage_data_437 ^ i_input_data[641 % IN_WIDTH];
@@ -15010,7 +15010,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_438 <= 1'b0;
         pong_storage_data_438 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             207 / IN_WIDTH: ping_storage_data_438 <= ping_storage_data_438 ^ i_input_data[207 % IN_WIDTH];
             642 / IN_WIDTH: ping_storage_data_438 <= ping_storage_data_438 ^ i_input_data[642 % IN_WIDTH];
@@ -15038,7 +15038,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_439 <= 1'b0;
         pong_storage_data_439 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             208 / IN_WIDTH: ping_storage_data_439 <= ping_storage_data_439 ^ i_input_data[208 % IN_WIDTH];
             643 / IN_WIDTH: ping_storage_data_439 <= ping_storage_data_439 ^ i_input_data[643 % IN_WIDTH];
@@ -15066,7 +15066,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_440 <= 1'b0;
         pong_storage_data_440 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             209 / IN_WIDTH: ping_storage_data_440 <= ping_storage_data_440 ^ i_input_data[209 % IN_WIDTH];
             644 / IN_WIDTH: ping_storage_data_440 <= ping_storage_data_440 ^ i_input_data[644 % IN_WIDTH];
@@ -15094,7 +15094,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_441 <= 1'b0;
         pong_storage_data_441 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             210 / IN_WIDTH: ping_storage_data_441 <= ping_storage_data_441 ^ i_input_data[210 % IN_WIDTH];
             645 / IN_WIDTH: ping_storage_data_441 <= ping_storage_data_441 ^ i_input_data[645 % IN_WIDTH];
@@ -15122,7 +15122,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_442 <= 1'b0;
         pong_storage_data_442 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             211 / IN_WIDTH: ping_storage_data_442 <= ping_storage_data_442 ^ i_input_data[211 % IN_WIDTH];
             646 / IN_WIDTH: ping_storage_data_442 <= ping_storage_data_442 ^ i_input_data[646 % IN_WIDTH];
@@ -15150,7 +15150,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_443 <= 1'b0;
         pong_storage_data_443 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             212 / IN_WIDTH: ping_storage_data_443 <= ping_storage_data_443 ^ i_input_data[212 % IN_WIDTH];
             647 / IN_WIDTH: ping_storage_data_443 <= ping_storage_data_443 ^ i_input_data[647 % IN_WIDTH];
@@ -15178,7 +15178,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_444 <= 1'b0;
         pong_storage_data_444 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             213 / IN_WIDTH: ping_storage_data_444 <= ping_storage_data_444 ^ i_input_data[213 % IN_WIDTH];
             648 / IN_WIDTH: ping_storage_data_444 <= ping_storage_data_444 ^ i_input_data[648 % IN_WIDTH];
@@ -15206,7 +15206,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_445 <= 1'b0;
         pong_storage_data_445 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             214 / IN_WIDTH: ping_storage_data_445 <= ping_storage_data_445 ^ i_input_data[214 % IN_WIDTH];
             649 / IN_WIDTH: ping_storage_data_445 <= ping_storage_data_445 ^ i_input_data[649 % IN_WIDTH];
@@ -15234,7 +15234,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_446 <= 1'b0;
         pong_storage_data_446 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             215 / IN_WIDTH: ping_storage_data_446 <= ping_storage_data_446 ^ i_input_data[215 % IN_WIDTH];
             650 / IN_WIDTH: ping_storage_data_446 <= ping_storage_data_446 ^ i_input_data[650 % IN_WIDTH];
@@ -15262,7 +15262,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_447 <= 1'b0;
         pong_storage_data_447 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             216 / IN_WIDTH: ping_storage_data_447 <= ping_storage_data_447 ^ i_input_data[216 % IN_WIDTH];
             651 / IN_WIDTH: ping_storage_data_447 <= ping_storage_data_447 ^ i_input_data[651 % IN_WIDTH];
@@ -15290,7 +15290,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_448 <= 1'b0;
         pong_storage_data_448 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             217 / IN_WIDTH: ping_storage_data_448 <= ping_storage_data_448 ^ i_input_data[217 % IN_WIDTH];
             652 / IN_WIDTH: ping_storage_data_448 <= ping_storage_data_448 ^ i_input_data[652 % IN_WIDTH];
@@ -15318,7 +15318,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_449 <= 1'b0;
         pong_storage_data_449 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             218 / IN_WIDTH: ping_storage_data_449 <= ping_storage_data_449 ^ i_input_data[218 % IN_WIDTH];
             653 / IN_WIDTH: ping_storage_data_449 <= ping_storage_data_449 ^ i_input_data[653 % IN_WIDTH];
@@ -15346,7 +15346,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_450 <= 1'b0;
         pong_storage_data_450 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             219 / IN_WIDTH: ping_storage_data_450 <= ping_storage_data_450 ^ i_input_data[219 % IN_WIDTH];
             654 / IN_WIDTH: ping_storage_data_450 <= ping_storage_data_450 ^ i_input_data[654 % IN_WIDTH];
@@ -15374,7 +15374,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_451 <= 1'b0;
         pong_storage_data_451 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             220 / IN_WIDTH: ping_storage_data_451 <= ping_storage_data_451 ^ i_input_data[220 % IN_WIDTH];
             655 / IN_WIDTH: ping_storage_data_451 <= ping_storage_data_451 ^ i_input_data[655 % IN_WIDTH];
@@ -15402,7 +15402,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_452 <= 1'b0;
         pong_storage_data_452 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             221 / IN_WIDTH: ping_storage_data_452 <= ping_storage_data_452 ^ i_input_data[221 % IN_WIDTH];
             656 / IN_WIDTH: ping_storage_data_452 <= ping_storage_data_452 ^ i_input_data[656 % IN_WIDTH];
@@ -15430,7 +15430,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_453 <= 1'b0;
         pong_storage_data_453 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             222 / IN_WIDTH: ping_storage_data_453 <= ping_storage_data_453 ^ i_input_data[222 % IN_WIDTH];
             657 / IN_WIDTH: ping_storage_data_453 <= ping_storage_data_453 ^ i_input_data[657 % IN_WIDTH];
@@ -15458,7 +15458,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_454 <= 1'b0;
         pong_storage_data_454 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             223 / IN_WIDTH: ping_storage_data_454 <= ping_storage_data_454 ^ i_input_data[223 % IN_WIDTH];
             658 / IN_WIDTH: ping_storage_data_454 <= ping_storage_data_454 ^ i_input_data[658 % IN_WIDTH];
@@ -15486,7 +15486,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_455 <= 1'b0;
         pong_storage_data_455 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             224 / IN_WIDTH: ping_storage_data_455 <= ping_storage_data_455 ^ i_input_data[224 % IN_WIDTH];
             659 / IN_WIDTH: ping_storage_data_455 <= ping_storage_data_455 ^ i_input_data[659 % IN_WIDTH];
@@ -15514,7 +15514,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_456 <= 1'b0;
         pong_storage_data_456 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             225 / IN_WIDTH: ping_storage_data_456 <= ping_storage_data_456 ^ i_input_data[225 % IN_WIDTH];
             660 / IN_WIDTH: ping_storage_data_456 <= ping_storage_data_456 ^ i_input_data[660 % IN_WIDTH];
@@ -15542,7 +15542,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_457 <= 1'b0;
         pong_storage_data_457 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             226 / IN_WIDTH: ping_storage_data_457 <= ping_storage_data_457 ^ i_input_data[226 % IN_WIDTH];
             661 / IN_WIDTH: ping_storage_data_457 <= ping_storage_data_457 ^ i_input_data[661 % IN_WIDTH];
@@ -15570,7 +15570,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_458 <= 1'b0;
         pong_storage_data_458 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             227 / IN_WIDTH: ping_storage_data_458 <= ping_storage_data_458 ^ i_input_data[227 % IN_WIDTH];
             662 / IN_WIDTH: ping_storage_data_458 <= ping_storage_data_458 ^ i_input_data[662 % IN_WIDTH];
@@ -15598,7 +15598,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_459 <= 1'b0;
         pong_storage_data_459 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             228 / IN_WIDTH: ping_storage_data_459 <= ping_storage_data_459 ^ i_input_data[228 % IN_WIDTH];
             663 / IN_WIDTH: ping_storage_data_459 <= ping_storage_data_459 ^ i_input_data[663 % IN_WIDTH];
@@ -15626,7 +15626,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_460 <= 1'b0;
         pong_storage_data_460 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             229 / IN_WIDTH: ping_storage_data_460 <= ping_storage_data_460 ^ i_input_data[229 % IN_WIDTH];
             664 / IN_WIDTH: ping_storage_data_460 <= ping_storage_data_460 ^ i_input_data[664 % IN_WIDTH];
@@ -15654,7 +15654,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_461 <= 1'b0;
         pong_storage_data_461 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             230 / IN_WIDTH: ping_storage_data_461 <= ping_storage_data_461 ^ i_input_data[230 % IN_WIDTH];
             665 / IN_WIDTH: ping_storage_data_461 <= ping_storage_data_461 ^ i_input_data[665 % IN_WIDTH];
@@ -15682,7 +15682,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_462 <= 1'b0;
         pong_storage_data_462 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             231 / IN_WIDTH: ping_storage_data_462 <= ping_storage_data_462 ^ i_input_data[231 % IN_WIDTH];
             666 / IN_WIDTH: ping_storage_data_462 <= ping_storage_data_462 ^ i_input_data[666 % IN_WIDTH];
@@ -15710,7 +15710,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_463 <= 1'b0;
         pong_storage_data_463 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             232 / IN_WIDTH: ping_storage_data_463 <= ping_storage_data_463 ^ i_input_data[232 % IN_WIDTH];
             667 / IN_WIDTH: ping_storage_data_463 <= ping_storage_data_463 ^ i_input_data[667 % IN_WIDTH];
@@ -15738,7 +15738,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_464 <= 1'b0;
         pong_storage_data_464 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             233 / IN_WIDTH: ping_storage_data_464 <= ping_storage_data_464 ^ i_input_data[233 % IN_WIDTH];
             668 / IN_WIDTH: ping_storage_data_464 <= ping_storage_data_464 ^ i_input_data[668 % IN_WIDTH];
@@ -15766,7 +15766,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_465 <= 1'b0;
         pong_storage_data_465 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             234 / IN_WIDTH: ping_storage_data_465 <= ping_storage_data_465 ^ i_input_data[234 % IN_WIDTH];
             669 / IN_WIDTH: ping_storage_data_465 <= ping_storage_data_465 ^ i_input_data[669 % IN_WIDTH];
@@ -15794,7 +15794,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_466 <= 1'b0;
         pong_storage_data_466 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             235 / IN_WIDTH: ping_storage_data_466 <= ping_storage_data_466 ^ i_input_data[235 % IN_WIDTH];
             670 / IN_WIDTH: ping_storage_data_466 <= ping_storage_data_466 ^ i_input_data[670 % IN_WIDTH];
@@ -15822,7 +15822,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_467 <= 1'b0;
         pong_storage_data_467 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             236 / IN_WIDTH: ping_storage_data_467 <= ping_storage_data_467 ^ i_input_data[236 % IN_WIDTH];
             671 / IN_WIDTH: ping_storage_data_467 <= ping_storage_data_467 ^ i_input_data[671 % IN_WIDTH];
@@ -15850,7 +15850,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_468 <= 1'b0;
         pong_storage_data_468 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             237 / IN_WIDTH: ping_storage_data_468 <= ping_storage_data_468 ^ i_input_data[237 % IN_WIDTH];
             576 / IN_WIDTH: ping_storage_data_468 <= ping_storage_data_468 ^ i_input_data[576 % IN_WIDTH];
@@ -15878,7 +15878,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_469 <= 1'b0;
         pong_storage_data_469 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             238 / IN_WIDTH: ping_storage_data_469 <= ping_storage_data_469 ^ i_input_data[238 % IN_WIDTH];
             577 / IN_WIDTH: ping_storage_data_469 <= ping_storage_data_469 ^ i_input_data[577 % IN_WIDTH];
@@ -15906,7 +15906,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_470 <= 1'b0;
         pong_storage_data_470 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             239 / IN_WIDTH: ping_storage_data_470 <= ping_storage_data_470 ^ i_input_data[239 % IN_WIDTH];
             578 / IN_WIDTH: ping_storage_data_470 <= ping_storage_data_470 ^ i_input_data[578 % IN_WIDTH];
@@ -15934,7 +15934,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_471 <= 1'b0;
         pong_storage_data_471 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             240 / IN_WIDTH: ping_storage_data_471 <= ping_storage_data_471 ^ i_input_data[240 % IN_WIDTH];
             579 / IN_WIDTH: ping_storage_data_471 <= ping_storage_data_471 ^ i_input_data[579 % IN_WIDTH];
@@ -15962,7 +15962,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_472 <= 1'b0;
         pong_storage_data_472 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             241 / IN_WIDTH: ping_storage_data_472 <= ping_storage_data_472 ^ i_input_data[241 % IN_WIDTH];
             580 / IN_WIDTH: ping_storage_data_472 <= ping_storage_data_472 ^ i_input_data[580 % IN_WIDTH];
@@ -15990,7 +15990,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_473 <= 1'b0;
         pong_storage_data_473 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             242 / IN_WIDTH: ping_storage_data_473 <= ping_storage_data_473 ^ i_input_data[242 % IN_WIDTH];
             581 / IN_WIDTH: ping_storage_data_473 <= ping_storage_data_473 ^ i_input_data[581 % IN_WIDTH];
@@ -16018,7 +16018,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_474 <= 1'b0;
         pong_storage_data_474 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             243 / IN_WIDTH: ping_storage_data_474 <= ping_storage_data_474 ^ i_input_data[243 % IN_WIDTH];
             582 / IN_WIDTH: ping_storage_data_474 <= ping_storage_data_474 ^ i_input_data[582 % IN_WIDTH];
@@ -16046,7 +16046,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_475 <= 1'b0;
         pong_storage_data_475 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             244 / IN_WIDTH: ping_storage_data_475 <= ping_storage_data_475 ^ i_input_data[244 % IN_WIDTH];
             583 / IN_WIDTH: ping_storage_data_475 <= ping_storage_data_475 ^ i_input_data[583 % IN_WIDTH];
@@ -16074,7 +16074,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_476 <= 1'b0;
         pong_storage_data_476 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             245 / IN_WIDTH: ping_storage_data_476 <= ping_storage_data_476 ^ i_input_data[245 % IN_WIDTH];
             584 / IN_WIDTH: ping_storage_data_476 <= ping_storage_data_476 ^ i_input_data[584 % IN_WIDTH];
@@ -16102,7 +16102,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_477 <= 1'b0;
         pong_storage_data_477 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             246 / IN_WIDTH: ping_storage_data_477 <= ping_storage_data_477 ^ i_input_data[246 % IN_WIDTH];
             585 / IN_WIDTH: ping_storage_data_477 <= ping_storage_data_477 ^ i_input_data[585 % IN_WIDTH];
@@ -16130,7 +16130,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_478 <= 1'b0;
         pong_storage_data_478 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             247 / IN_WIDTH: ping_storage_data_478 <= ping_storage_data_478 ^ i_input_data[247 % IN_WIDTH];
             586 / IN_WIDTH: ping_storage_data_478 <= ping_storage_data_478 ^ i_input_data[586 % IN_WIDTH];
@@ -16158,7 +16158,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_479 <= 1'b0;
         pong_storage_data_479 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             248 / IN_WIDTH: ping_storage_data_479 <= ping_storage_data_479 ^ i_input_data[248 % IN_WIDTH];
             587 / IN_WIDTH: ping_storage_data_479 <= ping_storage_data_479 ^ i_input_data[587 % IN_WIDTH];
@@ -16186,7 +16186,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_480 <= 1'b0;
         pong_storage_data_480 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             434 / IN_WIDTH: ping_storage_data_480 <= ping_storage_data_480 ^ i_input_data[434 % IN_WIDTH];
             536 / IN_WIDTH: ping_storage_data_480 <= ping_storage_data_480 ^ i_input_data[536 % IN_WIDTH];
@@ -16214,7 +16214,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_481 <= 1'b0;
         pong_storage_data_481 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             435 / IN_WIDTH: ping_storage_data_481 <= ping_storage_data_481 ^ i_input_data[435 % IN_WIDTH];
             537 / IN_WIDTH: ping_storage_data_481 <= ping_storage_data_481 ^ i_input_data[537 % IN_WIDTH];
@@ -16242,7 +16242,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_482 <= 1'b0;
         pong_storage_data_482 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             436 / IN_WIDTH: ping_storage_data_482 <= ping_storage_data_482 ^ i_input_data[436 % IN_WIDTH];
             538 / IN_WIDTH: ping_storage_data_482 <= ping_storage_data_482 ^ i_input_data[538 % IN_WIDTH];
@@ -16270,7 +16270,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_483 <= 1'b0;
         pong_storage_data_483 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             437 / IN_WIDTH: ping_storage_data_483 <= ping_storage_data_483 ^ i_input_data[437 % IN_WIDTH];
             539 / IN_WIDTH: ping_storage_data_483 <= ping_storage_data_483 ^ i_input_data[539 % IN_WIDTH];
@@ -16298,7 +16298,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_484 <= 1'b0;
         pong_storage_data_484 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             438 / IN_WIDTH: ping_storage_data_484 <= ping_storage_data_484 ^ i_input_data[438 % IN_WIDTH];
             540 / IN_WIDTH: ping_storage_data_484 <= ping_storage_data_484 ^ i_input_data[540 % IN_WIDTH];
@@ -16326,7 +16326,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_485 <= 1'b0;
         pong_storage_data_485 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             439 / IN_WIDTH: ping_storage_data_485 <= ping_storage_data_485 ^ i_input_data[439 % IN_WIDTH];
             541 / IN_WIDTH: ping_storage_data_485 <= ping_storage_data_485 ^ i_input_data[541 % IN_WIDTH];
@@ -16354,7 +16354,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_486 <= 1'b0;
         pong_storage_data_486 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             440 / IN_WIDTH: ping_storage_data_486 <= ping_storage_data_486 ^ i_input_data[440 % IN_WIDTH];
             542 / IN_WIDTH: ping_storage_data_486 <= ping_storage_data_486 ^ i_input_data[542 % IN_WIDTH];
@@ -16382,7 +16382,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_487 <= 1'b0;
         pong_storage_data_487 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             441 / IN_WIDTH: ping_storage_data_487 <= ping_storage_data_487 ^ i_input_data[441 % IN_WIDTH];
             543 / IN_WIDTH: ping_storage_data_487 <= ping_storage_data_487 ^ i_input_data[543 % IN_WIDTH];
@@ -16410,7 +16410,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_488 <= 1'b0;
         pong_storage_data_488 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             442 / IN_WIDTH: ping_storage_data_488 <= ping_storage_data_488 ^ i_input_data[442 % IN_WIDTH];
             544 / IN_WIDTH: ping_storage_data_488 <= ping_storage_data_488 ^ i_input_data[544 % IN_WIDTH];
@@ -16438,7 +16438,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_489 <= 1'b0;
         pong_storage_data_489 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             443 / IN_WIDTH: ping_storage_data_489 <= ping_storage_data_489 ^ i_input_data[443 % IN_WIDTH];
             545 / IN_WIDTH: ping_storage_data_489 <= ping_storage_data_489 ^ i_input_data[545 % IN_WIDTH];
@@ -16466,7 +16466,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_490 <= 1'b0;
         pong_storage_data_490 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             444 / IN_WIDTH: ping_storage_data_490 <= ping_storage_data_490 ^ i_input_data[444 % IN_WIDTH];
             546 / IN_WIDTH: ping_storage_data_490 <= ping_storage_data_490 ^ i_input_data[546 % IN_WIDTH];
@@ -16494,7 +16494,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_491 <= 1'b0;
         pong_storage_data_491 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             445 / IN_WIDTH: ping_storage_data_491 <= ping_storage_data_491 ^ i_input_data[445 % IN_WIDTH];
             547 / IN_WIDTH: ping_storage_data_491 <= ping_storage_data_491 ^ i_input_data[547 % IN_WIDTH];
@@ -16522,7 +16522,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_492 <= 1'b0;
         pong_storage_data_492 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             446 / IN_WIDTH: ping_storage_data_492 <= ping_storage_data_492 ^ i_input_data[446 % IN_WIDTH];
             548 / IN_WIDTH: ping_storage_data_492 <= ping_storage_data_492 ^ i_input_data[548 % IN_WIDTH];
@@ -16550,7 +16550,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_493 <= 1'b0;
         pong_storage_data_493 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             447 / IN_WIDTH: ping_storage_data_493 <= ping_storage_data_493 ^ i_input_data[447 % IN_WIDTH];
             549 / IN_WIDTH: ping_storage_data_493 <= ping_storage_data_493 ^ i_input_data[549 % IN_WIDTH];
@@ -16578,7 +16578,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_494 <= 1'b0;
         pong_storage_data_494 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             448 / IN_WIDTH: ping_storage_data_494 <= ping_storage_data_494 ^ i_input_data[448 % IN_WIDTH];
             550 / IN_WIDTH: ping_storage_data_494 <= ping_storage_data_494 ^ i_input_data[550 % IN_WIDTH];
@@ -16606,7 +16606,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_495 <= 1'b0;
         pong_storage_data_495 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             449 / IN_WIDTH: ping_storage_data_495 <= ping_storage_data_495 ^ i_input_data[449 % IN_WIDTH];
             551 / IN_WIDTH: ping_storage_data_495 <= ping_storage_data_495 ^ i_input_data[551 % IN_WIDTH];
@@ -16634,7 +16634,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_496 <= 1'b0;
         pong_storage_data_496 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             450 / IN_WIDTH: ping_storage_data_496 <= ping_storage_data_496 ^ i_input_data[450 % IN_WIDTH];
             552 / IN_WIDTH: ping_storage_data_496 <= ping_storage_data_496 ^ i_input_data[552 % IN_WIDTH];
@@ -16662,7 +16662,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_497 <= 1'b0;
         pong_storage_data_497 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             451 / IN_WIDTH: ping_storage_data_497 <= ping_storage_data_497 ^ i_input_data[451 % IN_WIDTH];
             553 / IN_WIDTH: ping_storage_data_497 <= ping_storage_data_497 ^ i_input_data[553 % IN_WIDTH];
@@ -16690,7 +16690,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_498 <= 1'b0;
         pong_storage_data_498 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             452 / IN_WIDTH: ping_storage_data_498 <= ping_storage_data_498 ^ i_input_data[452 % IN_WIDTH];
             554 / IN_WIDTH: ping_storage_data_498 <= ping_storage_data_498 ^ i_input_data[554 % IN_WIDTH];
@@ -16718,7 +16718,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_499 <= 1'b0;
         pong_storage_data_499 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             453 / IN_WIDTH: ping_storage_data_499 <= ping_storage_data_499 ^ i_input_data[453 % IN_WIDTH];
             555 / IN_WIDTH: ping_storage_data_499 <= ping_storage_data_499 ^ i_input_data[555 % IN_WIDTH];
@@ -16746,7 +16746,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_500 <= 1'b0;
         pong_storage_data_500 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             454 / IN_WIDTH: ping_storage_data_500 <= ping_storage_data_500 ^ i_input_data[454 % IN_WIDTH];
             556 / IN_WIDTH: ping_storage_data_500 <= ping_storage_data_500 ^ i_input_data[556 % IN_WIDTH];
@@ -16774,7 +16774,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_501 <= 1'b0;
         pong_storage_data_501 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             455 / IN_WIDTH: ping_storage_data_501 <= ping_storage_data_501 ^ i_input_data[455 % IN_WIDTH];
             557 / IN_WIDTH: ping_storage_data_501 <= ping_storage_data_501 ^ i_input_data[557 % IN_WIDTH];
@@ -16802,7 +16802,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_502 <= 1'b0;
         pong_storage_data_502 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             456 / IN_WIDTH: ping_storage_data_502 <= ping_storage_data_502 ^ i_input_data[456 % IN_WIDTH];
             558 / IN_WIDTH: ping_storage_data_502 <= ping_storage_data_502 ^ i_input_data[558 % IN_WIDTH];
@@ -16830,7 +16830,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_503 <= 1'b0;
         pong_storage_data_503 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             457 / IN_WIDTH: ping_storage_data_503 <= ping_storage_data_503 ^ i_input_data[457 % IN_WIDTH];
             559 / IN_WIDTH: ping_storage_data_503 <= ping_storage_data_503 ^ i_input_data[559 % IN_WIDTH];
@@ -16858,7 +16858,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_504 <= 1'b0;
         pong_storage_data_504 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             458 / IN_WIDTH: ping_storage_data_504 <= ping_storage_data_504 ^ i_input_data[458 % IN_WIDTH];
             560 / IN_WIDTH: ping_storage_data_504 <= ping_storage_data_504 ^ i_input_data[560 % IN_WIDTH];
@@ -16886,7 +16886,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_505 <= 1'b0;
         pong_storage_data_505 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             459 / IN_WIDTH: ping_storage_data_505 <= ping_storage_data_505 ^ i_input_data[459 % IN_WIDTH];
             561 / IN_WIDTH: ping_storage_data_505 <= ping_storage_data_505 ^ i_input_data[561 % IN_WIDTH];
@@ -16914,7 +16914,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_506 <= 1'b0;
         pong_storage_data_506 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             460 / IN_WIDTH: ping_storage_data_506 <= ping_storage_data_506 ^ i_input_data[460 % IN_WIDTH];
             562 / IN_WIDTH: ping_storage_data_506 <= ping_storage_data_506 ^ i_input_data[562 % IN_WIDTH];
@@ -16942,7 +16942,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_507 <= 1'b0;
         pong_storage_data_507 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             461 / IN_WIDTH: ping_storage_data_507 <= ping_storage_data_507 ^ i_input_data[461 % IN_WIDTH];
             563 / IN_WIDTH: ping_storage_data_507 <= ping_storage_data_507 ^ i_input_data[563 % IN_WIDTH];
@@ -16970,7 +16970,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_508 <= 1'b0;
         pong_storage_data_508 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             462 / IN_WIDTH: ping_storage_data_508 <= ping_storage_data_508 ^ i_input_data[462 % IN_WIDTH];
             564 / IN_WIDTH: ping_storage_data_508 <= ping_storage_data_508 ^ i_input_data[564 % IN_WIDTH];
@@ -16998,7 +16998,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_509 <= 1'b0;
         pong_storage_data_509 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             463 / IN_WIDTH: ping_storage_data_509 <= ping_storage_data_509 ^ i_input_data[463 % IN_WIDTH];
             565 / IN_WIDTH: ping_storage_data_509 <= ping_storage_data_509 ^ i_input_data[565 % IN_WIDTH];
@@ -17026,7 +17026,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_510 <= 1'b0;
         pong_storage_data_510 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             464 / IN_WIDTH: ping_storage_data_510 <= ping_storage_data_510 ^ i_input_data[464 % IN_WIDTH];
             566 / IN_WIDTH: ping_storage_data_510 <= ping_storage_data_510 ^ i_input_data[566 % IN_WIDTH];
@@ -17054,7 +17054,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_511 <= 1'b0;
         pong_storage_data_511 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             465 / IN_WIDTH: ping_storage_data_511 <= ping_storage_data_511 ^ i_input_data[465 % IN_WIDTH];
             567 / IN_WIDTH: ping_storage_data_511 <= ping_storage_data_511 ^ i_input_data[567 % IN_WIDTH];
@@ -17082,7 +17082,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_512 <= 1'b0;
         pong_storage_data_512 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             466 / IN_WIDTH: ping_storage_data_512 <= ping_storage_data_512 ^ i_input_data[466 % IN_WIDTH];
             568 / IN_WIDTH: ping_storage_data_512 <= ping_storage_data_512 ^ i_input_data[568 % IN_WIDTH];
@@ -17110,7 +17110,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_513 <= 1'b0;
         pong_storage_data_513 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             467 / IN_WIDTH: ping_storage_data_513 <= ping_storage_data_513 ^ i_input_data[467 % IN_WIDTH];
             569 / IN_WIDTH: ping_storage_data_513 <= ping_storage_data_513 ^ i_input_data[569 % IN_WIDTH];
@@ -17138,7 +17138,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_514 <= 1'b0;
         pong_storage_data_514 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             468 / IN_WIDTH: ping_storage_data_514 <= ping_storage_data_514 ^ i_input_data[468 % IN_WIDTH];
             570 / IN_WIDTH: ping_storage_data_514 <= ping_storage_data_514 ^ i_input_data[570 % IN_WIDTH];
@@ -17166,7 +17166,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_515 <= 1'b0;
         pong_storage_data_515 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             469 / IN_WIDTH: ping_storage_data_515 <= ping_storage_data_515 ^ i_input_data[469 % IN_WIDTH];
             571 / IN_WIDTH: ping_storage_data_515 <= ping_storage_data_515 ^ i_input_data[571 % IN_WIDTH];
@@ -17194,7 +17194,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_516 <= 1'b0;
         pong_storage_data_516 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             470 / IN_WIDTH: ping_storage_data_516 <= ping_storage_data_516 ^ i_input_data[470 % IN_WIDTH];
             572 / IN_WIDTH: ping_storage_data_516 <= ping_storage_data_516 ^ i_input_data[572 % IN_WIDTH];
@@ -17222,7 +17222,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_517 <= 1'b0;
         pong_storage_data_517 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             471 / IN_WIDTH: ping_storage_data_517 <= ping_storage_data_517 ^ i_input_data[471 % IN_WIDTH];
             573 / IN_WIDTH: ping_storage_data_517 <= ping_storage_data_517 ^ i_input_data[573 % IN_WIDTH];
@@ -17250,7 +17250,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_518 <= 1'b0;
         pong_storage_data_518 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             472 / IN_WIDTH: ping_storage_data_518 <= ping_storage_data_518 ^ i_input_data[472 % IN_WIDTH];
             574 / IN_WIDTH: ping_storage_data_518 <= ping_storage_data_518 ^ i_input_data[574 % IN_WIDTH];
@@ -17278,7 +17278,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_519 <= 1'b0;
         pong_storage_data_519 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             473 / IN_WIDTH: ping_storage_data_519 <= ping_storage_data_519 ^ i_input_data[473 % IN_WIDTH];
             575 / IN_WIDTH: ping_storage_data_519 <= ping_storage_data_519 ^ i_input_data[575 % IN_WIDTH];
@@ -17306,7 +17306,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_520 <= 1'b0;
         pong_storage_data_520 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             474 / IN_WIDTH: ping_storage_data_520 <= ping_storage_data_520 ^ i_input_data[474 % IN_WIDTH];
             480 / IN_WIDTH: ping_storage_data_520 <= ping_storage_data_520 ^ i_input_data[480 % IN_WIDTH];
@@ -17334,7 +17334,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_521 <= 1'b0;
         pong_storage_data_521 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             475 / IN_WIDTH: ping_storage_data_521 <= ping_storage_data_521 ^ i_input_data[475 % IN_WIDTH];
             481 / IN_WIDTH: ping_storage_data_521 <= ping_storage_data_521 ^ i_input_data[481 % IN_WIDTH];
@@ -17362,7 +17362,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_522 <= 1'b0;
         pong_storage_data_522 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             476 / IN_WIDTH: ping_storage_data_522 <= ping_storage_data_522 ^ i_input_data[476 % IN_WIDTH];
             482 / IN_WIDTH: ping_storage_data_522 <= ping_storage_data_522 ^ i_input_data[482 % IN_WIDTH];
@@ -17390,7 +17390,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_523 <= 1'b0;
         pong_storage_data_523 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             477 / IN_WIDTH: ping_storage_data_523 <= ping_storage_data_523 ^ i_input_data[477 % IN_WIDTH];
             483 / IN_WIDTH: ping_storage_data_523 <= ping_storage_data_523 ^ i_input_data[483 % IN_WIDTH];
@@ -17418,7 +17418,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_524 <= 1'b0;
         pong_storage_data_524 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             478 / IN_WIDTH: ping_storage_data_524 <= ping_storage_data_524 ^ i_input_data[478 % IN_WIDTH];
             484 / IN_WIDTH: ping_storage_data_524 <= ping_storage_data_524 ^ i_input_data[484 % IN_WIDTH];
@@ -17446,7 +17446,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_525 <= 1'b0;
         pong_storage_data_525 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             479 / IN_WIDTH: ping_storage_data_525 <= ping_storage_data_525 ^ i_input_data[479 % IN_WIDTH];
             485 / IN_WIDTH: ping_storage_data_525 <= ping_storage_data_525 ^ i_input_data[485 % IN_WIDTH];
@@ -17474,7 +17474,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_526 <= 1'b0;
         pong_storage_data_526 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             384 / IN_WIDTH: ping_storage_data_526 <= ping_storage_data_526 ^ i_input_data[384 % IN_WIDTH];
             486 / IN_WIDTH: ping_storage_data_526 <= ping_storage_data_526 ^ i_input_data[486 % IN_WIDTH];
@@ -17502,7 +17502,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_527 <= 1'b0;
         pong_storage_data_527 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             385 / IN_WIDTH: ping_storage_data_527 <= ping_storage_data_527 ^ i_input_data[385 % IN_WIDTH];
             487 / IN_WIDTH: ping_storage_data_527 <= ping_storage_data_527 ^ i_input_data[487 % IN_WIDTH];
@@ -17530,7 +17530,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_528 <= 1'b0;
         pong_storage_data_528 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             386 / IN_WIDTH: ping_storage_data_528 <= ping_storage_data_528 ^ i_input_data[386 % IN_WIDTH];
             488 / IN_WIDTH: ping_storage_data_528 <= ping_storage_data_528 ^ i_input_data[488 % IN_WIDTH];
@@ -17558,7 +17558,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_529 <= 1'b0;
         pong_storage_data_529 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             387 / IN_WIDTH: ping_storage_data_529 <= ping_storage_data_529 ^ i_input_data[387 % IN_WIDTH];
             489 / IN_WIDTH: ping_storage_data_529 <= ping_storage_data_529 ^ i_input_data[489 % IN_WIDTH];
@@ -17586,7 +17586,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_530 <= 1'b0;
         pong_storage_data_530 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             388 / IN_WIDTH: ping_storage_data_530 <= ping_storage_data_530 ^ i_input_data[388 % IN_WIDTH];
             490 / IN_WIDTH: ping_storage_data_530 <= ping_storage_data_530 ^ i_input_data[490 % IN_WIDTH];
@@ -17614,7 +17614,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_531 <= 1'b0;
         pong_storage_data_531 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             389 / IN_WIDTH: ping_storage_data_531 <= ping_storage_data_531 ^ i_input_data[389 % IN_WIDTH];
             491 / IN_WIDTH: ping_storage_data_531 <= ping_storage_data_531 ^ i_input_data[491 % IN_WIDTH];
@@ -17642,7 +17642,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_532 <= 1'b0;
         pong_storage_data_532 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             390 / IN_WIDTH: ping_storage_data_532 <= ping_storage_data_532 ^ i_input_data[390 % IN_WIDTH];
             492 / IN_WIDTH: ping_storage_data_532 <= ping_storage_data_532 ^ i_input_data[492 % IN_WIDTH];
@@ -17670,7 +17670,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_533 <= 1'b0;
         pong_storage_data_533 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             391 / IN_WIDTH: ping_storage_data_533 <= ping_storage_data_533 ^ i_input_data[391 % IN_WIDTH];
             493 / IN_WIDTH: ping_storage_data_533 <= ping_storage_data_533 ^ i_input_data[493 % IN_WIDTH];
@@ -17698,7 +17698,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_534 <= 1'b0;
         pong_storage_data_534 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             392 / IN_WIDTH: ping_storage_data_534 <= ping_storage_data_534 ^ i_input_data[392 % IN_WIDTH];
             494 / IN_WIDTH: ping_storage_data_534 <= ping_storage_data_534 ^ i_input_data[494 % IN_WIDTH];
@@ -17726,7 +17726,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_535 <= 1'b0;
         pong_storage_data_535 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             393 / IN_WIDTH: ping_storage_data_535 <= ping_storage_data_535 ^ i_input_data[393 % IN_WIDTH];
             495 / IN_WIDTH: ping_storage_data_535 <= ping_storage_data_535 ^ i_input_data[495 % IN_WIDTH];
@@ -17754,7 +17754,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_536 <= 1'b0;
         pong_storage_data_536 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             394 / IN_WIDTH: ping_storage_data_536 <= ping_storage_data_536 ^ i_input_data[394 % IN_WIDTH];
             496 / IN_WIDTH: ping_storage_data_536 <= ping_storage_data_536 ^ i_input_data[496 % IN_WIDTH];
@@ -17782,7 +17782,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_537 <= 1'b0;
         pong_storage_data_537 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             395 / IN_WIDTH: ping_storage_data_537 <= ping_storage_data_537 ^ i_input_data[395 % IN_WIDTH];
             497 / IN_WIDTH: ping_storage_data_537 <= ping_storage_data_537 ^ i_input_data[497 % IN_WIDTH];
@@ -17810,7 +17810,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_538 <= 1'b0;
         pong_storage_data_538 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             396 / IN_WIDTH: ping_storage_data_538 <= ping_storage_data_538 ^ i_input_data[396 % IN_WIDTH];
             498 / IN_WIDTH: ping_storage_data_538 <= ping_storage_data_538 ^ i_input_data[498 % IN_WIDTH];
@@ -17838,7 +17838,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_539 <= 1'b0;
         pong_storage_data_539 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             397 / IN_WIDTH: ping_storage_data_539 <= ping_storage_data_539 ^ i_input_data[397 % IN_WIDTH];
             499 / IN_WIDTH: ping_storage_data_539 <= ping_storage_data_539 ^ i_input_data[499 % IN_WIDTH];
@@ -17866,7 +17866,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_540 <= 1'b0;
         pong_storage_data_540 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             398 / IN_WIDTH: ping_storage_data_540 <= ping_storage_data_540 ^ i_input_data[398 % IN_WIDTH];
             500 / IN_WIDTH: ping_storage_data_540 <= ping_storage_data_540 ^ i_input_data[500 % IN_WIDTH];
@@ -17894,7 +17894,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_541 <= 1'b0;
         pong_storage_data_541 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             399 / IN_WIDTH: ping_storage_data_541 <= ping_storage_data_541 ^ i_input_data[399 % IN_WIDTH];
             501 / IN_WIDTH: ping_storage_data_541 <= ping_storage_data_541 ^ i_input_data[501 % IN_WIDTH];
@@ -17922,7 +17922,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_542 <= 1'b0;
         pong_storage_data_542 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             400 / IN_WIDTH: ping_storage_data_542 <= ping_storage_data_542 ^ i_input_data[400 % IN_WIDTH];
             502 / IN_WIDTH: ping_storage_data_542 <= ping_storage_data_542 ^ i_input_data[502 % IN_WIDTH];
@@ -17950,7 +17950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_543 <= 1'b0;
         pong_storage_data_543 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             401 / IN_WIDTH: ping_storage_data_543 <= ping_storage_data_543 ^ i_input_data[401 % IN_WIDTH];
             503 / IN_WIDTH: ping_storage_data_543 <= ping_storage_data_543 ^ i_input_data[503 % IN_WIDTH];
@@ -17978,7 +17978,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_544 <= 1'b0;
         pong_storage_data_544 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             402 / IN_WIDTH: ping_storage_data_544 <= ping_storage_data_544 ^ i_input_data[402 % IN_WIDTH];
             504 / IN_WIDTH: ping_storage_data_544 <= ping_storage_data_544 ^ i_input_data[504 % IN_WIDTH];
@@ -18006,7 +18006,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_545 <= 1'b0;
         pong_storage_data_545 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             403 / IN_WIDTH: ping_storage_data_545 <= ping_storage_data_545 ^ i_input_data[403 % IN_WIDTH];
             505 / IN_WIDTH: ping_storage_data_545 <= ping_storage_data_545 ^ i_input_data[505 % IN_WIDTH];
@@ -18034,7 +18034,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_546 <= 1'b0;
         pong_storage_data_546 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             404 / IN_WIDTH: ping_storage_data_546 <= ping_storage_data_546 ^ i_input_data[404 % IN_WIDTH];
             506 / IN_WIDTH: ping_storage_data_546 <= ping_storage_data_546 ^ i_input_data[506 % IN_WIDTH];
@@ -18062,7 +18062,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_547 <= 1'b0;
         pong_storage_data_547 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             405 / IN_WIDTH: ping_storage_data_547 <= ping_storage_data_547 ^ i_input_data[405 % IN_WIDTH];
             507 / IN_WIDTH: ping_storage_data_547 <= ping_storage_data_547 ^ i_input_data[507 % IN_WIDTH];
@@ -18090,7 +18090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_548 <= 1'b0;
         pong_storage_data_548 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             406 / IN_WIDTH: ping_storage_data_548 <= ping_storage_data_548 ^ i_input_data[406 % IN_WIDTH];
             508 / IN_WIDTH: ping_storage_data_548 <= ping_storage_data_548 ^ i_input_data[508 % IN_WIDTH];
@@ -18118,7 +18118,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_549 <= 1'b0;
         pong_storage_data_549 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             407 / IN_WIDTH: ping_storage_data_549 <= ping_storage_data_549 ^ i_input_data[407 % IN_WIDTH];
             509 / IN_WIDTH: ping_storage_data_549 <= ping_storage_data_549 ^ i_input_data[509 % IN_WIDTH];
@@ -18146,7 +18146,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_550 <= 1'b0;
         pong_storage_data_550 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             408 / IN_WIDTH: ping_storage_data_550 <= ping_storage_data_550 ^ i_input_data[408 % IN_WIDTH];
             510 / IN_WIDTH: ping_storage_data_550 <= ping_storage_data_550 ^ i_input_data[510 % IN_WIDTH];
@@ -18174,7 +18174,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_551 <= 1'b0;
         pong_storage_data_551 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             409 / IN_WIDTH: ping_storage_data_551 <= ping_storage_data_551 ^ i_input_data[409 % IN_WIDTH];
             511 / IN_WIDTH: ping_storage_data_551 <= ping_storage_data_551 ^ i_input_data[511 % IN_WIDTH];
@@ -18202,7 +18202,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_552 <= 1'b0;
         pong_storage_data_552 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             410 / IN_WIDTH: ping_storage_data_552 <= ping_storage_data_552 ^ i_input_data[410 % IN_WIDTH];
             512 / IN_WIDTH: ping_storage_data_552 <= ping_storage_data_552 ^ i_input_data[512 % IN_WIDTH];
@@ -18230,7 +18230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_553 <= 1'b0;
         pong_storage_data_553 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             411 / IN_WIDTH: ping_storage_data_553 <= ping_storage_data_553 ^ i_input_data[411 % IN_WIDTH];
             513 / IN_WIDTH: ping_storage_data_553 <= ping_storage_data_553 ^ i_input_data[513 % IN_WIDTH];
@@ -18258,7 +18258,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_554 <= 1'b0;
         pong_storage_data_554 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             412 / IN_WIDTH: ping_storage_data_554 <= ping_storage_data_554 ^ i_input_data[412 % IN_WIDTH];
             514 / IN_WIDTH: ping_storage_data_554 <= ping_storage_data_554 ^ i_input_data[514 % IN_WIDTH];
@@ -18286,7 +18286,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_555 <= 1'b0;
         pong_storage_data_555 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             413 / IN_WIDTH: ping_storage_data_555 <= ping_storage_data_555 ^ i_input_data[413 % IN_WIDTH];
             515 / IN_WIDTH: ping_storage_data_555 <= ping_storage_data_555 ^ i_input_data[515 % IN_WIDTH];
@@ -18314,7 +18314,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_556 <= 1'b0;
         pong_storage_data_556 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             414 / IN_WIDTH: ping_storage_data_556 <= ping_storage_data_556 ^ i_input_data[414 % IN_WIDTH];
             516 / IN_WIDTH: ping_storage_data_556 <= ping_storage_data_556 ^ i_input_data[516 % IN_WIDTH];
@@ -18342,7 +18342,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_557 <= 1'b0;
         pong_storage_data_557 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             415 / IN_WIDTH: ping_storage_data_557 <= ping_storage_data_557 ^ i_input_data[415 % IN_WIDTH];
             517 / IN_WIDTH: ping_storage_data_557 <= ping_storage_data_557 ^ i_input_data[517 % IN_WIDTH];
@@ -18370,7 +18370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_558 <= 1'b0;
         pong_storage_data_558 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             416 / IN_WIDTH: ping_storage_data_558 <= ping_storage_data_558 ^ i_input_data[416 % IN_WIDTH];
             518 / IN_WIDTH: ping_storage_data_558 <= ping_storage_data_558 ^ i_input_data[518 % IN_WIDTH];
@@ -18398,7 +18398,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_559 <= 1'b0;
         pong_storage_data_559 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             417 / IN_WIDTH: ping_storage_data_559 <= ping_storage_data_559 ^ i_input_data[417 % IN_WIDTH];
             519 / IN_WIDTH: ping_storage_data_559 <= ping_storage_data_559 ^ i_input_data[519 % IN_WIDTH];
@@ -18426,7 +18426,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_560 <= 1'b0;
         pong_storage_data_560 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             418 / IN_WIDTH: ping_storage_data_560 <= ping_storage_data_560 ^ i_input_data[418 % IN_WIDTH];
             520 / IN_WIDTH: ping_storage_data_560 <= ping_storage_data_560 ^ i_input_data[520 % IN_WIDTH];
@@ -18454,7 +18454,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_561 <= 1'b0;
         pong_storage_data_561 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             419 / IN_WIDTH: ping_storage_data_561 <= ping_storage_data_561 ^ i_input_data[419 % IN_WIDTH];
             521 / IN_WIDTH: ping_storage_data_561 <= ping_storage_data_561 ^ i_input_data[521 % IN_WIDTH];
@@ -18482,7 +18482,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_562 <= 1'b0;
         pong_storage_data_562 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             420 / IN_WIDTH: ping_storage_data_562 <= ping_storage_data_562 ^ i_input_data[420 % IN_WIDTH];
             522 / IN_WIDTH: ping_storage_data_562 <= ping_storage_data_562 ^ i_input_data[522 % IN_WIDTH];
@@ -18510,7 +18510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_563 <= 1'b0;
         pong_storage_data_563 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             421 / IN_WIDTH: ping_storage_data_563 <= ping_storage_data_563 ^ i_input_data[421 % IN_WIDTH];
             523 / IN_WIDTH: ping_storage_data_563 <= ping_storage_data_563 ^ i_input_data[523 % IN_WIDTH];
@@ -18538,7 +18538,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_564 <= 1'b0;
         pong_storage_data_564 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             422 / IN_WIDTH: ping_storage_data_564 <= ping_storage_data_564 ^ i_input_data[422 % IN_WIDTH];
             524 / IN_WIDTH: ping_storage_data_564 <= ping_storage_data_564 ^ i_input_data[524 % IN_WIDTH];
@@ -18566,7 +18566,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_565 <= 1'b0;
         pong_storage_data_565 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             423 / IN_WIDTH: ping_storage_data_565 <= ping_storage_data_565 ^ i_input_data[423 % IN_WIDTH];
             525 / IN_WIDTH: ping_storage_data_565 <= ping_storage_data_565 ^ i_input_data[525 % IN_WIDTH];
@@ -18594,7 +18594,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_566 <= 1'b0;
         pong_storage_data_566 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             424 / IN_WIDTH: ping_storage_data_566 <= ping_storage_data_566 ^ i_input_data[424 % IN_WIDTH];
             526 / IN_WIDTH: ping_storage_data_566 <= ping_storage_data_566 ^ i_input_data[526 % IN_WIDTH];
@@ -18622,7 +18622,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_567 <= 1'b0;
         pong_storage_data_567 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             425 / IN_WIDTH: ping_storage_data_567 <= ping_storage_data_567 ^ i_input_data[425 % IN_WIDTH];
             527 / IN_WIDTH: ping_storage_data_567 <= ping_storage_data_567 ^ i_input_data[527 % IN_WIDTH];
@@ -18650,7 +18650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_568 <= 1'b0;
         pong_storage_data_568 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             426 / IN_WIDTH: ping_storage_data_568 <= ping_storage_data_568 ^ i_input_data[426 % IN_WIDTH];
             528 / IN_WIDTH: ping_storage_data_568 <= ping_storage_data_568 ^ i_input_data[528 % IN_WIDTH];
@@ -18678,7 +18678,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_569 <= 1'b0;
         pong_storage_data_569 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             427 / IN_WIDTH: ping_storage_data_569 <= ping_storage_data_569 ^ i_input_data[427 % IN_WIDTH];
             529 / IN_WIDTH: ping_storage_data_569 <= ping_storage_data_569 ^ i_input_data[529 % IN_WIDTH];
@@ -18706,7 +18706,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_570 <= 1'b0;
         pong_storage_data_570 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             428 / IN_WIDTH: ping_storage_data_570 <= ping_storage_data_570 ^ i_input_data[428 % IN_WIDTH];
             530 / IN_WIDTH: ping_storage_data_570 <= ping_storage_data_570 ^ i_input_data[530 % IN_WIDTH];
@@ -18734,7 +18734,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_571 <= 1'b0;
         pong_storage_data_571 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             429 / IN_WIDTH: ping_storage_data_571 <= ping_storage_data_571 ^ i_input_data[429 % IN_WIDTH];
             531 / IN_WIDTH: ping_storage_data_571 <= ping_storage_data_571 ^ i_input_data[531 % IN_WIDTH];
@@ -18762,7 +18762,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_572 <= 1'b0;
         pong_storage_data_572 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             430 / IN_WIDTH: ping_storage_data_572 <= ping_storage_data_572 ^ i_input_data[430 % IN_WIDTH];
             532 / IN_WIDTH: ping_storage_data_572 <= ping_storage_data_572 ^ i_input_data[532 % IN_WIDTH];
@@ -18790,7 +18790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_573 <= 1'b0;
         pong_storage_data_573 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             431 / IN_WIDTH: ping_storage_data_573 <= ping_storage_data_573 ^ i_input_data[431 % IN_WIDTH];
             533 / IN_WIDTH: ping_storage_data_573 <= ping_storage_data_573 ^ i_input_data[533 % IN_WIDTH];
@@ -18818,7 +18818,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_574 <= 1'b0;
         pong_storage_data_574 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             432 / IN_WIDTH: ping_storage_data_574 <= ping_storage_data_574 ^ i_input_data[432 % IN_WIDTH];
             534 / IN_WIDTH: ping_storage_data_574 <= ping_storage_data_574 ^ i_input_data[534 % IN_WIDTH];
@@ -18846,7 +18846,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_575 <= 1'b0;
         pong_storage_data_575 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             433 / IN_WIDTH: ping_storage_data_575 <= ping_storage_data_575 ^ i_input_data[433 % IN_WIDTH];
             535 / IN_WIDTH: ping_storage_data_575 <= ping_storage_data_575 ^ i_input_data[535 % IN_WIDTH];
@@ -18874,7 +18874,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_576 <= 1'b0;
         pong_storage_data_576 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             193 / IN_WIDTH: ping_storage_data_576 <= ping_storage_data_576 ^ i_input_data[193 % IN_WIDTH];
             331 / IN_WIDTH: ping_storage_data_576 <= ping_storage_data_576 ^ i_input_data[331 % IN_WIDTH];
@@ -18902,7 +18902,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_577 <= 1'b0;
         pong_storage_data_577 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             194 / IN_WIDTH: ping_storage_data_577 <= ping_storage_data_577 ^ i_input_data[194 % IN_WIDTH];
             332 / IN_WIDTH: ping_storage_data_577 <= ping_storage_data_577 ^ i_input_data[332 % IN_WIDTH];
@@ -18930,7 +18930,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_578 <= 1'b0;
         pong_storage_data_578 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             195 / IN_WIDTH: ping_storage_data_578 <= ping_storage_data_578 ^ i_input_data[195 % IN_WIDTH];
             333 / IN_WIDTH: ping_storage_data_578 <= ping_storage_data_578 ^ i_input_data[333 % IN_WIDTH];
@@ -18958,7 +18958,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_579 <= 1'b0;
         pong_storage_data_579 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             196 / IN_WIDTH: ping_storage_data_579 <= ping_storage_data_579 ^ i_input_data[196 % IN_WIDTH];
             334 / IN_WIDTH: ping_storage_data_579 <= ping_storage_data_579 ^ i_input_data[334 % IN_WIDTH];
@@ -18986,7 +18986,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_580 <= 1'b0;
         pong_storage_data_580 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             197 / IN_WIDTH: ping_storage_data_580 <= ping_storage_data_580 ^ i_input_data[197 % IN_WIDTH];
             335 / IN_WIDTH: ping_storage_data_580 <= ping_storage_data_580 ^ i_input_data[335 % IN_WIDTH];
@@ -19014,7 +19014,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_581 <= 1'b0;
         pong_storage_data_581 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             198 / IN_WIDTH: ping_storage_data_581 <= ping_storage_data_581 ^ i_input_data[198 % IN_WIDTH];
             336 / IN_WIDTH: ping_storage_data_581 <= ping_storage_data_581 ^ i_input_data[336 % IN_WIDTH];
@@ -19042,7 +19042,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_582 <= 1'b0;
         pong_storage_data_582 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             199 / IN_WIDTH: ping_storage_data_582 <= ping_storage_data_582 ^ i_input_data[199 % IN_WIDTH];
             337 / IN_WIDTH: ping_storage_data_582 <= ping_storage_data_582 ^ i_input_data[337 % IN_WIDTH];
@@ -19070,7 +19070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_583 <= 1'b0;
         pong_storage_data_583 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             200 / IN_WIDTH: ping_storage_data_583 <= ping_storage_data_583 ^ i_input_data[200 % IN_WIDTH];
             338 / IN_WIDTH: ping_storage_data_583 <= ping_storage_data_583 ^ i_input_data[338 % IN_WIDTH];
@@ -19098,7 +19098,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_584 <= 1'b0;
         pong_storage_data_584 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             201 / IN_WIDTH: ping_storage_data_584 <= ping_storage_data_584 ^ i_input_data[201 % IN_WIDTH];
             339 / IN_WIDTH: ping_storage_data_584 <= ping_storage_data_584 ^ i_input_data[339 % IN_WIDTH];
@@ -19126,7 +19126,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_585 <= 1'b0;
         pong_storage_data_585 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             202 / IN_WIDTH: ping_storage_data_585 <= ping_storage_data_585 ^ i_input_data[202 % IN_WIDTH];
             340 / IN_WIDTH: ping_storage_data_585 <= ping_storage_data_585 ^ i_input_data[340 % IN_WIDTH];
@@ -19154,7 +19154,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_586 <= 1'b0;
         pong_storage_data_586 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             203 / IN_WIDTH: ping_storage_data_586 <= ping_storage_data_586 ^ i_input_data[203 % IN_WIDTH];
             341 / IN_WIDTH: ping_storage_data_586 <= ping_storage_data_586 ^ i_input_data[341 % IN_WIDTH];
@@ -19182,7 +19182,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_587 <= 1'b0;
         pong_storage_data_587 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             204 / IN_WIDTH: ping_storage_data_587 <= ping_storage_data_587 ^ i_input_data[204 % IN_WIDTH];
             342 / IN_WIDTH: ping_storage_data_587 <= ping_storage_data_587 ^ i_input_data[342 % IN_WIDTH];
@@ -19210,7 +19210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_588 <= 1'b0;
         pong_storage_data_588 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             205 / IN_WIDTH: ping_storage_data_588 <= ping_storage_data_588 ^ i_input_data[205 % IN_WIDTH];
             343 / IN_WIDTH: ping_storage_data_588 <= ping_storage_data_588 ^ i_input_data[343 % IN_WIDTH];
@@ -19238,7 +19238,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_589 <= 1'b0;
         pong_storage_data_589 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             206 / IN_WIDTH: ping_storage_data_589 <= ping_storage_data_589 ^ i_input_data[206 % IN_WIDTH];
             344 / IN_WIDTH: ping_storage_data_589 <= ping_storage_data_589 ^ i_input_data[344 % IN_WIDTH];
@@ -19266,7 +19266,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_590 <= 1'b0;
         pong_storage_data_590 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             207 / IN_WIDTH: ping_storage_data_590 <= ping_storage_data_590 ^ i_input_data[207 % IN_WIDTH];
             345 / IN_WIDTH: ping_storage_data_590 <= ping_storage_data_590 ^ i_input_data[345 % IN_WIDTH];
@@ -19294,7 +19294,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_591 <= 1'b0;
         pong_storage_data_591 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             208 / IN_WIDTH: ping_storage_data_591 <= ping_storage_data_591 ^ i_input_data[208 % IN_WIDTH];
             346 / IN_WIDTH: ping_storage_data_591 <= ping_storage_data_591 ^ i_input_data[346 % IN_WIDTH];
@@ -19322,7 +19322,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_592 <= 1'b0;
         pong_storage_data_592 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             209 / IN_WIDTH: ping_storage_data_592 <= ping_storage_data_592 ^ i_input_data[209 % IN_WIDTH];
             347 / IN_WIDTH: ping_storage_data_592 <= ping_storage_data_592 ^ i_input_data[347 % IN_WIDTH];
@@ -19350,7 +19350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_593 <= 1'b0;
         pong_storage_data_593 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             210 / IN_WIDTH: ping_storage_data_593 <= ping_storage_data_593 ^ i_input_data[210 % IN_WIDTH];
             348 / IN_WIDTH: ping_storage_data_593 <= ping_storage_data_593 ^ i_input_data[348 % IN_WIDTH];
@@ -19378,7 +19378,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_594 <= 1'b0;
         pong_storage_data_594 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             211 / IN_WIDTH: ping_storage_data_594 <= ping_storage_data_594 ^ i_input_data[211 % IN_WIDTH];
             349 / IN_WIDTH: ping_storage_data_594 <= ping_storage_data_594 ^ i_input_data[349 % IN_WIDTH];
@@ -19406,7 +19406,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_595 <= 1'b0;
         pong_storage_data_595 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             212 / IN_WIDTH: ping_storage_data_595 <= ping_storage_data_595 ^ i_input_data[212 % IN_WIDTH];
             350 / IN_WIDTH: ping_storage_data_595 <= ping_storage_data_595 ^ i_input_data[350 % IN_WIDTH];
@@ -19434,7 +19434,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_596 <= 1'b0;
         pong_storage_data_596 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             213 / IN_WIDTH: ping_storage_data_596 <= ping_storage_data_596 ^ i_input_data[213 % IN_WIDTH];
             351 / IN_WIDTH: ping_storage_data_596 <= ping_storage_data_596 ^ i_input_data[351 % IN_WIDTH];
@@ -19462,7 +19462,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_597 <= 1'b0;
         pong_storage_data_597 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             214 / IN_WIDTH: ping_storage_data_597 <= ping_storage_data_597 ^ i_input_data[214 % IN_WIDTH];
             352 / IN_WIDTH: ping_storage_data_597 <= ping_storage_data_597 ^ i_input_data[352 % IN_WIDTH];
@@ -19490,7 +19490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_598 <= 1'b0;
         pong_storage_data_598 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             215 / IN_WIDTH: ping_storage_data_598 <= ping_storage_data_598 ^ i_input_data[215 % IN_WIDTH];
             353 / IN_WIDTH: ping_storage_data_598 <= ping_storage_data_598 ^ i_input_data[353 % IN_WIDTH];
@@ -19518,7 +19518,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_599 <= 1'b0;
         pong_storage_data_599 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             216 / IN_WIDTH: ping_storage_data_599 <= ping_storage_data_599 ^ i_input_data[216 % IN_WIDTH];
             354 / IN_WIDTH: ping_storage_data_599 <= ping_storage_data_599 ^ i_input_data[354 % IN_WIDTH];
@@ -19546,7 +19546,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_600 <= 1'b0;
         pong_storage_data_600 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             217 / IN_WIDTH: ping_storage_data_600 <= ping_storage_data_600 ^ i_input_data[217 % IN_WIDTH];
             355 / IN_WIDTH: ping_storage_data_600 <= ping_storage_data_600 ^ i_input_data[355 % IN_WIDTH];
@@ -19574,7 +19574,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_601 <= 1'b0;
         pong_storage_data_601 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             218 / IN_WIDTH: ping_storage_data_601 <= ping_storage_data_601 ^ i_input_data[218 % IN_WIDTH];
             356 / IN_WIDTH: ping_storage_data_601 <= ping_storage_data_601 ^ i_input_data[356 % IN_WIDTH];
@@ -19602,7 +19602,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_602 <= 1'b0;
         pong_storage_data_602 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             219 / IN_WIDTH: ping_storage_data_602 <= ping_storage_data_602 ^ i_input_data[219 % IN_WIDTH];
             357 / IN_WIDTH: ping_storage_data_602 <= ping_storage_data_602 ^ i_input_data[357 % IN_WIDTH];
@@ -19630,7 +19630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_603 <= 1'b0;
         pong_storage_data_603 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             220 / IN_WIDTH: ping_storage_data_603 <= ping_storage_data_603 ^ i_input_data[220 % IN_WIDTH];
             358 / IN_WIDTH: ping_storage_data_603 <= ping_storage_data_603 ^ i_input_data[358 % IN_WIDTH];
@@ -19658,7 +19658,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_604 <= 1'b0;
         pong_storage_data_604 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             221 / IN_WIDTH: ping_storage_data_604 <= ping_storage_data_604 ^ i_input_data[221 % IN_WIDTH];
             359 / IN_WIDTH: ping_storage_data_604 <= ping_storage_data_604 ^ i_input_data[359 % IN_WIDTH];
@@ -19686,7 +19686,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_605 <= 1'b0;
         pong_storage_data_605 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             222 / IN_WIDTH: ping_storage_data_605 <= ping_storage_data_605 ^ i_input_data[222 % IN_WIDTH];
             360 / IN_WIDTH: ping_storage_data_605 <= ping_storage_data_605 ^ i_input_data[360 % IN_WIDTH];
@@ -19714,7 +19714,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_606 <= 1'b0;
         pong_storage_data_606 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             223 / IN_WIDTH: ping_storage_data_606 <= ping_storage_data_606 ^ i_input_data[223 % IN_WIDTH];
             361 / IN_WIDTH: ping_storage_data_606 <= ping_storage_data_606 ^ i_input_data[361 % IN_WIDTH];
@@ -19742,7 +19742,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_607 <= 1'b0;
         pong_storage_data_607 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             224 / IN_WIDTH: ping_storage_data_607 <= ping_storage_data_607 ^ i_input_data[224 % IN_WIDTH];
             362 / IN_WIDTH: ping_storage_data_607 <= ping_storage_data_607 ^ i_input_data[362 % IN_WIDTH];
@@ -19770,7 +19770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_608 <= 1'b0;
         pong_storage_data_608 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             225 / IN_WIDTH: ping_storage_data_608 <= ping_storage_data_608 ^ i_input_data[225 % IN_WIDTH];
             363 / IN_WIDTH: ping_storage_data_608 <= ping_storage_data_608 ^ i_input_data[363 % IN_WIDTH];
@@ -19798,7 +19798,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_609 <= 1'b0;
         pong_storage_data_609 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             226 / IN_WIDTH: ping_storage_data_609 <= ping_storage_data_609 ^ i_input_data[226 % IN_WIDTH];
             364 / IN_WIDTH: ping_storage_data_609 <= ping_storage_data_609 ^ i_input_data[364 % IN_WIDTH];
@@ -19826,7 +19826,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_610 <= 1'b0;
         pong_storage_data_610 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             227 / IN_WIDTH: ping_storage_data_610 <= ping_storage_data_610 ^ i_input_data[227 % IN_WIDTH];
             365 / IN_WIDTH: ping_storage_data_610 <= ping_storage_data_610 ^ i_input_data[365 % IN_WIDTH];
@@ -19854,7 +19854,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_611 <= 1'b0;
         pong_storage_data_611 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             228 / IN_WIDTH: ping_storage_data_611 <= ping_storage_data_611 ^ i_input_data[228 % IN_WIDTH];
             366 / IN_WIDTH: ping_storage_data_611 <= ping_storage_data_611 ^ i_input_data[366 % IN_WIDTH];
@@ -19882,7 +19882,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_612 <= 1'b0;
         pong_storage_data_612 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             229 / IN_WIDTH: ping_storage_data_612 <= ping_storage_data_612 ^ i_input_data[229 % IN_WIDTH];
             367 / IN_WIDTH: ping_storage_data_612 <= ping_storage_data_612 ^ i_input_data[367 % IN_WIDTH];
@@ -19910,7 +19910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_613 <= 1'b0;
         pong_storage_data_613 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             230 / IN_WIDTH: ping_storage_data_613 <= ping_storage_data_613 ^ i_input_data[230 % IN_WIDTH];
             368 / IN_WIDTH: ping_storage_data_613 <= ping_storage_data_613 ^ i_input_data[368 % IN_WIDTH];
@@ -19938,7 +19938,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_614 <= 1'b0;
         pong_storage_data_614 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             231 / IN_WIDTH: ping_storage_data_614 <= ping_storage_data_614 ^ i_input_data[231 % IN_WIDTH];
             369 / IN_WIDTH: ping_storage_data_614 <= ping_storage_data_614 ^ i_input_data[369 % IN_WIDTH];
@@ -19966,7 +19966,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_615 <= 1'b0;
         pong_storage_data_615 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             232 / IN_WIDTH: ping_storage_data_615 <= ping_storage_data_615 ^ i_input_data[232 % IN_WIDTH];
             370 / IN_WIDTH: ping_storage_data_615 <= ping_storage_data_615 ^ i_input_data[370 % IN_WIDTH];
@@ -19994,7 +19994,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_616 <= 1'b0;
         pong_storage_data_616 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             233 / IN_WIDTH: ping_storage_data_616 <= ping_storage_data_616 ^ i_input_data[233 % IN_WIDTH];
             371 / IN_WIDTH: ping_storage_data_616 <= ping_storage_data_616 ^ i_input_data[371 % IN_WIDTH];
@@ -20022,7 +20022,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_617 <= 1'b0;
         pong_storage_data_617 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             234 / IN_WIDTH: ping_storage_data_617 <= ping_storage_data_617 ^ i_input_data[234 % IN_WIDTH];
             372 / IN_WIDTH: ping_storage_data_617 <= ping_storage_data_617 ^ i_input_data[372 % IN_WIDTH];
@@ -20050,7 +20050,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_618 <= 1'b0;
         pong_storage_data_618 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             235 / IN_WIDTH: ping_storage_data_618 <= ping_storage_data_618 ^ i_input_data[235 % IN_WIDTH];
             373 / IN_WIDTH: ping_storage_data_618 <= ping_storage_data_618 ^ i_input_data[373 % IN_WIDTH];
@@ -20078,7 +20078,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_619 <= 1'b0;
         pong_storage_data_619 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             236 / IN_WIDTH: ping_storage_data_619 <= ping_storage_data_619 ^ i_input_data[236 % IN_WIDTH];
             374 / IN_WIDTH: ping_storage_data_619 <= ping_storage_data_619 ^ i_input_data[374 % IN_WIDTH];
@@ -20106,7 +20106,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_620 <= 1'b0;
         pong_storage_data_620 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             237 / IN_WIDTH: ping_storage_data_620 <= ping_storage_data_620 ^ i_input_data[237 % IN_WIDTH];
             375 / IN_WIDTH: ping_storage_data_620 <= ping_storage_data_620 ^ i_input_data[375 % IN_WIDTH];
@@ -20134,7 +20134,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_621 <= 1'b0;
         pong_storage_data_621 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             238 / IN_WIDTH: ping_storage_data_621 <= ping_storage_data_621 ^ i_input_data[238 % IN_WIDTH];
             376 / IN_WIDTH: ping_storage_data_621 <= ping_storage_data_621 ^ i_input_data[376 % IN_WIDTH];
@@ -20162,7 +20162,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_622 <= 1'b0;
         pong_storage_data_622 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             239 / IN_WIDTH: ping_storage_data_622 <= ping_storage_data_622 ^ i_input_data[239 % IN_WIDTH];
             377 / IN_WIDTH: ping_storage_data_622 <= ping_storage_data_622 ^ i_input_data[377 % IN_WIDTH];
@@ -20190,7 +20190,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_623 <= 1'b0;
         pong_storage_data_623 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             240 / IN_WIDTH: ping_storage_data_623 <= ping_storage_data_623 ^ i_input_data[240 % IN_WIDTH];
             378 / IN_WIDTH: ping_storage_data_623 <= ping_storage_data_623 ^ i_input_data[378 % IN_WIDTH];
@@ -20218,7 +20218,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_624 <= 1'b0;
         pong_storage_data_624 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             241 / IN_WIDTH: ping_storage_data_624 <= ping_storage_data_624 ^ i_input_data[241 % IN_WIDTH];
             379 / IN_WIDTH: ping_storage_data_624 <= ping_storage_data_624 ^ i_input_data[379 % IN_WIDTH];
@@ -20246,7 +20246,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_625 <= 1'b0;
         pong_storage_data_625 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             242 / IN_WIDTH: ping_storage_data_625 <= ping_storage_data_625 ^ i_input_data[242 % IN_WIDTH];
             380 / IN_WIDTH: ping_storage_data_625 <= ping_storage_data_625 ^ i_input_data[380 % IN_WIDTH];
@@ -20274,7 +20274,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_626 <= 1'b0;
         pong_storage_data_626 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             243 / IN_WIDTH: ping_storage_data_626 <= ping_storage_data_626 ^ i_input_data[243 % IN_WIDTH];
             381 / IN_WIDTH: ping_storage_data_626 <= ping_storage_data_626 ^ i_input_data[381 % IN_WIDTH];
@@ -20302,7 +20302,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_627 <= 1'b0;
         pong_storage_data_627 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             244 / IN_WIDTH: ping_storage_data_627 <= ping_storage_data_627 ^ i_input_data[244 % IN_WIDTH];
             382 / IN_WIDTH: ping_storage_data_627 <= ping_storage_data_627 ^ i_input_data[382 % IN_WIDTH];
@@ -20330,7 +20330,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_628 <= 1'b0;
         pong_storage_data_628 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             245 / IN_WIDTH: ping_storage_data_628 <= ping_storage_data_628 ^ i_input_data[245 % IN_WIDTH];
             383 / IN_WIDTH: ping_storage_data_628 <= ping_storage_data_628 ^ i_input_data[383 % IN_WIDTH];
@@ -20358,7 +20358,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_629 <= 1'b0;
         pong_storage_data_629 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             246 / IN_WIDTH: ping_storage_data_629 <= ping_storage_data_629 ^ i_input_data[246 % IN_WIDTH];
             288 / IN_WIDTH: ping_storage_data_629 <= ping_storage_data_629 ^ i_input_data[288 % IN_WIDTH];
@@ -20386,7 +20386,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_630 <= 1'b0;
         pong_storage_data_630 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             247 / IN_WIDTH: ping_storage_data_630 <= ping_storage_data_630 ^ i_input_data[247 % IN_WIDTH];
             289 / IN_WIDTH: ping_storage_data_630 <= ping_storage_data_630 ^ i_input_data[289 % IN_WIDTH];
@@ -20414,7 +20414,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_631 <= 1'b0;
         pong_storage_data_631 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             248 / IN_WIDTH: ping_storage_data_631 <= ping_storage_data_631 ^ i_input_data[248 % IN_WIDTH];
             290 / IN_WIDTH: ping_storage_data_631 <= ping_storage_data_631 ^ i_input_data[290 % IN_WIDTH];
@@ -20442,7 +20442,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_632 <= 1'b0;
         pong_storage_data_632 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             249 / IN_WIDTH: ping_storage_data_632 <= ping_storage_data_632 ^ i_input_data[249 % IN_WIDTH];
             291 / IN_WIDTH: ping_storage_data_632 <= ping_storage_data_632 ^ i_input_data[291 % IN_WIDTH];
@@ -20470,7 +20470,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_633 <= 1'b0;
         pong_storage_data_633 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             250 / IN_WIDTH: ping_storage_data_633 <= ping_storage_data_633 ^ i_input_data[250 % IN_WIDTH];
             292 / IN_WIDTH: ping_storage_data_633 <= ping_storage_data_633 ^ i_input_data[292 % IN_WIDTH];
@@ -20498,7 +20498,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_634 <= 1'b0;
         pong_storage_data_634 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             251 / IN_WIDTH: ping_storage_data_634 <= ping_storage_data_634 ^ i_input_data[251 % IN_WIDTH];
             293 / IN_WIDTH: ping_storage_data_634 <= ping_storage_data_634 ^ i_input_data[293 % IN_WIDTH];
@@ -20526,7 +20526,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_635 <= 1'b0;
         pong_storage_data_635 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             252 / IN_WIDTH: ping_storage_data_635 <= ping_storage_data_635 ^ i_input_data[252 % IN_WIDTH];
             294 / IN_WIDTH: ping_storage_data_635 <= ping_storage_data_635 ^ i_input_data[294 % IN_WIDTH];
@@ -20554,7 +20554,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_636 <= 1'b0;
         pong_storage_data_636 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             253 / IN_WIDTH: ping_storage_data_636 <= ping_storage_data_636 ^ i_input_data[253 % IN_WIDTH];
             295 / IN_WIDTH: ping_storage_data_636 <= ping_storage_data_636 ^ i_input_data[295 % IN_WIDTH];
@@ -20582,7 +20582,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_637 <= 1'b0;
         pong_storage_data_637 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             254 / IN_WIDTH: ping_storage_data_637 <= ping_storage_data_637 ^ i_input_data[254 % IN_WIDTH];
             296 / IN_WIDTH: ping_storage_data_637 <= ping_storage_data_637 ^ i_input_data[296 % IN_WIDTH];
@@ -20610,7 +20610,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_638 <= 1'b0;
         pong_storage_data_638 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             255 / IN_WIDTH: ping_storage_data_638 <= ping_storage_data_638 ^ i_input_data[255 % IN_WIDTH];
             297 / IN_WIDTH: ping_storage_data_638 <= ping_storage_data_638 ^ i_input_data[297 % IN_WIDTH];
@@ -20638,7 +20638,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_639 <= 1'b0;
         pong_storage_data_639 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             256 / IN_WIDTH: ping_storage_data_639 <= ping_storage_data_639 ^ i_input_data[256 % IN_WIDTH];
             298 / IN_WIDTH: ping_storage_data_639 <= ping_storage_data_639 ^ i_input_data[298 % IN_WIDTH];
@@ -20666,7 +20666,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_640 <= 1'b0;
         pong_storage_data_640 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             257 / IN_WIDTH: ping_storage_data_640 <= ping_storage_data_640 ^ i_input_data[257 % IN_WIDTH];
             299 / IN_WIDTH: ping_storage_data_640 <= ping_storage_data_640 ^ i_input_data[299 % IN_WIDTH];
@@ -20694,7 +20694,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_641 <= 1'b0;
         pong_storage_data_641 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             258 / IN_WIDTH: ping_storage_data_641 <= ping_storage_data_641 ^ i_input_data[258 % IN_WIDTH];
             300 / IN_WIDTH: ping_storage_data_641 <= ping_storage_data_641 ^ i_input_data[300 % IN_WIDTH];
@@ -20722,7 +20722,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_642 <= 1'b0;
         pong_storage_data_642 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             259 / IN_WIDTH: ping_storage_data_642 <= ping_storage_data_642 ^ i_input_data[259 % IN_WIDTH];
             301 / IN_WIDTH: ping_storage_data_642 <= ping_storage_data_642 ^ i_input_data[301 % IN_WIDTH];
@@ -20750,7 +20750,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_643 <= 1'b0;
         pong_storage_data_643 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             260 / IN_WIDTH: ping_storage_data_643 <= ping_storage_data_643 ^ i_input_data[260 % IN_WIDTH];
             302 / IN_WIDTH: ping_storage_data_643 <= ping_storage_data_643 ^ i_input_data[302 % IN_WIDTH];
@@ -20778,7 +20778,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_644 <= 1'b0;
         pong_storage_data_644 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             261 / IN_WIDTH: ping_storage_data_644 <= ping_storage_data_644 ^ i_input_data[261 % IN_WIDTH];
             303 / IN_WIDTH: ping_storage_data_644 <= ping_storage_data_644 ^ i_input_data[303 % IN_WIDTH];
@@ -20806,7 +20806,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_645 <= 1'b0;
         pong_storage_data_645 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             262 / IN_WIDTH: ping_storage_data_645 <= ping_storage_data_645 ^ i_input_data[262 % IN_WIDTH];
             304 / IN_WIDTH: ping_storage_data_645 <= ping_storage_data_645 ^ i_input_data[304 % IN_WIDTH];
@@ -20834,7 +20834,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_646 <= 1'b0;
         pong_storage_data_646 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             263 / IN_WIDTH: ping_storage_data_646 <= ping_storage_data_646 ^ i_input_data[263 % IN_WIDTH];
             305 / IN_WIDTH: ping_storage_data_646 <= ping_storage_data_646 ^ i_input_data[305 % IN_WIDTH];
@@ -20862,7 +20862,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_647 <= 1'b0;
         pong_storage_data_647 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             264 / IN_WIDTH: ping_storage_data_647 <= ping_storage_data_647 ^ i_input_data[264 % IN_WIDTH];
             306 / IN_WIDTH: ping_storage_data_647 <= ping_storage_data_647 ^ i_input_data[306 % IN_WIDTH];
@@ -20890,7 +20890,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_648 <= 1'b0;
         pong_storage_data_648 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             265 / IN_WIDTH: ping_storage_data_648 <= ping_storage_data_648 ^ i_input_data[265 % IN_WIDTH];
             307 / IN_WIDTH: ping_storage_data_648 <= ping_storage_data_648 ^ i_input_data[307 % IN_WIDTH];
@@ -20918,7 +20918,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_649 <= 1'b0;
         pong_storage_data_649 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             266 / IN_WIDTH: ping_storage_data_649 <= ping_storage_data_649 ^ i_input_data[266 % IN_WIDTH];
             308 / IN_WIDTH: ping_storage_data_649 <= ping_storage_data_649 ^ i_input_data[308 % IN_WIDTH];
@@ -20946,7 +20946,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_650 <= 1'b0;
         pong_storage_data_650 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             267 / IN_WIDTH: ping_storage_data_650 <= ping_storage_data_650 ^ i_input_data[267 % IN_WIDTH];
             309 / IN_WIDTH: ping_storage_data_650 <= ping_storage_data_650 ^ i_input_data[309 % IN_WIDTH];
@@ -20974,7 +20974,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_651 <= 1'b0;
         pong_storage_data_651 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             268 / IN_WIDTH: ping_storage_data_651 <= ping_storage_data_651 ^ i_input_data[268 % IN_WIDTH];
             310 / IN_WIDTH: ping_storage_data_651 <= ping_storage_data_651 ^ i_input_data[310 % IN_WIDTH];
@@ -21002,7 +21002,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_652 <= 1'b0;
         pong_storage_data_652 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             269 / IN_WIDTH: ping_storage_data_652 <= ping_storage_data_652 ^ i_input_data[269 % IN_WIDTH];
             311 / IN_WIDTH: ping_storage_data_652 <= ping_storage_data_652 ^ i_input_data[311 % IN_WIDTH];
@@ -21030,7 +21030,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_653 <= 1'b0;
         pong_storage_data_653 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             270 / IN_WIDTH: ping_storage_data_653 <= ping_storage_data_653 ^ i_input_data[270 % IN_WIDTH];
             312 / IN_WIDTH: ping_storage_data_653 <= ping_storage_data_653 ^ i_input_data[312 % IN_WIDTH];
@@ -21058,7 +21058,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_654 <= 1'b0;
         pong_storage_data_654 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             271 / IN_WIDTH: ping_storage_data_654 <= ping_storage_data_654 ^ i_input_data[271 % IN_WIDTH];
             313 / IN_WIDTH: ping_storage_data_654 <= ping_storage_data_654 ^ i_input_data[313 % IN_WIDTH];
@@ -21086,7 +21086,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_655 <= 1'b0;
         pong_storage_data_655 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             272 / IN_WIDTH: ping_storage_data_655 <= ping_storage_data_655 ^ i_input_data[272 % IN_WIDTH];
             314 / IN_WIDTH: ping_storage_data_655 <= ping_storage_data_655 ^ i_input_data[314 % IN_WIDTH];
@@ -21114,7 +21114,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_656 <= 1'b0;
         pong_storage_data_656 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             273 / IN_WIDTH: ping_storage_data_656 <= ping_storage_data_656 ^ i_input_data[273 % IN_WIDTH];
             315 / IN_WIDTH: ping_storage_data_656 <= ping_storage_data_656 ^ i_input_data[315 % IN_WIDTH];
@@ -21142,7 +21142,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_657 <= 1'b0;
         pong_storage_data_657 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             274 / IN_WIDTH: ping_storage_data_657 <= ping_storage_data_657 ^ i_input_data[274 % IN_WIDTH];
             316 / IN_WIDTH: ping_storage_data_657 <= ping_storage_data_657 ^ i_input_data[316 % IN_WIDTH];
@@ -21170,7 +21170,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_658 <= 1'b0;
         pong_storage_data_658 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             275 / IN_WIDTH: ping_storage_data_658 <= ping_storage_data_658 ^ i_input_data[275 % IN_WIDTH];
             317 / IN_WIDTH: ping_storage_data_658 <= ping_storage_data_658 ^ i_input_data[317 % IN_WIDTH];
@@ -21198,7 +21198,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_659 <= 1'b0;
         pong_storage_data_659 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             276 / IN_WIDTH: ping_storage_data_659 <= ping_storage_data_659 ^ i_input_data[276 % IN_WIDTH];
             318 / IN_WIDTH: ping_storage_data_659 <= ping_storage_data_659 ^ i_input_data[318 % IN_WIDTH];
@@ -21226,7 +21226,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_660 <= 1'b0;
         pong_storage_data_660 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             277 / IN_WIDTH: ping_storage_data_660 <= ping_storage_data_660 ^ i_input_data[277 % IN_WIDTH];
             319 / IN_WIDTH: ping_storage_data_660 <= ping_storage_data_660 ^ i_input_data[319 % IN_WIDTH];
@@ -21254,7 +21254,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_661 <= 1'b0;
         pong_storage_data_661 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             278 / IN_WIDTH: ping_storage_data_661 <= ping_storage_data_661 ^ i_input_data[278 % IN_WIDTH];
             320 / IN_WIDTH: ping_storage_data_661 <= ping_storage_data_661 ^ i_input_data[320 % IN_WIDTH];
@@ -21282,7 +21282,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_662 <= 1'b0;
         pong_storage_data_662 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             279 / IN_WIDTH: ping_storage_data_662 <= ping_storage_data_662 ^ i_input_data[279 % IN_WIDTH];
             321 / IN_WIDTH: ping_storage_data_662 <= ping_storage_data_662 ^ i_input_data[321 % IN_WIDTH];
@@ -21310,7 +21310,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_663 <= 1'b0;
         pong_storage_data_663 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             280 / IN_WIDTH: ping_storage_data_663 <= ping_storage_data_663 ^ i_input_data[280 % IN_WIDTH];
             322 / IN_WIDTH: ping_storage_data_663 <= ping_storage_data_663 ^ i_input_data[322 % IN_WIDTH];
@@ -21338,7 +21338,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_664 <= 1'b0;
         pong_storage_data_664 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             281 / IN_WIDTH: ping_storage_data_664 <= ping_storage_data_664 ^ i_input_data[281 % IN_WIDTH];
             323 / IN_WIDTH: ping_storage_data_664 <= ping_storage_data_664 ^ i_input_data[323 % IN_WIDTH];
@@ -21366,7 +21366,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_665 <= 1'b0;
         pong_storage_data_665 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             282 / IN_WIDTH: ping_storage_data_665 <= ping_storage_data_665 ^ i_input_data[282 % IN_WIDTH];
             324 / IN_WIDTH: ping_storage_data_665 <= ping_storage_data_665 ^ i_input_data[324 % IN_WIDTH];
@@ -21394,7 +21394,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_666 <= 1'b0;
         pong_storage_data_666 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             283 / IN_WIDTH: ping_storage_data_666 <= ping_storage_data_666 ^ i_input_data[283 % IN_WIDTH];
             325 / IN_WIDTH: ping_storage_data_666 <= ping_storage_data_666 ^ i_input_data[325 % IN_WIDTH];
@@ -21422,7 +21422,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_667 <= 1'b0;
         pong_storage_data_667 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             284 / IN_WIDTH: ping_storage_data_667 <= ping_storage_data_667 ^ i_input_data[284 % IN_WIDTH];
             326 / IN_WIDTH: ping_storage_data_667 <= ping_storage_data_667 ^ i_input_data[326 % IN_WIDTH];
@@ -21450,7 +21450,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_668 <= 1'b0;
         pong_storage_data_668 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             285 / IN_WIDTH: ping_storage_data_668 <= ping_storage_data_668 ^ i_input_data[285 % IN_WIDTH];
             327 / IN_WIDTH: ping_storage_data_668 <= ping_storage_data_668 ^ i_input_data[327 % IN_WIDTH];
@@ -21478,7 +21478,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_669 <= 1'b0;
         pong_storage_data_669 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             286 / IN_WIDTH: ping_storage_data_669 <= ping_storage_data_669 ^ i_input_data[286 % IN_WIDTH];
             328 / IN_WIDTH: ping_storage_data_669 <= ping_storage_data_669 ^ i_input_data[328 % IN_WIDTH];
@@ -21506,7 +21506,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_670 <= 1'b0;
         pong_storage_data_670 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             287 / IN_WIDTH: ping_storage_data_670 <= ping_storage_data_670 ^ i_input_data[287 % IN_WIDTH];
             329 / IN_WIDTH: ping_storage_data_670 <= ping_storage_data_670 ^ i_input_data[329 % IN_WIDTH];
@@ -21534,7 +21534,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_671 <= 1'b0;
         pong_storage_data_671 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             192 / IN_WIDTH: ping_storage_data_671 <= ping_storage_data_671 ^ i_input_data[192 % IN_WIDTH];
             330 / IN_WIDTH: ping_storage_data_671 <= ping_storage_data_671 ^ i_input_data[330 % IN_WIDTH];
@@ -21562,7 +21562,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_672 <= 1'b0;
         pong_storage_data_672 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             181 / IN_WIDTH: ping_storage_data_672 <= ping_storage_data_672 ^ i_input_data[181 % IN_WIDTH];
             215 / IN_WIDTH: ping_storage_data_672 <= ping_storage_data_672 ^ i_input_data[215 % IN_WIDTH];
@@ -21590,7 +21590,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_673 <= 1'b0;
         pong_storage_data_673 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             182 / IN_WIDTH: ping_storage_data_673 <= ping_storage_data_673 ^ i_input_data[182 % IN_WIDTH];
             216 / IN_WIDTH: ping_storage_data_673 <= ping_storage_data_673 ^ i_input_data[216 % IN_WIDTH];
@@ -21618,7 +21618,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_674 <= 1'b0;
         pong_storage_data_674 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             183 / IN_WIDTH: ping_storage_data_674 <= ping_storage_data_674 ^ i_input_data[183 % IN_WIDTH];
             217 / IN_WIDTH: ping_storage_data_674 <= ping_storage_data_674 ^ i_input_data[217 % IN_WIDTH];
@@ -21646,7 +21646,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_675 <= 1'b0;
         pong_storage_data_675 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             184 / IN_WIDTH: ping_storage_data_675 <= ping_storage_data_675 ^ i_input_data[184 % IN_WIDTH];
             218 / IN_WIDTH: ping_storage_data_675 <= ping_storage_data_675 ^ i_input_data[218 % IN_WIDTH];
@@ -21674,7 +21674,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_676 <= 1'b0;
         pong_storage_data_676 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             185 / IN_WIDTH: ping_storage_data_676 <= ping_storage_data_676 ^ i_input_data[185 % IN_WIDTH];
             219 / IN_WIDTH: ping_storage_data_676 <= ping_storage_data_676 ^ i_input_data[219 % IN_WIDTH];
@@ -21702,7 +21702,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_677 <= 1'b0;
         pong_storage_data_677 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             186 / IN_WIDTH: ping_storage_data_677 <= ping_storage_data_677 ^ i_input_data[186 % IN_WIDTH];
             220 / IN_WIDTH: ping_storage_data_677 <= ping_storage_data_677 ^ i_input_data[220 % IN_WIDTH];
@@ -21730,7 +21730,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_678 <= 1'b0;
         pong_storage_data_678 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             187 / IN_WIDTH: ping_storage_data_678 <= ping_storage_data_678 ^ i_input_data[187 % IN_WIDTH];
             221 / IN_WIDTH: ping_storage_data_678 <= ping_storage_data_678 ^ i_input_data[221 % IN_WIDTH];
@@ -21758,7 +21758,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_679 <= 1'b0;
         pong_storage_data_679 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             188 / IN_WIDTH: ping_storage_data_679 <= ping_storage_data_679 ^ i_input_data[188 % IN_WIDTH];
             222 / IN_WIDTH: ping_storage_data_679 <= ping_storage_data_679 ^ i_input_data[222 % IN_WIDTH];
@@ -21786,7 +21786,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_680 <= 1'b0;
         pong_storage_data_680 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             189 / IN_WIDTH: ping_storage_data_680 <= ping_storage_data_680 ^ i_input_data[189 % IN_WIDTH];
             223 / IN_WIDTH: ping_storage_data_680 <= ping_storage_data_680 ^ i_input_data[223 % IN_WIDTH];
@@ -21814,7 +21814,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_681 <= 1'b0;
         pong_storage_data_681 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             190 / IN_WIDTH: ping_storage_data_681 <= ping_storage_data_681 ^ i_input_data[190 % IN_WIDTH];
             224 / IN_WIDTH: ping_storage_data_681 <= ping_storage_data_681 ^ i_input_data[224 % IN_WIDTH];
@@ -21842,7 +21842,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_682 <= 1'b0;
         pong_storage_data_682 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             191 / IN_WIDTH: ping_storage_data_682 <= ping_storage_data_682 ^ i_input_data[191 % IN_WIDTH];
             225 / IN_WIDTH: ping_storage_data_682 <= ping_storage_data_682 ^ i_input_data[225 % IN_WIDTH];
@@ -21870,7 +21870,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_683 <= 1'b0;
         pong_storage_data_683 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             96 / IN_WIDTH: ping_storage_data_683 <= ping_storage_data_683 ^ i_input_data[96 % IN_WIDTH];
             226 / IN_WIDTH: ping_storage_data_683 <= ping_storage_data_683 ^ i_input_data[226 % IN_WIDTH];
@@ -21898,7 +21898,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_684 <= 1'b0;
         pong_storage_data_684 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             97 / IN_WIDTH: ping_storage_data_684 <= ping_storage_data_684 ^ i_input_data[97 % IN_WIDTH];
             227 / IN_WIDTH: ping_storage_data_684 <= ping_storage_data_684 ^ i_input_data[227 % IN_WIDTH];
@@ -21926,7 +21926,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_685 <= 1'b0;
         pong_storage_data_685 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             98 / IN_WIDTH: ping_storage_data_685 <= ping_storage_data_685 ^ i_input_data[98 % IN_WIDTH];
             228 / IN_WIDTH: ping_storage_data_685 <= ping_storage_data_685 ^ i_input_data[228 % IN_WIDTH];
@@ -21954,7 +21954,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_686 <= 1'b0;
         pong_storage_data_686 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             99 / IN_WIDTH: ping_storage_data_686 <= ping_storage_data_686 ^ i_input_data[99 % IN_WIDTH];
             229 / IN_WIDTH: ping_storage_data_686 <= ping_storage_data_686 ^ i_input_data[229 % IN_WIDTH];
@@ -21982,7 +21982,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_687 <= 1'b0;
         pong_storage_data_687 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             100 / IN_WIDTH: ping_storage_data_687 <= ping_storage_data_687 ^ i_input_data[100 % IN_WIDTH];
             230 / IN_WIDTH: ping_storage_data_687 <= ping_storage_data_687 ^ i_input_data[230 % IN_WIDTH];
@@ -22010,7 +22010,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_688 <= 1'b0;
         pong_storage_data_688 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             101 / IN_WIDTH: ping_storage_data_688 <= ping_storage_data_688 ^ i_input_data[101 % IN_WIDTH];
             231 / IN_WIDTH: ping_storage_data_688 <= ping_storage_data_688 ^ i_input_data[231 % IN_WIDTH];
@@ -22038,7 +22038,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_689 <= 1'b0;
         pong_storage_data_689 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             102 / IN_WIDTH: ping_storage_data_689 <= ping_storage_data_689 ^ i_input_data[102 % IN_WIDTH];
             232 / IN_WIDTH: ping_storage_data_689 <= ping_storage_data_689 ^ i_input_data[232 % IN_WIDTH];
@@ -22066,7 +22066,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_690 <= 1'b0;
         pong_storage_data_690 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             103 / IN_WIDTH: ping_storage_data_690 <= ping_storage_data_690 ^ i_input_data[103 % IN_WIDTH];
             233 / IN_WIDTH: ping_storage_data_690 <= ping_storage_data_690 ^ i_input_data[233 % IN_WIDTH];
@@ -22094,7 +22094,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_691 <= 1'b0;
         pong_storage_data_691 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             104 / IN_WIDTH: ping_storage_data_691 <= ping_storage_data_691 ^ i_input_data[104 % IN_WIDTH];
             234 / IN_WIDTH: ping_storage_data_691 <= ping_storage_data_691 ^ i_input_data[234 % IN_WIDTH];
@@ -22122,7 +22122,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_692 <= 1'b0;
         pong_storage_data_692 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             105 / IN_WIDTH: ping_storage_data_692 <= ping_storage_data_692 ^ i_input_data[105 % IN_WIDTH];
             235 / IN_WIDTH: ping_storage_data_692 <= ping_storage_data_692 ^ i_input_data[235 % IN_WIDTH];
@@ -22150,7 +22150,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_693 <= 1'b0;
         pong_storage_data_693 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             106 / IN_WIDTH: ping_storage_data_693 <= ping_storage_data_693 ^ i_input_data[106 % IN_WIDTH];
             236 / IN_WIDTH: ping_storage_data_693 <= ping_storage_data_693 ^ i_input_data[236 % IN_WIDTH];
@@ -22178,7 +22178,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_694 <= 1'b0;
         pong_storage_data_694 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             107 / IN_WIDTH: ping_storage_data_694 <= ping_storage_data_694 ^ i_input_data[107 % IN_WIDTH];
             237 / IN_WIDTH: ping_storage_data_694 <= ping_storage_data_694 ^ i_input_data[237 % IN_WIDTH];
@@ -22206,7 +22206,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_695 <= 1'b0;
         pong_storage_data_695 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             108 / IN_WIDTH: ping_storage_data_695 <= ping_storage_data_695 ^ i_input_data[108 % IN_WIDTH];
             238 / IN_WIDTH: ping_storage_data_695 <= ping_storage_data_695 ^ i_input_data[238 % IN_WIDTH];
@@ -22234,7 +22234,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_696 <= 1'b0;
         pong_storage_data_696 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             109 / IN_WIDTH: ping_storage_data_696 <= ping_storage_data_696 ^ i_input_data[109 % IN_WIDTH];
             239 / IN_WIDTH: ping_storage_data_696 <= ping_storage_data_696 ^ i_input_data[239 % IN_WIDTH];
@@ -22262,7 +22262,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_697 <= 1'b0;
         pong_storage_data_697 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             110 / IN_WIDTH: ping_storage_data_697 <= ping_storage_data_697 ^ i_input_data[110 % IN_WIDTH];
             240 / IN_WIDTH: ping_storage_data_697 <= ping_storage_data_697 ^ i_input_data[240 % IN_WIDTH];
@@ -22290,7 +22290,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_698 <= 1'b0;
         pong_storage_data_698 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             111 / IN_WIDTH: ping_storage_data_698 <= ping_storage_data_698 ^ i_input_data[111 % IN_WIDTH];
             241 / IN_WIDTH: ping_storage_data_698 <= ping_storage_data_698 ^ i_input_data[241 % IN_WIDTH];
@@ -22318,7 +22318,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_699 <= 1'b0;
         pong_storage_data_699 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             112 / IN_WIDTH: ping_storage_data_699 <= ping_storage_data_699 ^ i_input_data[112 % IN_WIDTH];
             242 / IN_WIDTH: ping_storage_data_699 <= ping_storage_data_699 ^ i_input_data[242 % IN_WIDTH];
@@ -22346,7 +22346,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_700 <= 1'b0;
         pong_storage_data_700 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             113 / IN_WIDTH: ping_storage_data_700 <= ping_storage_data_700 ^ i_input_data[113 % IN_WIDTH];
             243 / IN_WIDTH: ping_storage_data_700 <= ping_storage_data_700 ^ i_input_data[243 % IN_WIDTH];
@@ -22374,7 +22374,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_701 <= 1'b0;
         pong_storage_data_701 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             114 / IN_WIDTH: ping_storage_data_701 <= ping_storage_data_701 ^ i_input_data[114 % IN_WIDTH];
             244 / IN_WIDTH: ping_storage_data_701 <= ping_storage_data_701 ^ i_input_data[244 % IN_WIDTH];
@@ -22402,7 +22402,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_702 <= 1'b0;
         pong_storage_data_702 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             115 / IN_WIDTH: ping_storage_data_702 <= ping_storage_data_702 ^ i_input_data[115 % IN_WIDTH];
             245 / IN_WIDTH: ping_storage_data_702 <= ping_storage_data_702 ^ i_input_data[245 % IN_WIDTH];
@@ -22430,7 +22430,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_703 <= 1'b0;
         pong_storage_data_703 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             116 / IN_WIDTH: ping_storage_data_703 <= ping_storage_data_703 ^ i_input_data[116 % IN_WIDTH];
             246 / IN_WIDTH: ping_storage_data_703 <= ping_storage_data_703 ^ i_input_data[246 % IN_WIDTH];
@@ -22458,7 +22458,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_704 <= 1'b0;
         pong_storage_data_704 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             117 / IN_WIDTH: ping_storage_data_704 <= ping_storage_data_704 ^ i_input_data[117 % IN_WIDTH];
             247 / IN_WIDTH: ping_storage_data_704 <= ping_storage_data_704 ^ i_input_data[247 % IN_WIDTH];
@@ -22486,7 +22486,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_705 <= 1'b0;
         pong_storage_data_705 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             118 / IN_WIDTH: ping_storage_data_705 <= ping_storage_data_705 ^ i_input_data[118 % IN_WIDTH];
             248 / IN_WIDTH: ping_storage_data_705 <= ping_storage_data_705 ^ i_input_data[248 % IN_WIDTH];
@@ -22514,7 +22514,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_706 <= 1'b0;
         pong_storage_data_706 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             119 / IN_WIDTH: ping_storage_data_706 <= ping_storage_data_706 ^ i_input_data[119 % IN_WIDTH];
             249 / IN_WIDTH: ping_storage_data_706 <= ping_storage_data_706 ^ i_input_data[249 % IN_WIDTH];
@@ -22542,7 +22542,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_707 <= 1'b0;
         pong_storage_data_707 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             120 / IN_WIDTH: ping_storage_data_707 <= ping_storage_data_707 ^ i_input_data[120 % IN_WIDTH];
             250 / IN_WIDTH: ping_storage_data_707 <= ping_storage_data_707 ^ i_input_data[250 % IN_WIDTH];
@@ -22570,7 +22570,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_708 <= 1'b0;
         pong_storage_data_708 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             121 / IN_WIDTH: ping_storage_data_708 <= ping_storage_data_708 ^ i_input_data[121 % IN_WIDTH];
             251 / IN_WIDTH: ping_storage_data_708 <= ping_storage_data_708 ^ i_input_data[251 % IN_WIDTH];
@@ -22598,7 +22598,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_709 <= 1'b0;
         pong_storage_data_709 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             122 / IN_WIDTH: ping_storage_data_709 <= ping_storage_data_709 ^ i_input_data[122 % IN_WIDTH];
             252 / IN_WIDTH: ping_storage_data_709 <= ping_storage_data_709 ^ i_input_data[252 % IN_WIDTH];
@@ -22626,7 +22626,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_710 <= 1'b0;
         pong_storage_data_710 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             123 / IN_WIDTH: ping_storage_data_710 <= ping_storage_data_710 ^ i_input_data[123 % IN_WIDTH];
             253 / IN_WIDTH: ping_storage_data_710 <= ping_storage_data_710 ^ i_input_data[253 % IN_WIDTH];
@@ -22654,7 +22654,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_711 <= 1'b0;
         pong_storage_data_711 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             124 / IN_WIDTH: ping_storage_data_711 <= ping_storage_data_711 ^ i_input_data[124 % IN_WIDTH];
             254 / IN_WIDTH: ping_storage_data_711 <= ping_storage_data_711 ^ i_input_data[254 % IN_WIDTH];
@@ -22682,7 +22682,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_712 <= 1'b0;
         pong_storage_data_712 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             125 / IN_WIDTH: ping_storage_data_712 <= ping_storage_data_712 ^ i_input_data[125 % IN_WIDTH];
             255 / IN_WIDTH: ping_storage_data_712 <= ping_storage_data_712 ^ i_input_data[255 % IN_WIDTH];
@@ -22710,7 +22710,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_713 <= 1'b0;
         pong_storage_data_713 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             126 / IN_WIDTH: ping_storage_data_713 <= ping_storage_data_713 ^ i_input_data[126 % IN_WIDTH];
             256 / IN_WIDTH: ping_storage_data_713 <= ping_storage_data_713 ^ i_input_data[256 % IN_WIDTH];
@@ -22738,7 +22738,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_714 <= 1'b0;
         pong_storage_data_714 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             127 / IN_WIDTH: ping_storage_data_714 <= ping_storage_data_714 ^ i_input_data[127 % IN_WIDTH];
             257 / IN_WIDTH: ping_storage_data_714 <= ping_storage_data_714 ^ i_input_data[257 % IN_WIDTH];
@@ -22766,7 +22766,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_715 <= 1'b0;
         pong_storage_data_715 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             128 / IN_WIDTH: ping_storage_data_715 <= ping_storage_data_715 ^ i_input_data[128 % IN_WIDTH];
             258 / IN_WIDTH: ping_storage_data_715 <= ping_storage_data_715 ^ i_input_data[258 % IN_WIDTH];
@@ -22794,7 +22794,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_716 <= 1'b0;
         pong_storage_data_716 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             129 / IN_WIDTH: ping_storage_data_716 <= ping_storage_data_716 ^ i_input_data[129 % IN_WIDTH];
             259 / IN_WIDTH: ping_storage_data_716 <= ping_storage_data_716 ^ i_input_data[259 % IN_WIDTH];
@@ -22822,7 +22822,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_717 <= 1'b0;
         pong_storage_data_717 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             130 / IN_WIDTH: ping_storage_data_717 <= ping_storage_data_717 ^ i_input_data[130 % IN_WIDTH];
             260 / IN_WIDTH: ping_storage_data_717 <= ping_storage_data_717 ^ i_input_data[260 % IN_WIDTH];
@@ -22850,7 +22850,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_718 <= 1'b0;
         pong_storage_data_718 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             131 / IN_WIDTH: ping_storage_data_718 <= ping_storage_data_718 ^ i_input_data[131 % IN_WIDTH];
             261 / IN_WIDTH: ping_storage_data_718 <= ping_storage_data_718 ^ i_input_data[261 % IN_WIDTH];
@@ -22878,7 +22878,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_719 <= 1'b0;
         pong_storage_data_719 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             132 / IN_WIDTH: ping_storage_data_719 <= ping_storage_data_719 ^ i_input_data[132 % IN_WIDTH];
             262 / IN_WIDTH: ping_storage_data_719 <= ping_storage_data_719 ^ i_input_data[262 % IN_WIDTH];
@@ -22906,7 +22906,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_720 <= 1'b0;
         pong_storage_data_720 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             133 / IN_WIDTH: ping_storage_data_720 <= ping_storage_data_720 ^ i_input_data[133 % IN_WIDTH];
             263 / IN_WIDTH: ping_storage_data_720 <= ping_storage_data_720 ^ i_input_data[263 % IN_WIDTH];
@@ -22934,7 +22934,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_721 <= 1'b0;
         pong_storage_data_721 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             134 / IN_WIDTH: ping_storage_data_721 <= ping_storage_data_721 ^ i_input_data[134 % IN_WIDTH];
             264 / IN_WIDTH: ping_storage_data_721 <= ping_storage_data_721 ^ i_input_data[264 % IN_WIDTH];
@@ -22962,7 +22962,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_722 <= 1'b0;
         pong_storage_data_722 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             135 / IN_WIDTH: ping_storage_data_722 <= ping_storage_data_722 ^ i_input_data[135 % IN_WIDTH];
             265 / IN_WIDTH: ping_storage_data_722 <= ping_storage_data_722 ^ i_input_data[265 % IN_WIDTH];
@@ -22990,7 +22990,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_723 <= 1'b0;
         pong_storage_data_723 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             136 / IN_WIDTH: ping_storage_data_723 <= ping_storage_data_723 ^ i_input_data[136 % IN_WIDTH];
             266 / IN_WIDTH: ping_storage_data_723 <= ping_storage_data_723 ^ i_input_data[266 % IN_WIDTH];
@@ -23018,7 +23018,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_724 <= 1'b0;
         pong_storage_data_724 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             137 / IN_WIDTH: ping_storage_data_724 <= ping_storage_data_724 ^ i_input_data[137 % IN_WIDTH];
             267 / IN_WIDTH: ping_storage_data_724 <= ping_storage_data_724 ^ i_input_data[267 % IN_WIDTH];
@@ -23046,7 +23046,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_725 <= 1'b0;
         pong_storage_data_725 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             138 / IN_WIDTH: ping_storage_data_725 <= ping_storage_data_725 ^ i_input_data[138 % IN_WIDTH];
             268 / IN_WIDTH: ping_storage_data_725 <= ping_storage_data_725 ^ i_input_data[268 % IN_WIDTH];
@@ -23074,7 +23074,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_726 <= 1'b0;
         pong_storage_data_726 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             139 / IN_WIDTH: ping_storage_data_726 <= ping_storage_data_726 ^ i_input_data[139 % IN_WIDTH];
             269 / IN_WIDTH: ping_storage_data_726 <= ping_storage_data_726 ^ i_input_data[269 % IN_WIDTH];
@@ -23102,7 +23102,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_727 <= 1'b0;
         pong_storage_data_727 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             140 / IN_WIDTH: ping_storage_data_727 <= ping_storage_data_727 ^ i_input_data[140 % IN_WIDTH];
             270 / IN_WIDTH: ping_storage_data_727 <= ping_storage_data_727 ^ i_input_data[270 % IN_WIDTH];
@@ -23130,7 +23130,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_728 <= 1'b0;
         pong_storage_data_728 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             141 / IN_WIDTH: ping_storage_data_728 <= ping_storage_data_728 ^ i_input_data[141 % IN_WIDTH];
             271 / IN_WIDTH: ping_storage_data_728 <= ping_storage_data_728 ^ i_input_data[271 % IN_WIDTH];
@@ -23158,7 +23158,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_729 <= 1'b0;
         pong_storage_data_729 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             142 / IN_WIDTH: ping_storage_data_729 <= ping_storage_data_729 ^ i_input_data[142 % IN_WIDTH];
             272 / IN_WIDTH: ping_storage_data_729 <= ping_storage_data_729 ^ i_input_data[272 % IN_WIDTH];
@@ -23186,7 +23186,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_730 <= 1'b0;
         pong_storage_data_730 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             143 / IN_WIDTH: ping_storage_data_730 <= ping_storage_data_730 ^ i_input_data[143 % IN_WIDTH];
             273 / IN_WIDTH: ping_storage_data_730 <= ping_storage_data_730 ^ i_input_data[273 % IN_WIDTH];
@@ -23214,7 +23214,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_731 <= 1'b0;
         pong_storage_data_731 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             144 / IN_WIDTH: ping_storage_data_731 <= ping_storage_data_731 ^ i_input_data[144 % IN_WIDTH];
             274 / IN_WIDTH: ping_storage_data_731 <= ping_storage_data_731 ^ i_input_data[274 % IN_WIDTH];
@@ -23242,7 +23242,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_732 <= 1'b0;
         pong_storage_data_732 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             145 / IN_WIDTH: ping_storage_data_732 <= ping_storage_data_732 ^ i_input_data[145 % IN_WIDTH];
             275 / IN_WIDTH: ping_storage_data_732 <= ping_storage_data_732 ^ i_input_data[275 % IN_WIDTH];
@@ -23270,7 +23270,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_733 <= 1'b0;
         pong_storage_data_733 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             146 / IN_WIDTH: ping_storage_data_733 <= ping_storage_data_733 ^ i_input_data[146 % IN_WIDTH];
             276 / IN_WIDTH: ping_storage_data_733 <= ping_storage_data_733 ^ i_input_data[276 % IN_WIDTH];
@@ -23298,7 +23298,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_734 <= 1'b0;
         pong_storage_data_734 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             147 / IN_WIDTH: ping_storage_data_734 <= ping_storage_data_734 ^ i_input_data[147 % IN_WIDTH];
             277 / IN_WIDTH: ping_storage_data_734 <= ping_storage_data_734 ^ i_input_data[277 % IN_WIDTH];
@@ -23326,7 +23326,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_735 <= 1'b0;
         pong_storage_data_735 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             148 / IN_WIDTH: ping_storage_data_735 <= ping_storage_data_735 ^ i_input_data[148 % IN_WIDTH];
             278 / IN_WIDTH: ping_storage_data_735 <= ping_storage_data_735 ^ i_input_data[278 % IN_WIDTH];
@@ -23354,7 +23354,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_736 <= 1'b0;
         pong_storage_data_736 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             149 / IN_WIDTH: ping_storage_data_736 <= ping_storage_data_736 ^ i_input_data[149 % IN_WIDTH];
             279 / IN_WIDTH: ping_storage_data_736 <= ping_storage_data_736 ^ i_input_data[279 % IN_WIDTH];
@@ -23382,7 +23382,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_737 <= 1'b0;
         pong_storage_data_737 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             150 / IN_WIDTH: ping_storage_data_737 <= ping_storage_data_737 ^ i_input_data[150 % IN_WIDTH];
             280 / IN_WIDTH: ping_storage_data_737 <= ping_storage_data_737 ^ i_input_data[280 % IN_WIDTH];
@@ -23410,7 +23410,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_738 <= 1'b0;
         pong_storage_data_738 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             151 / IN_WIDTH: ping_storage_data_738 <= ping_storage_data_738 ^ i_input_data[151 % IN_WIDTH];
             281 / IN_WIDTH: ping_storage_data_738 <= ping_storage_data_738 ^ i_input_data[281 % IN_WIDTH];
@@ -23438,7 +23438,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_739 <= 1'b0;
         pong_storage_data_739 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             152 / IN_WIDTH: ping_storage_data_739 <= ping_storage_data_739 ^ i_input_data[152 % IN_WIDTH];
             282 / IN_WIDTH: ping_storage_data_739 <= ping_storage_data_739 ^ i_input_data[282 % IN_WIDTH];
@@ -23466,7 +23466,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_740 <= 1'b0;
         pong_storage_data_740 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             153 / IN_WIDTH: ping_storage_data_740 <= ping_storage_data_740 ^ i_input_data[153 % IN_WIDTH];
             283 / IN_WIDTH: ping_storage_data_740 <= ping_storage_data_740 ^ i_input_data[283 % IN_WIDTH];
@@ -23494,7 +23494,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_741 <= 1'b0;
         pong_storage_data_741 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             154 / IN_WIDTH: ping_storage_data_741 <= ping_storage_data_741 ^ i_input_data[154 % IN_WIDTH];
             284 / IN_WIDTH: ping_storage_data_741 <= ping_storage_data_741 ^ i_input_data[284 % IN_WIDTH];
@@ -23522,7 +23522,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_742 <= 1'b0;
         pong_storage_data_742 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             155 / IN_WIDTH: ping_storage_data_742 <= ping_storage_data_742 ^ i_input_data[155 % IN_WIDTH];
             285 / IN_WIDTH: ping_storage_data_742 <= ping_storage_data_742 ^ i_input_data[285 % IN_WIDTH];
@@ -23550,7 +23550,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_743 <= 1'b0;
         pong_storage_data_743 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             156 / IN_WIDTH: ping_storage_data_743 <= ping_storage_data_743 ^ i_input_data[156 % IN_WIDTH];
             286 / IN_WIDTH: ping_storage_data_743 <= ping_storage_data_743 ^ i_input_data[286 % IN_WIDTH];
@@ -23578,7 +23578,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_744 <= 1'b0;
         pong_storage_data_744 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             157 / IN_WIDTH: ping_storage_data_744 <= ping_storage_data_744 ^ i_input_data[157 % IN_WIDTH];
             287 / IN_WIDTH: ping_storage_data_744 <= ping_storage_data_744 ^ i_input_data[287 % IN_WIDTH];
@@ -23606,7 +23606,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_745 <= 1'b0;
         pong_storage_data_745 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             158 / IN_WIDTH: ping_storage_data_745 <= ping_storage_data_745 ^ i_input_data[158 % IN_WIDTH];
             192 / IN_WIDTH: ping_storage_data_745 <= ping_storage_data_745 ^ i_input_data[192 % IN_WIDTH];
@@ -23634,7 +23634,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_746 <= 1'b0;
         pong_storage_data_746 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             159 / IN_WIDTH: ping_storage_data_746 <= ping_storage_data_746 ^ i_input_data[159 % IN_WIDTH];
             193 / IN_WIDTH: ping_storage_data_746 <= ping_storage_data_746 ^ i_input_data[193 % IN_WIDTH];
@@ -23662,7 +23662,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_747 <= 1'b0;
         pong_storage_data_747 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             160 / IN_WIDTH: ping_storage_data_747 <= ping_storage_data_747 ^ i_input_data[160 % IN_WIDTH];
             194 / IN_WIDTH: ping_storage_data_747 <= ping_storage_data_747 ^ i_input_data[194 % IN_WIDTH];
@@ -23690,7 +23690,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_748 <= 1'b0;
         pong_storage_data_748 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             161 / IN_WIDTH: ping_storage_data_748 <= ping_storage_data_748 ^ i_input_data[161 % IN_WIDTH];
             195 / IN_WIDTH: ping_storage_data_748 <= ping_storage_data_748 ^ i_input_data[195 % IN_WIDTH];
@@ -23718,7 +23718,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_749 <= 1'b0;
         pong_storage_data_749 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             162 / IN_WIDTH: ping_storage_data_749 <= ping_storage_data_749 ^ i_input_data[162 % IN_WIDTH];
             196 / IN_WIDTH: ping_storage_data_749 <= ping_storage_data_749 ^ i_input_data[196 % IN_WIDTH];
@@ -23746,7 +23746,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_750 <= 1'b0;
         pong_storage_data_750 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             163 / IN_WIDTH: ping_storage_data_750 <= ping_storage_data_750 ^ i_input_data[163 % IN_WIDTH];
             197 / IN_WIDTH: ping_storage_data_750 <= ping_storage_data_750 ^ i_input_data[197 % IN_WIDTH];
@@ -23774,7 +23774,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_751 <= 1'b0;
         pong_storage_data_751 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             164 / IN_WIDTH: ping_storage_data_751 <= ping_storage_data_751 ^ i_input_data[164 % IN_WIDTH];
             198 / IN_WIDTH: ping_storage_data_751 <= ping_storage_data_751 ^ i_input_data[198 % IN_WIDTH];
@@ -23802,7 +23802,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_752 <= 1'b0;
         pong_storage_data_752 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             165 / IN_WIDTH: ping_storage_data_752 <= ping_storage_data_752 ^ i_input_data[165 % IN_WIDTH];
             199 / IN_WIDTH: ping_storage_data_752 <= ping_storage_data_752 ^ i_input_data[199 % IN_WIDTH];
@@ -23830,7 +23830,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_753 <= 1'b0;
         pong_storage_data_753 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             166 / IN_WIDTH: ping_storage_data_753 <= ping_storage_data_753 ^ i_input_data[166 % IN_WIDTH];
             200 / IN_WIDTH: ping_storage_data_753 <= ping_storage_data_753 ^ i_input_data[200 % IN_WIDTH];
@@ -23858,7 +23858,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_754 <= 1'b0;
         pong_storage_data_754 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             167 / IN_WIDTH: ping_storage_data_754 <= ping_storage_data_754 ^ i_input_data[167 % IN_WIDTH];
             201 / IN_WIDTH: ping_storage_data_754 <= ping_storage_data_754 ^ i_input_data[201 % IN_WIDTH];
@@ -23886,7 +23886,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_755 <= 1'b0;
         pong_storage_data_755 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             168 / IN_WIDTH: ping_storage_data_755 <= ping_storage_data_755 ^ i_input_data[168 % IN_WIDTH];
             202 / IN_WIDTH: ping_storage_data_755 <= ping_storage_data_755 ^ i_input_data[202 % IN_WIDTH];
@@ -23914,7 +23914,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_756 <= 1'b0;
         pong_storage_data_756 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             169 / IN_WIDTH: ping_storage_data_756 <= ping_storage_data_756 ^ i_input_data[169 % IN_WIDTH];
             203 / IN_WIDTH: ping_storage_data_756 <= ping_storage_data_756 ^ i_input_data[203 % IN_WIDTH];
@@ -23942,7 +23942,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_757 <= 1'b0;
         pong_storage_data_757 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             170 / IN_WIDTH: ping_storage_data_757 <= ping_storage_data_757 ^ i_input_data[170 % IN_WIDTH];
             204 / IN_WIDTH: ping_storage_data_757 <= ping_storage_data_757 ^ i_input_data[204 % IN_WIDTH];
@@ -23970,7 +23970,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_758 <= 1'b0;
         pong_storage_data_758 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             171 / IN_WIDTH: ping_storage_data_758 <= ping_storage_data_758 ^ i_input_data[171 % IN_WIDTH];
             205 / IN_WIDTH: ping_storage_data_758 <= ping_storage_data_758 ^ i_input_data[205 % IN_WIDTH];
@@ -23998,7 +23998,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_759 <= 1'b0;
         pong_storage_data_759 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             172 / IN_WIDTH: ping_storage_data_759 <= ping_storage_data_759 ^ i_input_data[172 % IN_WIDTH];
             206 / IN_WIDTH: ping_storage_data_759 <= ping_storage_data_759 ^ i_input_data[206 % IN_WIDTH];
@@ -24026,7 +24026,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_760 <= 1'b0;
         pong_storage_data_760 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             173 / IN_WIDTH: ping_storage_data_760 <= ping_storage_data_760 ^ i_input_data[173 % IN_WIDTH];
             207 / IN_WIDTH: ping_storage_data_760 <= ping_storage_data_760 ^ i_input_data[207 % IN_WIDTH];
@@ -24054,7 +24054,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_761 <= 1'b0;
         pong_storage_data_761 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             174 / IN_WIDTH: ping_storage_data_761 <= ping_storage_data_761 ^ i_input_data[174 % IN_WIDTH];
             208 / IN_WIDTH: ping_storage_data_761 <= ping_storage_data_761 ^ i_input_data[208 % IN_WIDTH];
@@ -24082,7 +24082,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_762 <= 1'b0;
         pong_storage_data_762 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             175 / IN_WIDTH: ping_storage_data_762 <= ping_storage_data_762 ^ i_input_data[175 % IN_WIDTH];
             209 / IN_WIDTH: ping_storage_data_762 <= ping_storage_data_762 ^ i_input_data[209 % IN_WIDTH];
@@ -24110,7 +24110,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_763 <= 1'b0;
         pong_storage_data_763 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             176 / IN_WIDTH: ping_storage_data_763 <= ping_storage_data_763 ^ i_input_data[176 % IN_WIDTH];
             210 / IN_WIDTH: ping_storage_data_763 <= ping_storage_data_763 ^ i_input_data[210 % IN_WIDTH];
@@ -24138,7 +24138,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_764 <= 1'b0;
         pong_storage_data_764 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             177 / IN_WIDTH: ping_storage_data_764 <= ping_storage_data_764 ^ i_input_data[177 % IN_WIDTH];
             211 / IN_WIDTH: ping_storage_data_764 <= ping_storage_data_764 ^ i_input_data[211 % IN_WIDTH];
@@ -24166,7 +24166,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_765 <= 1'b0;
         pong_storage_data_765 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             178 / IN_WIDTH: ping_storage_data_765 <= ping_storage_data_765 ^ i_input_data[178 % IN_WIDTH];
             212 / IN_WIDTH: ping_storage_data_765 <= ping_storage_data_765 ^ i_input_data[212 % IN_WIDTH];
@@ -24194,7 +24194,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_766 <= 1'b0;
         pong_storage_data_766 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             179 / IN_WIDTH: ping_storage_data_766 <= ping_storage_data_766 ^ i_input_data[179 % IN_WIDTH];
             213 / IN_WIDTH: ping_storage_data_766 <= ping_storage_data_766 ^ i_input_data[213 % IN_WIDTH];
@@ -24222,7 +24222,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_767 <= 1'b0;
         pong_storage_data_767 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             180 / IN_WIDTH: ping_storage_data_767 <= ping_storage_data_767 ^ i_input_data[180 % IN_WIDTH];
             214 / IN_WIDTH: ping_storage_data_767 <= ping_storage_data_767 ^ i_input_data[214 % IN_WIDTH];
@@ -24250,7 +24250,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_768 <= 1'b0;
         pong_storage_data_768 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             84 / IN_WIDTH: ping_storage_data_768 <= ping_storage_data_768 ^ i_input_data[84 % IN_WIDTH];
             397 / IN_WIDTH: ping_storage_data_768 <= ping_storage_data_768 ^ i_input_data[397 % IN_WIDTH];
@@ -24280,7 +24280,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_769 <= 1'b0;
         pong_storage_data_769 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             85 / IN_WIDTH: ping_storage_data_769 <= ping_storage_data_769 ^ i_input_data[85 % IN_WIDTH];
             398 / IN_WIDTH: ping_storage_data_769 <= ping_storage_data_769 ^ i_input_data[398 % IN_WIDTH];
@@ -24310,7 +24310,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_770 <= 1'b0;
         pong_storage_data_770 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             86 / IN_WIDTH: ping_storage_data_770 <= ping_storage_data_770 ^ i_input_data[86 % IN_WIDTH];
             399 / IN_WIDTH: ping_storage_data_770 <= ping_storage_data_770 ^ i_input_data[399 % IN_WIDTH];
@@ -24340,7 +24340,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_771 <= 1'b0;
         pong_storage_data_771 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             87 / IN_WIDTH: ping_storage_data_771 <= ping_storage_data_771 ^ i_input_data[87 % IN_WIDTH];
             400 / IN_WIDTH: ping_storage_data_771 <= ping_storage_data_771 ^ i_input_data[400 % IN_WIDTH];
@@ -24370,7 +24370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_772 <= 1'b0;
         pong_storage_data_772 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             88 / IN_WIDTH: ping_storage_data_772 <= ping_storage_data_772 ^ i_input_data[88 % IN_WIDTH];
             401 / IN_WIDTH: ping_storage_data_772 <= ping_storage_data_772 ^ i_input_data[401 % IN_WIDTH];
@@ -24400,7 +24400,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_773 <= 1'b0;
         pong_storage_data_773 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             89 / IN_WIDTH: ping_storage_data_773 <= ping_storage_data_773 ^ i_input_data[89 % IN_WIDTH];
             402 / IN_WIDTH: ping_storage_data_773 <= ping_storage_data_773 ^ i_input_data[402 % IN_WIDTH];
@@ -24430,7 +24430,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_774 <= 1'b0;
         pong_storage_data_774 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             90 / IN_WIDTH: ping_storage_data_774 <= ping_storage_data_774 ^ i_input_data[90 % IN_WIDTH];
             403 / IN_WIDTH: ping_storage_data_774 <= ping_storage_data_774 ^ i_input_data[403 % IN_WIDTH];
@@ -24460,7 +24460,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_775 <= 1'b0;
         pong_storage_data_775 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             91 / IN_WIDTH: ping_storage_data_775 <= ping_storage_data_775 ^ i_input_data[91 % IN_WIDTH];
             404 / IN_WIDTH: ping_storage_data_775 <= ping_storage_data_775 ^ i_input_data[404 % IN_WIDTH];
@@ -24490,7 +24490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_776 <= 1'b0;
         pong_storage_data_776 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             92 / IN_WIDTH: ping_storage_data_776 <= ping_storage_data_776 ^ i_input_data[92 % IN_WIDTH];
             405 / IN_WIDTH: ping_storage_data_776 <= ping_storage_data_776 ^ i_input_data[405 % IN_WIDTH];
@@ -24520,7 +24520,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_777 <= 1'b0;
         pong_storage_data_777 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             93 / IN_WIDTH: ping_storage_data_777 <= ping_storage_data_777 ^ i_input_data[93 % IN_WIDTH];
             406 / IN_WIDTH: ping_storage_data_777 <= ping_storage_data_777 ^ i_input_data[406 % IN_WIDTH];
@@ -24550,7 +24550,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_778 <= 1'b0;
         pong_storage_data_778 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             94 / IN_WIDTH: ping_storage_data_778 <= ping_storage_data_778 ^ i_input_data[94 % IN_WIDTH];
             407 / IN_WIDTH: ping_storage_data_778 <= ping_storage_data_778 ^ i_input_data[407 % IN_WIDTH];
@@ -24580,7 +24580,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_779 <= 1'b0;
         pong_storage_data_779 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             95 / IN_WIDTH: ping_storage_data_779 <= ping_storage_data_779 ^ i_input_data[95 % IN_WIDTH];
             408 / IN_WIDTH: ping_storage_data_779 <= ping_storage_data_779 ^ i_input_data[408 % IN_WIDTH];
@@ -24610,7 +24610,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_780 <= 1'b0;
         pong_storage_data_780 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             0 / IN_WIDTH: ping_storage_data_780 <= ping_storage_data_780 ^ i_input_data[0 % IN_WIDTH];
             409 / IN_WIDTH: ping_storage_data_780 <= ping_storage_data_780 ^ i_input_data[409 % IN_WIDTH];
@@ -24640,7 +24640,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_781 <= 1'b0;
         pong_storage_data_781 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             1 / IN_WIDTH: ping_storage_data_781 <= ping_storage_data_781 ^ i_input_data[1 % IN_WIDTH];
             410 / IN_WIDTH: ping_storage_data_781 <= ping_storage_data_781 ^ i_input_data[410 % IN_WIDTH];
@@ -24670,7 +24670,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_782 <= 1'b0;
         pong_storage_data_782 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             2 / IN_WIDTH: ping_storage_data_782 <= ping_storage_data_782 ^ i_input_data[2 % IN_WIDTH];
             411 / IN_WIDTH: ping_storage_data_782 <= ping_storage_data_782 ^ i_input_data[411 % IN_WIDTH];
@@ -24700,7 +24700,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_783 <= 1'b0;
         pong_storage_data_783 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             3 / IN_WIDTH: ping_storage_data_783 <= ping_storage_data_783 ^ i_input_data[3 % IN_WIDTH];
             412 / IN_WIDTH: ping_storage_data_783 <= ping_storage_data_783 ^ i_input_data[412 % IN_WIDTH];
@@ -24730,7 +24730,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_784 <= 1'b0;
         pong_storage_data_784 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             4 / IN_WIDTH: ping_storage_data_784 <= ping_storage_data_784 ^ i_input_data[4 % IN_WIDTH];
             413 / IN_WIDTH: ping_storage_data_784 <= ping_storage_data_784 ^ i_input_data[413 % IN_WIDTH];
@@ -24760,7 +24760,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_785 <= 1'b0;
         pong_storage_data_785 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             5 / IN_WIDTH: ping_storage_data_785 <= ping_storage_data_785 ^ i_input_data[5 % IN_WIDTH];
             414 / IN_WIDTH: ping_storage_data_785 <= ping_storage_data_785 ^ i_input_data[414 % IN_WIDTH];
@@ -24790,7 +24790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_786 <= 1'b0;
         pong_storage_data_786 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             6 / IN_WIDTH: ping_storage_data_786 <= ping_storage_data_786 ^ i_input_data[6 % IN_WIDTH];
             415 / IN_WIDTH: ping_storage_data_786 <= ping_storage_data_786 ^ i_input_data[415 % IN_WIDTH];
@@ -24820,7 +24820,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_787 <= 1'b0;
         pong_storage_data_787 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             7 / IN_WIDTH: ping_storage_data_787 <= ping_storage_data_787 ^ i_input_data[7 % IN_WIDTH];
             416 / IN_WIDTH: ping_storage_data_787 <= ping_storage_data_787 ^ i_input_data[416 % IN_WIDTH];
@@ -24850,7 +24850,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_788 <= 1'b0;
         pong_storage_data_788 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             8 / IN_WIDTH: ping_storage_data_788 <= ping_storage_data_788 ^ i_input_data[8 % IN_WIDTH];
             417 / IN_WIDTH: ping_storage_data_788 <= ping_storage_data_788 ^ i_input_data[417 % IN_WIDTH];
@@ -24880,7 +24880,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_789 <= 1'b0;
         pong_storage_data_789 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             9 / IN_WIDTH: ping_storage_data_789 <= ping_storage_data_789 ^ i_input_data[9 % IN_WIDTH];
             418 / IN_WIDTH: ping_storage_data_789 <= ping_storage_data_789 ^ i_input_data[418 % IN_WIDTH];
@@ -24910,7 +24910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_790 <= 1'b0;
         pong_storage_data_790 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             10 / IN_WIDTH: ping_storage_data_790 <= ping_storage_data_790 ^ i_input_data[10 % IN_WIDTH];
             419 / IN_WIDTH: ping_storage_data_790 <= ping_storage_data_790 ^ i_input_data[419 % IN_WIDTH];
@@ -24940,7 +24940,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_791 <= 1'b0;
         pong_storage_data_791 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             11 / IN_WIDTH: ping_storage_data_791 <= ping_storage_data_791 ^ i_input_data[11 % IN_WIDTH];
             420 / IN_WIDTH: ping_storage_data_791 <= ping_storage_data_791 ^ i_input_data[420 % IN_WIDTH];
@@ -24970,7 +24970,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_792 <= 1'b0;
         pong_storage_data_792 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             12 / IN_WIDTH: ping_storage_data_792 <= ping_storage_data_792 ^ i_input_data[12 % IN_WIDTH];
             421 / IN_WIDTH: ping_storage_data_792 <= ping_storage_data_792 ^ i_input_data[421 % IN_WIDTH];
@@ -25000,7 +25000,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_793 <= 1'b0;
         pong_storage_data_793 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             13 / IN_WIDTH: ping_storage_data_793 <= ping_storage_data_793 ^ i_input_data[13 % IN_WIDTH];
             422 / IN_WIDTH: ping_storage_data_793 <= ping_storage_data_793 ^ i_input_data[422 % IN_WIDTH];
@@ -25030,7 +25030,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_794 <= 1'b0;
         pong_storage_data_794 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             14 / IN_WIDTH: ping_storage_data_794 <= ping_storage_data_794 ^ i_input_data[14 % IN_WIDTH];
             423 / IN_WIDTH: ping_storage_data_794 <= ping_storage_data_794 ^ i_input_data[423 % IN_WIDTH];
@@ -25060,7 +25060,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_795 <= 1'b0;
         pong_storage_data_795 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             15 / IN_WIDTH: ping_storage_data_795 <= ping_storage_data_795 ^ i_input_data[15 % IN_WIDTH];
             424 / IN_WIDTH: ping_storage_data_795 <= ping_storage_data_795 ^ i_input_data[424 % IN_WIDTH];
@@ -25090,7 +25090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_796 <= 1'b0;
         pong_storage_data_796 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             16 / IN_WIDTH: ping_storage_data_796 <= ping_storage_data_796 ^ i_input_data[16 % IN_WIDTH];
             425 / IN_WIDTH: ping_storage_data_796 <= ping_storage_data_796 ^ i_input_data[425 % IN_WIDTH];
@@ -25120,7 +25120,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_797 <= 1'b0;
         pong_storage_data_797 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             17 / IN_WIDTH: ping_storage_data_797 <= ping_storage_data_797 ^ i_input_data[17 % IN_WIDTH];
             426 / IN_WIDTH: ping_storage_data_797 <= ping_storage_data_797 ^ i_input_data[426 % IN_WIDTH];
@@ -25150,7 +25150,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_798 <= 1'b0;
         pong_storage_data_798 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             18 / IN_WIDTH: ping_storage_data_798 <= ping_storage_data_798 ^ i_input_data[18 % IN_WIDTH];
             427 / IN_WIDTH: ping_storage_data_798 <= ping_storage_data_798 ^ i_input_data[427 % IN_WIDTH];
@@ -25180,7 +25180,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_799 <= 1'b0;
         pong_storage_data_799 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             19 / IN_WIDTH: ping_storage_data_799 <= ping_storage_data_799 ^ i_input_data[19 % IN_WIDTH];
             428 / IN_WIDTH: ping_storage_data_799 <= ping_storage_data_799 ^ i_input_data[428 % IN_WIDTH];
@@ -25210,7 +25210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_800 <= 1'b0;
         pong_storage_data_800 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             20 / IN_WIDTH: ping_storage_data_800 <= ping_storage_data_800 ^ i_input_data[20 % IN_WIDTH];
             429 / IN_WIDTH: ping_storage_data_800 <= ping_storage_data_800 ^ i_input_data[429 % IN_WIDTH];
@@ -25240,7 +25240,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_801 <= 1'b0;
         pong_storage_data_801 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             21 / IN_WIDTH: ping_storage_data_801 <= ping_storage_data_801 ^ i_input_data[21 % IN_WIDTH];
             430 / IN_WIDTH: ping_storage_data_801 <= ping_storage_data_801 ^ i_input_data[430 % IN_WIDTH];
@@ -25270,7 +25270,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_802 <= 1'b0;
         pong_storage_data_802 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             22 / IN_WIDTH: ping_storage_data_802 <= ping_storage_data_802 ^ i_input_data[22 % IN_WIDTH];
             431 / IN_WIDTH: ping_storage_data_802 <= ping_storage_data_802 ^ i_input_data[431 % IN_WIDTH];
@@ -25300,7 +25300,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_803 <= 1'b0;
         pong_storage_data_803 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             23 / IN_WIDTH: ping_storage_data_803 <= ping_storage_data_803 ^ i_input_data[23 % IN_WIDTH];
             432 / IN_WIDTH: ping_storage_data_803 <= ping_storage_data_803 ^ i_input_data[432 % IN_WIDTH];
@@ -25330,7 +25330,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_804 <= 1'b0;
         pong_storage_data_804 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             24 / IN_WIDTH: ping_storage_data_804 <= ping_storage_data_804 ^ i_input_data[24 % IN_WIDTH];
             433 / IN_WIDTH: ping_storage_data_804 <= ping_storage_data_804 ^ i_input_data[433 % IN_WIDTH];
@@ -25360,7 +25360,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_805 <= 1'b0;
         pong_storage_data_805 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             25 / IN_WIDTH: ping_storage_data_805 <= ping_storage_data_805 ^ i_input_data[25 % IN_WIDTH];
             434 / IN_WIDTH: ping_storage_data_805 <= ping_storage_data_805 ^ i_input_data[434 % IN_WIDTH];
@@ -25390,7 +25390,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_806 <= 1'b0;
         pong_storage_data_806 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             26 / IN_WIDTH: ping_storage_data_806 <= ping_storage_data_806 ^ i_input_data[26 % IN_WIDTH];
             435 / IN_WIDTH: ping_storage_data_806 <= ping_storage_data_806 ^ i_input_data[435 % IN_WIDTH];
@@ -25420,7 +25420,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_807 <= 1'b0;
         pong_storage_data_807 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             27 / IN_WIDTH: ping_storage_data_807 <= ping_storage_data_807 ^ i_input_data[27 % IN_WIDTH];
             436 / IN_WIDTH: ping_storage_data_807 <= ping_storage_data_807 ^ i_input_data[436 % IN_WIDTH];
@@ -25450,7 +25450,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_808 <= 1'b0;
         pong_storage_data_808 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             28 / IN_WIDTH: ping_storage_data_808 <= ping_storage_data_808 ^ i_input_data[28 % IN_WIDTH];
             437 / IN_WIDTH: ping_storage_data_808 <= ping_storage_data_808 ^ i_input_data[437 % IN_WIDTH];
@@ -25480,7 +25480,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_809 <= 1'b0;
         pong_storage_data_809 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             29 / IN_WIDTH: ping_storage_data_809 <= ping_storage_data_809 ^ i_input_data[29 % IN_WIDTH];
             438 / IN_WIDTH: ping_storage_data_809 <= ping_storage_data_809 ^ i_input_data[438 % IN_WIDTH];
@@ -25510,7 +25510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_810 <= 1'b0;
         pong_storage_data_810 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             30 / IN_WIDTH: ping_storage_data_810 <= ping_storage_data_810 ^ i_input_data[30 % IN_WIDTH];
             439 / IN_WIDTH: ping_storage_data_810 <= ping_storage_data_810 ^ i_input_data[439 % IN_WIDTH];
@@ -25540,7 +25540,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_811 <= 1'b0;
         pong_storage_data_811 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             31 / IN_WIDTH: ping_storage_data_811 <= ping_storage_data_811 ^ i_input_data[31 % IN_WIDTH];
             440 / IN_WIDTH: ping_storage_data_811 <= ping_storage_data_811 ^ i_input_data[440 % IN_WIDTH];
@@ -25570,7 +25570,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_812 <= 1'b0;
         pong_storage_data_812 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             32 / IN_WIDTH: ping_storage_data_812 <= ping_storage_data_812 ^ i_input_data[32 % IN_WIDTH];
             441 / IN_WIDTH: ping_storage_data_812 <= ping_storage_data_812 ^ i_input_data[441 % IN_WIDTH];
@@ -25600,7 +25600,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_813 <= 1'b0;
         pong_storage_data_813 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             33 / IN_WIDTH: ping_storage_data_813 <= ping_storage_data_813 ^ i_input_data[33 % IN_WIDTH];
             442 / IN_WIDTH: ping_storage_data_813 <= ping_storage_data_813 ^ i_input_data[442 % IN_WIDTH];
@@ -25630,7 +25630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_814 <= 1'b0;
         pong_storage_data_814 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             34 / IN_WIDTH: ping_storage_data_814 <= ping_storage_data_814 ^ i_input_data[34 % IN_WIDTH];
             443 / IN_WIDTH: ping_storage_data_814 <= ping_storage_data_814 ^ i_input_data[443 % IN_WIDTH];
@@ -25660,7 +25660,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_815 <= 1'b0;
         pong_storage_data_815 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             35 / IN_WIDTH: ping_storage_data_815 <= ping_storage_data_815 ^ i_input_data[35 % IN_WIDTH];
             444 / IN_WIDTH: ping_storage_data_815 <= ping_storage_data_815 ^ i_input_data[444 % IN_WIDTH];
@@ -25690,7 +25690,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_816 <= 1'b0;
         pong_storage_data_816 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             36 / IN_WIDTH: ping_storage_data_816 <= ping_storage_data_816 ^ i_input_data[36 % IN_WIDTH];
             445 / IN_WIDTH: ping_storage_data_816 <= ping_storage_data_816 ^ i_input_data[445 % IN_WIDTH];
@@ -25720,7 +25720,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_817 <= 1'b0;
         pong_storage_data_817 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             37 / IN_WIDTH: ping_storage_data_817 <= ping_storage_data_817 ^ i_input_data[37 % IN_WIDTH];
             446 / IN_WIDTH: ping_storage_data_817 <= ping_storage_data_817 ^ i_input_data[446 % IN_WIDTH];
@@ -25750,7 +25750,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_818 <= 1'b0;
         pong_storage_data_818 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             38 / IN_WIDTH: ping_storage_data_818 <= ping_storage_data_818 ^ i_input_data[38 % IN_WIDTH];
             447 / IN_WIDTH: ping_storage_data_818 <= ping_storage_data_818 ^ i_input_data[447 % IN_WIDTH];
@@ -25780,7 +25780,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_819 <= 1'b0;
         pong_storage_data_819 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             39 / IN_WIDTH: ping_storage_data_819 <= ping_storage_data_819 ^ i_input_data[39 % IN_WIDTH];
             448 / IN_WIDTH: ping_storage_data_819 <= ping_storage_data_819 ^ i_input_data[448 % IN_WIDTH];
@@ -25810,7 +25810,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_820 <= 1'b0;
         pong_storage_data_820 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             40 / IN_WIDTH: ping_storage_data_820 <= ping_storage_data_820 ^ i_input_data[40 % IN_WIDTH];
             449 / IN_WIDTH: ping_storage_data_820 <= ping_storage_data_820 ^ i_input_data[449 % IN_WIDTH];
@@ -25840,7 +25840,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_821 <= 1'b0;
         pong_storage_data_821 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             41 / IN_WIDTH: ping_storage_data_821 <= ping_storage_data_821 ^ i_input_data[41 % IN_WIDTH];
             450 / IN_WIDTH: ping_storage_data_821 <= ping_storage_data_821 ^ i_input_data[450 % IN_WIDTH];
@@ -25870,7 +25870,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_822 <= 1'b0;
         pong_storage_data_822 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             42 / IN_WIDTH: ping_storage_data_822 <= ping_storage_data_822 ^ i_input_data[42 % IN_WIDTH];
             451 / IN_WIDTH: ping_storage_data_822 <= ping_storage_data_822 ^ i_input_data[451 % IN_WIDTH];
@@ -25900,7 +25900,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_823 <= 1'b0;
         pong_storage_data_823 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             43 / IN_WIDTH: ping_storage_data_823 <= ping_storage_data_823 ^ i_input_data[43 % IN_WIDTH];
             452 / IN_WIDTH: ping_storage_data_823 <= ping_storage_data_823 ^ i_input_data[452 % IN_WIDTH];
@@ -25930,7 +25930,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_824 <= 1'b0;
         pong_storage_data_824 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             44 / IN_WIDTH: ping_storage_data_824 <= ping_storage_data_824 ^ i_input_data[44 % IN_WIDTH];
             453 / IN_WIDTH: ping_storage_data_824 <= ping_storage_data_824 ^ i_input_data[453 % IN_WIDTH];
@@ -25960,7 +25960,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_825 <= 1'b0;
         pong_storage_data_825 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             45 / IN_WIDTH: ping_storage_data_825 <= ping_storage_data_825 ^ i_input_data[45 % IN_WIDTH];
             454 / IN_WIDTH: ping_storage_data_825 <= ping_storage_data_825 ^ i_input_data[454 % IN_WIDTH];
@@ -25990,7 +25990,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_826 <= 1'b0;
         pong_storage_data_826 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             46 / IN_WIDTH: ping_storage_data_826 <= ping_storage_data_826 ^ i_input_data[46 % IN_WIDTH];
             455 / IN_WIDTH: ping_storage_data_826 <= ping_storage_data_826 ^ i_input_data[455 % IN_WIDTH];
@@ -26020,7 +26020,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_827 <= 1'b0;
         pong_storage_data_827 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             47 / IN_WIDTH: ping_storage_data_827 <= ping_storage_data_827 ^ i_input_data[47 % IN_WIDTH];
             456 / IN_WIDTH: ping_storage_data_827 <= ping_storage_data_827 ^ i_input_data[456 % IN_WIDTH];
@@ -26050,7 +26050,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_828 <= 1'b0;
         pong_storage_data_828 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             48 / IN_WIDTH: ping_storage_data_828 <= ping_storage_data_828 ^ i_input_data[48 % IN_WIDTH];
             457 / IN_WIDTH: ping_storage_data_828 <= ping_storage_data_828 ^ i_input_data[457 % IN_WIDTH];
@@ -26080,7 +26080,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_829 <= 1'b0;
         pong_storage_data_829 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             49 / IN_WIDTH: ping_storage_data_829 <= ping_storage_data_829 ^ i_input_data[49 % IN_WIDTH];
             458 / IN_WIDTH: ping_storage_data_829 <= ping_storage_data_829 ^ i_input_data[458 % IN_WIDTH];
@@ -26110,7 +26110,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_830 <= 1'b0;
         pong_storage_data_830 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             50 / IN_WIDTH: ping_storage_data_830 <= ping_storage_data_830 ^ i_input_data[50 % IN_WIDTH];
             459 / IN_WIDTH: ping_storage_data_830 <= ping_storage_data_830 ^ i_input_data[459 % IN_WIDTH];
@@ -26140,7 +26140,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_831 <= 1'b0;
         pong_storage_data_831 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             51 / IN_WIDTH: ping_storage_data_831 <= ping_storage_data_831 ^ i_input_data[51 % IN_WIDTH];
             460 / IN_WIDTH: ping_storage_data_831 <= ping_storage_data_831 ^ i_input_data[460 % IN_WIDTH];
@@ -26170,7 +26170,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_832 <= 1'b0;
         pong_storage_data_832 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             52 / IN_WIDTH: ping_storage_data_832 <= ping_storage_data_832 ^ i_input_data[52 % IN_WIDTH];
             461 / IN_WIDTH: ping_storage_data_832 <= ping_storage_data_832 ^ i_input_data[461 % IN_WIDTH];
@@ -26200,7 +26200,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_833 <= 1'b0;
         pong_storage_data_833 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             53 / IN_WIDTH: ping_storage_data_833 <= ping_storage_data_833 ^ i_input_data[53 % IN_WIDTH];
             462 / IN_WIDTH: ping_storage_data_833 <= ping_storage_data_833 ^ i_input_data[462 % IN_WIDTH];
@@ -26230,7 +26230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_834 <= 1'b0;
         pong_storage_data_834 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             54 / IN_WIDTH: ping_storage_data_834 <= ping_storage_data_834 ^ i_input_data[54 % IN_WIDTH];
             463 / IN_WIDTH: ping_storage_data_834 <= ping_storage_data_834 ^ i_input_data[463 % IN_WIDTH];
@@ -26260,7 +26260,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_835 <= 1'b0;
         pong_storage_data_835 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             55 / IN_WIDTH: ping_storage_data_835 <= ping_storage_data_835 ^ i_input_data[55 % IN_WIDTH];
             464 / IN_WIDTH: ping_storage_data_835 <= ping_storage_data_835 ^ i_input_data[464 % IN_WIDTH];
@@ -26290,7 +26290,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_836 <= 1'b0;
         pong_storage_data_836 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             56 / IN_WIDTH: ping_storage_data_836 <= ping_storage_data_836 ^ i_input_data[56 % IN_WIDTH];
             465 / IN_WIDTH: ping_storage_data_836 <= ping_storage_data_836 ^ i_input_data[465 % IN_WIDTH];
@@ -26320,7 +26320,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_837 <= 1'b0;
         pong_storage_data_837 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             57 / IN_WIDTH: ping_storage_data_837 <= ping_storage_data_837 ^ i_input_data[57 % IN_WIDTH];
             466 / IN_WIDTH: ping_storage_data_837 <= ping_storage_data_837 ^ i_input_data[466 % IN_WIDTH];
@@ -26350,7 +26350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_838 <= 1'b0;
         pong_storage_data_838 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             58 / IN_WIDTH: ping_storage_data_838 <= ping_storage_data_838 ^ i_input_data[58 % IN_WIDTH];
             467 / IN_WIDTH: ping_storage_data_838 <= ping_storage_data_838 ^ i_input_data[467 % IN_WIDTH];
@@ -26380,7 +26380,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_839 <= 1'b0;
         pong_storage_data_839 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             59 / IN_WIDTH: ping_storage_data_839 <= ping_storage_data_839 ^ i_input_data[59 % IN_WIDTH];
             468 / IN_WIDTH: ping_storage_data_839 <= ping_storage_data_839 ^ i_input_data[468 % IN_WIDTH];
@@ -26410,7 +26410,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_840 <= 1'b0;
         pong_storage_data_840 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             60 / IN_WIDTH: ping_storage_data_840 <= ping_storage_data_840 ^ i_input_data[60 % IN_WIDTH];
             469 / IN_WIDTH: ping_storage_data_840 <= ping_storage_data_840 ^ i_input_data[469 % IN_WIDTH];
@@ -26440,7 +26440,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_841 <= 1'b0;
         pong_storage_data_841 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             61 / IN_WIDTH: ping_storage_data_841 <= ping_storage_data_841 ^ i_input_data[61 % IN_WIDTH];
             470 / IN_WIDTH: ping_storage_data_841 <= ping_storage_data_841 ^ i_input_data[470 % IN_WIDTH];
@@ -26470,7 +26470,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_842 <= 1'b0;
         pong_storage_data_842 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             62 / IN_WIDTH: ping_storage_data_842 <= ping_storage_data_842 ^ i_input_data[62 % IN_WIDTH];
             471 / IN_WIDTH: ping_storage_data_842 <= ping_storage_data_842 ^ i_input_data[471 % IN_WIDTH];
@@ -26500,7 +26500,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_843 <= 1'b0;
         pong_storage_data_843 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             63 / IN_WIDTH: ping_storage_data_843 <= ping_storage_data_843 ^ i_input_data[63 % IN_WIDTH];
             472 / IN_WIDTH: ping_storage_data_843 <= ping_storage_data_843 ^ i_input_data[472 % IN_WIDTH];
@@ -26530,7 +26530,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_844 <= 1'b0;
         pong_storage_data_844 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             64 / IN_WIDTH: ping_storage_data_844 <= ping_storage_data_844 ^ i_input_data[64 % IN_WIDTH];
             473 / IN_WIDTH: ping_storage_data_844 <= ping_storage_data_844 ^ i_input_data[473 % IN_WIDTH];
@@ -26560,7 +26560,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_845 <= 1'b0;
         pong_storage_data_845 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             65 / IN_WIDTH: ping_storage_data_845 <= ping_storage_data_845 ^ i_input_data[65 % IN_WIDTH];
             474 / IN_WIDTH: ping_storage_data_845 <= ping_storage_data_845 ^ i_input_data[474 % IN_WIDTH];
@@ -26590,7 +26590,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_846 <= 1'b0;
         pong_storage_data_846 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             66 / IN_WIDTH: ping_storage_data_846 <= ping_storage_data_846 ^ i_input_data[66 % IN_WIDTH];
             475 / IN_WIDTH: ping_storage_data_846 <= ping_storage_data_846 ^ i_input_data[475 % IN_WIDTH];
@@ -26620,7 +26620,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_847 <= 1'b0;
         pong_storage_data_847 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             67 / IN_WIDTH: ping_storage_data_847 <= ping_storage_data_847 ^ i_input_data[67 % IN_WIDTH];
             476 / IN_WIDTH: ping_storage_data_847 <= ping_storage_data_847 ^ i_input_data[476 % IN_WIDTH];
@@ -26650,7 +26650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_848 <= 1'b0;
         pong_storage_data_848 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             68 / IN_WIDTH: ping_storage_data_848 <= ping_storage_data_848 ^ i_input_data[68 % IN_WIDTH];
             477 / IN_WIDTH: ping_storage_data_848 <= ping_storage_data_848 ^ i_input_data[477 % IN_WIDTH];
@@ -26680,7 +26680,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_849 <= 1'b0;
         pong_storage_data_849 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             69 / IN_WIDTH: ping_storage_data_849 <= ping_storage_data_849 ^ i_input_data[69 % IN_WIDTH];
             478 / IN_WIDTH: ping_storage_data_849 <= ping_storage_data_849 ^ i_input_data[478 % IN_WIDTH];
@@ -26710,7 +26710,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_850 <= 1'b0;
         pong_storage_data_850 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             70 / IN_WIDTH: ping_storage_data_850 <= ping_storage_data_850 ^ i_input_data[70 % IN_WIDTH];
             479 / IN_WIDTH: ping_storage_data_850 <= ping_storage_data_850 ^ i_input_data[479 % IN_WIDTH];
@@ -26740,7 +26740,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_851 <= 1'b0;
         pong_storage_data_851 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             71 / IN_WIDTH: ping_storage_data_851 <= ping_storage_data_851 ^ i_input_data[71 % IN_WIDTH];
             384 / IN_WIDTH: ping_storage_data_851 <= ping_storage_data_851 ^ i_input_data[384 % IN_WIDTH];
@@ -26770,7 +26770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_852 <= 1'b0;
         pong_storage_data_852 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             72 / IN_WIDTH: ping_storage_data_852 <= ping_storage_data_852 ^ i_input_data[72 % IN_WIDTH];
             385 / IN_WIDTH: ping_storage_data_852 <= ping_storage_data_852 ^ i_input_data[385 % IN_WIDTH];
@@ -26800,7 +26800,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_853 <= 1'b0;
         pong_storage_data_853 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             73 / IN_WIDTH: ping_storage_data_853 <= ping_storage_data_853 ^ i_input_data[73 % IN_WIDTH];
             386 / IN_WIDTH: ping_storage_data_853 <= ping_storage_data_853 ^ i_input_data[386 % IN_WIDTH];
@@ -26830,7 +26830,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_854 <= 1'b0;
         pong_storage_data_854 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             74 / IN_WIDTH: ping_storage_data_854 <= ping_storage_data_854 ^ i_input_data[74 % IN_WIDTH];
             387 / IN_WIDTH: ping_storage_data_854 <= ping_storage_data_854 ^ i_input_data[387 % IN_WIDTH];
@@ -26860,7 +26860,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_855 <= 1'b0;
         pong_storage_data_855 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             75 / IN_WIDTH: ping_storage_data_855 <= ping_storage_data_855 ^ i_input_data[75 % IN_WIDTH];
             388 / IN_WIDTH: ping_storage_data_855 <= ping_storage_data_855 ^ i_input_data[388 % IN_WIDTH];
@@ -26890,7 +26890,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_856 <= 1'b0;
         pong_storage_data_856 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             76 / IN_WIDTH: ping_storage_data_856 <= ping_storage_data_856 ^ i_input_data[76 % IN_WIDTH];
             389 / IN_WIDTH: ping_storage_data_856 <= ping_storage_data_856 ^ i_input_data[389 % IN_WIDTH];
@@ -26920,7 +26920,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_857 <= 1'b0;
         pong_storage_data_857 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             77 / IN_WIDTH: ping_storage_data_857 <= ping_storage_data_857 ^ i_input_data[77 % IN_WIDTH];
             390 / IN_WIDTH: ping_storage_data_857 <= ping_storage_data_857 ^ i_input_data[390 % IN_WIDTH];
@@ -26950,7 +26950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_858 <= 1'b0;
         pong_storage_data_858 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             78 / IN_WIDTH: ping_storage_data_858 <= ping_storage_data_858 ^ i_input_data[78 % IN_WIDTH];
             391 / IN_WIDTH: ping_storage_data_858 <= ping_storage_data_858 ^ i_input_data[391 % IN_WIDTH];
@@ -26980,7 +26980,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_859 <= 1'b0;
         pong_storage_data_859 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             79 / IN_WIDTH: ping_storage_data_859 <= ping_storage_data_859 ^ i_input_data[79 % IN_WIDTH];
             392 / IN_WIDTH: ping_storage_data_859 <= ping_storage_data_859 ^ i_input_data[392 % IN_WIDTH];
@@ -27010,7 +27010,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_860 <= 1'b0;
         pong_storage_data_860 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             80 / IN_WIDTH: ping_storage_data_860 <= ping_storage_data_860 ^ i_input_data[80 % IN_WIDTH];
             393 / IN_WIDTH: ping_storage_data_860 <= ping_storage_data_860 ^ i_input_data[393 % IN_WIDTH];
@@ -27040,7 +27040,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_861 <= 1'b0;
         pong_storage_data_861 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             81 / IN_WIDTH: ping_storage_data_861 <= ping_storage_data_861 ^ i_input_data[81 % IN_WIDTH];
             394 / IN_WIDTH: ping_storage_data_861 <= ping_storage_data_861 ^ i_input_data[394 % IN_WIDTH];
@@ -27070,7 +27070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_862 <= 1'b0;
         pong_storage_data_862 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             82 / IN_WIDTH: ping_storage_data_862 <= ping_storage_data_862 ^ i_input_data[82 % IN_WIDTH];
             395 / IN_WIDTH: ping_storage_data_862 <= ping_storage_data_862 ^ i_input_data[395 % IN_WIDTH];
@@ -27100,7 +27100,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_863 <= 1'b0;
         pong_storage_data_863 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             83 / IN_WIDTH: ping_storage_data_863 <= ping_storage_data_863 ^ i_input_data[83 % IN_WIDTH];
             396 / IN_WIDTH: ping_storage_data_863 <= ping_storage_data_863 ^ i_input_data[396 % IN_WIDTH];
@@ -27130,7 +27130,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_864 <= 1'b0;
         pong_storage_data_864 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             482 / IN_WIDTH: ping_storage_data_864 <= ping_storage_data_864 ^ i_input_data[482 % IN_WIDTH];
             709 / IN_WIDTH: ping_storage_data_864 <= ping_storage_data_864 ^ i_input_data[709 % IN_WIDTH];
@@ -27158,7 +27158,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_865 <= 1'b0;
         pong_storage_data_865 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             483 / IN_WIDTH: ping_storage_data_865 <= ping_storage_data_865 ^ i_input_data[483 % IN_WIDTH];
             710 / IN_WIDTH: ping_storage_data_865 <= ping_storage_data_865 ^ i_input_data[710 % IN_WIDTH];
@@ -27186,7 +27186,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_866 <= 1'b0;
         pong_storage_data_866 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             484 / IN_WIDTH: ping_storage_data_866 <= ping_storage_data_866 ^ i_input_data[484 % IN_WIDTH];
             711 / IN_WIDTH: ping_storage_data_866 <= ping_storage_data_866 ^ i_input_data[711 % IN_WIDTH];
@@ -27214,7 +27214,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_867 <= 1'b0;
         pong_storage_data_867 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             485 / IN_WIDTH: ping_storage_data_867 <= ping_storage_data_867 ^ i_input_data[485 % IN_WIDTH];
             712 / IN_WIDTH: ping_storage_data_867 <= ping_storage_data_867 ^ i_input_data[712 % IN_WIDTH];
@@ -27242,7 +27242,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_868 <= 1'b0;
         pong_storage_data_868 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             486 / IN_WIDTH: ping_storage_data_868 <= ping_storage_data_868 ^ i_input_data[486 % IN_WIDTH];
             713 / IN_WIDTH: ping_storage_data_868 <= ping_storage_data_868 ^ i_input_data[713 % IN_WIDTH];
@@ -27270,7 +27270,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_869 <= 1'b0;
         pong_storage_data_869 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             487 / IN_WIDTH: ping_storage_data_869 <= ping_storage_data_869 ^ i_input_data[487 % IN_WIDTH];
             714 / IN_WIDTH: ping_storage_data_869 <= ping_storage_data_869 ^ i_input_data[714 % IN_WIDTH];
@@ -27298,7 +27298,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_870 <= 1'b0;
         pong_storage_data_870 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             488 / IN_WIDTH: ping_storage_data_870 <= ping_storage_data_870 ^ i_input_data[488 % IN_WIDTH];
             715 / IN_WIDTH: ping_storage_data_870 <= ping_storage_data_870 ^ i_input_data[715 % IN_WIDTH];
@@ -27326,7 +27326,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_871 <= 1'b0;
         pong_storage_data_871 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             489 / IN_WIDTH: ping_storage_data_871 <= ping_storage_data_871 ^ i_input_data[489 % IN_WIDTH];
             716 / IN_WIDTH: ping_storage_data_871 <= ping_storage_data_871 ^ i_input_data[716 % IN_WIDTH];
@@ -27354,7 +27354,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_872 <= 1'b0;
         pong_storage_data_872 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             490 / IN_WIDTH: ping_storage_data_872 <= ping_storage_data_872 ^ i_input_data[490 % IN_WIDTH];
             717 / IN_WIDTH: ping_storage_data_872 <= ping_storage_data_872 ^ i_input_data[717 % IN_WIDTH];
@@ -27382,7 +27382,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_873 <= 1'b0;
         pong_storage_data_873 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             491 / IN_WIDTH: ping_storage_data_873 <= ping_storage_data_873 ^ i_input_data[491 % IN_WIDTH];
             718 / IN_WIDTH: ping_storage_data_873 <= ping_storage_data_873 ^ i_input_data[718 % IN_WIDTH];
@@ -27410,7 +27410,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_874 <= 1'b0;
         pong_storage_data_874 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             492 / IN_WIDTH: ping_storage_data_874 <= ping_storage_data_874 ^ i_input_data[492 % IN_WIDTH];
             719 / IN_WIDTH: ping_storage_data_874 <= ping_storage_data_874 ^ i_input_data[719 % IN_WIDTH];
@@ -27438,7 +27438,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_875 <= 1'b0;
         pong_storage_data_875 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             493 / IN_WIDTH: ping_storage_data_875 <= ping_storage_data_875 ^ i_input_data[493 % IN_WIDTH];
             720 / IN_WIDTH: ping_storage_data_875 <= ping_storage_data_875 ^ i_input_data[720 % IN_WIDTH];
@@ -27466,7 +27466,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_876 <= 1'b0;
         pong_storage_data_876 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             494 / IN_WIDTH: ping_storage_data_876 <= ping_storage_data_876 ^ i_input_data[494 % IN_WIDTH];
             721 / IN_WIDTH: ping_storage_data_876 <= ping_storage_data_876 ^ i_input_data[721 % IN_WIDTH];
@@ -27494,7 +27494,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_877 <= 1'b0;
         pong_storage_data_877 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             495 / IN_WIDTH: ping_storage_data_877 <= ping_storage_data_877 ^ i_input_data[495 % IN_WIDTH];
             722 / IN_WIDTH: ping_storage_data_877 <= ping_storage_data_877 ^ i_input_data[722 % IN_WIDTH];
@@ -27522,7 +27522,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_878 <= 1'b0;
         pong_storage_data_878 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             496 / IN_WIDTH: ping_storage_data_878 <= ping_storage_data_878 ^ i_input_data[496 % IN_WIDTH];
             723 / IN_WIDTH: ping_storage_data_878 <= ping_storage_data_878 ^ i_input_data[723 % IN_WIDTH];
@@ -27550,7 +27550,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_879 <= 1'b0;
         pong_storage_data_879 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             497 / IN_WIDTH: ping_storage_data_879 <= ping_storage_data_879 ^ i_input_data[497 % IN_WIDTH];
             724 / IN_WIDTH: ping_storage_data_879 <= ping_storage_data_879 ^ i_input_data[724 % IN_WIDTH];
@@ -27578,7 +27578,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_880 <= 1'b0;
         pong_storage_data_880 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             498 / IN_WIDTH: ping_storage_data_880 <= ping_storage_data_880 ^ i_input_data[498 % IN_WIDTH];
             725 / IN_WIDTH: ping_storage_data_880 <= ping_storage_data_880 ^ i_input_data[725 % IN_WIDTH];
@@ -27606,7 +27606,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_881 <= 1'b0;
         pong_storage_data_881 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             499 / IN_WIDTH: ping_storage_data_881 <= ping_storage_data_881 ^ i_input_data[499 % IN_WIDTH];
             726 / IN_WIDTH: ping_storage_data_881 <= ping_storage_data_881 ^ i_input_data[726 % IN_WIDTH];
@@ -27634,7 +27634,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_882 <= 1'b0;
         pong_storage_data_882 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             500 / IN_WIDTH: ping_storage_data_882 <= ping_storage_data_882 ^ i_input_data[500 % IN_WIDTH];
             727 / IN_WIDTH: ping_storage_data_882 <= ping_storage_data_882 ^ i_input_data[727 % IN_WIDTH];
@@ -27662,7 +27662,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_883 <= 1'b0;
         pong_storage_data_883 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             501 / IN_WIDTH: ping_storage_data_883 <= ping_storage_data_883 ^ i_input_data[501 % IN_WIDTH];
             728 / IN_WIDTH: ping_storage_data_883 <= ping_storage_data_883 ^ i_input_data[728 % IN_WIDTH];
@@ -27690,7 +27690,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_884 <= 1'b0;
         pong_storage_data_884 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             502 / IN_WIDTH: ping_storage_data_884 <= ping_storage_data_884 ^ i_input_data[502 % IN_WIDTH];
             729 / IN_WIDTH: ping_storage_data_884 <= ping_storage_data_884 ^ i_input_data[729 % IN_WIDTH];
@@ -27718,7 +27718,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_885 <= 1'b0;
         pong_storage_data_885 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             503 / IN_WIDTH: ping_storage_data_885 <= ping_storage_data_885 ^ i_input_data[503 % IN_WIDTH];
             730 / IN_WIDTH: ping_storage_data_885 <= ping_storage_data_885 ^ i_input_data[730 % IN_WIDTH];
@@ -27746,7 +27746,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_886 <= 1'b0;
         pong_storage_data_886 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             504 / IN_WIDTH: ping_storage_data_886 <= ping_storage_data_886 ^ i_input_data[504 % IN_WIDTH];
             731 / IN_WIDTH: ping_storage_data_886 <= ping_storage_data_886 ^ i_input_data[731 % IN_WIDTH];
@@ -27774,7 +27774,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_887 <= 1'b0;
         pong_storage_data_887 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             505 / IN_WIDTH: ping_storage_data_887 <= ping_storage_data_887 ^ i_input_data[505 % IN_WIDTH];
             732 / IN_WIDTH: ping_storage_data_887 <= ping_storage_data_887 ^ i_input_data[732 % IN_WIDTH];
@@ -27802,7 +27802,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_888 <= 1'b0;
         pong_storage_data_888 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             506 / IN_WIDTH: ping_storage_data_888 <= ping_storage_data_888 ^ i_input_data[506 % IN_WIDTH];
             733 / IN_WIDTH: ping_storage_data_888 <= ping_storage_data_888 ^ i_input_data[733 % IN_WIDTH];
@@ -27830,7 +27830,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_889 <= 1'b0;
         pong_storage_data_889 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             507 / IN_WIDTH: ping_storage_data_889 <= ping_storage_data_889 ^ i_input_data[507 % IN_WIDTH];
             734 / IN_WIDTH: ping_storage_data_889 <= ping_storage_data_889 ^ i_input_data[734 % IN_WIDTH];
@@ -27858,7 +27858,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_890 <= 1'b0;
         pong_storage_data_890 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             508 / IN_WIDTH: ping_storage_data_890 <= ping_storage_data_890 ^ i_input_data[508 % IN_WIDTH];
             735 / IN_WIDTH: ping_storage_data_890 <= ping_storage_data_890 ^ i_input_data[735 % IN_WIDTH];
@@ -27886,7 +27886,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_891 <= 1'b0;
         pong_storage_data_891 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             509 / IN_WIDTH: ping_storage_data_891 <= ping_storage_data_891 ^ i_input_data[509 % IN_WIDTH];
             736 / IN_WIDTH: ping_storage_data_891 <= ping_storage_data_891 ^ i_input_data[736 % IN_WIDTH];
@@ -27914,7 +27914,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_892 <= 1'b0;
         pong_storage_data_892 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             510 / IN_WIDTH: ping_storage_data_892 <= ping_storage_data_892 ^ i_input_data[510 % IN_WIDTH];
             737 / IN_WIDTH: ping_storage_data_892 <= ping_storage_data_892 ^ i_input_data[737 % IN_WIDTH];
@@ -27942,7 +27942,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_893 <= 1'b0;
         pong_storage_data_893 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             511 / IN_WIDTH: ping_storage_data_893 <= ping_storage_data_893 ^ i_input_data[511 % IN_WIDTH];
             738 / IN_WIDTH: ping_storage_data_893 <= ping_storage_data_893 ^ i_input_data[738 % IN_WIDTH];
@@ -27970,7 +27970,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_894 <= 1'b0;
         pong_storage_data_894 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             512 / IN_WIDTH: ping_storage_data_894 <= ping_storage_data_894 ^ i_input_data[512 % IN_WIDTH];
             739 / IN_WIDTH: ping_storage_data_894 <= ping_storage_data_894 ^ i_input_data[739 % IN_WIDTH];
@@ -27998,7 +27998,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_895 <= 1'b0;
         pong_storage_data_895 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             513 / IN_WIDTH: ping_storage_data_895 <= ping_storage_data_895 ^ i_input_data[513 % IN_WIDTH];
             740 / IN_WIDTH: ping_storage_data_895 <= ping_storage_data_895 ^ i_input_data[740 % IN_WIDTH];
@@ -28026,7 +28026,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_896 <= 1'b0;
         pong_storage_data_896 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             514 / IN_WIDTH: ping_storage_data_896 <= ping_storage_data_896 ^ i_input_data[514 % IN_WIDTH];
             741 / IN_WIDTH: ping_storage_data_896 <= ping_storage_data_896 ^ i_input_data[741 % IN_WIDTH];
@@ -28054,7 +28054,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_897 <= 1'b0;
         pong_storage_data_897 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             515 / IN_WIDTH: ping_storage_data_897 <= ping_storage_data_897 ^ i_input_data[515 % IN_WIDTH];
             742 / IN_WIDTH: ping_storage_data_897 <= ping_storage_data_897 ^ i_input_data[742 % IN_WIDTH];
@@ -28082,7 +28082,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_898 <= 1'b0;
         pong_storage_data_898 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             516 / IN_WIDTH: ping_storage_data_898 <= ping_storage_data_898 ^ i_input_data[516 % IN_WIDTH];
             743 / IN_WIDTH: ping_storage_data_898 <= ping_storage_data_898 ^ i_input_data[743 % IN_WIDTH];
@@ -28110,7 +28110,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_899 <= 1'b0;
         pong_storage_data_899 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             517 / IN_WIDTH: ping_storage_data_899 <= ping_storage_data_899 ^ i_input_data[517 % IN_WIDTH];
             744 / IN_WIDTH: ping_storage_data_899 <= ping_storage_data_899 ^ i_input_data[744 % IN_WIDTH];
@@ -28138,7 +28138,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_900 <= 1'b0;
         pong_storage_data_900 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             518 / IN_WIDTH: ping_storage_data_900 <= ping_storage_data_900 ^ i_input_data[518 % IN_WIDTH];
             745 / IN_WIDTH: ping_storage_data_900 <= ping_storage_data_900 ^ i_input_data[745 % IN_WIDTH];
@@ -28166,7 +28166,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_901 <= 1'b0;
         pong_storage_data_901 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             519 / IN_WIDTH: ping_storage_data_901 <= ping_storage_data_901 ^ i_input_data[519 % IN_WIDTH];
             746 / IN_WIDTH: ping_storage_data_901 <= ping_storage_data_901 ^ i_input_data[746 % IN_WIDTH];
@@ -28194,7 +28194,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_902 <= 1'b0;
         pong_storage_data_902 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             520 / IN_WIDTH: ping_storage_data_902 <= ping_storage_data_902 ^ i_input_data[520 % IN_WIDTH];
             747 / IN_WIDTH: ping_storage_data_902 <= ping_storage_data_902 ^ i_input_data[747 % IN_WIDTH];
@@ -28222,7 +28222,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_903 <= 1'b0;
         pong_storage_data_903 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             521 / IN_WIDTH: ping_storage_data_903 <= ping_storage_data_903 ^ i_input_data[521 % IN_WIDTH];
             748 / IN_WIDTH: ping_storage_data_903 <= ping_storage_data_903 ^ i_input_data[748 % IN_WIDTH];
@@ -28250,7 +28250,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_904 <= 1'b0;
         pong_storage_data_904 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             522 / IN_WIDTH: ping_storage_data_904 <= ping_storage_data_904 ^ i_input_data[522 % IN_WIDTH];
             749 / IN_WIDTH: ping_storage_data_904 <= ping_storage_data_904 ^ i_input_data[749 % IN_WIDTH];
@@ -28278,7 +28278,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_905 <= 1'b0;
         pong_storage_data_905 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             523 / IN_WIDTH: ping_storage_data_905 <= ping_storage_data_905 ^ i_input_data[523 % IN_WIDTH];
             750 / IN_WIDTH: ping_storage_data_905 <= ping_storage_data_905 ^ i_input_data[750 % IN_WIDTH];
@@ -28306,7 +28306,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_906 <= 1'b0;
         pong_storage_data_906 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             524 / IN_WIDTH: ping_storage_data_906 <= ping_storage_data_906 ^ i_input_data[524 % IN_WIDTH];
             751 / IN_WIDTH: ping_storage_data_906 <= ping_storage_data_906 ^ i_input_data[751 % IN_WIDTH];
@@ -28334,7 +28334,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_907 <= 1'b0;
         pong_storage_data_907 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             525 / IN_WIDTH: ping_storage_data_907 <= ping_storage_data_907 ^ i_input_data[525 % IN_WIDTH];
             752 / IN_WIDTH: ping_storage_data_907 <= ping_storage_data_907 ^ i_input_data[752 % IN_WIDTH];
@@ -28362,7 +28362,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_908 <= 1'b0;
         pong_storage_data_908 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             526 / IN_WIDTH: ping_storage_data_908 <= ping_storage_data_908 ^ i_input_data[526 % IN_WIDTH];
             753 / IN_WIDTH: ping_storage_data_908 <= ping_storage_data_908 ^ i_input_data[753 % IN_WIDTH];
@@ -28390,7 +28390,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_909 <= 1'b0;
         pong_storage_data_909 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             527 / IN_WIDTH: ping_storage_data_909 <= ping_storage_data_909 ^ i_input_data[527 % IN_WIDTH];
             754 / IN_WIDTH: ping_storage_data_909 <= ping_storage_data_909 ^ i_input_data[754 % IN_WIDTH];
@@ -28418,7 +28418,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_910 <= 1'b0;
         pong_storage_data_910 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             528 / IN_WIDTH: ping_storage_data_910 <= ping_storage_data_910 ^ i_input_data[528 % IN_WIDTH];
             755 / IN_WIDTH: ping_storage_data_910 <= ping_storage_data_910 ^ i_input_data[755 % IN_WIDTH];
@@ -28446,7 +28446,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_911 <= 1'b0;
         pong_storage_data_911 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             529 / IN_WIDTH: ping_storage_data_911 <= ping_storage_data_911 ^ i_input_data[529 % IN_WIDTH];
             756 / IN_WIDTH: ping_storage_data_911 <= ping_storage_data_911 ^ i_input_data[756 % IN_WIDTH];
@@ -28474,7 +28474,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_912 <= 1'b0;
         pong_storage_data_912 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             530 / IN_WIDTH: ping_storage_data_912 <= ping_storage_data_912 ^ i_input_data[530 % IN_WIDTH];
             757 / IN_WIDTH: ping_storage_data_912 <= ping_storage_data_912 ^ i_input_data[757 % IN_WIDTH];
@@ -28502,7 +28502,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_913 <= 1'b0;
         pong_storage_data_913 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             531 / IN_WIDTH: ping_storage_data_913 <= ping_storage_data_913 ^ i_input_data[531 % IN_WIDTH];
             758 / IN_WIDTH: ping_storage_data_913 <= ping_storage_data_913 ^ i_input_data[758 % IN_WIDTH];
@@ -28530,7 +28530,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_914 <= 1'b0;
         pong_storage_data_914 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             532 / IN_WIDTH: ping_storage_data_914 <= ping_storage_data_914 ^ i_input_data[532 % IN_WIDTH];
             759 / IN_WIDTH: ping_storage_data_914 <= ping_storage_data_914 ^ i_input_data[759 % IN_WIDTH];
@@ -28558,7 +28558,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_915 <= 1'b0;
         pong_storage_data_915 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             533 / IN_WIDTH: ping_storage_data_915 <= ping_storage_data_915 ^ i_input_data[533 % IN_WIDTH];
             760 / IN_WIDTH: ping_storage_data_915 <= ping_storage_data_915 ^ i_input_data[760 % IN_WIDTH];
@@ -28586,7 +28586,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_916 <= 1'b0;
         pong_storage_data_916 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             534 / IN_WIDTH: ping_storage_data_916 <= ping_storage_data_916 ^ i_input_data[534 % IN_WIDTH];
             761 / IN_WIDTH: ping_storage_data_916 <= ping_storage_data_916 ^ i_input_data[761 % IN_WIDTH];
@@ -28614,7 +28614,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_917 <= 1'b0;
         pong_storage_data_917 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             535 / IN_WIDTH: ping_storage_data_917 <= ping_storage_data_917 ^ i_input_data[535 % IN_WIDTH];
             762 / IN_WIDTH: ping_storage_data_917 <= ping_storage_data_917 ^ i_input_data[762 % IN_WIDTH];
@@ -28642,7 +28642,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_918 <= 1'b0;
         pong_storage_data_918 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             536 / IN_WIDTH: ping_storage_data_918 <= ping_storage_data_918 ^ i_input_data[536 % IN_WIDTH];
             763 / IN_WIDTH: ping_storage_data_918 <= ping_storage_data_918 ^ i_input_data[763 % IN_WIDTH];
@@ -28670,7 +28670,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_919 <= 1'b0;
         pong_storage_data_919 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             537 / IN_WIDTH: ping_storage_data_919 <= ping_storage_data_919 ^ i_input_data[537 % IN_WIDTH];
             764 / IN_WIDTH: ping_storage_data_919 <= ping_storage_data_919 ^ i_input_data[764 % IN_WIDTH];
@@ -28698,7 +28698,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_920 <= 1'b0;
         pong_storage_data_920 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             538 / IN_WIDTH: ping_storage_data_920 <= ping_storage_data_920 ^ i_input_data[538 % IN_WIDTH];
             765 / IN_WIDTH: ping_storage_data_920 <= ping_storage_data_920 ^ i_input_data[765 % IN_WIDTH];
@@ -28726,7 +28726,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_921 <= 1'b0;
         pong_storage_data_921 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             539 / IN_WIDTH: ping_storage_data_921 <= ping_storage_data_921 ^ i_input_data[539 % IN_WIDTH];
             766 / IN_WIDTH: ping_storage_data_921 <= ping_storage_data_921 ^ i_input_data[766 % IN_WIDTH];
@@ -28754,7 +28754,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_922 <= 1'b0;
         pong_storage_data_922 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             540 / IN_WIDTH: ping_storage_data_922 <= ping_storage_data_922 ^ i_input_data[540 % IN_WIDTH];
             767 / IN_WIDTH: ping_storage_data_922 <= ping_storage_data_922 ^ i_input_data[767 % IN_WIDTH];
@@ -28782,7 +28782,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_923 <= 1'b0;
         pong_storage_data_923 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             541 / IN_WIDTH: ping_storage_data_923 <= ping_storage_data_923 ^ i_input_data[541 % IN_WIDTH];
             672 / IN_WIDTH: ping_storage_data_923 <= ping_storage_data_923 ^ i_input_data[672 % IN_WIDTH];
@@ -28810,7 +28810,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_924 <= 1'b0;
         pong_storage_data_924 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             542 / IN_WIDTH: ping_storage_data_924 <= ping_storage_data_924 ^ i_input_data[542 % IN_WIDTH];
             673 / IN_WIDTH: ping_storage_data_924 <= ping_storage_data_924 ^ i_input_data[673 % IN_WIDTH];
@@ -28838,7 +28838,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_925 <= 1'b0;
         pong_storage_data_925 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             543 / IN_WIDTH: ping_storage_data_925 <= ping_storage_data_925 ^ i_input_data[543 % IN_WIDTH];
             674 / IN_WIDTH: ping_storage_data_925 <= ping_storage_data_925 ^ i_input_data[674 % IN_WIDTH];
@@ -28866,7 +28866,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_926 <= 1'b0;
         pong_storage_data_926 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             544 / IN_WIDTH: ping_storage_data_926 <= ping_storage_data_926 ^ i_input_data[544 % IN_WIDTH];
             675 / IN_WIDTH: ping_storage_data_926 <= ping_storage_data_926 ^ i_input_data[675 % IN_WIDTH];
@@ -28894,7 +28894,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_927 <= 1'b0;
         pong_storage_data_927 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             545 / IN_WIDTH: ping_storage_data_927 <= ping_storage_data_927 ^ i_input_data[545 % IN_WIDTH];
             676 / IN_WIDTH: ping_storage_data_927 <= ping_storage_data_927 ^ i_input_data[676 % IN_WIDTH];
@@ -28922,7 +28922,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_928 <= 1'b0;
         pong_storage_data_928 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             546 / IN_WIDTH: ping_storage_data_928 <= ping_storage_data_928 ^ i_input_data[546 % IN_WIDTH];
             677 / IN_WIDTH: ping_storage_data_928 <= ping_storage_data_928 ^ i_input_data[677 % IN_WIDTH];
@@ -28950,7 +28950,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_929 <= 1'b0;
         pong_storage_data_929 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             547 / IN_WIDTH: ping_storage_data_929 <= ping_storage_data_929 ^ i_input_data[547 % IN_WIDTH];
             678 / IN_WIDTH: ping_storage_data_929 <= ping_storage_data_929 ^ i_input_data[678 % IN_WIDTH];
@@ -28978,7 +28978,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_930 <= 1'b0;
         pong_storage_data_930 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             548 / IN_WIDTH: ping_storage_data_930 <= ping_storage_data_930 ^ i_input_data[548 % IN_WIDTH];
             679 / IN_WIDTH: ping_storage_data_930 <= ping_storage_data_930 ^ i_input_data[679 % IN_WIDTH];
@@ -29006,7 +29006,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_931 <= 1'b0;
         pong_storage_data_931 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             549 / IN_WIDTH: ping_storage_data_931 <= ping_storage_data_931 ^ i_input_data[549 % IN_WIDTH];
             680 / IN_WIDTH: ping_storage_data_931 <= ping_storage_data_931 ^ i_input_data[680 % IN_WIDTH];
@@ -29034,7 +29034,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_932 <= 1'b0;
         pong_storage_data_932 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             550 / IN_WIDTH: ping_storage_data_932 <= ping_storage_data_932 ^ i_input_data[550 % IN_WIDTH];
             681 / IN_WIDTH: ping_storage_data_932 <= ping_storage_data_932 ^ i_input_data[681 % IN_WIDTH];
@@ -29062,7 +29062,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_933 <= 1'b0;
         pong_storage_data_933 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             551 / IN_WIDTH: ping_storage_data_933 <= ping_storage_data_933 ^ i_input_data[551 % IN_WIDTH];
             682 / IN_WIDTH: ping_storage_data_933 <= ping_storage_data_933 ^ i_input_data[682 % IN_WIDTH];
@@ -29090,7 +29090,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_934 <= 1'b0;
         pong_storage_data_934 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             552 / IN_WIDTH: ping_storage_data_934 <= ping_storage_data_934 ^ i_input_data[552 % IN_WIDTH];
             683 / IN_WIDTH: ping_storage_data_934 <= ping_storage_data_934 ^ i_input_data[683 % IN_WIDTH];
@@ -29118,7 +29118,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_935 <= 1'b0;
         pong_storage_data_935 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             553 / IN_WIDTH: ping_storage_data_935 <= ping_storage_data_935 ^ i_input_data[553 % IN_WIDTH];
             684 / IN_WIDTH: ping_storage_data_935 <= ping_storage_data_935 ^ i_input_data[684 % IN_WIDTH];
@@ -29146,7 +29146,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_936 <= 1'b0;
         pong_storage_data_936 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             554 / IN_WIDTH: ping_storage_data_936 <= ping_storage_data_936 ^ i_input_data[554 % IN_WIDTH];
             685 / IN_WIDTH: ping_storage_data_936 <= ping_storage_data_936 ^ i_input_data[685 % IN_WIDTH];
@@ -29174,7 +29174,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_937 <= 1'b0;
         pong_storage_data_937 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             555 / IN_WIDTH: ping_storage_data_937 <= ping_storage_data_937 ^ i_input_data[555 % IN_WIDTH];
             686 / IN_WIDTH: ping_storage_data_937 <= ping_storage_data_937 ^ i_input_data[686 % IN_WIDTH];
@@ -29202,7 +29202,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_938 <= 1'b0;
         pong_storage_data_938 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             556 / IN_WIDTH: ping_storage_data_938 <= ping_storage_data_938 ^ i_input_data[556 % IN_WIDTH];
             687 / IN_WIDTH: ping_storage_data_938 <= ping_storage_data_938 ^ i_input_data[687 % IN_WIDTH];
@@ -29230,7 +29230,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_939 <= 1'b0;
         pong_storage_data_939 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             557 / IN_WIDTH: ping_storage_data_939 <= ping_storage_data_939 ^ i_input_data[557 % IN_WIDTH];
             688 / IN_WIDTH: ping_storage_data_939 <= ping_storage_data_939 ^ i_input_data[688 % IN_WIDTH];
@@ -29258,7 +29258,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_940 <= 1'b0;
         pong_storage_data_940 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             558 / IN_WIDTH: ping_storage_data_940 <= ping_storage_data_940 ^ i_input_data[558 % IN_WIDTH];
             689 / IN_WIDTH: ping_storage_data_940 <= ping_storage_data_940 ^ i_input_data[689 % IN_WIDTH];
@@ -29286,7 +29286,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_941 <= 1'b0;
         pong_storage_data_941 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             559 / IN_WIDTH: ping_storage_data_941 <= ping_storage_data_941 ^ i_input_data[559 % IN_WIDTH];
             690 / IN_WIDTH: ping_storage_data_941 <= ping_storage_data_941 ^ i_input_data[690 % IN_WIDTH];
@@ -29314,7 +29314,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_942 <= 1'b0;
         pong_storage_data_942 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             560 / IN_WIDTH: ping_storage_data_942 <= ping_storage_data_942 ^ i_input_data[560 % IN_WIDTH];
             691 / IN_WIDTH: ping_storage_data_942 <= ping_storage_data_942 ^ i_input_data[691 % IN_WIDTH];
@@ -29342,7 +29342,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_943 <= 1'b0;
         pong_storage_data_943 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             561 / IN_WIDTH: ping_storage_data_943 <= ping_storage_data_943 ^ i_input_data[561 % IN_WIDTH];
             692 / IN_WIDTH: ping_storage_data_943 <= ping_storage_data_943 ^ i_input_data[692 % IN_WIDTH];
@@ -29370,7 +29370,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_944 <= 1'b0;
         pong_storage_data_944 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             562 / IN_WIDTH: ping_storage_data_944 <= ping_storage_data_944 ^ i_input_data[562 % IN_WIDTH];
             693 / IN_WIDTH: ping_storage_data_944 <= ping_storage_data_944 ^ i_input_data[693 % IN_WIDTH];
@@ -29398,7 +29398,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_945 <= 1'b0;
         pong_storage_data_945 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             563 / IN_WIDTH: ping_storage_data_945 <= ping_storage_data_945 ^ i_input_data[563 % IN_WIDTH];
             694 / IN_WIDTH: ping_storage_data_945 <= ping_storage_data_945 ^ i_input_data[694 % IN_WIDTH];
@@ -29426,7 +29426,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_946 <= 1'b0;
         pong_storage_data_946 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             564 / IN_WIDTH: ping_storage_data_946 <= ping_storage_data_946 ^ i_input_data[564 % IN_WIDTH];
             695 / IN_WIDTH: ping_storage_data_946 <= ping_storage_data_946 ^ i_input_data[695 % IN_WIDTH];
@@ -29454,7 +29454,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_947 <= 1'b0;
         pong_storage_data_947 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             565 / IN_WIDTH: ping_storage_data_947 <= ping_storage_data_947 ^ i_input_data[565 % IN_WIDTH];
             696 / IN_WIDTH: ping_storage_data_947 <= ping_storage_data_947 ^ i_input_data[696 % IN_WIDTH];
@@ -29482,7 +29482,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_948 <= 1'b0;
         pong_storage_data_948 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             566 / IN_WIDTH: ping_storage_data_948 <= ping_storage_data_948 ^ i_input_data[566 % IN_WIDTH];
             697 / IN_WIDTH: ping_storage_data_948 <= ping_storage_data_948 ^ i_input_data[697 % IN_WIDTH];
@@ -29510,7 +29510,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_949 <= 1'b0;
         pong_storage_data_949 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             567 / IN_WIDTH: ping_storage_data_949 <= ping_storage_data_949 ^ i_input_data[567 % IN_WIDTH];
             698 / IN_WIDTH: ping_storage_data_949 <= ping_storage_data_949 ^ i_input_data[698 % IN_WIDTH];
@@ -29538,7 +29538,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_950 <= 1'b0;
         pong_storage_data_950 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             568 / IN_WIDTH: ping_storage_data_950 <= ping_storage_data_950 ^ i_input_data[568 % IN_WIDTH];
             699 / IN_WIDTH: ping_storage_data_950 <= ping_storage_data_950 ^ i_input_data[699 % IN_WIDTH];
@@ -29566,7 +29566,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_951 <= 1'b0;
         pong_storage_data_951 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             569 / IN_WIDTH: ping_storage_data_951 <= ping_storage_data_951 ^ i_input_data[569 % IN_WIDTH];
             700 / IN_WIDTH: ping_storage_data_951 <= ping_storage_data_951 ^ i_input_data[700 % IN_WIDTH];
@@ -29594,7 +29594,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_952 <= 1'b0;
         pong_storage_data_952 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             570 / IN_WIDTH: ping_storage_data_952 <= ping_storage_data_952 ^ i_input_data[570 % IN_WIDTH];
             701 / IN_WIDTH: ping_storage_data_952 <= ping_storage_data_952 ^ i_input_data[701 % IN_WIDTH];
@@ -29622,7 +29622,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_953 <= 1'b0;
         pong_storage_data_953 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             571 / IN_WIDTH: ping_storage_data_953 <= ping_storage_data_953 ^ i_input_data[571 % IN_WIDTH];
             702 / IN_WIDTH: ping_storage_data_953 <= ping_storage_data_953 ^ i_input_data[702 % IN_WIDTH];
@@ -29650,7 +29650,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_954 <= 1'b0;
         pong_storage_data_954 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             572 / IN_WIDTH: ping_storage_data_954 <= ping_storage_data_954 ^ i_input_data[572 % IN_WIDTH];
             703 / IN_WIDTH: ping_storage_data_954 <= ping_storage_data_954 ^ i_input_data[703 % IN_WIDTH];
@@ -29678,7 +29678,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_955 <= 1'b0;
         pong_storage_data_955 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             573 / IN_WIDTH: ping_storage_data_955 <= ping_storage_data_955 ^ i_input_data[573 % IN_WIDTH];
             704 / IN_WIDTH: ping_storage_data_955 <= ping_storage_data_955 ^ i_input_data[704 % IN_WIDTH];
@@ -29706,7 +29706,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_956 <= 1'b0;
         pong_storage_data_956 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             574 / IN_WIDTH: ping_storage_data_956 <= ping_storage_data_956 ^ i_input_data[574 % IN_WIDTH];
             705 / IN_WIDTH: ping_storage_data_956 <= ping_storage_data_956 ^ i_input_data[705 % IN_WIDTH];
@@ -29734,7 +29734,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_957 <= 1'b0;
         pong_storage_data_957 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             575 / IN_WIDTH: ping_storage_data_957 <= ping_storage_data_957 ^ i_input_data[575 % IN_WIDTH];
             706 / IN_WIDTH: ping_storage_data_957 <= ping_storage_data_957 ^ i_input_data[706 % IN_WIDTH];
@@ -29762,7 +29762,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_958 <= 1'b0;
         pong_storage_data_958 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             480 / IN_WIDTH: ping_storage_data_958 <= ping_storage_data_958 ^ i_input_data[480 % IN_WIDTH];
             707 / IN_WIDTH: ping_storage_data_958 <= ping_storage_data_958 ^ i_input_data[707 % IN_WIDTH];
@@ -29790,7 +29790,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_959 <= 1'b0;
         pong_storage_data_959 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             481 / IN_WIDTH: ping_storage_data_959 <= ping_storage_data_959 ^ i_input_data[481 % IN_WIDTH];
             708 / IN_WIDTH: ping_storage_data_959 <= ping_storage_data_959 ^ i_input_data[708 % IN_WIDTH];
@@ -29818,7 +29818,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_960 <= 1'b0;
         pong_storage_data_960 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             281 / IN_WIDTH: ping_storage_data_960 <= ping_storage_data_960 ^ i_input_data[281 % IN_WIDTH];
             319 / IN_WIDTH: ping_storage_data_960 <= ping_storage_data_960 ^ i_input_data[319 % IN_WIDTH];
@@ -29846,7 +29846,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_961 <= 1'b0;
         pong_storage_data_961 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             282 / IN_WIDTH: ping_storage_data_961 <= ping_storage_data_961 ^ i_input_data[282 % IN_WIDTH];
             320 / IN_WIDTH: ping_storage_data_961 <= ping_storage_data_961 ^ i_input_data[320 % IN_WIDTH];
@@ -29874,7 +29874,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_962 <= 1'b0;
         pong_storage_data_962 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             283 / IN_WIDTH: ping_storage_data_962 <= ping_storage_data_962 ^ i_input_data[283 % IN_WIDTH];
             321 / IN_WIDTH: ping_storage_data_962 <= ping_storage_data_962 ^ i_input_data[321 % IN_WIDTH];
@@ -29902,7 +29902,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_963 <= 1'b0;
         pong_storage_data_963 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             284 / IN_WIDTH: ping_storage_data_963 <= ping_storage_data_963 ^ i_input_data[284 % IN_WIDTH];
             322 / IN_WIDTH: ping_storage_data_963 <= ping_storage_data_963 ^ i_input_data[322 % IN_WIDTH];
@@ -29930,7 +29930,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_964 <= 1'b0;
         pong_storage_data_964 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             285 / IN_WIDTH: ping_storage_data_964 <= ping_storage_data_964 ^ i_input_data[285 % IN_WIDTH];
             323 / IN_WIDTH: ping_storage_data_964 <= ping_storage_data_964 ^ i_input_data[323 % IN_WIDTH];
@@ -29958,7 +29958,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_965 <= 1'b0;
         pong_storage_data_965 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             286 / IN_WIDTH: ping_storage_data_965 <= ping_storage_data_965 ^ i_input_data[286 % IN_WIDTH];
             324 / IN_WIDTH: ping_storage_data_965 <= ping_storage_data_965 ^ i_input_data[324 % IN_WIDTH];
@@ -29986,7 +29986,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_966 <= 1'b0;
         pong_storage_data_966 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             287 / IN_WIDTH: ping_storage_data_966 <= ping_storage_data_966 ^ i_input_data[287 % IN_WIDTH];
             325 / IN_WIDTH: ping_storage_data_966 <= ping_storage_data_966 ^ i_input_data[325 % IN_WIDTH];
@@ -30014,7 +30014,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_967 <= 1'b0;
         pong_storage_data_967 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             192 / IN_WIDTH: ping_storage_data_967 <= ping_storage_data_967 ^ i_input_data[192 % IN_WIDTH];
             326 / IN_WIDTH: ping_storage_data_967 <= ping_storage_data_967 ^ i_input_data[326 % IN_WIDTH];
@@ -30042,7 +30042,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_968 <= 1'b0;
         pong_storage_data_968 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             193 / IN_WIDTH: ping_storage_data_968 <= ping_storage_data_968 ^ i_input_data[193 % IN_WIDTH];
             327 / IN_WIDTH: ping_storage_data_968 <= ping_storage_data_968 ^ i_input_data[327 % IN_WIDTH];
@@ -30070,7 +30070,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_969 <= 1'b0;
         pong_storage_data_969 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             194 / IN_WIDTH: ping_storage_data_969 <= ping_storage_data_969 ^ i_input_data[194 % IN_WIDTH];
             328 / IN_WIDTH: ping_storage_data_969 <= ping_storage_data_969 ^ i_input_data[328 % IN_WIDTH];
@@ -30098,7 +30098,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_970 <= 1'b0;
         pong_storage_data_970 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             195 / IN_WIDTH: ping_storage_data_970 <= ping_storage_data_970 ^ i_input_data[195 % IN_WIDTH];
             329 / IN_WIDTH: ping_storage_data_970 <= ping_storage_data_970 ^ i_input_data[329 % IN_WIDTH];
@@ -30126,7 +30126,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_971 <= 1'b0;
         pong_storage_data_971 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             196 / IN_WIDTH: ping_storage_data_971 <= ping_storage_data_971 ^ i_input_data[196 % IN_WIDTH];
             330 / IN_WIDTH: ping_storage_data_971 <= ping_storage_data_971 ^ i_input_data[330 % IN_WIDTH];
@@ -30154,7 +30154,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_972 <= 1'b0;
         pong_storage_data_972 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             197 / IN_WIDTH: ping_storage_data_972 <= ping_storage_data_972 ^ i_input_data[197 % IN_WIDTH];
             331 / IN_WIDTH: ping_storage_data_972 <= ping_storage_data_972 ^ i_input_data[331 % IN_WIDTH];
@@ -30182,7 +30182,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_973 <= 1'b0;
         pong_storage_data_973 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             198 / IN_WIDTH: ping_storage_data_973 <= ping_storage_data_973 ^ i_input_data[198 % IN_WIDTH];
             332 / IN_WIDTH: ping_storage_data_973 <= ping_storage_data_973 ^ i_input_data[332 % IN_WIDTH];
@@ -30210,7 +30210,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_974 <= 1'b0;
         pong_storage_data_974 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             199 / IN_WIDTH: ping_storage_data_974 <= ping_storage_data_974 ^ i_input_data[199 % IN_WIDTH];
             333 / IN_WIDTH: ping_storage_data_974 <= ping_storage_data_974 ^ i_input_data[333 % IN_WIDTH];
@@ -30238,7 +30238,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_975 <= 1'b0;
         pong_storage_data_975 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             200 / IN_WIDTH: ping_storage_data_975 <= ping_storage_data_975 ^ i_input_data[200 % IN_WIDTH];
             334 / IN_WIDTH: ping_storage_data_975 <= ping_storage_data_975 ^ i_input_data[334 % IN_WIDTH];
@@ -30266,7 +30266,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_976 <= 1'b0;
         pong_storage_data_976 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             201 / IN_WIDTH: ping_storage_data_976 <= ping_storage_data_976 ^ i_input_data[201 % IN_WIDTH];
             335 / IN_WIDTH: ping_storage_data_976 <= ping_storage_data_976 ^ i_input_data[335 % IN_WIDTH];
@@ -30294,7 +30294,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_977 <= 1'b0;
         pong_storage_data_977 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             202 / IN_WIDTH: ping_storage_data_977 <= ping_storage_data_977 ^ i_input_data[202 % IN_WIDTH];
             336 / IN_WIDTH: ping_storage_data_977 <= ping_storage_data_977 ^ i_input_data[336 % IN_WIDTH];
@@ -30322,7 +30322,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_978 <= 1'b0;
         pong_storage_data_978 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             203 / IN_WIDTH: ping_storage_data_978 <= ping_storage_data_978 ^ i_input_data[203 % IN_WIDTH];
             337 / IN_WIDTH: ping_storage_data_978 <= ping_storage_data_978 ^ i_input_data[337 % IN_WIDTH];
@@ -30350,7 +30350,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_979 <= 1'b0;
         pong_storage_data_979 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             204 / IN_WIDTH: ping_storage_data_979 <= ping_storage_data_979 ^ i_input_data[204 % IN_WIDTH];
             338 / IN_WIDTH: ping_storage_data_979 <= ping_storage_data_979 ^ i_input_data[338 % IN_WIDTH];
@@ -30378,7 +30378,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_980 <= 1'b0;
         pong_storage_data_980 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             205 / IN_WIDTH: ping_storage_data_980 <= ping_storage_data_980 ^ i_input_data[205 % IN_WIDTH];
             339 / IN_WIDTH: ping_storage_data_980 <= ping_storage_data_980 ^ i_input_data[339 % IN_WIDTH];
@@ -30406,7 +30406,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_981 <= 1'b0;
         pong_storage_data_981 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             206 / IN_WIDTH: ping_storage_data_981 <= ping_storage_data_981 ^ i_input_data[206 % IN_WIDTH];
             340 / IN_WIDTH: ping_storage_data_981 <= ping_storage_data_981 ^ i_input_data[340 % IN_WIDTH];
@@ -30434,7 +30434,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_982 <= 1'b0;
         pong_storage_data_982 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             207 / IN_WIDTH: ping_storage_data_982 <= ping_storage_data_982 ^ i_input_data[207 % IN_WIDTH];
             341 / IN_WIDTH: ping_storage_data_982 <= ping_storage_data_982 ^ i_input_data[341 % IN_WIDTH];
@@ -30462,7 +30462,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_983 <= 1'b0;
         pong_storage_data_983 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             208 / IN_WIDTH: ping_storage_data_983 <= ping_storage_data_983 ^ i_input_data[208 % IN_WIDTH];
             342 / IN_WIDTH: ping_storage_data_983 <= ping_storage_data_983 ^ i_input_data[342 % IN_WIDTH];
@@ -30490,7 +30490,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_984 <= 1'b0;
         pong_storage_data_984 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             209 / IN_WIDTH: ping_storage_data_984 <= ping_storage_data_984 ^ i_input_data[209 % IN_WIDTH];
             343 / IN_WIDTH: ping_storage_data_984 <= ping_storage_data_984 ^ i_input_data[343 % IN_WIDTH];
@@ -30518,7 +30518,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_985 <= 1'b0;
         pong_storage_data_985 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             210 / IN_WIDTH: ping_storage_data_985 <= ping_storage_data_985 ^ i_input_data[210 % IN_WIDTH];
             344 / IN_WIDTH: ping_storage_data_985 <= ping_storage_data_985 ^ i_input_data[344 % IN_WIDTH];
@@ -30546,7 +30546,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_986 <= 1'b0;
         pong_storage_data_986 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             211 / IN_WIDTH: ping_storage_data_986 <= ping_storage_data_986 ^ i_input_data[211 % IN_WIDTH];
             345 / IN_WIDTH: ping_storage_data_986 <= ping_storage_data_986 ^ i_input_data[345 % IN_WIDTH];
@@ -30574,7 +30574,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_987 <= 1'b0;
         pong_storage_data_987 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             212 / IN_WIDTH: ping_storage_data_987 <= ping_storage_data_987 ^ i_input_data[212 % IN_WIDTH];
             346 / IN_WIDTH: ping_storage_data_987 <= ping_storage_data_987 ^ i_input_data[346 % IN_WIDTH];
@@ -30602,7 +30602,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_988 <= 1'b0;
         pong_storage_data_988 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             213 / IN_WIDTH: ping_storage_data_988 <= ping_storage_data_988 ^ i_input_data[213 % IN_WIDTH];
             347 / IN_WIDTH: ping_storage_data_988 <= ping_storage_data_988 ^ i_input_data[347 % IN_WIDTH];
@@ -30630,7 +30630,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_989 <= 1'b0;
         pong_storage_data_989 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             214 / IN_WIDTH: ping_storage_data_989 <= ping_storage_data_989 ^ i_input_data[214 % IN_WIDTH];
             348 / IN_WIDTH: ping_storage_data_989 <= ping_storage_data_989 ^ i_input_data[348 % IN_WIDTH];
@@ -30658,7 +30658,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_990 <= 1'b0;
         pong_storage_data_990 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             215 / IN_WIDTH: ping_storage_data_990 <= ping_storage_data_990 ^ i_input_data[215 % IN_WIDTH];
             349 / IN_WIDTH: ping_storage_data_990 <= ping_storage_data_990 ^ i_input_data[349 % IN_WIDTH];
@@ -30686,7 +30686,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_991 <= 1'b0;
         pong_storage_data_991 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             216 / IN_WIDTH: ping_storage_data_991 <= ping_storage_data_991 ^ i_input_data[216 % IN_WIDTH];
             350 / IN_WIDTH: ping_storage_data_991 <= ping_storage_data_991 ^ i_input_data[350 % IN_WIDTH];
@@ -30714,7 +30714,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_992 <= 1'b0;
         pong_storage_data_992 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             217 / IN_WIDTH: ping_storage_data_992 <= ping_storage_data_992 ^ i_input_data[217 % IN_WIDTH];
             351 / IN_WIDTH: ping_storage_data_992 <= ping_storage_data_992 ^ i_input_data[351 % IN_WIDTH];
@@ -30742,7 +30742,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_993 <= 1'b0;
         pong_storage_data_993 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             218 / IN_WIDTH: ping_storage_data_993 <= ping_storage_data_993 ^ i_input_data[218 % IN_WIDTH];
             352 / IN_WIDTH: ping_storage_data_993 <= ping_storage_data_993 ^ i_input_data[352 % IN_WIDTH];
@@ -30770,7 +30770,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_994 <= 1'b0;
         pong_storage_data_994 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             219 / IN_WIDTH: ping_storage_data_994 <= ping_storage_data_994 ^ i_input_data[219 % IN_WIDTH];
             353 / IN_WIDTH: ping_storage_data_994 <= ping_storage_data_994 ^ i_input_data[353 % IN_WIDTH];
@@ -30798,7 +30798,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_995 <= 1'b0;
         pong_storage_data_995 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             220 / IN_WIDTH: ping_storage_data_995 <= ping_storage_data_995 ^ i_input_data[220 % IN_WIDTH];
             354 / IN_WIDTH: ping_storage_data_995 <= ping_storage_data_995 ^ i_input_data[354 % IN_WIDTH];
@@ -30826,7 +30826,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_996 <= 1'b0;
         pong_storage_data_996 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             221 / IN_WIDTH: ping_storage_data_996 <= ping_storage_data_996 ^ i_input_data[221 % IN_WIDTH];
             355 / IN_WIDTH: ping_storage_data_996 <= ping_storage_data_996 ^ i_input_data[355 % IN_WIDTH];
@@ -30854,7 +30854,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_997 <= 1'b0;
         pong_storage_data_997 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             222 / IN_WIDTH: ping_storage_data_997 <= ping_storage_data_997 ^ i_input_data[222 % IN_WIDTH];
             356 / IN_WIDTH: ping_storage_data_997 <= ping_storage_data_997 ^ i_input_data[356 % IN_WIDTH];
@@ -30882,7 +30882,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_998 <= 1'b0;
         pong_storage_data_998 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             223 / IN_WIDTH: ping_storage_data_998 <= ping_storage_data_998 ^ i_input_data[223 % IN_WIDTH];
             357 / IN_WIDTH: ping_storage_data_998 <= ping_storage_data_998 ^ i_input_data[357 % IN_WIDTH];
@@ -30910,7 +30910,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_999 <= 1'b0;
         pong_storage_data_999 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             224 / IN_WIDTH: ping_storage_data_999 <= ping_storage_data_999 ^ i_input_data[224 % IN_WIDTH];
             358 / IN_WIDTH: ping_storage_data_999 <= ping_storage_data_999 ^ i_input_data[358 % IN_WIDTH];
@@ -30938,7 +30938,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1000 <= 1'b0;
         pong_storage_data_1000 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             225 / IN_WIDTH: ping_storage_data_1000 <= ping_storage_data_1000 ^ i_input_data[225 % IN_WIDTH];
             359 / IN_WIDTH: ping_storage_data_1000 <= ping_storage_data_1000 ^ i_input_data[359 % IN_WIDTH];
@@ -30966,7 +30966,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1001 <= 1'b0;
         pong_storage_data_1001 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             226 / IN_WIDTH: ping_storage_data_1001 <= ping_storage_data_1001 ^ i_input_data[226 % IN_WIDTH];
             360 / IN_WIDTH: ping_storage_data_1001 <= ping_storage_data_1001 ^ i_input_data[360 % IN_WIDTH];
@@ -30994,7 +30994,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1002 <= 1'b0;
         pong_storage_data_1002 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             227 / IN_WIDTH: ping_storage_data_1002 <= ping_storage_data_1002 ^ i_input_data[227 % IN_WIDTH];
             361 / IN_WIDTH: ping_storage_data_1002 <= ping_storage_data_1002 ^ i_input_data[361 % IN_WIDTH];
@@ -31022,7 +31022,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1003 <= 1'b0;
         pong_storage_data_1003 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             228 / IN_WIDTH: ping_storage_data_1003 <= ping_storage_data_1003 ^ i_input_data[228 % IN_WIDTH];
             362 / IN_WIDTH: ping_storage_data_1003 <= ping_storage_data_1003 ^ i_input_data[362 % IN_WIDTH];
@@ -31050,7 +31050,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1004 <= 1'b0;
         pong_storage_data_1004 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             229 / IN_WIDTH: ping_storage_data_1004 <= ping_storage_data_1004 ^ i_input_data[229 % IN_WIDTH];
             363 / IN_WIDTH: ping_storage_data_1004 <= ping_storage_data_1004 ^ i_input_data[363 % IN_WIDTH];
@@ -31078,7 +31078,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1005 <= 1'b0;
         pong_storage_data_1005 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             230 / IN_WIDTH: ping_storage_data_1005 <= ping_storage_data_1005 ^ i_input_data[230 % IN_WIDTH];
             364 / IN_WIDTH: ping_storage_data_1005 <= ping_storage_data_1005 ^ i_input_data[364 % IN_WIDTH];
@@ -31106,7 +31106,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1006 <= 1'b0;
         pong_storage_data_1006 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             231 / IN_WIDTH: ping_storage_data_1006 <= ping_storage_data_1006 ^ i_input_data[231 % IN_WIDTH];
             365 / IN_WIDTH: ping_storage_data_1006 <= ping_storage_data_1006 ^ i_input_data[365 % IN_WIDTH];
@@ -31134,7 +31134,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1007 <= 1'b0;
         pong_storage_data_1007 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             232 / IN_WIDTH: ping_storage_data_1007 <= ping_storage_data_1007 ^ i_input_data[232 % IN_WIDTH];
             366 / IN_WIDTH: ping_storage_data_1007 <= ping_storage_data_1007 ^ i_input_data[366 % IN_WIDTH];
@@ -31162,7 +31162,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1008 <= 1'b0;
         pong_storage_data_1008 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             233 / IN_WIDTH: ping_storage_data_1008 <= ping_storage_data_1008 ^ i_input_data[233 % IN_WIDTH];
             367 / IN_WIDTH: ping_storage_data_1008 <= ping_storage_data_1008 ^ i_input_data[367 % IN_WIDTH];
@@ -31190,7 +31190,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1009 <= 1'b0;
         pong_storage_data_1009 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             234 / IN_WIDTH: ping_storage_data_1009 <= ping_storage_data_1009 ^ i_input_data[234 % IN_WIDTH];
             368 / IN_WIDTH: ping_storage_data_1009 <= ping_storage_data_1009 ^ i_input_data[368 % IN_WIDTH];
@@ -31218,7 +31218,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1010 <= 1'b0;
         pong_storage_data_1010 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             235 / IN_WIDTH: ping_storage_data_1010 <= ping_storage_data_1010 ^ i_input_data[235 % IN_WIDTH];
             369 / IN_WIDTH: ping_storage_data_1010 <= ping_storage_data_1010 ^ i_input_data[369 % IN_WIDTH];
@@ -31246,7 +31246,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1011 <= 1'b0;
         pong_storage_data_1011 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             236 / IN_WIDTH: ping_storage_data_1011 <= ping_storage_data_1011 ^ i_input_data[236 % IN_WIDTH];
             370 / IN_WIDTH: ping_storage_data_1011 <= ping_storage_data_1011 ^ i_input_data[370 % IN_WIDTH];
@@ -31274,7 +31274,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1012 <= 1'b0;
         pong_storage_data_1012 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             237 / IN_WIDTH: ping_storage_data_1012 <= ping_storage_data_1012 ^ i_input_data[237 % IN_WIDTH];
             371 / IN_WIDTH: ping_storage_data_1012 <= ping_storage_data_1012 ^ i_input_data[371 % IN_WIDTH];
@@ -31302,7 +31302,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1013 <= 1'b0;
         pong_storage_data_1013 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             238 / IN_WIDTH: ping_storage_data_1013 <= ping_storage_data_1013 ^ i_input_data[238 % IN_WIDTH];
             372 / IN_WIDTH: ping_storage_data_1013 <= ping_storage_data_1013 ^ i_input_data[372 % IN_WIDTH];
@@ -31330,7 +31330,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1014 <= 1'b0;
         pong_storage_data_1014 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             239 / IN_WIDTH: ping_storage_data_1014 <= ping_storage_data_1014 ^ i_input_data[239 % IN_WIDTH];
             373 / IN_WIDTH: ping_storage_data_1014 <= ping_storage_data_1014 ^ i_input_data[373 % IN_WIDTH];
@@ -31358,7 +31358,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1015 <= 1'b0;
         pong_storage_data_1015 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             240 / IN_WIDTH: ping_storage_data_1015 <= ping_storage_data_1015 ^ i_input_data[240 % IN_WIDTH];
             374 / IN_WIDTH: ping_storage_data_1015 <= ping_storage_data_1015 ^ i_input_data[374 % IN_WIDTH];
@@ -31386,7 +31386,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1016 <= 1'b0;
         pong_storage_data_1016 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             241 / IN_WIDTH: ping_storage_data_1016 <= ping_storage_data_1016 ^ i_input_data[241 % IN_WIDTH];
             375 / IN_WIDTH: ping_storage_data_1016 <= ping_storage_data_1016 ^ i_input_data[375 % IN_WIDTH];
@@ -31414,7 +31414,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1017 <= 1'b0;
         pong_storage_data_1017 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             242 / IN_WIDTH: ping_storage_data_1017 <= ping_storage_data_1017 ^ i_input_data[242 % IN_WIDTH];
             376 / IN_WIDTH: ping_storage_data_1017 <= ping_storage_data_1017 ^ i_input_data[376 % IN_WIDTH];
@@ -31442,7 +31442,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1018 <= 1'b0;
         pong_storage_data_1018 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             243 / IN_WIDTH: ping_storage_data_1018 <= ping_storage_data_1018 ^ i_input_data[243 % IN_WIDTH];
             377 / IN_WIDTH: ping_storage_data_1018 <= ping_storage_data_1018 ^ i_input_data[377 % IN_WIDTH];
@@ -31470,7 +31470,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1019 <= 1'b0;
         pong_storage_data_1019 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             244 / IN_WIDTH: ping_storage_data_1019 <= ping_storage_data_1019 ^ i_input_data[244 % IN_WIDTH];
             378 / IN_WIDTH: ping_storage_data_1019 <= ping_storage_data_1019 ^ i_input_data[378 % IN_WIDTH];
@@ -31498,7 +31498,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1020 <= 1'b0;
         pong_storage_data_1020 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             245 / IN_WIDTH: ping_storage_data_1020 <= ping_storage_data_1020 ^ i_input_data[245 % IN_WIDTH];
             379 / IN_WIDTH: ping_storage_data_1020 <= ping_storage_data_1020 ^ i_input_data[379 % IN_WIDTH];
@@ -31526,7 +31526,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1021 <= 1'b0;
         pong_storage_data_1021 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             246 / IN_WIDTH: ping_storage_data_1021 <= ping_storage_data_1021 ^ i_input_data[246 % IN_WIDTH];
             380 / IN_WIDTH: ping_storage_data_1021 <= ping_storage_data_1021 ^ i_input_data[380 % IN_WIDTH];
@@ -31554,7 +31554,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1022 <= 1'b0;
         pong_storage_data_1022 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             247 / IN_WIDTH: ping_storage_data_1022 <= ping_storage_data_1022 ^ i_input_data[247 % IN_WIDTH];
             381 / IN_WIDTH: ping_storage_data_1022 <= ping_storage_data_1022 ^ i_input_data[381 % IN_WIDTH];
@@ -31582,7 +31582,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1023 <= 1'b0;
         pong_storage_data_1023 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             248 / IN_WIDTH: ping_storage_data_1023 <= ping_storage_data_1023 ^ i_input_data[248 % IN_WIDTH];
             382 / IN_WIDTH: ping_storage_data_1023 <= ping_storage_data_1023 ^ i_input_data[382 % IN_WIDTH];
@@ -31610,7 +31610,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1024 <= 1'b0;
         pong_storage_data_1024 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             249 / IN_WIDTH: ping_storage_data_1024 <= ping_storage_data_1024 ^ i_input_data[249 % IN_WIDTH];
             383 / IN_WIDTH: ping_storage_data_1024 <= ping_storage_data_1024 ^ i_input_data[383 % IN_WIDTH];
@@ -31638,7 +31638,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1025 <= 1'b0;
         pong_storage_data_1025 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             250 / IN_WIDTH: ping_storage_data_1025 <= ping_storage_data_1025 ^ i_input_data[250 % IN_WIDTH];
             288 / IN_WIDTH: ping_storage_data_1025 <= ping_storage_data_1025 ^ i_input_data[288 % IN_WIDTH];
@@ -31666,7 +31666,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1026 <= 1'b0;
         pong_storage_data_1026 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             251 / IN_WIDTH: ping_storage_data_1026 <= ping_storage_data_1026 ^ i_input_data[251 % IN_WIDTH];
             289 / IN_WIDTH: ping_storage_data_1026 <= ping_storage_data_1026 ^ i_input_data[289 % IN_WIDTH];
@@ -31694,7 +31694,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1027 <= 1'b0;
         pong_storage_data_1027 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             252 / IN_WIDTH: ping_storage_data_1027 <= ping_storage_data_1027 ^ i_input_data[252 % IN_WIDTH];
             290 / IN_WIDTH: ping_storage_data_1027 <= ping_storage_data_1027 ^ i_input_data[290 % IN_WIDTH];
@@ -31722,7 +31722,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1028 <= 1'b0;
         pong_storage_data_1028 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             253 / IN_WIDTH: ping_storage_data_1028 <= ping_storage_data_1028 ^ i_input_data[253 % IN_WIDTH];
             291 / IN_WIDTH: ping_storage_data_1028 <= ping_storage_data_1028 ^ i_input_data[291 % IN_WIDTH];
@@ -31750,7 +31750,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1029 <= 1'b0;
         pong_storage_data_1029 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             254 / IN_WIDTH: ping_storage_data_1029 <= ping_storage_data_1029 ^ i_input_data[254 % IN_WIDTH];
             292 / IN_WIDTH: ping_storage_data_1029 <= ping_storage_data_1029 ^ i_input_data[292 % IN_WIDTH];
@@ -31778,7 +31778,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1030 <= 1'b0;
         pong_storage_data_1030 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             255 / IN_WIDTH: ping_storage_data_1030 <= ping_storage_data_1030 ^ i_input_data[255 % IN_WIDTH];
             293 / IN_WIDTH: ping_storage_data_1030 <= ping_storage_data_1030 ^ i_input_data[293 % IN_WIDTH];
@@ -31806,7 +31806,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1031 <= 1'b0;
         pong_storage_data_1031 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             256 / IN_WIDTH: ping_storage_data_1031 <= ping_storage_data_1031 ^ i_input_data[256 % IN_WIDTH];
             294 / IN_WIDTH: ping_storage_data_1031 <= ping_storage_data_1031 ^ i_input_data[294 % IN_WIDTH];
@@ -31834,7 +31834,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1032 <= 1'b0;
         pong_storage_data_1032 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             257 / IN_WIDTH: ping_storage_data_1032 <= ping_storage_data_1032 ^ i_input_data[257 % IN_WIDTH];
             295 / IN_WIDTH: ping_storage_data_1032 <= ping_storage_data_1032 ^ i_input_data[295 % IN_WIDTH];
@@ -31862,7 +31862,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1033 <= 1'b0;
         pong_storage_data_1033 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             258 / IN_WIDTH: ping_storage_data_1033 <= ping_storage_data_1033 ^ i_input_data[258 % IN_WIDTH];
             296 / IN_WIDTH: ping_storage_data_1033 <= ping_storage_data_1033 ^ i_input_data[296 % IN_WIDTH];
@@ -31890,7 +31890,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1034 <= 1'b0;
         pong_storage_data_1034 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             259 / IN_WIDTH: ping_storage_data_1034 <= ping_storage_data_1034 ^ i_input_data[259 % IN_WIDTH];
             297 / IN_WIDTH: ping_storage_data_1034 <= ping_storage_data_1034 ^ i_input_data[297 % IN_WIDTH];
@@ -31918,7 +31918,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1035 <= 1'b0;
         pong_storage_data_1035 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             260 / IN_WIDTH: ping_storage_data_1035 <= ping_storage_data_1035 ^ i_input_data[260 % IN_WIDTH];
             298 / IN_WIDTH: ping_storage_data_1035 <= ping_storage_data_1035 ^ i_input_data[298 % IN_WIDTH];
@@ -31946,7 +31946,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1036 <= 1'b0;
         pong_storage_data_1036 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             261 / IN_WIDTH: ping_storage_data_1036 <= ping_storage_data_1036 ^ i_input_data[261 % IN_WIDTH];
             299 / IN_WIDTH: ping_storage_data_1036 <= ping_storage_data_1036 ^ i_input_data[299 % IN_WIDTH];
@@ -31974,7 +31974,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1037 <= 1'b0;
         pong_storage_data_1037 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             262 / IN_WIDTH: ping_storage_data_1037 <= ping_storage_data_1037 ^ i_input_data[262 % IN_WIDTH];
             300 / IN_WIDTH: ping_storage_data_1037 <= ping_storage_data_1037 ^ i_input_data[300 % IN_WIDTH];
@@ -32002,7 +32002,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1038 <= 1'b0;
         pong_storage_data_1038 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             263 / IN_WIDTH: ping_storage_data_1038 <= ping_storage_data_1038 ^ i_input_data[263 % IN_WIDTH];
             301 / IN_WIDTH: ping_storage_data_1038 <= ping_storage_data_1038 ^ i_input_data[301 % IN_WIDTH];
@@ -32030,7 +32030,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1039 <= 1'b0;
         pong_storage_data_1039 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             264 / IN_WIDTH: ping_storage_data_1039 <= ping_storage_data_1039 ^ i_input_data[264 % IN_WIDTH];
             302 / IN_WIDTH: ping_storage_data_1039 <= ping_storage_data_1039 ^ i_input_data[302 % IN_WIDTH];
@@ -32058,7 +32058,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1040 <= 1'b0;
         pong_storage_data_1040 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             265 / IN_WIDTH: ping_storage_data_1040 <= ping_storage_data_1040 ^ i_input_data[265 % IN_WIDTH];
             303 / IN_WIDTH: ping_storage_data_1040 <= ping_storage_data_1040 ^ i_input_data[303 % IN_WIDTH];
@@ -32086,7 +32086,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1041 <= 1'b0;
         pong_storage_data_1041 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             266 / IN_WIDTH: ping_storage_data_1041 <= ping_storage_data_1041 ^ i_input_data[266 % IN_WIDTH];
             304 / IN_WIDTH: ping_storage_data_1041 <= ping_storage_data_1041 ^ i_input_data[304 % IN_WIDTH];
@@ -32114,7 +32114,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1042 <= 1'b0;
         pong_storage_data_1042 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             267 / IN_WIDTH: ping_storage_data_1042 <= ping_storage_data_1042 ^ i_input_data[267 % IN_WIDTH];
             305 / IN_WIDTH: ping_storage_data_1042 <= ping_storage_data_1042 ^ i_input_data[305 % IN_WIDTH];
@@ -32142,7 +32142,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1043 <= 1'b0;
         pong_storage_data_1043 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             268 / IN_WIDTH: ping_storage_data_1043 <= ping_storage_data_1043 ^ i_input_data[268 % IN_WIDTH];
             306 / IN_WIDTH: ping_storage_data_1043 <= ping_storage_data_1043 ^ i_input_data[306 % IN_WIDTH];
@@ -32170,7 +32170,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1044 <= 1'b0;
         pong_storage_data_1044 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             269 / IN_WIDTH: ping_storage_data_1044 <= ping_storage_data_1044 ^ i_input_data[269 % IN_WIDTH];
             307 / IN_WIDTH: ping_storage_data_1044 <= ping_storage_data_1044 ^ i_input_data[307 % IN_WIDTH];
@@ -32198,7 +32198,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1045 <= 1'b0;
         pong_storage_data_1045 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             270 / IN_WIDTH: ping_storage_data_1045 <= ping_storage_data_1045 ^ i_input_data[270 % IN_WIDTH];
             308 / IN_WIDTH: ping_storage_data_1045 <= ping_storage_data_1045 ^ i_input_data[308 % IN_WIDTH];
@@ -32226,7 +32226,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1046 <= 1'b0;
         pong_storage_data_1046 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             271 / IN_WIDTH: ping_storage_data_1046 <= ping_storage_data_1046 ^ i_input_data[271 % IN_WIDTH];
             309 / IN_WIDTH: ping_storage_data_1046 <= ping_storage_data_1046 ^ i_input_data[309 % IN_WIDTH];
@@ -32254,7 +32254,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1047 <= 1'b0;
         pong_storage_data_1047 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             272 / IN_WIDTH: ping_storage_data_1047 <= ping_storage_data_1047 ^ i_input_data[272 % IN_WIDTH];
             310 / IN_WIDTH: ping_storage_data_1047 <= ping_storage_data_1047 ^ i_input_data[310 % IN_WIDTH];
@@ -32282,7 +32282,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1048 <= 1'b0;
         pong_storage_data_1048 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             273 / IN_WIDTH: ping_storage_data_1048 <= ping_storage_data_1048 ^ i_input_data[273 % IN_WIDTH];
             311 / IN_WIDTH: ping_storage_data_1048 <= ping_storage_data_1048 ^ i_input_data[311 % IN_WIDTH];
@@ -32310,7 +32310,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1049 <= 1'b0;
         pong_storage_data_1049 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             274 / IN_WIDTH: ping_storage_data_1049 <= ping_storage_data_1049 ^ i_input_data[274 % IN_WIDTH];
             312 / IN_WIDTH: ping_storage_data_1049 <= ping_storage_data_1049 ^ i_input_data[312 % IN_WIDTH];
@@ -32338,7 +32338,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1050 <= 1'b0;
         pong_storage_data_1050 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             275 / IN_WIDTH: ping_storage_data_1050 <= ping_storage_data_1050 ^ i_input_data[275 % IN_WIDTH];
             313 / IN_WIDTH: ping_storage_data_1050 <= ping_storage_data_1050 ^ i_input_data[313 % IN_WIDTH];
@@ -32366,7 +32366,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1051 <= 1'b0;
         pong_storage_data_1051 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             276 / IN_WIDTH: ping_storage_data_1051 <= ping_storage_data_1051 ^ i_input_data[276 % IN_WIDTH];
             314 / IN_WIDTH: ping_storage_data_1051 <= ping_storage_data_1051 ^ i_input_data[314 % IN_WIDTH];
@@ -32394,7 +32394,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1052 <= 1'b0;
         pong_storage_data_1052 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             277 / IN_WIDTH: ping_storage_data_1052 <= ping_storage_data_1052 ^ i_input_data[277 % IN_WIDTH];
             315 / IN_WIDTH: ping_storage_data_1052 <= ping_storage_data_1052 ^ i_input_data[315 % IN_WIDTH];
@@ -32422,7 +32422,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1053 <= 1'b0;
         pong_storage_data_1053 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             278 / IN_WIDTH: ping_storage_data_1053 <= ping_storage_data_1053 ^ i_input_data[278 % IN_WIDTH];
             316 / IN_WIDTH: ping_storage_data_1053 <= ping_storage_data_1053 ^ i_input_data[316 % IN_WIDTH];
@@ -32450,7 +32450,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1054 <= 1'b0;
         pong_storage_data_1054 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             279 / IN_WIDTH: ping_storage_data_1054 <= ping_storage_data_1054 ^ i_input_data[279 % IN_WIDTH];
             317 / IN_WIDTH: ping_storage_data_1054 <= ping_storage_data_1054 ^ i_input_data[317 % IN_WIDTH];
@@ -32478,7 +32478,7 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_1055 <= 1'b0;
         pong_storage_data_1055 <= 1'b0;
     end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (input_is_ping == 1'b1) begin
+        if (fillup_state == ST_PING) begin
             case (input_count)
             280 / IN_WIDTH: ping_storage_data_1055 <= ping_storage_data_1055 ^ i_input_data[280 % IN_WIDTH];
             318 / IN_WIDTH: ping_storage_data_1055 <= ping_storage_data_1055 ^ i_input_data[318 % IN_WIDTH];
