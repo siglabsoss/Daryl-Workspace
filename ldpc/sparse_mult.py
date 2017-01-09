@@ -13,7 +13,7 @@ with open('matrix_A.txt', 'r') as fid:
         for number in line.split(','):
             ldata.append(int(number))
         spmat.append(ldata)
-os.system('rm -f sparse_mult_by_A.sv')
+#os.system('rm -f sparse_mult_by_A.sv')
 with open('sparse_mult_by_A.sv', 'w') as fid:
     print(temp.render(
             postfix='by_A',

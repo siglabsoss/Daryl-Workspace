@@ -164,7 +164,7 @@ always_comb begin
         end
         case (output_count)
         {% for cval in range(out_length) %}{% if loop.index == out_length%}default{% else %}{{ cval }}{% endif %}: o_output_data = { {% for cval2 in range(output_width) %}
-            ping_storage_data_{{ output_width * cval + cval2 }}{% if loop.index != output_width %},{% endif %}{% endfor %}
+            ping_storage_data_{{ output_width * (cval + 1) - 1 - cval2 }}{% if loop.index != output_width %},{% endif %}{% endfor %}
         };
         {% endfor %}endcase
         o_output_valid = 1'b1;
@@ -176,7 +176,7 @@ always_comb begin
         end
         case (output_count)
         {% for cval in range(out_length) %}{% if loop.index == out_length%}default{% else %}{{ cval }}{% endif %}: o_output_data = { {% for cval2 in range(output_width) %}
-            pong_storage_data_{{ output_width * cval + cval2 }}{% if loop.index != output_width %},{% endif %}{% endfor %}
+            pong_storage_data_{{ output_width * (cval + 1) - 1 - cval2 }}{% if loop.index != output_width %},{% endif %}{% endfor %}
         };
         {% endfor %}endcase
         o_output_valid = 1'b1;
