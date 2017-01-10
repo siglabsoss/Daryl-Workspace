@@ -72,11 +72,13 @@ always_ff @ (posedge i_clock) begin
     end
 end
 
+// Used for the case structure in the next always block
 logic [5:0] ping_pong_test;
 logic       last_cycle_in;
 logic       last_cycle_out;
-// assign last_cycle_in = (input_count == INPUT_LENGTH-1);
-// assign last_cycle_out = (output_count == OUTPUT_LENGTH-1);
+// A transition to ST_PING or ST_PONG indicates that
+// the bit accumulators should be reset to 1'b0...
+logic       fillup_transition;
 assign ping_pong_test = {
     last_cycle_in, last_cycle_out,
     i_input_valid, o_input_ready,
@@ -86,21 +88,25 @@ always_ff @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
         ping_is_full <= 1'b0;
         pong_is_full <= 1'b0;
+        fillup_transition <= 1'b0;
     end else begin
-        if ((i_input_valid == 1'b1) 
-                && ((fillup_state == ST_PING) 
+        // Calculate when we are on the last cycle of input
+        if ((i_input_valid == 1'b1)
+                && ((fillup_state == ST_PING)
                     || (fillup_state == ST_PONG))) begin
             last_cycle_in <= input_count == INPUT_LENGTH-2;
         end else begin
             last_cycle_in <= 1'b0;
         end
-        if ((i_output_ready == 1'b1) 
-                && ((readout_state == ST_PING) 
+        // Calculate when we are on the last cycle of output
+        if ((i_output_ready == 1'b1)
+                && ((readout_state == ST_PING)
                     || (readout_state == ST_PONG))) begin
             last_cycle_out <= output_count == OUTPUT_LENGTH-2;
         end else begin
             last_cycle_out <= 1'b0;
         end
+        // Incdicate when the ping and/or pong buffer is full to FSM
         case (ping_pong_test)
         6'b101100, 6'b101101, 6'b101110, 6'b101111, 6'b111100, 6'b111101, 6'b111110: begin
             if (fillup_state == ST_PING) begin
@@ -129,6 +135,13 @@ always_ff @(posedge i_clock) begin
             pong_is_full <= pong_is_full;
         end
         endcase
+        // Indicate a clock cycle when a transition occurs.
+        if (((next_fillup_state == ST_PING) && (fillup_state != ST_PING))
+                || ((next_fillup_state == ST_PONG) && (fillup_state != ST_PONG))) begin
+            fillup_transition <= 1'b1;
+        end else begin
+            fillup_transition <= 1'b0;
+        end
     end
 end
 
@@ -238,17 +251,26 @@ always_ff @ (posedge i_clock) begin
     if (i_reset == 1'b1) begin
         ping_storage_data_{{ loop.index0 }} <= 1'b0;
         pong_storage_data_{{ loop.index0 }} <= 1'b0;
-    end else if ((i_input_valid & o_input_ready) == 1'b1) begin
-        if (fillup_state == ST_PING) begin{% set outer_loop_index = loop.index0 %}
-            case (input_count){% for next_nonzero_element in row %}
-            {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
-            default: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }};
-            endcase
+    end else begin
+        if ((i_input_valid & o_input_ready) == 1'b1) begin
+            if (fillup_state == ST_PING) begin{% set outer_loop_index = loop.index0 %}
+                case (input_count){% for next_nonzero_element in row %}
+                {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? i_input_data[{{ next_nonzero_element }} % IN_WIDTH] : ping_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
+                default: ping_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? 1'b0 : ping_storage_data_{{ outer_loop_index }};
+                endcase
+            end else begin
+                case (input_count){% for next_nonzero_element in row %}
+                {{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? i_input_data[{{ next_nonzero_element }} % IN_WIDTH] : pong_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
+                default: pong_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? 1'b0 : pong_storage_data_{{ outer_loop_index }};
+                endcase
+            end
         end else begin
-            case (input_count){% for next_nonzero_element in row %}
-            {{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= pong_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
-            default: pong_storage_data_{{ outer_loop_index }} <= pong_storage_data_{{ outer_loop_index }};
-            endcase
+            if ((fillup_state == ST_PING)) begin
+                ping_storage_data_{{ loop.index0 }} <= (fillup_transition == 1'b1) ? 1'b0 : ping_storage_data_{{ outer_loop_index }};
+            end
+            if ((fillup_state == ST_PONG) && (fillup_transition == 1'b1)) begin
+                pong_storage_data_{{ loop.index0 }} <= (fillup_transition == 1'b1) ? 1'b0 : pong_storage_data_{{ outer_loop_index }};
+            end
         end
     end
 end
