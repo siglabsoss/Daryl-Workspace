@@ -32,8 +32,10 @@ typedef enum {
     ST_WAIT_FOR_PONG
 } states_t;
 
-states_t fillup_state, next_fillup_state;
-states_t readout_state, next_readout_state;
+states_t fillup_state;
+states_t next_fillup_state;
+states_t readout_state;
+states_t next_readout_state;
 
 always_ff @ (posedge i_clock) begin
     if (i_reset == 1'b1) begin
@@ -73,8 +75,8 @@ end
 logic [5:0] ping_pong_test;
 logic       last_cycle_in;
 logic       last_cycle_out;
-assign last_cycle_in = (input_count == INPUT_LENGTH-1);
-assign last_cycle_out = (output_count == OUTPUT_LENGTH-1);
+// assign last_cycle_in = (input_count == INPUT_LENGTH-1);
+// assign last_cycle_out = (output_count == OUTPUT_LENGTH-1);
 assign ping_pong_test = {
     last_cycle_in, last_cycle_out,
     i_input_valid, o_input_ready,
@@ -85,6 +87,20 @@ always_ff @(posedge i_clock) begin
         ping_is_full <= 1'b0;
         pong_is_full <= 1'b0;
     end else begin
+        if ((i_input_valid == 1'b1) 
+                && ((fillup_state == ST_PING) 
+                    || (fillup_state == ST_PONG))) begin
+            last_cycle_in <= input_count == INPUT_LENGTH-2;
+        end else begin
+            last_cycle_in <= 1'b0;
+        end
+        if ((i_output_ready == 1'b1) 
+                && ((readout_state == ST_PING) 
+                    || (readout_state == ST_PONG))) begin
+            last_cycle_out <= output_count == OUTPUT_LENGTH-2;
+        end else begin
+            last_cycle_out <= 1'b0;
+        end
         case (ping_pong_test)
         6'b101100, 6'b101101, 6'b101110, 6'b101111, 6'b111100, 6'b111101, 6'b111110: begin
             if (fillup_state == ST_PING) begin
@@ -122,6 +138,8 @@ always_comb begin
         if ((input_count == INPUT_LENGTH - 1)
                 && (i_input_valid == 1'b1)) begin
             next_fillup_state = pong_is_full ? ST_WAIT_FOR_PONG : ST_PONG;
+        end else begin
+            next_fillup_state = ST_PING;
         end
         o_input_ready = 1'b1;
     end
@@ -129,6 +147,8 @@ always_comb begin
         if ((input_count == INPUT_LENGTH - 1)
                 && (i_input_valid == 1'b1)) begin
             next_fillup_state = ping_is_full ? ST_WAIT_FOR_PING : ST_PING;
+        end else begin
+            next_fillup_state = ST_PONG;
         end
         o_input_ready = 1'b1;
     end
@@ -161,6 +181,8 @@ always_comb begin
         if ((output_count == OUTPUT_LENGTH - 1)
                 && (i_output_ready == 1'b1)) begin
             next_readout_state = pong_is_full ? ST_PONG : ST_WAIT_FOR_PONG;
+        end else begin
+            next_readout_state = ST_PING;
         end
         case (output_count)
         {% for cval in range(out_length) %}{% if loop.index == out_length%}default{% else %}{{ cval }}{% endif %}: o_output_data = { {% for cval2 in range(output_width) %}
@@ -173,6 +195,8 @@ always_comb begin
         if ((output_count == OUTPUT_LENGTH - 1)
                 && (i_output_ready == 1'b1)) begin
             next_readout_state = ping_is_full ? ST_PING : ST_WAIT_FOR_PING;
+        end else begin
+            next_readout_state = ST_PONG;
         end
         case (output_count)
         {% for cval in range(out_length) %}{% if loop.index == out_length%}default{% else %}{{ cval }}{% endif %}: o_output_data = { {% for cval2 in range(output_width) %}
@@ -187,6 +211,7 @@ always_comb begin
         end else begin
             next_readout_state = ST_WAIT_FOR_PING;
         end
+        o_output_data = 0;
         o_output_valid = 1'b0;
     end
     ST_WAIT_FOR_PONG: begin
@@ -195,10 +220,12 @@ always_comb begin
         end else begin
             next_readout_state = ST_WAIT_FOR_PONG;
         end
+        o_output_data = 0;
         o_output_valid = 1'b0;
     end
     default: begin // ST_INIT
         next_readout_state = ST_WAIT_FOR_PING;
+        o_output_data = 0;
         o_output_valid = 1'b0;
     end
     endcase
