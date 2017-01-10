@@ -252,23 +252,23 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data_{{ loop.index0 }} <= 1'b0;
         pong_storage_data_{{ loop.index0 }} <= 1'b0;
     end else begin
-        if ((i_input_valid & o_input_ready) == 1'b1) begin
-            if (fillup_state == ST_PING) begin{% set outer_loop_index = loop.index0 %}
+        if (fillup_state == ST_PING) begin
+            if (i_input_valid) begin{% set outer_loop_index = loop.index0 %}
                 case (input_count){% for next_nonzero_element in row %}
-                {{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? i_input_data[{{ next_nonzero_element }} % IN_WIDTH] : ping_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
+                {% if next_nonzero_element < output_width %}{{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? i_input_data[{{ next_nonzero_element }} % IN_WIDTH] : ping_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% else %}{{ next_nonzero_element }} / IN_WIDTH: ping_storage_data_{{ outer_loop_index }} <= ping_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endif %}{% endfor %}
                 default: ping_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? 1'b0 : ping_storage_data_{{ outer_loop_index }};
                 endcase
             end else begin
-                case (input_count){% for next_nonzero_element in row %}
-                {{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? i_input_data[{{ next_nonzero_element }} % IN_WIDTH] : pong_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endfor %}
-                default: pong_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? 1'b0 : pong_storage_data_{{ outer_loop_index }};
-                endcase
-            end
-        end else begin
-            if ((fillup_state == ST_PING)) begin
                 ping_storage_data_{{ loop.index0 }} <= (fillup_transition == 1'b1) ? 1'b0 : ping_storage_data_{{ outer_loop_index }};
             end
-            if ((fillup_state == ST_PONG) && (fillup_transition == 1'b1)) begin
+        end
+        if (fillup_state == ST_PONG) begin
+            if (i_input_valid) begin{% set outer_loop_index = loop.index0 %}
+                case (input_count){% for next_nonzero_element in row %}
+                {% if next_nonzero_element < output_width %}{{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? i_input_data[{{ next_nonzero_element }} % IN_WIDTH] : pong_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% else %}{{ next_nonzero_element }} / IN_WIDTH: pong_storage_data_{{ outer_loop_index }} <= pong_storage_data_{{ outer_loop_index }} ^ i_input_data[{{ next_nonzero_element }} % IN_WIDTH];{% endif %}{% endfor %}
+                default: pong_storage_data_{{ outer_loop_index }} <= (fillup_transition == 1'b1) ? 1'b0 : pong_storage_data_{{ outer_loop_index }};
+                endcase
+            end else begin
                 pong_storage_data_{{ loop.index0 }} <= (fillup_transition == 1'b1) ? 1'b0 : pong_storage_data_{{ outer_loop_index }};
             end
         end
