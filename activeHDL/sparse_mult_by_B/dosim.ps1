@@ -17,8 +17,8 @@ function Compile-Verilog
 vlib work
 
 # Compile the Verilog Files
-Compile-Verilog tb_my_module.sv
-Compile-Verilog my_module.sv
+Compile-Verilog tb_sparse_mult_by_B.sv
+Compile-Verilog sparse_mult_by_B.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do

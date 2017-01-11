@@ -1,4 +1,4 @@
-vsim -c -log sim.log +access +r -lib work tb_my_module
+vsim -c -log sim.log +access +r -lib work tb_sparse_mult_by_B
 trace -rec *
 run -all
 asdb2vcd wave.asdb wave.vcd
