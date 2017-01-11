@@ -1,4 +1,4 @@
-// tb_sparse_mult_by_A.sv
+// tb_sparse_mult_by_E.sv
 //
 
 `timescale 10ps / 10ps
@@ -369,7 +369,7 @@ initial begin: stimulus
     i_output_ready = 1'b0;
     #10000;
     if (run_count != 5) begin
-        $display("Error: Test 4 failed! Expected 5 data words, but received %d.", run_count);
+        $display("Error: Test 5 failed! Expected 5 data words, but received %d.", run_count);
         glbl_err_count++;
     end
     #100;
