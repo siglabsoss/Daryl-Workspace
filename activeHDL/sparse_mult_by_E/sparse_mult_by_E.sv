@@ -210,12 +210,12 @@ always_ff @ (posedge i_clock) begin
         ping_storage_data <= 0;
         pong_storage_data <= 0;
     end else begin
-        if ((fillup_state == ST_PING) && (i_input_valid)
-                && (input_count == OUTPUT_LENGTH-1)) begin
+        if ((fillup_state == ST_PING) && (i_input_valid == 1'b1)
+                && (last_cycle_in == 1'b1)) begin
             ping_storage_data <= i_input_data;
         end
         if ((fillup_state == ST_PONG) && (i_input_valid == 1'b1)
-                && (input_count == OUTPUT_LENGTH-1)) begin
+                && (last_cycle_in == 1'b1)) begin
             pong_storage_data <= i_input_data;
         end
     end

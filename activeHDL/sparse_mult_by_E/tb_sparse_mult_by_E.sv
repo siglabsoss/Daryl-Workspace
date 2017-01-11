@@ -31,7 +31,7 @@ end
 localparam integer INPUT_LEN = 11;
 localparam integer OUTPUT_LEN = 1;
 
-logic [WIDTH-1:0] input_samples_low [0:5*INPUT_LEN-1] = {
+logic [WIDTH/3-1:0] input_samples_low [0:5*INPUT_LEN-1] = {
     2097153, 1073742336, 262144, 134217792, 32768, 16777224,
     4096, 2097153, 1073742336, 262144, 134217792,
 
@@ -45,7 +45,7 @@ logic [WIDTH-1:0] input_samples_low [0:5*INPUT_LEN-1] = {
     123, 246, 123000, 246000, 1346, 12, 96, 53, 36, 44, 0
 };
 
-logic [WIDTH-1:0] input_samples_mid [0:5*INPUT_LEN-1] = {
+logic [WIDTH/3-1:0] input_samples_mid [0:5*INPUT_LEN-1] = {
     2147484672, 524288, 268435584, 65536, 33554448, 8192,
     4194306, 2147484672, 524288, 268435584, 65536,
 
@@ -61,7 +61,7 @@ logic [WIDTH-1:0] input_samples_mid [0:5*INPUT_LEN-1] = {
     41943, 2184672, 524280, 268435580, 65532
 };
 
-logic [WIDTH-1:0] input_samples_high [0:5*INPUT_LEN-1] = {
+logic [WIDTH/3-1:0] input_samples_high [0:5*INPUT_LEN-1] = {
     1048576, 536871168, 131072, 67108896, 16384, 8388612,
     2048, 1048576, 536871168, 131072, 67108896,
 
