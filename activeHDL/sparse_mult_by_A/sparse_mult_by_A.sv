@@ -68,7 +68,6 @@ always_ff @ (posedge i_clock) begin
                 output_count <= output_count + 1;
             end
         end
-
     end
 end
 
@@ -198,7 +197,7 @@ always_comb begin
             next_readout_state = ST_PING;
         end
         case (output_count)
-        0: o_output_data = { 
+        0: o_output_data = {
             ping_storage_data_95,
             ping_storage_data_94,
             ping_storage_data_93,
@@ -296,7 +295,7 @@ always_comb begin
             ping_storage_data_1,
             ping_storage_data_0
         };
-        1: o_output_data = { 
+        1: o_output_data = {
             ping_storage_data_191,
             ping_storage_data_190,
             ping_storage_data_189,
@@ -394,7 +393,7 @@ always_comb begin
             ping_storage_data_97,
             ping_storage_data_96
         };
-        2: o_output_data = { 
+        2: o_output_data = {
             ping_storage_data_287,
             ping_storage_data_286,
             ping_storage_data_285,
@@ -492,7 +491,7 @@ always_comb begin
             ping_storage_data_193,
             ping_storage_data_192
         };
-        3: o_output_data = { 
+        3: o_output_data = {
             ping_storage_data_383,
             ping_storage_data_382,
             ping_storage_data_381,
@@ -590,7 +589,7 @@ always_comb begin
             ping_storage_data_289,
             ping_storage_data_288
         };
-        4: o_output_data = { 
+        4: o_output_data = {
             ping_storage_data_479,
             ping_storage_data_478,
             ping_storage_data_477,
@@ -688,7 +687,7 @@ always_comb begin
             ping_storage_data_385,
             ping_storage_data_384
         };
-        5: o_output_data = { 
+        5: o_output_data = {
             ping_storage_data_575,
             ping_storage_data_574,
             ping_storage_data_573,
@@ -786,7 +785,7 @@ always_comb begin
             ping_storage_data_481,
             ping_storage_data_480
         };
-        6: o_output_data = { 
+        6: o_output_data = {
             ping_storage_data_671,
             ping_storage_data_670,
             ping_storage_data_669,
@@ -884,7 +883,7 @@ always_comb begin
             ping_storage_data_577,
             ping_storage_data_576
         };
-        7: o_output_data = { 
+        7: o_output_data = {
             ping_storage_data_767,
             ping_storage_data_766,
             ping_storage_data_765,
@@ -982,7 +981,7 @@ always_comb begin
             ping_storage_data_673,
             ping_storage_data_672
         };
-        8: o_output_data = { 
+        8: o_output_data = {
             ping_storage_data_863,
             ping_storage_data_862,
             ping_storage_data_861,
@@ -1080,7 +1079,7 @@ always_comb begin
             ping_storage_data_769,
             ping_storage_data_768
         };
-        9: o_output_data = { 
+        9: o_output_data = {
             ping_storage_data_959,
             ping_storage_data_958,
             ping_storage_data_957,
@@ -1178,7 +1177,7 @@ always_comb begin
             ping_storage_data_865,
             ping_storage_data_864
         };
-        default: o_output_data = { 
+        default: o_output_data = {
             ping_storage_data_1055,
             ping_storage_data_1054,
             ping_storage_data_1053,
@@ -1287,7 +1286,7 @@ always_comb begin
             next_readout_state = ST_PONG;
         end
         case (output_count)
-        0: o_output_data = { 
+        0: o_output_data = {
             pong_storage_data_95,
             pong_storage_data_94,
             pong_storage_data_93,
@@ -1385,7 +1384,7 @@ always_comb begin
             pong_storage_data_1,
             pong_storage_data_0
         };
-        1: o_output_data = { 
+        1: o_output_data = {
             pong_storage_data_191,
             pong_storage_data_190,
             pong_storage_data_189,
@@ -1483,7 +1482,7 @@ always_comb begin
             pong_storage_data_97,
             pong_storage_data_96
         };
-        2: o_output_data = { 
+        2: o_output_data = {
             pong_storage_data_287,
             pong_storage_data_286,
             pong_storage_data_285,
@@ -1581,7 +1580,7 @@ always_comb begin
             pong_storage_data_193,
             pong_storage_data_192
         };
-        3: o_output_data = { 
+        3: o_output_data = {
             pong_storage_data_383,
             pong_storage_data_382,
             pong_storage_data_381,
@@ -1679,7 +1678,7 @@ always_comb begin
             pong_storage_data_289,
             pong_storage_data_288
         };
-        4: o_output_data = { 
+        4: o_output_data = {
             pong_storage_data_479,
             pong_storage_data_478,
             pong_storage_data_477,
@@ -1777,7 +1776,7 @@ always_comb begin
             pong_storage_data_385,
             pong_storage_data_384
         };
-        5: o_output_data = { 
+        5: o_output_data = {
             pong_storage_data_575,
             pong_storage_data_574,
             pong_storage_data_573,
@@ -1875,7 +1874,7 @@ always_comb begin
             pong_storage_data_481,
             pong_storage_data_480
         };
-        6: o_output_data = { 
+        6: o_output_data = {
             pong_storage_data_671,
             pong_storage_data_670,
             pong_storage_data_669,
@@ -1973,7 +1972,7 @@ always_comb begin
             pong_storage_data_577,
             pong_storage_data_576
         };
-        7: o_output_data = { 
+        7: o_output_data = {
             pong_storage_data_767,
             pong_storage_data_766,
             pong_storage_data_765,
@@ -2071,7 +2070,7 @@ always_comb begin
             pong_storage_data_673,
             pong_storage_data_672
         };
-        8: o_output_data = { 
+        8: o_output_data = {
             pong_storage_data_863,
             pong_storage_data_862,
             pong_storage_data_861,
@@ -2169,7 +2168,7 @@ always_comb begin
             pong_storage_data_769,
             pong_storage_data_768
         };
-        9: o_output_data = { 
+        9: o_output_data = {
             pong_storage_data_959,
             pong_storage_data_958,
             pong_storage_data_957,
@@ -2267,7 +2266,7 @@ always_comb begin
             pong_storage_data_865,
             pong_storage_data_864
         };
-        default: o_output_data = { 
+        default: o_output_data = {
             pong_storage_data_1055,
             pong_storage_data_1054,
             pong_storage_data_1053,
