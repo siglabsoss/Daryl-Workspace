@@ -26,8 +26,6 @@ enum {
     ST_PASSTHRU,
     ST_HALT
 } curr_state, next_state;
-logic [1:0] curr_state;
-logic [1:0] next_state;
 
 // Combinatorial outputs of FSM
 logic [WIDTH-1:0] next_out_data;
