@@ -7,100 +7,107 @@
 
 module tb_sparse_mult_by_C;
 
-localparam integer WIDTH = 96;
+localparam integer IN_WIDTH = 8;
+localparam integer OUT_WIDTH = 96;
 
 // Clock and Reset
-logic             i_clock;
-logic             i_reset;
+logic                 i_clock;
+logic                 i_reset;
 // Upstream signaling
-logic [WIDTH-1:0] i_input_data;
-logic             i_input_valid;
-logic             o_input_ready;
+logic [IN_WIDTH-1:0]  i_input_data;
+logic                 i_input_valid;
+logic                 o_input_ready;
 // Downstream signaling
-logic [WIDTH-1:0] o_output_data;
-logic             o_output_valid;
-logic             i_output_ready;
+logic [OUT_WIDTH-1:0] o_output_data;
+logic                 o_output_valid;
+logic                 i_output_ready;
 
-sparse_mult_by_C #(.WIDTH(WIDTH)) uut (.*);
+sparse_mult_by_C #(
+    .IN_WIDTH(IN_WIDTH),
+    .OUT_WIDTH(OUT_WIDTH))
+uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
     #5 i_clock = 1'b0;
 end
 
-localparam integer INPUT_LEN = 12;
+localparam integer INPUT_LEN = 144;
 localparam integer OUTPUT_LEN = 1;
 
-logic [WIDTH/3-1:0] input_samples_low [0:5*INPUT_LEN-1] = {
-    1227133513, 1108378657, 4196353, 33570824,
-    268566592, 2148532736, 8392706, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295,
+logic [IN_WIDTH-1:0] input_samples [0:5*INPUT_LEN-1] = {
+    85, 117, 85, 85, 213, 85, 85, 85, 87, 85, 85, 93,
+    85, 213, 117, 85, 85, 213, 85, 85, 85, 87, 85, 85,
+    93, 87, 93, 117, 85, 85, 213, 85, 85, 85, 87, 85,
+    85, 93, 85, 85, 117, 117, 85, 213, 85, 85, 85, 87,
+    85, 85, 93, 85, 85, 117, 85, 85, 213, 85, 85, 85,
+    87, 85, 85, 93, 85, 85, 117, 85, 85, 221, 85, 85,
+    85, 87, 85, 93, 93, 85, 85, 119, 85, 85, 213, 85,
+    85, 85, 87, 85, 85, 93, 85, 85, 117, 85, 85, 213,
+    85, 87, 85, 87, 85, 85, 93, 85, 85, 117, 85, 85,
+    213, 85, 85, 85, 87, 85, 85, 93, 85, 85, 117, 85,
+    85, 213, 85, 85, 213, 119, 85, 85, 93, 85, 85, 245,
+    85, 85, 213, 85, 85, 85, 87, 85, 85, 93, 85, 85,
 
-    524289, 1, 1227133513, 1227133513, 1227133513,
-    1227133513, 1227133513, 554189328, 277094664,
-    138547332, 2216757314, 1108378657,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 64, 2, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 16, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 24, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 1, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    8, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 32, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
 
-    524289, 262144, 131072, 65536, 32768, 16384,
-    8192, 2147487744, 1073743872, 536871936,
-    268435968, 134217984,
+    1, 128, 0, 64, 0, 32, 0, 16, 0, 8, 0, 4, 34, 2,
+    8, 1, 128, 0, 64, 0, 32, 0, 16, 0, 12, 4, 4, 0,
+    66, 0, 1, 128, 0, 64, 0, 32, 8, 144, 0, 8, 0, 4,
+    0, 2, 0, 1, 128, 0, 80, 0, 48, 0, 16, 0, 8, 0,
+    4, 16, 2, 0, 33, 128, 0, 66, 0, 32, 0, 16, 0, 8,
+    0, 132, 64, 2, 0, 65, 128, 0, 64, 0, 32, 0, 16,
+    0, 136, 0, 4, 0, 10, 0, 1, 128, 0, 64, 0, 32, 0,
+    17, 0, 8, 32, 5, 0, 2, 0, 1, 128, 0, 64, 2, 32,
+    0, 16, 32, 8, 1, 4, 0, 2, 0, 1, 132, 0, 64, 0,
+    32, 4, 16, 0, 8, 0, 4, 0, 10, 0, 1, 128, 0, 192,
+    0, 32, 0, 16, 64,
 
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
-    4294967295, 4294967295, 4294967295, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255
 };
 
-logic [WIDTH/3-1:0] input_samples_mid [0:5*INPUT_LEN-1] = {
-    2454267026, 277094664, 8392706, 67141648,
-    537133184, 2098176, 16785412, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295,
-
-    33554496, 0, 2454267026, 2454267026, 2454267026,
-    2454267026, 2454267026, 138547332, 2216757314,
-    1108378657, 554189328, 277094664,
-
-    33554496, 16777248, 8388624, 4194312, 2097156,
-    1048578, 524289, 262144, 131072, 65536, 32768,
-    16384,
-
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-
-    4294967295, 4294967295, 4294967295, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295
+logic [OUT_WIDTH/3-1:0] output_samples_low [0:5*OUTPUT_LEN-1] = {
+    8409120, 0, 1103151489, 0, 0
 };
 
-logic [WIDTH/3-1:0] input_samples_high [0:5*INPUT_LEN-1] = {
-    613566756, 2216757314, 16785412, 134283296,
-    1074266368, 4196353, 2181054472, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295,
-
-    2147487744, 8192, 613566756, 613566756, 613566756,
-    613566756, 2761050404, 1108378657, 554189328,
-    277094664, 138547332, 2216757314,
-
-    2147487744, 1073743872, 536871936, 268435968,
-    134217984, 67108992, 33554496, 16777248,
-    8388624, 4194312, 2097156, 1048578,
-
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-
-    4294967295, 4294967295, 4294967295, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295,
-    4294967295, 4294967295, 4294967295, 4294967295
+logic [OUT_WIDTH/3-1:0] output_samples_mid [0:5*OUTPUT_LEN-1] = {
+    83894592, 1207961600, 470104136, 0, 0
 };
 
-logic [WIDTH/3-1:0] output_samples_low [0:5*OUTPUT_LEN-1] = {
-    2462659728, 4005319784, 12582936, 0, 0
-};
-
-logic [WIDTH/3-1:0] output_samples_mid [0:5*OUTPUT_LEN-1] = {
-    630352160, 3821357574, 1342180870, 0, 0
-};
-
-logic [WIDTH/3-1:0] output_samples_high [0:5*OUTPUT_LEN-1] = {
-    1231329865, 2834518498, 196608, 0, 0
+logic [OUT_WIDTH/3-1:0] output_samples_high [0:5*OUTPUT_LEN-1] = {
+    538183688, 131072, 2332104324, 0, 0
 };
 
 // debug variable declarations
@@ -155,7 +162,7 @@ initial begin: stimulus
     @(negedge i_clock) begin
         i_input_valid = 1'b1;
         i_output_ready = 1'b0;
-        #10;
+        #1440;
     end
     @(negedge i_clock) begin
         i_input_valid = 1'b0;
@@ -180,11 +187,7 @@ initial begin: stimulus
     #10;
     for (integer idx = 0; idx < INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -198,7 +201,7 @@ initial begin: stimulus
     i_output_ready = 1'b0;
     #10000;
     if (run_count != OUTPUT_LEN) begin
-        $display("Error: Test 3 failed! Expected 11 data words, but received %d.", run_count);
+        $display("Error: Test 3 failed! Expected 1 data words, but received %d.", run_count);
         glbl_err_count++;
     end
     #100;
@@ -213,11 +216,7 @@ initial begin: stimulus
     for (integer idx = 0; idx < INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 0
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -230,11 +229,7 @@ initial begin: stimulus
     for (integer idx = INPUT_LEN; idx < 2*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 1
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -245,11 +240,7 @@ initial begin: stimulus
     for (integer idx = 2*INPUT_LEN; idx < 3*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 2
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -260,11 +251,7 @@ initial begin: stimulus
     for (integer idx = 3*INPUT_LEN; idx < 4*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 3
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -275,11 +262,7 @@ initial begin: stimulus
     for (integer idx = 4*INPUT_LEN; idx < 5*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 4
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -296,7 +279,7 @@ initial begin: stimulus
     i_output_ready = 1'b0;
     #10000;
     if (run_count != 5*OUTPUT_LEN) begin
-        $display("Error: Test 4 failed! Expected 55 data words, but received %d.", run_count);
+        $display("Error: Test 4 failed! Expected 5 data words, but received %d.", run_count);
         glbl_err_count++;
     end
     #100;
@@ -311,11 +294,7 @@ initial begin: stimulus
     for (integer idx = 0; idx < INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 0
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -328,11 +307,7 @@ initial begin: stimulus
     for (integer idx = INPUT_LEN; idx < 2*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 1
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -345,11 +320,7 @@ initial begin: stimulus
     for (integer idx = 2*INPUT_LEN; idx < 3*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 2
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -362,11 +333,7 @@ initial begin: stimulus
     for (integer idx = 3*INPUT_LEN; idx < 4*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 3
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -379,11 +346,7 @@ initial begin: stimulus
     for (integer idx = 4*INPUT_LEN; idx < 5*INPUT_LEN; idx = idx + 1) begin
         @(negedge i_clock) begin
             // pass 4
-            i_input_data = {
-                input_samples_high[idx],
-                input_samples_mid[idx],
-                input_samples_low[idx]
-            };
+            i_input_data = input_samples[idx];
             i_input_valid = 1'b1;
             #10;
         end
@@ -397,7 +360,7 @@ initial begin: stimulus
     i_output_ready = 1'b0;
     #10000;
     if (run_count != 5*OUTPUT_LEN) begin
-        $display("Error: Test 5 failed! Expected 55 data words, but received %d.", run_count);
+        $display("Error: Test 5 failed! Expected 5 data words, but received %d.", run_count);
         glbl_err_count++;
     end
     #100;
@@ -413,7 +376,7 @@ end
 
 // Tests the output sequence to make sure it matches the input
 logic [31:0] pass_count;
-logic [WIDTH-1:0] expected_value;
+logic [OUT_WIDTH-1:0] expected_value;
 always @(posedge i_clock) begin: seq_check
     if (i_reset == 1'b1) begin
         run_count <= 0;
