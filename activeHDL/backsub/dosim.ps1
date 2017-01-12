@@ -18,7 +18,7 @@ vlib work
 
 # Compile the Verilog Files
 Compile-Verilog tb_dual_diagonal_backsub.sv
-Compile-Verilog dual_diagonal_backsub_with_backpressure.sv
+Compile-Verilog dual_diagonal_backsub.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do
