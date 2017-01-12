@@ -23,28 +23,30 @@ logic        out_valid_C;
 logic        out_ready_C;
 logic        in_ready_C;
 
+logic concatenator_ready;
+
 // Input is ready only when all modules are ready
-assign o_in_ready = in_ready_A & in_ready_C;
+assign o_in_ready = in_ready_A & in_ready_C & concatenator_ready;
 
 sparse_mult_by_A sparse_mult_by_A_inst (
-    .i_in_data  (i_in_data              ),
-    .i_in_valid (i_in_valid & in_ready_C),
-    .o_in_ready (in_ready_A             ),
-    .o_out_data (out_data_A             ),
-    .o_out_valid(out_valid_A            ),
-    .i_out_ready(out_ready_A            ),
-    .i_clock    (i_clock                ),
-    .i_reset    (i_reset                ));
+    .i_in_data  (i_in_data                                   ),
+    .i_in_valid (i_in_valid & in_ready_C & concatenator_ready),
+    .o_in_ready (in_ready_A                                  ),
+    .o_out_data (out_data_A                                  ),
+    .o_out_valid(out_valid_A                                 ),
+    .i_out_ready(out_ready_A                                 ),
+    .i_clock    (i_clock                                     ),
+    .i_reset    (i_reset                                     ));
 
 sparse_mult_by_C sparse_mult_by_C_inst (
-    .i_in_data  (i_in_data              ),
-    .i_in_valid (i_in_valid & in_ready_A),
-    .o_in_ready (in_ready_C             ),
-    .o_out_data (out_data_C             ),
-    .o_out_valid(out_valid_C            ),
-    .i_out_ready(out_ready_C            ),
-    .i_clock    (i_clock                ),
-    .i_reset    (i_reset                ));
+    .i_in_data  (i_in_data                                   ),
+    .i_in_valid (i_in_valid & in_ready_A & concatenator_ready),
+    .o_in_ready (in_ready_C                                  ),
+    .o_out_data (out_data_C                                  ),
+    .o_out_valid(out_valid_C                                 ),
+    .i_out_ready(out_ready_C                                 ),
+    .i_clock    (i_clock                                     ),
+    .i_reset    (i_reset                                     ));
 
 logic [95:0] out_data_backsub_0;
 logic        out_valid_backsub_0;
@@ -84,63 +86,107 @@ logic        out_valid_E;
 logic        out_ready_E;
 
 sparse_mult_by_E sparse_mult_by_E_inst (
-    .i_in_data  (out_data_backsub_0              ),
-    .i_in_valid (out_valid_backsub_0             ),
-    .o_in_ready (out_ready_backsub_0             ),
-    .o_out_data (out_data_E                      ),
-    .o_out_valid(out_valid_E                     ),
-    .i_out_ready(out_ready_E                     ),
-    .i_clock    (i_clock                         ),
-    .i_reset    (i_reset                         ));
+    .i_in_data  (out_data_backsub_0 ),
+    .i_in_valid (out_valid_backsub_0),
+    .o_in_ready (out_ready_backsub_0),
+    .o_out_data (out_data_E         ),
+    .o_out_valid(out_valid_E        ),
+    .i_out_ready(out_ready_E        ),
+    .i_clock    (i_clock            ),
+    .i_reset    (i_reset            ));
+
+logic [95:0] out_data_delay_1;
+logic        out_valid_delay_1;
+logic        out_ready_delay_1;
 
 delay_buffer delay_buffer_1_inst (
-    .i_in_data  (out_data_C                      ),
-    .i_in_valid (out_valid_C                     ),
-    .o_in_ready (out_ready_C                     ),
-    .o_out_data (out_data_delay_1                ),
-    .o_out_valid(out_data_delay_2                ),
-    .i_out_ready(out_data_delay_3                ),
-    .i_clock    (i_clock                         ),
-    .i_reset    (i_reset                         ));
+    .i_in_data  (out_data_C       ),
+    .i_in_valid (out_valid_C      ),
+    .o_in_ready (out_ready_C      ),
+    .o_out_data (out_data_delay_1 ),
+    .o_out_valid(out_valid_delay_1),
+    .i_out_ready(out_ready_delay_1),
+    .i_clock    (i_clock          ),
+    .i_reset    (i_reset          ));
 
-adder_gf2 adder_gf2_0_inst (
-    .i_lhs_data (),
-    .i_lhs_valid(),
-    .o_lhs_ready(),
-    .i_rhs_data (),
-    .i_rhs_valid(),
-    .o_rhs_ready(),
-    .o_sum_data (),
-    .o_sum_valid(),
-    .i_sum_ready(),
-    .i_clock    (),
-    .i_reset    ());
+logic [95:0] sum_data_0;
+logic        sum_valid_0;
+logic        sum_ready_0;
+
+adder_gf2 #(
+    .WIDTH(96))
+adder_gf2_0_inst (
+    .i_lhs_data (out_data_E       ),
+    .i_lhs_valid(out_valid_E      ),
+    .o_lhs_ready(out_ready_E      ),
+    .i_rhs_data (out_data_delay_1 ),
+    .i_rhs_valid(out_valid_delay_1),
+    .o_rhs_ready(out_ready_delay_1),
+    .o_sum_data (sum_data_0       ),
+    .o_sum_valid(sum_valid_0      ),
+    .i_sum_ready(sum_ready_0      ),
+    .i_clock    (i_clock          ),
+    .i_reset    (i_reset          ));
+
+logic [95:0] out_data_B;
+logic        out_valid_B;
+logic        out_ready_B;
 
 sparse_mult_by_B sparse_mult_by_B_inst (
-    );
+    .i_in_data  (sum_data_0      ),
+    .i_in_valid (sum_valid_0     ),
+    .o_in_ready (sum_ready_0     ),
+    .o_out_data (out_data_B      ),
+    .o_out_valid(out_valid_B     ),
+    .i_out_ready(out_ready_B     ),
+    .i_clock    (i_clock         ),
+    .i_reset    (i_reset         ));
 
-adder_gf2 adder_gf2_1_inst (
-    .i_lhs_data (),
-    .i_lhs_valid(),
-    .o_lhs_ready(),
-    .i_rhs_data (),
-    .i_rhs_valid(),
-    .o_rhs_ready(),
-    .o_sum_data (),
-    .o_sum_valid(),
-    .i_sum_ready(),
-    .i_clock    (),
-    .i_reset    ());
+logic [95:0] sum_data_1;
+logic        sum_valid_1;
+logic        sum_ready_1;
+
+adder_gf2 #(
+    .WIDTH(96))
+adder_gf2_1_inst (
+    .i_lhs_data (out_data_delay_0 ),
+    .i_lhs_valid(out_valid_delay_0),
+    .o_lhs_ready(out_ready_delay_0),
+    .i_rhs_data (out_data_B       ),
+    .i_rhs_valid(out_valid_B      ),
+    .o_rhs_ready(out_ready_B      ),
+    .o_sum_data (sum_data_1       ),
+    .o_sum_valid(sum_valid_1      ),
+    .i_sum_ready(sum_ready_1      ),
+    .i_clock    (i_clock          ),
+    .i_reset    (i_reset          ));
+
+logic [95:0] out_data_backsub_1;
+logic        out_valid_backsub_1;
+logic        out_ready_backsub_1;
 
 dual_diagonal_backsub dual_diagonal_backsub_1_inst (
-    .i_in_data  (out_data_A                    ),
-    .i_in_valid (out_valid_A & in_ready_delay_0),
-    .o_in_ready (in_ready_backsub_0            ),
-    .o_out_data (out_data_backsub_0            ),
-    .o_out_valid(out_valid_backsub_0           ),
-    .i_out_ready(out_ready_backsub_0           ),
-    .i_clock    (i_clock                       ),
-    .i_reset    (i_reset                       ));
+    .i_in_data  (sum_data_1         ),
+    .i_in_valid (sum_valid_1        ),
+    .o_in_ready (sum_ready_1        ),
+    .o_out_data (out_data_backsub_1 ),
+    .o_out_valid(out_valid_backsub_1),
+    .i_out_ready(out_ready_backsub_1),
+    .i_clock    (i_clock            ),
+    .i_reset    (i_reset            ));
+
+concatenator concatenator_inst (
+    .i_first_data  (i_in_data   ),
+    .i_first_valid (i_in_valid & out_ready_A & out_ready_C),
+    .i_first_ready (concatenator_ready                    ),
+    .i_second_data (sum_data_0                            ),
+    .i_second_valid(sum_valid_0                           ),
+    .i_second_ready(sum_ready_0                           ),
+    .i_third_data  (out_data_backsub_1                    ),
+    .i_third_valid (out_valid_backsub_1                   ),
+    .i_third_ready (out_ready_backsub_1                   ),
+    .i_clock       (i_clock                               ),
+    .i_reset       (i_reset                               ));
 
 endmodule: ldpc_encoder
 
