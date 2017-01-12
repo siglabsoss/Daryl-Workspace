@@ -3,19 +3,20 @@
 `default_nettype none
 
 module sparse_mult_by_C #(
-    parameter integer WIDTH = 96
+    parameter integer IN_WIDTH = 8,
+    parameter integer OUT_WIDTH = 96
 ) (
-    input  wire logic [WIDTH-1:0]   i_input_data,
-    input  wire logic               i_input_valid,
-    output      logic               o_input_ready,
-    output      logic [WIDTH-1:0]   o_output_data,
-    output      logic               o_output_valid,
-    input  wire logic               i_output_ready,
-    input  wire logic               i_clock,
-    input  wire logic               i_reset
+    input  wire logic [IN_WIDTH-1:0]   i_input_data,
+    input  wire logic                  i_input_valid,
+    output      logic                  o_input_ready,
+    output      logic [OUT_WIDTH-1:0]  o_output_data,
+    output      logic                  o_output_valid,
+    input  wire logic                  i_output_ready,
+    input  wire logic                  i_clock,
+    input  wire logic                  i_reset
 );
 
-localparam integer INPUT_LENGTH = 11;
+localparam integer INPUT_LENGTH = 144;
 localparam integer OUTPUT_LENGTH = 1;
 
 // Track which buffers are full on current clock cycle
