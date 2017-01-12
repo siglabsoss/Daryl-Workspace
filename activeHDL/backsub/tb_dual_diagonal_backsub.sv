@@ -18,9 +18,11 @@ logic                i_reset;
 // Upstream signaling
 logic [WIDTH-1:0]    i_in_data;
 logic                i_in_valid;
+logic                o_in_ready;
 // Downstream signaling
 logic [WIDTH-1:0]    o_out_data;
 logic                o_out_valid;
+logic                i_out_ready = 1'b1;
 
 dual_diagonal_backsub #(
     .WIDTH(WIDTH),
@@ -193,7 +195,8 @@ always @(posedge i_clock) begin: seq_check
         // Validate all zero sequence
         if ((o_out_valid == 1'b1) && (test_number == 4)) begin
             if (o_out_data != output_values[run_count % NUM_WORDS]) begin
-                $display("Error: Output of %d expected, but received %d.", output_values[run_count], o_out_data);
+                $display("Error: Output of %d expected, but received %d. (run_count = %d)",
+                        output_values[run_count % NUM_WORDS], o_out_data, run_count);
                 local_err_count++;
             end
         end
