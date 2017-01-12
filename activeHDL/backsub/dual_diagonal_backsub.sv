@@ -8,8 +8,10 @@ module dual_diagonal_backsub #(
 ) (
     input  wire logic [WIDTH-1:0] i_in_data,
     input  wire logic             i_in_valid,
+    output      logic             o_in_ready,
     output      logic [WIDTH-1:0] o_out_data,
     output      logic             o_out_valid,
+    input  wire logic             i_out_ready,
     input  wire logic             i_clock,
     input  wire logic             i_reset
 );
