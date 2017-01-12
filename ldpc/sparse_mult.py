@@ -57,6 +57,7 @@ with open('matrix_C.txt', 'r') as fid:
 os.system('del /Q sparse_mult_by_C.sv')
 with open('sparse_mult_by_C.sv', 'w') as fid:
     print(temp.render(
+            postfix='by_C',
             date=time.strftime("%m/%d/%Y"),
             input_width=8,
             output_width=96,
