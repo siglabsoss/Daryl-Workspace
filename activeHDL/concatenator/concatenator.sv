@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module my_module #(
+module concatenator #(
     parameter integer WIDTH = 8,
     parameter integer NUM_WORDS = 1024
 ) (
@@ -24,6 +24,6 @@ always @(posedge i_clock) begin
     end
 end
 
-endmodule: my_module
+endmodule: concatenator
 
 `default_nettype wire
