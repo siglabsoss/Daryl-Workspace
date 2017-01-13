@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+`timescale 10ps / 10ps
 
 `default_nettype none
 
