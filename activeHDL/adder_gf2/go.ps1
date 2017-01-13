@@ -19,7 +19,7 @@ vlib work
 # Compile the Verilog Files
 Compile-Verilog tb_adder_gf2.sv
 Compile-Verilog adder_gf2.sv
-Compile-Verilog adder_gf2.sv
+Compile-Verilog adder_gf2_skid.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do
