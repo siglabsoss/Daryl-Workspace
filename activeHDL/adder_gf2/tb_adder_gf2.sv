@@ -101,7 +101,7 @@ initial begin: stimulus
     #100;
     $display("Test 1 Done!");
 
-    // Test 1: No data in = no data out.
+    // Test 1: Basic xor operation
     $display("Test 2 Started!");
     test_number = 2;
     reset_all();
@@ -129,12 +129,50 @@ initial begin: stimulus
     #100;
     $display("Test 2 Done!");
 
+    // Test 3: lhs lags after rhs
+    $display("Test 3 Started!");
+    test_number = 3;
+    reset_all();
+    #1000;
+    for(countval = 0; countval < VECLEN; countval = countval + 1) begin
+        @(negedge i_clock) begin
+            i_rhs_data = rhs_input_vector[countval];
+            i_rhs_valid = 1'b1;
+            #10;
+            i_rhs_data = 0;
+            i_rhs_valid = 1'b0;
+        end
+        @(negedge i_clock) begin
+            i_lhs_data = lhs_input_vector[countval];
+            i_lhs_valid = 1'b1;
+            #10;
+            i_lhs_data = 0;
+            i_lhs_valid = 1'b0;
+        end
+        @(negedge i_clock) begin
+            i_sum_ready = 1'b1;
+            #20;
+        end
+    end
+    i_rhs_valid = 1'b0;
+    i_lhs_valid = 1'b0;
+    i_sum_ready = 1'b1;
+    #10000;
+    i_sum_ready = 1'b0;
+    #10;
+    if (run_count != VECLEN) begin
+        $display("Error: Test 3 failed! Expected 12 outputs, but received %d.", run_count);
+        glbl_err_count++;
+    end
+    #100;
+    $display("Test 3 Done!");
+
     // Finished
     #10000;
     glbl_err_count = glbl_err_count + local_err_count;
     #10;
     $display("Simulation done!");
-    if (glbl_err_count > 0) begin
+    if (glbl_err_count == 0) begin
         $display("SUCCESS!");
     end else begin
         $display("FAILED!");
