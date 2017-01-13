@@ -30,13 +30,13 @@ $destfile = $destdir + "\my_module.sv"
 (Get-Content $destfile) -replace '\[my_module\]', $name | Set-Content $destfile
 
 $destfile = $destdir + "\tb_my_module.sv"
-(Get-Content $destfile) -replace '\[my_module\]', $name | Set-Content $destfile
+(Get-Content $destfile) -replace 'my_module', $name | Set-Content $destfile
 
 $destfile = $destdir + "\dosim.do"
-(Get-Content $destfile) -replace '\[my_module\]', $name | Set-Content $destfile
+(Get-Content $destfile) -replace 'my_module', $name | Set-Content $destfile
 
-$destfile = $destdir + "\dosim.ps1"
-(Get-Content $destfile) -replace '\[my_module\]', $name | Set-Content $destfile
+$destfile = $destdir + "\go.ps1"
+(Get-Content $destfile) -replace 'my_module', $name | Set-Content $destfile
 
 # Rename files
 $srcfile = $destdir + "\my_module.sv"
