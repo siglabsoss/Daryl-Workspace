@@ -110,10 +110,9 @@ initial begin: stimulus
         @(negedge i_clock) begin
             i_rhs_data = rhs_input_vector[countval];
             i_rhs_valid = 1'b1;
-            i_rhs_data = lhs_input_vector[countval];
+            i_lhs_data = lhs_input_vector[countval];
             i_lhs_valid = 1'b1;
             i_sum_ready = 1'b1;
-            countval = countval + 1;
             #10;
         end
     end
