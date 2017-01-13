@@ -36,9 +36,9 @@ module concatenator #(
     input  wire logic                 i_reset
 );
 
-logic [WIDTH1:0] first_data;
-logic            first_valid;
-logic            first_ready;
+logic [WIDTH1-1:0] first_data;
+logic              first_valid;
+logic              first_ready;
 
 concatenator_ebr_fifo #(
     .WIDTH(WIDTH1),
@@ -53,9 +53,9 @@ concatenator_ebr_fifo_1_inst (
     .i_clock    (i_clock      ),
     .i_reset    (i_reset      ));
 
-logic [WIDTH1:0] second_data;
-logic            second_valid;
-logic            second_ready;
+logic [WIDTH2-1:0] second_data;
+logic              second_valid;
+logic              second_ready;
 
 concatenator_ebr_fifo #(
     .WIDTH(WIDTH2),
@@ -70,9 +70,9 @@ concatenator_ebr_fifo_2_inst (
     .i_clock    (i_clock       ),
     .i_reset    (i_reset       ));
 
-logic [WIDTH1:0] third_data;
-logic            third_valid;
-logic            third_ready;
+logic [WIDTH3-1:0] third_data;
+logic              third_valid;
+logic              third_ready;
 
 concatenator_ebr_fifo #(
     .WIDTH(WIDTH3),
@@ -108,106 +108,157 @@ logic [$clog2(MAX3)-1:0] next_count3;
 
 enum {
     ST_INIT,
-    ST_WAIT_FOR_FIRST,
     ST_FIRST,
-    ST_WAIT_FOR_SECOND,
     ST_SECOND,
-    ST_WAIT_FOR_THIRD,
+    ST_SECOND_FOLLOWUP,
     ST_THIRD,
+    ST_THIRD_FOLLOWUP
 } curr_state, next_state;
 
-logic [WIDTH1:0] word_data;
-logic            word_valid;
-logic            word_ready;
+logic [WIDTH1-1:0] word_data;
+logic              word_valid;
+logic              word_ready;
 
-logic [WIDTH1:0] next_word_data;
-logic            next_word_valid;
+localparam integer SWIDTH = (WIDTH2 > WIDTH3) ? WIDTH2 : WIDTH3;
+logic [SWIDTH-1:0] word_data_storage;
+logic [SWIDTH-1:0] next_word_data_storage;
 
 always_ff @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
-        curr_state <= ST_INIT;
-        word_count <= 0;
-        count2 <= 0;
-        count3 <= 0;
-        word_data  <= 0;
-        word_valid <= 1'b0;
+        curr_state        <= ST_INIT;
+        word_count        <= 0;
+        word_data_storage <= 0;
+        count2            <= 0;
+        count3            <= 0;
     end else begin
-        curr_state <= next_state;
-        word_count <= next_word_count;
-        count2 <= next_count2;
-        count3 <= next_count3;
-        word_data  <= next_word_data;
-        word_valid <= next_word_valid;
+        curr_state        <= next_state;
+        word_count        <= next_word_count;
+        word_data_storage <= next_word_data_storage;
+        count2            <= next_count2;
+        count3            <= next_count3;
     end
 end
 
+logic inc_count2, inc_count3, dec_word_count;
+logic dec_word_count1, dec_word_count2, dec_word_count3;
+logic word_count_is_zero, count2_is_max2, count3_is_max3;
+
+assign inc_count2 = (count2 == MAX2-1) ? 0 : count2 + 1;
+assign inc_count3 = (count3 == MAX3-1) ? 0 : count3 + 1;
+assign dec_word_count = word_count - 1;
+assign dec_word_count1 = (dec_word_count == 0) ? LENGTH2-1 : dec_word_count;
+assign dec_word_count2 = (dec_word_count == 0) ? LENGTH3-1 : dec_word_count;
+assign dec_word_count3 = (dec_word_count == 0) ? LENGTH1-1 : dec_word_count;
+assign word_count_is_zero = (word_count == 0);
+assign count2_is_max2 = count2 == MAX2-1;
+assign count3_is_max3 = count3 == MAX3-1;
+
 always_comb begin
     case (curr_state)
-    ST_WAIT_FOR_FIRST: begin
-        next_count2 = 0;
-        next_count3 = 0;
-        word_valid = 1'b0;
-        word_data = 0;
-        next_word_count = LENGTH1-1;
-        next_state = ;
-        first_ready = 1'b0;
-        second_ready = 1'b0;
-        third_ready = 1'b0;
-    end
     ST_FIRST: begin
+        // Reset counters/state regs for stages 2 and 3
         next_count2 = 0;
         next_count3 = 0;
+        next_word_data_storage = 0;
+        // Count down until correct number of words transferred
+        next_word_count = (first_valid & word_ready) ? dec_word_count1 : word_count;
+        // Handshaking with downstream blocks
         word_valid = first_valid;
         word_data = first_data;
-        next_word_count = first_valid ? word_count - 1 : word_count;
-        next_state = ((next_word_count == 0) && (first_valid == 1'b1) ? ST_WAIT_FOR_SECOND : ST_FIRST;
-        first_ready = 1'b1;
+        // Handshaking with upstream blocks
+        first_ready = word_ready;
         second_ready = 1'b0;
         third_ready = 1'b0;
-    end
-    ST_WAIT_FOR_SECOND: begin
-        next_count2 = 0;
-        next_count3 = 0;
-        word_valid = 1'b0;
-        word_data = 0;
-        next_word_count = LENGTH2-1;
-        next_state = ;
-        first_ready = 1'b0;
-        second_ready = 1'b0;
-        third_ready = 1'b0;
+        // State transition
+        next_state = (word_count_is_zero & first_valid & word_ready) ? ST_SECOND : ST_FIRST;
     end
     ST_SECOND: begin
-        next_count2 = 0;
+        // Reset counters/state regs for stages 2 and 3
+        next_count2 = (second_valid & word_ready) ? inc_count2 : count2;
         next_count3 = 0;
-        //word_valid = 1'b0;
-        //word_data = 0;
-        //next_word_count = word_ready ? word_count - 1 : word_count;
-        next_state = ;
+        next_word_data_storage = {
+            {SWIDTH-(WIDTH2-WIDTH1){1'b0}},
+            second_data[WIDTH2-1:WIDTH1]
+        };
+        // Count down until correct number of words transferred
+        next_word_count = (second_valid & word_ready) ? dec_word_count2 : word_count;
+        // Handshaking with downstream blocks
+        word_valid = second_valid;
+        word_data = second_data[WIDTH1-1:0];
+        // Handshaking with upstream blocks
         first_ready = 1'b0;
-        second_ready = 1'b0; // 1 if temp storage not full
+        second_ready = word_ready;
         third_ready = 1'b0;
+        // State transition
+        next_state = (second_valid & word_ready) ? ST_SECOND_FOLLOWUP : ST_SECOND;
     end
-    ST_WAIT_FOR_THIRD: begin
-        next_count2 = 0;
+    ST_SECOND_FOLLOWUP: begin
+        // Reset counters/state regs for stages 2 and 3
+        next_count2 = word_ready ? inc_count2 : count2;
         next_count3 = 0;
-        word_valid = 1'b0;
-        word_data = 0;
-        next_word_count = LENGTH3-1;
-        next_state = ;
+        next_word_data_storage = {
+            {WIDTH1{1'b0}},
+            word_data_storage[SWIDTH-1:WIDTH1]
+        };
+        // Count down until correct number of words transferred
+        next_word_count = word_ready ? dec_word_count2 : word_count;
+        // Handshaking with downstream blocks
+        word_valid = 1'b1;
+        word_data = word_data_storage[WIDTH1-1:0];
+        // Handshaking with upstream blocks
         first_ready = 1'b0;
         second_ready = 1'b0;
         third_ready = 1'b0;
+        // State transition
+        case ({word_count_is_zero, count2_is_max2, word_ready})
+        3'b111: next_state = ST_THIRD;
+        3'b011: next_state = ST_SECOND;
+        default: next_state = ST_SECOND_FOLLOWUP;
+        endcase
     end
     ST_THIRD: begin
+        // Reset counters/state regs for stages 2 and 3
         next_count2 = 0;
-        next_count3 = 0;
-        //word_valid = 1'b0;
-        //word_data = 0;
-        //next_word_count = word_ready ? word_count - 1 : word_count;
-        next_state = ;
+        next_count3 = (third_valid & word_ready) ? inc_count3 : next_count3;
+        next_word_data_storage = {
+            {SWIDTH-(WIDTH3-WIDTH1){1'b0}},
+            third_data[WIDTH3-1:WIDTH1]
+        };
+        // Count down until correct number of words transferred
+        next_word_count = (third_valid & word_ready) ? dec_word_count3 : word_count;
+        // Handshaking with downstream blocks
+        word_valid = third_valid;
+        word_data = third_data[WIDTH1-1:0];
+        // Handshaking with upstream blocks
         first_ready = 1'b0;
         second_ready = 1'b0;
-        third_ready = 1'b0; // 1 if temp storage not full
+        third_ready = word_ready;
+        // State transition
+        next_state = (third_valid & word_ready) ? ST_THIRD_FOLLOWUP : ST_THIRD;
+    end
+    ST_THIRD_FOLLOWUP: begin
+        // Reset counters/state regs for stages 2 and 3
+        next_count2 = 0;
+        next_count3 = word_ready ? inc_count3 : count3;
+        next_word_data_storage = {
+            {WIDTH1{1'b0}},
+            word_data_storage[SWIDTH-1:WIDTH1]
+        };
+        // Count down until correct number of words transferred
+        next_word_count = word_ready ? dec_word_count3 : word_count;
+        // Handshaking with downstream blocks
+        word_valid = 1'b1;
+        word_data = word_data_storage[WIDTH1-1:0];
+        // Handshaking with upstream blocks
+        first_ready = 1'b0;
+        second_ready = 1'b0;
+        third_ready = 1'b0;
+        // State transition
+        case ({word_count_is_zero, count3_is_max3, word_ready})
+        3'b111: next_state = ST_FIRST;
+        3'b011: next_state = ST_THIRD;
+        default: next_state = ST_THIRD_FOLLOWUP;
+        endcase
     end
     default: begin // ST_INIT
         next_state = ST_INIT;
@@ -215,8 +266,8 @@ always_comb begin
         next_count3 = 0;
         word_valid = 1'b0;
         word_data = 0;
-        next_word_count = 0;
-        next_state = ST_WAIT_FOR_FIRST;
+        next_word_count = LENGTH1-1;
+        next_state = ST_FIRST;
         first_ready = 1'b0;
         second_ready = 1'b0;
         third_ready = 1'b0;
@@ -224,17 +275,18 @@ always_comb begin
     endcase
 end
 
-concatenator_skid #(
-    .WIDTH(WIDTH1))
-concatenator_skid_inst (
-    .i_clock    (i_clock    ),
-    .i_reset    (i_reset    ),
+concatenator_ebr_fifo #(
+    .WIDTH(WIDTH1  ),
+    .DEPTH(2*DEPTH1))
+concatenator_ebr_fifo_4_inst (
     .i_in_data  (word_data  ),
     .i_in_valid (word_valid ),
     .o_in_ready (word_ready ),
     .o_out_data (o_out_data ),
     .o_out_valid(o_out_valid),
-    .i_out_ready(i_out_ready));
+    .i_out_ready(i_out_ready),
+    .i_clock    (i_clock    ),
+    .i_reset    (i_reset    ));
 
 endmodule: concatenator
 

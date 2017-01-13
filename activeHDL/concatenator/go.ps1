@@ -20,6 +20,7 @@ vlib work
 Compile-Verilog tb_concatenator.sv
 Compile-Verilog concatenator.sv
 Compile-Verilog concatenator_ebr_fifo.sv
+Compile-Verilog concatenator_skid.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do
