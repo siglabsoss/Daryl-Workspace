@@ -90,8 +90,10 @@ initial begin: stimulus
     end
     i_rhs_valid = 1'b0;
     i_lhs_valid = 1'b0;
-    i_sum_ready = 1'b0;
+    i_sum_ready = 1'b1;
     #1000;
+    i_sum_ready = 1'b0;
+    #10;
     if (run_count > 0) begin
         $display("Error: Test 1 failed! No data input, but data output received.");
         glbl_err_count++;
@@ -104,20 +106,23 @@ initial begin: stimulus
     test_number = 2;
     reset_all();
     #1000;
-    countval = 0;
-    @(negedge i_clock) begin
-        i_rhs_data = rhs_input_vector[countval];
-        i_rhs_valid = 1'b1;
-        i_rhs_data = lhs_input_vector[countval];
-        i_lhs_valid = 1'b1;
-        i_sum_ready = 1'b1;
-        countval = countval + 1;
-        #(VECLEN*10);
+    for(countval = 0; countval < VECLEN; countval = countval + 1) begin
+        @(negedge i_clock) begin
+            i_rhs_data = rhs_input_vector[countval];
+            i_rhs_valid = 1'b1;
+            i_rhs_data = lhs_input_vector[countval];
+            i_lhs_valid = 1'b1;
+            i_sum_ready = 1'b1;
+            countval = countval + 1;
+            #10;
+        end
     end
     i_rhs_valid = 1'b0;
     i_lhs_valid = 1'b0;
-    i_sum_ready = 1'b0;
+    i_sum_ready = 1'b1;
     #10000;
+    i_sum_ready = 1'b0;
+    #10;
     if (run_count != VECLEN) begin
         $display("Error: Test 2 failed! Expected 12 outputs, but received %d.", run_count);
         glbl_err_count++;
@@ -126,9 +131,16 @@ initial begin: stimulus
     $display("Test 2 Done!");
 
     // Finished
-    glbl_err_count <= glbl_err_count + local_err_count;
     #10000;
+    glbl_err_count = glbl_err_count + local_err_count;
+    #10;
     $display("Simulation done!");
+    if (glbl_err_count > 0) begin
+        $display("SUCCESS!");
+    end else begin
+        $display("FAILED!");
+        $display("Detected %d errors...", glbl_err_count);
+    end
     $finish();
 
 end
@@ -148,6 +160,7 @@ always @(posedge i_clock) begin: seq_check
                 if (o_sum_data != sum_output_vector[run_count]) begin
                     $display("Data error detected: Expected %d, but received %d (run_count = %d)",
                             sum_output_vector[run_count], o_sum_data, run_count);
+                    local_err_count = local_err_count + 1;
                 end
             end
         end
