@@ -1,7 +1,4 @@
-// tb_skid.sv
-//
-// Rudimentary tests for skid buffer.
-//
+// tb_adder_gf2.sv
 
 `timescale 10ps / 10ps
 
@@ -167,6 +164,35 @@ initial begin: stimulus
     #100;
     $display("Test 3 Done!");
 
+    // Test 4: backpressure delays computation
+    $display("Test 4 Started!");
+    test_number = 4;
+    reset_all();
+    #1000;
+    for(countval = 0; countval < VECLEN; countval = countval + 1) begin
+        @(negedge i_clock) begin
+            i_rhs_data = countval < 4 ? countval : 3;
+            i_rhs_valid = 1'b1;
+            i_lhs_data = 16'hFFFF ^ (countval < 4 ? countval : 3);
+            i_lhs_valid = 1'b1;
+            i_sum_ready = 1'b0;
+            #10;
+        end
+    end
+    #100;
+    i_rhs_valid = 1'b0;
+    i_lhs_valid = 1'b0;
+    i_sum_ready = 1'b1;
+    #10000;
+    i_sum_ready = 1'b0;
+    #10;
+    if (run_count != 4) begin
+        $display("Error: Test 4 failed! Expected 4 buffered outputs, but received %d.", run_count);
+        glbl_err_count++;
+    end
+    #100;
+    $display("Test 4 Done!");
+
     // Finished
     #10000;
     glbl_err_count = glbl_err_count + local_err_count;
@@ -192,11 +218,21 @@ always @(posedge i_clock) begin: seq_check
             run_count <= run_count + 1;
         end
 
-        if (test_number == 2) begin
+        if ((test_number == 2) || (test_number == 3)) begin
             if ((o_sum_valid == 1'b1) && (i_sum_ready == 1'b1)) begin
                 if (o_sum_data != sum_output_vector[run_count]) begin
                     $display("Data error detected: Expected %d, but received %d (run_count = %d)",
                             sum_output_vector[run_count], o_sum_data, run_count);
+                    local_err_count = local_err_count + 1;
+                end
+            end
+        end
+
+        if (test_number == 4) begin
+            if ((o_sum_valid == 1'b1) && (i_sum_ready == 1'b1)) begin
+                if (o_sum_data != 16'hFFFF) begin
+                    $display("Data error detected: Expected 16'hFFFF, but received %d (run_count = %d)",
+                            o_sum_data, run_count);
                     local_err_count = local_err_count + 1;
                 end
             end
