@@ -11,7 +11,7 @@ module concatenator #(
     parameter integer WIDTH1 = 8,
     parameter integer WIDTH2 = 96,
     parameter integer WIDTH3 = 96,
-    parameter integer DEPTH1 = 2304,
+    parameter integer DEPTH1 = 2048,
     parameter integer DEPTH2 = 192,
     parameter integer DEPTH3 = 192
 ) (
@@ -31,26 +31,73 @@ module concatenator #(
     input  wire logic                 i_reset
 );
 
-logic [WIDTH1-1:0] first_buffer  [0:DEPTH1-1] /* synthesis syn_ramstyle = "block_ram" */;
-logic [WIDTH2-1:0] second_buffer [0:DEPTH2-1] /* synthesis syn_ramstyle = "block_ram" */;
-logic [WIDTH3-1:0] third_buffer  [0:DEPTH3-1] /* synthesis syn_ramstyle = "block_ram" */;
+logic [WIDTH1:0] first_data;
+logic            first_valid;
+logic            first_ready;
 
-logic [$clog2(DEPTH1)-1:0] first_head;
-logic [$clog2(DEPTH1)-1:0] first_tail;
-logic [$clog2(DEPTH2)-1:0] second_head;
-logic [$clog2(DEPTH2)-1:0] second_tail;
-logic [$clog2(DEPTH3)-1:0] third_head;
-logic [$clog2(DEPTH3)-1:0] third_tail;
+concatenator_ebr_fifo #(
+    .WIDTH(WIDTH1),
+    .DEPTH(DEPTH1))
+concatenator_ebr_fifo_1_inst (
+    .i_in_data  (i_first_data ),
+    .i_in_valid (i_first_valid),
+    .o_in_ready (o_first_ready),
+    .o_out_data (first_data   ),
+    .o_out_valid(first_valid  ),
+    .i_out_ready(first_ready  ),
+    .i_clock    (i_clock      ),
+    .i_reset    (i_reset      ));
 
-always @(posedge i_clock) begin
-    if (i_reset == 1'b1) begin
-        o_out_data <= 0;
-        o_out_valid <= 1'b0;
+logic [WIDTH1:0] second_data;
+logic            second_valid;
+logic            second_ready;
+
+concatenator_ebr_fifo #(
+    .WIDTH(WIDTH2),
+    .DEPTH(DEPTH2))
+concatenator_ebr_fifo_2_inst (
+    .i_in_data  (i_second_data ),
+    .i_in_valid (i_second_valid),
+    .o_in_ready (o_second_ready),
+    .o_out_data (second_data   ),
+    .o_out_valid(second_valid  ),
+    .i_out_ready(second_ready  ),
+    .i_clock    (i_clock       ),
+    .i_reset    (i_reset       ));
+
+logic [WIDTH1:0] third_data;
+logic            third_valid;
+logic            third_ready;
+
+concatenator_ebr_fifo #(
+    .WIDTH(WIDTH3),
+    .DEPTH(DEPTH3))
+concatenator_ebr_fifo_3_inst (
+    .i_in_data  (i_third_data  ),
+    .i_in_valid (i_third_valid ),
+    .o_in_ready (o_third_ready ),
+    .o_out_data (third_data    ),
+    .o_out_valid(third_valid   ),
+    .i_out_ready(third_ready   ),
+    .i_clock    (i_clock       ),
+    .i_reset    (i_reset       ));
+
+enum {
+    ST_INIT,
+    ST_FIRST,
+    ST_SECOND,
+    ST_THIRD,
+} curr_state, next_state;
+
+always_ff @(posedge i_clock) begin
+    if(i_reset == 1'b1) begin
+        curr_state <= ST_INIT;
     end else begin
-        o_out_data <= i_in_data;
-        o_out_valid <= i_in_valid;
+        curr_state <= next_state;
     end
 end
+
+
 
 endmodule: concatenator
 
