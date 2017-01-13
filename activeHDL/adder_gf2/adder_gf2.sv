@@ -18,6 +18,10 @@ module adder_gf2 #(
     input  wire logic             i_reset
 );
 
+logic [WIDTH-1:0] lhs_data;
+logic             lhs_valid;
+logic             lhs_ready;
+
 adder_gf2_skid #(
     .WIDTH(WIDTH))
 adder_gf2_skid_lhs_inst (
@@ -29,6 +33,10 @@ adder_gf2_skid_lhs_inst (
     .o_out_data (lhs_data   ),
     .o_out_valid(lhs_valid  ),
     .i_out_ready(lhs_ready  ));
+
+logic [WIDTH-1:0] rhs_data;
+logic             rhs_valid;
+logic             rhs_ready;
 
 adder_gf2_skid #(
     .WIDTH(WIDTH))
