@@ -6,7 +6,8 @@ function Compile-Verilog
 	if ($LastExitCode -ne 0) {
 		echo "                                                                "
 		echo "    ############################################################"
-		echo "      Compilation of " + $Filename + " failed! "
+		$msg = "      Compilation of " + $Filename + " failed! "
+		echo $msg
 		echo "    ############################################################"
 		echo "                                                                "
 		exit

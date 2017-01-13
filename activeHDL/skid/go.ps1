@@ -6,7 +6,7 @@ function Compile-Verilog
 	if ($LastExitCode -ne 0) {
 		echo "                                                                "
 		echo "            ####################################################"
-		echo "             Compilation of tb_dual_diagonal_backsub.sv failed! "
+		echo "             Compilation of tb_skid.sv failed! "
 		echo "            ####################################################"
 		echo "                                                                "
 		exit

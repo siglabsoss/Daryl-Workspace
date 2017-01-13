@@ -1,6 +1,4 @@
-// tb_skid.sv
-//
-// Rudimentary tests for skid buffer.
+// tb_my_module.sv
 //
 
 `timescale 10ps / 10ps
@@ -58,7 +56,7 @@ initial begin: stimulus
     #1000;
     @(negedge i_clock) begin
         i_in_valid = 1'b0;
-        #(NUM_WORDS*10);
+        #10;
     end
     i_in_valid = 1'b0;
     #1000;
@@ -70,8 +68,8 @@ initial begin: stimulus
     $display("Test 1 Done!");
 
     // Finished
-    glbl_err_count <= glbl_err_count + local_err_count;
     #10000;
+    glbl_err_count = glbl_err_count + local_err_count;
     $display("Simulation done!");
     $finish();
 
@@ -89,6 +87,6 @@ always @(posedge i_clock) begin: seq_check
     end
 end
 
-endmodule: tb_dual_diagonal_backsub
+endmodule: tb_my_module
 
 `default_nettype wire
