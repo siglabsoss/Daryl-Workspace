@@ -150,14 +150,20 @@ always_comb begin
         word_data = 0;
         next_word_count = LENGTH1-1;
         next_state = ;
+        first_ready = 1'b0;
+        second_ready = 1'b0;
+        third_ready = 1'b0;
     end
     ST_FIRST: begin
         next_count2 = 0;
         next_count3 = 0;
-        //word_valid = 1'b0;
-        //word_data = 0;
-        //next_word_count = word_ready ? word_count - 1 : word_count;
-        next_state = ;
+        word_valid = first_valid;
+        word_data = first_data;
+        next_word_count = first_valid ? word_count - 1 : word_count;
+        next_state = ((next_word_count == 0) && (first_valid == 1'b1) ? ST_WAIT_FOR_SECOND : ST_FIRST;
+        first_ready = 1'b1;
+        second_ready = 1'b0;
+        third_ready = 1'b0;
     end
     ST_WAIT_FOR_SECOND: begin
         next_count2 = 0;
@@ -166,6 +172,9 @@ always_comb begin
         word_data = 0;
         next_word_count = LENGTH2-1;
         next_state = ;
+        first_ready = 1'b0;
+        second_ready = 1'b0;
+        third_ready = 1'b0;
     end
     ST_SECOND: begin
         next_count2 = 0;
@@ -174,6 +183,9 @@ always_comb begin
         //word_data = 0;
         //next_word_count = word_ready ? word_count - 1 : word_count;
         next_state = ;
+        first_ready = 1'b0;
+        second_ready = 1'b0; // 1 if temp storage not full
+        third_ready = 1'b0;
     end
     ST_WAIT_FOR_THIRD: begin
         next_count2 = 0;
@@ -182,6 +194,9 @@ always_comb begin
         word_data = 0;
         next_word_count = LENGTH3-1;
         next_state = ;
+        first_ready = 1'b0;
+        second_ready = 1'b0;
+        third_ready = 1'b0;
     end
     ST_THIRD: begin
         next_count2 = 0;
@@ -190,6 +205,9 @@ always_comb begin
         //word_data = 0;
         //next_word_count = word_ready ? word_count - 1 : word_count;
         next_state = ;
+        first_ready = 1'b0;
+        second_ready = 1'b0;
+        third_ready = 1'b0; // 1 if temp storage not full
     end
     default: begin // ST_INIT
         next_state = ST_INIT;
@@ -199,6 +217,9 @@ always_comb begin
         word_data = 0;
         next_word_count = 0;
         next_state = ST_WAIT_FOR_FIRST;
+        first_ready = 1'b0;
+        second_ready = 1'b0;
+        third_ready = 1'b0;
     end
     endcase
 end
