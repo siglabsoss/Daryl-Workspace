@@ -27,7 +27,7 @@ Copy-Item $srcdir $destdir
 
 # Alter files
 $destfile = $destdir + "\my_module.sv"
-(Get-Content $destfile) -replace '\[my_module\]', $name | Set-Content $destfile
+(Get-Content $destfile) -replace 'my_module', $name | Set-Content $destfile
 
 $destfile = $destdir + "\tb_my_module.sv"
 (Get-Content $destfile) -replace 'my_module', $name | Set-Content $destfile
