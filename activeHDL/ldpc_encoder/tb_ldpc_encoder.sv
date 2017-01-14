@@ -1,15 +1,12 @@
-// tb_skid.sv
-//
-// Rudimentary tests for skid buffer.
-//
+// tb_ldpc_encoder.sv
 
 `timescale 10ps / 10ps
 
 `default_nettype none
 
-module tb_my_module;
+module tb_ldpc_encoder;
 
-localparam integer WIDTH = 16;
+localparam integer WIDTH = 8;
 
 // Clock and Reset
 logic                i_clock;
@@ -17,11 +14,13 @@ logic                i_reset;
 // Upstream signaling
 logic [WIDTH-1:0]    i_in_data;
 logic                i_in_valid;
+logic                o_in_ready;
 // Downstream signaling
 logic [WIDTH-1:0]    o_out_data;
 logic                o_out_valid;
+logic                i_out_ready;
 
-my_module #(.WIDTH(WIDTH)) uut (.*);
+ldpc_encoder uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -58,7 +57,7 @@ initial begin: stimulus
     #1000;
     @(negedge i_clock) begin
         i_in_valid = 1'b0;
-        #(NUM_WORDS*10);
+        #(10000);
     end
     i_in_valid = 1'b0;
     #1000;
@@ -89,6 +88,6 @@ always @(posedge i_clock) begin: seq_check
     end
 end
 
-endmodule: tb_dual_diagonal_backsub
+endmodule: tb_ldpc_encoder
 
 `default_nettype wire
