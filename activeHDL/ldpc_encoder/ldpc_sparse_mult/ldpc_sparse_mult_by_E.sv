@@ -78,8 +78,6 @@ always_ff @(posedge i_clock) begin
                 && ((fillup_state == ST_PING)
                     || (fillup_state == ST_PONG))) begin
             last_cycle_in <= input_count == INPUT_LENGTH-2;
-        end else begin
-            last_cycle_in <= 1'b0;
         end
         // Incdicate when the ping and/or pong buffer is full to FSM
         case (ping_pong_test)

@@ -430,7 +430,7 @@ initial begin: stimulus
     i_out_ready = 1'b0;
     #100;
     if (run_count != 3 * CLENGTH/8) begin
-        $display("Error: Test 3 failed! Expected %d but received %d outputs.", CLENGTH/8, run_count);
+        $display("Error: Test 3 failed! Expected %d but received %d outputs.", 3 * CLENGTH/8, run_count);
         glbl_err_count++;
     end
     $display("Test 3 Done!");
@@ -533,7 +533,7 @@ initial begin: stimulus
     i_out_ready = 1'b0;
     #100;
     if (run_count != 3 * CLENGTH/8) begin
-        $display("Error: Test 4 failed! Expected %d but received %d outputs.", CLENGTH/8, run_count);
+        $display("Error: Test 4 failed! Expected %d but received %d outputs.", 3 * CLENGTH/8, run_count);
         glbl_err_count++;
     end
     $display("Test 4 Done!");

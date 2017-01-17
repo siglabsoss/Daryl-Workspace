@@ -76,14 +76,13 @@ always_ff @(posedge i_clock) begin
         ping_is_full <= 1'b0;
         pong_is_full <= 1'b0;
         fillup_transition <= 1'b0;
+        last_cycle_out <= 1'b0;
     end else begin
         // Calculate when we are on the last cycle of output
         if ((i_output_ready == 1'b1)
                 && ((readout_state == ST_PING)
                     || (readout_state == ST_PONG))) begin
             last_cycle_out <= output_count == OUTPUT_LENGTH-2;
-        end else begin
-            last_cycle_out <= 1'b0;
         end
         // Incdicate when the ping and/or pong buffer is full to FSM
         case (ping_pong_test)

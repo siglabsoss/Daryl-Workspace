@@ -68,7 +68,6 @@ end
 // Used for the case structure in the next always block
 logic [5:0] ping_pong_test;
 logic       last_cycle_in;
-logic       last_cycle_out;
 assign ping_pong_test = {
     last_cycle_in, 1'b1,
     i_input_valid, o_input_ready,
@@ -78,14 +77,13 @@ always_ff @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
         ping_is_full <= 1'b0;
         pong_is_full <= 1'b0;
+        last_cycle_in <= 1'b0;
     end else begin
         // Calculate when we are on the last cycle of input
         if ((i_input_valid == 1'b1)
                 && ((fillup_state == ST_PING)
                     || (fillup_state == ST_PONG))) begin
             last_cycle_in <= input_count == INPUT_LENGTH-2;
-        end else begin
-            last_cycle_in <= 1'b0;
         end
         // Incdicate when the ping and/or pong buffer is full to FSM
         case (ping_pong_test)
