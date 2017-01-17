@@ -1,6 +1,6 @@
 
 %% Execute LDPC script to generate code and parameters
-ldpc80216
+[H, z] = ldpc80216
 
 %% Generate submatrices and derive parameters from script output
 
