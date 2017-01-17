@@ -88,17 +88,17 @@ concatenator_ebr_fifo_3_inst (
     .i_reset    (i_reset       ));
 
 // The length of each sequence to be concatenated
-localparam LENGTH1 = 144; // bytes
-localparam LENGTH2 = 12;   // bytes
-localparam LENGTH3 = 132;  // bytes
+localparam integer LENGTH1 = 144; // bytes
+localparam integer LENGTH2 = 12;   // bytes
+localparam integer LENGTH3 = 132;  // bytes
 
 // Counter to track which byte in the sequence is active
 logic [$clog2(LENGTH1)-1:0] word_count;
 logic [$clog2(LENGTH1)] next_word_count;
 
 // The number of sub words in each super word
-localparam MAX2 = WIDTH2 / WIDTH1;
-localparam MAX3 = WIDTH3 / WIDTH1;
+localparam integer MAX2 = WIDTH2 / WIDTH1;
+localparam integer MAX3 = WIDTH3 / WIDTH1;
 
 // Counters to track which sub word is active
 logic [$clog2(MAX2)-1:0] count2;
@@ -139,16 +139,20 @@ always_ff @(posedge i_clock) begin
     end
 end
 
-logic inc_count2, inc_count3, dec_word_count;
-logic dec_word_count1, dec_word_count2, dec_word_count3;
+logic [$clog2(MAX2)-1:0] inc_count2;
+logic [$clog2(MAX3)-1:0] inc_count3;
+logic [$clog2(LENGTH1)-1:0] dec_word_count;
+logic [$clog2(LENGTH1)-1:0] dec_word_count1;
+logic [$clog2(LENGTH1)-1:0] dec_word_count2;
+logic [$clog2(LENGTH1)-1:0] dec_word_count3;
 logic word_count_is_zero, count2_is_max2, count3_is_max3;
 
 assign inc_count2 = (count2 == MAX2-1) ? 0 : count2 + 1;
 assign inc_count3 = (count3 == MAX3-1) ? 0 : count3 + 1;
 assign dec_word_count = word_count - 1;
-assign dec_word_count1 = (dec_word_count == 0) ? LENGTH2-1 : dec_word_count;
-assign dec_word_count2 = (dec_word_count == 0) ? LENGTH3-1 : dec_word_count;
-assign dec_word_count3 = (dec_word_count == 0) ? LENGTH1-1 : dec_word_count;
+assign dec_word_count1 = (word_count == 0) ? LENGTH2-1 : dec_word_count;
+assign dec_word_count2 = (word_count == 0) ? LENGTH3-1 : dec_word_count;
+assign dec_word_count3 = (word_count == 0) ? LENGTH1-1 : dec_word_count;
 assign word_count_is_zero = (word_count == 0);
 assign count2_is_max2 = count2 == MAX2-1;
 assign count3_is_max3 = count3 == MAX3-1;
