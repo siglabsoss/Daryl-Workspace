@@ -94,7 +94,7 @@ localparam integer LENGTH3 = 132;  // bytes
 
 // Counter to track which byte in the sequence is active
 logic [$clog2(LENGTH1)-1:0] word_count;
-logic [$clog2(LENGTH1)] next_word_count;
+logic [$clog2(LENGTH1)-1:0] next_word_count;
 
 // The number of sub words in each super word
 localparam integer MAX2 = WIDTH2 / WIDTH1;

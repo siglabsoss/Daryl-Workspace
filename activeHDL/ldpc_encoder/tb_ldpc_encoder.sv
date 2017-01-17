@@ -97,83 +97,159 @@ localparam logic [0:CLENGTH-1] ldpc_codeword_0 = {
     32'b11101001100111100111101100111010
 };
 
-// Example from Behrooze
-// {
-//     32'b01000111100000001110001001110101,
-//     32'b10100000101010111101001000011000,
-//     32'b11010100110011111001001010001011,
-//     32'b10011011101111110110110010110000,
-//     32'b10001111000000011100010011101011,
-//     32'b01000001010101111010010000110001,
-//     32'b10101001100111110010010100010111,
-//     32'b00110111011111101101100101100001,
-//     32'b00011110000000111000100111010110,
-//     32'b10000010101011110100100001100011,
-//     32'b01010011001111100100101000101110,
-//     32'b01101110111111011011001011000010,
-//     32'b00111100000001110001001110101101,
-//     32'b00000101010111101001000011000110,
-//     32'b10100110011111001001010001011100,
-//     32'b11011101111110110110010110000100,
-//     32'b01111000000011100010011101011010,
-//     32'b00001010101111010010000110001101,
-//     32'b01001100111110010010100010111001,
-//     32'b10111011111101101100101100001000,
-//     32'b11110000000111000100111010110100,
-//     32'b00010101011110100100001100011010,
-//     32'b10011001111100100101000101110011,
-//     32'b01110111111011011001011000010001,
-//     32'b11100000001110001001110101101000,
-//     32'b00101010111101001000011000110101,
-//     32'b00110011111001001010001011100110,
-//     32'b11101111110110110010110000100011,
-//     32'b11000000011100010011101011010000,
-//     32'b01010101111010010000110001101010,
-//     32'b01100111110010010100010111001101,
-//     32'b11011111101101100101100001000111,
-//     32'b10000000111000100111010110100000,
-//     32'b10101011110100100001100011010100,
-//     32'b11001111100100101000101110011011,
-//     32'b10111111011011001011000010001111,
-//     32'b11101011110101100100000100000001,
-//     32'b10010101111011110110100100011001,
-//     32'b00111100010100111101001111000010,
-//     32'b11110011000100100111101000111101,
-//     32'b11111000010100001100110000001101,
-//     32'b01100110100110010001111101001110,
-//     32'b11100100001001010010100000100101,
-//     32'b00101100100111110101111010000110,
-//     32'b11111100100100110011101001101011,
-//     32'b10110111000110100100000000001111,
-//     32'b11011000000110010110101110110100,
-//     32'b11110010001100101011011100100111,
-//     32'b11100001011110101001101011100111,
-//     32'b00010100110110001100101111111101,
-//     32'b01010100100110101110110011101001,
-//     32'b10110101010100101110010100110110,
-//     32'b10000101110110101000011111000101,
-//     32'b00101011100001110110011010110110,
-//     32'b11110100100100011101011110100010,
-//     32'b10001000000000110110110000000000,
-//     32'b00101000010110100111000001011011,
-//     32'b00111001101011000001010001011010,
-//     32'b01100100010001100100001110101010,
-//     32'b00111110101010101111011110101010,
-//     32'b01101011010101101011010101100011,
-//     32'b00111101110001010110110000000000,
-//     32'b00101000010110010110001110100010,
-//     32'b10001101101111100110000110101100,
-//     32'b10101111010010111010000010100010,
-//     32'b11001110001001111011011100000000,
-//     32'b00110101010100100011001111001111,
-//     32'b00011001101010100101110011010100,
-//     32'b11100111010110101110011110110111,
-//     32'b00101000110110000110110010011010,
-//     32'b01001001000111001101000001011011,
-//     32'b00000100111010111010110001001000
-// };
+localparam logic [0:CLENGTH-1] ldpc_codeword_1 = {
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b00010000100001000010000100001000,
+   32'b01000010000100001000010000100001,
+   32'b00001000010000100001000010000100,
+   32'b00100001000010000100001000010000,
+   32'b10000100001000010000100001000010,
+   32'b01110101110111111101110101000111,
+   32'b00100001010011111111111100111011,
+   32'b10111101010110101001110101101001,
+   32'b00100101010101100101000011000001,
+   32'b01010000101101010010001011010111,
+   32'b00111101001100001111111101101000,
+   32'b00000100010001110101101010110001,
+   32'b11010100100101000010101010010101,
+   32'b00101101101101001110111111101100,
+   32'b10101001001011000000001100011100,
+   32'b10100111000010001100110110101100,
+   32'b11100011110001110011010100111010,
+   32'b11100011011111101001011111011010,
+   32'b10010110100001001100110110101000,
+   32'b10110001010100111001000000010011,
+   32'b10000000011001100101000111101011,
+   32'b00011010111001111101010101101110,
+   32'b10000000010100111001000110011111,
+   32'b10010110101000010100101010011101,
+   32'b10110111010001000100100101001101,
+   32'b11111011001110001011110101111010,
+   32'b10010110101000100111000101000011,
+   32'b01000000111110011010010100101110,
+   32'b11100011111111101000110011110110,
+   32'b10111001110110101011011101110010,
+   32'b11001100100110110011000110001011,
+   32'b11001010101011000001100001010011,
+   32'b01110111101000011110110100101000,
+   32'b00011010001010001010111001110100,
+   32'b00110101010100111111111101101010,
+   32'b10101001010101100101000011000111,
+   32'b01100001111101100101100111001111,
+   32'b11101001100011010000100011010101,
+   32'b01101111000001001100010001100010,
+   32'b01001000011110100101100111001111,
+   32'b11011000000000010110101111001101
+};
+
+localparam logic [0:CLENGTH-1] ldpc_codeword_2 = {
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000,
+   32'b00000000000000000000000000000000
+};
 
 logic [0:CLENGTH-1] ldpc_encoded_codeword_0;
+logic [0:CLENGTH-1] ldpc_encoded_codeword_1;
+logic [0:CLENGTH-1] ldpc_encoded_codeword_2;
 
 ldpc_encoder uut (.*);
 
@@ -263,7 +339,204 @@ initial begin: stimulus
         $display("Error: Test 2 failed! Expected %d but received %d outputs.", CLENGTH/8, run_count);
         glbl_err_count++;
     end
-    $display("Test 1 Done!");
+    $display("Test 2 Done!");
+
+    // Test 3: Produce multiple codewords.
+    $display("Test 3 Started!");
+    test_number = 3;
+    reset_all();
+    #10000;
+    i_out_ready = 1'b1;
+    #1000;
+    for (count = 0; count < SLENGTH/8; count++) begin
+        @(negedge i_clock) begin
+            i_in_valid = 1'b1;
+            i_in_data = {
+                ldpc_codeword_0[count*8 + 7],
+                ldpc_codeword_0[count*8 + 6],
+                ldpc_codeword_0[count*8 + 5],
+                ldpc_codeword_0[count*8 + 4],
+                ldpc_codeword_0[count*8 + 3],
+                ldpc_codeword_0[count*8 + 2],
+                ldpc_codeword_0[count*8 + 1],
+                ldpc_codeword_0[count*8    ]
+            };
+            if (o_in_ready == 1'b1) begin
+                #10;
+            end else begin
+                @(posedge o_in_ready) begin
+                    #10;
+                end
+            end
+        end
+    end
+    i_in_data = 0;
+    i_in_valid = 1'b0;
+    #(10*(4*CLENGTH));
+    i_out_ready = 1'b1;
+    #1000;
+    for (count = 0; count < SLENGTH/8; count++) begin
+        @(negedge i_clock) begin
+            i_in_valid = 1'b1;
+            i_in_data = {
+                ldpc_codeword_1[count*8 + 7],
+                ldpc_codeword_1[count*8 + 6],
+                ldpc_codeword_1[count*8 + 5],
+                ldpc_codeword_1[count*8 + 4],
+                ldpc_codeword_1[count*8 + 3],
+                ldpc_codeword_1[count*8 + 2],
+                ldpc_codeword_1[count*8 + 1],
+                ldpc_codeword_1[count*8    ]
+            };
+            if (o_in_ready == 1'b1) begin
+                #10;
+            end else begin
+                @(posedge o_in_ready) begin
+                    #10;
+                end
+            end
+        end
+    end
+    i_in_data = 0;
+    i_in_valid = 1'b0;
+    #(10*(4*CLENGTH));
+    i_out_ready = 1'b1;
+    #1000;
+    for (count = 0; count < SLENGTH/8; count++) begin
+        @(negedge i_clock) begin
+            i_in_valid = 1'b1;
+            i_in_data = {
+                ldpc_codeword_2[count*8 + 7],
+                ldpc_codeword_2[count*8 + 6],
+                ldpc_codeword_2[count*8 + 5],
+                ldpc_codeword_2[count*8 + 4],
+                ldpc_codeword_2[count*8 + 3],
+                ldpc_codeword_2[count*8 + 2],
+                ldpc_codeword_2[count*8 + 1],
+                ldpc_codeword_2[count*8    ]
+            };
+            if (o_in_ready == 1'b1) begin
+                #10;
+            end else begin
+                @(posedge o_in_ready) begin
+                    #10;
+                end
+            end
+        end
+    end
+    i_in_data = 0;
+    i_in_valid = 1'b0;
+    #(10*(4*CLENGTH));
+    i_out_ready = 1'b0;
+    #100;
+    if (run_count != 3 * CLENGTH/8) begin
+        $display("Error: Test 3 failed! Expected %d but received %d outputs.", CLENGTH/8, run_count);
+        glbl_err_count++;
+    end
+    $display("Test 3 Done!");
+
+    // Test 4: Produce multiple codewords with intermittent stimulus.
+    $display("Test 4 Started!");
+    test_number = 4;
+    reset_all();
+    #10000;
+    i_out_ready = 1'b1;
+    #1000;
+    for (count = 0; count < SLENGTH/8; count++) begin
+        @(negedge i_clock) begin
+            i_in_valid = 1'b1;
+            i_in_data = {
+                ldpc_codeword_0[count*8 + 7],
+                ldpc_codeword_0[count*8 + 6],
+                ldpc_codeword_0[count*8 + 5],
+                ldpc_codeword_0[count*8 + 4],
+                ldpc_codeword_0[count*8 + 3],
+                ldpc_codeword_0[count*8 + 2],
+                ldpc_codeword_0[count*8 + 1],
+                ldpc_codeword_0[count*8    ]
+            };
+            if (o_in_ready == 1'b1) begin
+                #10;
+            end else begin
+                @(posedge o_in_ready) begin
+                    #10;
+                end
+            end
+            i_in_valid = 1'b0;
+            i_in_data = 0;
+            #(10*(count % 3));
+        end
+    end
+    i_in_data = 0;
+    i_in_valid = 1'b0;
+    #(10*(4*CLENGTH));
+    i_out_ready = 1'b1;
+    #1000;
+    for (count = 0; count < SLENGTH/8; count++) begin
+        @(negedge i_clock) begin
+            i_in_valid = 1'b1;
+            i_in_data = {
+                ldpc_codeword_1[count*8 + 7],
+                ldpc_codeword_1[count*8 + 6],
+                ldpc_codeword_1[count*8 + 5],
+                ldpc_codeword_1[count*8 + 4],
+                ldpc_codeword_1[count*8 + 3],
+                ldpc_codeword_1[count*8 + 2],
+                ldpc_codeword_1[count*8 + 1],
+                ldpc_codeword_1[count*8    ]
+            };
+            if (o_in_ready == 1'b1) begin
+                #10;
+            end else begin
+                @(posedge o_in_ready) begin
+                    #10;
+                end
+            end
+            i_in_valid = 1'b0;
+            i_in_data = 0;
+            #(10*(count % 7));
+        end
+    end
+    i_in_data = 0;
+    i_in_valid = 1'b0;
+    #(10*(4*CLENGTH));
+    i_out_ready = 1'b1;
+    #1000;
+    for (count = 0; count < SLENGTH/8; count++) begin
+        @(negedge i_clock) begin
+            i_in_valid = 1'b1;
+            i_in_data = {
+                ldpc_codeword_2[count*8 + 7],
+                ldpc_codeword_2[count*8 + 6],
+                ldpc_codeword_2[count*8 + 5],
+                ldpc_codeword_2[count*8 + 4],
+                ldpc_codeword_2[count*8 + 3],
+                ldpc_codeword_2[count*8 + 2],
+                ldpc_codeword_2[count*8 + 1],
+                ldpc_codeword_2[count*8    ]
+            };
+            if (o_in_ready == 1'b1) begin
+                #10;
+            end else begin
+                @(posedge o_in_ready) begin
+                    #10;
+                end
+            end
+            i_in_valid = 1'b0;
+            i_in_data = 0;
+            #(10*(count % 11));
+        end
+    end
+    i_in_data = 0;
+    i_in_valid = 1'b0;
+    #(10*(4*CLENGTH));
+    i_out_ready = 1'b0;
+    #100;
+    if (run_count != 3 * CLENGTH/8) begin
+        $display("Error: Test 4 failed! Expected %d but received %d outputs.", CLENGTH/8, run_count);
+        glbl_err_count++;
+    end
+    $display("Test 4 Done!");
 
     // Finished
     #10000;
@@ -276,11 +549,12 @@ initial begin: stimulus
         $display("<< Success! >>");
     end
 
-    $display("rx_cwd = [",);
-    for (count = 0; count < CLENGTH; count++) begin
-        $display("%b", ldpc_encoded_codeword_0[count]);
-    end
-    $display("];",);
+    // Extract the received codeword for further analysis in MATLAB
+    // $display("rx_cwd = [",);
+    // for (count = 0; count < CLENGTH; count++) begin
+    //     $display("%b", ldpc_encoded_codeword_1[count]);
+    // end
+    // $display("];",);
     $finish();
 
 end
@@ -317,6 +591,74 @@ always @(posedge i_clock) begin: seq_check
                 ldpc_encoded_codeword_0[8 * run_count + 2] <= o_out_data[2];
                 ldpc_encoded_codeword_0[8 * run_count + 1] <= o_out_data[1];
                 ldpc_encoded_codeword_0[8 * run_count    ] <= o_out_data[0];
+            end
+
+            if ((test_number == 3) || (test_number == 4)) begin
+                if (run_count < CLENGTH / 8) begin
+                    expected_value = {
+                        ldpc_codeword_0[8 * run_count + 7],
+                        ldpc_codeword_0[8 * run_count + 6],
+                        ldpc_codeword_0[8 * run_count + 5],
+                        ldpc_codeword_0[8 * run_count + 4],
+                        ldpc_codeword_0[8 * run_count + 3],
+                        ldpc_codeword_0[8 * run_count + 2],
+                        ldpc_codeword_0[8 * run_count + 1],
+                        ldpc_codeword_0[8 * run_count    ]
+                    };
+                    if (o_out_data != expected_value) begin
+                        $display("Expected %b but received %b (run_count = %d)",
+                            expected_value, o_out_data, run_count);
+                        local_err_count++;
+                    end
+                end else if (run_count < 2*CLENGTH/8) begin
+                    expected_value = {
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 7],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 6],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 5],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 4],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 3],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 2],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8)) + 1],
+                        ldpc_codeword_1[8 * (run_count % (CLENGTH/8))    ]
+                    };
+                    if (o_out_data != expected_value) begin
+                        $display("Expected %b but received %b (run_count = %d)",
+                            expected_value, o_out_data, run_count);
+                        local_err_count++;
+                    end
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 7] <= o_out_data[7];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 6] <= o_out_data[6];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 5] <= o_out_data[5];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 4] <= o_out_data[4];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 3] <= o_out_data[3];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 2] <= o_out_data[2];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8)) + 1] <= o_out_data[1];
+                    ldpc_encoded_codeword_1[8 * (run_count % (CLENGTH/8))    ] <= o_out_data[0];
+                end else if (run_count < 3*CLENGTH/8) begin
+                    expected_value = {
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 7],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 6],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 5],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 4],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 3],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 2],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8)) + 1],
+                        ldpc_codeword_2[8 * (run_count % (CLENGTH/8))    ]
+                    };
+                    if (o_out_data != expected_value) begin
+                        $display("Expected %b but received %b (run_count = %d)",
+                            expected_value, o_out_data, run_count);
+                        local_err_count++;
+                    end
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 7] <= o_out_data[7];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 6] <= o_out_data[6];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 5] <= o_out_data[5];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 4] <= o_out_data[4];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 3] <= o_out_data[3];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 2] <= o_out_data[2];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8)) + 1] <= o_out_data[1];
+                    ldpc_encoded_codeword_2[8 * (run_count % (CLENGTH/8))    ] <= o_out_data[0];
+                end
             end
             run_count <= run_count + 1;
         end
