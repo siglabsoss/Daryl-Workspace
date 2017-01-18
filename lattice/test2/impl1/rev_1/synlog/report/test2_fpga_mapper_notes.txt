@@ -1,0 +1,31 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MT206 |Auto Constrain mode is enabled
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[0] (in view: work.sparse_mult_by_A(verilog)) with 58 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[6] (in view: work.sparse_mult_by_A(verilog)) with 42 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[5] (in view: work.sparse_mult_by_A(verilog)) with 60 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[2] (in view: work.sparse_mult_by_A(verilog)) with 60 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[7] (in view: work.sparse_mult_by_A(verilog)) with 43 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[1] (in view: work.sparse_mult_by_A(verilog)) with 67 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[4] (in view: work.sparse_mult_by_A(verilog)) with 67 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[3] (in view: work.sparse_mult_by_A(verilog)) with 69 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":87:0:87:8|Replicating instance fillup_transition (in view: work.sparse_mult_by_A(verilog)) with 594 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count_3_rep2 (in view: work.sparse_mult_by_A(verilog)) with 19 loads 2 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count_1_rep2 (in view: work.sparse_mult_by_A(verilog)) with 19 loads 2 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":87:0:87:8|Replicating instance fillup_transition_fast (in view: work.sparse_mult_by_A(verilog)) with 127 loads 3 times to improve timing.
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[3]" with 772 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[2]" with 765 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[1]" with 758 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[0]" with 745 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[7]" with 746 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[6]" with 772 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[5]" with 757 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[4]" with 765 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":11:40:11:52|Net "i_input_valid_c" with 1892 loads has been buffered by 19 buffers due to a soft fanout limit of 100 
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@N: FX1056 |Writing EDF file: \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2.edn
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.

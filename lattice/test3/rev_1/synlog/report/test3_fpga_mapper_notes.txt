@@ -1,0 +1,12 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MO225 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":69:0:69:8|There are no possible illegal states for state machine curr_state[3:0] (in view: work.ebr_fifo(verilog)); safe FSM implementation is not required.
+@N: MF179 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Found 11 by 11 bit equality operator ('==') adreg (in view: VhdlGenLib.ebr_fifo_RAM_R_W_2048_8_TFFF_block_ram_virtex2(netlist))
+@N: BN362 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing sequential instance buffer_G_1 (in view: work.ebr_fifo(verilog)) because it does not drive other instances.
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@N: FX1056 |Writing EDF file: Z:\Daryl-Workspace\lattice\test3\rev_1\test3.edn
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.

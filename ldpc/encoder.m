@@ -1,6 +1,6 @@
 
 %% Execute LDPC script to generate code and parameters
-[H, z] = ldpc80216
+[H, z] = ldpc80216;
 
 %% Generate submatrices and derive parameters from script output
 
@@ -34,7 +34,14 @@ phi = E * inv(T) * B + D;
 
 % Create the information bit sequence (systematic part)
 s = gf(zeros(n - m, 1));
-s(1:5:end) = 1;
+s(1:end) = 1;
+s(33) = 0;
+s(44) = 0;
+s(107) = 0;
+s(234) = 0;
+s(509) = 0;
+s(729) = 0;
+s(999) = 0;
 
 % Preserve room for the two parity sections
 p1 = gf(zeros(g, 1));

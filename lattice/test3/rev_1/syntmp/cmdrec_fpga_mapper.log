@@ -1,0 +1,11 @@
+C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe  -prodtype  synplify_pro   -encrypt  -pro  -rundir  Z:\Daryl-Workspace\lattice\test3\rev_1   -part LFE5UM5G_25F  -package MG285C  -grade -8    -maxfan 100 -pipe -forcenogsr -fixgatedclocks 1 -fixgeneratedclocks 1 -RWCheckOnRam 1 -use_rename_in_edif 1 -Write_declared_clocks_only 1 -summaryfile Z:\Daryl-Workspace\lattice\test3\rev_1\synlog\report\test3_fpga_mapper.xml  -flow mapping  -multisrs  -oedif  Z:\Daryl-Workspace\lattice\test3\rev_1\test3.edn   -freq 100.000   Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_prem.srd  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v  -ologparam  Z:\Daryl-Workspace\lattice\test3\rev_1\syntmp\test3.plg  -osyn  Z:\Daryl-Workspace\lattice\test3\rev_1\test3.srm  -prjdir  Z:\Daryl-Workspace\lattice\test3\  -prjname  test3  -log  Z:\Daryl-Workspace\lattice\test3\rev_1\synlog\test3_fpga_mapper.srr 
+rc:1 success:1 runtime:1
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\test3.edn|io:o|time:1484346628|size:106670|exec:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_prem.srd|io:i|time:1484346626|size:4648|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v|io:i|time:1467795226|size:89971|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v|io:i|time:1467795226|size:40584|exec:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\syntmp\test3.plg|io:o|time:1484346628|size:697|exec:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\test3.srm|io:o|time:1484346628|size:20598|exec:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\synlog\test3_fpga_mapper.srr|io:o|time:1484346628|size:18867|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\bin\m_gen_lattice.exe|io:i|time:1467796026|size:18704384|exec:1
+file:C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe|io:i|time:1467797562|size:22412800|exec:1

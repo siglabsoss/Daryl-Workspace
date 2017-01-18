@@ -1,11 +1,11 @@
 C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe  -prodtype  synplify_pro   -encrypt  -pro  -rundir  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1   -part LFE5UM5G_45F  -package BG381C  -grade -8    -maxfan 100 -pipe -forcenogsr -fixgatedclocks 1 -fixgeneratedclocks 1 -RWCheckOnRam 1 -use_rename_in_edif 1 -Write_declared_clocks_only 1 -summaryfile \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\report\impl1_fpga_mapper.xml  -flow mapping  -multisrs  -oedif  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi   -autoconstraint  -freq 1.000   \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v  -ologparam  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\syntmp\impl1.plg  -osyn  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.srm  -prjdir  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\  -prjname  impl1_syn  -log  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_fpga_mapper.srr 
-rc:1 success:1 runtime:1
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi|io:o|time:1483482040|size:108308|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd|io:i|time:1483482039|size:6533|exec:0
+rc:1 success:1 runtime:3
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi|io:o|time:1483747362|size:157984|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd|io:i|time:1483747360|size:11897|exec:0
 file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v|io:i|time:1467795226|size:89971|exec:0
 file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v|io:i|time:1467795226|size:40584|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\syntmp\impl1.plg|io:o|time:1483482040|size:743|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.srm|io:o|time:1483482040|size:8877|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_fpga_mapper.srr|io:o|time:1483482040|size:29031|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\syntmp\impl1.plg|io:o|time:1483747362|size:738|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.srm|io:o|time:1483747362|size:23706|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_fpga_mapper.srr|io:o|time:1483747362|size:104556|exec:0
 file:C:\lscc\diamond\3.8_x64\synpbase\bin\m_gen_lattice.exe|io:i|time:1467796026|size:18704384|exec:1
 file:C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe|io:i|time:1467797562|size:22412800|exec:1

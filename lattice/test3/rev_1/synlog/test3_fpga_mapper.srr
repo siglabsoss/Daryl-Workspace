@@ -1,0 +1,322 @@
+Synopsys Lattice Technology Mapper, Version maplat, Build 1498R, Built Jul  5 2016 10:30:31
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.03L-1
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 111MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 113MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 138MB peak: 141MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 138MB peak: 141MB)
+
+Encoding state machine curr_state[3:0] (in view: work.ebr_fifo(verilog))
+original code -> new code
+   00000000000000000000000000000000 -> 00
+   00000000000000000000000000000001 -> 01
+   00000000000000000000000000000010 -> 10
+   00000000000000000000000000000011 -> 11
+@N: MO225 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":69:0:69:8|There are no possible illegal states for state machine curr_state[3:0] (in view: work.ebr_fifo(verilog)); safe FSM implementation is not required.
+@N: MF179 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Found 11 by 11 bit equality operator ('==') adreg (in view: VhdlGenLib.ebr_fifo_RAM_R_W_2048_8_TFFF_block_ram_virtex2(netlist))
+
+Starting factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[0] because it is equivalent to instance tail[0]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[1] because it is equivalent to instance tail[1]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[2] because it is equivalent to instance tail[2]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[3] because it is equivalent to instance tail[3]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[4] because it is equivalent to instance tail[4]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[5] because it is equivalent to instance tail[5]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[6] because it is equivalent to instance tail[6]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[7] because it is equivalent to instance tail[7]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[8] because it is equivalent to instance tail[8]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: BN132 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing instance buffer_raddr_tmp[9] because it is equivalent to instance tail[9]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@N: BN362 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":25:0:25:8|Removing sequential instance buffer_G_1 (in view: work.ebr_fifo(verilog)) because it does not drive other instances.
+
+Finished factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:00s		     4.43ns		  42 /        55
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 141MB)
+
+
+
+@S |Clock Optimization Summary
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+1 non-gated/non-generated clock tree(s) driving 57 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+============================= Non-Gated/Non-Generated Clocks ==============================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance    
+-------------------------------------------------------------------------------------------
+@K:CKID0001       i_clock             port                   57         buffer_waddr_tmp[0]
+===========================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 107MB peak: 141MB)
+
+Writing Analyst data base Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
+
+Writing EDIF Netlist and constraint files
+@N: FX1056 |Writing EDF file: Z:\Daryl-Workspace\lattice\test3\rev_1\test3.edn
+L-2016.03L-1
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 145MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 145MB)
+
+@W: MT420 |Found inferred clock ebr_fifo|i_clock with period 10.00ns. Please declare a user-defined clock on object "p:i_clock"
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Fri Jan 13 14:30:28 2017
+#
+
+
+Top view:               ebr_fifo
+Requested Frequency:    100.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: 4.423
+
+                     Requested     Estimated     Requested     Estimated               Clock        Clock              
+Starting Clock       Frequency     Frequency     Period        Period        Slack     Type         Group              
+-----------------------------------------------------------------------------------------------------------------------
+ebr_fifo|i_clock     100.0 MHz     179.3 MHz     10.000        5.577         4.423     inferred     Inferred_clkgroup_0
+=======================================================================================================================
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                              |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+--------------------------------------------------------------------------------------------------------------------------
+Starting          Ending            |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+--------------------------------------------------------------------------------------------------------------------------
+ebr_fifo|i_clock  ebr_fifo|i_clock  |  10.000      4.423  |  No paths    -      |  No paths    -      |  No paths    -    
+==========================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: ebr_fifo|i_clock
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                  Starting                                                   Arrival          
+Instance          Reference            Type        Pin     Net               Time        Slack
+                  Clock                                                                       
+----------------------------------------------------------------------------------------------
+curr_state[1]     ebr_fifo|i_clock     FD1S3AX     Q       o_out_valid_c     0.913       4.423
+tail[0]           ebr_fifo|i_clock     FD1S3IX     Q       tail[0]           0.798       5.231
+tail[1]           ebr_fifo|i_clock     FD1S3IX     Q       tail[1]           0.798       5.290
+tail[2]           ebr_fifo|i_clock     FD1S3IX     Q       tail[2]           0.798       5.290
+tail[3]           ebr_fifo|i_clock     FD1S3IX     Q       tail[3]           0.798       5.348
+tail[4]           ebr_fifo|i_clock     FD1S3IX     Q       tail[4]           0.798       5.348
+tail[5]           ebr_fifo|i_clock     FD1S3IX     Q       tail[5]           0.798       5.407
+tail[6]           ebr_fifo|i_clock     FD1S3IX     Q       tail[6]           0.798       5.407
+tail[7]           ebr_fifo|i_clock     FD1S3IX     Q       tail[7]           0.798       5.466
+tail[8]           ebr_fifo|i_clock     FD1S3IX     Q       tail[8]           0.798       5.466
+==============================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                      Starting                                                 Required          
+Instance              Reference            Type       Pin       Net            Time         Slack
+                      Clock                                                                      
+-------------------------------------------------------------------------------------------------
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA12     tail_0[9]      8.223        4.423
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA13     tail_0[10]     8.223        4.423
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA10     tail_0[7]      8.223        4.481
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA11     tail_0[8]      8.223        4.481
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA8      tail_0[5]      8.223        4.540
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA9      tail_0[6]      8.223        4.540
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA6      tail_0[3]      8.223        4.599
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA7      tail_0[4]      8.223        4.599
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA4      tail_0[1]      8.223        4.659
+buffer_buffer_0_0     ebr_fifo|i_clock     DP16KD     ADA5      tail_0[2]      8.223        4.659
+=================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      10.000
+    - Setup time:                            1.777
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         8.223
+
+    - Propagation time:                      3.801
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     4.423
+
+    Number of logic level(s):                8
+    Starting point:                          curr_state[1] / Q
+    Ending point:                            buffer_buffer_0_0 / ADA13
+    The start point is clocked by            ebr_fifo|i_clock [rising] on pin CK
+    The end   point is clocked by            ebr_fifo|i_clock [rising] on pin CLKA
+
+Instance / Net                       Pin       Pin               Arrival     No. of    
+Name                    Type         Name      Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------------
+curr_state[1]           FD1S3AX      Q         Out     0.913     0.913       -         
+o_out_valid_c           Net          -         -       -         -           9         
+tail15_i_o3             ORCALUT4     A         In      0.000     0.913       -         
+tail15_i_o3             ORCALUT4     Z         Out     0.693     1.606       -         
+tail15_i_o3             Net          -         -       -         -           12        
+un1_tail_cry_0_0        CCU2C        B0        In      0.000     1.606       -         
+un1_tail_cry_0_0        CCU2C        COUT      Out     0.784     2.390       -         
+un1_tail_cry_0          Net          -         -       -         -           1         
+un1_tail_cry_1_0        CCU2C        CIN       In      0.000     2.390       -         
+un1_tail_cry_1_0        CCU2C        COUT      Out     0.059     2.449       -         
+un1_tail_cry_2          Net          -         -       -         -           1         
+un1_tail_cry_3_0        CCU2C        CIN       In      0.000     2.449       -         
+un1_tail_cry_3_0        CCU2C        COUT      Out     0.059     2.508       -         
+un1_tail_cry_4          Net          -         -       -         -           1         
+un1_tail_cry_5_0        CCU2C        CIN       In      0.000     2.508       -         
+un1_tail_cry_5_0        CCU2C        COUT      Out     0.059     2.567       -         
+un1_tail_cry_6          Net          -         -       -         -           1         
+un1_tail_cry_7_0        CCU2C        CIN       In      0.000     2.567       -         
+un1_tail_cry_7_0        CCU2C        COUT      Out     0.059     2.626       -         
+un1_tail_cry_8          Net          -         -       -         -           1         
+un1_tail_cry_9_0        CCU2C        CIN       In      0.000     2.626       -         
+un1_tail_cry_9_0        CCU2C        S1        Out     0.651     3.277       -         
+un1_tail_cry_9_0_S1     Net          -         -       -         -           2         
+tail_0[10]              ORCALUT4     B         In      0.000     3.277       -         
+tail_0[10]              ORCALUT4     Z         Out     0.523     3.801       -         
+tail_0[10]              Net          -         -       -         -           1         
+buffer_buffer_0_0       DP16KD       ADA13     In      0.000     3.801       -         
+=======================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Constraints that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 145MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 143MB peak: 145MB)
+
+---------------------------------------
+Resource Usage Report
+Part: lfe5um5g_25f-8
+
+Register bits: 55 of 24288 (0%)
+PIC Latch:       0
+I/O cells:       22
+Block Rams : 1 of 56 (1%)
+
+
+Details:
+CCU2C:          23
+DP16KD:         1
+FD1S3AX:        13
+FD1S3IX:        34
+GSR:            1
+IB:             12
+IFS1P3DX:       8
+OB:             10
+ORCALUT4:       42
+PUR:            1
+VHI:            1
+VLO:            1
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 31MB peak: 145MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Fri Jan 13 14:30:28 2017
+
+###########################################################]

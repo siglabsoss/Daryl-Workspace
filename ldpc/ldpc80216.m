@@ -1,7 +1,13 @@
 % Construct LDPC PCM from 802.16 standard given input size z
 
-function [H, z] = ldpc80216
-    z = 96;
+function [H, z] = ldpc80216(standard_matrix, z)
+    if nargin < 1
+        standard_matrix = 0;
+    end
+    
+    if nargin < 2
+        z = 96;
+    end
 
     eyeZ = eye(z);
 
@@ -27,7 +33,11 @@ function [H, z] = ldpc80216
     for row = 1:u
         for col = 1:v
             if ldpc80216_template(row, col) >= 0
-                H(z*(row-1)+1:z*row, z*(col-1)+1:z*col) = circshift(eyeZ, ldpc80216_template(row, col));
+                if standard_matrix ~= 0
+                    H(z*(row-1)+1:z*row, z*(col-1)+1:z*col) = circshift(eyeZ, [0, ldpc80216_template(row, col)]);
+                else
+                    H(z*(row-1)+1:z*row, z*(col-1)+1:z*col) = circshift(eyeZ, ldpc80216_template(row, col));
+                end
             end
         end
     end

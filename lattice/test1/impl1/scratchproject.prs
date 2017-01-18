@@ -3,8 +3,7 @@
 #--  Project file \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\scratchproject.prs
 
 #project files
-add_file -verilog -vlog_std sysv "//SIGLABSMACHINE/shared/Daryl-Workspace/lattice/test1/impl1/source/skid.sv"
-add_file -verilog "//SIGLABSMACHINE/shared/Daryl-Workspace/lattice/test1/impl1/source/top_skid.sv"
+add_file -verilog -vlog_std sysv "//SIGLABSMACHINE/shared/Daryl-Workspace/ldpc/sparse_mult_by_A.sv"
 
 
 

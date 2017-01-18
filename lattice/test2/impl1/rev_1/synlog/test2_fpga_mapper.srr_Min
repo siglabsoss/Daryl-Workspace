@@ -1,0 +1,125 @@
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Tue Jan 10 13:41:36 2017
+#
+
+
+Top view:               sparse_mult_by_A
+Requested Frequency:    234.9 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: 0.651
+
+                             Requested     Estimated     Requested     Estimated                Clock        Clock                
+Starting Clock               Frequency     Frequency     Period        Period        Slack      Type         Group                
+----------------------------------------------------------------------------------------------------------------------------------
+sparse_mult_by_A|i_clock     234.9 MHz     199.7 MHz     4.257         5.008         -0.751     inferred     Autoconstr_clkgroup_0
+==================================================================================================================================
+
+
+
+Clock Relationships
+*******************
+
+Clocks                                              |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+------------------------------------------------------------------------------------------------------------------------------------------
+Starting                  Ending                    |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+------------------------------------------------------------------------------------------------------------------------------------------
+sparse_mult_by_A|i_clock  sparse_mult_by_A|i_clock  |  0.000       0.651  |  No paths    -      |  No paths    -      |  No paths    -    
+==========================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: sparse_mult_by_A|i_clock
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                        Starting                                                                 Arrival          
+Instance                Reference                    Type        Pin     Net                     Time        Slack
+                        Clock                                                                                     
+------------------------------------------------------------------------------------------------------------------
+ping_storage_data_2     sparse_mult_by_A|i_clock     FD1P3IX     Q       ping_storage_data_2     0.559       0.651
+ping_storage_data_3     sparse_mult_by_A|i_clock     FD1P3IX     Q       ping_storage_data_3     0.559       0.651
+ping_storage_data_4     sparse_mult_by_A|i_clock     FD1P3IX     Q       ping_storage_data_4     0.559       0.651
+ping_storage_data_5     sparse_mult_by_A|i_clock     FD1P3IX     Q       ping_storage_data_5     0.559       0.651
+ping_storage_data_6     sparse_mult_by_A|i_clock     FD1P3IX     Q       ping_storage_data_6     0.559       0.651
+==================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                        Starting                                                                    Required          
+Instance                Reference                    Type        Pin     Net                        Time         Slack
+                        Clock                                                                                         
+----------------------------------------------------------------------------------------------------------------------
+ping_storage_data_2     sparse_mult_by_A|i_clock     FD1P3IX     D       ping_storage_data_2_12     0.148        0.651
+ping_storage_data_3     sparse_mult_by_A|i_clock     FD1P3IX     D       N_84727_i                  0.148        0.651
+ping_storage_data_4     sparse_mult_by_A|i_clock     FD1P3IX     D       N_84731_i                  0.148        0.651
+ping_storage_data_5     sparse_mult_by_A|i_clock     FD1P3IX     D       N_84729_i                  0.148        0.651
+ping_storage_data_6     sparse_mult_by_A|i_clock     FD1P3IX     D       N_83378_i                  0.148        0.651
+======================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+    Propagation time:                        0.799
+    + Clock delay at starting point:         0.000 (ideal)
+    - Requested Period:                      0.000
+    - Hold time:                             0.148
+    - Clock delay at ending point:           0.000 (ideal)
+    = Slack (critical) :                     0.651
+
+    Number of logic level(s):                1
+    Starting point:                          ping_storage_data_2 / Q
+    Ending point:                            ping_storage_data_2 / D
+    The start point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+    The end   point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+
+Instance / Net                                      Pin      Pin               Arrival     No. of    
+Name                                   Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------
+ping_storage_data_2                    FD1P3IX      Q        Out     0.559     0.559       -         
+ping_storage_data_2                    Net          -        -       -         -           2         
+ping_storage_data_2_12_u_0_m2_0_m2     ORCALUT4     C        In      0.000     0.559       -         
+ping_storage_data_2_12_u_0_m2_0_m2     ORCALUT4     Z        Out     0.240     0.799       -         
+ping_storage_data_2_12                 Net          -        -       -         -           1         
+ping_storage_data_2                    FD1P3IX      D        In      0.000     0.799       -         
+=====================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Constraints that could not be applied
+None

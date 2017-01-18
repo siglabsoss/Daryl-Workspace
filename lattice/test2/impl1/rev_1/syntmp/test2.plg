@@ -1,0 +1,14 @@
+@P:  Worst Slack : -0.751
+@P:  sparse_mult_by_A|i_clock - Estimated Frequency : 199.7 MHz
+@P:  sparse_mult_by_A|i_clock - Requested Frequency : 234.9 MHz
+@P:  sparse_mult_by_A|i_clock - Estimated Period : 5.008
+@P:  sparse_mult_by_A|i_clock - Requested Period : 4.257
+@P:  sparse_mult_by_A|i_clock - Slack : -0.751
+@P:  Worst Slack(min analysis) : 0.651
+@P:  sparse_mult_by_A|i_clock - Estimated Frequency(min analysis) : 199.7 MHz
+@P:  sparse_mult_by_A|i_clock - Requested Frequency(min analysis) : 234.9 MHz
+@P:  sparse_mult_by_A|i_clock - Estimated Period(min analysis) : 5.008
+@P:  sparse_mult_by_A|i_clock - Requested Period(min analysis) : 4.257
+@P:  sparse_mult_by_A|i_clock - Slack(min analysis) : -0.751
+@P:  Total Area : 10248.0
+@P:  CPU Time : 0h:01m:49s

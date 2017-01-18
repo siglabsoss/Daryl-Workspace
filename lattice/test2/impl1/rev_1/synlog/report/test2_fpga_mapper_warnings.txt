@@ -1,0 +1,2 @@
+@W: BN132 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":40:0:40:8|Removing sequential instance readout_state[0] because it is equivalent to instance fillup_state[0]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: MT420 |Found inferred clock sparse_mult_by_A|i_clock with period 4.26ns. Please declare a user-defined clock on object "p:i_clock"

@@ -1,0 +1,13 @@
+C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe  -prodtype  synplify_pro   -encrypt  -pro  -rundir  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1   -part LFE5UM5G_85F  -package BG756C  -grade -8    -maxfan 100 -pipe -forcenogsr -fixgatedclocks 1 -fixgeneratedclocks 1 -RWCheckOnRam 1 -use_rename_in_edif 1 -Write_declared_clocks_only 1 -summaryfile \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synlog\report\test2_premap.xml  -ta_num_points  5  -oedif  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2.edn  -conchk_prepass  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2_cck.rpt   -autoconstraint  -freq 1.000   \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_mult.srs  -flow prepass  -gcc_prepass  -osrd  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_prem.srd  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v  -ologparam  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\syntmp\test2.plg  -osyn  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_prem.srd  -prjdir  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\  -prjname  test2  -log  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synlog\test2_premap.srr 
+rc:1 success:1 runtime:6
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2.edn|io:o|time:1484081008|size:7740482|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2_cck.rpt|io:o|time:1484084310|size:4465|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_mult.srs|io:i|time:1484084303|size:403937|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_prem.srd|io:o|time:1484084309|size:523520|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v|io:i|time:1467795226|size:89971|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v|io:i|time:1467795226|size:40584|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\syntmp\test2.plg|io:o|time:1484084304|size:0|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_prem.srd|io:o|time:1484084309|size:523520|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synlog\test2_premap.srr|io:o|time:1484084310|size:4110|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\bin\m_gen_lattice.exe|io:i|time:1467796026|size:18704384|exec:1
+file:C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe|io:i|time:1467797562|size:22412800|exec:1

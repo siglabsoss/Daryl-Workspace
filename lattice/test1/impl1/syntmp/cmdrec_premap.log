@@ -1,13 +1,13 @@
 C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe  -prodtype  synplify_pro   -encrypt  -pro  -rundir  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1   -part LFE5UM5G_45F  -package BG381C  -grade -8    -maxfan 100 -pipe -forcenogsr -fixgatedclocks 1 -fixgeneratedclocks 1 -RWCheckOnRam 1 -use_rename_in_edif 1 -Write_declared_clocks_only 1 -summaryfile \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\report\impl1_premap.xml  -oedif  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi  -conchk_prepass  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1_cck.rpt   -autoconstraint  -freq 1.000   \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_mult.srs  -flow prepass  -gcc_prepass  -osrd  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v  -devicelib  C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v  -ologparam  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\syntmp\impl1.plg  -osyn  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd  -prjdir  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\  -prjname  impl1_syn  -log  \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_premap.srr 
-rc:1 success:1 runtime:1
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi|io:o|time:1483481710|size:57331|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1_cck.rpt|io:o|time:1483482039|size:2763|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_mult.srs|io:i|time:1483482039|size:3008|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd|io:o|time:1483482039|size:6533|exec:0
+rc:1 success:1 runtime:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1.edi|io:o|time:1483745132|size:157985|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\impl1_cck.rpt|io:o|time:1483747360|size:4429|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_mult.srs|io:i|time:1483747359|size:9952|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd|io:o|time:1483747360|size:11897|exec:0
 file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\ecp5um5g.v|io:i|time:1467795226|size:89971|exec:0
 file:C:\lscc\diamond\3.8_x64\synpbase\lib\lucent\pmi_def.v|io:i|time:1467795226|size:40584|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\syntmp\impl1.plg|io:o|time:1483482039|size:0|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd|io:o|time:1483482039|size:6533|exec:0
-file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_premap.srr|io:o|time:1483482039|size:4152|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\syntmp\impl1.plg|io:o|time:1483747360|size:0|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synwork\impl1_prem.srd|io:o|time:1483747360|size:11897|exec:0
+file:\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test1\impl1\synlog\impl1_premap.srr|io:o|time:1483747360|size:39306|exec:0
 file:C:\lscc\diamond\3.8_x64\synpbase\bin\m_gen_lattice.exe|io:i|time:1467796026|size:18704384|exec:1
 file:C:\lscc\diamond\3.8_x64\synpbase\bin64\m_gen_lattice.exe|io:i|time:1467797562|size:22412800|exec:1

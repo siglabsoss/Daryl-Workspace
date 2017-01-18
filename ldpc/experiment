@@ -1,0 +1,16 @@
+% Dirichlet Kernel CFO Experiment
+
+N = 1024;
+
+fc = 0.1;
+delta_f = 0.1/N;
+
+x = exp(2j*pi*0.1*(0:N-1)) + exp(2j*pi*0.1*(0:N-1));
+
+figure();
+plot(real(x)); hold on;
+plot(imag(x), 'r'); hold off;
+
+figure();
+plot(abs(fft(x, N)));
+plot(abs(fft(x, 10*N)));

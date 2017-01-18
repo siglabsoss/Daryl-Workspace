@@ -1,0 +1,14 @@
+Selecting top level module ebr_fifo
+@N: CG364 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":5:7:5:14|Synthesizing module ebr_fifo in library work.
+
+@N: CG179 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":57:32:57:42|Removing redundant assignment.
+@N: CL134 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":25:0:25:8|Found RAM buffer, depth=2048, width=8
+@N: CL201 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":69:0:69:8|Trying to extract state machine for register curr_state.
+Extracted state machine for register curr_state
+State machine has 4 reachable states with original encodings of:
+   00000000000000000000000000000000
+   00000000000000000000000000000001
+   00000000000000000000000000000010
+   00000000000000000000000000000011
+@W: CL260 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":34:0:34:8|Pruning register bit 11 of tail[11:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL260 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":34:0:34:8|Pruning register bit 11 of head[11:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.

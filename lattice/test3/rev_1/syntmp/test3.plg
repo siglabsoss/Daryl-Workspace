@@ -1,0 +1,14 @@
+@P:  Worst Slack : 4.423
+@P:  ebr_fifo|i_clock - Estimated Frequency : 179.3 MHz
+@P:  ebr_fifo|i_clock - Requested Frequency : 100.0 MHz
+@P:  ebr_fifo|i_clock - Estimated Period : 5.577
+@P:  ebr_fifo|i_clock - Requested Period : 10.000
+@P:  ebr_fifo|i_clock - Slack : 4.423
+@P:  Worst Slack(min analysis) : -0.657
+@P:  ebr_fifo|i_clock - Estimated Frequency(min analysis) : 179.3 MHz
+@P:  ebr_fifo|i_clock - Requested Frequency(min analysis) : 100.0 MHz
+@P:  ebr_fifo|i_clock - Estimated Period(min analysis) : 5.577
+@P:  ebr_fifo|i_clock - Requested Period(min analysis) : 10.000
+@P:  ebr_fifo|i_clock - Slack(min analysis) : 4.423
+@P:  Total Area : 42.0
+@P:  CPU Time : 0h:00m:00s

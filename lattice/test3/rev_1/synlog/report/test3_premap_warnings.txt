@@ -1,0 +1,1 @@
+@W: MT529 :"c:\users\user\mygit\daryl-workspace\activehdl\ebr_fifo\ebr_fifo.sv":69:0:69:8|Found inferred clock ebr_fifo|i_clock which controls 46 sequential elements including curr_state[3:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 

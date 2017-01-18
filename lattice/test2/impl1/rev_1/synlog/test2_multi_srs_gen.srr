@@ -1,0 +1,14 @@
+Synopsys Netlist Linker, version comp2016q2rc, Build 192R, built Jul  5 2016
+@N|Running in 64-bit mode
+File \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_comp.srs changed - recompiling
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\sparse_mult_by_A.sv":6:7:6:22|Selected library: work cell: sparse_mult_by_A view verilog as top level
+@N: NF107 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\sparse_mult_by_A.sv":6:7:6:22|Selected library: work cell: sparse_mult_by_A view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 86MB peak: 87MB)
+
+Process took 0h:00m:02s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Tue Jan 10 13:38:23 2017
+
+###########################################################]

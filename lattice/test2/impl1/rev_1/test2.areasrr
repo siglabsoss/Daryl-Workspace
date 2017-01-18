@@ -1,0 +1,25 @@
+----------------------------------------------------------------------
+Report for cell sparse_mult_by_A.verilog
+
+Register bits: 2220 of 83640 (3%)
+PIC Latch:       0
+I/O cells:       110
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1P3AX        2       100.0
+                            FD1P3IX     2114       100.0
+                            FD1S3AX       13       100.0
+                            FD1S3IX       90       100.0
+                                GSR        1       100.0
+                                 IB       12       100.0
+                           IFS1P3BX        1       100.0
+                                INV        1       100.0
+                            L6MUX21       54       100.0
+                                 OB       98       100.0
+                           ORCALUT4    10247       100.0
+                              PFUMX      672       100.0
+                                PUR        1       100.0
+                                VHI        1       100.0
+                                VLO        1       100.0
+                            
+                         TOTAL         13308           

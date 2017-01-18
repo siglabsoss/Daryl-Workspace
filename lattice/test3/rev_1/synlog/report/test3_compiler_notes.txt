@@ -1,0 +1,12 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N:: Running Verilog Compiler in System Verilog mode
+@N:: Running Verilog Compiler in Multiple File Compilation Unit mode
+@N: CG364 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":5:7:5:14|Synthesizing module ebr_fifo in library work.
+@N: CG179 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":57:32:57:42|Removing redundant assignment.
+@N: CL134 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":25:0:25:8|Found RAM buffer, depth=2048, width=8
+@N: CL201 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":69:0:69:8|Trying to extract state machine for register curr_state.
+@N|Running in 64-bit mode
+@N: NF107 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":5:7:5:14|Selected library: work cell: ebr_fifo view verilog as top level
+@N: NF107 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":5:7:5:14|Selected library: work cell: ebr_fifo view verilog as top level
+

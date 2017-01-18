@@ -1,0 +1,12 @@
+
+fsm_encoding {6690691} sequential
+
+fsm_state_encoding {6690691} 00000000000000000000000000000000 {00}
+
+fsm_state_encoding {6690691} ST_EMPTY {01}
+
+fsm_state_encoding {6690691} ST_NORMAL {10}
+
+fsm_state_encoding {6690691} ST_FULL {11}
+
+fsm_registers {6690691} {curr_state[1]}  {curr_state[0]} 

@@ -1,0 +1,74 @@
+Synopsys Lattice Technology Pre-mapping, Version maplat, Build 1498R, Built Jul  5 2016 10:30:31
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.03L-1
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@A: MF827 |No constraint file specified.
+@L: \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2_scck.rpt 
+Printing clock  summary report in "\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2_scck.rpt" file 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 118MB peak: 120MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 118MB peak: 120MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 130MB peak: 130MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 130MB peak: 132MB)
+
+ICG Latch Removal Summary:
+Number of ICG latches removed:	0
+Number of ICG latches not removed:	0
+syn_allowed_resources : blockrams=208  set on top level netlist sparse_mult_by_A
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 163MB peak: 168MB)
+
+
+
+Clock Summary
+*****************
+
+Start                        Requested     Requested     Clock        Clock                     Clock
+Clock                        Frequency     Period        Type         Group                     Load 
+-----------------------------------------------------------------------------------------------------
+sparse_mult_by_A|i_clock     364.2 MHz     2.746         inferred     Autoconstr_clkgroup_0     2139 
+=====================================================================================================
+
+@W: MT529 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":87:0:87:8|Found inferred clock sparse_mult_by_A|i_clock which controls 2139 sequential elements including fillup_transition. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+
+Finished Pre Mapping Phase.
+
+Starting constraint checker (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:04s; Memory used current: 163MB peak: 168MB)
+
+Encoding state machine fillup_state[4:0] (in view: work.sparse_mult_by_A(verilog))
+original code -> new code
+   00000000000000000000000000000000 -> 00001
+   00000000000000000000000000000001 -> 00010
+   00000000000000000000000000000010 -> 00100
+   00000000000000000000000000000011 -> 01000
+   00000000000000000000000000000100 -> 10000
+Encoding state machine readout_state[4:0] (in view: work.sparse_mult_by_A(verilog))
+original code -> new code
+   00000000000000000000000000000000 -> 00001
+   00000000000000000000000000000001 -> 00010
+   00000000000000000000000000000010 -> 00100
+   00000000000000000000000000000011 -> 01000
+   00000000000000000000000000000100 -> 10000
+None
+None
+
+Finished constraint checker (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:04s; Memory used current: 164MB peak: 169MB)
+
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:04s; Memory used current: 77MB peak: 169MB)
+
+Process took 0h:00m:05s realtime, 0h:00m:04s cputime
+# Tue Jan 10 13:38:30 2017
+
+###########################################################]

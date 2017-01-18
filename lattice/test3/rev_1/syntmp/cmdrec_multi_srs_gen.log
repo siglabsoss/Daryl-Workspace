@@ -1,0 +1,7 @@
+C:\lscc\diamond\3.8_x64\synpbase\bin64\syn_nfilter.exe  -link  -multisrs  Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_comp.srs  -osyn  Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_mult.srs  -log  Z:\Daryl-Workspace\lattice\test3\rev_1\synlog\test3_multi_srs_gen.srr 
+rc:0 success:1 runtime:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_comp.srs|io:i|time:1484346625|size:3479|exec:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\synwork\test3_mult.srs|io:o|time:1484346626|size:3622|exec:0
+file:Z:\Daryl-Workspace\lattice\test3\rev_1\synlog\test3_multi_srs_gen.srr|io:o|time:1484346626|size:807|exec:0
+file:C:\lscc\diamond\3.8_x64\synpbase\bin\syn_nfilter.exe|io:i|time:1467795316|size:3115520|exec:1
+file:C:\lscc\diamond\3.8_x64\synpbase\bin64\syn_nfilter.exe|io:i|time:1467795518|size:4189696|exec:1

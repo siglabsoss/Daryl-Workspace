@@ -3,7 +3,7 @@
 #
 
 # Period Constraints 
-#FREQUENCY PORT "i_clock" 572.2 MHz;
+#FREQUENCY PORT "i_clock" 292.6 MHz;
 
 
 # Output Constraints 

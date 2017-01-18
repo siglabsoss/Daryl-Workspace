@@ -1,0 +1,2 @@
+@E: CS153 :"\\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\sparse_mult_by_A.sv":93:26:93:26|Can't mix blocking and non-blocking assignments to a variable
+

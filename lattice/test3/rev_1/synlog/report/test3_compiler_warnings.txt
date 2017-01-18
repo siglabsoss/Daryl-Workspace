@@ -1,0 +1,3 @@
+@W: CL260 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":34:0:34:8|Pruning register bit 11 of tail[11:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+@W: CL260 :"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv":34:0:34:8|Pruning register bit 11 of head[11:0]. If this is not the intended behavior, drive the input with valid values, or an input from the top level.
+

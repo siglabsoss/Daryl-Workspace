@@ -1,0 +1,555 @@
+Synopsys Lattice Technology Mapper, Version maplat, Build 1498R, Built Jul  5 2016 10:30:31
+Copyright (C) 1994-2016 Synopsys, Inc. All rights reserved. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+Product Version L-2016.03L-1
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 111MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 113MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 159MB peak: 162MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N: MT206 |Auto Constrain mode is enabled
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:19s; CPU Time elapsed 0h:00m:19s; Memory used current: 161MB peak: 168MB)
+
+Encoding state machine fillup_state[4:0] (in view: work.sparse_mult_by_A(verilog))
+original code -> new code
+   00000000000000000000000000000000 -> 00001
+   00000000000000000000000000000001 -> 00010
+   00000000000000000000000000000010 -> 00100
+   00000000000000000000000000000011 -> 01000
+   00000000000000000000000000000100 -> 10000
+Encoding state machine readout_state[4:0] (in view: work.sparse_mult_by_A(verilog))
+original code -> new code
+   00000000000000000000000000000000 -> 00001
+   00000000000000000000000000000001 -> 00010
+   00000000000000000000000000000010 -> 00100
+   00000000000000000000000000000011 -> 01000
+   00000000000000000000000000000100 -> 10000
+@W: BN132 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":40:0:40:8|Removing sequential instance readout_state[0] because it is equivalent to instance fillup_state[0]. To keep the instance, apply constraint syn_preserve=1 on the instance.
+
+Starting factoring (Real Time elapsed 0h:00m:21s; CPU Time elapsed 0h:00m:20s; Memory used current: 189MB peak: 196MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:36s; CPU Time elapsed 0h:00m:35s; Memory used current: 256MB peak: 257MB)
+
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:38s; CPU Time elapsed 0h:00m:36s; Memory used current: 233MB peak: 262MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:44s; CPU Time elapsed 0h:00m:43s; Memory used current: 220MB peak: 276MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:47s; CPU Time elapsed 0h:00m:46s; Memory used current: 225MB peak: 276MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:01m:00s; CPU Time elapsed 0h:00m:59s; Memory used current: 243MB peak: 276MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:01m:00s; CPU Time elapsed 0h:01m:00s; Memory used current: 238MB peak: 276MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:01m:03s; CPU Time elapsed 0h:01m:03s; Memory used current: 236MB peak: 276MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:01m:10s; CPU Time elapsed 0h:01m:09s; Memory used current: 259MB peak: 306MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:01m:10s		    -1.79ns		10160 /      2138
+   2		0h:01m:10s		    -1.79ns		10140 /      2138
+   3		0h:01m:11s		    -1.74ns		10143 /      2138
+   4		0h:01m:11s		    -1.74ns		10144 /      2138
+   5		0h:01m:12s		    -1.74ns		10144 /      2138
+   6		0h:01m:12s		    -1.74ns		10145 /      2138
+   7		0h:01m:12s		    -1.74ns		10145 /      2138
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[0] (in view: work.sparse_mult_by_A(verilog)) with 58 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[6] (in view: work.sparse_mult_by_A(verilog)) with 42 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[5] (in view: work.sparse_mult_by_A(verilog)) with 60 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[2] (in view: work.sparse_mult_by_A(verilog)) with 60 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[7] (in view: work.sparse_mult_by_A(verilog)) with 43 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[1] (in view: work.sparse_mult_by_A(verilog)) with 67 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[4] (in view: work.sparse_mult_by_A(verilog)) with 67 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count[3] (in view: work.sparse_mult_by_A(verilog)) with 69 loads 3 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":87:0:87:8|Replicating instance fillup_transition (in view: work.sparse_mult_by_A(verilog)) with 594 loads 3 times to improve timing.
+Timing driven replication report
+Added 27 Registers via timing driven replication
+Added 27 LUTs via timing driven replication
+
+   8		0h:01m:21s		    -1.66ns		10179 /      2165
+   9		0h:01m:21s		    -1.57ns		10181 /      2165
+  10		0h:01m:22s		    -1.59ns		10189 /      2165
+  11		0h:01m:22s		    -1.54ns		10190 /      2165
+  12		0h:01m:22s		    -1.56ns		10194 /      2165
+  13		0h:01m:22s		    -1.53ns		10196 /      2165
+  14		0h:01m:22s		    -1.53ns		10199 /      2165
+  15		0h:01m:23s		    -1.47ns		10200 /      2165
+  16		0h:01m:23s		    -1.47ns		10205 /      2165
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count_3_rep2 (in view: work.sparse_mult_by_A(verilog)) with 19 loads 2 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":52:0:52:8|Replicating instance input_count_1_rep2 (in view: work.sparse_mult_by_A(verilog)) with 19 loads 2 times to improve timing.
+@N: FX271 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":87:0:87:8|Replicating instance fillup_transition_fast (in view: work.sparse_mult_by_A(verilog)) with 127 loads 3 times to improve timing.
+Added 7 Registers via timing driven replication
+Added 7 LUTs via timing driven replication
+
+
+  17		0h:01m:24s		    -1.45ns		10227 /      2172
+  18		0h:01m:24s		    -1.38ns		10229 /      2172
+  19		0h:01m:27s		    -1.48ns		10231 /      2172
+  20		0h:01m:27s		    -1.38ns		10231 /      2172
+  21		0h:01m:30s		    -1.59ns		10233 /      2172
+  22		0h:01m:30s		    -1.37ns		10234 /      2172
+  23		0h:01m:33s		    -1.55ns		10247 /      2172
+  24		0h:01m:33s		    -1.47ns		10248 /      2172
+  25		0h:01m:33s		    -1.36ns		10249 /      2172
+  26		0h:01m:36s		    -1.53ns		10257 /      2172
+  27		0h:01m:36s		    -1.50ns		10258 /      2172
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[3]" with 772 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[2]" with 765 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[1]" with 758 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[0]" with 745 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[7]" with 746 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[6]" with 772 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[5]" with 757 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":10:40:10:51|Net "i_input_data_c[4]" with 765 loads has been buffered by 8 buffers due to a soft fanout limit of 100 
+@N: FX104 :"\\siglabsmachine\shared\daryl-workspace\lattice\test2\sparse_mult_by_a.sv":11:40:11:52|Net "i_input_valid_c" with 1892 loads has been buffered by 19 buffers due to a soft fanout limit of 100 
+Net buffering Report for view:work.sparse_mult_by_A(verilog):
+Added 83 Buffers
+Added 19 Registers via replication
+Added 9 LUTs via replication
+
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:01m:38s; CPU Time elapsed 0h:01m:37s; Memory used current: 259MB peak: 306MB)
+
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+Replicating output_count_1[0], loads=105, segments=14
+Replicating fillup_transition_fast_fast, loads=110, segments=17
+replication done = 2
+
+Finished restoring hierarchy (Real Time elapsed 0h:01m:43s; CPU Time elapsed 0h:01m:42s; Memory used current: 252MB peak: 306MB)
+
+
+
+@S |Clock Optimization Summary
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+1 non-gated/non-generated clock tree(s) driving 2220 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+=========================== Non-Gated/Non-Generated Clocks ============================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance
+---------------------------------------------------------------------------------------
+@K:CKID0001       i_clock             port                   2220       fillup_state[1]
+=======================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:01m:46s; CPU Time elapsed 0h:01m:44s; Memory used current: 194MB peak: 306MB)
+
+Writing Analyst data base \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\synwork\test2_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:01m:51s; CPU Time elapsed 0h:01m:45s; Memory used current: 248MB peak: 306MB)
+
+Writing EDIF Netlist and constraint files
+@N: FX1056 |Writing EDF file: \\SIGLABSMACHINE\shared\Daryl-Workspace\lattice\test2\impl1\rev_1\test2.edn
+L-2016.03L-1
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:03m:04s; CPU Time elapsed 0h:01m:48s; Memory used current: 255MB peak: 306MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:03m:04s; CPU Time elapsed 0h:01m:48s; Memory used current: 245MB peak: 306MB)
+
+@W: MT420 |Found inferred clock sparse_mult_by_A|i_clock with period 4.26ns. Please declare a user-defined clock on object "p:i_clock"
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Tue Jan 10 13:41:35 2017
+#
+
+
+Top view:               sparse_mult_by_A
+Requested Frequency:    234.9 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: -0.751
+
+                             Requested     Estimated     Requested     Estimated                Clock        Clock                
+Starting Clock               Frequency     Frequency     Period        Period        Slack      Type         Group                
+----------------------------------------------------------------------------------------------------------------------------------
+sparse_mult_by_A|i_clock     234.9 MHz     199.7 MHz     4.257         5.008         -0.751     inferred     Autoconstr_clkgroup_0
+==================================================================================================================================
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                                              |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+-------------------------------------------------------------------------------------------------------------------------------------------
+Starting                  Ending                    |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+-------------------------------------------------------------------------------------------------------------------------------------------
+sparse_mult_by_A|i_clock  sparse_mult_by_A|i_clock  |  4.257       -0.751  |  No paths    -      |  No paths    -      |  No paths    -    
+===========================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: sparse_mult_by_A|i_clock
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                        Starting                                                                 Arrival           
+Instance                Reference                    Type        Pin     Net                     Time        Slack 
+                        Clock                                                                                      
+-------------------------------------------------------------------------------------------------------------------
+input_count_fast[1]     sparse_mult_by_A|i_clock     FD1S3IX     Q       input_count_fast[1]     0.970       -0.751
+input_count_4_rep1      sparse_mult_by_A|i_clock     FD1S3IX     Q       input_count_4_rep1      0.946       -0.746
+input_count_5_rep1      sparse_mult_by_A|i_clock     FD1S3IX     Q       input_count_5_rep1      0.943       -0.743
+input_count_fast[0]     sparse_mult_by_A|i_clock     FD1S3IX     Q       input_count_fast[0]     0.956       -0.737
+input_count_7_rep1      sparse_mult_by_A|i_clock     FD1S3IX     Q       input_count_7_rep1      0.930       -0.731
+===================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                          Starting                                                                      Required           
+Instance                  Reference                    Type        Pin     Net                          Time         Slack 
+                          Clock                                                                                            
+---------------------------------------------------------------------------------------------------------------------------
+ping_storage_data_132     sparse_mult_by_A|i_clock     FD1P3IX     D       ping_storage_data_132_13     4.046        -0.751
+pong_storage_data_132     sparse_mult_by_A|i_clock     FD1P3IX     D       pong_storage_data_132_13     4.046        -0.751
+ping_storage_data_219     sparse_mult_by_A|i_clock     FD1P3IX     D       ping_storage_data_219_13     4.046        -0.710
+pong_storage_data_219     sparse_mult_by_A|i_clock     FD1P3IX     D       pong_storage_data_219_13     4.046        -0.710
+pong_storage_data_191     sparse_mult_by_A|i_clock     FD1P3IX     D       pong_storage_data_191_13     4.046        -0.685
+===========================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      4.257
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.046
+
+    - Propagation time:                      4.797
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.751
+
+    Number of logic level(s):                7
+    Starting point:                          input_count_fast[1] / Q
+    Ending point:                            ping_storage_data_132 / D
+    The start point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+    The end   point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+input_count_fast[1]                            FD1S3IX      Q        Out     0.970     0.970       -         
+input_count_fast[1]                            Net          -        -       -         -           32        
+un1_input_count_17_1                           ORCALUT4     B        In      0.000     0.970       -         
+un1_input_count_17_1                           ORCALUT4     Z        Out     0.771     1.742       -         
+un1_input_count_85_1                           Net          -        -       -         -           60        
+un1_input_count_79                             ORCALUT4     C        In      0.000     1.742       -         
+un1_input_count_79                             ORCALUT4     Z        Out     0.732     2.473       -         
+un1_input_count_79                             Net          -        -       -         -           27        
+un1_input_count_80_0_RNIHU411                  ORCALUT4     A        In      0.000     2.473       -         
+un1_input_count_80_0_RNIHU411                  ORCALUT4     Z        Out     0.568     3.041       -         
+N_65775                                        Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     ORCALUT4     B        In      0.000     3.041       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     ORCALUT4     Z        Out     0.523     3.564       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        PFUMX        BLUT     In      0.000     3.564       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        PFUMX        Z        Out     0.322     3.886       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_0              ORCALUT4     C        In      0.000     3.886       -         
+ping_storage_data_132_13_u_0_o4_0              ORCALUT4     Z        Out     0.568     4.454       -         
+ping_storage_data_132_13_u_0_o4_0              Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_m2                ORCALUT4     B        In      0.000     4.454       -         
+ping_storage_data_132_13_u_0_m2                ORCALUT4     Z        Out     0.343     4.797       -         
+ping_storage_data_132_13                       Net          -        -       -         -           1         
+ping_storage_data_132                          FD1P3IX      D        In      0.000     4.797       -         
+=============================================================================================================
+
+
+Path information for path number 2: 
+      Requested Period:                      4.257
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.046
+
+    - Propagation time:                      4.797
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.751
+
+    Number of logic level(s):                7
+    Starting point:                          input_count_fast[1] / Q
+    Ending point:                            ping_storage_data_132 / D
+    The start point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+    The end   point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+
+Instance / Net                                            Pin      Pin               Arrival     No. of    
+Name                                         Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------
+input_count_fast[1]                          FD1S3IX      Q        Out     0.970     0.970       -         
+input_count_fast[1]                          Net          -        -       -         -           32        
+un1_input_count_17_1                         ORCALUT4     B        In      0.000     0.970       -         
+un1_input_count_17_1                         ORCALUT4     Z        Out     0.771     1.742       -         
+un1_input_count_85_1                         Net          -        -       -         -           60        
+un1_input_count_79                           ORCALUT4     C        In      0.000     1.742       -         
+un1_input_count_79                           ORCALUT4     Z        Out     0.732     2.473       -         
+un1_input_count_79                           Net          -        -       -         -           27        
+un1_input_count_80_0_RNIHU411                ORCALUT4     A        In      0.000     2.473       -         
+un1_input_count_80_0_RNIHU411                ORCALUT4     Z        Out     0.568     3.041       -         
+N_65775                                      Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_o4_N_3L3_am     ORCALUT4     B        In      0.000     3.041       -         
+ping_storage_data_132_13_u_0_o4_N_3L3_am     ORCALUT4     Z        Out     0.523     3.564       -         
+ping_storage_data_132_13_u_0_o4_N_3L3_am     Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_N_3L3        PFUMX        BLUT     In      0.000     3.564       -         
+ping_storage_data_132_13_u_0_o4_N_3L3        PFUMX        Z        Out     0.322     3.886       -         
+ping_storage_data_132_13_u_0_o4_N_3L3        Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4              ORCALUT4     C        In      0.000     3.886       -         
+ping_storage_data_132_13_u_0_o4              ORCALUT4     Z        Out     0.568     4.454       -         
+N_65966                                      Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_m2              ORCALUT4     A        In      0.000     4.454       -         
+ping_storage_data_132_13_u_0_m2              ORCALUT4     Z        Out     0.343     4.797       -         
+ping_storage_data_132_13                     Net          -        -       -         -           1         
+ping_storage_data_132                        FD1P3IX      D        In      0.000     4.797       -         
+===========================================================================================================
+
+
+Path information for path number 3: 
+      Requested Period:                      4.257
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.046
+
+    - Propagation time:                      4.797
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.751
+
+    Number of logic level(s):                7
+    Starting point:                          input_count_fast[1] / Q
+    Ending point:                            pong_storage_data_132 / D
+    The start point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+    The end   point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+input_count_fast[1]                            FD1S3IX      Q        Out     0.970     0.970       -         
+input_count_fast[1]                            Net          -        -       -         -           32        
+un1_input_count_17_1                           ORCALUT4     B        In      0.000     0.970       -         
+un1_input_count_17_1                           ORCALUT4     Z        Out     0.771     1.742       -         
+un1_input_count_85_1                           Net          -        -       -         -           60        
+un1_input_count_79                             ORCALUT4     C        In      0.000     1.742       -         
+un1_input_count_79                             ORCALUT4     Z        Out     0.732     2.473       -         
+un1_input_count_79                             Net          -        -       -         -           27        
+un1_input_count_80_0_RNIHU411                  ORCALUT4     A        In      0.000     2.473       -         
+un1_input_count_80_0_RNIHU411                  ORCALUT4     Z        Out     0.568     3.041       -         
+N_65775                                        Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     ORCALUT4     B        In      0.000     3.041       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     ORCALUT4     Z        Out     0.523     3.564       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        PFUMX        BLUT     In      0.000     3.564       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        PFUMX        Z        Out     0.322     3.886       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_0              ORCALUT4     C        In      0.000     3.886       -         
+ping_storage_data_132_13_u_0_o4_0              ORCALUT4     Z        Out     0.568     4.454       -         
+ping_storage_data_132_13_u_0_o4_0              Net          -        -       -         -           2         
+pong_storage_data_132_13_u_0_m2                ORCALUT4     B        In      0.000     4.454       -         
+pong_storage_data_132_13_u_0_m2                ORCALUT4     Z        Out     0.343     4.797       -         
+pong_storage_data_132_13                       Net          -        -       -         -           1         
+pong_storage_data_132                          FD1P3IX      D        In      0.000     4.797       -         
+=============================================================================================================
+
+
+Path information for path number 4: 
+      Requested Period:                      4.257
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.046
+
+    - Propagation time:                      4.797
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.751
+
+    Number of logic level(s):                7
+    Starting point:                          input_count_fast[1] / Q
+    Ending point:                            pong_storage_data_132 / D
+    The start point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+    The end   point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+
+Instance / Net                                            Pin      Pin               Arrival     No. of    
+Name                                         Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------
+input_count_fast[1]                          FD1S3IX      Q        Out     0.970     0.970       -         
+input_count_fast[1]                          Net          -        -       -         -           32        
+un1_input_count_17_1                         ORCALUT4     B        In      0.000     0.970       -         
+un1_input_count_17_1                         ORCALUT4     Z        Out     0.771     1.742       -         
+un1_input_count_85_1                         Net          -        -       -         -           60        
+un1_input_count_79                           ORCALUT4     C        In      0.000     1.742       -         
+un1_input_count_79                           ORCALUT4     Z        Out     0.732     2.473       -         
+un1_input_count_79                           Net          -        -       -         -           27        
+un1_input_count_80_0_RNIHU411                ORCALUT4     A        In      0.000     2.473       -         
+un1_input_count_80_0_RNIHU411                ORCALUT4     Z        Out     0.568     3.041       -         
+N_65775                                      Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_o4_N_3L3_am     ORCALUT4     B        In      0.000     3.041       -         
+ping_storage_data_132_13_u_0_o4_N_3L3_am     ORCALUT4     Z        Out     0.523     3.564       -         
+ping_storage_data_132_13_u_0_o4_N_3L3_am     Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_N_3L3        PFUMX        BLUT     In      0.000     3.564       -         
+ping_storage_data_132_13_u_0_o4_N_3L3        PFUMX        Z        Out     0.322     3.886       -         
+ping_storage_data_132_13_u_0_o4_N_3L3        Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4              ORCALUT4     C        In      0.000     3.886       -         
+ping_storage_data_132_13_u_0_o4              ORCALUT4     Z        Out     0.568     4.454       -         
+N_65966                                      Net          -        -       -         -           2         
+pong_storage_data_132_13_u_0_m2              ORCALUT4     A        In      0.000     4.454       -         
+pong_storage_data_132_13_u_0_m2              ORCALUT4     Z        Out     0.343     4.797       -         
+pong_storage_data_132_13                     Net          -        -       -         -           1         
+pong_storage_data_132                        FD1P3IX      D        In      0.000     4.797       -         
+===========================================================================================================
+
+
+Path information for path number 5: 
+      Requested Period:                      4.257
+    - Setup time:                            0.211
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.046
+
+    - Propagation time:                      4.792
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.746
+
+    Number of logic level(s):                7
+    Starting point:                          input_count_4_rep1 / Q
+    Ending point:                            ping_storage_data_132 / D
+    The start point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+    The end   point is clocked by            sparse_mult_by_A|i_clock [rising] on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+input_count_4_rep1                             FD1S3IX      Q        Out     0.946     0.946       -         
+input_count_4_rep1                             Net          -        -       -         -           20        
+un1_input_count_131_6                          ORCALUT4     A        In      0.000     0.946       -         
+un1_input_count_131_6                          ORCALUT4     Z        Out     0.770     1.716       -         
+un1_input_count_13_6                           Net          -        -       -         -           59        
+ping_storage_data_7_1_sqmuxa_i_a3              ORCALUT4     C        In      0.000     1.716       -         
+ping_storage_data_7_1_sqmuxa_i_a3              ORCALUT4     Z        Out     0.751     2.467       -         
+N_74646_2                                      Net          -        -       -         -           40        
+ping_storage_data_132_13_u_0_a2_3_1            ORCALUT4     A        In      0.000     2.467       -         
+ping_storage_data_132_13_u_0_a2_3_1            ORCALUT4     Z        Out     0.568     3.035       -         
+N_66722_1                                      Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     ORCALUT4     A        In      0.000     3.035       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     ORCALUT4     Z        Out     0.523     3.559       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3_am     Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        PFUMX        BLUT     In      0.000     3.559       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        PFUMX        Z        Out     0.322     3.881       -         
+ping_storage_data_132_13_u_0_o4_0_N_3L3        Net          -        -       -         -           1         
+ping_storage_data_132_13_u_0_o4_0              ORCALUT4     C        In      0.000     3.881       -         
+ping_storage_data_132_13_u_0_o4_0              ORCALUT4     Z        Out     0.568     4.449       -         
+ping_storage_data_132_13_u_0_o4_0              Net          -        -       -         -           2         
+ping_storage_data_132_13_u_0_m2                ORCALUT4     B        In      0.000     4.449       -         
+ping_storage_data_132_13_u_0_m2                ORCALUT4     Z        Out     0.343     4.792       -         
+ping_storage_data_132_13                       Net          -        -       -         -           1         
+ping_storage_data_132                          FD1P3IX      D        In      0.000     4.792       -         
+=============================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Constraints that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:03m:05s; CPU Time elapsed 0h:01m:49s; Memory used current: 248MB peak: 306MB)
+
+
+Finished timing report (Real Time elapsed 0h:03m:05s; CPU Time elapsed 0h:01m:49s; Memory used current: 248MB peak: 306MB)
+
+---------------------------------------
+Resource Usage Report
+Part: lfe5um5g_85f-8
+
+Register bits: 2220 of 83640 (3%)
+PIC Latch:       0
+I/O cells:       110
+
+
+Details:
+FD1P3AX:        2
+FD1P3IX:        2114
+FD1S3AX:        13
+FD1S3IX:        90
+GSR:            1
+IB:             12
+IFS1P3BX:       1
+INV:            1
+L6MUX21:        54
+OB:             98
+ORCALUT4:       10247
+PFUMX:          672
+PUR:            1
+VHI:            1
+VLO:            1
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:03m:05s; CPU Time elapsed 0h:01m:49s; Memory used current: 56MB peak: 306MB)
+
+Process took 0h:03m:05s realtime, 0h:01m:49s cputime
+# Tue Jan 10 13:41:36 2017
+
+###########################################################]

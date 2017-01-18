@@ -10,10 +10,10 @@ Printing clock  summary report in "\\SIGLABSMACHINE\shared\Daryl-Workspace\latti
 @N: MF248 |Running in 64-bit mode.
 @N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
 
-Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
 
 
-Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
 
 
 Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 112MB)
@@ -21,10 +21,460 @@ Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00
 
 Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 114MB)
 
+Warning: Found 64 combinational loops!
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[0]
+1) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[0] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[0]
+    input  pin next_fillup_state_10[31:0]/B[0]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[0]
+    net        next_fillup_state_10[0]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[1]
+2) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[1] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[1]
+    input  pin next_fillup_state_10[31:0]/B[1]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[1]
+    net        next_fillup_state_10[1]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[2]
+3) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[2] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[2]
+    input  pin next_fillup_state_10[31:0]/B[2]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[2]
+    net        next_fillup_state_10[2]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[3]
+4) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[3] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[3]
+    input  pin next_fillup_state_10[31:0]/B[3]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[3]
+    net        next_fillup_state_10[3]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[4]
+5) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[4] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[4]
+    input  pin next_fillup_state_10[31:0]/B[4]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[4]
+    net        next_fillup_state_10[4]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[5]
+6) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[5] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[5]
+    input  pin next_fillup_state_10[31:0]/B[5]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[5]
+    net        next_fillup_state_10[5]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[6]
+7) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[6] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[6]
+    input  pin next_fillup_state_10[31:0]/B[6]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[6]
+    net        next_fillup_state_10[6]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[7]
+8) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[7] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[7]
+    input  pin next_fillup_state_10[31:0]/B[7]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[7]
+    net        next_fillup_state_10[7]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[8]
+9) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[8] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[8]
+    input  pin next_fillup_state_10[31:0]/B[8]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[8]
+    net        next_fillup_state_10[8]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[9]
+10) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[9] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[9]
+    input  pin next_fillup_state_10[31:0]/B[9]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[9]
+    net        next_fillup_state_10[9]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[10]
+11) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[10] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[10]
+    input  pin next_fillup_state_10[31:0]/B[10]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[10]
+    net        next_fillup_state_10[10]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[11]
+12) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[11] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[11]
+    input  pin next_fillup_state_10[31:0]/B[11]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[11]
+    net        next_fillup_state_10[11]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[12]
+13) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[12] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[12]
+    input  pin next_fillup_state_10[31:0]/B[12]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[12]
+    net        next_fillup_state_10[12]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[13]
+14) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[13] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[13]
+    input  pin next_fillup_state_10[31:0]/B[13]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[13]
+    net        next_fillup_state_10[13]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[14]
+15) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[14] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[14]
+    input  pin next_fillup_state_10[31:0]/B[14]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[14]
+    net        next_fillup_state_10[14]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[15]
+16) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[15] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[15]
+    input  pin next_fillup_state_10[31:0]/B[15]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[15]
+    net        next_fillup_state_10[15]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[16]
+17) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[16] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[16]
+    input  pin next_fillup_state_10[31:0]/B[16]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[16]
+    net        next_fillup_state_10[16]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[17]
+18) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[17] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[17]
+    input  pin next_fillup_state_10[31:0]/B[17]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[17]
+    net        next_fillup_state_10[17]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[18]
+19) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[18] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[18]
+    input  pin next_fillup_state_10[31:0]/B[18]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[18]
+    net        next_fillup_state_10[18]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[19]
+20) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[19] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[19]
+    input  pin next_fillup_state_10[31:0]/B[19]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[19]
+    net        next_fillup_state_10[19]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[20]
+21) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[20] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[20]
+    input  pin next_fillup_state_10[31:0]/B[20]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[20]
+    net        next_fillup_state_10[20]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[21]
+22) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[21] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[21]
+    input  pin next_fillup_state_10[31:0]/B[21]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[21]
+    net        next_fillup_state_10[21]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[22]
+23) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[22] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[22]
+    input  pin next_fillup_state_10[31:0]/B[22]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[22]
+    net        next_fillup_state_10[22]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[23]
+24) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[23] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[23]
+    input  pin next_fillup_state_10[31:0]/B[23]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[23]
+    net        next_fillup_state_10[23]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[24]
+25) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[24] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[24]
+    input  pin next_fillup_state_10[31:0]/B[24]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[24]
+    net        next_fillup_state_10[24]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[25]
+26) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[25] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[25]
+    input  pin next_fillup_state_10[31:0]/B[25]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[25]
+    net        next_fillup_state_10[25]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[26]
+27) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[26] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[26]
+    input  pin next_fillup_state_10[31:0]/B[26]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[26]
+    net        next_fillup_state_10[26]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[27]
+28) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[27] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[27]
+    input  pin next_fillup_state_10[31:0]/B[27]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[27]
+    net        next_fillup_state_10[27]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[28]
+29) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[28] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[28]
+    input  pin next_fillup_state_10[31:0]/B[28]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[28]
+    net        next_fillup_state_10[28]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[29]
+30) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[29] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[29]
+    input  pin next_fillup_state_10[31:0]/B[29]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[29]
+    net        next_fillup_state_10[29]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[30]
+31) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[30] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[30]
+    input  pin next_fillup_state_10[31:0]/B[30]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[30]
+    net        next_fillup_state_10[30]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":79:4:79:7|Found combinational loop during mapping at net next_fillup_state_10[31]
+32) instance next_fillup_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_fillup_state_10[31] (in view: work.sparse_mult_(verilog))
+    net        next_fillup_state_10[31]
+    input  pin next_fillup_state_10[31:0]/B[31]
+    instance   next_fillup_state_10[31:0] (cell mux)
+    output pin next_fillup_state_10[31:0]/OUT[31]
+    net        next_fillup_state_10[31]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[0]
+33) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[0] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[0]
+    input  pin next_readout_state_10[31:0]/D1[1]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[0]
+    net        next_readout_state_10[0]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[1]
+34) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[1] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[1]
+    input  pin next_readout_state_10[31:0]/D1[2]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[1]
+    net        next_readout_state_10[1]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[2]
+35) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[2] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[2]
+    input  pin next_readout_state_10[31:0]/D1[3]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[2]
+    net        next_readout_state_10[2]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[3]
+36) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[3] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[3]
+    input  pin next_readout_state_10[31:0]/D1[4]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[3]
+    net        next_readout_state_10[3]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[4]
+37) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[4] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[4]
+    input  pin next_readout_state_10[31:0]/D1[5]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[4]
+    net        next_readout_state_10[4]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[5]
+38) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[5] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[5]
+    input  pin next_readout_state_10[31:0]/D1[6]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[5]
+    net        next_readout_state_10[5]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[6]
+39) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[6] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[6]
+    input  pin next_readout_state_10[31:0]/D1[7]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[6]
+    net        next_readout_state_10[6]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[7]
+40) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[7] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[7]
+    input  pin next_readout_state_10[31:0]/D1[8]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[7]
+    net        next_readout_state_10[7]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[8]
+41) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[8] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[8]
+    input  pin next_readout_state_10[31:0]/D1[9]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[8]
+    net        next_readout_state_10[8]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[9]
+42) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[9] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[9]
+    input  pin next_readout_state_10[31:0]/D1[10]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[9]
+    net        next_readout_state_10[9]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[10]
+43) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[10] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[10]
+    input  pin next_readout_state_10[31:0]/D1[11]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[10]
+    net        next_readout_state_10[10]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[11]
+44) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[11] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[11]
+    input  pin next_readout_state_10[31:0]/D1[12]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[11]
+    net        next_readout_state_10[11]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[12]
+45) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[12] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[12]
+    input  pin next_readout_state_10[31:0]/D1[13]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[12]
+    net        next_readout_state_10[12]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[13]
+46) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[13] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[13]
+    input  pin next_readout_state_10[31:0]/D1[14]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[13]
+    net        next_readout_state_10[13]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[14]
+47) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[14] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[14]
+    input  pin next_readout_state_10[31:0]/D1[15]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[14]
+    net        next_readout_state_10[14]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[15]
+48) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[15] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[15]
+    input  pin next_readout_state_10[31:0]/D1[16]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[15]
+    net        next_readout_state_10[15]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[16]
+49) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[16] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[16]
+    input  pin next_readout_state_10[31:0]/D1[17]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[16]
+    net        next_readout_state_10[16]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[17]
+50) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[17] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[17]
+    input  pin next_readout_state_10[31:0]/D1[18]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[17]
+    net        next_readout_state_10[17]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[18]
+51) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[18] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[18]
+    input  pin next_readout_state_10[31:0]/D1[19]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[18]
+    net        next_readout_state_10[18]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[19]
+52) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[19] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[19]
+    input  pin next_readout_state_10[31:0]/D1[20]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[19]
+    net        next_readout_state_10[19]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[20]
+53) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[20] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[20]
+    input  pin next_readout_state_10[31:0]/D1[21]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[20]
+    net        next_readout_state_10[20]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[21]
+54) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[21] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[21]
+    input  pin next_readout_state_10[31:0]/D1[22]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[21]
+    net        next_readout_state_10[21]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[22]
+55) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[22] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[22]
+    input  pin next_readout_state_10[31:0]/D1[23]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[22]
+    net        next_readout_state_10[22]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[23]
+56) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[23] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[23]
+    input  pin next_readout_state_10[31:0]/D1[24]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[23]
+    net        next_readout_state_10[23]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[24]
+57) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[24] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[24]
+    input  pin next_readout_state_10[31:0]/D1[25]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[24]
+    net        next_readout_state_10[24]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[25]
+58) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[25] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[25]
+    input  pin next_readout_state_10[31:0]/D1[26]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[25]
+    net        next_readout_state_10[25]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[26]
+59) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[26] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[26]
+    input  pin next_readout_state_10[31:0]/D1[27]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[26]
+    net        next_readout_state_10[26]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[27]
+60) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[27] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[27]
+    input  pin next_readout_state_10[31:0]/D1[28]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[27]
+    net        next_readout_state_10[27]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[28]
+61) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[28] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[28]
+    input  pin next_readout_state_10[31:0]/D1[29]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[28]
+    net        next_readout_state_10[28]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[29]
+62) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[29] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[29]
+    input  pin next_readout_state_10[31:0]/D1[30]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[29]
+    net        next_readout_state_10[29]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[30]
+63) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[30] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[30]
+    input  pin next_readout_state_10[31:0]/D1[31]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[30]
+    net        next_readout_state_10[30]
+@W: BN137 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found combinational loop during mapping at net next_readout_state_10[31]
+64) instance next_readout_state_10[31:0] (in view: work.sparse_mult_(verilog)), output net next_readout_state_10[31] (in view: work.sparse_mult_(verilog))
+    net        next_readout_state_10[31]
+    input  pin next_readout_state_10[31:0]/D1[32]
+    instance   next_readout_state_10[31:0] (cell pmux)
+    output pin next_readout_state_10[31:0]/OUT[31]
+    net        next_readout_state_10[31]
+End of loops
 ICG Latch Removal Summary:
 Number of ICG latches removed:	0
 Number of ICG latches not removed:	0
-syn_allowed_resources : blockrams=108  set on top level netlist top_skid
+syn_allowed_resources : blockrams=108  set on top level netlist sparse_mult_
 
 Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
 
@@ -33,32 +483,19 @@ Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0
 Clock Summary
 *****************
 
-Start                Requested     Requested     Clock        Clock                     Clock
-Clock                Frequency     Period        Type         Group                     Load 
----------------------------------------------------------------------------------------------
-top_skid|i_clock     683.7 MHz     1.463         inferred     Autoconstr_clkgroup_0     76   
-=============================================================================================
+Start                    Requested     Requested     Clock        Clock                     Clock
+Clock                    Frequency     Period        Type         Group                     Load 
+-------------------------------------------------------------------------------------------------
+sparse_mult_|i_clock     380.2 MHz     2.630         inferred     Autoconstr_clkgroup_0     76   
+=================================================================================================
 
-@W: MT529 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|Found inferred clock top_skid|i_clock which controls 76 sequential elements including skid_0_inst.o_out_valid. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+@W: MT531 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":112:4:112:7|Found signal identified as System clock which controls 1 sequential elements including o_output_data_1[0].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance. 
+@W: MT529 :"\\siglabsmachine\shared\daryl-workspace\ldpc\sparse_mult_by_a.sv":56:0:56:8|Found inferred clock sparse_mult_|i_clock which controls 76 sequential elements including input_count[7:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
 
 Finished Pre Mapping Phase.
 
 Starting constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 141MB)
 
-Encoding state machine curr_state[3:0] (in view: work.skid_1(verilog))
-original code -> new code
-   00 -> 00
-   01 -> 01
-   10 -> 10
-   11 -> 11
-@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_1(verilog)); safe FSM implementation is not required.
-Encoding state machine curr_state[3:0] (in view: work.skid_0(verilog))
-original code -> new code
-   00 -> 00
-   01 -> 01
-   10 -> 10
-   11 -> 11
-@N: MO225 :"\\siglabsmachine\shared\daryl-workspace\lattice\test1\impl1\source\skid.sv":46:0:46:5|There are no possible illegal states for state machine curr_state[3:0] (in view: work.skid_0(verilog)); safe FSM implementation is not required.
 None
 None
 
@@ -69,6 +506,6 @@ Pre-mapping successful!
 At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 55MB peak: 141MB)
 
 Process took 0h:00m:01s realtime, 0h:00m:01s cputime
-# Tue Jan 03 14:20:40 2017
+# Fri Jan 06 16:02:40 2017
 
 ###########################################################]

@@ -61,11 +61,11 @@ for index = 1:Ns
 end
 
 figure()
-plot(real(z(K:end,1))); hold on;
-plot(imag(z(K:end,1)), 'r'); hold off;
+plot(real(z(1:end,1))); hold on;
+plot(imag(z(1:end,1)), 'r'); hold off;
 
 figure()
-plot(real(z(K:end,2)), imag(z(K:end,2)), '.');
+plot(real(z(1:end,2)), imag(z(1:end,2)), '.');
 xlim([-1.5, 1.5])
 ylim([-1.5, 1.5])
 

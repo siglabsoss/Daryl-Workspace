@@ -1,0 +1,16 @@
+#OPTIONS:"|-layerid|0|-orig_srs|Z:\\Daryl-Workspace\\lattice\\test3\\rev_1\\synwork\\test3_comp.srs|-prodtype|synplify_pro|-dspmac|-fixsmult|-infer_seqShift|-nram|-sdff_counter|-divnmod|-nostructver|-I|Z:\\Daryl-Workspace\\lattice\\test3\\|-I|C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib|-sysv|-devicelib|C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\lucent\\ecp5um5g.v|-devicelib|C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\lucent\\pmi_def.v|-encrypt|-pro|-ui|-fid2|-ram|-sharing|on|-ll|2000|-autosm|-D_MULTIPLE_FILE_COMPILATION_UNIT_|-lib|work|-fsysv"
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\bin64\\c_ver.exe":1467795458
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\lucent\\ecp5um5g.v":1467795226
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\lucent\\pmi_def.v":1467795226
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\vlog\\hypermods.v":1467795088
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\vlog\\umr_capim.v":1467795088
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\vlog\\scemi_objects.v":1467795088
+#CUR:"C:\\lscc\\diamond\\3.8_x64\\synpbase\\lib\\vlog\\scemi_pipes.svh":1467795088
+#CUR:"C:\\Users\\user\\mygit\\Daryl-Workspace\\activeHDL\\ebr_fifo\\ebr_fifo.sv":1484346533
+0			"C:\Users\user\mygit\Daryl-Workspace\activeHDL\ebr_fifo\ebr_fifo.sv" verilog
+#Dependency Lists(Uses List)
+0 -1
+#Dependency Lists(Users Of)
+0 -1
+#Design Unit to File Association
+module work ebr_fifo 0

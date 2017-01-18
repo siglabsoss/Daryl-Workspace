@@ -1,0 +1,8 @@
+lhs = [ 'FFFF';'F0F0';'0F0F';'8000';'8080';'1001';'1100';'3333';'5555';'1234';'4321';'1101';'1101' ];
+rhs = [ '1001';'0110';'1616';'B00B';'B005';'B001';'BEEF';'FEED';'EFEF';'AAAA';'C0DA';'0CDA';'D05A' ];
+
+results = repmat('0000', 12, 1);
+for index = 1:12
+    results(index,:) = mytest(lhs(index,:), rhs(index,:));
+end
+results
