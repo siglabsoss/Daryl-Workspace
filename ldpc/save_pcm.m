@@ -34,14 +34,14 @@ for col = 1:cols
     for row = 1:rows
         if H(row, col) ~= 0
             if first == 1
-                fprintf(fid, '%d', col-1);
+                fprintf(fid, '%d', row-1);
                 first = 0;
             else
-                fprintf(fid, ', %d', col-1);
+                fprintf(fid, ', %d', row-1);
             end
         end
     end
-    if row ~= rows
+    if col ~= cols
         fprintf(fid, '\n');
     end
 end
