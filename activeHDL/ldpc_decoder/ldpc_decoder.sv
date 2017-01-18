@@ -3,26 +3,23 @@
 `default_nettype none
 
 module ldpc_decoder #(
-    parameter integer WIDTH = 8,
+    parameter integer IN_WIDTH = 16,
+    parameter integer OUT_WIDTH = 8,
     parameter integer NUM_WORDS = 1024
 ) (
-    input  wire logic [WIDTH-1:0] i_in_data,
-    input  wire logic             i_in_valid,
-    output      logic [WIDTH-1:0] o_out_data,
-    output      logic             o_out_valid,
-    input  wire logic             i_clock,
-    input  wire logic             i_reset
+    input  wire logic [IN_WIDTH-1:0]  i_in_data,
+    input  wire logic                 i_in_valid,
+    output      logic                 o_in_ready,
+    output      logic [OUT_WIDTH-1:0] o_out_data,
+    output      logic                 o_out_valid,
+    input  wire logic                 i_out_ready,
+    input  wire logic                 i_clock,
+    input  wire logic                 i_reset
 );
 
-always @(posedge i_clock) begin
-    if (i_reset == 1'b1) begin
-        o_out_data <= 0;
-        o_out_valid <= 1'b0;
-    end else begin
-        o_out_data <= i_in_data;
-        o_out_valid <= i_in_valid;
-    end
-end
+`include "belief.svh"
+
+belief_t belief_buffer
 
 endmodule: ldpc_decoder
 
