@@ -19,7 +19,9 @@ module ldpc_decoder #(
 
 `include "belief.svh"
 
-belief_t belief_buffer
+belief_t belief_buffer;
+
+
 
 endmodule: ldpc_decoder
 
