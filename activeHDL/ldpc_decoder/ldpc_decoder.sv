@@ -17,6 +17,8 @@ module ldpc_decoder #(
     input  wire logic                 i_reset
 );
 
+localparam integer CODEWORD_LENGTH = 2304;
+
 `include "belief.svh"
 
 belief_t belief_buffer;

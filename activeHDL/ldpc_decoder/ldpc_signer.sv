@@ -1,4 +1,4 @@
-// ldpc_minimum.sv
+// ldpc_signer.sv
 // Finds the sign based on up to 8 input signs in 3 clock cycles
 
 `timescale 10ps / 10ps
