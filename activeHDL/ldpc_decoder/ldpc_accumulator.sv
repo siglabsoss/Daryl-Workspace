@@ -19,6 +19,13 @@ module ldpc_accumulator #(
     input  wire logic                        i_reset
 );
 
+`ifdef SIMULATION
+initial begin
+    assert (NUM_INPUTS == 2) || (NUM_INPUTS == 3) || (NUM_INPUTS == 6);
+    $display("TEST");
+end
+`endif
+
 generate
 
 if (NUM_INPUTS == 6) begin: acc6
@@ -133,25 +140,26 @@ end // acc6
 if (NUM_INPUTS == 3) begin: acc3
     logic [WIDTH:0] sum_ab_r0;
     logic [WIDTH:0] sum_ac_r0;
-    logic [WIDTH:0] sum_bd_r0;
+    logic [WIDTH:0] sum_bc_r0;
 
     logic [WIDTH:0] sum_ab_r1;
     logic [WIDTH:0] sum_ac_r1;
-    logic [WIDTH:0] sum_bd_r1;
+    logic [WIDTH:0] sum_bc_r1;
 
     logic [WIDTH:0] sum_ab_r2;
     logic [WIDTH:0] sum_ac_r2;
-    logic [WIDTH:0] sum_bd_r2;
+    logic [WIDTH:0] sum_bc_r2;
 
     logic [WIDTH-1:0] saturated_ab;
-    logic [WIDTH-1:0] saturated_bc;
     logic [WIDTH-1:0] saturated_ac;
+    logic [WIDTH-1:0] saturated_bc;
+
 
     localparam [WIDTH:0] saturation_limit = { 1'b0, { WIDTH{ 1'b1 } } };
     localparam [WIDTH-1:0] saturation_result = { WIDTH{ 1'b1 } };
     assign saturated_ab = (sum_ab_r2 > saturation_limit) ? saturation_result : sum_ab_r2;
-    assign saturated_bc = (sum_bc_r2 > saturation_limit) ? saturation_result : sum_bc_r2;
     assign saturated_ac = (sum_ac_r2 > saturation_limit) ? saturation_result : sum_ac_r2;
+    assign saturated_bc = (sum_bc_r2 > saturation_limit) ? saturation_result : sum_bc_r2;
 
     always_ff @(posedge i_clock) begin
         if (i_reset == 1'b1) begin

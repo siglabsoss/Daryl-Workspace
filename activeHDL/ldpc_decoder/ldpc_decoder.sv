@@ -19,10 +19,6 @@ module ldpc_decoder #(
 
 localparam integer CODEWORD_LENGTH = 2304;
 
-`include "belief.svh"
-
-belief_t belief_buffer;
-
 
 
 endmodule: ldpc_decoder
