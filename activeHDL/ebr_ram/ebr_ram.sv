@@ -48,12 +48,14 @@ logic [$clog2(MAX_SKID):0]  skid_count;
 logic [MAX_SKID*WIDTH-1:0]  skid_data;
 logic [$clog2(MAX_SKID)-1:0] in_count;
 logic [$clog2(MAX_SKID)-1:0] out_count;
+logic [WIDTH-1:0]            out_data_buf;
 logic                        out_valid_reg;
 always_ff @ (posedge i_clock) begin
     if (i_reset == 1'b1) begin
-        o_out_data <= 0;
+        out_data_buf <= 0;
         o_out_addr_ready <= 1'b0;
         o_out_valid <= 1'b0;
+        skid_data <= '0;
         skid_count <= 0;
         in_count <= 0;
         out_count <= 0;
@@ -132,7 +134,6 @@ always_ff @ (posedge i_clock) begin
 end
 
 assign o_out_data = out_valid_reg ? out_data_buf : out_data_reg;
-
 
 endmodule: ebr_ram
 

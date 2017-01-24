@@ -7,19 +7,28 @@
 
 module tb_ebr_ram;
 
-localparam integer WIDTH = 16;
+// Parameter declarations
+localparam integer WIDTH = 8;
+localparam integer DEPTH = 1024;
+// Address + Data interface for input stream
+logic [WIDTH-1:0]         i_in_data;
+logic [$clog2(DEPTH)-1:0] i_in_addr;
+logic                     i_in_valid;
+// Address interface for output stream
+logic [$clog2(DEPTH)-1:0] i_out_addr;
+logic                     i_out_addr_valid;
+logic                     o_out_addr_ready;
+// Data interface for output stream
+logic [WIDTH-1:0]         o_out_data;
+logic                     o_out_valid;
+logic                     i_out_ready;
+logic                     i_clock;
+logic                     i_reset;
 
-// Clock and Reset
-logic                i_clock;
-logic                i_reset;
-// Upstream signaling
-logic [WIDTH-1:0]    i_in_data;
-logic                i_in_valid;
-// Downstream signaling
-logic [WIDTH-1:0]    o_out_data;
-logic                o_out_valid;
-
-ebr_ram #(.WIDTH(WIDTH)) uut (.*);
+ebr_ram #(
+    .WIDTH(WIDTH),
+    .DEPTH(DEPTH))
+uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
