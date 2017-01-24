@@ -43,10 +43,13 @@ vlib work
 
 # Compile the Verilog Files
 $sv_files = @(
-	"tb_adder_trees.sv", "adder_trees.sv")
+	"tb_adder_trees.sv",
+	"adder_trees.sv",
+	"swapper.sv")
 
 $v_files = @(
-	"adder_tree3.v", "adder_tree5.v")
+	"adder_tree3.v",
+	"adder_tree5.v")
 
 $primitives = @(
 	"GSR", "PUR", "ALU54B", "MULT18X18D",
