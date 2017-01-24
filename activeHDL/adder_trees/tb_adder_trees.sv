@@ -51,12 +51,12 @@ task reset_all;
 endtask: reset_all
 
 initial begin: stimulus
-    GSR = 1'b1;
-    PUR = 1'b1;
-    i_reset = 1'b1;
-    #10000;
     GSR = 1'b0;
     PUR = 1'b0;
+    i_reset = 1'b1;
+    #10000;
+    GSR = 1'b1;
+    PUR = 1'b1;
     #1000;
     reset_all();
 
@@ -66,6 +66,11 @@ initial begin: stimulus
     reset_all();
     #1000;
     @(negedge i_clock) begin
+        i_data_a0 = 123;
+        i_data_a1 = 216;
+        i_data_a2 = 1121;
+        i_data_a3 = -216;
+        i_data_a4 = -1121;
         #10;
     end
     #1000;
