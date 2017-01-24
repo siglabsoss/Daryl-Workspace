@@ -42,32 +42,30 @@ function Compile-Verilog-Primitive
 vlib work
 
 # Compile the Verilog Files
-Compile-SystemVerilog tb_adder_trees.sv
-Compile-SystemVerilog adder_trees.sv
-Compile-Verilog adder_tree3.v
-Compile-Verilog adder_tree5.v
+$sv_files = @(
+	"tb_adder_trees.sv", "adder_trees.sv")
+
+$v_files = @(
+	"adder_tree3.v", "adder_tree5.v")
 
 $primitives = @(
-	"GSR",
-	"PUR",
-	"ALU54B",
-	"MULT18X18D",
-	"VHI",
-	"VLO",
-	"FD1P3IX",
-	"UDFDL5SC_UDP_X")
+	"GSR", "PUR", "ALU54B", "MULT18X18D",
+	"VHI", "VLO", "FD1P3IX", "UDFDL5SC_UDP_X")
+
+foreach ($sv_file in $sv_files)
+{
+	Compile-SystemVerilog $sv_file
+}
+
+foreach ($v_file in $v_files)
+{
+	Compile-Verilog $v_file
+}
 
 foreach ($primitive in $primitives)
 {
 	Compile-Verilog-Primitive $primitive
 }
-
-# Compile-Verilog-Primitive GSR
-# Compile-Verilog-Primitive PUR
-# Compile-Verilog-Primitive ALU54B
-# Compile-Verilog-Primitive MULT18X18D
-# Compile-Verilog-Primitive VHI
-# Compile-Verilog-Primitive VLO
 
 # Execute the Simulation
 vsimsa -do dosim.do
