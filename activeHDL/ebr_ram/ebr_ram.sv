@@ -44,55 +44,70 @@ end
 
 // DON'T TOUCH unless you fix the decoder case statements
 localparam integer MAX_SKID = 4;
-logic [$clog2(MAX_SKID):0]   skid_count;
+logic [$clog2(MAX_SKID):0]   front_skid_count;
+logic [$clog2(MAX_SKID):0]   back_skid_count;
 logic [MAX_SKID*WIDTH-1:0]   skid_data;
 logic [$clog2(MAX_SKID)-1:0] in_count;
 logic [$clog2(MAX_SKID)-1:0] out_count;
-logic [WIDTH-1:0]            out_data_buf;
-logic                        out_valid_reg;
 
 always_ff @ (posedge i_clock) begin
     if (i_reset == 1'b1) begin
-        out_data_buf <= 0;
         o_out_addr_ready <= 1'b0;
         o_out_valid <= 1'b0;
         skid_data <= '0;
-        skid_count <= 0;
+        front_skid_count <= 0;
+        back_skid_count <= 0;
         in_count <= 0;
         out_count <= 0;
     end else begin
+        // Front Skid Counter
         case ({ i_out_addr_valid, o_out_addr_ready, o_out_valid, i_out_ready })
         4'b1100, 4'b1110, 4'b1101: begin
             // If we've filled the buffer, then halt the input
-            if (skid_count == MAX_SKID - 1) begin
+            if (front_skid_count == MAX_SKID - 1) begin
                 o_out_addr_ready <= 1'b0;
             end else begin
                 o_out_addr_ready <= 1'b1;
             end
-            // Something entered, nothing left, there is something in the buffer
-            o_out_valid <= 1'b1;
             // Increment skid count
-            skid_count <= skid_count + 1;
+            front_skid_count <= front_skid_count + 1;
         end
         4'b0011, 4'b1011, 4'b0111: begin
             // Something left, nothing entered, there is room in the buffer
             o_out_addr_ready <= 1'b1;
-            // If this isn't the last element in the buffer, then
-            if (skid_count == 1) begin
-                o_out_valid <= 1'b0;
-            end else begin
-                o_out_valid <= 1'b1;
-            end
             // Decrement skid count
-            skid_count <= skid_count - 1;
+            front_skid_count <= front_skid_count - 1;
         end
         default: begin
-            if (skid_count == MAX_SKID - 1) begin
+            // If the buffer is full then halt the input
+            if (front_skid_count >= MAX_SKID) begin
                 o_out_addr_ready <= 1'b0;
             end else begin
                 o_out_addr_ready <= 1'b1;
             end
-            if (skid_count == 0) begin
+        end
+        endcase
+
+        // Back Skid Counter
+        case ({ out_data_valid_reg, o_out_valid, i_out_ready })
+        4'b100, 4'b110, 4'b101: begin
+            // Something entered, nothing left, there is something in the buffer
+            o_out_valid <= 1'b1;
+            // Increment skid count
+            back_skid_count <= back_skid_count + 1;
+        end
+        4'b011: begin
+            if (back_skid_count == 1) begin
+                o_out_valid <= 1'b0;
+            end else begin
+                o_out_valid <= 1'b0;
+            end
+            // Decrement skid count
+            back_skid_count <= back_skid_count - 1;
+        end
+        default: begin
+            // If the buffer is full then halt the input
+            if (back_skid_count == 0) begin
                 o_out_valid <= 1'b0;
             end else begin
                 o_out_valid <= 1'b1;
@@ -102,9 +117,9 @@ always_ff @ (posedge i_clock) begin
 
         if (out_data_valid_reg == 1'b1) begin
             case(in_count)
-            0: skid_data[WIDTH-1:0] <= out_data_reg;
-            1: skid_data[2*WIDTH-1:WIDTH] <= out_data_reg;
-            2: skid_data[3*WIDTH-1:2*WIDTH] <= out_data_reg;
+            0:       skid_data[WIDTH-1:0] <= out_data_reg;
+            1:       skid_data[2*WIDTH-1:WIDTH] <= out_data_reg;
+            2:       skid_data[3*WIDTH-1:2*WIDTH] <= out_data_reg;
             default: skid_data[4*WIDTH-1:3*WIDTH] <= out_data_reg;
             endcase
 
@@ -116,13 +131,6 @@ always_ff @ (posedge i_clock) begin
         end
 
         if ((o_out_valid == 1'b1) && (i_out_ready == 1'b1)) begin
-            case(out_count)
-            0: out_data_buf <= skid_data[WIDTH-1:0];
-            1: out_data_buf <= skid_data[2*WIDTH-1:WIDTH];
-            2: out_data_buf <= skid_data[3*WIDTH-1:2*WIDTH];
-            default: out_data_buf <= skid_data[4*WIDTH-1:3*WIDTH];
-            endcase
-
             if (out_count == MAX_SKID - 1) begin
                 out_count <= 0;
             end else begin
@@ -130,11 +138,20 @@ always_ff @ (posedge i_clock) begin
             end
         end
     end
-    // Keep track of the valid reg on the last clock cycle
-    out_valid_reg <= o_out_valid;
 end
 
-assign o_out_data = out_valid_reg ? out_data_buf : out_data_reg;
+logic [WIDTH-1:0] out_data_buf;
+
+always_comb begin
+    case(out_count)
+    0:       out_data_buf = skid_data[WIDTH-1:0];
+    1:       out_data_buf = skid_data[2*WIDTH-1:WIDTH];
+    2:       out_data_buf = skid_data[3*WIDTH-1:2*WIDTH];
+    default: out_data_buf = skid_data[4*WIDTH-1:3*WIDTH];
+    endcase
+end
+
+assign o_out_data = out_data_buf;
 
 endmodule: ebr_ram
 
