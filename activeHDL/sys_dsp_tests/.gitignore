@@ -1,0 +1,7 @@
+work/
+*.vcd
+*.asdb
+library.cfg
+sim.log
+*.wlf
+vcp.cdb_0.log
