@@ -54,11 +54,11 @@ always_ff @ (posedge i_clock) begin
     // Extract sign bits
     if (i_latch_inputs == 1'b1) begin
         sign_a0 <= i_data_a0[7];
-        sign_a1 <= i_data_a0[7];
-        sign_a2 <= i_data_a0[7];
-        sign_a3 <= i_data_a0[7];
-        sign_a4 <= i_data_a0[7];
-        sign_a5 <= i_data_a0[7];
+        sign_a1 <= i_data_a1[7];
+        sign_a2 <= i_data_a2[7];
+        sign_a3 <= i_data_a3[7];
+        sign_a4 <= i_data_a4[7];
+        sign_a5 <= i_data_a5[7];
     end
 end
 
@@ -99,6 +99,7 @@ always_ff @ (posedge i_clock) begin
 end
 
 // Extract second smallest magnitude
+logic [7:0] temp_second_min;
 ldpc_minimum #(
     .WIDTH(8))
 ldpc_minimum_1_inst (
@@ -112,10 +113,15 @@ ldpc_minimum_1_inst (
         shifted_data_a1,
         shifted_data_a0
     }),
-    .o_out_data    (second_min),
-    .o_min_location(          ),
-    .i_clock       (i_clock   ),
-    .i_reset       (i_reset   ));
+    .o_out_data    (temp_second_min),
+    .o_min_location(               ),
+    .i_clock       (i_clock        ),
+    .i_reset       (i_reset        ));
+
+always_ff @(posedge i_clock) begin
+    // Put the value back where it belongs
+    second_min <= temp_second_min + first_min + 1;
+end
 
 // Sign calculation
 logic sign_abcd_r0;
@@ -133,12 +139,12 @@ logic final_sign_a5;
 logic [7:0] sign_vector;
 assign sign_vector = {
     2'b00,
-    data_a5[7],
-    data_a4[7],
-    data_a3[7],
-    data_a2[7],
-    data_a1[7],
-    data_a0[7]
+    sign_a5,
+    sign_a4,
+    sign_a3,
+    sign_a2,
+    sign_a1,
+    sign_a0
 };
 
 always_ff @(posedge i_clock) begin

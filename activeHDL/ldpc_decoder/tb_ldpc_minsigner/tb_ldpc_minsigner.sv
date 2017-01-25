@@ -67,13 +67,34 @@ initial begin: stimulus
         i_data_a2 = 30;
         i_data_a3 = -40;
         i_data_a4 = 150;
+        i_data_a5 = 100;
         i_latch_inputs = 1'b1;
         #10;
     end
     i_latch_inputs = 1'b0;
     #10000;
-    if (o_data_a0 != 20) begin
-        $display("Error: Expected a0 = 20, but received a0 = %d.", o_data_a0);
+    if ($signed(o_data_a0) != -20) begin
+        $display("Error: Expected a0 = -20, but received a0 = %d.", $signed(o_data_a0));
+        glbl_err_count++;
+    end
+    if ($signed(o_data_a1) != -11) begin
+        $display("Error: Expected a1 = -11, but received a1 = %d.", $signed(o_data_a1));
+        glbl_err_count++;
+    end
+    if ($signed(o_data_a2) != 11) begin
+        $display("Error: Expected a2 = 11, but received a2 = %d.", $signed(o_data_a2));
+        glbl_err_count++;
+    end
+    if ($signed(o_data_a3) != -11) begin
+        $display("Error: Expected a3 = -11, but received a3 = %d.", $signed(o_data_a3));
+        glbl_err_count++;
+    end
+    if ($signed(o_data_a4) != -11) begin
+        $display("Error: Expected a4 = -11, but received a4 = %d.", $signed(o_data_a4));
+        glbl_err_count++;
+    end
+    if ($signed(o_data_a5) != 11) begin
+        $display("Error: Expected a5 = 11, but received a5 = %d.", $signed(o_data_a5));
         glbl_err_count++;
     end
     #100;

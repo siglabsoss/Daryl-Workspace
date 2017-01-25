@@ -45,15 +45,15 @@ logic efgh_test;
 // Comb logic for stage 2 (output)
 logic abcdefgh_test;
 
-assign ab_test = (i_in_data[WIDTH-1:0] < i_in_data[2*WIDTH-1:WIDTH]);
-assign cd_test = (i_in_data[3*WIDTH-1:2*WIDTH] < i_in_data[4*WIDTH-1:3*WIDTH]);
-assign ef_test = (i_in_data[5*WIDTH-1:4*WIDTH] < i_in_data[6*WIDTH-1:5*WIDTH]);
-assign gh_test = (i_in_data[7*WIDTH-1:6*WIDTH] < i_in_data[8*WIDTH-1:7*WIDTH]);
+assign ab_test = { 1'b0,         i_in_data[WIDTH-1:0] } < { 1'b0, i_in_data[2*WIDTH-1:WIDTH]   };
+assign cd_test = { 1'b0, i_in_data[3*WIDTH-1:2*WIDTH] } < { 1'b0, i_in_data[4*WIDTH-1:3*WIDTH] };
+assign ef_test = { 1'b0, i_in_data[5*WIDTH-1:4*WIDTH] } < { 1'b0, i_in_data[6*WIDTH-1:5*WIDTH] };
+assign gh_test = { 1'b0, i_in_data[7*WIDTH-1:6*WIDTH] } < { 1'b0, i_in_data[8*WIDTH-1:7*WIDTH] };
 
-assign abcd_test = (minimum_ab_r0 < minimum_cd_r0);
-assign efgh_test = (minimum_ef_r0 < minimum_gh_r0);
+assign abcd_test = { 1'b0, minimum_ab_r0 } < { 1'b0, minimum_cd_r0 };
+assign efgh_test = { 1'b0, minimum_ef_r0 } < { 1'b0, minimum_gh_r0 };
 
-assign abcdefgh_test = (minimum_abcd_r1 < minimum_efgh_r1);
+assign abcdefgh_test = {1'b0, minimum_abcd_r1} < {1'b0, minimum_efgh_r1};
 
 always_ff @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
