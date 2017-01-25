@@ -28,6 +28,7 @@ adder_tree5 adder_tree5_2_inst(.i_data_a2(i_data_a5), .o_result(o_data_a2), .*);
 adder_tree5 adder_tree5_3_inst(.i_data_a3(i_data_a5), .o_result(o_data_a3), .*);
 adder_tree5 adder_tree5_4_inst(.i_data_a4(i_data_a5), .o_result(o_data_a4), .*);
 adder_tree5 adder_tree5_5_inst(.o_result(o_data_a5), .*);
+
 endmodule: adder_trees
 
 `default_nettype wire
