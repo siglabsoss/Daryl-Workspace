@@ -1,118 +1,99 @@
 // ldpc_minimum.sv
 // Finds the minimum of up to 8 inputs in 3 clock cycles
+// Note: comparisons are unsigned
 
 `timescale 10ps / 10ps
 
 `default_nettype none
 
 module ldpc_minimum #(
-    parameter integer MINIMUMS = 8, // valid values are 2, 4, 8
-    parameter integer WIDTH = 16,
-    parameter integer NUM_WORDS = 1024
+    parameter integer WIDTH = 16
 ) (
-    input  wire logic [MINIMUMS*WIDTH-1:0] i_in_data,
-    output      logic [MINIMUMS*WIDTH-1:0] o_out_data,
-    input  wire logic                      i_clock,
-    input  wire logic                      i_reset
+    input  wire logic [8*WIDTH-1:0] i_in_data,
+    output      logic [WIDTH-1:0]   o_out_data,
+    output      logic [7:0]         o_min_location,
+    input  wire logic               i_clock,
+    input  wire logic               i_reset
 );
 
 generate
 
-if (MINIMUMS == 8) begin: min8
-    logic [WIDTH-1:0] minimum_ab_r0;
-    logic [WIDTH-1:0] minimum_cd_r0;
-    logic [WIDTH-1:0] minimum_ef_r0;
-    logic [WIDTH-1:0] minimum_gh_r0;
+// Registered logic for stage 0
+logic [WIDTH-1:0] minimum_ab_r0;
+logic [WIDTH-1:0] minimum_cd_r0;
+logic [WIDTH-1:0] minimum_ef_r0;
+logic [WIDTH-1:0] minimum_gh_r0;
+logic [1:0]       ismin_ab_r0;
+logic [1:0]       ismin_cd_r0;
+logic [1:0]       ismin_ef_r0;
+logic [1:0]       ismin_gh_r0;
 
-    logic [WIDTH-1:0] minimum_abcd_r1;
-    logic [WIDTH-1:0] minimum_efgh_r1;
+// Registered logic for stage 1
+logic [WIDTH-1:0] minimum_abcd_r1;
+logic [WIDTH-1:0] minimum_efgh_r1;
+logic [3:0]       ismin_abcd_r1;
+logic [3:0]       ismin_efgh_r1;
 
-    always_ff @(posedge i_clock) begin
-        if(i_reset) begin
-            minimum_ab_r0 <= '0;
-            minimum_cd_r0 <= '0;
-            minimum_ef_r0 <= '0;
-            minimum_gh_r0 <= '0;
-            minimum_abcd_r1 <= '0;
-            minimum_efgh_r1 <= '0;
-            o_out_data <= '0;
-        end else begin
-            // Stage 0
-            minimum_ab_r0 <= (i_in_data[WIDTH-1:0] < i_in_data[2*WIDTH-1:WIDTH]) ?
-                i_in_data[WIDTH-1:0] : i_in_data[2*WIDTH-1:WIDTH];
-            minimum_cd_r0 <= (i_in_data[3*WIDTH-1:2*WIDTH] < i_in_data[4*WIDTH-1:3*WIDTH]) ?
-                i_in_data[3*WIDTH-1:2*WIDTH] : i_in_data[4*WIDTH-1:3*WIDTH];
-            minimum_ef_r0 <= (i_in_data[5*WIDTH-1:4*WIDTH] < i_in_data[6*WIDTH-1:5*WIDTH]) ?
-                i_in_data[5*WIDTH-1:4*WIDTH] : i_in_data[6*WIDTH-1:5*WIDTH];
-            minimum_gh_r0 <= (i_in_data[7*WIDTH-1:6*WIDTH] < i_in_data[8*WIDTH-1:7*WIDTH]) ?
-                i_in_data[7*WIDTH-1:6*WIDTH] : i_in_data[8*WIDTH-1:7*WIDTH];
+// Comb logic for stage 0
+logic ab_test;
+logic cd_test;
+logic ef_test;
+logic gh_test;
 
-            // Stage 1
-            minimum_abcd_r1 <= (minimum_ab_r0 < minimum_cd_r0) ?
-                minimum_ab_r0 : minimum_cd_r0;
-            minimum_efgh_r1 <= (minimum_ef_r0 < minimum_gh_r0) ?
-                minimum_ef_r0 : minimum_gh_r0;
+// Comb logic for stage 1
+logic abcd_test;
+logic efgh_test;
 
-            // Stage 2
-            o_out_data <= (minimum_abcd_r1 < minimum_efgh_r1) ?
-                minimum_abcd_r1 : minimum_efgh_r1;
-        end
+// Comb logic for stage 2 (output)
+logic abcdefgh_test;
+
+assign ab_test = (i_in_data[WIDTH-1:0] < i_in_data[2*WIDTH-1:WIDTH]);
+assign cd_test = (i_in_data[3*WIDTH-1:2*WIDTH] < i_in_data[4*WIDTH-1:3*WIDTH]);
+assign ef_test = (i_in_data[5*WIDTH-1:4*WIDTH] < i_in_data[6*WIDTH-1:5*WIDTH]);
+assign gh_test = (i_in_data[7*WIDTH-1:6*WIDTH] < i_in_data[8*WIDTH-1:7*WIDTH]);
+
+assign abcd_test = (minimum_ab_r0 < minimum_cd_r0);
+assign efgh_test = (minimum_ef_r0 < minimum_gh_r0);
+
+assign abcdefgh_test = (minimum_abcd_r1 < minimum_efgh_r1);
+
+always_ff @(posedge i_clock) begin
+    if (i_reset == 1'b1) begin
+        minimum_ab_r0 <= '0;
+        minimum_cd_r0 <= '0;
+        minimum_ef_r0 <= '0;
+        minimum_gh_r0 <= '0;
+        minimum_abcd_r1 <= '0;
+        minimum_efgh_r1 <= '0;
+        ismin_ab_r0 <= 2'b00;
+        ismin_cd_r0 <= 2'b00;
+        ismin_ef_r0 <= 2'b00;
+        ismin_gh_r0 <= 2'b00;
+        ismin_abcd_r0 <= 4'b0000;
+        ismin_efgh_r0 <= 4'b0000;
+        o_out_data <= '0;
+    end else begin
+        // Stage 0
+        minimum_ab_r0 <= ab_test ? i_in_data[WIDTH-1:0] : i_in_data[2*WIDTH-1:WIDTH];
+        minimum_cd_r0 <= cd_test ? i_in_data[3*WIDTH-1:2*WIDTH] : i_in_data[4*WIDTH-1:3*WIDTH];
+        minimum_ef_r0 <= ef_test ? i_in_data[5*WIDTH-1:4*WIDTH] : i_in_data[6*WIDTH-1:5*WIDTH];
+        minimum_gh_r0 <= gh_test ? i_in_data[7*WIDTH-1:6*WIDTH] : i_in_data[8*WIDTH-1:7*WIDTH];
+        ismin_ab_r0 <= ab_test ? 2'b01 : 2'b10;
+        ismin_cd_r0 <= ab_test ? 2'b01 : 2'b10;
+        ismin_ef_r0 <= ab_test ? 2'b01 : 2'b10;
+        ismin_gh_r0 <= ab_test ? 2'b01 : 2'b10;
+
+        // Stage 1
+        minimum_abcd_r1 <= abcd_test ? minimum_ab_r0 : minimum_cd_r0;
+        minimum_efgh_r1 <= efgh_test ? minimum_ef_r0 : minimum_gh_r0;
+        ismin_abcd_r1 <= abcd_test ? { 2'b00, ismin_ab_r0 } : { ismin_cd_r0, 2'b00 };
+        ismin_efgh_r1 <= efgh_test ? { 2'b00, ismin_ef_r0 } : { ismin_gh_r0, 2'b00 };
+
+        // Stage 2
+        o_out_data <= abcdefgh_test ? minimum_abcd_r1 : minimum_efgh_r1;
+        o_min_location <= abcdefgh_test ? { 4'b0000, ismin_abcd_r1 } : { ismin_efgh_r1, 4'b0000 };
     end
-end // min8
-
-if (MINIMUMS == 4) begin: min4
-    logic [WIDTH-1:0] minimum_ab_r0;
-    logic [WIDTH-1:0] minimum_cd_r0;
-
-    logic [WIDTH-1:0] minimum_abcd_r1;
-
-    always_ff @(posedge i_clock) begin
-        if(i_reset) begin
-            minimum_ab_r0 <= '0;
-            minimum_cd_r0 <= '0;
-            minimum_abcd_r1 <= '0;
-            o_out_data <= '0;
-        end else begin
-            // Stage 0
-            minimum_ab_r0 <= i_in_data[WIDTH-1:0] < i_in_data[2*WIDTH-1:WIDTH] ?
-                i_in_data[WIDTH-1:0] : i_in_data[2*WIDTH-1:WIDTH];
-            minimum_cd_r0 <= i_in_data[3*WIDTH-1:2*WIDTH] < i_in_data[4*WIDTH-1:3*WIDTH] ?
-                i_in_data[3*WIDTH-1:2*WIDTH] : i_in_data[4*WIDTH-1:3*WIDTH];
-
-            // Stage 1
-            minimum_abcd_r1 <= minimum_ab_r0 < minimum_cd_r0 ?
-                minimum_ab_r0 : minimum_cd_r0;
-
-            // Stage 2
-            o_out_data <= minimum_abcd_r1;
-        end
-    end
-end // min4
-
-if (MINIMUMS == 2) begin: min2
-    logic [WIDTH-1:0] minimum_ab_r0;
-    logic [WIDTH-1:0] minimum_ab_r1;
-
-    always_ff @(posedge i_clock) begin
-        if(i_reset) begin
-            minimum_ab_r0 <= '0;
-            minimum_ab_r1 <= '0;
-            o_out_data <= '0;
-        end else begin
-            // Stage 0
-            minimum_ab_r0 <= i_in_data[WIDTH-1:0] < i_in_data[2*WIDTH-1:WIDTH] ?
-                i_in_data[WIDTH-1:0] : i_in_data[2*WIDTH-1:WIDTH];
-
-            // Stage 1
-            minimum_ab_r1 <= minimum_ab_r0;
-
-            // Stage 2
-            o_out_data <= minimum_ab_r1;
-        end
-    end
-end // min2
-
-endgenerate
+end
 
 endmodule: ldpc_minimum
 

@@ -43,9 +43,12 @@ vlib work
 
 # Compile the Verilog Files
 $sv_files = @(
+	"ldpc_decoder.sv",
+	"ldpc_minimum.sv",
+	"ldpc_signer.sv",
 	"ldpc_adder_trees/ldpc_adder_trees.sv",
-	"adder_trees.sv",
-	"swapper.sv")
+	"ldpc_fifo/ldpc_fifo.sv",
+	"ldpc_ram/ldpc_ram.sv")
 
 $v_files = @(
 	"ldpc_adder_trees/adder_tree5.v")
