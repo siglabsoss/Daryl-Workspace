@@ -7,19 +7,22 @@
 
 module tb_adder_trees;
 
-localparam integer WIDTH = 16;
-
 logic [15:0] i_data_a0;
 logic [15:0] i_data_a1;
 logic [15:0] i_data_a2;
 logic [15:0] i_data_a3;
 logic [15:0] i_data_a4;
-logic [15:0] o_result3;
-logic [15:0] o_result5;
+logic [15:0] i_data_a5;
+logic [15:0] o_data_a0;
+logic [15:0] o_data_a1;
+logic [15:0] o_data_a2;
+logic [15:0] o_data_a3;
+logic [15:0] o_data_a4;
+logic [15:0] o_data_a5;
 logic        i_clock;
 logic        i_reset;
 
-adder_trees #(.WIDTH(WIDTH)) uut (.*);
+adder_trees uut (.*);
 
 logic GSR, PUR;
 GSR GSR_INST(GSR);
@@ -46,6 +49,7 @@ task reset_all;
     i_data_a2 = 0;
     i_data_a3 = 0;
     i_data_a4 = 0;
+    i_data_a5 = 0;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
@@ -66,11 +70,11 @@ initial begin: stimulus
     reset_all();
     #1000;
     @(negedge i_clock) begin
-        i_data_a0 = 123;
-        i_data_a1 = 216;
-        i_data_a2 = 1121;
-        i_data_a3 = -216;
-        i_data_a4 = -1121;
+        i_data_a0 = -1000;
+        i_data_a1 = 2000;
+        i_data_a2 = -3000;
+        i_data_a3 = 4000;
+        i_data_a4 = -5000;
         #10;
     end
     #1000;

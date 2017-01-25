@@ -2,7 +2,9 @@
 
 `default_nettype none
 
-module swapper (
+module swapper #(
+    parameter integer WIDTH=16
+) (
     input  wire logic [WIDTH-1:0] i_term_a,
     input  wire logic [WIDTH-1:0] i_term_b,
     output      logic [WIDTH-1:0] o_term_a,
