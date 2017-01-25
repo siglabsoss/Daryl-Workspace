@@ -16,8 +16,6 @@ module ldpc_minimum #(
     input  wire logic               i_reset
 );
 
-generate
-
 // Registered logic for stage 0
 logic [WIDTH-1:0] minimum_ab_r0;
 logic [WIDTH-1:0] minimum_cd_r0;
@@ -69,8 +67,8 @@ always_ff @(posedge i_clock) begin
         ismin_cd_r0 <= 2'b00;
         ismin_ef_r0 <= 2'b00;
         ismin_gh_r0 <= 2'b00;
-        ismin_abcd_r0 <= 4'b0000;
-        ismin_efgh_r0 <= 4'b0000;
+        ismin_abcd_r1 <= 4'b0000;
+        ismin_efgh_r1 <= 4'b0000;
         o_out_data <= '0;
     end else begin
         // Stage 0

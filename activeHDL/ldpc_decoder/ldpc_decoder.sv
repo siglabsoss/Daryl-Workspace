@@ -19,7 +19,7 @@ module ldpc_decoder #(
 
 localparam integer CODEWORD_LENGTH = 2304;
 
-
+ldpc_ebr_fifo
 
 endmodule: ldpc_decoder
 
