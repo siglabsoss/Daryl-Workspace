@@ -70,6 +70,7 @@ always_ff @(posedge i_clock) begin
         ismin_abcd_r1 <= 4'b0000;
         ismin_efgh_r1 <= 4'b0000;
         o_out_data <= '0;
+        o_min_location <= '0;
     end else begin
         // Stage 0
         minimum_ab_r0 <= ab_test ? i_in_data[WIDTH-1:0]         : i_in_data[2*WIDTH-1:WIDTH];

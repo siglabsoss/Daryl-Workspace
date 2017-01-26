@@ -54,7 +54,7 @@ task reset_all;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
 
-localparam logic [7:0] input_llr_vecs [0:6*16-1] = {
+localparam logic signed [7:0] input_llr_vecs [0:6*16-1] = {
     -11, -20, 30, -40, -106, 100,
      11,  20, 30,  40,   50,  10,
     -11,  -2, -2, -10,  -50, -10,
@@ -64,7 +64,7 @@ localparam logic [7:0] input_llr_vecs [0:6*16-1] = {
       1,   1,  0,   1,    1,   1,
       1,   1,  1,   0,    1,   1,
       1,   1,  1,   1,    0,   1,
-     -1,  -1, -1,  -1,   -1,   0,
+      1,   1,  1,   1,    1,   0,
       0,  -1, -1,  -1,   -1,  -1,
      -1,   0, -1,  -1,   -1,  -1,
      -1,  -1,  0,  -1,   -1,  -1,
@@ -74,7 +74,7 @@ localparam logic [7:0] input_llr_vecs [0:6*16-1] = {
 };
 
 
-localparam logic [7:0] output_llr_vecs [0:6*16-1] = {
+localparam logic signed [7:0] output_llr_vecs [0:6*16-1] = {
     -20, -11, 11, -11, -11,  11,
      10,  10, 10,  10,  10,  11,
      -2,  -2, -2,  -2,  -2,  -2,
@@ -199,61 +199,73 @@ always @(posedge i_clock) begin: seq_check
 
             // Test data vectors
             if (test_number == 2) begin
-                if ($signed(o_data_a0) == -20) begin
-                    $display("Data error: Expected output a0 = -20, but received %d.", o_data_a0);
+                if ($signed(o_data_a0) != -20) begin
+                    $display("Data error: Expected output a0 = -20, but received %d.",
+                        $signed(o_data_a0));
                     local_err_count = local_err_count + 1;
                 end
-                if ($signed(o_data_a1) == -11) begin
-                    $display("Data error: Expected output a1 = -11, but received %d.", o_data_a1);
+                if ($signed(o_data_a1) != -11) begin
+                    $display("Data error: Expected output a1 = -11, but received %d.",
+                        $signed(o_data_a1));
                     local_err_count = local_err_count + 1;
                 end
-                if ($signed(o_data_a2) == 11) begin
-                    $display("Data error: Expected output a2 = 11, but received %d.", o_data_a2);
+                if ($signed(o_data_a2) != 11) begin
+                    $display("Data error: Expected output a2 = 11, but received %d.",
+                        $signed(o_data_a2));
                     local_err_count = local_err_count + 1;
                 end
-                if ($signed(o_data_a3) == -11) begin
-                    $display("Data error: Expected output a3 = -11, but received %d.", o_data_a3);
+                if ($signed(o_data_a3) != -11) begin
+                    $display("Data error: Expected output a3 = -11, but received %d.",
+                        $signed(o_data_a3));
                     local_err_count = local_err_count + 1;
                 end
-                if ($signed(o_data_a4) == -11) begin
-                    $display("Data error: Expected output a4 = -11, but received %d.", o_data_a4);
+                if ($signed(o_data_a4) != -11) begin
+                    $display("Data error: Expected output a4 = -11, but received %d.",
+                        $signed(o_data_a4));
                     local_err_count = local_err_count + 1;
                 end
-                if ($signed(o_data_a5) == 11) begin
-                    $display("Data error: Expected output a5 = 11, but received %d.", o_data_a5);
+                if ($signed(o_data_a5) != 11) begin
+                    $display("Data error: Expected output a5 = 11, but received %d.",
+                        $signed(o_data_a5));
                     local_err_count = local_err_count + 1;
                 end
             end
 
             if (test_number == 3) begin
-                if (o_data_a0 == output_llr_vecs[6*run_count + 0]) begin
+                if (o_data_a0 != output_llr_vecs[6*run_count + 0]) begin
                     $display("Data error: Expected output a0 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 0], o_data_a0, run_count);
+                        output_llr_vecs[6*run_count + 0],
+                        $signed(o_data_a0), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a1 == output_llr_vecs[6*run_count + 1]) begin
+                if (o_data_a1 != output_llr_vecs[6*run_count + 1]) begin
                     $display("Data error: Expected output a1 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 1], o_data_a1, run_count);
+                        output_llr_vecs[6*run_count + 1],
+                        $signed(o_data_a1), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a2 == output_llr_vecs[6*run_count + 2]) begin
+                if (o_data_a2 != output_llr_vecs[6*run_count + 2]) begin
                     $display("Data error: Expected output a2 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 2], o_data_a2, run_count);
+                        output_llr_vecs[6*run_count + 2],
+                        $signed(o_data_a2), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a3 == output_llr_vecs[6*run_count + 3]) begin
+                if (o_data_a3 != output_llr_vecs[6*run_count + 3]) begin
                     $display("Data error: Expected output a3 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 3], o_data_a3, run_count);
+                        output_llr_vecs[6*run_count + 3],
+                        $signed(o_data_a3), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a4 == output_llr_vecs[6*run_count + 4]) begin
+                if (o_data_a4 != output_llr_vecs[6*run_count + 4]) begin
                     $display("Data error: Expected output a4 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 4], o_data_a4, run_count);
+                        output_llr_vecs[6*run_count + 4],
+                        $signed(o_data_a4), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a5 == output_llr_vecs[6*run_count + 5]) begin
+                if (o_data_a5 != output_llr_vecs[6*run_count + 5]) begin
                     $display("Data error: Expected output a5 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 5], o_data_a5, run_count);
+                        output_llr_vecs[6*run_count + 5],
+                        $signed(o_data_a5), run_count);
                     local_err_count = local_err_count + 1;
                 end
             end
