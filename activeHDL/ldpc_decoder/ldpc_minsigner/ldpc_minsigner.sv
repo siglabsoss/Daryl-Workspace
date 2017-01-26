@@ -70,23 +70,20 @@ logic [7:0] first_min_reg2;
 always_ff @ (posedge i_clock) begin
     // Pipeline Stage 0
     // Extract magnitude of LLR (convert from signed to unsigned)
-    if (i_valid == 1'b1) begin
-        data_a0_reg0 <= i_data_a0[7] ? (-i_data_a0) : i_data_a0;
-        data_a1_reg0 <= i_data_a1[7] ? (-i_data_a1) : i_data_a1;
-        data_a2_reg0 <= i_data_a2[7] ? (-i_data_a2) : i_data_a2;
-        data_a3_reg0 <= i_data_a3[7] ? (-i_data_a3) : i_data_a3;
-        data_a4_reg0 <= i_data_a4[7] ? (-i_data_a4) : i_data_a4;
-        data_a5_reg0 <= i_data_a5[7] ? (-i_data_a5) : i_data_a5;
-    end
+    data_a0_reg0 <= i_data_a0[7] ? (-i_data_a0) : i_data_a0;
+    data_a1_reg0 <= i_data_a1[7] ? (-i_data_a1) : i_data_a1;
+    data_a2_reg0 <= i_data_a2[7] ? (-i_data_a2) : i_data_a2;
+    data_a3_reg0 <= i_data_a3[7] ? (-i_data_a3) : i_data_a3;
+    data_a4_reg0 <= i_data_a4[7] ? (-i_data_a4) : i_data_a4;
+    data_a5_reg0 <= i_data_a5[7] ? (-i_data_a5) : i_data_a5;
     // Extract sign bits
-    if (i_valid == 1'b1) begin
-        sign_a0_reg0 <= i_data_a0[7];
-        sign_a1_reg0 <= i_data_a1[7];
-        sign_a2_reg0 <= i_data_a2[7];
-        sign_a3_reg0 <= i_data_a3[7];
-        sign_a4_reg0 <= i_data_a4[7];
-        sign_a5_reg0 <= i_data_a5[7];
-    end
+    sign_a0_reg0 <= i_data_a0[7];
+    sign_a1_reg0 <= i_data_a1[7];
+    sign_a2_reg0 <= i_data_a2[7];
+    sign_a3_reg0 <= i_data_a3[7];
+    sign_a4_reg0 <= i_data_a4[7];
+    sign_a5_reg0 <= i_data_a5[7];
+
     // Pipeline Stage 1
     data_a0_reg1 <= data_a0_reg0;
     data_a1_reg1 <= data_a1_reg0;
@@ -127,12 +124,12 @@ ldpc_minimum_0_inst (
     .i_in_data ({
         8'hf,
         8'hf,
-        data_a5_reg2,
-        data_a4_reg2,
-        data_a3_reg2,
-        data_a2_reg2,
-        data_a1_reg2,
-        data_a0_reg2
+        data_a5_reg0,
+        data_a4_reg0,
+        data_a3_reg0,
+        data_a2_reg0,
+        data_a1_reg0,
+        data_a0_reg0
     }),
     .o_out_data    (first_min_reg2   ),
     .o_min_location(min_location_reg2),
@@ -329,7 +326,7 @@ always_ff @(posedge i_clock) begin
     second_min_reg7 <= second_min_reg6;
     min_location_reg7 <= min_location_reg6;
 
-    // Stage 1
+    // Pipeline Stage 8 : Ministage 1
     sign_abcdefgh_r1_reg8 <= sign_abcd_r0_reg7 ^ sign_efgh_r0_reg7;
 
     sign_a0_reg8 <= sign_a0_reg7;
@@ -343,7 +340,7 @@ always_ff @(posedge i_clock) begin
     second_min_reg8 <= second_min_reg7;
     min_location_reg8 <= min_location_reg7;
 
-    // Stage 2
+    // Pipeline Stage 9 : Ministage 2
     final_sign_a0_reg9 <= sign_abcdefgh_r1_reg8 ^ sign_a0_reg8;
     final_sign_a1_reg9 <= sign_abcdefgh_r1_reg8 ^ sign_a1_reg8;
     final_sign_a2_reg9 <= sign_abcdefgh_r1_reg8 ^ sign_a2_reg8;
@@ -402,8 +399,13 @@ end
 
 logic [9:0] valid_regs;
 always_ff @ (posedge i_clock) begin
-    valid_regs[9:0] = { valid_regs[8:0], i_valid };
-    o_valid <= valid_regs[9];
+    if (i_reset == 1'b1) begin
+        valid_regs <= 0;
+        o_valid <= 1'b0;
+    end else begin
+        valid_regs[9:0] <= { valid_regs[8:0], i_valid };
+        o_valid <= valid_regs[9];
+    end
 end
 
 endmodule: ldpc_minsigner

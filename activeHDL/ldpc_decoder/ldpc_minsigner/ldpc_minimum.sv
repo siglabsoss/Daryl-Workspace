@@ -72,14 +72,14 @@ always_ff @(posedge i_clock) begin
         o_out_data <= '0;
     end else begin
         // Stage 0
-        minimum_ab_r0 <= ab_test ? i_in_data[WIDTH-1:0] : i_in_data[2*WIDTH-1:WIDTH];
+        minimum_ab_r0 <= ab_test ? i_in_data[WIDTH-1:0]         : i_in_data[2*WIDTH-1:WIDTH];
         minimum_cd_r0 <= cd_test ? i_in_data[3*WIDTH-1:2*WIDTH] : i_in_data[4*WIDTH-1:3*WIDTH];
         minimum_ef_r0 <= ef_test ? i_in_data[5*WIDTH-1:4*WIDTH] : i_in_data[6*WIDTH-1:5*WIDTH];
         minimum_gh_r0 <= gh_test ? i_in_data[7*WIDTH-1:6*WIDTH] : i_in_data[8*WIDTH-1:7*WIDTH];
         ismin_ab_r0 <= ab_test ? 2'b01 : 2'b10;
-        ismin_cd_r0 <= ab_test ? 2'b01 : 2'b10;
-        ismin_ef_r0 <= ab_test ? 2'b01 : 2'b10;
-        ismin_gh_r0 <= ab_test ? 2'b01 : 2'b10;
+        ismin_cd_r0 <= cd_test ? 2'b01 : 2'b10;
+        ismin_ef_r0 <= ef_test ? 2'b01 : 2'b10;
+        ismin_gh_r0 <= gh_test ? 2'b01 : 2'b10;
 
         // Stage 1
         minimum_abcd_r1 <= abcd_test ? minimum_ab_r0 : minimum_cd_r0;
