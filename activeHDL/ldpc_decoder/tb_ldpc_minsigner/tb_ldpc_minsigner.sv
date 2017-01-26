@@ -54,43 +54,43 @@ task reset_all;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
 
-localparam logic [7:0] input_llr_vecs [0:15] = {
-    { 8'(-11), 8'(-20), 8'(30), 8'(-40), 8'(-106), 8'(100) },
-    { 8'( 11), 8'( 20), 8'(30), 8'( 40), 8'(  50), 8'( 10) },
-    { 8'(-11), 8'( -2), 8'(-2), 8'(-10), 8'( -50), 8'(-10) },
-    { 8'( 11), 8'( 12), 8'(-1), 8'( 33), 8'(  24), 8'( 12) },
-    { 8'(  0), 8'(  1), 8'( 1), 8'(  1), 8'(   1), 8'(  1) },
-    { 8'(  1), 8'(  0), 8'( 1), 8'(  1), 8'(   1), 8'(  1) },
-    { 8'(  1), 8'(  1), 8'( 0), 8'(  1), 8'(   1), 8'(  1) },
-    { 8'(  1), 8'(  1), 8'( 1), 8'(  0), 8'(   1), 8'(  1) },
-    { 8'(  1), 8'(  1), 8'( 1), 8'(  1), 8'(   0), 8'(  1) },
-    { 8'( -1), 8'( -1), 8'(-1), 8'( -1), 8'(  -1), 8'(  0) },
-    { 8'(  0), 8'( -1), 8'(-1), 8'( -1), 8'(  -1), 8'( -1) },
-    { 8'( -1), 8'(  0), 8'(-1), 8'( -1), 8'(  -1), 8'( -1) },
-    { 8'( -1), 8'( -1), 8'( 0), 8'( -1), 8'(  -1), 8'( -1) },
-    { 8'( -1), 8'( -1), 8'(-1), 8'(  0), 8'(  -1), 8'( -1) },
-    { 8'( -1), 8'( -1), 8'(-1), 8'( -1), 8'(   0), 8'( -1) },
-    { 8'( -1), 8'( -1), 8'(-1), 8'( -1), 8'(  -1), 8'(  0) }
+localparam logic [7:0] input_llr_vecs [0:6*16-1] = {
+    -11, -20, 30, -40, -106, 100,
+     11,  20, 30,  40,   50,  10,
+    -11,  -2, -2, -10,  -50, -10,
+     11,  12, -1,  33,   24,  12,
+      0,   1,  1,   1,    1,   1,
+      1,   0,  1,   1,    1,   1,
+      1,   1,  0,   1,    1,   1,
+      1,   1,  1,   0,    1,   1,
+      1,   1,  1,   1,    0,   1,
+     -1,  -1, -1,  -1,   -1,   0,
+      0,  -1, -1,  -1,   -1,  -1,
+     -1,   0, -1,  -1,   -1,  -1,
+     -1,  -1,  0,  -1,   -1,  -1,
+     -1,  -1, -1,   0,   -1,  -1,
+     -1,  -1, -1,  -1,    0,  -1,
+     -1,  -1, -1,  -1,   -1,   0
 };
 
 
-localparam logic [7:0] output_llr_vecs [0:15] = {
-    { 8'(-20), 8'(-11), 8'(11), 8'(-11), 8'(-11), 8'( 11) },
-    { 8'( 10), 8'( 10), 8'(10), 8'( 10), 8'( 10), 8'( 11) },
-    { 8'( -2), 8'( -2), 8'(-2), 8'( -2), 8'( -2), 8'( -2) },
-    { 8'( -1), 8'( -1), 8'(11), 8'( -1), 8'( -1), 8'( -1) },
-    { 8'(  1), 8'(  0), 8'( 0), 8'(  0), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  1), 8'( 0), 8'(  0), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 1), 8'(  0), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 0), 8'(  1), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 0), 8'(  0), 8'(  1), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 0), 8'(  0), 8'(  0), 8'(  1) },
-    { 8'( -1), 8'(  0), 8'( 0), 8'(  0), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'( -1), 8'( 0), 8'(  0), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'(-1), 8'(  0), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 0), 8'( -1), 8'(  0), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 0), 8'(  0), 8'( -1), 8'(  0) },
-    { 8'(  0), 8'(  0), 8'( 0), 8'(  0), 8'(  0), 8'( -1) }
+localparam logic [7:0] output_llr_vecs [0:6*16-1] = {
+    -20, -11, 11, -11, -11,  11,
+     10,  10, 10,  10,  10,  11,
+     -2,  -2, -2,  -2,  -2,  -2,
+     -1,  -1, 11,  -1,  -1,  -1,
+      1,   0,  0,   0,   0,   0,
+      0,   1,  0,   0,   0,   0,
+      0,   0,  1,   0,   0,   0,
+      0,   0,  0,   1,   0,   0,
+      0,   0,  0,   0,   1,   0,
+      0,   0,  0,   0,   0,   1,
+     -1,   0,  0,   0,   0,   0,
+      0,  -1,  0,   0,   0,   0,
+      0,   0, -1,   0,   0,   0,
+      0,   0,  0,  -1,   0,   0,
+      0,   0,  0,   0,  -1,   0,
+      0,   0,  0,   0,   0,  -1
 };
 
 initial begin: stimulus
@@ -160,12 +160,12 @@ initial begin: stimulus
     #1000;
     for (integer index = 0; index < 16; index++) begin
         @(negedge i_clock) begin
-            i_data_a0 = input_llr_vecs[0][0];
-            i_data_a1 = input_llr_vecs[0][1];
-            i_data_a2 = input_llr_vecs[0][2];
-            i_data_a3 = input_llr_vecs[0][3];
-            i_data_a4 = input_llr_vecs[0][4];
-            i_data_a5 = input_llr_vecs[0][5];
+            i_data_a0 = input_llr_vecs[6*index + 0];
+            i_data_a1 = input_llr_vecs[6*index + 1];
+            i_data_a2 = input_llr_vecs[6*index + 2];
+            i_data_a3 = input_llr_vecs[6*index + 3];
+            i_data_a4 = input_llr_vecs[6*index + 4];
+            i_data_a5 = input_llr_vecs[6*index + 5];
             i_valid = 1'b1;
             #10;
         end
@@ -226,34 +226,34 @@ always @(posedge i_clock) begin: seq_check
             end
 
             if (test_number == 3) begin
-                if (o_data_a0 == output_llr_vecs[run_count][0]) begin
+                if (o_data_a0 == output_llr_vecs[6*run_count + 0]) begin
                     $display("Data error: Expected output a0 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[run_count][0], o_data_a0, run_count);
+                        output_llr_vecs[6*run_count + 0], o_data_a0, run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a1 == output_llr_vecs[run_count][1]) begin
+                if (o_data_a1 == output_llr_vecs[6*run_count + 1]) begin
                     $display("Data error: Expected output a1 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[run_count][1], o_data_a1, run_count);
+                        output_llr_vecs[6*run_count + 1], o_data_a1, run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a2 == output_llr_vecs[run_count][2]) begin
+                if (o_data_a2 == output_llr_vecs[6*run_count + 2]) begin
                     $display("Data error: Expected output a2 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[run_count][2], o_data_a2, run_count);
+                        output_llr_vecs[6*run_count + 2], o_data_a2, run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a3 == output_llr_vecs[run_count][3]) begin
+                if (o_data_a3 == output_llr_vecs[6*run_count + 3]) begin
                     $display("Data error: Expected output a3 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[run_count][3], o_data_a3, run_count);
+                        output_llr_vecs[6*run_count + 3], o_data_a3, run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a4 == output_llr_vecs[run_count][4]) begin
+                if (o_data_a4 == output_llr_vecs[6*run_count + 4]) begin
                     $display("Data error: Expected output a4 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[run_count][4], o_data_a4, run_count);
+                        output_llr_vecs[6*run_count + 4], o_data_a4, run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a5 == output_llr_vecs[run_count][5]) begin
+                if (o_data_a5 == output_llr_vecs[6*run_count + 5]) begin
                     $display("Data error: Expected output a5 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[run_count][5], o_data_a5, run_count);
+                        output_llr_vecs[6*run_count + 5], o_data_a5, run_count);
                     local_err_count = local_err_count + 1;
                 end
             end
