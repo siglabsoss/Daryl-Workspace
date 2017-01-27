@@ -13,6 +13,7 @@ logic [7:0] i_data_a2;
 logic [7:0] i_data_a3;
 logic [7:0] i_data_a4;
 logic [7:0] i_data_a5;
+logic [7:0] i_data_a6;
 logic       i_valid;
 logic [7:0] o_data_a0;
 logic [7:0] o_data_a1;
@@ -20,6 +21,7 @@ logic [7:0] o_data_a2;
 logic [7:0] o_data_a3;
 logic [7:0] o_data_a4;
 logic [7:0] o_data_a5;
+logic [7:0] o_data_a6;
 logic       o_valid;
 logic       i_clock;
 logic       i_reset;
@@ -48,49 +50,60 @@ task reset_all;
     i_data_a3 = 0;
     i_data_a4 = 0;
     i_data_a5 = 0;
+    i_data_a6 = 0;
     i_valid = 1'b0;
     i_reset = 1'b1;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
 
-localparam logic signed [7:0] input_llr_vecs [0:6*16-1] = {
-    -11, -20, 30, -40, -106, 100,
-     11,  20, 30,  40,   50,  10,
-    -11,  -2, -2, -10,  -50, -10,
-     11,  12, -1,  33,   24,  12,
-      0,   1,  1,   1,    1,   1,
-      1,   0,  1,   1,    1,   1,
-      1,   1,  0,   1,    1,   1,
-      1,   1,  1,   0,    1,   1,
-      1,   1,  1,   1,    0,   1,
-      1,   1,  1,   1,    1,   0,
-      0,  -1, -1,  -1,   -1,  -1,
-     -1,   0, -1,  -1,   -1,  -1,
-     -1,  -1,  0,  -1,   -1,  -1,
-     -1,  -1, -1,   0,   -1,  -1,
-     -1,  -1, -1,  -1,    0,  -1,
-     -1,  -1, -1,  -1,   -1,   0
+localparam logic signed [7:0] input_llr_vecs [0:7*21-1] = {
+    -11, -20, 30, -40, -106, 100, 127,
+     11,  20, 30,  40,   50,  10, 127,
+    -11,  -2, -2, -10,  -50, -10, 127,
+     11,  12, -1,  33,   24,  12, 127,
+      0,   1,  1,   1,    1,   1, 127,
+      1,   0,  1,   1,    1,   1, 127,
+      1,   1,  0,   1,    1,   1, 127,
+      1,   1,  1,   0,    1,   1, 127,
+      1,   1,  1,   1,    0,   1, 127,
+      1,   1,  1,   1,    1,   0, 127,
+      0,  -1, -1,  -1,   -1,  -1, 127,
+     -1,   0, -1,  -1,   -1,  -1, 127,
+     -1,  -1,  0,  -1,   -1,  -1, 127,
+     -1,  -1, -1,   0,   -1,  -1, 127,
+     -1,  -1, -1,  -1,    0,  -1, 127,
+     -1,  -1, -1,  -1,   -1,   0, 127,
+      0,   0,  1,   2,    3,   4, 127,
+      1,   0,  0,   2,    3,   4, 127,
+      1,   2,  0,   0,    3,   4, 127,
+      1,   2,  3,   0,    0,   4, 127,
+      1,   2,  3,   4,    0,   0, 127
 };
 
 
-localparam logic signed [7:0] output_llr_vecs [0:6*16-1] = {
-    -20, -11, 11, -11, -11,  11,
-     10,  10, 10,  10,  10,  11,
-     -2,  -2, -2,  -2,  -2,  -2,
-     -1,  -1, 11,  -1,  -1,  -1,
-      1,   0,  0,   0,   0,   0,
-      0,   1,  0,   0,   0,   0,
-      0,   0,  1,   0,   0,   0,
-      0,   0,  0,   1,   0,   0,
-      0,   0,  0,   0,   1,   0,
-      0,   0,  0,   0,   0,   1,
-     -1,   0,  0,   0,   0,   0,
-      0,  -1,  0,   0,   0,   0,
-      0,   0, -1,   0,   0,   0,
-      0,   0,  0,  -1,   0,   0,
-      0,   0,  0,   0,  -1,   0,
-      0,   0,  0,   0,   0,  -1
+localparam logic signed [7:0] output_llr_vecs [0:7*21-1] = {
+    -20, -11, 11, -11, -11,  11,  11,
+     10,  10, 10,  10,  10,  11,  10,
+     -2,  -2, -2,  -2,  -2,  -2,   2,
+     -1,  -1, 11,  -1,  -1,  -1,  -1,
+      1,   0,  0,   0,   0,   0,   0,
+      0,   1,  0,   0,   0,   0,   0,
+      0,   0,  1,   0,   0,   0,   0,
+      0,   0,  0,   1,   0,   0,   0,
+      0,   0,  0,   0,   1,   0,   0,
+      0,   0,  0,   0,   0,   1,   0,
+     -1,   0,  0,   0,   0,   0,   0,
+      0,  -1,  0,   0,   0,   0,   0,
+      0,   0, -1,   0,   0,   0,   0,
+      0,   0,  0,  -1,   0,   0,   0,
+      0,   0,  0,   0,  -1,   0,   0,
+      0,   0,  0,   0,   0,  -1,   0,
+      0,   0,  0,   0,   0,   0,   0,
+      0,   0,  0,   0,   0,   0,   0,
+      0,   0,  0,   0,   0,   0,   0,
+      0,   0,  0,   0,   0,   0,   0,
+      0,   0,  0,   0,   0,   0,   0
 };
 
 initial begin: stimulus
@@ -110,6 +123,7 @@ initial begin: stimulus
         i_data_a3 = -40;  // output = -11
         i_data_a4 = -106; // output = -11
         i_data_a5 = 100;  // output = 11
+        i_data_a6 = 100;  // output = 11
         i_valid = 1'b0;
         #10;
     end
@@ -133,6 +147,7 @@ initial begin: stimulus
         i_data_a3 = -40;  // output = -11
         i_data_a4 = -106; // output = -11
         i_data_a5 = 100;  // output = 11
+        i_data_a6 = 100;  // output = 11
         i_valid = 1'b1;
         #10;
         i_data_a0 = 0;
@@ -141,6 +156,7 @@ initial begin: stimulus
         i_data_a3 = 0;
         i_data_a4 = 0;
         i_data_a5 = 0;
+        i_data_a6 = 0;
         i_valid = 1'b0;
         #10;
     end
@@ -160,12 +176,13 @@ initial begin: stimulus
     #1000;
     for (integer index = 0; index < 16; index++) begin
         @(negedge i_clock) begin
-            i_data_a0 = input_llr_vecs[6*index + 0];
-            i_data_a1 = input_llr_vecs[6*index + 1];
-            i_data_a2 = input_llr_vecs[6*index + 2];
-            i_data_a3 = input_llr_vecs[6*index + 3];
-            i_data_a4 = input_llr_vecs[6*index + 4];
-            i_data_a5 = input_llr_vecs[6*index + 5];
+            i_data_a0 = input_llr_vecs[7*index + 0];
+            i_data_a1 = input_llr_vecs[7*index + 1];
+            i_data_a2 = input_llr_vecs[7*index + 2];
+            i_data_a3 = input_llr_vecs[7*index + 3];
+            i_data_a4 = input_llr_vecs[7*index + 4];
+            i_data_a5 = input_llr_vecs[7*index + 5];
+            i_data_a6 = input_llr_vecs[7*index + 6];
             i_valid = 1'b1;
             #10;
         end
@@ -232,40 +249,46 @@ always @(posedge i_clock) begin: seq_check
             end
 
             if (test_number == 3) begin
-                if (o_data_a0 != output_llr_vecs[6*run_count + 0]) begin
+                if (o_data_a0 != output_llr_vecs[7*run_count + 0]) begin
                     $display("Data error: Expected output a0 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 0],
+                        output_llr_vecs[7*run_count + 0],
                         $signed(o_data_a0), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a1 != output_llr_vecs[6*run_count + 1]) begin
+                if (o_data_a1 != output_llr_vecs[7*run_count + 1]) begin
                     $display("Data error: Expected output a1 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 1],
+                        output_llr_vecs[7*run_count + 1],
                         $signed(o_data_a1), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a2 != output_llr_vecs[6*run_count + 2]) begin
+                if (o_data_a2 != output_llr_vecs[7*run_count + 2]) begin
                     $display("Data error: Expected output a2 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 2],
+                        output_llr_vecs[7*run_count + 2],
                         $signed(o_data_a2), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a3 != output_llr_vecs[6*run_count + 3]) begin
+                if (o_data_a3 != output_llr_vecs[7*run_count + 3]) begin
                     $display("Data error: Expected output a3 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 3],
+                        output_llr_vecs[7*run_count + 3],
                         $signed(o_data_a3), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a4 != output_llr_vecs[6*run_count + 4]) begin
+                if (o_data_a4 != output_llr_vecs[7*run_count + 4]) begin
                     $display("Data error: Expected output a4 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 4],
+                        output_llr_vecs[7*run_count + 4],
                         $signed(o_data_a4), run_count);
                     local_err_count = local_err_count + 1;
                 end
-                if (o_data_a5 != output_llr_vecs[6*run_count + 5]) begin
+                if (o_data_a5 != output_llr_vecs[7*run_count + 5]) begin
                     $display("Data error: Expected output a5 = %d, but received %d. (run_count = %d)",
-                        output_llr_vecs[6*run_count + 5],
+                        output_llr_vecs[7*run_count + 5],
                         $signed(o_data_a5), run_count);
+                    local_err_count = local_err_count + 1;
+                end
+                if (o_data_a6 != output_llr_vecs[7*run_count + 6]) begin
+                    $display("Data error: Expected output a6 = %d, but received %d. (run_count = %d)",
+                        output_llr_vecs[7*run_count + 6],
+                        $signed(o_data_a6), run_count);
                     local_err_count = local_err_count + 1;
                 end
             end

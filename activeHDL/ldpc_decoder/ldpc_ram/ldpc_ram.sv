@@ -4,7 +4,8 @@
 
 module ldpc_ram #(
     parameter integer WIDTH = 8,
-    parameter integer DEPTH = 1024
+    parameter integer DEPTH = 1024,
+    parameter string resource = "block_ram"
 ) (
     // Address + Data interface for input stream
     input  wire logic [WIDTH-1:0]         i_in_data,
@@ -22,7 +23,17 @@ module ldpc_ram #(
     input  wire logic                     i_reset
 );
 
-logic [WIDTH-1:0] buffer [0:DEPTH-1] /* synthesis syn_ramstyle="block_ram" */;
+generate
+if (resource == "block_ram") begin
+    logic [WIDTH-1:0] buffer [0:DEPTH-1] /* synthesis syn_ramstyle="block_ram" */;
+end
+if (resource == "distributed") begin
+    logic [WIDTH-1:0] buffer [0:DEPTH-1] /* synthesis syn_ramstyle="distributed" */;
+end
+if (resource == "registers") begin
+    logic [WIDTH-1:0] buffer [0:DEPTH-1] /* synthesis syn_ramstyle="registers" */;
+end
+endgenerate
 
 // Read into buffer
 always_ff @(posedge i_clock) begin
