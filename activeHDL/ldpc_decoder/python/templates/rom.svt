@@ -4,7 +4,7 @@
 `default_nettype none
 
 module {{ romname }}_rom #(
-	parameter logic CODEWORD_LENGTH = {{ codeword_length }},
+	parameter logic INPUT_LENGTH = {{ codeword_length }},
     parameter logic EXPANSION_FACTOR = {{ expansion_factor }}
 ) (
     input  wire logic                                   i_valid,
@@ -26,7 +26,7 @@ module {{ romname }}_rom #(
 	input  wire logic                                   i_clock
 );
 
-logic [$clog2(CODEWORD_LENGTH)-1:0] count;
+logic [$clog2(INPUT_LENGTH)-1:0] count;
 
 always_ff @(posedge i_clock) begin
     if (i_reset == 1'b0) begin

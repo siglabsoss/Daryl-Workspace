@@ -4,7 +4,7 @@
 `default_nettype none
 
 module ldpc_row_to_column_rom #(
-	parameter logic CODEWORD_LENGTH = 2304,
+	parameter logic INPUT_LENGTH = 2304,
     parameter logic EXPANSION_FACTOR = 96
 ) (
     input  wire logic                                   i_valid,
@@ -26,7 +26,7 @@ module ldpc_row_to_column_rom #(
 	input  wire logic                                   i_clock
 );
 
-logic [$clog2(CODEWORD_LENGTH)-1:0] count;
+logic [$clog2(INPUT_LENGTH)-1:0] count;
 
 always_ff @(posedge i_clock) begin
     if (i_reset == 1'b0) begin
