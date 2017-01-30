@@ -28,27 +28,28 @@ logic                               llr_input_valid;
 always_ff @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
         llr_input_count <= 0;
+        llr_input_head <= 0;
     end else begin
-        if (llr_input_count == CODEWORD_LENGTH-1) begin
-            llr_input_head <= llr_input_head + 1;
-            llr_input_count <= 0;
-        end else begin
-            llr_input_count <= llr_input_count + 1;
+        if (i_in_valid & o_in_ready) begin
+            if (llr_input_count == CODEWORD_LENGTH-1) begin
+                llr_input_head <= llr_input_head + 1;
+                llr_input_count <= 0;
+            end else begin
+                llr_input_count <= llr_input_count + 1;
+            end
         end
     end
 end
 
 // Data can come in if the buffer (LSBs) are not equal
-logic neq_msb, neq_lsb;
-assign neq_msb = llr_input_head[1] == llr_input_tail[1];
+logic eq_msb, neq_lsb;
+assign eq_msb = llr_input_head[1] == llr_input_tail[1];
 assign neq_lsb = llr_input_head[0] != llr_input_tail[0];
-assign o_in_ready = neq_lsb & neq_msb;
+assign o_in_ready = eq_msb | neq_lsb;
 
 always_comb begin
-    llr_input_addr = {
-        llr_input_head[0],
-        llr_input_count
-    };
+    llr_input_addr = { llr_input_head[0], llr_input_count };
+    llr_input_valid = i_in_valid & (eq_msb | neq_lsb);
 end
 
 ldpc_ram #(
