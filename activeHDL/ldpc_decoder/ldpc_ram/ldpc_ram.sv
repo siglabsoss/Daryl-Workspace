@@ -6,6 +6,7 @@ module ldpc_ram #(
     parameter integer WIDTH = 8,
     parameter integer DEPTH = 1024,
     parameter string resource = "block_ram"
+    // Options: "block_ram", "distributed", "registers", "trust"
 ) (
     // Address + Data interface for input stream
     input  wire logic [WIDTH-1:0]         i_in_data,
@@ -127,7 +128,7 @@ always_ff @ (posedge i_clock) begin
         endcase
 
         if (out_data_valid_reg == 1'b1) begin
-            case(in_count)
+            case (in_count)
             0:       skid_data[WIDTH-1:0] <= out_data_reg;
             1:       skid_data[2*WIDTH-1:WIDTH] <= out_data_reg;
             2:       skid_data[3*WIDTH-1:2*WIDTH] <= out_data_reg;
@@ -154,7 +155,7 @@ end
 logic [WIDTH-1:0] out_data_buf;
 
 always_comb begin
-    case(out_count)
+    case (out_count)
     0:       out_data_buf = skid_data[WIDTH-1:0];
     1:       out_data_buf = skid_data[2*WIDTH-1:WIDTH];
     2:       out_data_buf = skid_data[3*WIDTH-1:2*WIDTH];
