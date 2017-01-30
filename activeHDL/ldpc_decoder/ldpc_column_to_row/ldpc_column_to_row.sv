@@ -9,7 +9,6 @@ module ldpc_column_to_row (
 	input  wire logic [7:0] i_data_3,
 	input  wire logic [7:0] i_data_4,
 	input  wire logic [7:0] i_data_5,
-	input  wire logic [7:0] i_data_6,
 	input  wire logic       i_valid,
 	output      logic [7:0] o_data_0,
 	output      logic [7:0] o_data_1,
@@ -17,6 +16,7 @@ module ldpc_column_to_row (
 	output      logic [7:0] o_data_3,
 	output      logic [7:0] o_data_4,
 	output      logic [7:0] o_data_5,
+	output      logic [7:0] o_data_6,
 	output      logic       o_valid,
 	input  wire logic       i_clock,
 	input  wire logic       i_reset
