@@ -12,7 +12,18 @@ with open('Hmat.txt') as fid:
 		H_shift.append(shift_row)
 		edge_exists.append(edge_row)
 
-histogram_accumulator = np.zeros()
+# Parity Check Matrix (H) Parameters
+z = 96 # expansion factor
+M = 12 # rows / z
+L = 24 # columns / z
 
-# print(np.nonzero(edge_exists[0]))
+# Keeps track of which output branch each input branch corresponds to
+col2row_accumulator = np.zeros(L)
 
+branch_0 = []
+branch
+
+for row, shift_row in enumerate(H_shift):
+	# Reports which output index each output branch corresponds to
+	branch2index = np.nonzero(edge_exists[row])
+    branch_0

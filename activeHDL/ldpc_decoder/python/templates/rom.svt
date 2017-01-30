@@ -1,0 +1,76 @@
+// Generated from template at {{ data }}
+`timescale 10ps / 10ps
+
+`default_nettype none
+
+module {{ romname }}_rom #(
+	parameter logic CODEWORD_LENGTH = {{ codeword_length }},
+    parameter logic EXPANSION_FACTOR = {{ expansion_factor }}
+) (
+    input  wire logic                                   i_valid,
+    input  wire logic                                   i_reset,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a0,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a1,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a2,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a3,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a4,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a5,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a6,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a0,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a1,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a2,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a3,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a4,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a5,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a6,
+	input  wire logic                                   i_clock
+);
+
+logic [$clog2(CODEWORD_LENGTH)-1:0] count;
+
+always_ff @(posedge i_clock) begin
+    if (i_reset == 1'b0) begin
+        count <= 0;
+    end else if (i_valid) begin
+        count <= count + 1;
+    end
+
+    case (i_count){% for row_number in row_count %}
+    {{ row_number }}: begin
+        o_branch_for_a0 <= {{ branch_0[row_number] }};
+        o_branch_for_a1 <= {{ branch_1[row_number] }};
+        o_branch_for_a2 <= {{ branch_2[row_number] }};
+        o_branch_for_a3 <= {{ branch_3[row_number] }};
+        o_branch_for_a4 <= {{ branch_4[row_number] }};
+        o_branch_for_a5 <= {{ branch_5[row_number] }};
+        o_branch_for_a6 <= {{ branch_6[row_number] }};
+        o_index_for_a0 <= {{ index_0[row_number] }};
+        o_index_for_a1 <= {{ index_1[row_number] }};
+        o_index_for_a2 <= {{ index_2[row_number] }};
+        o_index_for_a3 <= {{ index_3[row_number] }};
+        o_index_for_a4 <= {{ index_4[row_number] }};
+        o_index_for_a5 <= {{ index_5[row_number] }};
+        o_index_for_a6 <= {{ index_6[row_number] }};
+    end{% endfor %}
+    default: begin // This case is for simulation purposes only.
+        o_branch_for_a0 <= 'x;
+        o_branch_for_a1 <= 'x;
+        o_branch_for_a2 <= 'x;
+        o_branch_for_a3 <= 'x;
+        o_branch_for_a4 <= 'x;
+        o_branch_for_a5 <= 'x;
+        o_branch_for_a6 <= 'x;
+        o_index_for_a0 <= 'x;
+        o_index_for_a1 <= 'x;
+        o_index_for_a2 <= 'x;
+        o_index_for_a3 <= 'x;
+        o_index_for_a4 <= 'x;
+        o_index_for_a5 <= 'x;
+        o_index_for_a6 <= 'x;
+    end
+    endcase
+end
+
+endmodule: {{ romname }}_rom
+
+`default_nettype wire
