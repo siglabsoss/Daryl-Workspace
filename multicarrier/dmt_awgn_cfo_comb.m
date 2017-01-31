@@ -12,19 +12,19 @@ K = 6;
 % Oversampling Factor/FFT Size
 L = 1024;
 % Noise Std. Dev.
-sigma = 0.0;
+sigma = 0.25;
 % Cyclic Prefix Length
 Ncp = 100;
 % Number of Active Subcarriers (Centered at DC)
 Na = 40;
 % Number of symbols to transmit
-Ns = 1000;
+Ns = 10000;
 % Frequency offset normalized to the subcarrier spacing (1 / L)
-delta_f = 0.05;
+delta_f = 5.12;
 % Number of FFT symbols in the comb filter
-Ncomb = 50;
+Ncomb = 500;
 % Number of FFT symbols prior to the preamble
-Npre = 100;
+Npre = 1000;
 
 %% Generate symbol sequence
 active = zeros(L, 1);
@@ -47,8 +47,8 @@ end
 pre_active(2:2:end) = 0;
 pre_active(1) = 0;
 
-% % Form differential encoded Zadoff-Chu Sequence
-% szc = exp(1j*pi*13*(0:Ncomb-2).^2/(Ncomb-1));
+% Form differential encoded Zadoff-Chu Sequence
+szc = exp(1j*pi*13*(0:Ncomb-1).^2/(Ncomb));
 % szc_diff = ones(Ncomb, 1);
 % for index = 2:Ncomb
 %     szc_diff(index) = conj(szc_diff(index-1)) * szc(index-1);
@@ -70,7 +70,7 @@ for index = 1:Ns
         else
             % preamble symbols
             spre(pre_active > 0) = sign(randn(Na/2-1, 1)) / sqrt(Na/2 - 1);
-            s(1+(index-1)*L:index*L) = szc_diff(index-Npre) * spre;
+            s(1+(index-1)*L:index*L) = szc(index-Npre) * spre;
         end
     end
 end
@@ -109,7 +109,7 @@ pow_buffer = zeros(L/2-1, 1);
 y_buffer = zeros(L/2-1, 1);
 accum = 0.0;
 accum2 = 0.0;
-for index = 1:L * Ns
+for index = 1:(L + Ncp) * Ns
     % Compute products
     prod = y(index) * conj(y_buffer(end-1));
     prod2 = real(y(index) * conj(y(index)));
@@ -134,35 +134,28 @@ comb_seq(1:L+Ncp:end) = 1.0;
 
 cf_seq = conv(ac_lag, comb_seq);
 % cf2_seq = conv(ac_lag, conj(comb_seq));
+%%
+abs_cf_seq_buffer = zeros(L+Ncp-1, 1);
+mavg_out = zeros(Ns*(L+Ncp),1);
+accum3 = 0.0;
+for index = 1:(L+Ncp)*Ns
+    abs_value = abs(cf_seq(index));
+    accum3 = accum3 + abs_value - abs_cf_seq_buffer(end);
+    abs_cf_seq_buffer = [ abs_value; abs_cf_seq_buffer(1:end-1) ];
+    mavg_out(index) = accum3;
+end
+
+max_val = max(mavg_out);
+tau = find(mavg_out == max_val);
+sample_offset = mod(tau, Ncp+L);
+symbol_offset = floor(tau / Ncp+L);
 
 figure()
-plot(abs(cf_seq));
+plot(abs(cf_seq))
 hold on;
-plot(pow_out, 'r')
+plot(Ncomb * pow_out, 'r')
 hold off;
 
-% %% FFT + CP Removal (RX)
-% z = zeros(Ns, L);
-% for index = 1:Ns
-%     Xz = fft(y((index - 1)*(L + Ncp) + Ncp + 1:index*(L + Ncp))) / sqrt(L);
-%     z(index, :) = Xz;
-% end
-%
-% demod = repmat(exp(-2j*pi*delta_f*(L + Ncp)/L*(0:Ns-1).'), 1, L);
-% z = z .* demod;
-% figure()
-% plot(real(demod(:,1))); hold on;
-% plot(imag(demod(:,1)), 'r')
-%
-% figure()
-% plot(real(z(K:end,1))); hold on;
-% plot(imag(z(K:end,1)), 'r'); hold off;
-%
-% figure()
-% plot(real(z(K:end,2)), imag(z(K:end,2)), '.');
-% xlim([-1.5, 1.5])
-% ylim([-1.5, 1.5])
-%
-% figure()
-% [Y, freq] = pmtm(y);
-% plot((freq - pi) / (2*pi), 20*log10(abs(fftshift(Y))))
+figure()
+plot(mavg_out); hold on;
+stem(tau, max_val, 'r'); hold off;
