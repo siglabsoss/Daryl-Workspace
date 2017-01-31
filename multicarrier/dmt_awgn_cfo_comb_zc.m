@@ -14,17 +14,17 @@ L = 1024;
 % Noise Std. Dev.
 sigma = 0.0;
 % Cyclic Prefix Length
-Ncp = 100;
+Ncp = 20;
 % Number of Active Subcarriers (Centered at DC)
 Na = 40;
 % Number of symbols to transmit
-Ns = 1000;
+Ns = 5000;
 % Frequency offset normalized to the subcarrier spacing (1 / L)
-delta_f = 0.05;
+delta_f = 0.5;
 % Number of FFT symbols in the comb filter
-Ncomb = 50;
+Ncomb = 500;
 % Number of FFT symbols prior to the preamble
-Npre = 100;
+Npre = 1000;
 
 %% Generate symbol sequence
 active = zeros(L, 1);
@@ -47,12 +47,12 @@ end
 pre_active(2:2:end) = 0;
 pre_active(1) = 0;
 
-% % Form differential encoded Zadoff-Chu Sequence
-% szc = exp(1j*pi*13*(0:Ncomb-2).^2/(Ncomb-1));
-% szc_diff = ones(Ncomb, 1);
-% for index = 2:Ncomb
-%     szc_diff(index) = conj(szc_diff(index-1)) * szc(index-1);
-% end
+% Form differential encoded Zadoff-Chu Sequence
+szc = exp(1j*pi*13*(0:Ncomb-2).^2/(Ncomb-1));
+szc_diff = ones(Ncomb, 1);
+for index = 2:Ncomb
+    szc_diff(index) = szc_diff(index-1) / szc(index-1);
+end
 s = zeros(Ns*L, 1);
 stemp = zeros(L, 1);
 spre = zeros(L, 1);
@@ -69,7 +69,6 @@ for index = 1:Ns
             s(1+(index-1)*L:index*L) = stemp;
         else
             % preamble symbols
-            spre(pre_active > 0) = sign(randn(Na/2-1, 1)) / sqrt(Na/2 - 1);
             s(1+(index-1)*L:index*L) = szc_diff(index-Npre) * spre;
         end
     end
@@ -129,14 +128,15 @@ end
 % plot(abs(ac_lag).^2.0)
 
 comb_seq = zeros((Ncomb-1)*(L+Ncp),1);
-comb_seq(1:L+Ncp:end) = 1.0;
-% comb_seq(1:L+Ncp:end) = szc(end:-1:1);
+% comb_seq(1:L+Ncp:end) = 1.0;
+comb_seq(1:L+Ncp:end) = szc(end:-1:1);
 
 cf_seq = conv(ac_lag, comb_seq);
 % cf2_seq = conv(ac_lag, conj(comb_seq));
 
 figure()
-plot(abs(cf_seq));
+% plot(abs(cf_seq) - abs(cf2_seq))
+plot(abs(cf_seq))
 hold on;
 plot(pow_out, 'r')
 hold off;
