@@ -1,7 +1,7 @@
 % DMT Simulation
 % AWGN channel + Carrier Frequency Offset
 %
-% This is an example of DMT modulation. The cyclic prefix is 
+% This is an example of DMT modulation. The cyclic prefix is
 %
 
 %% Parameters
@@ -24,7 +24,7 @@ delta_f = 0.1;
 %% Generate symbol sequence
 active = zeros(L, 1);
 if mod(Na, 2) == 1
-    active(1:(Na-1)/2)
+    active(1:(Na-1)/2) = 1.0;
     active(L-(Na-1)/2:L) = 1.0;
 else
     active(1:Na/2) = 1.0;
