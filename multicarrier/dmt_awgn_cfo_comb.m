@@ -10,13 +10,13 @@
 % Number of Symbol Periods for Filter Design
 K = 6;
 % Oversampling Factor/FFT Size
-L = 256;
+L = 1024;
 % Noise Std. Dev.
-sigma = 0.4;
+sigma = 0.0;
 % Cyclic Prefix Length
 Ncp = 20;
 % Number of Active Subcarriers (Centered at DC)
-Na = 4;
+Na = 40;
 % Number of symbols to transmit
 Ns = 5000;
 % Frequency offset normalized to the subcarrier spacing (1 / L)
@@ -48,10 +48,10 @@ pre_active(2:2:end) = 0;
 pre_active(1) = 0;
 
 % Form differential encoded Zadoff-Chu Sequence
-szc = exp(1j*pi*13*(0:Ncomb-2).^2/Ncomb);
+szc = exp(1j*pi*13*(0:Ncomb-2).^2/(Ncomb-1));
 szc_diff = ones(Ncomb, 1);
 for index = 2:Ncomb
-    szc_diff(index) = szc_diff(index-1) * conj(szc(index-1));
+    szc_diff(index) = szc_diff(index-1) / szc(index-1);
 end
 s = zeros(Ns*L, 1);
 stemp = zeros(L, 1);
@@ -104,7 +104,7 @@ y = x .* exp(2j*pi*delta_f/L*(0:length(x)-1).') + v;
 ac_lag = zeros(Ns*L, 1);
 pow_out = zeros(Ns*L, 1);
 ac_buffer = zeros(L/2-1, 1);
-pow_buffer = zeros(4*L-1, 1);
+pow_buffer = zeros(L/2-1, 1);
 y_buffer = zeros(L/2-1, 1);
 accum = 0.0;
 accum2 = 0.0;
@@ -132,11 +132,13 @@ comb_seq = zeros((Ncomb-1)*(L+Ncp),1);
 comb_seq(1:L+Ncp:end) = szc(end:-1:1);
 
 cf_seq = conv(ac_lag, comb_seq);
+% cf2_seq = conv(ac_lag, conj(comb_seq));
 
 figure()
-plot(abs(cf_seq).^2.0)
+% plot(abs(cf_seq) - abs(cf2_seq))
+plot(abs(cf_seq))
 hold on;
-plot(pow_out.^2, 'r')
+plot(pow_out, 'r')
 hold off;
 
 % %% FFT + CP Removal (RX)
