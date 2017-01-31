@@ -47,12 +47,8 @@ end
 pre_active(2:2:end) = 0;
 pre_active(1) = 0;
 
-% Form differential encoded Zadoff-Chu Sequence
+% Form Zadoff-Chu Sequence
 szc = exp(1j*pi*13*(0:Ncomb-1).^2/(Ncomb));
-% szc_diff = ones(Ncomb, 1);
-% for index = 2:Ncomb
-%     szc_diff(index) = conj(szc_diff(index-1)) * szc(index-1);
-% end
 s = zeros(Ns*L, 1);
 stemp = zeros(L, 1);
 spre = zeros(L, 1);
