@@ -48,7 +48,7 @@ pre_active(2:2:end) = 0;
 pre_active(1) = 0;
 
 % Form Zadoff-Chu Sequence
-szc = exp(1j*pi*13*(0:Ncomb-1).^2/(Ncomb));
+szc = exp(1.0j*pi*13*(0:Ncomb-1).^2/(Ncomb));
 s = zeros(Ns*L, 1);
 stemp = zeros(L, 1);
 spre = zeros(L, 1);
@@ -88,8 +88,8 @@ for index = 1:Ns
 end
 
 %% Channel Model
-v = sigma * (randn(size(x)) + 1j*randn(size(x))) / sqrt(2);
-y = x .* exp(2j*pi*delta_f/L*(0:length(x)-1).') + v;
+v = sigma * (randn(size(x)) + 1.0j*randn(size(x))) / sqrt(2);
+y = x .* exp(2.0j*pi*delta_f/L*(0:length(x)-1).') + v;
 
 % figure()
 % plot(real(x)); hold on;
