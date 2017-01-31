@@ -30,10 +30,10 @@ Npre = 1000;
 active = zeros(L, 1);
 pre_active = zeros(L, 1);
 if mod(Na, 2) == 1
-    active(1:(Na-1)/2);
+    active(1:(Na-1)/2) = 1.0;
     active(L-(Na-1)/2:L) = 1.0;
 
-    pre_active(1:(Na-1)/2);
+    pre_active(1:(Na-1)/2) = 1.0;
     pre_active(L-(Na-1)/2:L) = 1.0;
 else
     active(1:Na/2) = 1.0;
