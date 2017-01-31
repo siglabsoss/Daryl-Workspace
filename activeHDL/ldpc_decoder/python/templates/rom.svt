@@ -7,8 +7,7 @@ module {{ romname }}_rom #(
 	parameter logic INPUT_LENGTH = {{ codeword_length }},
     parameter logic EXPANSION_FACTOR = {{ expansion_factor }}
 ) (
-    input  wire logic                                   i_valid,
-    input  wire logic                                   i_reset,{% if branches == 7 %}
+    input  wire logic                                   i_valid,{% if branches == 7 %}
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a0,
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a1,
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a2,
@@ -30,7 +29,8 @@ module {{ romname }}_rom #(
     output      logic [$clog2(8)-1:0]                   o_branch_for_a4,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a5,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a6,
-	input  wire logic                                   i_clock
+    input  wire logic                                   i_clock,
+	input  wire logic                                   i_reset
 );
 
 logic [$clog2(INPUT_LENGTH)-1:0] count;
