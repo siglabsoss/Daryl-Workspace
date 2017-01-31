@@ -57,6 +57,7 @@ with open('ldpc_row_to_column_rom.sv', 'w') as fid:
             codeword_length=z*L,
             expansion_factor=z,
             row_count=np.arange(z*M),
+            branches=7,
             branch_0=to_branch[:,0],
             branch_1=to_branch[:,1],
             branch_2=to_branch[:,2],

@@ -1,4 +1,4 @@
-// Generated from template at 
+// Generated from template at
 `timescale 10ps / 10ps
 
 `default_nettype none
