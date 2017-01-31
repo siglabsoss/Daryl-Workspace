@@ -43,9 +43,9 @@ vlib work
 
 # Compile the Verilog Files
 $sv_files = @(
-	"tb_ldpc_minsigner.sv",
-	"../ldpc_minsigner/ldpc_minimum.sv",
-	"../ldpc_minsigner/ldpc_minsigner.sv")
+	"tb_ldpc_edge_interleaver.sv"
+	"ldpc_column_to_row_rom.sv",
+	"ldpc_row_to_column_rom.sv")
 
 # $v_files = @(
 # 	"ldpc_adder_trees/adder_tree5.v")
