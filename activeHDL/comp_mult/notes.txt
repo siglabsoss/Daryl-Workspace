@@ -1,13 +1,13 @@
-1. CAL_WIDTH is derived from INPUT_WIDTH_I and INPUT_WIDTH_II. It should be a localparam so that it gets updated whenever you update those two. 
+1. CAL_WIDTH is derived from INPUT_WIDTH_I and INPUT_WIDTH_II. It should be a localparam so that it gets updated whenever you update those two. Otherwise someone could mistakenly update the two input widths and forget to update the cal width.
 
-2. WRAP_SATURATE is too confusing. Just call it SATURATE so it is obvious what the value should be (nonzero = yes/saturate, zero = no/wrap).
+2. The name WRAP_SATURATE is too confusing. Just call it SATURATE so it is obvious what the value should be (nonzero = yes/saturate, zero = no/wrap).
 
 3. You should have an input width parameter, as well as a fixed point type parameter.
 For example, LEFT_OF_BINARY_POINT=0.
 
-4. Why did you choose to have your clock and reset be a signed vector/bus with one element? Also, why is your valid signal a vector/bus with one element? That is odd. 
+4. Which output bits are selected (their location) is at least as important and probably more important than the actual output width. 
 
-5. Which output bits are selected (their location) is at least as important and probably more important than the actual output width. 
+5. Why did you choose to have your clock and reset be a signed vector/bus with one element? Also, why is your valid signal a vector/bus with one element? That is odd. 
 
 6. On lines 102 and 103, the operation inferred "AC - BD" should be shared. A good synthesis tool will try that (Synplify does), but you can make that explicit by performing the operation outside the always block (in an assign statement). You may not want this because the z_im requires a ternary adder in a single clock cycle (due to the line "A_plus_B_times_C_plus_D - AC - BD"). The DSP slices can be configured as a ternary adder. This would probably be easier to accomplish through instantiation of the DSP block. I suspect that this ternary adder being implemented in the fabric is your biggest problem meeting timing.
 
@@ -17,6 +17,6 @@ For example, LEFT_OF_BINARY_POINT=0.
 
 9. Your style of assigning to o_im and o_r from multiple logical blocks is not portable. Some synthesis tools and simulation tools support this style and some do not. This can lead to simulation/synthesis mismatch in the worst case. If you use SystemVerilog instead, any standard tool will allow you to use this pattern. You need to switch to SystemVerilog and use the logic data type. 
 
-10. I don't like the way you keep track of your pipeline stages. valid_valid_valid is a confusing and unnecessarily long naming convention. Use valid_r0 for the zeroth stage, valid_r1 for the first stage, valid_r2 for the second stage, etc.
+10. I don't like the way you keep track of your pipeline stages. valid_valid_valid is a confusing and unnecessarily long naming convention. Use valid_r0 for the zeroth stage, valid_r1 for the first stage, valid_r2 for the second stage, etc. The 'r' stands for register and the number represents the stage in your pipeline. 
 
-11. Don't use enables on the valid delay line because it will stay high all the time indicating that an output is always ready even when only a single input has been computed. 
+11. With the valid pipeline, you don't need the reset for the intermediate stages. If you were using the DSP slices, it probably wouldn't matter, but without them this will cause routing congestions if used too much.
