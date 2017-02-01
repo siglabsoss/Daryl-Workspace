@@ -5,24 +5,20 @@
 3. You should have an input width parameter, as well as a fixed point type parameter.
 For example, LEFT_OF_BINARY_POINT=0.
 
-4. Which output bits are selected (their location) is at least as important and probably more important than the actual output width. 
+4. Which output bits are selected (their location) is at least as important and probably more important than the actual output width.
 
-5. Why did you choose to have your clock and reset be a signed vector/bus with one element? Also, why is your valid signal a vector/bus with one element? That is odd. 
+5. Why did you choose to have your clock and reset be a signed vector/bus with one element? Also, why is your valid signal a vector/bus with one element? That is odd.
 
 6. On lines 102 and 103, the operation inferred "AC - BD" should be shared. A good synthesis tool will try that (Synplify does), but you can make that explicit by performing the operation outside the always block (in an assign statement). You may not want this because the z_im requires a ternary adder in a single clock cycle (due to the line "A_plus_B_times_C_plus_D - AC - BD"). The DSP slices can be configured as a ternary adder. This would probably be easier to accomplish through instantiation of the DSP block. I suspect that this ternary adder being implemented in the fabric is your biggest problem meeting timing.
 
-7. The pattern matching in the DSP slices can be used to control wrap/saturate if needed. 
+7. The pattern matching in the DSP slices can be used to control wrap/saturate if needed.
 
-8. If you are going to use the fabric for multiplication and addition (instead of the DSP slices), stick to two terms (possible less) per operation. That means multiply two terms and register the result, then multiply the next, etc. Or add two terms and register the result, then add the next, etc. 
+8. If you are going to use the fabric for multiplication and addition (instead of the DSP slices), stick to two terms (possibly fewer) per operation. That means multiply two terms and register the result, then multiply the next, etc. Or add two terms and register the result, then add the next, etc. Your critical path comes from your ternary adder, the fabric is optimized for binary add operations.
 
-9. Your style of assigning to o_im and o_r from multiple logical blocks is not portable. Some synthesis tools and simulation tools support this style and some do not. This can lead to simulation/synthesis mismatch in the worst case. If you use SystemVerilog instead, any standard tool will allow you to use this pattern. You need to switch to SystemVerilog and use the logic data type. 
+9. I don't like the way you keep track of your pipeline stages. valid_valid_valid is a confusing and unnecessarily long naming convention. Use valid_r0 for the zeroth stage, valid_r1 for the first stage, valid_r2 for the second stage, etc. The 'r' stands for register and the number represents the stage in your pipeline.
 
-10. I don't like the way you keep track of your pipeline stages. valid_valid_valid is a confusing and unnecessarily long naming convention. Use valid_r0 for the zeroth stage, valid_r1 for the first stage, valid_r2 for the second stage, etc. The 'r' stands for register and the number represents the stage in your pipeline. 
+10. With the valid pipeline, you don't need the reset for the intermediate stages. If you were using the DSP slices, it probably wouldn't matter, but without them this will cause routing congestions if used too much.
 
-11. With the valid pipeline, you don't need the reset for the intermediate stages. If you were using the DSP slices, it probably wouldn't matter, but without them this will cause routing congestions if used too much.
+11. The names dummy_pos and dummy_neg would be easier understood if they were named something like sat_value_pos and sat_value_neg.
 
-12. The names dummy_pos and dummy_neg would be easier understood if they were named something like sat_value_pos and sat_value_neg.
-
-13. Line 144, CAL_WIDTH and OUTPUT_WIDTH... What is going on? Something seems offin yout widths here. Or I simply don't understand what you're trying to do.
-
-14. Suggestion: For now, you could use the Clarity Designer to target the DSP slices. You can build a wrapper that instantiates various versions of the DSP slices based on the required precision for the multiplication.
+12. Suggestion: For now, you could use the Clarity Designer to target the DSP slices. You can build a wrapper that instantiates various versions of the DSP slices based on the required precision for the multiplication.
