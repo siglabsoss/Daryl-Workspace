@@ -1,4 +1,4 @@
-// tb_ldpc_minsigner.sv
+// tb_ldpc_edge_interleaver.sv
 //
 
 `timescale 10ps / 10ps
