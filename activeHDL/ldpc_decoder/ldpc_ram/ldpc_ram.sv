@@ -34,6 +34,9 @@ end
 if (resource == "registers") begin
     logic [WIDTH-1:0] buffer [0:DEPTH-1] /* synthesis syn_ramstyle="registers" */;
 end
+if (resource == "trust") begin
+    logic [WIDTH-1:0] buffer [0:DEPTH-1];
+end
 endgenerate
 
 // Read into buffer

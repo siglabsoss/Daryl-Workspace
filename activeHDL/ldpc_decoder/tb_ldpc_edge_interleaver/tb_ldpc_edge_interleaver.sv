@@ -126,9 +126,9 @@ initial begin: stimulus
     #100;
     $display("Test 1 Done!");
 
-// Test 1: No data in = no data out.
-    $display("Test 1 Started!");
-    test_number = 1;
+    // Test 2: One cycle for one and two cycles for the other.
+    $display("Test 2 Started!");
+    test_number = 2;
     reset_all();
     #1000;
     @(negedge i_clock) begin
@@ -142,12 +142,12 @@ initial begin: stimulus
         #10;
     end
     #10000;
-    if (run_count != 0) begin
-        $display("Error: Expected no output, received %d.", run_count);
-        glbl_err_count++;
-    end
+    // if (run_count != 0) begin
+    //     $display("Error: Expected no output, received %d.", run_count);
+    //     glbl_err_count++;
+    // end
     #100;
-    $display("Test 1 Done!");
+    $display("Test 2 Done!");
 
     // Finished
     #10000;
