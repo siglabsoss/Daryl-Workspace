@@ -20,6 +20,7 @@ vlib work
 # Compile the Verilog Files
 Compile-Verilog tb_mimo_fifo_8.sv
 Compile-Verilog mimo_fifo_8.sv
+Compile-Verilog distributed_fifo.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do
