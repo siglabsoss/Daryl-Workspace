@@ -23,4 +23,6 @@ For example, LEFT_OF_BINARY_POINT=0.
 
 12. The names dummy_pos and dummy_neg would be easier understood if they were named something like sat_value_pos and sat_value_neg.
 
-13. Line 144, CAL_WIDTH and OUTPUT_WIDTH... What is going on?
+13. Line 144, CAL_WIDTH and OUTPUT_WIDTH... What is going on? Something seems offin yout widths here. Or I simply don't understand what you're trying to do.
+
+14. Suggestion: For now, you could use the Clarity Designer to target the DSP slices. You can build a wrapper that instantiates various versions of the DSP slices based on the required precision for the multiplication.
