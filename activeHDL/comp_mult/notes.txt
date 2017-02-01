@@ -20,3 +20,7 @@ For example, LEFT_OF_BINARY_POINT=0.
 10. I don't like the way you keep track of your pipeline stages. valid_valid_valid is a confusing and unnecessarily long naming convention. Use valid_r0 for the zeroth stage, valid_r1 for the first stage, valid_r2 for the second stage, etc. The 'r' stands for register and the number represents the stage in your pipeline. 
 
 11. With the valid pipeline, you don't need the reset for the intermediate stages. If you were using the DSP slices, it probably wouldn't matter, but without them this will cause routing congestions if used too much.
+
+12. The names dummy_pos and dummy_neg would be easier understood if they were named something like sat_value_pos and sat_value_neg.
+
+13. Line 144, CAL_WIDTH and OUTPUT_WIDTH... What is going on?
