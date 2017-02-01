@@ -1,11 +1,11 @@
-// Generated from template at {{ data }}
+// Generated from template at {{ date }}
 `timescale 10ps / 10ps
 
 `default_nettype none
 
 module {{ romname }}_rom #(
-	parameter logic INPUT_LENGTH = {{ codeword_length }},
-    parameter logic EXPANSION_FACTOR = {{ expansion_factor }}
+	parameter integer INPUT_LENGTH = {{ codeword_length }},
+    parameter integer EXPANSION_FACTOR = {{ expansion_factor }}
 ) (
     input  wire logic                                   i_valid,{% if branches == 7 %}
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a0,
@@ -20,15 +20,20 @@ module {{ romname }}_rom #(
     output      logic [$clog2(12*EXPANSION_FACTOR)-1:0] o_index_for_a2,
     output      logic [$clog2(12*EXPANSION_FACTOR)-1:0] o_index_for_a3,
     output      logic [$clog2(12*EXPANSION_FACTOR)-1:0] o_index_for_a4,
-    output      logic [$clog2(12*EXPANSION_FACTOR)-1:0] o_index_for_a5,
-    output      logic [$clog2(12*EXPANSION_FACTOR)-1:0] o_index_for_a6,{% endif %}
+    output      logic [$clog2(12*EXPANSION_FACTOR)-1:0] o_index_for_a5,{% endif %} {% if branches == 7 %}
     output      logic [$clog2(8)-1:0]                   o_branch_for_a0,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a1,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a2,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a3,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a4,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a5,
-    output      logic [$clog2(8)-1:0]                   o_branch_for_a6,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a6,{% else %}
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a0,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a1,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a2,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a3,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a4,
+    output      logic [$clog2(8)-1:0]                   o_branch_for_a5,{% endif %}
     input  wire logic                                   i_clock,
 	input  wire logic                                   i_reset
 );
@@ -36,13 +41,17 @@ module {{ romname }}_rom #(
 logic [$clog2(INPUT_LENGTH)-1:0] count;
 
 always_ff @(posedge i_clock) begin
-    if (i_reset == 1'b0) begin
+    if (i_reset == 1'b1) begin
         count <= 0;
     end else if (i_valid) begin
-        count <= count + 1;
+        if (count == INPUT_LENGTH-1) begin
+            count <= 0;
+        end else begin
+            count <= count + 1;
+        end
     end
 
-    case (i_count){% for row_number in row_count %}
+    case (count){% for row_number in row_count %}
     {{ row_number }}: begin
         o_branch_for_a0 <= {{ branch_0[row_number] }};
         o_branch_for_a1 <= {{ branch_1[row_number] }};

@@ -1,11 +1,11 @@
-// Generated from template at 
+// Generated from template at 01/31/2017
 `timescale 10ps / 10ps
 
 `default_nettype none
 
 module ldpc_row_to_column_rom #(
-	parameter logic INPUT_LENGTH = 2304,
-    parameter logic EXPANSION_FACTOR = 96
+	parameter integer INPUT_LENGTH = 2304,
+    parameter integer EXPANSION_FACTOR = 96
 ) (
     input  wire logic                                   i_valid,
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a0,
@@ -14,7 +14,7 @@ module ldpc_row_to_column_rom #(
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a3,
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a4,
     output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a5,
-    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a6,
+    output      logic [$clog2(24*EXPANSION_FACTOR)-1:0] o_index_for_a6, 
     output      logic [$clog2(8)-1:0]                   o_branch_for_a0,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a1,
     output      logic [$clog2(8)-1:0]                   o_branch_for_a2,
@@ -29,13 +29,17 @@ module ldpc_row_to_column_rom #(
 logic [$clog2(INPUT_LENGTH)-1:0] count;
 
 always_ff @(posedge i_clock) begin
-    if (i_reset == 1'b0) begin
+    if (i_reset == 1'b1) begin
         count <= 0;
     end else if (i_valid) begin
-        count <= count + 1;
+        if (count == INPUT_LENGTH-1) begin
+            count <= 0;
+        end else begin
+            count <= count + 1;
+        end
     end
 
-    case (i_count)
+    case (count)
     0: begin
         o_branch_for_a0 <= 0;
         o_branch_for_a1 <= 0;
