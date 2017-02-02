@@ -10,7 +10,7 @@
 
 `default_nettype none
 
-module miso_fifo_8 #(
+module mimo_fifo_8 #(
     parameter integer WIDTH = 16,
     parameter integer DEPTH = 128
 ) (
@@ -639,4 +639,6 @@ always_ff @ (posedge i_clock) begin
     endcase
 end
 
-endmodule: miso_fifo_8
+endmodule: mimo_fifo_8
+
+`default_nettype wire
