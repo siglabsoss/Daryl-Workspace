@@ -11,7 +11,7 @@
 `default_nettype none
 
 module mimo_fifo_8 #(
-    parameter integer WIDTH = 16,
+    parameter integer WIDTH = 32,
     parameter integer DEPTH = 1024
 ) (
     input  wire logic [WIDTH-1:0] i_data_0,
