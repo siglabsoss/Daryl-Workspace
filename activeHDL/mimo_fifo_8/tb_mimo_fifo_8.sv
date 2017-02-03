@@ -82,7 +82,7 @@ logic [31:0] local_err_count = 0;
 
 task reset_all;
     i_reset = 1'b1;
-    for (integer idx = 0; idx < NUM_INPUTS; idx = idx + 1) begin
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
         i_data[idx] = 0;
         i_to_branch[idx] = 0;
     end
@@ -97,6 +97,10 @@ task input_on_all(
 );
     integer timeout_counter = 0;
     @(negedge i_clock) begin
+        for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+            i_data[idx] = data_values[idx];
+            i_to_branch[idx] = to_branch[idx];
+        end
         if (o_ready == 1'b1) begin
             i_valid = 1'b1;
             #10;
@@ -118,6 +122,9 @@ task input_on_all(
 endtask: input_on_all;
 
 initial begin: stimulus
+    logic [WIDTH-1:0] data_values   [0:NUM_INPUTS-1];
+    logic [2:0]       branch_values [0:NUM_INPUTS-1];
+
     i_reset = 1'b1;
     #1000;
     reset_all();
@@ -142,10 +149,11 @@ initial begin: stimulus
     reset_all();
     i_reset = 1'b0;
     #1000;
-    input_on_all(
-        { 3'd0, 3'd1, 3'd2, 3'd3, 3'd4, 3'd5, 3'd6, 3'd7 },
-        { 16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7 }
-    );
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = idx;
+    end
+    input_on_all(data_values, branch_values);
     #1000;
     for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
         if (run_count[idx] != 1) begin
