@@ -25,10 +25,10 @@ logic                   i_clock;
 logic                   i_reset;
 
 mimo_fifo_8 #(
-	.WIDTH(WIDTH), 
-	.DEPTH(DEPTH)) 
+	.WIDTH(WIDTH),
+	.DEPTH(DEPTH))
 uut (
-	.i_data_0     (i_data[0]     ), 
+	.i_data_0     (i_data[0]     ),
 	.i_data_1     (i_data[1]     ),
 	.i_data_2     (i_data[2]     ),
 	.i_data_3     (i_data[3]     ),
@@ -61,7 +61,9 @@ uut (
 	.o_valid_4    (o_valid[4]    ),
 	.o_valid_5    (o_valid[5]    ),
 	.o_valid_6    (o_valid[6]    ),
-	.o_valid_7    (o_valid[7]    ));
+	.o_valid_7    (o_valid[7]    ),
+    .i_clock      (i_clock       ),
+    .i_reset      (i_reset       ));
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -140,25 +142,18 @@ initial begin: stimulus
     reset_all();
     #1000;
     input_on_all(
-    	{ 0, 1, 2, 3, 4, 5, 6, 7 }, 
+    	{ 0, 1, 2, 3, 4, 5, 6, 7 },
     	{ 0, 1, 2, 3, 4, 5, 6, 7 }
     );
     #1000;
-	for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
-	    if (o_data[idx] != idx) begin
-    	    $display("Data Error: Expected branch %d to equal %d, but %d received.", 
-    	    	idx, idx, o_data[idx]);
-        	glbl_err_count++;
-    	end
-    end
     for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
 	    if (run_count[idx] != 1) begin
-    	    $display("Error: Expected 1 output, but receivd %d outputs.", 
+    	    $display("Error: Expected 1 output, but received %d outputs.",
     	    	run_count[idx]);
         	glbl_err_count++;
     	end
     end
-    #100;
+    #10000;
     $display("Test 2 Done!");
 
     // Finished
@@ -180,7 +175,15 @@ always @(posedge i_clock) begin: seq_check
         for (integer idx = 0; idx < NUM_OUTPUTS; idx = idx + 1) begin
 	        if (o_valid[idx] == 1'b1) begin
 	            run_count[idx] <= run_count[idx] + 1;
-	        end
+
+                if ((o_data[idx] != idx) && (test_number == 2)) begin
+                    $display("Data Error: Expected branch %d to equal %d, but %d received.",
+                        idx, idx, o_data[idx]);
+                    glbl_err_count++;
+                end
+
+            end
+
 	    end
     end
 end
