@@ -241,316 +241,317 @@ always_comb begin
     stream_ready_7 = 1'b0;
     // Case Decoding
     case (curr_state)
-    ST_PRIORITY7: begin
-        next_state = ST_PRIORITY0;
-        if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end else if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end else if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end else if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end else if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end else if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end else if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end
-    end
-    ST_PRIORITY6: begin
-        next_state = ST_PRIORITY7;
-        if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end else if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end else if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end else if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end else if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end else if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end else if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end
-    end
-    ST_PRIORITY5: begin
-        next_state = ST_PRIORITY6;
-        if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end else if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end else if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end else if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end else if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end else if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end else if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end
-    end
-    ST_PRIORITY4: begin
-        next_state = ST_PRIORITY5;
-        if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end else if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end else if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end else if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end else if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end else if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end else if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end
-    end
-    ST_PRIORITY3: begin
-        next_state = ST_PRIORITY4;
-        if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end else if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end else if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end else if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end else if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end else if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end else if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end
-    end
-    ST_PRIORITY2: begin
-        next_state = ST_PRIORITY3;
-        if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end else if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end else if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end else if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end else if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end else if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end else if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end
-    end
-    ST_PRIORITY1: begin
-        next_state = ST_PRIORITY2;
-        if (stream_valid_1) begin
-            out_data = stream_data_1[WIDTH-1:0];
-            out_branch = stream_data_1[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_1 = 1'b1;
-        end else if (stream_valid_2) begin
-            out_data = stream_data_2[WIDTH-1:0];
-            out_branch = stream_data_2[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_2 = 1'b1;
-        end else if (stream_valid_3) begin
-            out_data = stream_data_3[WIDTH-1:0];
-            out_branch = stream_data_3[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_3 = 1'b1;
-        end else if (stream_valid_4) begin
-            out_data = stream_data_4[WIDTH-1:0];
-            out_branch = stream_data_4[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_4 = 1'b1;
-        end else if (stream_valid_5) begin
-            out_data = stream_data_5[WIDTH-1:0];
-            out_branch = stream_data_5[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_5 = 1'b1;
-        end else if (stream_valid_6) begin
-            out_data = stream_data_6[WIDTH-1:0];
-            out_branch = stream_data_6[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_6 = 1'b1;
-        end else if (stream_valid_7) begin
-            out_data = stream_data_7[WIDTH-1:0];
-            out_branch = stream_data_7[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_7 = 1'b1;
-        end else if (stream_valid_0) begin
-            out_data = stream_data_0[WIDTH-1:0];
-            out_branch = stream_data_0[WIDTH+3-1:WIDTH];
-            out_valid = 1'b1;
-            stream_ready_0 = 1'b1;
-        end
-    end
+    // ST_PRIORITY7: begin
+    //     next_state = ST_PRIORITY0;
+    //     if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end else if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end else if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end else if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end else if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end else if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end else if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end
+    // end
+    // ST_PRIORITY6: begin
+    //     next_state = ST_PRIORITY7;
+    //     if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end else if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end else if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end else if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end else if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end else if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end else if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end
+    // end
+    // ST_PRIORITY5: begin
+    //     next_state = ST_PRIORITY6;
+    //     if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end else if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end else if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end else if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end else if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end else if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end else if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end
+    // end
+    // ST_PRIORITY4: begin
+    //     next_state = ST_PRIORITY5;
+    //     if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end else if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end else if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end else if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end else if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end else if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end else if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end
+    // end
+    // ST_PRIORITY3: begin
+    //     next_state = ST_PRIORITY4;
+    //     if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end else if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end else if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end else if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end else if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end else if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end else if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end
+    // end
+    // ST_PRIORITY2: begin
+    //     next_state = ST_PRIORITY3;
+    //     if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end else if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end else if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end else if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end else if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end else if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end else if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end
+    // end
+    // ST_PRIORITY1: begin
+    //     next_state = ST_PRIORITY2;
+    //     if (stream_valid_1) begin
+    //         out_data = stream_data_1[WIDTH-1:0];
+    //         out_branch = stream_data_1[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_1 = 1'b1;
+    //     end else if (stream_valid_2) begin
+    //         out_data = stream_data_2[WIDTH-1:0];
+    //         out_branch = stream_data_2[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_2 = 1'b1;
+    //     end else if (stream_valid_3) begin
+    //         out_data = stream_data_3[WIDTH-1:0];
+    //         out_branch = stream_data_3[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_3 = 1'b1;
+    //     end else if (stream_valid_4) begin
+    //         out_data = stream_data_4[WIDTH-1:0];
+    //         out_branch = stream_data_4[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_4 = 1'b1;
+    //     end else if (stream_valid_5) begin
+    //         out_data = stream_data_5[WIDTH-1:0];
+    //         out_branch = stream_data_5[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_5 = 1'b1;
+    //     end else if (stream_valid_6) begin
+    //         out_data = stream_data_6[WIDTH-1:0];
+    //         out_branch = stream_data_6[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_6 = 1'b1;
+    //     end else if (stream_valid_7) begin
+    //         out_data = stream_data_7[WIDTH-1:0];
+    //         out_branch = stream_data_7[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_7 = 1'b1;
+    //     end else if (stream_valid_0) begin
+    //         out_data = stream_data_0[WIDTH-1:0];
+    //         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
+    //         out_valid = 1'b1;
+    //         stream_ready_0 = 1'b1;
+    //     end
+    // end
     ST_PRIORITY0: begin
-        next_state = ST_PRIORITY1;
+        //next_state = ST_PRIORITY1;
+        next_state = ST_PRIORITY0;
         if (stream_valid_0) begin
             out_data = stream_data_0[WIDTH-1:0];
             out_branch = stream_data_0[WIDTH+3-1:WIDTH];

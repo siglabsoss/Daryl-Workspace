@@ -165,6 +165,214 @@ initial begin: stimulus
     #10000;
     $display("Test 2 Done!");
 
+    // Test 3: Data n to port 0.
+    $display("Test 3 Started!");
+    test_number = 3;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 0;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[0] != 8) begin
+        $display("Branch 0 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[0]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 0) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 3 Done!");
+
+    // Test 4: Data n to port 1.
+    $display("Test 4 Started!");
+    test_number = 4;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 1;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[1] != 8) begin
+        $display("Branch 1 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[1]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 1) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 4 Done!");
+
+    // Test 4: Data n to port 2.
+    $display("Test 5 Started!");
+    test_number = 5;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 2;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[2] != 8) begin
+        $display("Branch 2 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[2]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 2) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 5 Done!");
+
+    // Test 6: Data n to port 3.
+    $display("Test 6 Started!");
+    test_number = 6;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 3;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[3] != 8 ) begin
+        $display("Branch 3 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[3]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 3) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 6 Done!");
+
+    // Test 7: Data n to port 4.
+    $display("Test 7 Started!");
+    test_number = 7;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 4;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[4] != 8 ) begin
+        $display("Branch 4 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[4]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 4) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 7 Done!");
+
+    // Test 8: Data n to port 5.
+    $display("Test 8 Started!");
+    test_number = 8;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 5;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[5] != 8) begin
+        $display("Branch 5 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[5]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 5) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 8 Done!");
+
+    // Test 9: Data n to port 6.
+    $display("Test 9 Started!");
+    test_number = 9;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 6;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[6] != 8 ) begin
+        $display("Branch 6 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[6]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 6) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 9 Done!");
+
+    // Test 10: Data n to port 7.
+    $display("Test 10 Started!");
+    test_number = 10;
+    reset_all();
+    i_reset = 1'b0;
+    #1000;
+    for (integer idx = 0; idx < NUM_INPUTS; idx++) begin
+        data_values[idx] = idx;
+        branch_values[idx] = 7;
+    end
+    input_on_all(data_values, branch_values);
+    #1000;
+    if (run_count[7] != 8 ) begin
+        $display("Branch 7 Error: Expected 8 outputs, but received %d outputs.",
+            run_count[7]);
+        glbl_err_count++;
+    end
+    for (integer idx = 0; idx < NUM_OUTPUTS; idx++) begin
+        if ((idx != 7) && (run_count[idx] > 0)) begin
+            $display("Branch %d Error: Expected 0 outputs, but received %d outputs.",
+                idx, run_count[idx]);
+        end
+    end
+    #10000;
+    $display("Test 10 Done!");
+
     // Finished
     #10000;
     glbl_err_count = glbl_err_count + local_err_count;
@@ -183,13 +391,24 @@ always @(posedge i_clock) begin: seq_check
         // Track number of outputs received
         for (integer idx = 0; idx < NUM_OUTPUTS; idx = idx + 1) begin
             if (o_valid[idx] == 1'b1) begin
-                run_count[idx] <= run_count[idx] + 1;
-
                 if ((o_data[idx] != idx) && (test_number == 2)) begin
                     $display("Data Error: Expected branch %d to equal %d, but %d received.",
                         idx, idx, o_data[idx]);
                     glbl_err_count++;
                 end
+
+                if ((test_number >= 3) && (test_number <= 10)) begin
+                    if ((o_data[idx] != run_count[idx]) && (idx == test_number-3)) begin
+                        $display("Data Error: Expected branch %d to equal %d, but %d received.",
+                            idx, run_count[idx], o_data[idx]);
+                        glbl_err_count++;
+                    end else if (idx != test_number-3) begin
+                        $display("Data Error: No data input on branch %d, but received %d",
+                            idx, o_data[idx]);
+                    end
+                end
+
+                run_count[idx] = run_count[idx] + 1;
             end
         end
     end
