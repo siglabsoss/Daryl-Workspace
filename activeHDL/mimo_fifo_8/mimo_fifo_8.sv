@@ -52,11 +52,20 @@ module mimo_fifo_8 #(
     input  wire logic             i_reset
 );
 
-localparam NUM_INPUTS = 8;
-localparam NUM_OUTPUTS = 8;
+localparam integer NUM_INPUTS = 8;
+localparam integer NUM_OUTPUTS = 8;
 
 logic ready_0, ready_1, ready_2, ready_3;
 logic ready_4, ready_5, ready_6, ready_7;
+
+// May need to figure out a better way to handle this
+// eventually, each ready is a combinatorial output of
+// 2 signals, so this is a 16-input LUT which is going
+// to limit timing... Could use skid buffering here to
+// break things up.
+assign o_ready = ready_0 & ready_1
+    & ready_2 & ready_3 & ready_4
+    & ready_5 & ready_6 & ready_7;
 
 logic [WIDTH+3-1:0] stream_data_0;
 logic               stream_valid_0;
@@ -89,15 +98,6 @@ logic               stream_ready_6;
 logic [WIDTH+3-1:0] stream_data_7;
 logic               stream_valid_7;
 logic               stream_ready_7;
-
-// May need to figure out a better way to handle this
-// eventually, each ready is a combinatorial output of
-// 2 signals, so this is a 16-input LUT which is going
-// to limit timing... Could use skid buffering here to
-// break things up.
-assign o_ready = ready_0 & ready_1
-    & ready_2 & ready_3 & ready_4
-    & ready_5 & ready_6 & ready_7;
 
 distributed_fifo #(
     .WIDTH(WIDTH+3),
@@ -242,6 +242,7 @@ always_comb begin
     // Case Decoding
     case (curr_state)
     ST_PRIORITY7: begin
+        next_state = ST_PRIORITY0;
         if (stream_valid_7) begin
             out_data = stream_data_7[WIDTH-1:0];
             out_branch = stream_data_7[WIDTH+3-1:WIDTH];
@@ -285,6 +286,7 @@ always_comb begin
         end
     end
     ST_PRIORITY6: begin
+        next_state = ST_PRIORITY7;
         if (stream_valid_6) begin
             out_data = stream_data_6[WIDTH-1:0];
             out_branch = stream_data_6[WIDTH+3-1:WIDTH];
@@ -328,6 +330,7 @@ always_comb begin
         end
     end
     ST_PRIORITY5: begin
+        next_state = ST_PRIORITY6;
         if (stream_valid_5) begin
             out_data = stream_data_5[WIDTH-1:0];
             out_branch = stream_data_5[WIDTH+3-1:WIDTH];
@@ -371,6 +374,7 @@ always_comb begin
         end
     end
     ST_PRIORITY4: begin
+        next_state = ST_PRIORITY5;
         if (stream_valid_4) begin
             out_data = stream_data_4[WIDTH-1:0];
             out_branch = stream_data_4[WIDTH+3-1:WIDTH];
@@ -414,6 +418,7 @@ always_comb begin
         end
     end
     ST_PRIORITY3: begin
+        next_state = ST_PRIORITY4;
         if (stream_valid_3) begin
             out_data = stream_data_3[WIDTH-1:0];
             out_branch = stream_data_3[WIDTH+3-1:WIDTH];
@@ -457,6 +462,7 @@ always_comb begin
         end
     end
     ST_PRIORITY2: begin
+        next_state = ST_PRIORITY3;
         if (stream_valid_2) begin
             out_data = stream_data_2[WIDTH-1:0];
             out_branch = stream_data_2[WIDTH+3-1:WIDTH];
@@ -500,6 +506,7 @@ always_comb begin
         end
     end
     ST_PRIORITY1: begin
+        next_state = ST_PRIORITY2;
         if (stream_valid_1) begin
             out_data = stream_data_1[WIDTH-1:0];
             out_branch = stream_data_1[WIDTH+3-1:WIDTH];
@@ -543,6 +550,7 @@ always_comb begin
         end
     end
     ST_PRIORITY0: begin
+        next_state = ST_PRIORITY1;
         if (stream_valid_0) begin
             out_data = stream_data_0[WIDTH-1:0];
             out_branch = stream_data_0[WIDTH+3-1:WIDTH];
@@ -587,6 +595,7 @@ always_comb begin
     end
     default: begin
         // Use default values
+        next_state = ST_PRIORITY0;
     end
     endcase // curr_state
 end
