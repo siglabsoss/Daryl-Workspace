@@ -17,8 +17,8 @@ module ebr_fifo #(
 );
 
 logic [WIDTH-1:0] buffer [0:DEPTH-1] /* synthesis syn_ramstyle="block_ram" */;
-logic [$clog2(DEPTH):0] head;
-logic [$clog2(DEPTH):0] tail;
+logic [$clog2(DEPTH)-1:0] head;
+logic [$clog2(DEPTH)-1:0] tail;
 logic [$clog2(DEPTH):0] water_level; // difference between head and tail
 
 // Read into buffer

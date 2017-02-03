@@ -12,7 +12,7 @@
 
 module mimo_fifo_8 #(
     parameter integer WIDTH = 16,
-    parameter integer DEPTH = 128
+    parameter integer DEPTH = 1024
 ) (
     input  wire logic [WIDTH-1:0] i_data_0,
     input  wire logic [WIDTH-1:0] i_data_1,
@@ -62,7 +62,8 @@ logic ready_4, ready_5, ready_6, ready_7;
 // eventually, each ready is a combinatorial output of
 // 2 signals, so this is a 16-input LUT which is going
 // to limit timing... Could use skid buffering here to
-// break things up.
+// break things up. In reality this is a function of
+// 16 input bits (each ready is a function of 2 bits).
 assign o_ready = ready_0 & ready_1
     & ready_2 & ready_3 & ready_4
     & ready_5 & ready_6 & ready_7;
@@ -203,32 +204,17 @@ siso_fifo_7_inst (
     .i_clock    (i_clock                  ),
     .i_reset    (i_reset                  ));
 
-// FSM to control the prioritized round robin output ordering
-
-// enum {
-//     ST_INIT, ST_PRIORITY0, ST_PRIORITY1,
-//     ST_PRIORITY2, ST_PRIORITY3, ST_PRIORITY4,
-//     ST_PRIORITY5, ST_PRIORITY6, ST_PRIORITY7
-// } curr_state, next_state;
-
-enum {
-    ST_INIT, ST_PRIORITY0
-} curr_state, next_state;
-
-always_ff @ (posedge i_clock) begin
-    if (i_reset == 1'b1) begin
-        curr_state <= ST_INIT;
-    end else begin
-        curr_state <= next_state;
-    end
-end
-
 logic [WIDTH-1:0] out_data;
 logic [2:0]       out_branch;
 logic             out_valid;
 
 // NOTE: May need to pipeline the data routing to improve timing
-// I'm holding off on that until I synthesize and do optimization.
+//       I'm holding off on that until I synthesize and do
+//       optimization.
+
+// Note: To decrease processing time, it may be best to have a
+//       separate decoder for each output port (not a single one
+//       as we now have).
 
 always_comb begin
     // Default Output Values
@@ -243,7 +229,7 @@ always_comb begin
     stream_ready_5 = 1'b0;
     stream_ready_6 = 1'b0;
     stream_ready_7 = 1'b0;
-    // Priority Read Values (may need to pipeline to meet timing)
+    // Priority Read Values
     if (stream_valid_0) begin
         out_data = stream_data_0[WIDTH-1:0];
         out_branch = stream_data_0[WIDTH+3-1:WIDTH];
