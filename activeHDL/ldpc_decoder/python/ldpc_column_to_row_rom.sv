@@ -1,10 +1,10 @@
-// Generated from template at 01/31/2017
+// Generated from template at 02/03/2017
 `timescale 10ps / 10ps
 
 `default_nettype none
 
 module ldpc_column_to_row_rom #(
-	parameter integer INPUT_LENGTH = 1152,
+    parameter integer INPUT_LENGTH = 1152,
     parameter integer EXPANSION_FACTOR = 96
 ) (
     input  wire logic                                   i_valid,
