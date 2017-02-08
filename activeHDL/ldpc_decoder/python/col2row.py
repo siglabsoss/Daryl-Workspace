@@ -56,7 +56,7 @@ with open('ldpc_column_to_row_rom.sv', 'w') as fid:
     print(temp.render(
             romname='ldpc_column_to_row',
             date=time.strftime("%m/%d/%Y"),
-            codeword_length=z*L,
+            codeword_length=z*M,
             expansion_factor=z,
             row_count=np.arange(z*M),
             branches=6,

@@ -217,7 +217,7 @@ initial begin: stimulus
     #10000;
     $display("Test 4 Done!");
 
-    // Test 4: Data n to port 2.
+    // Test 5: Data n to port 2.
     $display("Test 5 Started!");
     test_number = 5;
     reset_all();

@@ -3,8 +3,9 @@
 
 `default_nettype none
 
-module {{ romname }}_rom #(
-	parameter integer INPUT_LENGTH = {{ codeword_length }},
+module {{ romname }}_rom #({% if branches == 7 %}
+	parameter integer INPUT_LENGTH = {{ codeword_length }},{% else %}
+    parameter integer INPUT_LENGTH = {{ codeword_length // 2 }},{% endif %}
     parameter integer EXPANSION_FACTOR = {{ expansion_factor }}
 ) (
     input  wire logic                                   i_valid,{% if branches == 7 %}
