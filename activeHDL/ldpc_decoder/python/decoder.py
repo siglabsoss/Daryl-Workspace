@@ -138,7 +138,9 @@ def decoder(inp, H):
                 alphas[b, col] = alpha
 
         for col in range(2304):
+            # For referencing order/length information
             to_row, to_branch = H.source_col_to_dest(col)
+            # Perform update operation
             alphas_in = alphas[:len(to_row), col]
             betas_out = summer(alphas_in) + llrs[col]
             # Need to worry about order here
@@ -166,4 +168,4 @@ if __name__ == '__main__':
     y = decoder(x, H)
 
     for yk in y:
-        print(y, end=', ')
+        print(yk, end=', ')
