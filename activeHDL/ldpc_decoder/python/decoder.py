@@ -163,7 +163,7 @@ def decoder(inp, H):
             outp.append(llr_out)
 
             # Store generated llrs
-            if col < 2303:
+            if col < 1151:
                 fid.write('{0}, '.format(int(llr_out)))
             else:
                 fid.write('{0}\n'.format(int(llr_out)))
