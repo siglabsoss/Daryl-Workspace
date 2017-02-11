@@ -1,4 +1,4 @@
-// ldpc_mux_tree.sv
+// ldpc_mux_forest.sv
 //
 
 `timescale 10ps / 10ps
