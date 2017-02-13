@@ -181,7 +181,6 @@ if __name__ == '__main__':
     # Generate Parity Check Matrix
     # 96 = 3 * 2**5
     H = ParityCheckMatrix()
-    # print(H)
 
     # Artifically corrupt codeword
     # u = np.round(128*np.random.random(2304))
@@ -230,4 +229,24 @@ if __name__ == '__main__':
         if (yk < 0 and ck >= 0) or (yk >= 0 and ck < 0):
             # print('{0} [{1}] != {2}'.format(np.sign(yk), yk, ck))
             err_cnt += 1
+
     print('There are {0} bit errors...'.format(err_cnt))
+
+    # # Write out some of the info needed for the HDL
+    # num_branches = np.zeros(24, dtype=np.int64)
+    # for row in range(0, 1152, 96):
+    #     # For referencing order/length information
+    #     to_col, to_branch = H.source_row_to_dest(row)
+    #     to_cold96 = np.array(to_col) // 96
+    #     num_branches[to_cold96] += 1
+    # print('Number of branches = {0}'.format(num_branches))
+    # num_branches = np.zeros(12, dtype=np.int64)
+    # for col in range(0, 2304, 96):
+    #     # For referencing order/length information
+    #     to_row, to_branch = H.source_col_to_dest(col)
+    #     to_rowd96 = np.array(to_row) // 96
+    #     num_branches[to_rowd96] += 1
+    # print('Number of branches = {0}'.format(num_branches))
+    ## Results:
+    # Number of branches = [3 3 6 3 3 6 3 6 3 6 3 6 3 2 2 2 2 2 2 2 2 2 2 2]
+    # Number of branches = [6 7 7 6 6 7 6 6 7 6 6 6]

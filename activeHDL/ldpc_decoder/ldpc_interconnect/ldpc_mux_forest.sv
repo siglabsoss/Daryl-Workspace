@@ -47,7 +47,7 @@ for (branch_number = 0; branch_number < OUT_BRANCHES; branch_number++) begin
             .o_valid    (o_valid[branch_number*NUM_RAMS + ram_number]                                                                                               ),
             .i_clock    (i_clock                                                                                                                                    ),
             .i_reset    (i_reset                                                                                                                                    ));
-
+    end
 end
 endgenerate
 
