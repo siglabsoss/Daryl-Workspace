@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as pt
 
-N = 39 * 250
-fc = 39.0 / 250.0
-k1 = 2**15 * np.tan(np.pi*fc)
+N = int(63 * 250)
+fc = 31.5 / 250.0
+k1 = np.tan(np.pi*fc)
 k2 = np.sin(2*np.pi*fc)
 
 u, v = 1.0, 0.0
