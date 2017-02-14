@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as pt
 
+# Reference: A "TRICK" for the Design of FIR Half-Band Filters by Vaidyanathan and Nguyen
+#    -----> Only used to design the coefficients, the lattice structure was not used.
 
 h = [ -122,  0,   187, 0,   -323,  0,    517,  0,   -785, 0,   1146, 0,  -1622, 0,  2243,      0,
       -3051, 0,  4112, 0,  -5533,  0,   7520,  0, -10511, 0,  15656, 0, -27184, 0, 83231, 131072,
