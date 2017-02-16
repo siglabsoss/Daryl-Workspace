@@ -96,7 +96,7 @@ always_ff @ (posedge i_clock) begin
 {% endfor %}
     // Preadder addition{% for tdl in delay_range[0][:max_delay//2] %}
     inph_sum_reg{{ tdl }} <= { inph_term_reg{{ tdl }}[WIDTH-1], inph_term_reg{{ tdl }} } + { inph_term_reg{{ max_delay-tdl-1 }}[WIDTH-1], inph_term_reg{{ max_delay-tdl-1 }} };
-    quad_sum_reg{{ tdl }} <= { inph_term_reg{{ tdl }}[WIDTH-1], inph_term_reg{{ tdl }} } + { inph_term_reg{{ max_delay-tdl-1 }}[WIDTH-1], inph_term_reg{{ max_delay-tdl-1 }} };
+    quad_sum_reg{{ tdl }} <= { quad_term_reg{{ tdl }}[WIDTH-1], quad_term_reg{{ tdl }} } + { quad_term_reg{{ max_delay-tdl-1 }}[WIDTH-1], quad_term_reg{{ max_delay-tdl-1 }} };
 {% endfor %}{% for tdl in delay_range[0][:max_delay//2] %}
     inph_prod_reg{{ tdl }} <= $signed(18'sb{{ coeffs[tdl] }}) * $signed(inph_sum_reg{{ tdl }});
     quad_prod_reg{{ tdl }} <= $signed(18'sb{{ coeffs[tdl] }}) * $signed(quad_sum_reg{{ tdl }});
@@ -133,7 +133,7 @@ logic valid1_reg4;
 always_ff @ (posedge i_clock) begin
     // Adder trees for FIR filter{% for tdl in delay_range[0][:max_delay//4] %}
     inph_accum0_reg{{ tdl }} <= inph_prod_reg{{ 2*tdl }} + inph_prod_reg{{ 2*tdl+1 }};
-    quad_accum0_reg{{ tdl }} <= quad_prod_reg{{ 2*tdl }} + inph_prod_reg{{ 2*tdl+1 }};
+    quad_accum0_reg{{ tdl }} <= quad_prod_reg{{ 2*tdl }} + quad_prod_reg{{ 2*tdl+1 }};
     {% endfor %}
     inph_del_reg4 <= inph_del_reg3;
     quad_del_reg4 <= quad_del_reg3;
@@ -171,16 +171,16 @@ logic valid2_reg0;
 
 always_ff @ (posedge i_clock) begin
     concatenated_inph_delay = {
-        {(54-18-WIDTH){inph_del_reg{{ 4 + adder_tree_range[-1] }}[WIDTH-1]}},
+        {(54-17-WIDTH){inph_del_reg{{ 4 + adder_tree_range[-1] }}[WIDTH-1]}},
         inph_del_reg{{ 4 + adder_tree_range[-1] }},
         1'b1, // For round half-up algorithm
-        17'b0
+        16'b0
     };
     concatenated_quad_delay = {
-        {(54-18-WIDTH){quad_del_reg{{ 4 + adder_tree_range[-1] }}[WIDTH-1]}},
+        {(54-17-WIDTH){quad_del_reg{{ 4 + adder_tree_range[-1] }}[WIDTH-1]}},
         quad_del_reg{{ 4 + adder_tree_range[-1] }},
         1'b1, // For round half-up algorithm
-        17'b0
+        16'b0
     };
     inph_output_reg <= inph_accum{{ adder_tree_range[-1] }}_reg0 + concatenated_inph_delay;
     quad_output_reg <= quad_accum{{ adder_tree_range[-1] }}_reg0 + concatenated_quad_delay;

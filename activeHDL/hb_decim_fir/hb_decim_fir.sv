@@ -596,52 +596,52 @@ always_ff @ (posedge i_clock) begin
 
     // Preadder addition
     inph_sum_reg0 <= { inph_term_reg0[WIDTH-1], inph_term_reg0 } + { inph_term_reg31[WIDTH-1], inph_term_reg31 };
-    quad_sum_reg0 <= { inph_term_reg0[WIDTH-1], inph_term_reg0 } + { inph_term_reg31[WIDTH-1], inph_term_reg31 };
+    quad_sum_reg0 <= { quad_term_reg0[WIDTH-1], quad_term_reg0 } + { quad_term_reg31[WIDTH-1], quad_term_reg31 };
 
     inph_sum_reg1 <= { inph_term_reg1[WIDTH-1], inph_term_reg1 } + { inph_term_reg30[WIDTH-1], inph_term_reg30 };
-    quad_sum_reg1 <= { inph_term_reg1[WIDTH-1], inph_term_reg1 } + { inph_term_reg30[WIDTH-1], inph_term_reg30 };
+    quad_sum_reg1 <= { quad_term_reg1[WIDTH-1], quad_term_reg1 } + { quad_term_reg30[WIDTH-1], quad_term_reg30 };
 
     inph_sum_reg2 <= { inph_term_reg2[WIDTH-1], inph_term_reg2 } + { inph_term_reg29[WIDTH-1], inph_term_reg29 };
-    quad_sum_reg2 <= { inph_term_reg2[WIDTH-1], inph_term_reg2 } + { inph_term_reg29[WIDTH-1], inph_term_reg29 };
+    quad_sum_reg2 <= { quad_term_reg2[WIDTH-1], quad_term_reg2 } + { quad_term_reg29[WIDTH-1], quad_term_reg29 };
 
     inph_sum_reg3 <= { inph_term_reg3[WIDTH-1], inph_term_reg3 } + { inph_term_reg28[WIDTH-1], inph_term_reg28 };
-    quad_sum_reg3 <= { inph_term_reg3[WIDTH-1], inph_term_reg3 } + { inph_term_reg28[WIDTH-1], inph_term_reg28 };
+    quad_sum_reg3 <= { quad_term_reg3[WIDTH-1], quad_term_reg3 } + { quad_term_reg28[WIDTH-1], quad_term_reg28 };
 
     inph_sum_reg4 <= { inph_term_reg4[WIDTH-1], inph_term_reg4 } + { inph_term_reg27[WIDTH-1], inph_term_reg27 };
-    quad_sum_reg4 <= { inph_term_reg4[WIDTH-1], inph_term_reg4 } + { inph_term_reg27[WIDTH-1], inph_term_reg27 };
+    quad_sum_reg4 <= { quad_term_reg4[WIDTH-1], quad_term_reg4 } + { quad_term_reg27[WIDTH-1], quad_term_reg27 };
 
     inph_sum_reg5 <= { inph_term_reg5[WIDTH-1], inph_term_reg5 } + { inph_term_reg26[WIDTH-1], inph_term_reg26 };
-    quad_sum_reg5 <= { inph_term_reg5[WIDTH-1], inph_term_reg5 } + { inph_term_reg26[WIDTH-1], inph_term_reg26 };
+    quad_sum_reg5 <= { quad_term_reg5[WIDTH-1], quad_term_reg5 } + { quad_term_reg26[WIDTH-1], quad_term_reg26 };
 
     inph_sum_reg6 <= { inph_term_reg6[WIDTH-1], inph_term_reg6 } + { inph_term_reg25[WIDTH-1], inph_term_reg25 };
-    quad_sum_reg6 <= { inph_term_reg6[WIDTH-1], inph_term_reg6 } + { inph_term_reg25[WIDTH-1], inph_term_reg25 };
+    quad_sum_reg6 <= { quad_term_reg6[WIDTH-1], quad_term_reg6 } + { quad_term_reg25[WIDTH-1], quad_term_reg25 };
 
     inph_sum_reg7 <= { inph_term_reg7[WIDTH-1], inph_term_reg7 } + { inph_term_reg24[WIDTH-1], inph_term_reg24 };
-    quad_sum_reg7 <= { inph_term_reg7[WIDTH-1], inph_term_reg7 } + { inph_term_reg24[WIDTH-1], inph_term_reg24 };
+    quad_sum_reg7 <= { quad_term_reg7[WIDTH-1], quad_term_reg7 } + { quad_term_reg24[WIDTH-1], quad_term_reg24 };
 
     inph_sum_reg8 <= { inph_term_reg8[WIDTH-1], inph_term_reg8 } + { inph_term_reg23[WIDTH-1], inph_term_reg23 };
-    quad_sum_reg8 <= { inph_term_reg8[WIDTH-1], inph_term_reg8 } + { inph_term_reg23[WIDTH-1], inph_term_reg23 };
+    quad_sum_reg8 <= { quad_term_reg8[WIDTH-1], quad_term_reg8 } + { quad_term_reg23[WIDTH-1], quad_term_reg23 };
 
     inph_sum_reg9 <= { inph_term_reg9[WIDTH-1], inph_term_reg9 } + { inph_term_reg22[WIDTH-1], inph_term_reg22 };
-    quad_sum_reg9 <= { inph_term_reg9[WIDTH-1], inph_term_reg9 } + { inph_term_reg22[WIDTH-1], inph_term_reg22 };
+    quad_sum_reg9 <= { quad_term_reg9[WIDTH-1], quad_term_reg9 } + { quad_term_reg22[WIDTH-1], quad_term_reg22 };
 
     inph_sum_reg10 <= { inph_term_reg10[WIDTH-1], inph_term_reg10 } + { inph_term_reg21[WIDTH-1], inph_term_reg21 };
-    quad_sum_reg10 <= { inph_term_reg10[WIDTH-1], inph_term_reg10 } + { inph_term_reg21[WIDTH-1], inph_term_reg21 };
+    quad_sum_reg10 <= { quad_term_reg10[WIDTH-1], quad_term_reg10 } + { quad_term_reg21[WIDTH-1], quad_term_reg21 };
 
     inph_sum_reg11 <= { inph_term_reg11[WIDTH-1], inph_term_reg11 } + { inph_term_reg20[WIDTH-1], inph_term_reg20 };
-    quad_sum_reg11 <= { inph_term_reg11[WIDTH-1], inph_term_reg11 } + { inph_term_reg20[WIDTH-1], inph_term_reg20 };
+    quad_sum_reg11 <= { quad_term_reg11[WIDTH-1], quad_term_reg11 } + { quad_term_reg20[WIDTH-1], quad_term_reg20 };
 
     inph_sum_reg12 <= { inph_term_reg12[WIDTH-1], inph_term_reg12 } + { inph_term_reg19[WIDTH-1], inph_term_reg19 };
-    quad_sum_reg12 <= { inph_term_reg12[WIDTH-1], inph_term_reg12 } + { inph_term_reg19[WIDTH-1], inph_term_reg19 };
+    quad_sum_reg12 <= { quad_term_reg12[WIDTH-1], quad_term_reg12 } + { quad_term_reg19[WIDTH-1], quad_term_reg19 };
 
     inph_sum_reg13 <= { inph_term_reg13[WIDTH-1], inph_term_reg13 } + { inph_term_reg18[WIDTH-1], inph_term_reg18 };
-    quad_sum_reg13 <= { inph_term_reg13[WIDTH-1], inph_term_reg13 } + { inph_term_reg18[WIDTH-1], inph_term_reg18 };
+    quad_sum_reg13 <= { quad_term_reg13[WIDTH-1], quad_term_reg13 } + { quad_term_reg18[WIDTH-1], quad_term_reg18 };
 
     inph_sum_reg14 <= { inph_term_reg14[WIDTH-1], inph_term_reg14 } + { inph_term_reg17[WIDTH-1], inph_term_reg17 };
-    quad_sum_reg14 <= { inph_term_reg14[WIDTH-1], inph_term_reg14 } + { inph_term_reg17[WIDTH-1], inph_term_reg17 };
+    quad_sum_reg14 <= { quad_term_reg14[WIDTH-1], quad_term_reg14 } + { quad_term_reg17[WIDTH-1], quad_term_reg17 };
 
     inph_sum_reg15 <= { inph_term_reg15[WIDTH-1], inph_term_reg15 } + { inph_term_reg16[WIDTH-1], inph_term_reg16 };
-    quad_sum_reg15 <= { inph_term_reg15[WIDTH-1], inph_term_reg15 } + { inph_term_reg16[WIDTH-1], inph_term_reg16 };
+    quad_sum_reg15 <= { quad_term_reg15[WIDTH-1], quad_term_reg15 } + { quad_term_reg16[WIDTH-1], quad_term_reg16 };
 
     inph_prod_reg0 <= $signed(18'sb111111111110000110) * $signed(inph_sum_reg0);
     quad_prod_reg0 <= $signed(18'sb111111111110000110) * $signed(quad_sum_reg0);
@@ -744,28 +744,28 @@ logic valid1_reg4;
 always_ff @ (posedge i_clock) begin
     // Adder trees for FIR filter
     inph_accum0_reg0 <= inph_prod_reg0 + inph_prod_reg1;
-    quad_accum0_reg0 <= quad_prod_reg0 + inph_prod_reg1;
+    quad_accum0_reg0 <= quad_prod_reg0 + quad_prod_reg1;
 
     inph_accum0_reg1 <= inph_prod_reg2 + inph_prod_reg3;
-    quad_accum0_reg1 <= quad_prod_reg2 + inph_prod_reg3;
+    quad_accum0_reg1 <= quad_prod_reg2 + quad_prod_reg3;
 
     inph_accum0_reg2 <= inph_prod_reg4 + inph_prod_reg5;
-    quad_accum0_reg2 <= quad_prod_reg4 + inph_prod_reg5;
+    quad_accum0_reg2 <= quad_prod_reg4 + quad_prod_reg5;
 
     inph_accum0_reg3 <= inph_prod_reg6 + inph_prod_reg7;
-    quad_accum0_reg3 <= quad_prod_reg6 + inph_prod_reg7;
+    quad_accum0_reg3 <= quad_prod_reg6 + quad_prod_reg7;
 
     inph_accum0_reg4 <= inph_prod_reg8 + inph_prod_reg9;
-    quad_accum0_reg4 <= quad_prod_reg8 + inph_prod_reg9;
+    quad_accum0_reg4 <= quad_prod_reg8 + quad_prod_reg9;
 
     inph_accum0_reg5 <= inph_prod_reg10 + inph_prod_reg11;
-    quad_accum0_reg5 <= quad_prod_reg10 + inph_prod_reg11;
+    quad_accum0_reg5 <= quad_prod_reg10 + quad_prod_reg11;
 
     inph_accum0_reg6 <= inph_prod_reg12 + inph_prod_reg13;
-    quad_accum0_reg6 <= quad_prod_reg12 + inph_prod_reg13;
+    quad_accum0_reg6 <= quad_prod_reg12 + quad_prod_reg13;
 
     inph_accum0_reg7 <= inph_prod_reg14 + inph_prod_reg15;
-    quad_accum0_reg7 <= quad_prod_reg14 + inph_prod_reg15;
+    quad_accum0_reg7 <= quad_prod_reg14 + quad_prod_reg15;
 
     inph_del_reg4 <= inph_del_reg3;
     quad_del_reg4 <= quad_del_reg3;

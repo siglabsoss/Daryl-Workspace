@@ -76,7 +76,7 @@ initial begin: stimulus
         @(negedge i_clock) begin
             i_inph_data = (1 << 14) * $cos(2*(4*$atan(1.0))*0.001*in_idx);
             i_quad_data = (1 << 14) * $sin(2*(4*$atan(1.0))*0.001*in_idx);
-            $display("i: (%d, %d)", $signed(i_inph_data), $signed(i_quad_data));
+            //$display("i: (%d, %d)", $signed(i_inph_data), $signed(i_quad_data));
             i_valid = 1'b1;
             #10;
         end
@@ -108,9 +108,9 @@ always @(posedge i_clock) begin: seq_check
             run_count <= run_count + 1;
 
             if (test_number == 2) begin
-                $display("o: (%d, %d); arctan(y/x) = %f",
-                    $signed(o_inph_data), $signed(o_quad_data),
-                    360.0/(4.0*$atan(1.0))*$atan2(o_quad_data, o_inph_data));
+                // $display("o: (%d, %d); arctan(y/x) = %f",
+                //     $signed(o_inph_data), $signed(o_quad_data),
+                //     360.0/(4.0*$atan(1.0))*$atan2(o_quad_data, o_inph_data));
             end
         end
     end
