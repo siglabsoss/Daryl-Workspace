@@ -41,6 +41,8 @@ end else if (NUM_RAMS == 12) begin
     };
 end
 
+
+
 for (ram_num = 0; ram_num < NUM_RAMS; ram_num++) begin
     for (branch_num = 0; branch_num < number_of_branches[ram_num]; branch_num++) begin
         ldpc_ram #(
@@ -48,17 +50,17 @@ for (ram_num = 0; ram_num < NUM_RAMS; ram_num++) begin
             .DEPTH(EXPANSION_FACTOR),
             .resource(resource))
         ldpc_ram_inst (
-            .i_in_data       (),
-            .i_in_addr       (),
-            .i_in_valid      (),
-            .i_out_addr      (),
-            .i_out_addr_valid(),
-            .o_out_addr_ready(),
-            .o_out_data      (),
-            .o_out_valid     (),
-            .i_out_ready     (),
-            .i_clock         (),
-            .i_reset         ());
+            .i_in_data       (i_in_data[(branch_num*NUM_RAMS + ram_num + 1)*WIDTH-1:(branch_num*NUM_RAMS + ram_num)*WIDTH]                                      ),
+            .i_in_addr       (i_in_addr[(branch_num*NUM_RAMS + ram_num + 1)*$clog2(EXPANSION_FACTOR)-1:(branch_num*NUM_RAMS + ram_num)*$clog2(EXPANSION_FACTOR)]),
+            .i_in_valid      (i_in_valid[branch_num*NUM_RAMS + ram_num]                                                                                         ),
+            .i_out_addr      (address_count                                                                                                                     ),
+            .i_out_addr_valid(address_count_valid[branch_num*NUM_RAMS + ram_num]                                                                                ),
+            .o_out_addr_ready(address_count_ready[branch_num*NUM_RAMS + ram_num]                                                                                ),
+            .o_out_data      (                                                                                                                                  ),
+            .o_out_valid     (                                                                                                                                  ),
+            .i_out_ready     (                                                                                                                                  ),
+            .i_clock         (i_clock                                                                                                                           ),
+            .i_reset         (i_reset                                                                                                                           ));
     end
 end
 
