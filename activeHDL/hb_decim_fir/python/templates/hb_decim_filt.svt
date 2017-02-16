@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module halfband_decim_fir #(
+module hb_decim_fir #(
     parameter integer WIDTH = 16
 ) (
     input  wire logic [WIDTH-1:0] i_inph_data,
@@ -173,33 +173,33 @@ always_ff @ (posedge i_clock) begin
     concatenated_inph_delay = {
         {(54-18-WIDTH){inph_del_reg{{ 4 + adder_tree_range[-1] }}[WIDTH-1]}},
         inph_del_reg{{ 4 + adder_tree_range[-1] }},
-        1'b0, // For round half-up algorithm
+        1'b1, // For round half-up algorithm
         17'b0
     };
     concatenated_quad_delay = {
         {(54-18-WIDTH){quad_del_reg{{ 4 + adder_tree_range[-1] }}[WIDTH-1]}},
         quad_del_reg{{ 4 + adder_tree_range[-1] }},
-        1'b0, // For round half-up algorithm
+        1'b1, // For round half-up algorithm
         17'b0
     };
-    inph_output_reg <= inph_output_reg + concatenated_inph_delay;
-    quad_output_reg <= quad_output_reg + concatenated_quad_delay;
+    inph_output_reg <= inph_accum{{ adder_tree_range[-1] }}_reg0 + concatenated_inph_delay;
+    quad_output_reg <= quad_accum{{ adder_tree_range[-1] }}_reg0 + concatenated_quad_delay;
 
     valid2_reg0 <= valid1_reg{{ 4 + adder_tree_range[-1] }};
 end
 
 always_ff @ (posedge i_clock) begin
     if (valid2_reg0 == 1'b1) begin
-        if ($signed(o_inph_data[53:WIDTH+18-1]) > 0) begin
+        if ($signed(inph_output_reg[53:WIDTH+18-1]) > 0) begin
             o_inph_data <= {1'b0, {(WIDTH-1){1'b1}}};
-        end else if ($signed(o_inph_data[53:WIDTH+18-1]) < -1) begin
+        end else if ($signed(inph_output_reg[53:WIDTH+18-1]) < -1) begin
             o_inph_data <= {1'b1, {(WIDTH-1){1'b0}}};
         end else begin
             o_inph_data <= inph_output_reg[WIDTH+18-1:18];
         end
-        if ($signed(o_quad_data[53:WIDTH+18-1]) > 0) begin
+        if ($signed(quad_output_reg[53:WIDTH+18-1]) > 0) begin
             o_quad_data <= {1'b0, {(WIDTH-1){1'b1}}};
-        end else if ($signed(o_quad_data[53:WIDTH+18-1]) < -1) begin
+        end else if ($signed(quad_output_reg[53:WIDTH+18-1]) < -1) begin
             o_quad_data <= {1'b1, {(WIDTH-1){1'b0}}};
         end else begin
             o_quad_data <= quad_output_reg[WIDTH+18-1:18];
@@ -209,6 +209,6 @@ always_ff @ (posedge i_clock) begin
     o_valid <= valid2_reg0;
 end
 
-endmodule: halfband_decim_fir
+endmodule: hb_decim_fir
 
 `default_nettype wire

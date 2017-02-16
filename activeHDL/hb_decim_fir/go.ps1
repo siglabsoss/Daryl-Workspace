@@ -18,8 +18,8 @@ function Compile-Verilog
 vlib work
 
 # Compile the Verilog Files
-Compile-Verilog tb_halfband_fir.sv
-Compile-Verilog halfband_fir.sv
+Compile-Verilog tb_hb_decim_fir.sv
+Compile-Verilog hb_decim_fir.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do

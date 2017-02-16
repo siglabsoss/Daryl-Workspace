@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module halfband_decim_fir #(
+module hb_decim_fir #(
     parameter integer WIDTH = 16
 ) (
     input  wire logic [WIDTH-1:0] i_inph_data,
@@ -745,28 +745,28 @@ always_ff @ (posedge i_clock) begin
     // Adder trees for FIR filter
     inph_accum0_reg0 <= inph_prod_reg0 + inph_prod_reg1;
     quad_accum0_reg0 <= quad_prod_reg0 + inph_prod_reg1;
-    
+
     inph_accum0_reg1 <= inph_prod_reg2 + inph_prod_reg3;
     quad_accum0_reg1 <= quad_prod_reg2 + inph_prod_reg3;
-    
+
     inph_accum0_reg2 <= inph_prod_reg4 + inph_prod_reg5;
     quad_accum0_reg2 <= quad_prod_reg4 + inph_prod_reg5;
-    
+
     inph_accum0_reg3 <= inph_prod_reg6 + inph_prod_reg7;
     quad_accum0_reg3 <= quad_prod_reg6 + inph_prod_reg7;
-    
+
     inph_accum0_reg4 <= inph_prod_reg8 + inph_prod_reg9;
     quad_accum0_reg4 <= quad_prod_reg8 + inph_prod_reg9;
-    
+
     inph_accum0_reg5 <= inph_prod_reg10 + inph_prod_reg11;
     quad_accum0_reg5 <= quad_prod_reg10 + inph_prod_reg11;
-    
+
     inph_accum0_reg6 <= inph_prod_reg12 + inph_prod_reg13;
     quad_accum0_reg6 <= quad_prod_reg12 + inph_prod_reg13;
-    
+
     inph_accum0_reg7 <= inph_prod_reg14 + inph_prod_reg15;
     quad_accum0_reg7 <= quad_prod_reg14 + inph_prod_reg15;
-    
+
     inph_del_reg4 <= inph_del_reg3;
     quad_del_reg4 <= quad_del_reg3;
 
@@ -796,16 +796,16 @@ always_ff @ (posedge i_clock) begin
     // Adder trees for FIR filter
     inph_accum1_reg0 <= inph_accum0_reg0 + inph_accum0_reg1;
     quad_accum1_reg0 <= quad_accum0_reg0 + quad_accum0_reg1;
-    
+
     inph_accum1_reg1 <= inph_accum0_reg2 + inph_accum0_reg3;
     quad_accum1_reg1 <= quad_accum0_reg2 + quad_accum0_reg3;
-    
+
     inph_accum1_reg2 <= inph_accum0_reg4 + inph_accum0_reg5;
     quad_accum1_reg2 <= quad_accum0_reg4 + quad_accum0_reg5;
-    
+
     inph_accum1_reg3 <= inph_accum0_reg6 + inph_accum0_reg7;
     quad_accum1_reg3 <= quad_accum0_reg6 + quad_accum0_reg7;
-    
+
     inph_del_reg5 <= inph_del_reg4;
     quad_del_reg5 <= quad_del_reg4;
 
@@ -827,10 +827,10 @@ always_ff @ (posedge i_clock) begin
     // Adder trees for FIR filter
     inph_accum2_reg0 <= inph_accum1_reg0 + inph_accum1_reg1;
     quad_accum2_reg0 <= quad_accum1_reg0 + quad_accum1_reg1;
-    
+
     inph_accum2_reg1 <= inph_accum1_reg2 + inph_accum1_reg3;
     quad_accum2_reg1 <= quad_accum1_reg2 + quad_accum1_reg3;
-    
+
     inph_del_reg6 <= inph_del_reg5;
     quad_del_reg6 <= quad_del_reg5;
 
@@ -849,7 +849,7 @@ always_ff @ (posedge i_clock) begin
     // Adder trees for FIR filter
     inph_accum3_reg0 <= inph_accum2_reg0 + inph_accum2_reg1;
     quad_accum3_reg0 <= quad_accum2_reg0 + quad_accum2_reg1;
-    
+
     inph_del_reg7 <= inph_del_reg6;
     quad_del_reg7 <= quad_del_reg6;
 
@@ -865,35 +865,35 @@ logic valid2_reg0;
 
 always_ff @ (posedge i_clock) begin
     concatenated_inph_delay = {
-        {(54-18-WIDTH){inph_del_reg7[WIDTH-1]}},
+        {(54-17-WIDTH){inph_del_reg7[WIDTH-1]}},
         inph_del_reg7,
-        1'b0, // For round half-up algorithm
-        17'b0
+        1'b1, // For round half-up algorithm
+        16'b0
     };
     concatenated_quad_delay = {
-        {(54-18-WIDTH){quad_del_reg7[WIDTH-1]}},
+        {(54-17-WIDTH){quad_del_reg7[WIDTH-1]}},
         quad_del_reg7,
-        1'b0, // For round half-up algorithm
-        17'b0
+        1'b1, // For round half-up algorithm
+        16'b0
     };
-    inph_output_reg <= inph_output_reg + concatenated_inph_delay;
-    quad_output_reg <= quad_output_reg + concatenated_quad_delay;
+    inph_output_reg <= inph_accum3_reg0 + concatenated_inph_delay;
+    quad_output_reg <= quad_accum3_reg0 + concatenated_quad_delay;
 
     valid2_reg0 <= valid1_reg7;
 end
 
 always_ff @ (posedge i_clock) begin
     if (valid2_reg0 == 1'b1) begin
-        if ($signed(o_inph_data[53:WIDTH+18-1]) > 0) begin
+        if ($signed(inph_output_reg[53:WIDTH+18-1]) > 0) begin
             o_inph_data <= {1'b0, {(WIDTH-1){1'b1}}};
-        end else if ($signed(o_inph_data[53:WIDTH+18-1]) < -1) begin
+        end else if ($signed(inph_output_reg[53:WIDTH+18-1]) < -1) begin
             o_inph_data <= {1'b1, {(WIDTH-1){1'b0}}};
         end else begin
             o_inph_data <= inph_output_reg[WIDTH+18-1:18];
         end
-        if ($signed(o_quad_data[53:WIDTH+18-1]) > 0) begin
+        if ($signed(quad_output_reg[53:WIDTH+18-1]) > 0) begin
             o_quad_data <= {1'b0, {(WIDTH-1){1'b1}}};
-        end else if ($signed(o_quad_data[53:WIDTH+18-1]) < -1) begin
+        end else if ($signed(quad_output_reg[53:WIDTH+18-1]) < -1) begin
             o_quad_data <= {1'b1, {(WIDTH-1){1'b0}}};
         end else begin
             o_quad_data <= quad_output_reg[WIDTH+18-1:18];
@@ -903,6 +903,6 @@ always_ff @ (posedge i_clock) begin
     o_valid <= valid2_reg0;
 end
 
-endmodule: halfband_decim_fir
+endmodule: hb_decim_fir
 
 `default_nettype wire

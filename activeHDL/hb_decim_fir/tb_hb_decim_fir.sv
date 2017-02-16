@@ -1,25 +1,24 @@
-// tb_halfband_fir.sv
+// tb_hb_decim_fir.sv
 //
 
 `timescale 10ps / 10ps
 
 `default_nettype none
 
-module tb_halfband_fir;
+module tb_hb_decim_fir;
 
 localparam integer WIDTH = 16;
 
-// Clock and Reset
-logic                i_clock;
-logic                i_reset;
-// Upstream signaling
-logic [WIDTH-1:0]    i_in_data;
-logic                i_in_valid;
-// Downstream signaling
-logic [WIDTH-1:0]    o_out_data;
-logic                o_out_valid;
+logic [WIDTH-1:0] i_inph_data;
+logic [WIDTH-1:0] i_quad_data;
+logic             i_valid;
+logic [WIDTH-1:0] o_inph_data;
+logic [WIDTH-1:0] o_quad_data;
+logic             o_valid;
+logic             i_clock;
+logic             i_reset;
 
-halfband_fir #(.WIDTH(WIDTH)) uut (.*);
+hb_decim_fir #(.WIDTH(WIDTH)) uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -38,8 +37,9 @@ logic [31:0] local_err_count = 0;
 
 task reset_all;
     i_reset = 1'b1;
-    i_in_data = 0;
-    i_in_valid = 1'b0;
+    i_inph_data = 0;
+    i_quad_data = 0;
+    i_valid = 1'b0;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
@@ -55,10 +55,10 @@ initial begin: stimulus
     reset_all();
     #1000;
     @(negedge i_clock) begin
-        i_in_valid = 1'b0;
+        i_valid = 1'b0;
         #10;
     end
-    i_in_valid = 1'b0;
+    i_valid = 1'b0;
     #1000;
     if (run_count > 0) begin
         $display("Error: Test 1 failed! No data input, but data output received.");
@@ -66,6 +66,29 @@ initial begin: stimulus
     end
     #100;
     $display("Test 1 Done!");
+
+    // Test 2: No data in = no data out.
+    $display("Test 2 Started!");
+    test_number = 2;
+    reset_all();
+    #1000;
+    for (integer in_idx = 0; in_idx < 10000; in_idx++) begin
+        @(negedge i_clock) begin
+            i_inph_data = (1 << 14) * $cos(2*(4*$atan(1.0))*0.001*in_idx);
+            i_quad_data = (1 << 14) * $sin(2*(4*$atan(1.0))*0.001*in_idx);
+            $display("i: (%d, %d)", $signed(i_inph_data), $signed(i_quad_data));
+            i_valid = 1'b1;
+            #10;
+        end
+    end
+    i_valid = 1'b0;
+    #1000;
+    if (run_count != 10000/2) begin
+        $display("Error: Test 2 failed! 10000 samples of input, but %d samples of output.", run_count);
+        glbl_err_count++;
+    end
+    #100;
+    $display("Test 2 Done!");
 
     // Finished
     #10000;
@@ -81,12 +104,18 @@ always @(posedge i_clock) begin: seq_check
         run_count <= 0;
     end else begin
         // Track number of outputs received
-        if (o_out_valid == 1'b1) begin
+        if (o_valid == 1'b1) begin
             run_count <= run_count + 1;
+
+            if (test_number == 2) begin
+                $display("o: (%d, %d); arctan(y/x) = %f",
+                    $signed(o_inph_data), $signed(o_quad_data),
+                    360.0/(4.0*$atan(1.0))*$atan2(o_quad_data, o_inph_data));
+            end
         end
     end
 end
 
-endmodule: tb_halfband_fir
+endmodule: tb_hb_decim_fir
 
 `default_nettype wire
