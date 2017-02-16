@@ -643,53 +643,53 @@ always_ff @ (posedge i_clock) begin
     inph_sum_reg15 <= { inph_term_reg15[WIDTH-1], inph_term_reg15 } + { inph_term_reg16[WIDTH-1], inph_term_reg16 };
     quad_sum_reg15 <= { inph_term_reg15[WIDTH-1], inph_term_reg15 } + { inph_term_reg16[WIDTH-1], inph_term_reg16 };
 
-    inph_prod_reg0 <= $signed(18'sb111111111110000110) * inph_sum_reg0;
-    quad_prod_reg0 <= $signed(18'sb111111111110000110) * quad_sum_reg0;
+    inph_prod_reg0 <= $signed(18'sb111111111110000110) * $signed(inph_sum_reg0);
+    quad_prod_reg0 <= $signed(18'sb111111111110000110) * $signed(quad_sum_reg0);
 
-    inph_prod_reg1 <= $signed(18'sb0000000010111011) * inph_sum_reg1;
-    quad_prod_reg1 <= $signed(18'sb0000000010111011) * quad_sum_reg1;
+    inph_prod_reg1 <= $signed(18'sb000000000010111011) * $signed(inph_sum_reg1);
+    quad_prod_reg1 <= $signed(18'sb000000000010111011) * $signed(quad_sum_reg1);
 
-    inph_prod_reg2 <= $signed(18'sb111111111010111101) * inph_sum_reg2;
-    quad_prod_reg2 <= $signed(18'sb111111111010111101) * quad_sum_reg2;
+    inph_prod_reg2 <= $signed(18'sb111111111010111101) * $signed(inph_sum_reg2);
+    quad_prod_reg2 <= $signed(18'sb111111111010111101) * $signed(quad_sum_reg2);
 
-    inph_prod_reg3 <= $signed(18'sb0000001000000101) * inph_sum_reg3;
-    quad_prod_reg3 <= $signed(18'sb0000001000000101) * quad_sum_reg3;
+    inph_prod_reg3 <= $signed(18'sb000000001000000101) * $signed(inph_sum_reg3);
+    quad_prod_reg3 <= $signed(18'sb000000001000000101) * $signed(quad_sum_reg3);
 
-    inph_prod_reg4 <= $signed(18'sb111111110011101111) * inph_sum_reg4;
-    quad_prod_reg4 <= $signed(18'sb111111110011101111) * quad_sum_reg4;
+    inph_prod_reg4 <= $signed(18'sb111111110011101111) * $signed(inph_sum_reg4);
+    quad_prod_reg4 <= $signed(18'sb111111110011101111) * $signed(quad_sum_reg4);
 
-    inph_prod_reg5 <= $signed(18'sb0000010001111010) * inph_sum_reg5;
-    quad_prod_reg5 <= $signed(18'sb0000010001111010) * quad_sum_reg5;
+    inph_prod_reg5 <= $signed(18'sb000000010001111010) * $signed(inph_sum_reg5);
+    quad_prod_reg5 <= $signed(18'sb000000010001111010) * $signed(quad_sum_reg5);
 
-    inph_prod_reg6 <= $signed(18'sb111111100110101010) * inph_sum_reg6;
-    quad_prod_reg6 <= $signed(18'sb111111100110101010) * quad_sum_reg6;
+    inph_prod_reg6 <= $signed(18'sb111111100110101010) * $signed(inph_sum_reg6);
+    quad_prod_reg6 <= $signed(18'sb111111100110101010) * $signed(quad_sum_reg6);
 
-    inph_prod_reg7 <= $signed(18'sb0000100011000011) * inph_sum_reg7;
-    quad_prod_reg7 <= $signed(18'sb0000100011000011) * quad_sum_reg7;
+    inph_prod_reg7 <= $signed(18'sb000000100011000011) * $signed(inph_sum_reg7);
+    quad_prod_reg7 <= $signed(18'sb000000100011000011) * $signed(quad_sum_reg7);
 
-    inph_prod_reg8 <= $signed(18'sb111111010000010101) * inph_sum_reg8;
-    quad_prod_reg8 <= $signed(18'sb111111010000010101) * quad_sum_reg8;
+    inph_prod_reg8 <= $signed(18'sb111111010000010101) * $signed(inph_sum_reg8);
+    quad_prod_reg8 <= $signed(18'sb111111010000010101) * $signed(quad_sum_reg8);
 
-    inph_prod_reg9 <= $signed(18'sb0001000000010000) * inph_sum_reg9;
-    quad_prod_reg9 <= $signed(18'sb0001000000010000) * quad_sum_reg9;
+    inph_prod_reg9 <= $signed(18'sb000001000000010000) * $signed(inph_sum_reg9);
+    quad_prod_reg9 <= $signed(18'sb000001000000010000) * $signed(quad_sum_reg9);
 
-    inph_prod_reg10 <= $signed(18'sb111110101001100011) * inph_sum_reg10;
-    quad_prod_reg10 <= $signed(18'sb111110101001100011) * quad_sum_reg10;
+    inph_prod_reg10 <= $signed(18'sb111110101001100011) * $signed(inph_sum_reg10);
+    quad_prod_reg10 <= $signed(18'sb111110101001100011) * $signed(quad_sum_reg10);
 
-    inph_prod_reg11 <= $signed(18'sb0001110101100000) * inph_sum_reg11;
-    quad_prod_reg11 <= $signed(18'sb0001110101100000) * quad_sum_reg11;
+    inph_prod_reg11 <= $signed(18'sb000001110101100000) * $signed(inph_sum_reg11);
+    quad_prod_reg11 <= $signed(18'sb000001110101100000) * $signed(quad_sum_reg11);
 
-    inph_prod_reg12 <= $signed(18'sb111101011011110001) * inph_sum_reg12;
-    quad_prod_reg12 <= $signed(18'sb111101011011110001) * quad_sum_reg12;
+    inph_prod_reg12 <= $signed(18'sb111101011011110001) * $signed(inph_sum_reg12);
+    quad_prod_reg12 <= $signed(18'sb111101011011110001) * $signed(quad_sum_reg12);
 
-    inph_prod_reg13 <= $signed(18'sb0011110100101000) * inph_sum_reg13;
-    quad_prod_reg13 <= $signed(18'sb0011110100101000) * quad_sum_reg13;
+    inph_prod_reg13 <= $signed(18'sb000011110100101000) * $signed(inph_sum_reg13);
+    quad_prod_reg13 <= $signed(18'sb000011110100101000) * $signed(quad_sum_reg13);
 
-    inph_prod_reg14 <= $signed(18'sb111001010111010000) * inph_sum_reg14;
-    quad_prod_reg14 <= $signed(18'sb111001010111010000) * quad_sum_reg14;
+    inph_prod_reg14 <= $signed(18'sb111001010111010000) * $signed(inph_sum_reg14);
+    quad_prod_reg14 <= $signed(18'sb111001010111010000) * $signed(quad_sum_reg14);
 
-    inph_prod_reg15 <= $signed(18'sb10100010100011111) * inph_sum_reg15;
-    quad_prod_reg15 <= $signed(18'sb10100010100011111) * quad_sum_reg15;
+    inph_prod_reg15 <= $signed(18'sb010100010100011111) * $signed(inph_sum_reg15);
+    quad_prod_reg15 <= $signed(18'sb010100010100011111) * $signed(quad_sum_reg15);
 
 
     // Pipeline delays for E1(z)

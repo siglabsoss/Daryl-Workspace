@@ -12,11 +12,11 @@ h = np.array(h)
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 temp = env.get_template('hb_decim_filt.svt')
 
-def mybin(x):
+def mybin(x, N=18):
     if x < 0:
-        return '{:016b}'.format(2**18 + x)
+        return '{:018b}'.format(2**N + x)
     else:
-        return '{:016b}'.format(x)
+        return '{:018b}'.format(x)
 
 hb = [ mybin(hk) for hk in h ]
 

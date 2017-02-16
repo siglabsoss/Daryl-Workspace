@@ -98,8 +98,8 @@ always_ff @ (posedge i_clock) begin
     inph_sum_reg{{ tdl }} <= { inph_term_reg{{ tdl }}[WIDTH-1], inph_term_reg{{ tdl }} } + { inph_term_reg{{ max_delay-tdl-1 }}[WIDTH-1], inph_term_reg{{ max_delay-tdl-1 }} };
     quad_sum_reg{{ tdl }} <= { inph_term_reg{{ tdl }}[WIDTH-1], inph_term_reg{{ tdl }} } + { inph_term_reg{{ max_delay-tdl-1 }}[WIDTH-1], inph_term_reg{{ max_delay-tdl-1 }} };
 {% endfor %}{% for tdl in delay_range[0][:max_delay//2] %}
-    inph_prod_reg{{ tdl }} <= $signed(18'sb{{ coeffs[tdl] }}) * inph_sum_reg{{ tdl }};
-    quad_prod_reg{{ tdl }} <= $signed(18'sb{{ coeffs[tdl] }}) * quad_sum_reg{{ tdl }};
+    inph_prod_reg{{ tdl }} <= $signed(18'sb{{ coeffs[tdl] }}) * $signed(inph_sum_reg{{ tdl }});
+    quad_prod_reg{{ tdl }} <= $signed(18'sb{{ coeffs[tdl] }}) * $signed(quad_sum_reg{{ tdl }});
 {% endfor %}
 
     // Pipeline delays for E1(z)
