@@ -74,8 +74,8 @@ initial begin: stimulus
     #1000;
     for (integer in_idx = 0; in_idx < 10000; in_idx++) begin
         @(negedge i_clock) begin
-            i_inph_data = (1 << 14) * $cos(2*(4*$atan(1.0))*0.001*in_idx);
-            i_quad_data = (1 << 14) * $sin(2*(4*$atan(1.0))*0.001*in_idx);
+            i_inph_data = ((1 << 15)-1) * $cos(2*(4*$atan(1.0))*0.301*in_idx);
+            i_quad_data = ((1 << 15)-1) * $sin(2*(4*$atan(1.0))*0.301*in_idx);
             //$display("i: (%d, %d)", $signed(i_inph_data), $signed(i_quad_data));
             i_valid = 1'b1;
             #10;
