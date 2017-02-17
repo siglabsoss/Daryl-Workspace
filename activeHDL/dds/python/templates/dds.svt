@@ -40,7 +40,7 @@ always_ff @ (posedge i_clock) begin
         {{ lvalue }}: begin{% endif %}{% if lvalue == lut_values[-1] %}
         default: begin{% endif %}
             cosine_reg0 <= 36'sb{{ cos_values[lvalue] }};
-            sine_reg0 <= 36'sb{{ sin_values[lvalue] }};
+            sine_reg0   <= 36'sb{{ sin_values[lvalue] }};
         end{% endfor %}
         endcase
         // Compute residual (value not obtained from table)
