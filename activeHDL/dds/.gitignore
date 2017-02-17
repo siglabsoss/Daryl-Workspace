@@ -3,3 +3,4 @@ work/
 *.asdb
 library.cfg
 sim.log
+outvec.txt

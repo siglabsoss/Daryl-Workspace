@@ -7,19 +7,15 @@
 
 module tb_dds;
 
-localparam integer WIDTH = 16;
+logic [32-1:0] i_phase_inc;
+logic          i_phase_inc_valid;
+logic [36-1:0] o_cosine_data;
+logic [36-1:0] o_sine_data;
+logic          i_ready;
+logic          i_clock;
+logic          i_reset;
 
-// Clock and Reset
-logic                i_clock;
-logic                i_reset;
-// Upstream signaling
-logic [WIDTH-1:0]    i_in_data;
-logic                i_in_valid;
-// Downstream signaling
-logic [WIDTH-1:0]    o_out_data;
-logic                o_out_valid;
-
-dds #(.WIDTH(WIDTH)) uut (.*);
+dds uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -38,11 +34,14 @@ logic [31:0] local_err_count = 0;
 
 task reset_all;
     i_reset = 1'b1;
-    i_in_data = 0;
-    i_in_valid = 1'b0;
+    i_phase_inc = 0;
+    i_phase_inc_valid = 1'b0;
+    i_ready = 1'b0;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
+
+integer fid;
 
 initial begin: stimulus
     i_reset = 1'b1;
@@ -55,17 +54,37 @@ initial begin: stimulus
     reset_all();
     #1000;
     @(negedge i_clock) begin
-        i_in_valid = 1'b0;
+        i_ready = 1'b0;
         #10;
     end
-    i_in_valid = 1'b0;
+    i_ready = 1'b0;
     #1000;
-    if (run_count > 0) begin
-        $display("Error: Test 1 failed! No data input, but data output received.");
-        glbl_err_count++;
-    end
-    #100;
     $display("Test 1 Done!");
+
+    // Test 2: Write some samples to a test file
+    $display("Test 2 Started!");
+    test_number = 1;
+    reset_all();
+    #1000;
+    i_phase_inc <= $rtoi((31.5 / 250.0) * $pow(2.0, 32.0));
+    //i_phase_inc <= $rtoi((0.001) * $pow(2.0, 32.0));
+    i_phase_inc_valid <= 1'b1;
+    #10;
+    i_phase_inc <= '0;
+    i_phase_inc_valid <= 1'b0;
+    #10;
+    fid = $fopen("outvec.txt");
+    for (integer iter_idx = 0; iter_idx < 262144+100; iter_idx++) begin
+        @(negedge i_clock) begin
+            i_ready = 1'b1;
+            $fwrite(fid,"%d,%d\n", $signed(o_cosine_data), $signed(o_sine_data));
+            #10;
+        end
+    end
+    $fclose(fid);
+    i_ready = 1'b0;
+    #1000;
+    $display("Test 2 Done!");
 
     // Finished
     #10000;
@@ -75,17 +94,17 @@ initial begin: stimulus
 
 end
 
-// Tests the output sequence to make sure it matches the input
-always @(posedge i_clock) begin: seq_check
-    if (i_reset == 1'b1) begin
-        run_count <= 0;
-    end else begin
-        // Track number of outputs received
-        if (o_out_valid == 1'b1) begin
-            run_count <= run_count + 1;
-        end
-    end
-end
+// // Tests the output sequence to make sure it matches the input
+// always @(posedge i_clock) begin: seq_check
+//     if (i_reset == 1'b1) begin
+//         run_count <= 0;
+//     end else begin
+//         // Track number of outputs received
+//         if (i_ready == 1'b1) begin
+//             run_count <= run_count + 1;
+//         end
+//     end
+// end
 
 endmodule: tb_dds
 
