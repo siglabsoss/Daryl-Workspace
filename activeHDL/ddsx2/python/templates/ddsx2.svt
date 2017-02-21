@@ -18,15 +18,19 @@ module ddsx2 (
 logic [32-1:0] phase_inc_reg;
 logic [32-1:0] phase_accum;
 logic [32-1:0] phase_accum_delay;
+logic          phase_written_reg;
 
 always_ff @ (posedge i_clock) begin
     // Read input phase increment
     if (i_phase_inc_valid == 1'b1) begin
         phase_inc_reg <= i_phase_inc;
+        phase_written_reg <= 1'b1;
+    end else begin
+        phase_written_reg <= 1'b0;
     end
     // Increment phase whenever an output is requested
-    if (i_reset == 1'b1) begin
-        phase_accum <= '0;
+    if (phase_written_reg == 1'b1) begin
+        phase_accum <= {32{1'b0}};
         phase_accum_delay <= phase_inc_reg;
     end else if (i_ready == 1'b1) begin
         phase_accum <= phase_accum + {phase_inc_reg, 1'b0};
@@ -36,84 +40,63 @@ end
 
 // Sine/Cosine Look Up Table
 localparam integer WIDTH = 36;
-localparam integer RESIDUAL_WIDTH = WIDTH-{{ lut_width }};
 
-logic signed [WIDTH-1:0]      cosine_reg0 /* synthesis syn_ramstyle="block_ram" */;
-logic signed [WIDTH-1:0]      sine_reg0 /* synthesis syn_ramstyle="block_ram" */;
-// logic [16+RESIDUAL_WIDTH-1:0] residual_reg0;
+logic        [2*WIDTH-1:0]    sincos_reg0;
+logic        [2*WIDTH-1:0]    sincos_delay_reg0;
+logic signed [WIDTH-1:0]      cosine_reg0;
+logic signed [WIDTH-1:0]      sine_reg0;
+logic signed [WIDTH-1:0]      cosine_delay_reg0;
+logic signed [WIDTH-1:0]      sine_delay_reg0;
 
-pmi_ram_dp_true #(
-    .pmi_addr_depth_a = {{ 2**lut_width }},
-    .pmi_addr_width_a = {{ lut_width }},
-    .pmi_data_width_a = 2*WIDTH,
-    .pmi_addr_depth_b = {{ 2**lut_width }},
-    .pmi_addr_width_b = {{ lut_width }},
-    .pmi_data_width_b = 2*WIDTH,
-    .pmi_regmode_a = "reg",
-    .pmi_regmode_b = "reg",
-    .pmi_gsr = "disable",
-    .pmi_resetmode = "sync",
-    .pmi_optimization = "speed",
-    .pmi_init_file = "ddsx2_sincos.txt",
-    .pmi_init_file_format = "binary",
-    .pmi_write_mode_a = "normal",
-    .pmi_write_mode_b = "normal",
-    .pmi_family = "ECP5U",
-    .module_type = "pmi_ram_dp_true")
-
-
-  (input [(pmi_data_width_a-1):0]   DataInA,
-   input [(pmi_data_width_b-1):0]   DataInB,
-   input [(pmi_addr_width_a-1):0] AddressA,
-   input [(pmi_addr_width_b-1):0] AddressB,
-   input  ClockA,
-   input  ClockB,
-   input  ClockEnA,
-   input  ClockEnB,
-   input  WrA,
-   input  WrB,
-   input  ResetA,
-   input  ResetB,
-   output [(pmi_data_width_a-1):0]  QA,
-   output [(pmi_data_width_b-1):0]  QB)/*synthesis syn_black_box */;
+localparam logic [2*WIDTH-1:0] all_zeros = {(2*WIDTH){1'b0}};
 
 // Pipeline Stage 0
+logic [2*WIDTH-1:0] sincos_lut_ram [0:{{2**lut_width}}-1];
+initial begin
+    $readmemb("sincos.mif", sincos_lut_ram);
+end
 always_ff @ (posedge i_clock) begin
     if (i_ready == 1'b1) begin
-        // Perform table look up
-        case(phase_accum[32-1:32-{{ lut_width }}]){% for lvalue in lut_values %}{% if lvalue != lut_values[-1] %}
-        {{ lvalue }}: begin{% endif %}{% if lvalue == lut_values[-1] %}
-        default: begin{% endif %}
-            cosine_reg0 <= 36'sb{{ cos_values[lvalue] }};
-            sine_reg0   <= 36'sb{{ sin_values[lvalue] }};
-        end{% endfor %}
-        endcase
-        // Compute residual (value not obtained from table * 2*pi) // unsigned mult okay
-        // residual_reg0 <= phase_accum[32-{{ lut_width }}-1:0] * 16'b{{ two_pi }};
+        sincos_reg0 <= sincos_lut_ram[phase_accum[32-1:32-{{lut_width}}]];
+        sincos_delay_reg0 <= sincos_lut_ram[phase_accum_delay[32-1:32-{{lut_width}}]];
     end
 end
 
-// Perform Correction
-logic signed [WIDTH-1:0]                cosine_reg1;
-logic signed [WIDTH-1:0]                sine_reg1;
-// logic signed [RESIDUAL_WIDTH-1:0]       residual_reg1;
+assign sine_reg0 = sincos_reg0[2*WIDTH-1:WIDTH];
+assign cosine_reg0 = sincos_reg0[WIDTH-1:0];
+assign sine_delay_reg0 = sincos_delay_reg0[2*WIDTH-1:WIDTH];
+assign cosine_delay_reg0 = sincos_delay_reg0[WIDTH-1:0];
 
-logic signed [WIDTH-1:0]                cosine_reg2;
-logic signed [WIDTH-1:0]                sine_reg2;
+// Perform Correction
+logic signed [WIDTH-1:0] cosine_reg1;
+logic signed [WIDTH-1:0] sine_reg1;
+logic signed [WIDTH-1:0] cosine_delay_reg1;
+logic signed [WIDTH-1:0] sine_delay_reg1;
+
+logic signed [WIDTH-1:0] cosine_reg2;
+logic signed [WIDTH-1:0] sine_reg2;
+logic signed [WIDTH-1:0] cosine_delay_reg2;
+logic signed [WIDTH-1:0] sine_delay_reg2;
 
 always_ff @ (posedge i_clock) begin
     if (i_ready == 1'b1) begin
         // Pipeline Stage 1
         cosine_reg1 <= cosine_reg0;
         sine_reg1 <= sine_reg0;
-        // residual_reg1 <= (residual_reg0[{{ lut_width }}+RESIDUAL_WIDTH-1:{{ lut_width - 1 }}] + 1'b1) >> 1;
+        cosine_delay_reg1 <= cosine_delay_reg0;
+        sine_delay_reg1 <= sine_delay_reg0;
+
         // Pipeline Stage 2
         cosine_reg2 <= cosine_reg1;
         sine_reg2 <= sine_reg1;
+        cosine_delay_reg2 <= cosine_delay_reg1;
+        sine_delay_reg2 <= sine_delay_reg1;
 
         // Pipeline Stage 3
         o_cosine_data <= cosine_reg2;
         o_sine_data <= sine_reg2;
+        o_cosine_delay_data <= cosine_delay_reg2;
+        o_sine_delay_data <= sine_delay_reg2;
     end
 end
 
