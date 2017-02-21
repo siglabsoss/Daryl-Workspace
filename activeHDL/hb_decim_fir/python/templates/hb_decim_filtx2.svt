@@ -76,7 +76,7 @@ logic valid1_reg3;
 
 always_ff @ (posedge i_clock) begin
     // Preadders for E0(z){% for tdl in delay_range[0] %}{% if tdl == 0 %}
-    if ((i_valid == 1'b1) && (pp_toggle == 1'b0)) begin
+    if (i_valid == 1'b1) begin
         inph_term_reg{{ tdl }} <= i_inph_data;
         quad_term_reg{{ tdl }} <= i_quad_data;
     end{% else %}

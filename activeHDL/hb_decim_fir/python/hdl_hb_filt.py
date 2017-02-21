@@ -25,9 +25,9 @@ def mybin(x, N=18):
 
 hb = [ mybin(hk) for hk in h ]
 
-#os.system('rm -f hb_decim_filt.sv')
-os.system('del /Q hb_decim_filt_h.sv')
-with open('hb_decim_filt_h.sv', 'w') as fid:
+#os.system('rm -f hb_decim_fir.sv')
+os.system('del /Q hb_decim_fir_h.sv')
+with open('hb_decim_fir_h.sv', 'w') as fid:
     print(
         temp.render(
             name='h',
@@ -47,15 +47,15 @@ h0 = np.array([
 
 hb0 = [ mybin(hk) for hk in h0 ]
 
-#os.system('rm -f hb_decim_filtx2_h0.sv')
-os.system('del /Q hb_decim_filtx2_h0.sv')
-with open('hb_decim_filt_h0x2.sv', 'w') as fid:
+#os.system('rm -f hb_decim_firx2_h0.sv')
+os.system('del /Q hb_decim_firx2_h0.sv')
+with open('hb_decim_firx2_h0.sv', 'w') as fid:
     print(
         temp2.render(
             name='h0',
             date=time.strftime("%m/%d/%Y"),
-            delay_range=(np.arange(4), np.arange(2)),
-            max_delay=4,
+            delay_range=(np.arange(8), np.arange(4)),
+            max_delay=8,
             coeffs=hb0[::2],
             adder_tree_range=np.arange(1, 2)
         ),
@@ -70,9 +70,9 @@ h1 = np.array([
 
 hb1 = [ mybin(hk) for hk in h1 ]
 
-#os.system('rm -f hb_decim_filt_h1.sv')
-os.system('del /Q hb_decim_filt_h1.sv')
-with open('hb_decim_filt_h1.sv', 'w') as fid:
+#os.system('rm -f hb_decim_fir_h1.sv')
+os.system('del /Q hb_decim_fir_h1.sv')
+with open('hb_decim_fir_h1.sv', 'w') as fid:
     print(
         temp.render(
             name='h1',
@@ -96,9 +96,9 @@ h2 = np.array([
 
 hb2 = [ mybin(hk) for hk in h2 ]
 
-#os.system('rm -f hb_decim_filt_h2.sv')
-os.system('del /Q hb_decim_filt_h2.sv')
-with open('hb_decim_filt_h2.sv', 'w') as fid:
+#os.system('rm -f hb_decim_fir_h2.sv')
+os.system('del /Q hb_decim_fir_h2.sv')
+with open('hb_decim_fir_h2.sv', 'w') as fid:
     print(
         temp.render(
             name='h2',

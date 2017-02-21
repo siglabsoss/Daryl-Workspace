@@ -11,6 +11,8 @@ localparam integer WIDTH = 16;
 
 logic [WIDTH-1:0] i_inph_data;
 logic [WIDTH-1:0] i_quad_data;
+logic [WIDTH-1:0] i_inph_delay_data;
+logic [WIDTH-1:0] i_quad_delay_data;
 logic             i_valid;
 logic [WIDTH-1:0] o_inph_data;
 logic [WIDTH-1:0] o_quad_data;
@@ -18,7 +20,7 @@ logic             o_valid;
 logic             i_clock;
 logic             i_reset;
 
-hb_decim_fir #(.WIDTH(WIDTH)) uut (.*);
+hb_cascade #(.WIDTH(WIDTH)) uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -39,6 +41,8 @@ task reset_all;
     i_reset = 1'b1;
     i_inph_data = 0;
     i_quad_data = 0;
+    i_inph_delay_data = 0;
+    i_quad_delay_data = 0;
     i_valid = 1'b0;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
@@ -74,8 +78,10 @@ initial begin: stimulus
     #1000;
     for (integer in_idx = 0; in_idx < 10000; in_idx++) begin
         @(negedge i_clock) begin
-            i_inph_data = ((1 << 15)-1) * $cos(2*(4*$atan(1.0))*0.301*in_idx);
-            i_quad_data = ((1 << 15)-1) * $sin(2*(4*$atan(1.0))*0.301*in_idx);
+            i_inph_data = ((1 << 15)-1) * $cos(2*(4*$atan(1.0))*0.01*2*in_idx);
+            i_quad_data = ((1 << 15)-1) * $sin(2*(4*$atan(1.0))*0.01*2*in_idx);
+            i_inph_delay_data = ((1 << 15)-1) * $cos(2*(4*$atan(1.0))*0.01*2*(in_idx+1));
+            i_quad_delay_data = ((1 << 15)-1) * $sin(2*(4*$atan(1.0))*0.01*2*(in_idx+1));
             //$display("i: (%d, %d)", $signed(i_inph_data), $signed(i_quad_data));
             i_valid = 1'b1;
             #10;
@@ -83,7 +89,7 @@ initial begin: stimulus
     end
     i_valid = 1'b0;
     #1000;
-    if (run_count != 10000/2) begin
+    if (run_count != 10000/2/2/2) begin
         $display("Error: Test 2 failed! 10000 samples of input, but %d samples of output.", run_count);
         glbl_err_count++;
     end
