@@ -2,11 +2,13 @@
 
 `default_nettype none
 
-module dds (
+module ddsx2 (
     input  wire logic [32-1:0] i_phase_inc,
     input  wire logic          i_phase_inc_valid,
     output      logic [36-1:0] o_cosine_data,
     output      logic [36-1:0] o_sine_data,
+    output      logic [36-1:0] o_cosine_delay_data,
+    output      logic [36-1:0] o_sine_delay_data,
     input       logic          i_ready,
     input  wire logic          i_clock,
     input  wire logic          i_reset
@@ -15,6 +17,7 @@ module dds (
 // Phase increment
 logic [32-1:0] phase_inc_reg;
 logic [32-1:0] phase_accum;
+logic [32-1:0] phase_accum_delay;
 
 always_ff @ (posedge i_clock) begin
     // Read input phase increment
@@ -24,8 +27,10 @@ always_ff @ (posedge i_clock) begin
     // Increment phase whenever an output is requested
     if (i_reset == 1'b1) begin
         phase_accum <= '0;
+        phase_accum_delay <= phase_inc_reg;
     end else if (i_ready == 1'b1) begin
-        phase_accum <= phase_accum + phase_inc_reg;
+        phase_accum <= phase_accum + {phase_inc_reg, 1'b0};
+        phase_accum_delay <= phase_accum_delay + {phase_inc_reg, 1'b0};
     end
 end
 
@@ -36,6 +41,41 @@ localparam integer RESIDUAL_WIDTH = WIDTH-{{ lut_width }};
 logic signed [WIDTH-1:0]      cosine_reg0 /* synthesis syn_ramstyle="block_ram" */;
 logic signed [WIDTH-1:0]      sine_reg0 /* synthesis syn_ramstyle="block_ram" */;
 // logic [16+RESIDUAL_WIDTH-1:0] residual_reg0;
+
+pmi_ram_dp_true #(
+    .pmi_addr_depth_a = {{ 2**lut_width }},
+    .pmi_addr_width_a = {{ lut_width }},
+    .pmi_data_width_a = 2*WIDTH,
+    .pmi_addr_depth_b = {{ 2**lut_width }},
+    .pmi_addr_width_b = {{ lut_width }},
+    .pmi_data_width_b = 2*WIDTH,
+    .pmi_regmode_a = "reg",
+    .pmi_regmode_b = "reg",
+    .pmi_gsr = "disable",
+    .pmi_resetmode = "sync",
+    .pmi_optimization = "speed",
+    .pmi_init_file = "ddsx2_sincos.txt",
+    .pmi_init_file_format = "binary",
+    .pmi_write_mode_a = "normal",
+    .pmi_write_mode_b = "normal",
+    .pmi_family = "ECP5U",
+    .module_type = "pmi_ram_dp_true")
+
+
+  (input [(pmi_data_width_a-1):0]   DataInA,
+   input [(pmi_data_width_b-1):0]   DataInB,
+   input [(pmi_addr_width_a-1):0] AddressA,
+   input [(pmi_addr_width_b-1):0] AddressB,
+   input  ClockA,
+   input  ClockB,
+   input  ClockEnA,
+   input  ClockEnB,
+   input  WrA,
+   input  WrB,
+   input  ResetA,
+   input  ResetB,
+   output [(pmi_data_width_a-1):0]  QA,
+   output [(pmi_data_width_b-1):0]  QB)/*synthesis syn_black_box */;
 
 // Pipeline Stage 0
 always_ff @ (posedge i_clock) begin
@@ -77,6 +117,6 @@ always_ff @ (posedge i_clock) begin
     end
 end
 
-endmodule: dds
+endmodule: ddsx2
 
 `default_nettype wire
