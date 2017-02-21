@@ -17,7 +17,12 @@ logic          i_ready;
 logic          i_clock;
 logic          i_reset;
 
+logic          gsr;
+logic          pur;
+
 ddsx2 uut (.*);
+GSR GSR_inst(gsr);
+PUR PUR_inst(pur);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -47,6 +52,11 @@ integer fid;
 
 initial begin: stimulus
     i_reset = 1'b1;
+    gsr = 1'b0;
+    pur = 1'b0;
+    #1000;
+    gsr = 1'b1;
+    pur = 1'b1;
     #1000;
     reset_all();
 
@@ -69,7 +79,6 @@ initial begin: stimulus
     reset_all();
     #1000;
     i_phase_inc <= $rtoi((31.5 / 250.0) * $pow(2.0, 32.0));
-    //i_phase_inc <= $rtoi((0.001) * $pow(2.0, 32.0));
     i_phase_inc_valid <= 1'b1;
     #10;
     i_phase_inc <= '0;
@@ -79,7 +88,8 @@ initial begin: stimulus
     for (integer iter_idx = 0; iter_idx < 262144+100; iter_idx++) begin
         @(negedge i_clock) begin
             i_ready = 1'b1;
-            $fwrite(fid,"%d,%d\n", $signed(o_cosine_data), $signed(o_sine_data));
+            $fwrite(fid, "%d,%d\n", $signed(o_cosine_data), $signed(o_sine_data));
+            $fwrite(fid, "%d,%d\n", $signed(o_cosine_delay_data), $signed(o_sine_delay_data));
             #10;
         end
     end
@@ -111,3 +121,4 @@ end
 endmodule: tb_ddsx2
 
 `default_nettype wire
+
