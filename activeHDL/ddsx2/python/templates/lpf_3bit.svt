@@ -1,0 +1,37 @@
+`timescale 10 ps / 10 ps
+
+`default_nettype none
+
+module lpf_3bit #(
+    parameter integer WIDTH = 16
+) (
+    input  logic [WIDTH-1:0] i_cosine,
+    input  logic [WIDTH-1:0] i_sine,
+    input  logic             i_ready,
+    output logic [WIDTH-1:0] o_cosine,
+    output logic [WIDTH-1:0] o_sine,
+    input  logic             i_clock
+);
+
+// Tap Delay Line Signals
+{% for tdl in delay_indices %}logic [2*WIDTH-1:0] delay_reg{{ tdl }};
+{% endfor %}
+
+// Tap Delay Line
+always_ff @ (posedge i_clock) begin
+    if (i_ready == 1'b1) begin{% for tdl in delay_indices %}
+        {% if tdl == 0 %}delay_reg{{ tdl }} <= {
+            i_sine, i_cosine
+        };{% else %}delay_reg{{ tdl }} <= delay_reg{{ tdl-1 }};{% endif %}{% endfor %}
+    end
+end
+
+// Accumulators
+always_ff @ (posedge i_clock) begin
+    if (i_ready == 1'b1) begin
+    end
+end
+
+endmodule: lpf_3bit
+
+`default_nettype wire

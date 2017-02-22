@@ -13,9 +13,10 @@ with open('outvec.txt') as fid:
 samps = np.array(samps)
 
 # TODO: Add this filter to purify the tone
-N, hfilt_bits = 256, 3
+N, hfilt_bits = 512, 3
 hfilt = np.cos(2*np.pi*31.5/250.0*np.arange(N))
 hfilt = np.round((2**(hfilt_bits-1)-1)*hfilt)/(2**(hfilt_bits-1)-1)
+samps = np.convolve(samps, hfilt) / (N/2)
 samps = np.convolve(samps, hfilt) / (N/2)
 
 print('3-valued: {0}'.format(np.sum((2**(hfilt_bits-1)-1)*hfilt == 3)))
