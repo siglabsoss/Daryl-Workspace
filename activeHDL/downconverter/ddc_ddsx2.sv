@@ -51,7 +51,7 @@ logic signed [WIDTH-1:0]      sine_delay_reg0;
 localparam logic [2*WIDTH-1:0] all_zeros = {(2*WIDTH){1'b0}};
 
 // Pipeline Stage 0
-logic [2*WIDTH-1:0] sincos_lut_ram [0:16384-1];
+logic [2*WIDTH-1:0] sincos_lut_ram [0:16384-1] /* synthesis syn_ramstyle="block_ram" */;
 initial begin
     $readmemb("ddc_sincos.mif", sincos_lut_ram);
 end
