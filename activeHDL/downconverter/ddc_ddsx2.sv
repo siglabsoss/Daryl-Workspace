@@ -61,38 +61,6 @@ always_ff @ (posedge i_clock) begin
         sincos_delay_reg0 <= sincos_lut_ram[phase_accum_delay[32-1:32-14]];
     end
 end
-// pmi_ram_dp_true #(
-//     .pmi_addr_depth_a(16384),
-//     .pmi_addr_width_a(14),
-//     .pmi_data_width_a(2*WIDTH),
-//     .pmi_addr_depth_b(16384),
-//     .pmi_addr_width_b(14),
-//     .pmi_data_width_b(2*WIDTH),
-//     .pmi_regmode_a("reg"),
-//     .pmi_regmode_b("reg"),
-//     .pmi_gsr("disable"),
-//     .pmi_resetmode("sync"),
-//     .pmi_optimization("speed"),
-//     .pmi_init_file("sincos.mif"),
-//     .pmi_init_file_format("binary"),
-//     .pmi_write_mode_a("normal"),
-//     .pmi_write_mode_b("normal"),
-//     .pmi_family("ECP5U"))
-// sincos_lut_inst (
-//     .DataInA (all_zeros                               ),
-//     .DataInB (all_zeros                               ),
-//     .AddressA(phase_accum[32-1:32-14]      ),
-//     .AddressB(phase_accum_delay[32-1:32-14]),
-//     .ClockA  (i_clock                                 ),
-//     .ClockB  (i_clock                                 ),
-//     .ClockEnA(i_ready                                 ),
-//     .ClockEnB(i_ready                                 ),
-//     .WrA     (1'b0                                    ),
-//     .WrB     (1'b0                                    ),
-//     .ResetA  (i_reset                                 ),
-//     .ResetB  (i_reset                                 ),
-//     .QA      (sincos_reg0                             ),
-//     .QB      (sincos_delay_reg0                       ))/* synthesis syn_black_box */;
 
 assign sine_reg0 = sincos_reg0[2*WIDTH-1:WIDTH];
 assign cosine_reg0 = sincos_reg0[WIDTH-1:0];
