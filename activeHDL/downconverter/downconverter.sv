@@ -48,7 +48,7 @@ always_ff @(posedge i_clock) begin
     cosine_reg0 <= cosine_reg_n1;
     sine_reg0 <= sine_reg_n1;
     cosine_delay_reg0 <= cosine_delay_reg_n1;
-    sine_delay_reg_0 <= sine_delay_reg_n1;
+    sine_delay_reg0 <= sine_delay_reg_n1;
     valid_reg0 <= i_valid;
 end
 
@@ -99,8 +99,8 @@ ddc_hb_cascade #(
 ddc_hb_cascade_inst (
     .i_inph_data      (inph_data_reg3      ),
     .i_quad_data      (quad_data_reg3      ),
-    .i_inph_delay_data(inph_delay_data_reg3),
-    .i_quad_delay_data(quad_delay_data_reg3),
+    .i_inph_delay_data(inph_data_delay_reg3),
+    .i_quad_delay_data(quad_data_delay_reg3),
     .i_valid          (valid_reg3          ),
     .o_inph_data      (o_inph_data         ),
     .o_quad_data      (o_quad_data         ),
