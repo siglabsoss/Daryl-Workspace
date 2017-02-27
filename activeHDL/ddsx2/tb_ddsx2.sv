@@ -85,7 +85,7 @@ initial begin: stimulus
     i_phase_inc_valid <= 1'b0;
     #10;
     fid = $fopen("outvec.txt");
-    for (integer iter_idx = 0; iter_idx < 262144+100; iter_idx++) begin
+    for (integer iter_idx = 0; iter_idx < 2*262144+100; iter_idx++) begin
         @(negedge i_clock) begin
             i_ready = 1'b1;
             $fwrite(fid, "%d,%d\n", $signed(o_cosine_data), $signed(o_sine_data));
