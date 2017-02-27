@@ -6,6 +6,7 @@ import jinja2
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 temp = env.get_template('ddsx2.svt')
 temp2 = env.get_template('sincos.svt')
+temp3 = env.get_template('lpf_3bit.svt')
 
 def mybin(x, N=36):
     if N == 36:
@@ -71,5 +72,84 @@ with open('sincos.mif', 'w') as fid:
             romname='sincos',
             date=time.strftime("%m/%d/%Y"),
             sincos=sincos
+        ),
+        file=fid)
+
+N, hfilt_bits = 64, 3
+hfilt = np.exp(2j*np.pi*31.5/250.0*np.arange(N))
+hfilt_re = np.round((2**(hfilt_bits-1)-1)*np.real(hfilt))
+hfilt_im = np.round((2**(hfilt_bits-1)-1)*np.imag(hfilt))
+
+delays_re_2bit = []
+delays_re_1bit = []
+delays_re_m1bit = []
+delays_re_m2bit = []
+for k, hre in enumerate(hfilt_re):
+    if hre == 2 or hre == 3:
+        delays_re_2bit.append(k)
+    if hre == 1 or hre == 3:
+        delays_re_1bit.append(k)
+    if hre == -1 or hre == -3:
+        delays_re_m1bit.append(k)
+    if hre == -2 or hre == -3:
+        delays_re_m2bit.append(k)
+
+delays_im_2bit = []
+delays_im_1bit = []
+delays_im_m1bit = []
+delays_im_m2bit = []
+for k, hre in enumerate(hfilt_im):
+    if hre == 2 or hre == 3:
+        delays_im_2bit.append(k)
+    if hre == 1 or hre == 3:
+        delays_im_1bit.append(k)
+    if hre == -1 or hre == -3:
+        delays_im_m1bit.append(k)
+    if hre == -2 or hre == -3:
+        delays_im_m2bit.append(k)
+
+stage_indices = np.arange(np.max([
+    int(2 + np.ceil(np.log(c)/np.log(2))) for c in [
+        len(delays_re_2bit), len(delays_re_1bit),
+        len(delays_re_m1bit), len(delays_re_m2bit),
+        len(delays_im_2bit), len(delays_im_1bit),
+        len(delays_im_m1bit), len(delays_im_m2bit)]]))
+
+print(stage_indices)
+
+log2_delays_re_2bit = [np.arange(max(1, len(delays_re_2bit)/2**stage)) for stage in stage_indices]
+log2_delays_re_1bit = [np.arange(max(1, len(delays_re_1bit)/2**stage)) for stage in stage_indices]
+log2_delays_re_m1bit = [np.arange(max(1, len(delays_re_m1bit)/2**stage)) for stage in stage_indices]
+log2_delays_re_m2bit = [np.arange(max(1, len(delays_re_m2bit)/2**stage)) for stage in stage_indices]
+log2_delays_im_2bit = [np.arange(max(1, len(delays_im_2bit)/2**stage)) for stage in stage_indices]
+log2_delays_im_1bit = [np.arange(max(1, len(delays_im_1bit)/2**stage)) for stage in stage_indices]
+log2_delays_im_m1bit = [np.arange(max(1, len(delays_im_m1bit)/2**stage)) for stage in stage_indices]
+log2_delays_im_m2bit = [np.arange(max(1, len(delays_im_m2bit)/2**stage)) for stage in stage_indices]
+
+#os.system('rm -f lpf_3bit.sv')
+os.system('del /Q lpf_3bit.sv')
+with open('lpf_3bit.sv', 'w') as fid:
+    print(
+        temp3.render(
+            romname='lpf_3bit',
+            date=time.strftime("%m/%d/%Y"),
+            delay_indices=np.arange(N),
+            delays_re_2bit=delays_re_2bit,
+            delays_re_1bit=delays_re_1bit,
+            delays_re_m1bit=delays_re_m1bit,
+            delays_re_m2bit=delays_re_m2bit,
+            delays_im_2bit=delays_im_2bit,
+            delays_im_1bit=delays_im_1bit,
+            delays_im_m1bit=delays_im_m1bit,
+            delays_im_m2bit=delays_im_m2bit,
+            log2_delays_re_2bit=log2_delays_re_2bit,
+            log2_delays_re_1bit=log2_delays_re_1bit,
+            log2_delays_re_m1bit=log2_delays_re_m1bit,
+            log2_delays_re_m2bit=log2_delays_re_m2bit,
+            log2_delays_im_2bit=log2_delays_im_2bit,
+            log2_delays_im_1bit=log2_delays_im_1bit,
+            log2_delays_im_m1bit=log2_delays_im_m1bit,
+            log2_delays_im_m2bit=log2_delays_im_m2bit,
+            stage_indices=stage_indices
         ),
         file=fid)
