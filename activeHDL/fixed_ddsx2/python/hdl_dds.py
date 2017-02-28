@@ -4,9 +4,8 @@ import matplotlib.pyplot as pt
 import jinja2
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
-temp = env.get_template('ddsx2.svt')
+temp = env.get_template('fixed_ddsx2.svt')
 temp2 = env.get_template('sincos.svt')
-temp3 = env.get_template('lpf_3bit.svt')
 
 def mybin(x, N=36):
     if N == 36:
@@ -40,23 +39,39 @@ def mybin(x, N=36):
         else:
             return '{:0b}'.format(x)
 
-lut_width = 14;
+# This is the number of samples in one period of the carrier wave
+period = 500 * 63 # 31500
+# This is the number of samples needed in the table
+tb_period = int(period / 2)
+# lut_width must be smallest power of 2 greater than the period
+lut_width = int(np.ceil(np.log2(tb_period)))
+# Width of each sine or cosine entry in table
+lut_value_width = 36
 
-sin_values = [ mybin(int(sk)) for sk in np.round((2**35-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
-cos_values = [ mybin(int(ck)) for ck in np.round((2**35-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
+if 2**lut_width < tb_period:
+    print("Warning: Table is too small to contain one period of the carrier!")
 
-#os.system('rm -f ddsx2.sv')
-os.system('del /Q ddsx2.sv')
-with open('ddsx2.sv', 'w') as fid:
+Fs = 250.0
+Fc = 31.5
+
+sin_values = [ mybin(int(sk), N=lut_value_width)
+    for sk in np.round((2**(lut_value_width-1)-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*Fc/Fs))
+]
+
+cos_values = [ mybin(int(ck), N=lut_value_width)
+    for ck in np.round((2**(lut_value_width-1)-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*Fc/Fs))
+]
+
+#os.system('rm -f fixed_ddsx2.sv')
+os.system('del /Q fixed_ddsx2.sv')
+with open('fixed_ddsx2.sv', 'w') as fid:
     print(
         temp.render(
             romname='ddsx2',
             date=time.strftime("%m/%d/%Y"),
             lut_width=lut_width,
-            lut_values=np.arange(2**lut_width),
-            sin_values=sin_values,
-            cos_values=cos_values,
-            two_pi=mybin(int((2**13)*2*np.pi), N=16)
+            lut_period=tb_period,
+            lut_value_width=lut_value_width
         ),
         file=fid)
 
@@ -72,82 +87,5 @@ with open('sincos.mif', 'w') as fid:
             romname='sincos',
             date=time.strftime("%m/%d/%Y"),
             sincos=sincos
-        ),
-        file=fid)
-
-N, hfilt_bits = 64, 3
-hfilt = np.exp(2j*np.pi*31.5/250.0*np.arange(N))
-hfilt_re = np.round((2**(hfilt_bits-1)-1)*np.real(hfilt))
-hfilt_im = np.round((2**(hfilt_bits-1)-1)*np.imag(hfilt))
-
-delays_re_2bit = []
-delays_re_1bit = []
-delays_re_m1bit = []
-delays_re_m2bit = []
-for k, hre in enumerate(hfilt_re):
-    if hre == 2 or hre == 3:
-        delays_re_2bit.append(k)
-    if hre == 1 or hre == 3:
-        delays_re_1bit.append(k)
-    if hre == -1 or hre == -3:
-        delays_re_m1bit.append(k)
-    if hre == -2 or hre == -3:
-        delays_re_m2bit.append(k)
-
-delays_im_2bit = []
-delays_im_1bit = []
-delays_im_m1bit = []
-delays_im_m2bit = []
-for k, hre in enumerate(hfilt_im):
-    if hre == 2 or hre == 3:
-        delays_im_2bit.append(k)
-    if hre == 1 or hre == 3:
-        delays_im_1bit.append(k)
-    if hre == -1 or hre == -3:
-        delays_im_m1bit.append(k)
-    if hre == -2 or hre == -3:
-        delays_im_m2bit.append(k)
-
-stage_indices = np.arange(np.max([
-    int(2 + np.ceil(np.log(c)/np.log(2))) for c in [
-        len(delays_re_2bit), len(delays_re_1bit),
-        len(delays_re_m1bit), len(delays_re_m2bit),
-        len(delays_im_2bit), len(delays_im_1bit),
-        len(delays_im_m1bit), len(delays_im_m2bit)]]))
-
-log2_delays_re_2bit = [np.arange(max(1, len(delays_re_2bit)/2**stage)) for stage in stage_indices]
-log2_delays_re_1bit = [np.arange(max(1, len(delays_re_1bit)/2**stage)) for stage in stage_indices]
-log2_delays_re_m1bit = [np.arange(max(1, len(delays_re_m1bit)/2**stage)) for stage in stage_indices]
-log2_delays_re_m2bit = [np.arange(max(1, len(delays_re_m2bit)/2**stage)) for stage in stage_indices]
-log2_delays_im_2bit = [np.arange(max(1, len(delays_im_2bit)/2**stage)) for stage in stage_indices]
-log2_delays_im_1bit = [np.arange(max(1, len(delays_im_1bit)/2**stage)) for stage in stage_indices]
-log2_delays_im_m1bit = [np.arange(max(1, len(delays_im_m1bit)/2**stage)) for stage in stage_indices]
-log2_delays_im_m2bit = [np.arange(max(1, len(delays_im_m2bit)/2**stage)) for stage in stage_indices]
-
-#os.system('rm -f lpf_3bit.sv')
-os.system('del /Q lpf_3bit.sv')
-with open('lpf_3bit.sv', 'w') as fid:
-    print(
-        temp3.render(
-            romname='lpf_3bit',
-            date=time.strftime("%m/%d/%Y"),
-            delay_indices=np.arange(N),
-            delays_re_2bit=delays_re_2bit,
-            delays_re_1bit=delays_re_1bit,
-            delays_re_m1bit=delays_re_m1bit,
-            delays_re_m2bit=delays_re_m2bit,
-            delays_im_2bit=delays_im_2bit,
-            delays_im_1bit=delays_im_1bit,
-            delays_im_m1bit=delays_im_m1bit,
-            delays_im_m2bit=delays_im_m2bit,
-            log2_delays_re_2bit=log2_delays_re_2bit,
-            log2_delays_re_1bit=log2_delays_re_1bit,
-            log2_delays_re_m1bit=log2_delays_re_m1bit,
-            log2_delays_re_m2bit=log2_delays_re_m2bit,
-            log2_delays_im_2bit=log2_delays_im_2bit,
-            log2_delays_im_1bit=log2_delays_im_1bit,
-            log2_delays_im_m1bit=log2_delays_im_m1bit,
-            log2_delays_im_m2bit=log2_delays_im_m2bit,
-            stage_indices=stage_indices
         ),
         file=fid)

@@ -7,33 +7,35 @@ module fixed_ddsx2 (
     output      logic [36-1:0] o_sine_data,
     output      logic [36-1:0] o_cosine_delay_data,
     output      logic [36-1:0] o_sine_delay_data,
-    input       logic          i_ready,
+    input  wire logic          i_ready,
     input  wire logic          i_clock,
     input  wire logic          i_reset
 );
 
 // Phase increment
-logic [$clog2(LUT_PERIOD)-1:0] phase_accum;
-logic          negate_accum;
-logic [32-1:0] phase_accum_delay;
-logic          negate_accum_delay;
+localparam integer LUT_PERIOD = {{ lut_period }};
+localparam integer PHASE_BITS = {{ lut_width }};
+logic [PHASE_BITS-1:0] phase_accum;
+logic                  negate_accum;
+logic [PHASE_BITS-1:0] phase_accum_delay;
+logic                  negate_accum_delay;
 
 always_ff @ (posedge i_clock) begin
     // Increment phase whenever an output is requested
     if (i_reset == 1'b1) begin
-        phase_accum <= {$clog2(LUT_PERIOD){1'b0}};
+        phase_accum <= { PHASE_BITS{1'b0} };
         negate_accum <= 1'b0;
-        phase_accum_delay <= {{($clog2(LUT_PERIOD)-1){1'b0}}, 1'b1};
+        phase_accum_delay <= { { (PHASE_BITS-1){1'b0} }, 1'b1 };
         negate_accum_delay <= 1'b0;
     end else if (i_ready == 1'b1) begin
         if (phase_accum == LUT_PERIOD-2) begin
-            phase_accum <= {$clog2(LUT_PERIOD){1'b0}};
+            phase_accum <= { PHASE_BITS{1'b0} };
             negate_accum <= ~negate_accum;
         end else begin
             phase_accum <= phase_accum + 2;
         end
         if (phase_accum_delay == LUT_PERIOD-1) begin
-            phase_accum_delay <= {{($clog2(LUT_PERIOD)-1){1'b0}}, 1'b1};
+            phase_accum_delay <= { { (PHASE_BITS-1){1'b0} }, 1'b1 };
             negate_accum_delay <= ~negate_accum_delay;
         end else begin
             phase_accum_delay <= phase_accum_delay + 2;
@@ -48,20 +50,22 @@ logic        [2*WIDTH-1:0]    sincos_reg0;
 logic        [2*WIDTH-1:0]    sincos_delay_reg0;
 logic signed [WIDTH-1:0]      cosine_reg0;
 logic signed [WIDTH-1:0]      sine_reg0;
+logic                         negate_reg0;
 logic signed [WIDTH-1:0]      cosine_delay_reg0;
 logic signed [WIDTH-1:0]      sine_delay_reg0;
-
-localparam logic [2*WIDTH-1:0] all_zeros = {(2*WIDTH){1'b0}};
+logic                         negate_delay_reg0;
 
 // Pipeline Stage 0
-logic [2*WIDTH-1:0] sincos_lut_ram [0:{{2**lut_width}}-1];
+logic [2*WIDTH-1:0] sincos_lut_ram [0:{{ 2**lut_width }}-1];
 initial begin
     $readmemb("sincos.mif", sincos_lut_ram);
 end
 always_ff @ (posedge i_clock) begin
     if (i_ready == 1'b1) begin
-        sincos_reg0 <= sincos_lut_ram[phase_accum[32-1:32-{{lut_width}}]];
-        sincos_delay_reg0 <= sincos_lut_ram[phase_accum_delay[32-1:32-{{lut_width}}]];
+        sincos_reg0 <= sincos_lut_ram[phase_accum];
+        sincos_delay_reg0 <= sincos_lut_ram[phase_accum_delay];
+        negate_reg0 <= negate_accum;
+        negate_delay_reg0 <= negate_accum_delay;
     end
 end
 
@@ -73,8 +77,10 @@ assign cosine_delay_reg0 = sincos_delay_reg0[WIDTH-1:0];
 // Perform Correction
 logic signed [WIDTH-1:0] cosine_reg1;
 logic signed [WIDTH-1:0] sine_reg1;
+logic                    negate_reg1;
 logic signed [WIDTH-1:0] cosine_delay_reg1;
 logic signed [WIDTH-1:0] sine_delay_reg1;
+logic                    negate_delay_reg1;
 
 logic signed [WIDTH-1:0] cosine_reg2;
 logic signed [WIDTH-1:0] sine_reg2;
@@ -86,14 +92,27 @@ always_ff @ (posedge i_clock) begin
         // Pipeline Stage 1
         cosine_reg1 <= cosine_reg0;
         sine_reg1 <= sine_reg0;
+        negate_reg1 <= negate_reg0;
+
         cosine_delay_reg1 <= cosine_delay_reg0;
         sine_delay_reg1 <= sine_delay_reg0;
+        negate_delay_reg1 <= negate_delay_reg0;
 
-        // Pipeline Stage 2
-        cosine_reg2 <= cosine_reg1;
-        sine_reg2 <= sine_reg1;
-        cosine_delay_reg2 <= cosine_delay_reg1;
-        sine_delay_reg2 <= sine_delay_reg1;
+        // Pipeline Stage 2 - negate if needed
+        if (negate_reg1 == 1'b1) begin
+            cosine_reg2 <= -cosine_reg1;
+            sine_reg2 <= -sine_reg1;
+        end else begin
+            cosine_reg2 <= cosine_reg1;
+            sine_reg2 <= sine_reg1;
+        end
+        if (negate_delay_reg1 == 1'b1) begin
+            cosine_delay_reg2 <= -cosine_delay_reg1;
+            sine_delay_reg2 <= -sine_delay_reg1;
+        end else begin
+            cosine_delay_reg2 <= cosine_delay_reg1;
+            sine_delay_reg2 <= sine_delay_reg1;
+        end
 
         // Pipeline Stage 3
         o_cosine_data <= cosine_reg2;
@@ -103,6 +122,6 @@ always_ff @ (posedge i_clock) begin
     end
 end
 
-endmodule: ddsx2
+endmodule: fixed_ddsx2
 
 `default_nettype wire
