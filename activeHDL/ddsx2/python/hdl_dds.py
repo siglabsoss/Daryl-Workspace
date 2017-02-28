@@ -115,8 +115,6 @@ stage_indices = np.arange(np.max([
         len(delays_im_2bit), len(delays_im_1bit),
         len(delays_im_m1bit), len(delays_im_m2bit)]]))
 
-print(stage_indices)
-
 log2_delays_re_2bit = [np.arange(max(1, len(delays_re_2bit)/2**stage)) for stage in stage_indices]
 log2_delays_re_1bit = [np.arange(max(1, len(delays_re_1bit)/2**stage)) for stage in stage_indices]
 log2_delays_re_m1bit = [np.arange(max(1, len(delays_re_m1bit)/2**stage)) for stage in stage_indices]

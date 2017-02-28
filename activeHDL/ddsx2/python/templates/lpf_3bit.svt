@@ -88,11 +88,11 @@ end
 {% endfor %}
 
 // Output
-logic [WIDTH+{{stage-1}}:0] reim_p2_reg{{last_loop_count}}_stage{{stages|last}};
-logic [WIDTH+{{stage-1}}:0] reim_p1_reg{{last_loop_count}}_stage{{stages|last}};
+logic [WIDTH-1+{{stage_indices|last}}:0] reim_p2_reg{{last_loop_count}}_stage{{stage_indices|last}};
+logic [WIDTH-1+{{stage_indices|last}}:0] reim_p1_reg{{last_loop_count}}_stage{{stage_indices|last}};
 
-logic [WIDTH+{{stage-1}}:0] reim_p2_reg{{last_loop_count}}_stage{{stages|last}};
-logic [WIDTH+{{stage-1}}:0] reim_p1_reg{{last_loop_count}}_stage{{stages|last}};
+logic [WIDTH-1+{{stage_indices|last}}:0] imre_p2_reg{{last_loop_count}}_stage{{stage_indices|last}};
+logic [WIDTH-1+{{stage_indices|last}}:0] imim_p1_reg{{last_loop_count}}_stage{{stage_indices|last}};
 
 always_ff @(posedge i_clock) begin
     o_cosine <= ;
