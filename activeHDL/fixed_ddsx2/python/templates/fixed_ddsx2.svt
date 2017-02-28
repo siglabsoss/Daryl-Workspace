@@ -2,9 +2,7 @@
 
 `default_nettype none
 
-module ddsx2 (
-    input  wire logic [32-1:0] i_phase_inc,
-    input  wire logic          i_phase_inc_valid,
+module fixed_ddsx2 (
     output      logic [36-1:0] o_cosine_data,
     output      logic [36-1:0] o_sine_data,
     output      logic [36-1:0] o_cosine_delay_data,
@@ -15,31 +13,36 @@ module ddsx2 (
 );
 
 // Phase increment
-logic [32-1:0] phase_inc_reg;
-logic [32-1:0] phase_accum;
+logic [$clog2(LUT_PERIOD)-1:0] phase_accum;
+logic          negate_accum;
 logic [32-1:0] phase_accum_delay;
-logic          phase_written_reg;
+logic          negate_accum_delay;
 
 always_ff @ (posedge i_clock) begin
-    // Read input phase increment
-    if (i_phase_inc_valid == 1'b1) begin
-        phase_inc_reg <= i_phase_inc;
-        phase_written_reg <= 1'b1;
-    end else begin
-        phase_written_reg <= 1'b0;
-    end
     // Increment phase whenever an output is requested
-    if (phase_written_reg == 1'b1) begin
-        phase_accum <= {32{1'b0}};
-        phase_accum_delay <= phase_inc_reg;
+    if (i_reset == 1'b1) begin
+        phase_accum <= {$clog2(LUT_PERIOD){1'b0}};
+        negate_accum <= 1'b0;
+        phase_accum_delay <= {{($clog2(LUT_PERIOD)-1){1'b0}}, 1'b1};
+        negate_accum_delay <= 1'b0;
     end else if (i_ready == 1'b1) begin
-        phase_accum <= phase_accum + {phase_inc_reg, 1'b0};
-        phase_accum_delay <= phase_accum_delay + {phase_inc_reg, 1'b0};
+        if (phase_accum == LUT_PERIOD-2) begin
+            phase_accum <= {$clog2(LUT_PERIOD){1'b0}};
+            negate_accum <= ~negate_accum;
+        end else begin
+            phase_accum <= phase_accum + 2;
+        end
+        if (phase_accum_delay == LUT_PERIOD-1) begin
+            phase_accum_delay <= {{($clog2(LUT_PERIOD)-1){1'b0}}, 1'b1};
+            negate_accum_delay <= ~negate_accum_delay;
+        end else begin
+            phase_accum_delay <= phase_accum_delay + 2;
+        end
     end
 end
 
 // Sine/Cosine Look Up Table
-localparam integer WIDTH = 36;
+localparam integer WIDTH = {{ lut_value_width }};
 
 logic        [2*WIDTH-1:0]    sincos_reg0;
 logic        [2*WIDTH-1:0]    sincos_delay_reg0;
