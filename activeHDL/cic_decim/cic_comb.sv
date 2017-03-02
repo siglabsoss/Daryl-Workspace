@@ -11,6 +11,7 @@ module cic_comb #(
     input  wire logic             i_valid,
     output      logic [WIDTH-1:0] o_inph_data,
     output      logic [WIDTH-1:0] o_quad_data,
+    output      logic             o_valid,
     input  wire logic             i_clock
 );
 
@@ -24,9 +25,10 @@ if (DELAY == 1) begin
         if (i_valid == 1'b1) begin
             inph_delays <= i_inph_data;
             quad_delays <= i_quad_data;
-            o_inph_data <= i_inph_data + inph_delays;
-            o_quad_data <= i_quad_data + quad_delays;
+            o_inph_data <= i_inph_data - inph_delays;
+            o_quad_data <= i_quad_data - quad_delays;
         end
+        o_valid <= i_valid;
     end
 end
 
@@ -39,9 +41,10 @@ if (DELAY > 1) begin
                 inph_delays[(d+1)*WIDTH-1:d*WIDTH] <= inph_delays[d*WIDTH-1:(d-1)*WIDTH];
                 quad_delays[(d+1)*WIDTH-1:d*WIDTH] <= quad_delays[d*WIDTH-1:(d-1)*WIDTH];
             end
-            o_inph_data <= i_inph_data + inph_delays[DELAY*WIDTH-1:(DELAY-1)*WIDTH];
-            o_quad_data <= i_quad_data + quad_delays[DELAY*WIDTH-1:(DELAY-1)*WIDTH];
+            o_inph_data <= i_inph_data - inph_delays[DELAY*WIDTH-1:(DELAY-1)*WIDTH];
+            o_quad_data <= i_quad_data - quad_delays[DELAY*WIDTH-1:(DELAY-1)*WIDTH];
         end
+        o_valid <= i_valid;
     end
 end
 endgenerate

@@ -2,15 +2,14 @@
 
 `default_nettype none
 
-module cic_comb #(
-    parameter integer WIDTH = 16,
-    parameter integer DELAY = 2
+module cic_integrator #(
+    parameter integer WIDTH = 16
 ) (
     input  wire logic [WIDTH-1:0] i_inph_data,
     input  wire logic [WIDTH-1:0] i_quad_data,
-    input  wire logic             i_valid,
     output      logic [WIDTH-1:0] o_inph_data,
     output      logic [WIDTH-1:0] o_quad_data,
+    input  wire logic             i_ready,
     input  wire logic             i_clock,
     input  wire logic             i_reset
 );
@@ -22,7 +21,7 @@ always @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
         inph_accum <= '0;
         quad_accum <= '0;
-    end else if (i_valid == 1'b1) begin
+    end else if (i_ready == 1'b1) begin
         inph_accum <= inph_accum + i_inph_data;
         quad_accum <= quad_accum + i_quad_data;
     end
@@ -31,6 +30,6 @@ end
 assign o_inph_data = inph_data;
 assign o_quad_data = quad_data;
 
-endmodule: cic_comb
+endmodule: cic_integrator
 
 `default_nettype wire

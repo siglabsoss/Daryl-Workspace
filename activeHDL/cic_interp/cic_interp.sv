@@ -10,10 +10,10 @@ module cic_interp #(
 ) (
     input  wire logic [WIDTH-1:0] i_inph_data,
     input  wire logic [WIDTH-1:0] i_quad_data,
-    input  wire logic             i_valid,
+    input  wire logic             o_ready,
     output      logic [WIDTH-1:0] o_inph_data,
     output      logic [WIDTH-1:0] o_quad_data,
-    output      logic             o_valid,
+    output      logic             i_ready,
     input  wire logic             i_clock,
     input  wire logic             i_reset
 );
@@ -21,12 +21,18 @@ module cic_interp #(
 wire [(STAGES+1)*WIDTH-1:0] inph_comb_data;
 wire [(STAGES+1)*WIDTH-1:0] quad_comb_data;
 wire [(STAGES+1):0]         comb_valids;
+
+logic [WIDTH-1:0] sample_inph;
+logic [WIDTH-1:0] sample_quad;
+logic             sample_ready;
+
+assign o_ready = sample_ready;
+
 genvar stage;
 generate
 
 assign inph_comb_data[WIDTH-1:0] = i_inph_data;
 assign quad_comb_data[WIDTH-1:0] = i_quad_data;
-assign comb_valids[0] = i_valid;
 
 for(stage = 0; stage < STAGES; stage++) begin
     cic_comb #(
@@ -35,10 +41,9 @@ for(stage = 0; stage < STAGES; stage++) begin
     cic_comb_inst (
         .i_inph_data(inph_comb_data[(stage+1)*WIDTH:stage*WIDTH]    ),
         .i_quad_data(quad_comb_data[(stage+1)*WIDTH:stage*WIDTH]    ),
-        .i_valid    (comb_valids[stage]                             ),
         .o_inph_data(inph_comb_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
         .o_quad_data(quad_comb_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
-        .o_valid    (comb_valids[stage+1]                           ),
+        .i_ready    (sample_ready                                   ),
         .i_clock    (i_clock                                        ));
 end
 endgenerate
@@ -50,32 +55,34 @@ always_ff @(posedge i_clock) begin
         upsample_counter <= '0;
         sample_inph <= '0;
         sample_quad <= '0;
-        sample_valid <= 1'b0;
+        sample_ready <= 1'b0;
     end else begin
-        if (comb_valids[STAGES+1] == 1'b1) begin
+        if (i_ready == 1'b1) begin
             if (upsample_counter == FACTOR-1) begin
                 upsample_counter <= '0;
                 sample_inph <= inph_comb_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
                 sample_quad <= quad_comb_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
-                sample_valid <= 1'b1;
+                sample_ready <= 1'b1;
             end else begin
                 upsample_counter <= upsample_counter + 1;
-                sample_valid <= 1'b0;
+                sample_inph <= '0;
+                sample_quad <= '0;
+                sample_ready <= 1'b0;
             end
         end else begin
-            sample_valid <= 1'b0;
+            sample_inph <= '0;
+            sample_quad <= '0;
+            sample_ready <= 1'b0;
         end
     end
 end
 
 wire [(STAGES+1)*WIDTH-1:0] inph_integ_data;
 wire [(STAGES+1)*WIDTH-1:0] quad_integ_data;
-wire [(STAGES+1):0]         integ_valids;
 generate
 
 assign inph_integ_data[WIDTH-1:0] = sample_inph;
 assign quad_integ_data[WIDTH-1:0] = sample_quad;
-assign integ_valids[0] = sample_valid;
 
 for(stage = 0; stage < STAGES; stage++) begin
     cic_integrator #(
@@ -84,10 +91,9 @@ for(stage = 0; stage < STAGES; stage++) begin
     cic_integrator_inst (
         .i_inph_data(inph_integ_data[(stage+1)*WIDTH:stage*WIDTH]    ),
         .i_quad_data(quad_integ_data[(stage+1)*WIDTH:stage*WIDTH]    ),
-        .i_valid    (integ_valids[stage]                             ),
         .o_inph_data(inph_integ_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
         .o_quad_data(quad_integ_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
-        .o_valid    (integ_valids[stage+1]                           ),
+        .i_ready    (i_ready                                         ),
         .i_clock    (i_clock                                         ),
         .i_reset    (i_reset                                         ));
 end
@@ -95,7 +101,6 @@ endgenerate
 
 assign o_inph_data = inph_integ_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
 assign o_quad_data = quad_integ_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
-assign o_valid = integ_valids[STAGES+1];
 
 endmodule: cic_interp
 
