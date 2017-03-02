@@ -19,16 +19,16 @@ logic [WIDTH-1:0] quad_accum;
 
 always @(posedge i_clock) begin
     if (i_reset == 1'b1) begin
-        inph_accum <= '0;
-        quad_accum <= '0;
+        inph_accum <= {(WIDTH){1'b0}};
+        quad_accum <= {(WIDTH){1'b0}};
     end else if (i_ready == 1'b1) begin
         inph_accum <= inph_accum + i_inph_data;
         quad_accum <= quad_accum + i_quad_data;
     end
 end
 
-assign o_inph_data = inph_data;
-assign o_quad_data = quad_data;
+assign o_inph_data = inph_accum;
+assign o_quad_data = quad_accum;
 
 endmodule: cic_integrator
 

@@ -20,6 +20,8 @@ vlib work
 # Compile the Verilog Files
 Compile-Verilog tb_cic_interp.sv
 Compile-Verilog cic_interp.sv
+Compile-Verilog cic_comb.sv
+Compile-Verilog cic_integrator.sv
 
 # Execute the Simulation
 vsimsa -do dosim.do

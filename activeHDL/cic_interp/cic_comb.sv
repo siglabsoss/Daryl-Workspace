@@ -11,7 +11,8 @@ module cic_comb #(
     output      logic [WIDTH-1:0] o_inph_data,
     output      logic [WIDTH-1:0] o_quad_data,
     input  wire logic             i_ready,
-    input  wire logic             i_clock
+    input  wire logic             i_clock,
+    input  wire logic             i_reset
 );
 
 logic [DELAY*WIDTH-1:0] inph_delays;
@@ -21,7 +22,12 @@ generate
 
 if (DELAY == 1) begin
     always @(posedge i_clock) begin
-        if (i_ready == 1'b1) begin
+        if (i_reset == 1'b1) begin
+            inph_delays <= { DELAY*WIDTH{1'b0} };
+            quad_delays <= { DELAY*WIDTH{1'b0} };
+            o_inph_data <= { WIDTH{1'b0} };
+            o_quad_data <= { WIDTH{1'b0} };
+        end else if (i_ready == 1'b1) begin
             inph_delays <= i_inph_data;
             quad_delays <= i_quad_data;
             o_inph_data <= i_inph_data - inph_delays;
@@ -32,15 +38,20 @@ end
 
 if (DELAY > 1) begin
     always @(posedge i_clock) begin
-        if (i_ready == 1'b1) begin
+        if (i_reset == 1'b1) begin
+            inph_delays <= { DELAY*WIDTH{1'b0} };
+            quad_delays <= { DELAY*WIDTH{1'b0} };
+            o_inph_data <= { WIDTH{1'b0} };
+            o_quad_data <= { WIDTH{1'b0} };
+        end else if (i_ready == 1'b1) begin
             inph_delays[WIDTH-1:0] <= i_inph_data;
             quad_delays[WIDTH-1:0] <= i_quad_data;
             for (integer d = 1; d < DELAY; d++) begin
-                inph_delays[(d+1)*WIDTH-1:d*WIDTH] <= inph_delays[d*WIDTH-1:(d-1)*WIDTH];
-                quad_delays[(d+1)*WIDTH-1:d*WIDTH] <= quad_delays[d*WIDTH-1:(d-1)*WIDTH];
+                inph_delays[(d+1)*WIDTH-1-:WIDTH] <= inph_delays[d*WIDTH-1-:WIDTH];
+                quad_delays[(d+1)*WIDTH-1-:WIDTH] <= quad_delays[d*WIDTH-1-:WIDTH];
             end
-            o_inph_data <= i_inph_data - inph_delays[DELAY*WIDTH-1:(DELAY-1)*WIDTH];
-            o_quad_data <= i_quad_data - quad_delays[DELAY*WIDTH-1:(DELAY-1)*WIDTH];
+            o_inph_data <= i_inph_data - inph_delays[DELAY*WIDTH-1-:WIDTH];
+            o_quad_data <= i_quad_data - quad_delays[DELAY*WIDTH-1-:WIDTH];
         end
     end
 end
