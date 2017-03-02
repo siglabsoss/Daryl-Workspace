@@ -3,13 +3,14 @@
 `default_nettype none
 
 module cic_decim #(
-    parameter integer WIDTH = 8,
-    parameter integer NUM_WORDS = 1024
+    parameter integer WIDTH = 16
 ) (
-    input  wire logic [WIDTH-1:0] i_in_data,
-    input  wire logic             i_in_valid,
-    output      logic [WIDTH-1:0] o_out_data,
-    output      logic             o_out_valid,
+    input  wire logic [WIDTH-1:0] i_inph_data,
+    input  wire logic [WIDTH-1:0] i_quad_data,
+    input  wire logic             i_valid,
+    output      logic [WIDTH-1:0] o_inph_data,
+    output      logic [WIDTH-1:0] o_quad_data,
+    output      logic             o_valid,
     input  wire logic             i_clock,
     input  wire logic             i_reset
 );
