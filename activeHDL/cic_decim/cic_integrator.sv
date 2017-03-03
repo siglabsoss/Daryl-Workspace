@@ -29,8 +29,8 @@ always @(posedge i_clock) begin
     o_valid <= i_valid;
 end
 
-assign o_inph_data = inph_data;
-assign o_quad_data = quad_data;
+assign o_inph_data = inph_accum;
+assign o_quad_data = quad_accum;
 
 endmodule: cic_integrator
 

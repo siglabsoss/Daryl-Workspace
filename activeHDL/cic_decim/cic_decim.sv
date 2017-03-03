@@ -21,6 +21,11 @@ module cic_decim #(
 wire [(STAGES+1)*WIDTH-1:0] inph_integ_data;
 wire [(STAGES+1)*WIDTH-1:0] quad_integ_data;
 wire [(STAGES+1):0]         integ_valids;
+
+logic [WIDTH-1:0] sample_inph;
+logic [WIDTH-1:0] sample_quad;
+logic             sample_valid;
+
 genvar stage;
 generate
 
@@ -33,14 +38,14 @@ for(stage = 0; stage < STAGES; stage++) begin
         .WIDTH(WIDTH),
         .DELAY(DELAY))
     cic_integrator_inst (
-        .i_inph_data(inph_integ_data[(stage+1)*WIDTH:stage*WIDTH]    ),
-        .i_quad_data(quad_integ_data[(stage+1)*WIDTH:stage*WIDTH]    ),
-        .i_valid    (integ_valids[stage]                             ),
-        .o_inph_data(inph_integ_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
-        .o_quad_data(quad_integ_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
-        .o_valid    (integ_valids[stage+1]                           ),
-        .i_clock    (i_clock                                         ),
-        .i_reset    (i_reset                                         ));
+        .i_inph_data(inph_integ_data[(stage+1)*WIDTH-1-:WIDTH]),
+        .i_quad_data(quad_integ_data[(stage+1)*WIDTH-1-:WIDTH]),
+        .i_valid    (integ_valids[stage]                      ),
+        .o_inph_data(inph_integ_data[(stage+2)*WIDTH-1-:WIDTH]),
+        .o_quad_data(quad_integ_data[(stage+2)*WIDTH-1-:WIDTH]),
+        .o_valid    (integ_valids[stage+1]                    ),
+        .i_clock    (i_clock                                  ),
+        .i_reset    (i_reset                                  ));
 end
 endgenerate
 
@@ -56,8 +61,8 @@ always_ff @(posedge i_clock) begin
         if (integ_valids[STAGES+1] == 1'b1) begin
             if (upsample_counter == FACTOR-1) begin
                 upsample_counter <= '0;
-                sample_inph <= inph_integ_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
-                sample_quad <= quad_integ_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
+                sample_inph <= inph_integ_data[(STAGES+1)*WIDTH-1-:WIDTH];
+                sample_quad <= quad_integ_data[(STAGES+1)*WIDTH-1-:WIDTH];
                 sample_valid <= 1'b1;
             end else begin
                 upsample_counter <= upsample_counter + 1;
@@ -71,7 +76,7 @@ end
 
 wire [(STAGES+1)*WIDTH-1:0] inph_comb_data;
 wire [(STAGES+1)*WIDTH-1:0] quad_comb_data;
-wire [(STAGES+1):0]         comb_valids;
+wire [STAGES:0]             comb_valids;
 generate
 
 assign inph_comb_data[WIDTH-1:0] = sample_inph;
@@ -83,18 +88,18 @@ for(stage = 0; stage < STAGES; stage++) begin
         .WIDTH(WIDTH),
         .DELAY(DELAY))
     cic_comb_inst (
-        .i_inph_data(inph_comb_data[(stage+1)*WIDTH:stage*WIDTH]    ),
-        .i_quad_data(quad_comb_data[(stage+1)*WIDTH:stage*WIDTH]    ),
-        .i_valid    (comb_valids[stage]                             ),
-        .o_inph_data(inph_comb_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
-        .o_quad_data(quad_comb_data[(stage+2)*WIDTH:(stage+1)*WIDTH]),
-        .o_valid    (comb_valids[stage+1]                           ),
-        .i_clock    (i_clock                                        ));
+        .i_inph_data(inph_comb_data[(stage+1)*WIDTH-1-:WIDTH]),
+        .i_quad_data(quad_comb_data[(stage+1)*WIDTH-1-:WIDTH]),
+        .i_valid    (comb_valids[stage]                    ),
+        .o_inph_data(inph_comb_data[(stage+2)*WIDTH-1-:WIDTH]),
+        .o_quad_data(quad_comb_data[(stage+2)*WIDTH-1-:WIDTH]),
+        .o_valid    (comb_valids[stage+1]                    ),
+        .i_clock    (i_clock                                 ));
 end
 endgenerate
 
-assign o_inph_data = inph_comb_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
-assign o_quad_data = quad_comb_data[(STAGES+1)*WIDTH-1:STAGES*WIDTH];
+assign o_inph_data = inph_comb_data[(STAGES+1)*WIDTH-1-:WIDTH];
+assign o_quad_data = quad_comb_data[(STAGES+1)*WIDTH-1-:WIDTH];
 assign o_valid = comb_valids[STAGES+1];
 
 endmodule: cic_decim
