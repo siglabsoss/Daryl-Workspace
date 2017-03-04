@@ -23,5 +23,9 @@ Compile-Verilog cic_decim.sv
 Compile-Verilog cic_integrator.sv
 Compile-Verilog cic_comb.sv
 
+# Remove output files
+del /Q test3.txt
+del /Q test4.txt
+
 # Execute the Simulation
 vsimsa -do dosim.do
