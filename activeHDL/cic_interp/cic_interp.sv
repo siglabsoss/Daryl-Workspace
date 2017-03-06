@@ -84,8 +84,7 @@ assign quad_integ_data[WIDTH-1:0] = sample_quad;
 
 for(stage = 0; stage < STAGES; stage++) begin
     cic_integrator #(
-        .WIDTH(WIDTH),
-        .DELAY(DELAY))
+        .WIDTH(WIDTH))
     cic_integrator_inst (
         .i_inph_data(inph_integ_data[(stage+1)*WIDTH-1-:WIDTH]),
         .i_quad_data(quad_integ_data[(stage+1)*WIDTH-1-:WIDTH]),
