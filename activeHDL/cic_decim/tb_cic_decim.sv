@@ -138,16 +138,16 @@ initial begin: stimulus
     for(integer lcount = 0; lcount < 4000*313; lcount++) begin
         @(negedge i_clock) begin
             i_inph_data <= $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 2) * $cos(2.0*PI_VALUE*0.00002*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 3) * $cos(2.0*PI_VALUE*0.00003*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 4) * $cos(2.0*PI_VALUE*0.00004*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 5) * $cos(2.0*PI_VALUE*0.00005*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $cos(2.0*PI_VALUE*0.00002*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $cos(2.0*PI_VALUE*0.00003*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $cos(2.0*PI_VALUE*0.00004*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $cos(2.0*PI_VALUE*0.00005*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.01*samp_num));
             i_quad_data <= $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 2) * $sin(2.0*PI_VALUE*0.00002*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 3) * $sin(2.0*PI_VALUE*0.00003*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 4) * $sin(2.0*PI_VALUE*0.00004*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 5) * $sin(2.0*PI_VALUE*0.00005*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $sin(2.0*PI_VALUE*0.00002*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $sin(2.0*PI_VALUE*0.00003*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $sin(2.0*PI_VALUE*0.00004*samp_num))
+                + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $sin(2.0*PI_VALUE*0.00005*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.01*samp_num));
             i_valid = 1'b1;
             samp_num = samp_num + 1;

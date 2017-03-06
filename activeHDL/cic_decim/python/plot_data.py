@@ -51,10 +51,10 @@ with open('test4.txt') as fid:
             samps.append(real_part + 1j*imag_part)
 t4 = np.array(samps)
 e4 = ((2.0**(16-1) - 1) * np.exp(2.0j*np.pi*313.0*0.00001*n)) \
-    + ((2.0**(16-1) - 2) * np.exp(2.0j*np.pi*313.0*0.00002*n)) \
-    + ((2.0**(16-1) - 3) * np.exp(2.0j*np.pi*313.0*0.00003*n)) \
-    + ((2.0**(16-1) - 4) * np.exp(2.0j*np.pi*313.0*0.00004*n)) \
-    + ((2.0**(16-1) - 5) * np.exp(2.0j*np.pi*313.0*0.00005*n))
+    + ((2.0**(16-2) - 1) * np.exp(2.0j*np.pi*313.0*0.00002*n)) \
+    + ((2.0**(16-3) - 1) * np.exp(2.0j*np.pi*313.0*0.00003*n)) \
+    + ((2.0**(16-4) - 1) * np.exp(2.0j*np.pi*313.0*0.00004*n)) \
+    + ((2.0**(16-5) - 1) * np.exp(2.0j*np.pi*313.0*0.00005*n))
 e4 *= gain
 
 pt.figure()
@@ -66,5 +66,25 @@ pt.plot(np.real(e4))
 pt.plot(np.imag(e4))
 pt.subplot(3,1,3)
 pt.plot(np.arange(100,4000), np.abs(e4[100:] - t4[100:]))
+
+pt.figure()
+pt.subplot(2,1,1)
+T3 = np.fft.fftshift(np.fft.fft(t3[100:], 10000))
+pt.plot(np.real(T3))
+pt.plot(np.imag(T3))
+pt.subplot(2,1,2)
+E3 = np.fft.fftshift(np.fft.fft(e3[100:], 10000))
+pt.plot(np.real(E3))
+pt.plot(np.imag(E3))
+
+pt.figure()
+pt.subplot(2,1,1)
+T4 = np.fft.fftshift(np.fft.fft(t4, 100000))
+pt.plot(np.real(T4))
+pt.plot(np.imag(T4))
+pt.subplot(2,1,2)
+E4 = np.fft.fftshift(np.fft.fft(e4, 100000))
+pt.plot(np.real(E4))
+pt.plot(np.imag(E4))
 
 pt.show()
