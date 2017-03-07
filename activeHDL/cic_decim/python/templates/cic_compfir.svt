@@ -1,0 +1,62 @@
+module cic_compfir #(
+    parameter integer WIDTH = 16
+) (
+    input  wire logic [WIDTH-1:0] i_inph,
+    input  wire logic [WIDTH-1:0] i_quad,
+    input  wire logic             i_valid,
+    output      logic             o_ready,
+    output      logic [WIDTH-1:0] o_inph,
+    output      logic [WIDTH-1:0] o_quad,
+    output      logic             o_valid,
+    input  wire logic             i_clock,
+    input  wire logic             i_reset
+);
+
+localparam integer F_HALF_ORDER = {{ half_order_of_h }};
+logic [{{ '$' }}clog2(F_HALF_ORDER/2)-1:0] ready_count;
+
+always_ff @(posedge i_clock) begin
+    // Counter to determine input pushback
+    if (i_reset == 1'b1) begin
+        ready_count <= {$clog2(F_HALF_ORDER){ 1'b0 }};
+        o_ready <= 1'b0;
+        accum_start <= 1'b0;
+        accum_finish <= 1'b0;
+    end else if ((i_valid & o_ready) == 1'b1) begin
+        ready_count <= F_HALF_ORDER-1;
+        o_ready <= 1'b0;
+        accum_start <= 1'b1;
+        accum_finish <= 1'b0;
+    end else if (ready_count > 0) begin
+        ready_count <= ready_count - 1;
+        o_ready <= ready_count == { { ({{ '$' }}clog2(F_HALF_ORDER)-1){ 1'b0 } }, 1'b1 };
+        accum_start <= 1'b0;
+        accum_finish <= ready_count == { { ({{ '$' }}clog2(F_HALF_ORDER)-1){ 1'b0 } }, 1'b1 };
+    end else begin
+        accum_complete <= 1'b0;
+        o_ready <= ready_count == { { {{ '$' }}clog2(F_HALF_ORDER){ 1'b0 } } };
+    end
+end
+
+logic signed [WIDTH-1:0] inph_macc_lhs_entry_reg0;
+logic signed [WIDTH-1:0] inph_macc_rhs_entry_reg0;
+logic signed [WIDTH-1:0] quad_macc_lhs_entry_reg0;
+logic signed [WIDTH-1:0] quad_macc_rhs_entry_reg0;
+logic signed [17:0]      inph_coeff_entry_reg0;
+logic signed [17:0]      quad_coeff_entry_reg0;
+logic signed [17:0]      coeff_entry_reg0;
+
+always_ff @ (posedge i_clock) begin
+    case (ready_count){{ for hb in h_binary }}{% if not loop.last %}
+    {{ loop.revindex0 }}: begin{% else %}
+    default: begin{% endif %}
+        coeff_entry_reg0 <= {{ hb }};
+    end
+    {% endfor %}// Implied center coefficient is 1.0 in Q(2,16) format (no multiply needed)
+    endcase
+end
+
+assign inph_coeff_entry_reg0 = coeff_entry_reg0;
+assign quad_coeff_entry_reg0 = coeff_entry_reg0;
+
+endmodule
