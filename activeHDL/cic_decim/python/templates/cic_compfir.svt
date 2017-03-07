@@ -18,7 +18,7 @@ logic [{{ '$' }}clog2(F_HALF_ORDER/2)-1:0] ready_count;
 always_ff @(posedge i_clock) begin
     // Counter to determine input pushback
     if (i_reset == 1'b1) begin
-        ready_count <= {$clog2(F_HALF_ORDER){ 1'b0 }};
+        ready_count <= { {{ '$' }}clog2(F_HALF_ORDER){ 1'b0 } };
         o_ready <= 1'b0;
         accum_start <= 1'b0;
         accum_finish <= 1'b0;
@@ -47,16 +47,70 @@ logic signed [17:0]      quad_coeff_entry_reg0;
 logic signed [17:0]      coeff_entry_reg0;
 
 always_ff @ (posedge i_clock) begin
-    case (ready_count){{ for hb in h_binary }}{% if not loop.last %}
+    case (ready_count){% for hb in h_binary %}{% if not loop.last %}
     {{ loop.revindex0 }}: begin{% else %}
     default: begin{% endif %}
         coeff_entry_reg0 <= {{ hb }};
-    end
-    {% endfor %}// Implied center coefficient is 1.0 in Q(2,16) format (no multiply needed)
+    end{% endfor %}
+    // Implied center coefficient is 1.0 in Q(2,16) format (no multiply needed)
     endcase
 end
 
 assign inph_coeff_entry_reg0 = coeff_entry_reg0;
 assign quad_coeff_entry_reg0 = coeff_entry_reg0;
 
-endmodule
+// Tap Delay Line
+localparam integer F_LENGTH = 2 * F_HALF_ORDER + 1;
+logic signed [F_LENGTH*WIDTH-1:0] inph_tdl;
+logic signed [F_LENGTH*WIDTH-1:0] quad_tdl;
+
+always_ff @(posedge i_clock) begin
+    if ((i_valid & o_ready) == 1'b1) begin
+        // Tap Delay Line
+        inph_tdl[WIDTH-1-:WIDTH] <= i_inph;
+        quad_tdl[WIDTH-1-:WIDTH] <= i_quad;
+        for(integer TDL_IDX = 1; TDL_IDX < F_LENGTH; TDL_IDX++) begin
+            inph_tdl[(TDL_IDX+1)*WIDTH-1-:WIDTH] <= inph_tdl[TDL_IDX*WIDTH-1-:WIDTH];
+            quad_tdl[(TDL_IDX+1)*WIDTH-1-:WIDTH] <= quad_tdl[TDL_IDX*WIDTH-1-:WIDTH];
+        end
+
+        // Multiply-free delay (remains in this register until ready goes high again)
+        mid_inph_reg0 <= inph_tdl[F_HALF_ORDER];
+        mid_quad_reg0 <= quad_tdl[F_HALF_ORDER];
+    end
+
+    // Symmetric delays to the preadders
+    case (ready_count){% for hb in h_binary %}
+    {{ loop.revindex0 }}: begin
+        lhs_inph_reg0 <= inph_tdl[{{ loop.index0 }}];
+        lhs_quad_reg0 <= quad_tdl[{{ loop.index0 }}];
+        rhs_inph_reg0 <= inph_tdl[{{ 2*half_order_of_h - loop.index0 }}];
+        rhs_quad_reg0 <= quad_tdl[{{ 2*half_order_of_h - loop.index0 }}];
+    end{% endfor %}
+    endcase
+end
+
+// Preadders
+logic signed [WIDTH:0] inph_preadder_reg1;
+logic signed [WIDTH:0] quad_preadder_reg1;
+always_ff @(posedge i_clock) begin
+    inph_preadder_reg1 <= { lhs_inph_reg0[WIDTH-1], lhs_inph_reg0 } + { rhs_inph_reg0[WIDTH-1], rhs_inph_reg0 };
+    quad_preadder_reg1 <= { lhs_quad_reg0[WIDTH-1], lhs_quad_reg0 } + { rhs_quad_reg0[WIDTH-1], rhs_quad_reg0 };
+    inph_coeff_entry_reg2 <= inph_coeff_entry_reg1;
+    quad_coeff_entry_reg2 <= quad_coeff_entry_reg1;
+end
+
+// Multiplication
+logic signed [WIDTH+18:0] inph_product_reg2;
+logic signed [WIDTH+18:0] quad_product_reg2;
+always_ff @(posedge i_clock) begin
+    inph_product_reg2 <= inph_preadder_reg1 * inph_coeff_entry_reg2;
+    quad_product_reg2 <= quad_preadder_reg1 * quad_coeff_entry_reg2;
+end
+// Accumulation
+
+// Add 1*1 to result (implied coefficient)
+
+// Perform output rounding
+
+endmodule: cic_compfir
