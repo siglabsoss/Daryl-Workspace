@@ -87,4 +87,23 @@ E4 = np.fft.fftshift(np.fft.fft(e4, 100000))
 pt.plot(np.real(E4))
 pt.plot(np.imag(E4))
 
+samps = []
+with open('input_vec.txt') as fid:
+    for line in fid:
+        real_part, imag_part = line.split(',')
+        if (real_part.strip() != 'x'):
+            real_part, imag_part = int(real_part), int(imag_part)
+            real_part, imag_part = float(real_part), float(imag_part)
+            samps.append(real_part + 1j*imag_part)
+t5 = np.array(samps)
+
+pt.figure()
+pt.plot(np.real(t5))
+pt.plot(np.imag(t5))
+
+pt.figure()
+T5 = np.fft.fftshift(np.fft.fft(t5, 100000))
+pt.plot(np.real(T5))
+pt.plot(np.imag(T5))
+
 pt.show()

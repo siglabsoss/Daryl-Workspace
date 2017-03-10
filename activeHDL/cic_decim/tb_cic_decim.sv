@@ -31,14 +31,14 @@ cic_decim #(
     .STAGES(STAGES))
 uut (.*);
 
-logic             comp_input_ready;
-logic [WIDTH-1:0] comp_inph_data;
-logic [WIDTH-1:0] comp_quad_data;
-logic             comp_inph_pos_oflow;
-logic             comp_inph_neg_oflow;
-logic             comp_quad_pos_oflow;
-logic             comp_quad_neg_oflow;
-logic             comp_valid;
+logic                comp_input_ready;
+logic [IN_WIDTH-1:0] comp_inph_data;
+logic [IN_WIDTH-1:0] comp_quad_data;
+logic                comp_inph_pos_oflow;
+logic                comp_inph_neg_oflow;
+logic                comp_quad_pos_oflow;
+logic                comp_quad_neg_oflow;
+logic                comp_valid;
 
 // logic [WIDTH-1:0] test_inph_data;
 // logic [WIDTH-1:0] test_quad_data;
@@ -58,24 +58,24 @@ logic             comp_valid;
 // end
 
 cic_compfir #(
-    .WIDTH(WIDTH))
+    .WIDTH(IN_WIDTH))
 uut2(
     // .i_inph          (test_inph_data     ),
     // .i_quad          (test_quad_data     ),
     // .i_valid         (test_valid         ),
-    .i_inph          (o_inph_data        ),
-    .i_quad          (o_quad_data        ),
-    .i_valid         (o_valid            ),
-    .o_ready         (comp_input_ready   ),
-    .o_inph          (comp_inph_data     ),
-    .o_quad          (comp_quad_data     ),
-    .o_inph_pos_oflow(comp_inph_pos_oflow),
-    .o_inph_neg_oflow(comp_inph_neg_oflow),
-    .o_quad_pos_oflow(comp_quad_pos_oflow),
-    .o_quad_neg_oflow(comp_quad_neg_oflow),
-    .o_valid         (comp_valid         ),
-    .i_clock         (i_clock            ),
-    .i_reset         (i_reset            ));
+    .i_inph          (16'((o_inph_data[WIDTH-1-:IN_WIDTH+1] + 1'b1) >> 1)),
+    .i_quad          (16'((o_quad_data[WIDTH-1-:IN_WIDTH+1] + 1'b1) >> 1)),
+    .i_valid         (o_valid                                            ),
+    .o_ready         (comp_input_ready                                   ),
+    .o_inph          (comp_inph_data                                     ),
+    .o_quad          (comp_quad_data                                     ),
+    .o_inph_pos_oflow(comp_inph_pos_oflow                                ),
+    .o_inph_neg_oflow(comp_inph_neg_oflow                                ),
+    .o_quad_pos_oflow(comp_quad_pos_oflow                                ),
+    .o_quad_neg_oflow(comp_quad_neg_oflow                                ),
+    .o_valid         (comp_valid                                         ),
+    .i_clock         (i_clock                                            ),
+    .i_reset         (i_reset                                            ));
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
