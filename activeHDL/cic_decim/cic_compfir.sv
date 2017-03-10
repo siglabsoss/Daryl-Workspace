@@ -1,3 +1,7 @@
+`timescale 10ps / 10ps
+
+`default_nettype none
+
 module cic_compfir #(
     parameter integer WIDTH = 16
 ) (
@@ -17,9 +21,9 @@ module cic_compfir #(
 );
 
 localparam integer F_HALF_ORDER = 16;
-logic [$clog2(F_HALF_ORDER/2)-1:0] ready_count;
-logic accum_start;
-logic accum_finish;
+logic [$clog2(F_HALF_ORDER)-1:0] ready_count;
+logic                                    accum_start;
+logic                                    accum_finish;
 
 always_ff @(posedge i_clock) begin
     // Counter to determine input pushback
@@ -44,15 +48,11 @@ always_ff @(posedge i_clock) begin
     end
 end
 
-logic signed [WIDTH-1:0] inph_macc_lhs_entry_reg0;
-logic signed [WIDTH-1:0] inph_macc_rhs_entry_reg0;
-logic signed [WIDTH-1:0] quad_macc_lhs_entry_reg0;
-logic signed [WIDTH-1:0] quad_macc_rhs_entry_reg0;
-logic signed [17:0]      inph_coeff_entry_reg0;
-logic signed [17:0]      quad_coeff_entry_reg0;
-logic signed [17:0]      coeff_entry_reg0;
-logic                    accum_start_reg0;
-logic                    accum_finish_reg0;
+logic signed [17:0] inph_coeff_entry_reg0;
+logic signed [17:0] quad_coeff_entry_reg0;
+logic signed [17:0] coeff_entry_reg0;
+logic               accum_start_reg0;
+logic               accum_finish_reg0;
 
 always_ff @ (posedge i_clock) begin
     case (ready_count)
@@ -124,6 +124,13 @@ logic signed [WIDTH-1:0]          rhs_quad_reg0;
 logic signed [WIDTH-1:0]          mid_inph_reg0;
 logic signed [WIDTH-1:0]          mid_quad_reg0;
 
+`ifdef SIMULATION
+initial begin
+    inph_tdl = { (F_LENGTH*WIDTH){ 1'b0 } };
+    quad_tdl = { (F_LENGTH*WIDTH){ 1'b0 } };
+end
+`endif
+
 always_ff @(posedge i_clock) begin
     if ((i_valid & o_ready) == 1'b1) begin
         // Tap Delay Line
@@ -135,107 +142,107 @@ always_ff @(posedge i_clock) begin
         end
 
         // Multiply-free delay (remains in this register until ready goes high again)
-        mid_inph_reg0 <= inph_tdl[F_HALF_ORDER];
-        mid_quad_reg0 <= quad_tdl[F_HALF_ORDER];
+        mid_inph_reg0 <= inph_tdl[(F_HALF_ORDER+1)*WIDTH-1-:WIDTH];
+        mid_quad_reg0 <= quad_tdl[(F_HALF_ORDER+1)*WIDTH-1-:WIDTH];
     end
 
     // Symmetric delays to the preadders
     case (ready_count)
     15: begin
-        lhs_inph_reg0 <= inph_tdl[0];
-        lhs_quad_reg0 <= quad_tdl[0];
-        rhs_inph_reg0 <= inph_tdl[32];
-        rhs_quad_reg0 <= quad_tdl[32];
+        lhs_inph_reg0 <= inph_tdl[(0+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(0+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(32+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(32+1)*WIDTH-1-:WIDTH];
     end
     14: begin
-        lhs_inph_reg0 <= inph_tdl[1];
-        lhs_quad_reg0 <= quad_tdl[1];
-        rhs_inph_reg0 <= inph_tdl[31];
-        rhs_quad_reg0 <= quad_tdl[31];
+        lhs_inph_reg0 <= inph_tdl[(1+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(1+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(31+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(31+1)*WIDTH-1-:WIDTH];
     end
     13: begin
-        lhs_inph_reg0 <= inph_tdl[2];
-        lhs_quad_reg0 <= quad_tdl[2];
-        rhs_inph_reg0 <= inph_tdl[30];
-        rhs_quad_reg0 <= quad_tdl[30];
+        lhs_inph_reg0 <= inph_tdl[(2+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(2+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(30+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(30+1)*WIDTH-1-:WIDTH];
     end
     12: begin
-        lhs_inph_reg0 <= inph_tdl[3];
-        lhs_quad_reg0 <= quad_tdl[3];
-        rhs_inph_reg0 <= inph_tdl[29];
-        rhs_quad_reg0 <= quad_tdl[29];
+        lhs_inph_reg0 <= inph_tdl[(3+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(3+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(29+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(29+1)*WIDTH-1-:WIDTH];
     end
     11: begin
-        lhs_inph_reg0 <= inph_tdl[4];
-        lhs_quad_reg0 <= quad_tdl[4];
-        rhs_inph_reg0 <= inph_tdl[28];
-        rhs_quad_reg0 <= quad_tdl[28];
+        lhs_inph_reg0 <= inph_tdl[(4+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(4+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(28+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(28+1)*WIDTH-1-:WIDTH];
     end
     10: begin
-        lhs_inph_reg0 <= inph_tdl[5];
-        lhs_quad_reg0 <= quad_tdl[5];
-        rhs_inph_reg0 <= inph_tdl[27];
-        rhs_quad_reg0 <= quad_tdl[27];
+        lhs_inph_reg0 <= inph_tdl[(5+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(5+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(27+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(27+1)*WIDTH-1-:WIDTH];
     end
     9: begin
-        lhs_inph_reg0 <= inph_tdl[6];
-        lhs_quad_reg0 <= quad_tdl[6];
-        rhs_inph_reg0 <= inph_tdl[26];
-        rhs_quad_reg0 <= quad_tdl[26];
+        lhs_inph_reg0 <= inph_tdl[(6+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(6+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(26+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(26+1)*WIDTH-1-:WIDTH];
     end
     8: begin
-        lhs_inph_reg0 <= inph_tdl[7];
-        lhs_quad_reg0 <= quad_tdl[7];
-        rhs_inph_reg0 <= inph_tdl[25];
-        rhs_quad_reg0 <= quad_tdl[25];
+        lhs_inph_reg0 <= inph_tdl[(7+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(7+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(25+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(25+1)*WIDTH-1-:WIDTH];
     end
     7: begin
-        lhs_inph_reg0 <= inph_tdl[8];
-        lhs_quad_reg0 <= quad_tdl[8];
-        rhs_inph_reg0 <= inph_tdl[24];
-        rhs_quad_reg0 <= quad_tdl[24];
+        lhs_inph_reg0 <= inph_tdl[(8+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(8+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(24+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(24+1)*WIDTH-1-:WIDTH];
     end
     6: begin
-        lhs_inph_reg0 <= inph_tdl[9];
-        lhs_quad_reg0 <= quad_tdl[9];
-        rhs_inph_reg0 <= inph_tdl[23];
-        rhs_quad_reg0 <= quad_tdl[23];
+        lhs_inph_reg0 <= inph_tdl[(9+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(9+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(23+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(23+1)*WIDTH-1-:WIDTH];
     end
     5: begin
-        lhs_inph_reg0 <= inph_tdl[10];
-        lhs_quad_reg0 <= quad_tdl[10];
-        rhs_inph_reg0 <= inph_tdl[22];
-        rhs_quad_reg0 <= quad_tdl[22];
+        lhs_inph_reg0 <= inph_tdl[(10+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(10+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(22+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(22+1)*WIDTH-1-:WIDTH];
     end
     4: begin
-        lhs_inph_reg0 <= inph_tdl[11];
-        lhs_quad_reg0 <= quad_tdl[11];
-        rhs_inph_reg0 <= inph_tdl[21];
-        rhs_quad_reg0 <= quad_tdl[21];
+        lhs_inph_reg0 <= inph_tdl[(11+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(11+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(21+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(21+1)*WIDTH-1-:WIDTH];
     end
     3: begin
-        lhs_inph_reg0 <= inph_tdl[12];
-        lhs_quad_reg0 <= quad_tdl[12];
-        rhs_inph_reg0 <= inph_tdl[20];
-        rhs_quad_reg0 <= quad_tdl[20];
+        lhs_inph_reg0 <= inph_tdl[(12+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(12+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(20+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(20+1)*WIDTH-1-:WIDTH];
     end
     2: begin
-        lhs_inph_reg0 <= inph_tdl[13];
-        lhs_quad_reg0 <= quad_tdl[13];
-        rhs_inph_reg0 <= inph_tdl[19];
-        rhs_quad_reg0 <= quad_tdl[19];
+        lhs_inph_reg0 <= inph_tdl[(13+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(13+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(19+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(19+1)*WIDTH-1-:WIDTH];
     end
     1: begin
-        lhs_inph_reg0 <= inph_tdl[14];
-        lhs_quad_reg0 <= quad_tdl[14];
-        rhs_inph_reg0 <= inph_tdl[18];
-        rhs_quad_reg0 <= quad_tdl[18];
+        lhs_inph_reg0 <= inph_tdl[(14+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(14+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(18+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(18+1)*WIDTH-1-:WIDTH];
     end
     0: begin
-        lhs_inph_reg0 <= inph_tdl[15];
-        lhs_quad_reg0 <= quad_tdl[15];
-        rhs_inph_reg0 <= inph_tdl[17];
-        rhs_quad_reg0 <= quad_tdl[17];
+        lhs_inph_reg0 <= inph_tdl[(15+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(15+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(17+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(17+1)*WIDTH-1-:WIDTH];
     end
     endcase
 end
@@ -245,10 +252,10 @@ logic signed [WIDTH:0]   inph_preadder_reg1;
 logic signed [WIDTH:0]   quad_preadder_reg1;
 logic signed [17:0]      inph_coeff_entry_reg1;
 logic signed [17:0]      quad_coeff_entry_reg1;
-logic                    accum_start_reg1;
-logic                    accum_finish_reg1;
 logic signed [WIDTH-1:0] mid_inph_reg1;
 logic signed [WIDTH-1:0] mid_quad_reg1;
+logic                    accum_start_reg1;
+logic                    accum_finish_reg1;
 
 always_ff @(posedge i_clock) begin
     inph_preadder_reg1 <= { lhs_inph_reg0[WIDTH-1], lhs_inph_reg0 } + { rhs_inph_reg0[WIDTH-1], rhs_inph_reg0 };
@@ -282,8 +289,6 @@ localparam integer MAX_FILTER_GAIN = 20;
 logic signed [WIDTH+18+MAX_FILTER_GAIN:0] inph_accum_reg3;
 logic signed [WIDTH+18+MAX_FILTER_GAIN:0] quad_accum_reg3;
 logic                                     accum_finish_reg3;
-logic signed [WIDTH-1:0]                  mid_inph_reg3;
-logic signed [WIDTH-1:0]                  mid_quad_reg3;
 
 always_ff @(posedge i_clock) begin
     if (accum_start_reg2 == 1'b1) begin
@@ -303,8 +308,16 @@ logic                                     valid_reg4;
 
 always_ff @(posedge i_clock) begin
     if (accum_finish_reg3 == 1'b1) begin
-        inph_result_reg4 <= inph_accum_reg3 + { mid_inph_reg1, 17'b0 };
-        quad_result_reg4 <= quad_accum_reg3 + { mid_quad_reg1, 17'b0 };
+        inph_result_reg4 <= inph_accum_reg3 + {
+            { (MAX_FILTER_GAIN + 3){ mid_inph_reg1[WIDTH-1] } },
+            mid_inph_reg1,
+            17'b0
+        };
+        quad_result_reg4 <= quad_accum_reg3 + {
+            { (MAX_FILTER_GAIN + 3){ mid_quad_reg1[WIDTH-1] } },
+            mid_quad_reg1,
+            17'b0
+        };
     end
     // Valid signal propagation
     if (i_reset == 1'b1) begin
@@ -315,55 +328,56 @@ always_ff @(posedge i_clock) begin
 end
 
 // Perform convergent rounding
-logic signed [WIDTH+18+MAX_FILTER_GAIN-16+1:0] inph_rounded_result_reg5;
-logic signed [WIDTH+18+MAX_FILTER_GAIN-16+1:0] quad_rounded_result_reg5;
-logic                                          valid_reg5;
+localparam integer LOG2_DC_GAIN = 15;
+logic signed [WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:0] inph_rounded_result_reg5;
+logic signed [WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:0] quad_rounded_result_reg5;
+logic                                                    valid_reg5;
 
 always_ff @(posedge i_clock) begin
     // In-phase rounding
-    if (inph_result_reg4[15:0] == { 1'b1, { 15{ 1'b0 } } }) begin
-        if (inph_result_reg4[16] == 1'b1) begin
-            // Round down to nearest even
+    if (inph_result_reg4[LOG2_DC_GAIN-1:0] == { 1'b1, { (LOG2_DC_GAIN-1){ 1'b0 } } }) begin
+        if (inph_result_reg4[LOG2_DC_GAIN] == 1'b1) begin
+            // Round down to nearest odd
             inph_rounded_result_reg5 <= {
                 inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN],
-                inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN:16]
+                inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN:LOG2_DC_GAIN]
             };
         end else begin
-            // Round up to nearest even
+            // Round up to nearest odd
             inph_rounded_result_reg5 <= {
                 inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN],
-                inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN:16]
+                inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN:LOG2_DC_GAIN]
             } + 1'b1;
         end
     end else begin
         // Usual rounding by adding 1/2 and truncating
         inph_rounded_result_reg5 <= {
             inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN],
-            inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN:16]
-        } + inph_result_reg4[15];
+            inph_result_reg4[WIDTH+18+MAX_FILTER_GAIN:LOG2_DC_GAIN]
+        } + inph_result_reg4[LOG2_DC_GAIN-1];
     end
 
     // Quadrature Rounding
-    if (quad_result_reg4[15:0] == { 1'b1, { 15{ 1'b0 } } }) begin
-        if (quad_result_reg4[16] == 1'b1) begin
-            // Round down to nearest even
+    if (quad_result_reg4[LOG2_DC_GAIN-1:0] == { 1'b1, { (LOG2_DC_GAIN-1){ 1'b0 } } }) begin
+        if (quad_result_reg4[LOG2_DC_GAIN] == 1'b1) begin
+            // Round down to nearest odd
             quad_rounded_result_reg5 <= {
                 quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN],
-                quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN:16]
+                quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN:LOG2_DC_GAIN]
             };
         end else begin
-            // Round up to nearest even
+            // Round up to nearest odd
             quad_rounded_result_reg5 <= {
                 quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN],
-                quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN:16]
+                quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN:LOG2_DC_GAIN]
             } + 1'b1;
         end
     end else begin
         // Usual rounding by adding 1/2 and truncating
         quad_rounded_result_reg5 <= {
             quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN],
-            quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN:16]
-        } + quad_result_reg4[15];
+            quad_result_reg4[WIDTH+18+MAX_FILTER_GAIN:LOG2_DC_GAIN]
+        } + quad_result_reg4[LOG2_DC_GAIN-1];
     end
 
     // Valid signal propagation
@@ -387,7 +401,7 @@ always_ff @(posedge i_clock) begin
     end else begin
         // In-Phase Saturation Detection
         if (((&inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b1)
-                || ((|inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b0)) begin
+                && ((|inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b0)) begin
             // Saturation event
             if (inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1] == 1'b0) begin
                 o_inph_pos_oflow <= 1'b1;
@@ -407,7 +421,7 @@ always_ff @(posedge i_clock) begin
 
         // Quadrature Saturation Detection
         if (((&quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b1)
-                || ((|quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b0)) begin
+                && ((|quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b0)) begin
             // Saturation event
             if (quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1] == 1'b0) begin
                 o_quad_pos_oflow <= 1'b1;
@@ -430,3 +444,5 @@ always_ff @(posedge i_clock) begin
 end
 
 endmodule: cic_compfir
+
+`default_nettype wire

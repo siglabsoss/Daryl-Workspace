@@ -1,5 +1,5 @@
 vsim -c -log sim.log +access +r -lib work tb_cic_decim
-trace -rec *
+trace -rec uut2/*
 run -all
 # asdb2vcd wave.asdb wave.vcd
 exit

@@ -40,9 +40,29 @@ logic             comp_quad_pos_oflow;
 logic             comp_quad_neg_oflow;
 logic             comp_valid;
 
+// logic [WIDTH-1:0] test_inph_data;
+// logic [WIDTH-1:0] test_quad_data;
+// logic             test_valid;
+// integer           tcount = 0;
+// always @(posedge i_clock) begin
+//     if (tcount == 312) begin
+//         tcount = 0;
+//         test_valid <= 1'b1;
+//     end else begin
+//         tcount++;
+//         test_valid <= 1'b0;
+//     end
+
+//     test_inph_data <= 1 << 14;
+//     test_quad_data <= 1 << 14;
+// end
+
 cic_compfir #(
     .WIDTH(WIDTH))
 uut2(
+    // .i_inph          (test_inph_data     ),
+    // .i_quad          (test_quad_data     ),
+    // .i_valid         (test_valid         ),
     .i_inph          (o_inph_data        ),
     .i_quad          (o_quad_data        ),
     .i_valid         (o_valid            ),

@@ -25,8 +25,8 @@ Compile-Verilog cic_comb.sv
 Compile-Verilog cic_compfir.sv
 
 # Remove output files
-del /Q test3.txt
-del /Q test4.txt
+Remove-Item test3.txt -force -ErrorAction silentlycontinue
+Remove-Item test4.txt -force -ErrorAction silentlycontinue
 
 # Execute the Simulation
 vsimsa -do dosim.do

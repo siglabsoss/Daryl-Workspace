@@ -59,6 +59,7 @@ with open('cic_compfir.sv', 'w') as fid:
             date=time.strftime("%m/%d/%Y"),
             half_order_of_h=half_order_of_h,
             h_binary=h_binary,
-            max_filter_gain=int(np.ceil(np.log2(np.sum(np.abs(h)))))
+            max_filter_gain=int(np.ceil(np.log2(np.sum(np.abs(h))))),
+            log2_dc_gain=int(np.ceil(np.log2(np.sum(h))))
         ),
         file=fid)
