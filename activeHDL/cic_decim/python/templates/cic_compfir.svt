@@ -98,8 +98,8 @@ always_ff @(posedge i_clock) begin
         end
 
         // Multiply-free delay (remains in this register until ready goes high again)
-        mid_inph_reg0 <= inph_tdl[(F_HALF_ORDER+1)*WIDTH-1-:WIDTH];
-        mid_quad_reg0 <= quad_tdl[(F_HALF_ORDER+1)*WIDTH-1-:WIDTH];
+        mid_inph_reg0 <= inph_tdl[(F_HALF_ORDER)*WIDTH-1-:WIDTH];
+        mid_quad_reg0 <= quad_tdl[(F_HALF_ORDER)*WIDTH-1-:WIDTH];
     end
 
     // Symmetric delays to the preadders
