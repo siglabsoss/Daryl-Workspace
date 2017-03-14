@@ -106,4 +106,35 @@ T5 = np.fft.fftshift(np.fft.fft(t5, 100000))
 pt.plot(np.real(T5))
 pt.plot(np.imag(T5))
 
+samps = []
+with open('test3.txt') as fid:
+    for line in fid:
+        real_part, imag_part = line.split(',')
+        if (real_part.strip() != 'x'):
+            real_part, imag_part = int(real_part), int(imag_part)
+            real_part, imag_part = float(real_part), float(imag_part)
+            samps.append(real_part + 1j*imag_part)
+t3 = np.array(samps)
+t3 /= np.max(np.abs(t3))
+e3 = ((2.0**(16-1) - 1) * np.exp(2.0j*np.pi*313.0*0.0001*n))
+e3 *= gain
+e3 /= np.max(np.abs(e3))
+
+pt.figure()
+
+freqs, phases, mags, phases2, mags2 = [], [], [], [], []
+with open('test5.txt') as fid:
+    for line in fid:
+        fields = line.split(',')
+        freqs.append(float(fields[0]))
+        phases.append(float(fields[1]))
+        mags.append(float(fields[2]))
+        phases2.append(float(fields[3]))
+        mags2.append(float(fields[4]))
+freqs = np.array(freqs)
+phases = np.array(phases)
+mags = np.array(mags)
+phases2 = np.array(phases2)
+mags2 = np.array(mags2)
+
 pt.show()
