@@ -63,8 +63,8 @@ uut2(
     // .i_inph          (test_inph_data     ),
     // .i_quad          (test_quad_data     ),
     // .i_valid         (test_valid         ),
-    .i_inph          (16'((o_inph_data[WIDTH-1-:IN_WIDTH+1] + 1'b1) >> 1)),
-    .i_quad          (16'((o_quad_data[WIDTH-1-:IN_WIDTH+1] + 1'b1) >> 1)),
+    .i_inph          (16'((o_inph_data[WIDTH-1-4-:IN_WIDTH+1] + 1'b1) >> 1)),
+    .i_quad          (16'((o_quad_data[WIDTH-1-4-:IN_WIDTH+1] + 1'b1) >> 1)),
     .i_valid         (o_valid                                            ),
     .o_ready         (comp_input_ready                                   ),
     .o_inph          (comp_inph_data                                     ),
@@ -101,10 +101,12 @@ task reset_all;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
 
+logic [31:0] iq_data;
 real frequencies [0:4999] = '{ 5000{ 0.0 } };
 real passband_mean;
 integer freq_count;
 integer samp_num;
+integer stim_fid;
 real fc;
 
 
@@ -114,132 +116,167 @@ initial begin: stimulus
     #1000;
     reset_all();
 
-    // Test 1: No data in = no data out.
-    $display("Test 1 Started!");
-    test_number = 1;
-    reset_all();
-    #1000;
-    @(negedge i_clock) begin
-        i_valid = 1'b0;
-        #10;
-    end
-    i_valid = 1'b0;
-    #1000;
-    if (run_count > 0) begin
-        $display("Error: Test 1 failed! No data input, but data output received.");
-        glbl_err_count++;
-    end
-    #100;
-    $display("Test 1 Done!");
+    // // Test 1: No data in = no data out.
+    // $display("Test 1 Started!");
+    // test_number = 1;
+    // reset_all();
+    // #1000;
+    // @(negedge i_clock) begin
+    //     i_valid = 1'b0;
+    //     #10;
+    // end
+    // i_valid = 1'b0;
+    // #1000;
+    // if (run_count > 0) begin
+    //     $display("Error: Test 1 failed! No data input, but data output received.");
+    //     glbl_err_count++;
+    // end
+    // #100;
+    // $display("Test 1 Done!");
 
-    // Test 2: Simple Sine In, Simple Sine Out
-    $display("Test 2 Started!");
-    test_number = 2;
+    // // Test 2: Simple Sine In, Simple Sine Out
+    // $display("Test 2 Started!");
+    // test_number = 2;
+    // reset_all();
+    // #1000;
+    // samp_num = 0;
+    // for(integer lcount = 0; lcount < 4*3130; lcount++) begin
+    //     @(negedge i_clock) begin
+    //         i_inph_data = $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num)));
+    //         i_quad_data = $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num)));
+    //         i_valid = 1'b1;
+    //         samp_num = samp_num + 1;
+    //         #10;
+    //     end
+    // end
+    // i_valid = 1'b0;
+    // #2000;
+    // if (run_count != 40) begin
+    //     $display("Error: Test 2 failed! Expected 40 samples at output but received %d.", run_count);
+    //     glbl_err_count++;
+    // end
+    // #100;
+    // $display("Test 2 Done!");
+
+    // // Test 3: Simple Sine In, Simple Sine Out to File
+    // $display("Test 3 Started!");
+    // test_number = 3;
+    // reset_all();
+    // #1000;
+    // samp_num = 0;
+    // for(integer lcount = 0; lcount < 4000*313; lcount++) begin
+    //     @(negedge i_clock) begin
+    //         i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.0001*samp_num));
+    //         i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.0001*samp_num));
+    //         i_valid = 1'b1;
+    //         samp_num = samp_num + 1;
+    //         #10;
+    //     end
+    // end
+    // i_valid = 1'b0;
+    // #2000;
+    // if (run_count != 4000) begin
+    //     $display("Error: Test 3 failed! Expected 4000 samples at output but received %d.", run_count);
+    //     glbl_err_count++;
+    // end
+    // #100;
+    // $display("Test 3 Done!");
+
+    // // Test 4: Simple Sines In, Simple Sines Out to File
+    // $display("Test 4 Started!");
+    // test_number = 4;
+    // reset_all();
+    // #1000;
+    // samp_num = 0;
+    // for(integer lcount = 0; lcount < 4000*313; lcount++) begin
+    //     @(negedge i_clock) begin
+    //         i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $cos(2.0*PI_VALUE*0.00002*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $cos(2.0*PI_VALUE*0.00003*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $cos(2.0*PI_VALUE*0.00004*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $cos(2.0*PI_VALUE*0.00005*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.01*samp_num));
+    //         i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $sin(2.0*PI_VALUE*0.00002*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $sin(2.0*PI_VALUE*0.00003*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $sin(2.0*PI_VALUE*0.00004*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $sin(2.0*PI_VALUE*0.00005*samp_num))
+    //             + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.01*samp_num));
+    //         i_valid = 1'b1;
+    //         samp_num = samp_num + 1;
+    //         #10;
+    //     end
+    // end
+    // i_valid = 1'b0;
+    // #2000;
+    // if (run_count != 4000) begin
+    //     $display("Error: Test 4 failed! Expected 4000 samples at output but received %d.", run_count);
+    //     glbl_err_count++;
+    // end
+    // #100;
+    // $display("Test 4 Done!");
+
+    // // Test 5: Sine sweep to file
+    // $display("Test 5 Started!");
+    // test_number = 5;
+    // for(fc = -0.5/313; fc < 0.5/313; fc = fc + 0.01/313) begin
+    //     $display("    Setting sinusoidal frequency to %f", fc);
+    //     reset_all();
+    //     #1000;
+    //     samp_num = 0;
+    //     for(integer lcount = 0; lcount < 4000*313; lcount++) begin
+    //         @(negedge i_clock) begin
+    //             i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*fc*samp_num));
+    //             i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*fc*samp_num));
+    //             i_valid = 1'b1;
+    //             samp_num = samp_num + 1;
+    //             #10;
+    //         end
+    //     end
+    //     i_valid = 1'b0;
+    //     #2000;
+    // end
+    // if (run_count != 4000) begin
+    //     $display("Error: Test 5 failed! Expected 4000 samples at output but received %d.", run_count);
+    //     glbl_err_count++;
+    // end
+    // #100;
+    // $display("Test 5 Done!");
+
+    // Test 6:
+    $display("Test 6 Started!");
+    test_number = 6;
     reset_all();
     #1000;
     samp_num = 0;
-    for(integer lcount = 0; lcount < 4*3130; lcount++) begin
-        @(negedge i_clock) begin
-            i_inph_data = $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num)));
-            i_quad_data = $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num)));
-            i_valid = 1'b1;
-            samp_num = samp_num + 1;
-            #10;
-        end
-    end
-    i_valid = 1'b0;
-    #2000;
-    if (run_count != 40) begin
-        $display("Error: Test 2 failed! Expected 40 samples at output but received %d.", run_count);
+    stim_fid = $fopen("stimulus.mif","r");
+    if ($feof(stim_fid) || (!stim_fid)) begin
+        $display("Failed to open stimulus file.");
         glbl_err_count++;
-    end
-    #100;
-    $display("Test 2 Done!");
-
-    // Test 3: Simple Sine In, Simple Sine Out to File
-    $display("Test 3 Started!");
-    test_number = 3;
-    reset_all();
-    #1000;
-    samp_num = 0;
-    for(integer lcount = 0; lcount < 4000*313; lcount++) begin
+    end else for(integer lcount = 0; lcount < 1079539; lcount++) begin
         @(negedge i_clock) begin
-            i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.0001*samp_num));
-            i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.0001*samp_num));
-            i_valid = 1'b1;
-            samp_num = samp_num + 1;
-            #10;
-        end
-    end
-    i_valid = 1'b0;
-    #2000;
-    if (run_count != 4000) begin
-        $display("Error: Test 3 failed! Expected 4000 samples at output but received %d.", run_count);
-        glbl_err_count++;
-    end
-    #100;
-    $display("Test 3 Done!");
-
-    // Test 4: Simple Sines In, Simple Sines Out to File
-    $display("Test 4 Started!");
-    test_number = 4;
-    reset_all();
-    #1000;
-    samp_num = 0;
-    for(integer lcount = 0; lcount < 4000*313; lcount++) begin
-        @(negedge i_clock) begin
-            i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $cos(2.0*PI_VALUE*0.00002*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $cos(2.0*PI_VALUE*0.00003*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $cos(2.0*PI_VALUE*0.00004*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $cos(2.0*PI_VALUE*0.00005*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.01*samp_num));
-            i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $sin(2.0*PI_VALUE*0.00002*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $sin(2.0*PI_VALUE*0.00003*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $sin(2.0*PI_VALUE*0.00004*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $sin(2.0*PI_VALUE*0.00005*samp_num))
-                + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.01*samp_num));
-            i_valid = 1'b1;
-            samp_num = samp_num + 1;
-            #10;
-        end
-    end
-    i_valid = 1'b0;
-    #2000;
-    if (run_count != 4000) begin
-        $display("Error: Test 4 failed! Expected 4000 samples at output but received %d.", run_count);
-        glbl_err_count++;
-    end
-    #100;
-    $display("Test 4 Done!");
-
-    // Test 5: Sine sweep to file
-    $display("Test 5 Started!");
-    test_number = 5;
-    for(fc = -0.5/313; fc < 0.5/313; fc = fc + 0.01/313) begin
-        $display("    Setting sinusoidal frequency to %f", fc);
-        reset_all();
-        #1000;
-        samp_num = 0;
-        for(integer lcount = 0; lcount < 4000*313; lcount++) begin
-            @(negedge i_clock) begin
-                i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*fc*samp_num));
-                i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*fc*samp_num));
-                i_valid = 1'b1;
-                samp_num = samp_num + 1;
-                #10;
+            if($fscanf(stim_fid, "%b", iq_data) != 1) begin
+                $display("Failed to read line in stimulus file.");
+                glbl_err_count++;
             end
+            i_inph_data = { { (WIDTH-16){ iq_data[15] } }, iq_data[15:0] };
+            i_quad_data = { { (WIDTH-16){ iq_data[31] } }, iq_data[31:16] };
+            i_valid = 1'b1;
+            #10;
         end
-        i_valid = 1'b0;
-        #2000;
     end
+    if (stim_fid) begin
+        $fclose(stim_fid);
+    end
+    stim_fid = 0;
+    i_valid = 1'b0;
+    #2000;
     if (run_count != 4000) begin
-        $display("Error: Test 5 failed! Expected 4000 samples at output but received %d.", run_count);
+        $display("Error: Test 6 failed! Expected 4000 samples at output but received %d.", run_count);
         glbl_err_count++;
     end
     #100;
-    $display("Test 5 Done!");
+    $display("Test 6 Done!");
 
 /*
     // Test 6: Impulse Response (for human eyes -- comment out for automated testing)
