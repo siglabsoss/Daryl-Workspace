@@ -101,15 +101,19 @@ task reset_all;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
 
+real frequencies [0:4999] = '{ 5000{ 0.0 } };
+real passband_mean;
+integer freq_count;
 integer samp_num;
 real fc;
+
 
 initial begin: stimulus
     i_reset = 1'b1;
     samp_num = 0;
     #1000;
     reset_all();
-/*
+
     // Test 1: No data in = no data out.
     $display("Test 1 Started!");
     test_number = 1;
@@ -209,7 +213,6 @@ initial begin: stimulus
     end
     #100;
     $display("Test 4 Done!");
-*/
 
     // Test 5: Sine sweep to file
     $display("Test 5 Started!");
@@ -239,7 +242,7 @@ initial begin: stimulus
     $display("Test 5 Done!");
 
 /*
-    // Test 6: Impulse Response
+    // Test 6: Impulse Response (for human eyes -- comment out for automated testing)
     $display("Test 6 Started!");
     test_number = 6;
     reset_all();
@@ -270,6 +273,26 @@ initial begin: stimulus
     #100;
     $display("Test 6 Done!");
 */
+
+    // Test the passband ripple is less than 0.5 dB
+    passband_mean = 0.0;
+    for (integer fcount = 0; fcount < freq_count; fcount++) begin
+        passband_mean = passband_mean + frequencies[fcount];
+    end
+    passband_mean = passband_mean / $itor(freq_count);
+    for (integer fcount = 0; fcount < freq_count; fcount++) begin
+        if (frequencies[fcount] > passband_mean) begin
+            if (20*$log10((frequencies[fcount] - passband_mean)) > 0.5) begin
+                $display("Error, ripple in passband exceeds 0.5 dB!");
+                glbl_err_count++;
+            end
+        end else if (frequencies[fcount] < passband_mean) begin
+            if (20*$log10((passband_mean - frequencies[fcount])) > 0.5) begin
+                $display("Error, ripple in passband exceeds 0.5 dB!");
+                glbl_err_count++;
+            end
+        end
+    end
 
     // Finished
     #10000;
@@ -305,6 +328,7 @@ always @(posedge i_clock) begin: seq_check
     if (i_reset == 1'b1) begin
         last_frequency <= -100.0;
         run_count <= 0;
+        freq_count <= 0;
     end else begin
         // Track number of outputs received
         if (o_valid == 1'b1) begin
@@ -331,6 +355,12 @@ always @(posedge i_clock) begin: seq_check
                     magnitude = $sqrt(inph * inph + quad * quad);
                     phase = $atan2(quad, inph);
                     $fwrite(fid5,"%f, %f\n", magnitude, phase);
+
+                    if ((fc > -0.25/313.0) && (fc < 0.25/313.0)) begin
+                        frequencies[freq_count] <= magnitude;
+                        freq_count <= freq_count + 1;
+                    end
+
                     last_frequency <= fc;
                 end
             end
