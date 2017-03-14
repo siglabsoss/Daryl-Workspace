@@ -10,7 +10,7 @@ module tb_cic_decim;
 localparam integer IN_WIDTH = 16;
 localparam real PI_VALUE = 4 * $atan(1.0);
 
-localparam integer WIDTH = 65;
+localparam integer WIDTH = 66;
 localparam integer FACTOR = 313;
 localparam integer DELAY = 2;
 localparam integer STAGES = 5;
@@ -40,9 +40,9 @@ logic                comp_quad_pos_oflow;
 logic                comp_quad_neg_oflow;
 logic                comp_valid;
 
-// logic [WIDTH-1:0] test_inph_data;
-// logic [WIDTH-1:0] test_quad_data;
-// logic             test_valid;
+// logic [IN_WIDTH-1:0] test_inph_data;
+// logic [IN_WIDTH-1:0] test_quad_data;
+// logic                test_valid;
 // integer           tcount = 0;
 // always @(posedge i_clock) begin
 //     if (tcount == 312) begin
@@ -102,13 +102,14 @@ task reset_all;
 endtask: reset_all
 
 integer samp_num;
+real fc;
 
 initial begin: stimulus
     i_reset = 1'b1;
     samp_num = 0;
     #1000;
     reset_all();
-
+/*
     // Test 1: No data in = no data out.
     $display("Test 1 Started!");
     test_number = 1;
@@ -135,8 +136,8 @@ initial begin: stimulus
     samp_num = 0;
     for(integer lcount = 0; lcount < 4*3130; lcount++) begin
         @(negedge i_clock) begin
-            i_inph_data <= $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num)));
-            i_quad_data <= $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num)));
+            i_inph_data = $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num)));
+            i_quad_data = $rtoi($floor(0.5 + $itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num)));
             i_valid = 1'b1;
             samp_num = samp_num + 1;
             #10;
@@ -159,8 +160,8 @@ initial begin: stimulus
     samp_num = 0;
     for(integer lcount = 0; lcount < 4000*313; lcount++) begin
         @(negedge i_clock) begin
-            i_inph_data <= $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.0001*samp_num));
-            i_quad_data <= $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.0001*samp_num));
+            i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.0001*samp_num));
+            i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.0001*samp_num));
             i_valid = 1'b1;
             samp_num = samp_num + 1;
             #10;
@@ -183,13 +184,13 @@ initial begin: stimulus
     samp_num = 0;
     for(integer lcount = 0; lcount < 4000*313; lcount++) begin
         @(negedge i_clock) begin
-            i_inph_data <= $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num))
+            i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.00001*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $cos(2.0*PI_VALUE*0.00002*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $cos(2.0*PI_VALUE*0.00003*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $cos(2.0*PI_VALUE*0.00004*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-5) - 1) * $cos(2.0*PI_VALUE*0.00005*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*0.01*samp_num));
-            i_quad_data <= $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num))
+            i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*0.00001*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-2) - 1) * $sin(2.0*PI_VALUE*0.00002*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-3) - 1) * $sin(2.0*PI_VALUE*0.00003*samp_num))
                 + $rtoi($itor((1 << IN_WIDTH-4) - 1) * $sin(2.0*PI_VALUE*0.00004*samp_num))
@@ -208,6 +209,67 @@ initial begin: stimulus
     end
     #100;
     $display("Test 4 Done!");
+*/
+
+    // Test 5: Sine sweep to file
+    $display("Test 5 Started!");
+    test_number = 5;
+    for(fc = -0.5/313; fc < 0.5/313; fc = fc + 0.01/313) begin
+        $display("    Setting sinusoidal frequency to %f", fc);
+        reset_all();
+        #1000;
+        samp_num = 0;
+        for(integer lcount = 0; lcount < 4000*313; lcount++) begin
+            @(negedge i_clock) begin
+                i_inph_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $cos(2.0*PI_VALUE*fc*samp_num));
+                i_quad_data = $rtoi($itor((1 << IN_WIDTH-1) - 1) * $sin(2.0*PI_VALUE*fc*samp_num));
+                i_valid = 1'b1;
+                samp_num = samp_num + 1;
+                #10;
+            end
+        end
+        i_valid = 1'b0;
+        #2000;
+    end
+    if (run_count != 4000) begin
+        $display("Error: Test 5 failed! Expected 4000 samples at output but received %d.", run_count);
+        glbl_err_count++;
+    end
+    #100;
+    $display("Test 5 Done!");
+
+/*
+    // Test 6: Impulse Response
+    $display("Test 6 Started!");
+    test_number = 6;
+    reset_all();
+    #1000;
+    samp_num = 0;
+    for(integer lcount = 0; lcount < 4000; lcount++) begin
+        @(negedge i_clock) begin
+            if (lcount == 0) begin
+                test_inph_data = (1 << IN_WIDTH-3);
+                test_quad_data = (1 << IN_WIDTH-3);
+            end else begin
+                test_inph_data = 0;
+                test_quad_data = 0;
+            end
+            test_valid = 1'b1;
+            samp_num = samp_num + 1;
+            #10;
+            test_valid = 1'b0;
+            #3120;
+        end
+    end
+    test_valid = 1'b0;
+    #2000;
+    if (run_count != 4000) begin
+        $display("Error: Test 6 failed! Expected 4000 samples at output but received %d.", run_count);
+        glbl_err_count++;
+    end
+    #100;
+    $display("Test 6 Done!");
+*/
 
     // Finished
     #10000;
@@ -219,30 +281,58 @@ end
 
 integer fid3;
 integer fid4;
+integer fid5;
 
 initial begin
     fid3 = $fopen("test3.txt", "w+");
     fid4 = $fopen("test4.txt", "w+");
+    fid5 = $fopen("test5.txt", "w+");
 end
 
 final begin
     $fclose(fid3);
     $fclose(fid4);
+    $fclose(fid5);
 end
 
 // Tests the output sequence to make sure it matches the input
+real last_frequency;
+real magnitude;
+real phase;
+real inph;
+real quad;
 always @(posedge i_clock) begin: seq_check
     if (i_reset == 1'b1) begin
+        last_frequency <= -100.0;
         run_count <= 0;
     end else begin
         // Track number of outputs received
         if (o_valid == 1'b1) begin
             run_count <= run_count + 1;
-            if(test_number == 3) begin
+            if (test_number == 3) begin
                 $fwrite(fid3,"%d, %d\n", $signed(o_inph_data), $signed(o_quad_data));
             end
-            if(test_number == 4) begin
+            if (test_number == 4) begin
                 $fwrite(fid4,"%d, %d\n", $signed(o_inph_data), $signed(o_quad_data));
+            end
+        end
+        if (comp_valid == 1'b1) begin
+            if (test_number == 5) begin
+                if ((samp_num > 3000*313) && (last_frequency != fc)) begin
+                    inph = $signed(o_inph_data);
+                    quad = $signed(o_quad_data);
+                    //$display("%f, %f", inph, quad);
+                    magnitude = $sqrt(inph * inph + quad * quad);
+                    phase = $atan2(quad, inph);
+                    $fwrite(fid5,"%f, %f, %f, ", fc, magnitude, phase);
+                    inph = $signed(comp_inph_data);
+                    quad = $signed(comp_quad_data);
+                    //$display("%f, %f\n", inph, quad);
+                    magnitude = $sqrt(inph * inph + quad * quad);
+                    phase = $atan2(quad, inph);
+                    $fwrite(fid5,"%f, %f\n", magnitude, phase);
+                    last_frequency <= fc;
+                end
             end
         end
     end
