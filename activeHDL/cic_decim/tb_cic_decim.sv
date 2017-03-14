@@ -297,6 +297,12 @@ initial begin: stimulus
     // Finished
     #10000;
     glbl_err_count = glbl_err_count + local_err_count;
+    #100;
+    if (glbl_err_count == 0) begin
+        $display("<<TB_SUCCESS>>");
+    end else begin
+        $display("Error count = %d", glbl_err_count);
+    end
     $display("Simulation done!");
     $finish();
 
