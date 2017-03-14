@@ -115,21 +115,14 @@ assign quad_coeff_entry_reg0 = coeff_entry_reg0;
 
 // Tap Delay Line
 localparam integer F_LENGTH = 2 * F_HALF_ORDER + 1;
-logic signed [F_LENGTH*WIDTH-1:0] inph_tdl;
-logic signed [F_LENGTH*WIDTH-1:0] quad_tdl;
+logic signed [F_LENGTH*WIDTH-1:0] inph_tdl = { (F_LENGTH*WIDTH){ 1'b0 } };
+logic signed [F_LENGTH*WIDTH-1:0] quad_tdl = { (F_LENGTH*WIDTH){ 1'b0 } };
 logic signed [WIDTH-1:0]          lhs_inph_reg0;
 logic signed [WIDTH-1:0]          lhs_quad_reg0;
 logic signed [WIDTH-1:0]          rhs_inph_reg0;
 logic signed [WIDTH-1:0]          rhs_quad_reg0;
 logic signed [WIDTH-1:0]          mid_inph_reg0;
 logic signed [WIDTH-1:0]          mid_quad_reg0;
-
-`ifdef SIMULATION
-initial begin
-    inph_tdl = { (F_LENGTH*WIDTH){ 1'b0 } };
-    quad_tdl = { (F_LENGTH*WIDTH){ 1'b0 } };
-end
-`endif
 
 always_ff @(posedge i_clock) begin
     if ((i_valid & o_ready) == 1'b1) begin
@@ -142,8 +135,8 @@ always_ff @(posedge i_clock) begin
         end
 
         // Multiply-free delay (remains in this register until ready goes high again)
-        mid_inph_reg0 <= inph_tdl[(F_HALF_ORDER+1)*WIDTH-1-:WIDTH];
-        mid_quad_reg0 <= quad_tdl[(F_HALF_ORDER+1)*WIDTH-1-:WIDTH];
+        mid_inph_reg0 <= inph_tdl[(F_HALF_ORDER)*WIDTH-1-:WIDTH];
+        mid_quad_reg0 <= quad_tdl[(F_HALF_ORDER)*WIDTH-1-:WIDTH];
     end
 
     // Symmetric delays to the preadders
