@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module downconverter #(
+module upconverter #(
     parameter integer WIDTH = 16
 ) (
     input  wire logic [WIDTH-1:0] i_inph_data,

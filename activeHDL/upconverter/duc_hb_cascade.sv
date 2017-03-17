@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module ddc_hb_cascade #(
+module duc_hb_cascade #(
     parameter integer WIDTH = 16
 ) (
     input  wire logic [WIDTH-1:0] i_inph_data,
@@ -21,8 +21,8 @@ logic [WIDTH-1:0] h0_inph_data;
 logic [WIDTH-1:0] h0_quad_data;
 logic             h0_valid;
 
-ddc_hb_decim_firx2_h0 #(.WIDTH(WIDTH))
-hb_decim_firx2_h0_inst (
+duc_hb_interp_fir_h0 #(.WIDTH(WIDTH))
+hb_interp_fir_h0_inst (
     .i_inph_data      (i_inph_data      ),
     .i_quad_data      (i_quad_data      ),
     .i_inph_delay_data(i_inph_delay_data),
@@ -38,8 +38,8 @@ logic [WIDTH-1:0] h1_inph_data;
 logic [WIDTH-1:0] h1_quad_data;
 logic             h1_valid;
 
-ddc_hb_decim_fir_h1 #(.WIDTH(WIDTH))
-hb_decim_fir_h1_inst (
+duc_hb_interp_fir_h1 #(.WIDTH(WIDTH))
+hb_interp_fir_h1_inst (
     .i_inph_data      (h0_inph_data     ),
     .i_quad_data      (h0_quad_data     ),
     .i_valid          (h0_valid         ),
@@ -49,8 +49,8 @@ hb_decim_fir_h1_inst (
     .i_clock          (i_clock          ),
     .i_reset          (i_reset          ));
 
-ddc_hb_decim_fir_h2 #(.WIDTH(WIDTH))
-hb_decim_fir_h2_inst (
+duc_hb_interp_firx2_h2 #(.WIDTH(WIDTH))
+hb_interp_firx2_h2_inst (
     .i_inph_data      (h1_inph_data     ),
     .i_quad_data      (h1_quad_data     ),
     .i_valid          (h1_valid         ),
@@ -60,6 +60,6 @@ hb_decim_fir_h2_inst (
     .i_clock          (i_clock          ),
     .i_reset          (i_reset          ));
 
-endmodule: ddc_hb_cascade
+endmodule: duc_hb_cascade
 
 `default_nettype wire
