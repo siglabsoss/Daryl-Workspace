@@ -19,15 +19,15 @@ module cic_compfir #(
     input  wire logic             i_reset
 );
 
-localparam integer F_HALF_ORDER = {{ half_order_of_h }};
-logic [{{ '$' }}clog2(F_HALF_ORDER)-1:0] ready_count;
+localparam integer F_HALF_ORDER = 16;
+logic [$clog2(F_HALF_ORDER)-1:0] ready_count;
 logic                                    accum_start;
 logic                                    accum_finish;
 
 always_ff @(posedge i_clock) begin
     // Counter to determine input pushback
     if (i_reset == 1'b1) begin
-        ready_count <= { {{ '$' }}clog2(F_HALF_ORDER){ 1'b0 } };
+        ready_count <= { $clog2(F_HALF_ORDER){ 1'b0 } };
         //o_ready <= 1'b0;
         accum_start <= 1'b0;
         accum_finish <= 1'b0;
@@ -38,12 +38,12 @@ always_ff @(posedge i_clock) begin
         accum_finish <= 1'b0;
     end else if (ready_count > 0) begin
         ready_count <= ready_count - 1;
-        //o_ready <= ready_count == { { ({{ '$' }}clog2(F_HALF_ORDER)-1){ 1'b0 } }, 1'b1 };
+        //o_ready <= ready_count == { { ($clog2(F_HALF_ORDER)-1){ 1'b0 } }, 1'b1 };
         accum_start <= 1'b0;
-        accum_finish <= ready_count == { { ({{ '$' }}clog2(F_HALF_ORDER)-1){ 1'b0 } }, 1'b1 };
+        accum_finish <= ready_count == { { ($clog2(F_HALF_ORDER)-1){ 1'b0 } }, 1'b1 };
     end else begin
         accum_finish <= 1'b0;
-        //o_ready <= ready_count == { { {{ '$' }}clog2(F_HALF_ORDER){ 1'b0 } } };
+        //o_ready <= ready_count == { { $clog2(F_HALF_ORDER){ 1'b0 } } };
     end
 end
 
@@ -56,11 +56,55 @@ logic               accum_start_reg0;
 logic               accum_finish_reg0;
 
 always_ff @ (posedge i_clock) begin
-    case (ready_count){% for hb in h_binary %}{% if not loop.last %}
-    {{ loop.revindex0 }}: begin{% else %}
-    default: begin{% endif %}
-        coeff_entry_reg0 <= 18'sb{{ hb }};
-    end{% endfor %}
+    case (ready_count)
+    15: begin
+        coeff_entry_reg0 <= 18'sb000000000010100011;
+    end
+    14: begin
+        coeff_entry_reg0 <= 18'sb111111110110001011;
+    end
+    13: begin
+        coeff_entry_reg0 <= 18'sb111111111100100001;
+    end
+    12: begin
+        coeff_entry_reg0 <= 18'sb000000100110001111;
+    end
+    11: begin
+        coeff_entry_reg0 <= 18'sb111111010111111100;
+    end
+    10: begin
+        coeff_entry_reg0 <= 18'sb111111001101101010;
+    end
+    9: begin
+        coeff_entry_reg0 <= 18'sb000010011001101100;
+    end
+    8: begin
+        coeff_entry_reg0 <= 18'sb111110111110010111;
+    end
+    7: begin
+        coeff_entry_reg0 <= 18'sb111100010001101010;
+    end
+    6: begin
+        coeff_entry_reg0 <= 18'sb000101110110110110;
+    end
+    5: begin
+        coeff_entry_reg0 <= 18'sb000000110101100011;
+    end
+    4: begin
+        coeff_entry_reg0 <= 18'sb110101000011010110;
+    end
+    3: begin
+        coeff_entry_reg0 <= 18'sb001000100100010111;
+    end
+    2: begin
+        coeff_entry_reg0 <= 18'sb001010011011110000;
+    end
+    1: begin
+        coeff_entry_reg0 <= 18'sb101010100011100100;
+    end
+    default: begin
+        coeff_entry_reg0 <= 18'sb111110000001110101;
+    end
     // Implied center coefficient is 1.0 in Q(2,16) format (no multiply needed)
     endcase
     accum_start_reg0 <= accum_start;
@@ -104,13 +148,103 @@ always_ff @(posedge i_clock) begin
     end
 
     // Symmetric delays to the preadders
-    case (ready_count){% for hb in h_binary %}
-    {{ loop.revindex0 }}: begin
-        lhs_inph_reg0 <= inph_tdl[({{ loop.index0 }}+1)*WIDTH-1-:WIDTH];
-        lhs_quad_reg0 <= quad_tdl[({{ loop.index0 }}+1)*WIDTH-1-:WIDTH];
-        rhs_inph_reg0 <= inph_tdl[({{ 2*half_order_of_h - loop.index0 }}+1)*WIDTH-1-:WIDTH];
-        rhs_quad_reg0 <= quad_tdl[({{ 2*half_order_of_h - loop.index0 }}+1)*WIDTH-1-:WIDTH];
-    end{% endfor %}
+    case (ready_count)
+    15: begin
+        lhs_inph_reg0 <= inph_tdl[(0+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(0+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(32+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(32+1)*WIDTH-1-:WIDTH];
+    end
+    14: begin
+        lhs_inph_reg0 <= inph_tdl[(1+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(1+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(31+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(31+1)*WIDTH-1-:WIDTH];
+    end
+    13: begin
+        lhs_inph_reg0 <= inph_tdl[(2+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(2+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(30+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(30+1)*WIDTH-1-:WIDTH];
+    end
+    12: begin
+        lhs_inph_reg0 <= inph_tdl[(3+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(3+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(29+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(29+1)*WIDTH-1-:WIDTH];
+    end
+    11: begin
+        lhs_inph_reg0 <= inph_tdl[(4+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(4+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(28+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(28+1)*WIDTH-1-:WIDTH];
+    end
+    10: begin
+        lhs_inph_reg0 <= inph_tdl[(5+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(5+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(27+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(27+1)*WIDTH-1-:WIDTH];
+    end
+    9: begin
+        lhs_inph_reg0 <= inph_tdl[(6+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(6+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(26+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(26+1)*WIDTH-1-:WIDTH];
+    end
+    8: begin
+        lhs_inph_reg0 <= inph_tdl[(7+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(7+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(25+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(25+1)*WIDTH-1-:WIDTH];
+    end
+    7: begin
+        lhs_inph_reg0 <= inph_tdl[(8+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(8+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(24+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(24+1)*WIDTH-1-:WIDTH];
+    end
+    6: begin
+        lhs_inph_reg0 <= inph_tdl[(9+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(9+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(23+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(23+1)*WIDTH-1-:WIDTH];
+    end
+    5: begin
+        lhs_inph_reg0 <= inph_tdl[(10+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(10+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(22+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(22+1)*WIDTH-1-:WIDTH];
+    end
+    4: begin
+        lhs_inph_reg0 <= inph_tdl[(11+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(11+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(21+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(21+1)*WIDTH-1-:WIDTH];
+    end
+    3: begin
+        lhs_inph_reg0 <= inph_tdl[(12+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(12+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(20+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(20+1)*WIDTH-1-:WIDTH];
+    end
+    2: begin
+        lhs_inph_reg0 <= inph_tdl[(13+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(13+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(19+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(19+1)*WIDTH-1-:WIDTH];
+    end
+    1: begin
+        lhs_inph_reg0 <= inph_tdl[(14+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(14+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(18+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(18+1)*WIDTH-1-:WIDTH];
+    end
+    0: begin
+        lhs_inph_reg0 <= inph_tdl[(15+1)*WIDTH-1-:WIDTH];
+        lhs_quad_reg0 <= quad_tdl[(15+1)*WIDTH-1-:WIDTH];
+        rhs_inph_reg0 <= inph_tdl[(17+1)*WIDTH-1-:WIDTH];
+        rhs_quad_reg0 <= quad_tdl[(17+1)*WIDTH-1-:WIDTH];
+    end
     endcase
 end
 
@@ -152,7 +286,7 @@ always_ff @(posedge i_clock) begin
 end
 
 // Accumulation
-localparam integer MAX_FILTER_GAIN = {{ max_filter_gain }};
+localparam integer MAX_FILTER_GAIN = 20;
 logic signed [WIDTH+18+MAX_FILTER_GAIN:0] inph_accum_reg3;
 logic signed [WIDTH+18+MAX_FILTER_GAIN:0] quad_accum_reg3;
 logic                                     accum_finish_reg3;
@@ -189,7 +323,7 @@ always_ff @(posedge i_clock) begin
 end
 
 // Perform convergent rounding
-localparam integer LOG2_DC_GAIN = {{ log2_dc_gain }};
+localparam integer LOG2_DC_GAIN = 15;
 logic signed [WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:0] inph_rounded_result_reg5;
 logic signed [WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:0] quad_rounded_result_reg5;
 
