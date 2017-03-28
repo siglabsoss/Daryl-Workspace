@@ -170,7 +170,6 @@ end
 // Add 1*1 to result (implied coefficient)
 logic signed [WIDTH+18+MAX_FILTER_GAIN:0] inph_result_reg4;
 logic signed [WIDTH+18+MAX_FILTER_GAIN:0] quad_result_reg4;
-logic                                     valid_reg4;
 
 always_ff @(posedge i_clock) begin
     if (accum_finish_reg3 == 1'b1) begin
@@ -240,12 +239,6 @@ always_ff @(posedge i_clock) begin
             } + quad_result_reg4[LOG2_DC_GAIN-1];
         end
     end
-    // Valid signal propagation
-    if (i_reset == 1'b1) begin
-        valid_reg5 <= 1'b0;
-    end else begin
-        valid_reg5 <= valid_reg4;
-    end
 end
 
 // Perform saturation
@@ -257,7 +250,6 @@ always_ff @(posedge i_clock) begin
         o_inph_neg_oflow <= 1'b0;
         o_quad_pos_oflow <= 1'b0;
         o_quad_neg_oflow <= 1'b0;
-        o_valid <= 1'b0;
     end else begin
         // In-Phase Saturation Detection
         if (((&inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b1)
