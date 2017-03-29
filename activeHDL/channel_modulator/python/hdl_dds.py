@@ -35,8 +35,8 @@ def mybin(x, N=36):
 
 lut_width = 12;
 
-sin_values = [ mybin(int(sk)) for sk in np.round((2**35-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
-cos_values = [ mybin(int(ck)) for ck in np.round((2**35-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
+sin_values = [ mybin(int(sk), N=18) for sk in np.round((2**17-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
+cos_values = [ mybin(int(ck), N=18) for ck in np.round((2**17-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
 
 #os.system('rm -f dds.sv')
 os.system('del /Q dds.sv')

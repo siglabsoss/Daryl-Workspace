@@ -5,8 +5,8 @@
 module {{ romname }} (
     input  wire logic [{{ lut_width }}-1:0] i_phase_inc,
     input  wire logic          i_phase_inc_valid,
-    output      logic [36-1:0] o_cosine_data,
-    output      logic [36-1:0] o_sine_data,
+    output      logic [18-1:0] o_cosine_data,
+    output      logic [18-1:0] o_sine_data,
     input       logic          i_ready,
     input  wire logic          i_clock,
     input  wire logic          i_reset
