@@ -252,10 +252,10 @@ always_ff @(posedge i_clock) begin
         o_quad_neg_oflow <= 1'b0;
     end else begin
         // In-Phase Saturation Detection
-        if (((&inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b1)
-                && ((|inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b0)) begin
+        if (((&inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:WIDTH-1]) != 1'b1)
+                && ((|inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:WIDTH-1]) != 1'b0)) begin
             // Saturation event
-            if (inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1] == 1'b0) begin
+            if (inph_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1] == 1'b0) begin
                 o_inph_pos_oflow <= 1'b1;
                 o_inph_neg_oflow <= 1'b0;
                 o_inph <= { 1'b0, { (WIDTH-1){ 1'b1 } } };
@@ -272,10 +272,10 @@ always_ff @(posedge i_clock) begin
         end
 
         // Quadrature Saturation Detection
-        if (((&quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b1)
-                && ((|quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1:WIDTH-1]) != 1'b0)) begin
+        if (((&quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:WIDTH-1]) != 1'b1)
+                && ((|quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1:WIDTH-1]) != 1'b0)) begin
             // Saturation event
-            if (quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-16+1] == 1'b0) begin
+            if (quad_rounded_result_reg5[WIDTH+18+MAX_FILTER_GAIN-LOG2_DC_GAIN+1] == 1'b0) begin
                 o_quad_pos_oflow <= 1'b1;
                 o_quad_neg_oflow <= 1'b0;
                 o_quad <= { 1'b0, { (WIDTH-1){ 1'b1 } } };
