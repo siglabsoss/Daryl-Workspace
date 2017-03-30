@@ -28,7 +28,6 @@ logic stage0_proceed;
 logic stage1_proceed;
 logic stage2_proceed;
 logic stage3_proceed;
-logic stage4_proceed;
 
 logic stage0_valid;
 logic stage1_valid;
@@ -59,8 +58,8 @@ logic signed [WIDTH-1:0]    quad_reg0;
 logic signed [17:0]         cos_reg0;
 logic signed [17:0]         sin_reg0;
 
-logic signed [WIDTH+18-1:0] inph_cos_reg1
-logic signed [WIDTH+18-1:0] inph_sin_reg1
+logic signed [WIDTH+18-1:0] inph_cos_reg1;
+logic signed [WIDTH+18-1:0] inph_sin_reg1;
 logic signed [WIDTH-1:0]    quad_reg1;
 logic signed [17:0]         cos_reg1;
 logic signed [17:0]         sin_reg1;
@@ -133,7 +132,7 @@ always_ff @(posedge i_clock) begin
 end
 
 always_comb begin
-    case (curr_state) begin
+    case (curr_state)
     ST_EMPTY: begin
         if (i_valid == 1'b1) begin
             next_state = ST_NORMAL;
@@ -144,7 +143,6 @@ always_comb begin
         stage1_proceed = 1'b0;
         stage2_proceed = 1'b0;
         stage3_proceed = 1'b0;
-        stage4_proceed = 1'b0;
         o_valid = 1'b0;
         o_ready = 1'b1;
     end

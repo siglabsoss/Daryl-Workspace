@@ -20,6 +20,6 @@ vlib work
 # Compile the Verilog Files
 Compile-Verilog tb_channel_modulator.sv
 Compile-Verilog channel_modulator.sv
-
+Compile-Verilog chmod_dds.sv
 # Execute the Simulation
 vsimsa -do dosim.do

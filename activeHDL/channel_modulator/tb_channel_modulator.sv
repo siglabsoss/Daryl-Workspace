@@ -8,18 +8,29 @@
 module tb_channel_modulator;
 
 localparam integer WIDTH = 16;
+localparam integer NUM_CHANNELS = 2048;
 
+// Input Sample Interface
+logic [WIDTH-1:0] i_inph;
+logic [WIDTH-1:0] i_quad;
+logic             i_valid;
+logic             o_ready;
+// Phase Accumulator Increment
+logic [12-1:0]    i_phase_inc;
+logic             i_phase_inc_valid;
+// Output Sample Interface
+logic [WIDTH-1:0] o_inph;
+logic [WIDTH-1:0] o_quad;
+logic             o_valid;
+logic             i_ready;
 // Clock and Reset
-logic                i_clock;
-logic                i_reset;
-// Upstream signaling
-logic [WIDTH-1:0]    i_in_data;
-logic                i_in_valid;
-// Downstream signaling
-logic [WIDTH-1:0]    o_out_data;
-logic                o_out_valid;
+logic             i_clock;
+logic             i_reset;
 
-channel_modulator #(.WIDTH(WIDTH)) uut (.*);
+channel_modulator #(
+    .WIDTH(WIDTH),
+    .NUM_CHANNELS(NUM_CHANNELS))
+uut (.*);
 
 always begin: clock_gen
     #5 i_clock = 1'b1;
@@ -38,8 +49,10 @@ logic [31:0] local_err_count = 0;
 
 task reset_all;
     i_reset = 1'b1;
-    i_in_data = 0;
-    i_in_valid = 1'b0;
+    i_inph = 0;
+    i_quad = 0;
+    i_valid = 1'b0;
+    i_ready = 1'b0;
     #1000;
     @(negedge i_clock) i_reset = 1'b0;
 endtask: reset_all
@@ -54,11 +67,12 @@ initial begin: stimulus
     test_number = 1;
     reset_all();
     #1000;
+    i_ready = 1'b1;
     @(negedge i_clock) begin
-        i_in_valid = 1'b0;
+        i_valid = 1'b0;
         #10;
     end
-    i_in_valid = 1'b0;
+    i_valid = 1'b0;
     #1000;
     if (run_count > 0) begin
         $display("Error: Test 1 failed! No data input, but data output received.");
@@ -81,7 +95,7 @@ always @(posedge i_clock) begin: seq_check
         run_count <= 0;
     end else begin
         // Track number of outputs received
-        if (o_out_valid == 1'b1) begin
+        if ((o_valid == 1'b1) && (i_ready == 1'b1)) begin
             run_count <= run_count + 1;
         end
     end
