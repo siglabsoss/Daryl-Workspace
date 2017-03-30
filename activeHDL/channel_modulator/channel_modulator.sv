@@ -28,6 +28,12 @@ logic stage0_proceed;
 logic stage1_proceed;
 logic stage2_proceed;
 logic stage3_proceed;
+logic stage4_proceed;
+
+logic stage0_valid;
+logic stage1_valid;
+logic stage2_valid;
+logic stage3_valid;
 
 logic [18-1:0] dds_cosine_data;
 logic [18-1:0] dds_sine_data;
@@ -47,6 +53,22 @@ enum {
     ST_NORMAL,
     ST_FULL
 } curr_state, next_state;
+
+logic signed [WIDTH-1:0]    inph_reg0;
+logic signed [WIDTH-1:0]    quad_reg0;
+logic signed [17:0]         cos_reg0;
+logic signed [17:0]         sin_reg0;
+
+logic signed [WIDTH+18-1:0] inph_cos_reg1
+logic signed [WIDTH+18-1:0] inph_sin_reg1
+logic signed [WIDTH-1:0]    quad_reg1;
+logic signed [17:0]         cos_reg1;
+logic signed [17:0]         sin_reg1;
+
+logic signed [WIDTH+18-1:0] inph_cos_reg2;
+logic signed [WIDTH+18-1:0] inph_sin_reg2;
+logic signed [WIDTH+18-1:0] quad_cos_reg2;
+logic signed [WIDTH+18-1:0] quad_sin_reg2;
 
 always_ff @(posedge i_clock) begin
     // FSM state update
@@ -122,6 +144,7 @@ always_comb begin
         stage1_proceed = 1'b0;
         stage2_proceed = 1'b0;
         stage3_proceed = 1'b0;
+        stage4_proceed = 1'b0;
         o_valid = 1'b0;
         o_ready = 1'b1;
     end
