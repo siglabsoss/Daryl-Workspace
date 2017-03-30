@@ -39,7 +39,7 @@ logic signed [WIDTH-1:0] sine_reg0 /* synthesis syn_ramstyle="block_ram" */;
 always_ff @ (posedge i_clock) begin
     if (i_ready == 1'b1) begin
         // Perform table look up
-        case(phase_accum[32-1:32-12])
+        case (phase_accum)
         0: begin
             cosine_reg0 <= 18'sb011111111111111111;
             sine_reg0   <= 18'sb000000000000000000;
