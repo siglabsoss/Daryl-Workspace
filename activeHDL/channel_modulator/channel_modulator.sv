@@ -106,28 +106,44 @@ always_ff @(posedge i_clock) begin
     end
 
     // Keep track of which stages have valid data
-    if (stage0_proceed == 1'b1) begin
-        stage0_valid <= 1'b1;
-    end else if (stage1_proceed == 1'b1) begin
+    if (i_reset == 1'b1) begin
         stage0_valid <= 1'b0;
+    end else begin
+        if (stage0_proceed == 1'b1) begin
+            stage0_valid <= 1'b1;
+        end else if (stage1_proceed == 1'b1) begin
+            stage0_valid <= 1'b0;
+        end
     end
 
-    if (stage1_proceed == 1'b1) begin
-        stage1_valid <= 1'b1;
-    end else if (stage2_proceed == 1'b1) begin
+    if (i_reset == 1'b1) begin
         stage1_valid <= 1'b0;
+    end else begin
+        if (stage1_proceed == 1'b1) begin
+            stage1_valid <= 1'b1;
+        end else if (stage2_proceed == 1'b1) begin
+            stage1_valid <= 1'b0;
+        end
     end
 
-    if (stage2_proceed == 1'b1) begin
-        stage2_valid <= 1'b1;
-    end else if (stage3_proceed == 1'b1) begin
+    if (i_reset == 1'b1) begin
         stage2_valid <= 1'b0;
+    end else begin
+        if (stage2_proceed == 1'b1) begin
+            stage2_valid <= 1'b1;
+        end else if (stage3_proceed == 1'b1) begin
+            stage2_valid <= 1'b0;
+        end
     end
 
-    if (stage3_proceed == 1'b1) begin
-        stage3_valid <= 1'b1;
-    end else if (i_ready == 1'b1) begin
+    if (i_reset == 1'b1) begin
         stage3_valid <= 1'b0;
+    end else begin
+        if (stage3_proceed == 1'b1) begin
+            stage3_valid <= 1'b1;
+        end else if (i_ready == 1'b1) begin
+            stage3_valid <= 1'b0;
+        end
     end
 end
 

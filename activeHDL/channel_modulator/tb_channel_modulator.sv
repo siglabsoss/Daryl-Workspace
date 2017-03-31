@@ -81,6 +81,33 @@ initial begin: stimulus
     #100;
     $display("Test 1 Done!");
 
+    // Test 2: Same amount of data in to out...
+    $display("Test 1 Started!");
+    test_number = 1;
+    i_phase_inc = 1;
+    i_phase_inc_valid = 1'b1;
+    reset_all();
+    #1000;
+    i_ready = 1'b1;
+    for (integer pidx = 0; pidx < 100000; pidx++) begin
+        @(negedge i_clock) begin
+            i_valid = 1'b1;
+            #10;
+            if (pidx % 5 > 0) begin
+                i_valid = 1'b0;
+                #10;
+            end
+        end
+    end
+    i_valid = 1'b0;
+    #1000;
+    if (run_count != 110000000) begin
+        $display("Error: Input 100000 samples, received %d samples.", run_count);
+        glbl_err_count++;
+    end
+    #100;
+    $display("Test 1 Done!");
+
     // Finished
     #10000;
     glbl_err_count = glbl_err_count + local_err_count;
