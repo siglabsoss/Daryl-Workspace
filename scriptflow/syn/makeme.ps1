@@ -1,0 +1,1 @@
+synpwrap -prj ../tcl/build_proj.tcl

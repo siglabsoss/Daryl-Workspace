@@ -1,0 +1,32 @@
+Running in Lattice mode
+
+
+Starting:    C:\lscc\diamond\3.8_x64\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\lscc\diamond\3.8_x64\synpbase
+Hostname:    USER-PC
+Date:        Thu Apr 06 15:59:45 2017
+Version:     L-2016.03L-1
+
+Arguments:   -product synplify_pro -batch ../tcl/build_proj.tcl
+ProductType: synplify_pro
+
+
+
+
+
+Error: At line 26 while processing "../tcl/build_proj.tcl"
+invalid command name "../hdl/top_level.sv"
+
+TCL script complete: "../tcl/build_proj.tcl"
+
+TCL script had errors: "../tcl/build_proj.tcl"
+
+exit status=9
+
+exit status=9
+
+Save changes for project:
+C:\Users\user\mygit\Daryl-Workspace\scriptflow\syn\test.prj
+
+batch mode default:no
+

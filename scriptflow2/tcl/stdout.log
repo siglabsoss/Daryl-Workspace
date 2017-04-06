@@ -1,0 +1,22 @@
+Running in Lattice mode
+
+
+Starting:    C:\lscc\diamond\3.8_x64\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\lscc\diamond\3.8_x64\synpbase
+Hostname:    USER-PC
+Date:        Thu Apr 06 15:49:44 2017
+Version:     L-2016.03L-1
+
+Arguments:   -product synplify_pro -batch build_proj.tcl
+ProductType: synplify_pro
+
+
+
+
+
+TCL script complete: "build_proj.tcl"
+
+exit status=0
+
+exit status=0
+
