@@ -1,0 +1,52 @@
+[Device]
+Family=ecp5u
+PartType=LFE5U-85F
+PartName=LFE5U-85F-8BG756C
+SpeedGrade=8
+Package=CABGA756
+OperatingCondition=COM
+Status=S
+
+[IP]
+VendorName=Lattice Semiconductor Corporation
+CoreType=LPM
+CoreStatus=Demo
+CoreName=RAM_DP
+CoreRevision=6.5
+ModuleName=testmem1
+SourceFormat=verilog
+ParameterFileVersion=1.0
+Date=04/06/2017
+Time=15:22:16
+
+[Parameters]
+Verilog=1
+VHDL=0
+EDIF=1
+Destination=Synplicity
+Expression=BusA(0 to 7)
+Order=Big Endian [MSB:LSB]
+IO=0
+RAddress=512
+RData=36
+WAddress=512
+WData=36
+enByte=0
+ByteSize=9
+OutputEn=1
+ClockEn=0
+Optimization=Speed
+Reset=Sync
+Reset1=Sync
+Init=0
+MemFile=
+MemFormat=bin
+EnECC=0
+Pipeline=0
+init_data=0
+
+[FilesGenerated]
+=mem
+
+[Command]
+cmd_line= -w -n testmem1 -lang verilog -synth synplify -bus_exp 7 -bb -arch sa5p00 -type ramdps -device LFE5U-85F -raddr_width 9 -rwidth 36 -waddr_width 9 -wwidth 36 -rnum_words 512 -wnum_words 512 -outdata REGISTERED -cascade -1 -resetmode SYNC -sync_reset -mem_init0
