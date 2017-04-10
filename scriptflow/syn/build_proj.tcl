@@ -23,30 +23,39 @@ set_option -dup false
 set_option -default_enum_encoding default
 set_option -write_apr_constraint 1
 
-set synthesis_files [list
-    ../hdl/top_level.sv
-    ../hdl/test1.sv
-    ../hdl/test2.v
+set verilog_files [list \
+    [ file normalize "../hdl/top_level.sv" ] \
+    [ file normalize "../hdl/test1.sv" ] \
+    [ file normalize "../hdl/test2.v" ] \
 ]
 
-set constraint_files [list
-    ../constraints/test.sdc
+set sysverilog_files [list \
+    [ file normalize "../hdl/top_level.sv" ] \
+    [ file normalize "../hdl/test1.sv" ] \
 ]
 
-set ip_files [list
-    ../ip/testmem.sbx
+set constraint_files [list \
+    [ file normalize "../constraints/test.sdc"] \
 ]
 
-for synfile synthesis_files {
-    add_file $synfile
+set ip_files [list \
+    [ file normalize "../ip/testmem.sbx" ] \
+]
+
+foreach synfile $verilog_files {
+    add_file -verilog "$synfile"
 }
 
-for cfile constraint_files {
-    add_file $cfile
+foreach synfile $sysverilog_files {
+    add_file -verilog -vlog_std sysv "$synfile"
 }
 
-for ipfile ip_files {
-    add_file $ipfile
+foreach cfile $constraint_files {
+    add_file -constraint "$cfile"
 }
+
+# foreach ipfile [lindex ip_files] {
+#     add_file -verilog "$ipfile"
+# }
 
 project -save

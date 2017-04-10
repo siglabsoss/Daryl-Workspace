@@ -1,1 +1,1 @@
-synpwrap -prj ../tcl/build_proj.tcl
+synpwrap -prj build_proj.tcl
