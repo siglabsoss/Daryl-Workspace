@@ -1,0 +1,5 @@
+# Synplify-generated files
+synlog.tcl
+stdout.log*
+rev_*
+test.prj
