@@ -38,10 +38,16 @@ set constraint_files [list \
     [ file normalize "../constraints/test.sdc"] \
 ]
 
-set ip_files [list \
-    [ file normalize "../ip/testmem.sbx" ] \
+set ip_verilog_files [list \
+    [ file normalize "../ip/testmem/testmem.v" ] \
+    [ file normalize "../ip/testmem/testmem1/testmem1.v" ] \
 ]
 
+set ip_constraint_files [list \
+    [ file normalize "../ip/testmem/testmem1/testmem1.fdc" ] \
+]
+
+# Add user-defined source files to project
 foreach synfile $verilog_files {
     add_file -verilog "$synfile"
 }
@@ -50,12 +56,19 @@ foreach synfile $sysverilog_files {
     add_file -verilog -vlog_std sysv "$synfile"
 }
 
+# Add user-defined constraint files to project
 foreach cfile $constraint_files {
     add_file -constraint "$cfile"
 }
 
-# foreach ipfile [lindex ip_files] {
-#     add_file -verilog "$ipfile"
-# }
+# Add IP-defined source files to project
+foreach ipfile $ip_verilog_files {
+    add_file -verilog "$ipfile"
+}
+
+# Add IP-defined constraint files to project
+foreach ipfile $ip_constraint_files {
+    add_file -constraint "$ipfile"
+}
 
 project -save
