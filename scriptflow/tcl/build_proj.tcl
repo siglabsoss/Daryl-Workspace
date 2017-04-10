@@ -38,7 +38,7 @@ set ip_files [list
 ]
 
 for synfile synthesis_files {
-    add_file $file
+    add_file $synfile
 }
 
 for cfile constraint_files {
