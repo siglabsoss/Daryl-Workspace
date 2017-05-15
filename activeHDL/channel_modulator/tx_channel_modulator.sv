@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module channel_modulator #(
+module tx_channel_modulator #(
     parameter integer WIDTH = 16,
     parameter integer NUM_CHANNELS = 2048
 ) (
@@ -22,7 +22,7 @@ module channel_modulator #(
     input  wire logic             i_reset
 );
 
-assign o_ready = i_ready;
+assign o_ready = i_reset ? 1'b0 : i_ready;
 
 chmod_dds chmod_dds_inst (
     .i_phase_inc      (i_phase_inc      ),
@@ -73,6 +73,6 @@ always_ff @(posedge i_clock) begin
     end
 end
 
-endmodule: channel_modulator
+endmodule: tx_channel_modulator
 
 `default_nettype wire
