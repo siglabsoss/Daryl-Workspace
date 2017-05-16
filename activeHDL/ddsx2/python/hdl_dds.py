@@ -40,10 +40,43 @@ def mybin(x, N=36):
         else:
             return '{:0b}'.format(x)
 
-lut_width = 14;
+lut_width = 9;
 
-sin_values = [ mybin(int(sk)) for sk in np.round((2**35-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
-cos_values = [ mybin(int(ck)) for ck in np.round((2**35-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*2.0**-lut_width)) ]
+fc = 31.5
+fs = 250.0
+
+sin_values = [ mybin(int(sk)) for sk in np.round((2**35-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*(fc/fs))) ]
+cos_values = [ mybin(int(ck)) for ck in np.round((2**35-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*(fc/fs))) ]
+
+pt.figure()
+pt.plot([ int(sk) for sk in np.round((2**35-1)*np.cos(2*np.pi*np.arange(2.0**lut_width)*(fc/fs))) ])
+pt.plot([ int(sk) for sk in np.round((2**35-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*(fc/fs))) ], 'r')
+
+
+def signer(x, N=36):
+    if x >= 2**(N-1):
+        return -2**N + x
+    else:
+        return x
+##### \ #
+# testwave = - 1j*np.array([ int(sk) for sk in np.round((2**35-1)*np.sin(2*np.pi*np.arange(2.0**lut_width)*(31.5/250.0))) ], dtype=np.complex) \
+#     + np.array([ int(sk) for sk in np.round((2**35-1)*-np.cos(2*np.pi*np.arange(2.0**lut_width)*(31.5/250.0))) ], dtype=np.complex)
+testwave = 1j*np.array([ np.floor(signer(int(sk, base=2)) / 2.0**(36-16)) \
+    for sk in sin_values], dtype=np.complex)
+testwave += np.array([ np.floor(signer(int(ck, base=2)) / 2.0**(36-16)) \
+    for ck in cos_values], dtype=np.complex)
+testwave2 = np.zeros(1000, dtype=np.complex)
+testwave2[:500] = testwave[:500]
+testwave2[500:] = testwave[:500]
+
+pt.figure()
+pt.plot(np.arange(-500, 500)/(1000.0), np.abs(np.fft.fftshift(np.fft.fft(testwave2, 1000))))
+pt.show()
+
+pt.figure()
+pt.plot(np.real(testwave2))
+pt.plot(np.imag(testwave2), 'r')
+pt.show()
 
 #os.system('rm -f ddsx2.sv')
 os.system('del /Q ddsx2.sv')
@@ -75,8 +108,8 @@ with open('sincos.mif', 'w') as fid:
         ),
         file=fid)
 
-N, hfilt_bits = 64, 3
-hfilt = np.exp(2j*np.pi*31.5/250.0*np.arange(N))
+N, hfilt_bits = 500, 3
+hfilt = np.exp(2j*np.pi*(fc/fs)*np.arange(N))
 hfilt_re = np.round((2**(hfilt_bits-1)-1)*np.real(hfilt))
 hfilt_im = np.round((2**(hfilt_bits-1)-1)*np.imag(hfilt))
 
