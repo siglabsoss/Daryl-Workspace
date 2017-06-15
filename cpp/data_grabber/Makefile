@@ -1,9 +1,12 @@
-CXX=clang++
+CXX=g++
+THREAD=-pthread
+# CXX=clang++
+# THREAD=
 
 all: udp
 
 udp: main.o udp_receiver.o
-	$(CXX) -o udp main.o udp_receiver.o
+	$(CXX) $(THREAD) -o udp main.o udp_receiver.o
 
 main.o: main.cpp udp_receiver.h
 	$(CXX) -o main.o main.cpp -std=c++11 -c
