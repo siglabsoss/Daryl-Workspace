@@ -14,6 +14,14 @@ int main(int argc, char const * argv[])
     char loopback_ip[] = "127.0.0.1";
     char loopback_port[] = "60000";
 
+    // Tell user that their parameters were ignored
+    if (argc > 1) {
+        std::cerr << "Unused parameters..." << std::endl;
+        for (int i = 1; i < argc; ++i) {
+            std::cerr << "    " << i << ". " << argv[i] << std::endl;
+        }
+    }
+
     auto udp_rx = udp_receiver(loopback_port, max_length);
     auto udp_tx = udp_transmitter(loopback_ip, loopback_port, max_length);
 

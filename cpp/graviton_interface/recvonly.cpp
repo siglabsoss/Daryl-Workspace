@@ -34,6 +34,13 @@ std::mutex mutex_global_quit;
 
 int main(int argc, char **argv)
 {
+    if (argc > 1) {
+        std::cerr << "Unused parameters..." << std::endl;
+        for (int i = 1; i < argc; ++i) {
+            std::cerr << "    " << i << ". " << argv[i] << std::endl;
+        }
+    }
+
     udp_receiver udp(PORT, BUFLEN);
 
     if (udp.initialize()) {
@@ -94,7 +101,7 @@ int main(int argc, char **argv)
 
 void write_data(void)
 {
-    unsigned expected_seq_num = 0;
+    //unsigned expected_seq_num = 0;
     int quit = 0;
     std::ofstream fout("datadump.bin", std::ios::binary);
     std::ofstream fsout("sequence.txt");

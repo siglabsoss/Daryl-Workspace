@@ -37,7 +37,7 @@ enum cmd_id_t { // Command IDs
 ////////////////////////////////
 // Local function declarations
 ////////////////////////////////
-static bool compare(const char s1[], const char s2[]);
+//static bool compare(const char s1[], const char s2[]);
 static bool is_whitespace(const char ch);
 static void to_lowercase(char s[], const int len);
 
@@ -164,18 +164,30 @@ void repl(void)
             case TXMAGIC_ID: {
                 // TODO: make this work
                 std::cout << "Sending TX Magic" << std::endl;
+                std::cout << std::endl;
+                std::cerr << "TXMAGIC_ID not yet implemented..." << std::endl;
+                break;
             }
             case RXMAGIC_ID: {
                 // TODO: make this work
                 std::cout << "Sending RX Magic" << std::endl;
+                std::cout << std::endl;
+                std::cerr << "RXMAGIC_ID not yet implemented..." << std::endl;
+                break;
             }
             case SEND_ID: {
                 // TODO: make this work
                 std::cout << "Sending Signal (sine,rand,etc)" << std::endl;
+                std::cout << std::endl;
+                std::cerr << "SEND_ID not yet implemented..." << std::endl;
+                break;
             }
             case POLLSTATS_ID: {
                 // TODO: make this work
                 std::cout << "Polling Link Statistics" << std::endl;
+                std::cout << std::endl;
+                std::cerr << "POLLSTATS_ID not yet implemented..." << std::endl;
+                break;
             }
             default: {
                 std::cout << "Unrecognized command: " << cmd_start << std::endl;
@@ -202,10 +214,10 @@ void repl(void)
 ////////////////////////////////
 // Local function definitions
 ////////////////////////////////
-static bool compare(const char s1[], const char s2[])
-{
-    return (std::strncmp(s1, s2, std::strlen(s2)) == 0);
-}
+// static bool compare(const char s1[], const char s2[])
+// {
+//     return (std::strncmp(s1, s2, std::strlen(s2)) == 0);
+// }
 
 static bool is_whitespace(const char ch)
 {

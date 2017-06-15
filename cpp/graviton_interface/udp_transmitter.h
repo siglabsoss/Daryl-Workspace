@@ -31,6 +31,7 @@ public:
     void copy_from(const char *buffer);
     void copy_from(const char *buffer, const int len);
     bool initialized(void) { return successfully_initialized; }
+    int buffer_size(void) { return buflen; }
 };
 
 #endif

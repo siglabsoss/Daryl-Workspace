@@ -24,6 +24,7 @@ udp_receiver::udp_receiver(const char port[], const int packet_length, const int
         *buf_iter = 0;
     }
 
+    // Store the timeout constant (negative or zero means block until data comes)
     timeout_in_microsecs = timeout_us;
 }
 
@@ -68,8 +69,16 @@ int udp_receiver::read(void) // non-blocking
 
     rvalue = recvfrom(sock_fd, &buf[0], buflen, 0, 0, 0);
 
+    static bool first_time = true;
+    if ((timeout_in_microsecs == 0) && first_time) {
+        first_time = false;
+    }
+
     if (rvalue != buflen) {
-        perror("recvfrom");
+        // This is only an error if timeouts are not active
+        if (timeout_in_microsecs <= 0) {
+            perror("recvfrom");
+        }
         return -1;
     }
 
@@ -81,7 +90,17 @@ void udp_receiver::copy_to(const char *buffer)
     std::memcpy((void*)buffer, (void*)&buf[0], buflen);
 }
 
+void udp_receiver::copy_to(const unsigned char *buffer)
+{
+    std::memcpy((void*)buffer, (void*)&buf[0], buflen);
+}
+
 void udp_receiver::copy_to(const char *buffer, const int len)
+{
+    std::memcpy((void*)buffer, (void*)&buf[0], len);
+}
+
+void udp_receiver::copy_to(const unsigned char *buffer, const int len)
 {
     std::memcpy((void*)buffer, (void*)&buf[0], len);
 }

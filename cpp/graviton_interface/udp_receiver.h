@@ -25,7 +25,10 @@ public:
     int cleanup(void);
     int read(void);
     void copy_to(const char *buffer);
+    void copy_to(const unsigned char *buffer);
     void copy_to(const char *buffer, const int len);
+    void copy_to(const unsigned char *buffer, const int len);
+    int buffer_size(void) { return buflen; }
 };
 
 #endif
