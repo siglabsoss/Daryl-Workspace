@@ -1,16 +1,28 @@
 // udp_receiver.cpp - A connectionless UDP receiver
 #include "udp_receiver.h"
+
+#include <iostream>
+#include <cstdio>
 #include <cstring>
 
 
-udp_receiver::udp_receiver(const int port, const int packet_length, const int timeout_us)
+udp_receiver::udp_receiver(const char port[], const int packet_length, const int timeout_us)
 {
+    int myport;
+    if (std::sscanf(port, "%d", &myport) != 1) {
+        std::cerr << "Error converting port " << port << " to an integer." << std::endl;
+    }
+
+
     target.sin_family = AF_INET;
-    target.sin_port = htons(port);
-    target.sin_addr.s_addr = INADDR_ANY; //inet_addr(ip_dest);
+    target.sin_port = htons(myport);
+    target.sin_addr.s_addr = INADDR_ANY;
 
     buflen = packet_length;
     buf.resize(buflen+1);
+    for(auto buf_iter = buf.begin(); buf_iter != buf.end(); ++buf_iter) {
+        *buf_iter = 0;
+    }
 
     timeout_in_microsecs = timeout_us;
 }

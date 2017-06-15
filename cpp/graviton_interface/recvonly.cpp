@@ -8,7 +8,7 @@
 
 void write_data(void);
 
-constexpr int PORT = 50000;
+constexpr const char PORT[] = "50000";
 constexpr int BUFLEN = 1472;
 constexpr int CAPTURE_LENGTH = 147200;
 

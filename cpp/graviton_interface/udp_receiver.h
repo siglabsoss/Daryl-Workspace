@@ -20,7 +20,7 @@ class udp_receiver
     std::vector<char> buf;
     int buflen;
 public:
-    udp_receiver(const int port, const int packet_length, const int timeout_us=-1);
+    udp_receiver(const char port[], const int packet_length, const int timeout_us=-1);
     int initialize(void);
     int cleanup(void);
     int read(void);

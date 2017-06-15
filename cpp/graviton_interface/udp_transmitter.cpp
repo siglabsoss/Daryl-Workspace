@@ -18,9 +18,12 @@ udp_transmitter::udp_transmitter(const char dest_ip_addr[], const char dest_port
     std::strcpy(dest_ip, dest_ip_addr);
     std::strcpy(port, dest_port);
 
-    // Create local buffer for data transmission
+    // Create local buffer for data transmission and initialize to zeros
     buflen = packet_length;
     buf.resize(buflen+1);
+    for(auto buf_iter = buf.begin(); buf_iter != buf.end(); ++buf_iter) {
+        *buf_iter = 0;
+    }
 }
 
 int udp_transmitter::initialize(void)
