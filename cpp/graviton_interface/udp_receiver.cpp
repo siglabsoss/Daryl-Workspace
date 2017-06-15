@@ -3,7 +3,7 @@
 #include <cstring>
 
 
-udp_receiver::udp_receiver(const int port, const int packet_length)
+udp_receiver::udp_receiver(const int port, const int packet_length, const int timeout_us)
 {
     target.sin_family = AF_INET;
     target.sin_port = htons(port);
@@ -11,20 +11,33 @@ udp_receiver::udp_receiver(const int port, const int packet_length)
 
     buflen = packet_length;
     buf.resize(buflen+1);
+
+    timeout_in_microsecs = timeout_us;
 }
 
 int udp_receiver::initialize(void)
 {
-    if ((sock_fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == 0)
+    if ((sock_fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) <= 0)
     {
-        // perror("socket failed");
+        perror("socket failed");
         return -1;
+    }
+
+    if (timeout_in_microsecs > 0) {
+        struct timeval read_timeout;
+        read_timeout.tv_sec = 0;
+        read_timeout.tv_usec = timeout_in_microsecs;
+        if ((setsockopt(sock_fd, SOL_SOCKET, SO_RCVTIMEO, &read_timeout, sizeof(read_timeout))) != 0) {
+            perror("setsockopt : timeout");
+            return -2;
+        }
+
     }
 
     if (bind(sock_fd, (struct sockaddr *)&target, sizeof(target)) < 0)
     {
         perror("bind failed");
-        return -2;
+        return -3;
     }
 
     return 0;
@@ -37,7 +50,7 @@ int udp_receiver::cleanup(void)
     return 0;
 }
 
-int udp_receiver::read(void)
+int udp_receiver::read(void) // non-blocking
 {
     int rvalue;
 

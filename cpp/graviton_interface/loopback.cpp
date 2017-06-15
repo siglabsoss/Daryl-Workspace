@@ -27,7 +27,7 @@ int main(int argc, char const * argv[])
     std::cout << "Initializing RX" << std::endl;
     udp_rx.initialize();
 
-    std::cout << "Launching thread..." << std::endl;
+    std::cout << "Launching threads..." << std::endl;
     auto tx_thread = std::thread(tx_string, udp_tx);
     auto rx_thread = std::thread(rx_string, udp_rx);
 

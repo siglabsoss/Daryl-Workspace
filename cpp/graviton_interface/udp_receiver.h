@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <stdio.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -15,10 +16,11 @@ class udp_receiver
 {
     int sock_fd;
     struct sockaddr_in target;
+    int timeout_in_microsecs;
     std::vector<char> buf;
     int buflen;
 public:
-    udp_receiver(const int port, const int packet_length);
+    udp_receiver(const int port, const int packet_length, const int timeout_us=-1);
     int initialize(void);
     int cleanup(void);
     int read(void);
