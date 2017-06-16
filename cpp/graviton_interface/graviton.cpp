@@ -9,6 +9,8 @@
 #include "gthreads.h"
 #include "udp_transmitter.h"
 #include "udp_receiver.h"
+#include "sysdef.h"
+using namespace sysdef;
 
 ////////////////////////////////
 // Inter-thread communication
@@ -19,13 +21,7 @@ bool global_quit;
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
-const char DAC_DATA_IP[]     = "192.168.2.3";
-const char DAC_DATA_PORT[]   = "60000";
-const int  DAC_PACKET_LENGTH = 1472;
 
-const char ADC_DATA_PORT[]   = "50000";
-const char ADC_DATA_TIMEOUT  = 100; // microseconds
-const int  ADC_PACKET_LENGTH = 1472;
 
 ////////////////////////////////
 // Main program entry point

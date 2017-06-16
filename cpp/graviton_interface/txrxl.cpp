@@ -9,6 +9,8 @@
 #include "gthreads.h"
 #include "udp_transmitter.h"
 #include "udp_receiver.h"
+#include "sysdef.h"
+using namespace sysdef;
 
 ////////////////////////////////
 // Inter-thread communication
@@ -16,11 +18,14 @@
 extern std::mutex m_global_quit;
 extern bool global_quit;
 
+extern std::mutex m_send_magic;
+extern int magic_value;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
-const int MAX_READ_ATTEMPTS = 1024; // Maximum number of reads to try each iteration
-const int MAX_LENGTH = 1472; // TODO: put this in a common header with an appropriate namespace
+// Maximum number of UDP reads to try each iteration
+constexpr int MAX_READ_ATTEMPTS = 1024;
 
 ///////////////////////////////////////////////////////////
 // Graviton transmit/receive thread entry point
@@ -39,14 +44,21 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
 
     unsigned failed_read_count = 0;
 
-    unsigned char local_rx_bytes[MAX_LENGTH] { 0 };
-    unsigned char local_tx_bytes[MAX_LENGTH] { 0 };
+    unsigned char local_rx_bytes[ADC_PACKET_LENGTH] { 0 };
+    unsigned char local_tx_bytes[DAC_PACKET_LENGTH] { 0 };
+
+    for (int i = 0; i < DAC_PACKET_LENGTH; i += 4) {
+        local_tx_bytes[i] = 4*i + 0;
+        local_tx_bytes[i] = 4*i + 1;
+        local_tx_bytes[i] = 4*i + 2;
+        local_tx_bytes[i] = 4*i + 3;
+    }
 
     while (!local_quit) {
         // Sleep to simulate some kind of work/rest scenario
         int read_attempts = 0;
         while (adc_data_rx.read() != 0) {
-            std::this_thread::sleep_for(std::chrono::microseconds(5));
+            std::this_thread::sleep_for(std::chrono::microseconds(4));
             if (++read_attempts == MAX_READ_ATTEMPTS) {
                 break;
             }
@@ -95,16 +107,22 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
         // Attempt to transmit if dac has room
         if (!dac_buffer_almost_full) {
             // Write little endian sequence number
-            local_tx_bytes[0] = dac_sequence_number;
-            local_tx_bytes[1] = dac_sequence_number >> 8;
-            local_tx_bytes[2] = dac_sequence_number >> 16;
-            local_tx_bytes[3] = dac_sequence_number >> 24;
+            local_tx_bytes[0] = dac_sequence_number & 0xFF;
+            local_tx_bytes[1] = (dac_sequence_number >> 8) & 0xFF;
+            local_tx_bytes[2] = (dac_sequence_number >> 16) & 0xFF;
+            local_tx_bytes[3] = (dac_sequence_number >> 24) & 0xFF;
             // Transmit to FPGA
-            dac_data_tx.copy_from((char *)local_tx_bytes, MAX_LENGTH);
+            dac_data_tx.copy_from((char *)local_tx_bytes, DAC_PACKET_LENGTH);
             dac_data_tx.write();
             // Increment sequence number
             dac_sequence_number++;
-            std::cerr << "DAC SEQ NUM = " << dac_sequence_number << std::endl;
+            // std::cerr << "DAC SEQ NUM = " << dac_sequence_number << std::endl;
+            // std::cerr << "            = { " << std::hex;
+            // std::cerr << "0x" << unsigned(local_tx_bytes[3]);
+            // std::cerr << "0x" << unsigned(local_tx_bytes[2]);
+            // std::cerr << "0x" << unsigned(local_tx_bytes[1]);
+            // std::cerr << "0x" << unsigned(local_tx_bytes[0]) << std::dec;
+            // std::cerr << " };" << std::endl;
         }
         else {
             std::cerr << "Skipped DAC frame" << std::endl;

@@ -12,6 +12,8 @@
 #include <map>
 
 #include "gthreads.h"
+#include "sysdef.h"
+using namespace sysdef;
 
 ////////////////////////////////
 // Inter-thread communication
@@ -22,7 +24,8 @@ extern bool global_quit;
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
-const int MAX_CMD_TXT = 1024; // Maximum length of a command string
+// Maximum length of a command string
+constexpr int MAX_CMD_TXT = 1024;
 
 enum cmd_id_t { // Command IDs
     UNKNOWN_ID,
