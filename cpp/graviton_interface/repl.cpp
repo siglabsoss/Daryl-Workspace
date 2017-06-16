@@ -21,6 +21,15 @@ using namespace sysdef;
 extern std::mutex m_global_quit;
 extern bool global_quit;
 
+extern std::mutex m_magic_value;
+extern unsigned magic_value;
+
+extern std::mutex m_send_value;
+extern unsigned send_mode;
+extern double send_frequency;
+extern double send_sweep_rate;
+extern double send_amplitude;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
@@ -40,7 +49,9 @@ enum cmd_id_t { // Command IDs
 ////////////////////////////////
 // Local function declarations
 ////////////////////////////////
-//static bool compare(const char s1[], const char s2[]);
+static bool compare(const char s1[], const char s2[]);
+int command_count(char *cmd_start, int cmd_index, std::string comm_string);
+int whitespace_count(char *cmd_start, int cmd_index);
 static bool is_whitespace(const char ch);
 static void to_lowercase(char s[], const int len);
 
@@ -134,15 +145,11 @@ void repl(void)
         switch (cmd_id) {
             case HELP_ID: {
                 // skip command word
-                const int commword_length = std::strlen(help_command.c_str());
-                for (auto i = 0; i < commword_length; ++i, ++cmd_start, ++cmd_index);
+                int acnt = command_count(cmd_start, cmd_index, help_command);
+                cmd_start += acnt; cmd_index += acnt;
                 // skip whitespace
-                for (; cmd_index < MAX_CMD_TXT; ++cmd_index, ++cmd_start) {
-                    if (is_whitespace(*cmd_start)) {
-                        continue;
-                    }
-                    break;
-                }
+                acnt = whitespace_count(cmd_start, cmd_index);
+                cmd_start += acnt; cmd_index += acnt;
                 // If there is more text, then we are in the help <command> context
                 if(std::strlen(cmd_start) > 0) {
                     // TODO: print help for a specified command
@@ -165,24 +172,110 @@ void repl(void)
                 break;
             } // end QUIT_ID
             case TXMAGIC_ID: {
-                // TODO: make this work
+                {
+                    std::unique_lock<std::mutex> magic_lock(m_magic_value);
+                    magic_value = TXMAGIC;
+                }
                 std::cout << "Sending TX Magic" << std::endl;
                 std::cout << std::endl;
-                std::cerr << "TXMAGIC_ID not yet implemented..." << std::endl;
                 break;
             }
             case RXMAGIC_ID: {
-                // TODO: make this work
+                {
+                    std::unique_lock<std::mutex> magic_lock(m_magic_value);
+                    magic_value = RXMAGIC;
+                }
                 std::cout << "Sending RX Magic" << std::endl;
                 std::cout << std::endl;
-                std::cerr << "RXMAGIC_ID not yet implemented..." << std::endl;
                 break;
             }
             case SEND_ID: {
-                // TODO: make this work
-                std::cout << "Sending Signal (sine,rand,etc)" << std::endl;
-                std::cout << std::endl;
-                std::cerr << "SEND_ID not yet implemented..." << std::endl;
+                // skip command word
+                int acnt = command_count(cmd_start, cmd_index, send_command);
+                cmd_start += acnt; cmd_index += acnt;
+                // skip whitespace
+                acnt = whitespace_count(cmd_start, cmd_index);
+                cmd_start += acnt; cmd_index += acnt;
+                // If there is no more text, then print the command usage.
+                if(std::strlen(cmd_start) == 0) {
+                    constexpr int FMT_WIDTH = 45;
+                    std::cout << "    Usage:" << std::endl;
+                    // SEND NOTHING
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send nothing";
+                    std::cout << " : sends a sequence of zeros" << std::endl;
+                    // SEND RAMP
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send ramp";
+                    std::cout << " : sends an incrementing count" << std::endl;
+                    // SEND RANDOM
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send random";
+                    std::cout << " : sends completely random data" << std::endl;
+                    // SEND SINE
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send sine <frequency=0.0> <amplitude=MAX>";
+                    std::cout << " : sends sinusoid to dac" << std::endl;
+                    // SEND SWEEP
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send sweep <rate=0.00025> <amplitude=MAX>";
+                    std::cout << " : sends swept sine to dac" << std::endl;
+                    // send newline
+                    std::cout << std::endl;
+                    // MORE INFORMATION
+                    std::cout << "    Note: All words are required, floating point or integer arguments" << std::endl;
+                    std::cout << "    in angle brackets are required if they do not have a specified" << std::endl;
+                    std::cout << "    default value." << std::endl;
+                    // send newline
+                    std::cout << std::endl;
+                }
+                else {
+                    if (compare(cmd_start, "nothing")) {
+                        std::cout << "Sending zero signal" << std::endl;
+                        m_send_value.lock();
+                        send_mode = SIGNAL_ZERO;
+                        send_amplitude = 0.0;
+                        send_frequency = 0.0;
+                        send_sweep_rate = 0.0;
+                        m_send_value.unlock();
+                    }
+                    else if (compare(cmd_start, "ramp")) {
+                        std::cout << "Sending ramp signal" << std::endl;
+                        m_send_value.lock();
+                        send_mode = SIGNAL_RAMP;
+                        send_amplitude = 0.0;
+                        send_frequency = 0.0;
+                        send_sweep_rate = 0.0;
+                        m_send_value.unlock();
+                    }
+                    else if (compare(cmd_start, "random")) {
+                        std::cout << "Sending random signal" << std::endl;
+                        m_send_value.lock();
+                        send_mode = SIGNAL_RANDOM;
+                        send_amplitude = 0.0;
+                        send_frequency = 0.0;
+                        send_sweep_rate = 0.0;
+                        m_send_value.unlock();
+                    }
+                    else if (compare(cmd_start, "sine")) {
+                        std::cout << "Sending sine signal" << std::endl;
+                        m_send_value.lock();
+                        send_mode = SIGNAL_SINE;
+                        send_amplitude = DAC_FULL_SCALE;
+                        send_frequency = 0.0;
+                        send_sweep_rate = 0.0;
+                        m_send_value.unlock();
+                    }
+                    else if (compare(cmd_start, "sweep")) {
+                        std::cout << "Sending sweep signal" << std::endl;
+                        m_send_value.lock();
+                        send_mode = SIGNAL_SWEEP;
+                        send_amplitude = DAC_FULL_SCALE;
+                        send_frequency = 0.0;
+                        send_sweep_rate = 0.0005;
+                        m_send_value.unlock();
+                    }
+                    else {
+                        std::cout << "Unrecognized signal " << cmd_start << std::endl;
+                    }
+                    std::cout << std::endl;
+                    std::cerr << "SEND_ID not yet implemented..." << std::endl;
+                }
                 break;
             }
             case POLLSTATS_ID: {
@@ -217,10 +310,30 @@ void repl(void)
 ////////////////////////////////
 // Local function definitions
 ////////////////////////////////
-// static bool compare(const char s1[], const char s2[])
-// {
-//     return (std::strncmp(s1, s2, std::strlen(s2)) == 0);
-// }
+static bool compare(const char s1[], const char s2[])
+{
+    return (std::strncmp(s1, s2, std::strlen(s2)) == 0);
+}
+
+int command_count(char *cmd_start, int cmd_index, std::string comm_string)
+{
+    int index = 0;
+    const int commword_length = std::strlen(comm_string.c_str());
+    for (; index < commword_length; ++index, ++cmd_start, ++cmd_index);
+    return index;
+}
+
+int whitespace_count(char *cmd_start, int cmd_index)
+{
+    int index = 0;
+    for (index = 0; cmd_index < MAX_CMD_TXT; ++cmd_index, ++cmd_start, ++index) {
+        if (is_whitespace(*cmd_start)) {
+            continue;
+        }
+        break;
+    }
+    return index;
+}
 
 static bool is_whitespace(const char ch)
 {

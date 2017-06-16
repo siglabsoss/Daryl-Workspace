@@ -24,6 +24,9 @@ udp_transmitter::udp_transmitter(const char dest_ip_addr[], const char dest_port
     for(auto buf_iter = buf.begin(); buf_iter != buf.end(); ++buf_iter) {
         *buf_iter = 0;
     }
+
+    // Default transmit length is same as buffer length
+    txlen = buflen;
 }
 
 int udp_transmitter::initialize(void)
@@ -69,9 +72,9 @@ int udp_transmitter::write(void)
 {
     int valread;
 
-    valread = sendto(sock_fd, &buf[0], buflen, 0, p->ai_addr, p->ai_addrlen);
+    valread = sendto(sock_fd, &buf[0], txlen, 0, p->ai_addr, p->ai_addrlen);
 
-    if (valread != buflen) {
+    if (valread != txlen) {
         perror("sendto");
         return -1;
     }
@@ -82,9 +85,23 @@ int udp_transmitter::write(void)
 void udp_transmitter::copy_from(const char *buffer)
 {
     std::memcpy((void*)&buf[0], (void*)buffer, buflen);
+    txlen = buflen;
+}
+
+void udp_transmitter::copy_from(const unsigned char *buffer)
+{
+    std::memcpy((void*)&buf[0], (void*)buffer, buflen);
+    txlen = buflen;
 }
 
 void udp_transmitter::copy_from(const char *buffer, const int len)
 {
     std::memcpy((void*)&buf[0], (void*)buffer, len);
+    txlen = len;
+}
+
+void udp_transmitter::copy_from(const unsigned char *buffer, const int len)
+{
+    std::memcpy((void*)&buf[0], (void*)buffer, len);
+    txlen = len;
 }

@@ -18,6 +18,15 @@ using namespace sysdef;
 std::mutex m_global_quit;
 bool global_quit;
 
+std::mutex m_magic_value;
+unsigned magic_value;
+
+std::mutex m_send_value;
+unsigned send_mode;
+double send_frequency;
+double send_sweep_rate;
+double send_amplitude;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
@@ -38,6 +47,15 @@ int main(int argc, char const * argv[])
 
     // Initialize the quit signal to false
     global_quit = false;
+
+    // Initialize magic value to zero for no magic
+    magic_value = NOMAGIC;
+
+    // Initialize signal generator values
+    send_mode = SIGNAL_ZERO;
+    send_frequency = 0.0;
+    send_sweep_rate = 0.0;
+    send_amplitude = 0.0;
 
     // Initialize UDP communication objects
     std::cout << "Creating UDP sockets..." << std::endl;

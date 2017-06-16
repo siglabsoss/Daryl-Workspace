@@ -16,11 +16,30 @@ namespace sysdef {
     constexpr int  ADC_PACKET_LENGTH = 1472;
 
     ////////////////////////////////////////////////
-    // MAGIC NUMBERS
+    // MAGIC NUMBER CONSTANTS
     ////////////////////////////////////////////////
-    constexpr int NOMAGIC = 0x00000000;
-    constexpr int TXMAGIC = 0x80018001;
-    constexpr int RXMAGIC = 0x7fff7fff;
+    constexpr unsigned NOMAGIC = 0x00000000;
+    constexpr unsigned TXMAGIC = 0x80018001;
+    constexpr unsigned RXMAGIC = 0x7fff7fff;
+
+    ////////////////////////////////////////////////
+    // SEND SIGNAL CONSTANTS
+    ////////////////////////////////////////////////
+    constexpr unsigned SIGNAL_ZERO   = 0x00000000;
+    constexpr unsigned SIGNAL_RAMP   = 0x00000001;
+    constexpr unsigned SIGNAL_RANDOM = 0x00000002;
+    constexpr unsigned SIGNAL_SINE   = 0x00000003;
+    constexpr unsigned SIGNAL_SWEEP  = 0x00000004;
+
+    ////////////////////////////////////////////////
+    // MATH NUMBER CONSTANTS
+    ////////////////////////////////////////////////
+    constexpr double PI = 3.14159265358979;
+
+    ////////////////////////////////////////////////
+    // DSP NORMALIZATION CONSTANTS
+    ////////////////////////////////////////////////
+    constexpr double DAC_FULL_SCALE = 27969.0;
 
 } // end sysdef
 

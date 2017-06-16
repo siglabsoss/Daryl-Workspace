@@ -23,15 +23,19 @@ class udp_transmitter
     bool successfully_initialized;
     std::vector<char> buf;
     int buflen;
+    int txlen;
 public:
     udp_transmitter(const char dest_ip_addr[], const char dest_port[], const int packet_length);
     int initialize(void);
     int cleanup(void);
     int write(void);
     void copy_from(const char *buffer);
+    void copy_from(const unsigned char *buffer);
     void copy_from(const char *buffer, const int len);
+    void copy_from(const unsigned char *buffer, const int len);
     bool initialized(void) { return successfully_initialized; }
     int buffer_size(void) { return buflen; }
+    int tx_length(void) { return txlen; }
 };
 
 #endif
