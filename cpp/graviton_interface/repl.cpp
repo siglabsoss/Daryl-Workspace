@@ -24,11 +24,11 @@ extern bool global_quit;
 extern std::mutex m_magic_value;
 extern unsigned magic_value;
 
-extern std::mutex m_send_value;
-extern unsigned send_mode;
-extern double send_frequency;
-extern double send_sweep_rate;
-extern double send_amplitude;
+extern std::mutex m_signal_data;
+extern signal_params signal_data;
+
+extern std::mutex m_statistics;
+extern dsp_stats statistics;
 
 ////////////////////////////////
 // Local constants
@@ -227,54 +227,54 @@ void repl(void)
                 else {
                     if (compare(cmd_start, "nothing")) {
                         std::cout << "Sending zero signal" << std::endl;
-                        m_send_value.lock();
-                        send_mode = SIGNAL_ZERO;
-                        send_amplitude = 0.0;
-                        send_frequency = 0.0;
-                        send_sweep_rate = 0.0;
-                        m_send_value.unlock();
+                        m_signal_data.lock();
+                        signal_data.mode = SIGNAL_ZERO;
+                        signal_data.amplitude = 0.0;
+                        signal_data.frequency = 0.0;
+                        signal_data.sweep_rate = 0.0;
+                        m_signal_data.unlock();
                     }
                     else if (compare(cmd_start, "ramp")) {
                         std::cout << "Sending ramp signal" << std::endl;
-                        m_send_value.lock();
-                        send_mode = SIGNAL_RAMP;
-                        send_amplitude = 0.0;
-                        send_frequency = 0.0;
-                        send_sweep_rate = 0.0;
-                        m_send_value.unlock();
+                        m_signal_data.lock();
+                        signal_data.mode = SIGNAL_RAMP;
+                        signal_data.amplitude = 0.0;
+                        signal_data.frequency = 0.0;
+                        signal_data.sweep_rate = 0.0;
+                        m_signal_data.unlock();
                     }
                     else if (compare(cmd_start, "random")) {
                         std::cout << "Sending random signal" << std::endl;
-                        m_send_value.lock();
-                        send_mode = SIGNAL_RANDOM;
-                        send_amplitude = 0.0;
-                        send_frequency = 0.0;
-                        send_sweep_rate = 0.0;
-                        m_send_value.unlock();
+                        m_signal_data.lock();
+                        signal_data.mode = SIGNAL_RANDOM;
+                        signal_data.amplitude = 0.0;
+                        signal_data.frequency = 0.0;
+                        signal_data.sweep_rate = 0.0;
+                        m_signal_data.unlock();
                     }
                     else if (compare(cmd_start, "sine")) {
                         std::cout << "Sending sine signal" << std::endl;
-                        m_send_value.lock();
-                        send_mode = SIGNAL_SINE;
-                        send_amplitude = DAC_FULL_SCALE;
-                        send_frequency = 0.0;
-                        send_sweep_rate = 0.0;
-                        m_send_value.unlock();
+                        m_signal_data.lock();
+                        signal_data.mode = SIGNAL_SINE;
+                        signal_data.amplitude = DAC_FULL_SCALE;
+                        signal_data.frequency = 0.0;
+                        signal_data.sweep_rate = 0.0;
+                        m_signal_data.unlock();
                     }
                     else if (compare(cmd_start, "sweep")) {
                         std::cout << "Sending sweep signal" << std::endl;
-                        m_send_value.lock();
-                        send_mode = SIGNAL_SWEEP;
-                        send_amplitude = DAC_FULL_SCALE;
-                        send_frequency = 0.0;
-                        send_sweep_rate = 0.0005;
-                        m_send_value.unlock();
+                        m_signal_data.lock();
+                        signal_data.mode = SIGNAL_SWEEP;
+                        signal_data.amplitude = DAC_FULL_SCALE;
+                        signal_data.frequency = 0.0;
+                        signal_data.sweep_rate = 0.0005;
+                        m_signal_data.unlock();
                     }
                     else {
                         std::cout << "Unrecognized signal " << cmd_start << std::endl;
                     }
                     std::cout << std::endl;
-                    std::cerr << "SEND_ID not yet implemented..." << std::endl;
+                    std::cerr << "SEND_ID not fully implemented..." << std::endl;
                 }
                 break;
             }

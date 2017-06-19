@@ -21,11 +21,11 @@ bool global_quit;
 std::mutex m_magic_value;
 unsigned magic_value;
 
-std::mutex m_send_value;
-unsigned send_mode;
-double send_frequency;
-double send_sweep_rate;
-double send_amplitude;
+std::mutex m_signal_data;
+signal_params signal_data;
+
+std::mutex m_statistics;
+dsp_stats statistics;
 
 ////////////////////////////////
 // Local constants
@@ -45,19 +45,33 @@ int main(int argc, char const * argv[])
         }
     }
 
-    // Initialize the quit signal to false
+    ///////////////////////////////////////////////
+    // Initializing Inter Thread Data Structures
+    ///////////////////////////////////////////////
+
+    // Global quit signal to false
     global_quit = false;
 
-    // Initialize magic value to zero for no magic
+    // Magic value to zero for no magic
     magic_value = NOMAGIC;
 
-    // Initialize signal generator values
-    send_mode = SIGNAL_ZERO;
-    send_frequency = 0.0;
-    send_sweep_rate = 0.0;
-    send_amplitude = 0.0;
+    // Signal generator values to zeros
+    signal_data.mode = SIGNAL_ZERO;
+    signal_data.frequency = 0.0;
+    signal_data.sweep_rate = 0.0;
+    signal_data.amplitude = 0.0;
 
-    // Initialize UDP communication objects
+    // Statistics to zeros
+    statistics.iteration = 0ULL;
+    statistics.adc_sequence_number = 0U;
+    statistics.adc_failed_read_cnt = 0U;
+    statistics.dac_sequence_number = 0U;
+    statistics.dac_buffer_almost_full_count = 0U;
+    statistics.dac_buffer_underflow_count = 0U;
+    statistics.dac_buffer_overflow_count = 0U;
+    statistics.dac_udp_sequence_error_count = 0U;
+
+    // Create UDP communication objects
     std::cout << "Creating UDP sockets..." << std::endl;
     auto adc_data_rx = udp_receiver(ADC_DATA_PORT, ADC_PACKET_LENGTH, ADC_DATA_TIMEOUT);
     auto dac_data_tx = udp_transmitter(DAC_DATA_IP, DAC_DATA_PORT, DAC_PACKET_LENGTH);
