@@ -104,20 +104,20 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
             }
             adc_sequence_number++;
 
-            // Update statistics
-            if (dac_buffer_almost_full = local_rx_bytes[7] & 0x01) {
+            // Update statistics based on incoming data packet
+            if ((dac_buffer_almost_full = (local_rx_bytes[7] & 0x01))) {
                 std::cerr << "DAC buffer almost full!" << std::endl;
                 dac_buffer_almost_full_count++;
             }
-            if (dac_buffer_underflow = local_rx_bytes[7] & 0x02) {
+            if ((dac_buffer_underflow = (local_rx_bytes[7] & 0x02))) {
                 std::cerr << "DAC buffer underflow!" << std::endl;
                 dac_buffer_underflow_count++;
             }
-            if (dac_buffer_overflow = local_rx_bytes[7] & 0x04) {
+            if ((dac_buffer_overflow = (local_rx_bytes[7] & 0x04))) {
                 std::cerr << "DAC buffer overflow!" << std::endl;
                 dac_buffer_overflow_count++;
             }
-            if (dac_udp_sequence_error = local_rx_bytes[7] & 0x08) {
+            if ((dac_udp_sequence_error = (local_rx_bytes[7] & 0x08))) {
                 std::cerr << "DAC UDP sequence error!" << std::endl;
                 dac_udp_sequence_error_count++;
             }
