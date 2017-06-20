@@ -28,6 +28,9 @@ extern signal_params signal_data;
 extern std::mutex m_statistics;
 extern dsp_stats statistics;
 
+extern std::mutex m_dumper;
+extern dump_params dump_data;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
@@ -62,6 +65,7 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
     unsigned long long iteration_count = 0;
     unsigned adc_sequence_number = 0;
     unsigned adc_failed_read_count = 0;
+    unsigned adc_udp_sequence_error_count = 0;
     unsigned dac_sequence_number = 0;
     unsigned dac_buffer_almost_full_count = 0;
     unsigned dac_buffer_underflow_count = 0;
@@ -76,6 +80,9 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
     double signal_freq = 0.0;
     double signal_sweep_rate = 0.0;
     double signal_phase = 0.0;
+
+    unsigned dumps_left;
+    std::ofstream adcfile("adcdata.bin", std::ofstream::binary);
 
     while (!local_quit) {
         // Sleep to simulate some kind of work/rest scenario
@@ -101,6 +108,7 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
                 std::cerr << "ADC SEQUENCE NUMBER ERROR " << adc_sequence_number;
                 std::cerr << " != " << new_adc_sequence_number << std::endl;
                 adc_sequence_number = new_adc_sequence_number;
+                adc_udp_sequence_error_count++;
             }
             adc_sequence_number++;
 
@@ -121,28 +129,56 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
                 std::cerr << "DAC UDP sequence error!" << std::endl;
                 dac_udp_sequence_error_count++;
             }
+
+            // Dump data if dumping is active
+            if (dumps_left > 0) {
+                std::cerr << "Dumping packet... (";
+                std::cerr << dumps_left << ")" << std::endl;
+                adcfile.write((char *)(local_rx_bytes + 8), ADC_PACKET_LENGTH - 8);
+                dumps_left--;
+            }
+
         }
         else {
             std::cerr << "Maximum number of read attempts failed on current iteration." << std::endl;
             std::cerr << "Total iterations of failure: " << ++adc_failed_read_count << std::endl;
         }
 
-        // Update global variables with statistics
-        if (m_statistics.try_lock()) {
-
-        }
-
         // Check if we need to change the dac signal mode
         if (m_signal_data.try_lock()) {
-            if (signal_mode != signal_data.mode) {
-                std::cerr << "<< Update! >>" << std::endl;
-                signal_mode       = signal_data.mode;
-                signal_amplitude  = signal_data.amplitude;
-                signal_freq       = signal_data.frequency;
-                signal_sweep_rate = signal_data.sweep_rate;
-                signal_phase      = 0.0;
+            if (signal_data.needs_update) {
+                std::cerr << "<< Update signal parameters >>" << std::endl;
+                signal_mode              = signal_data.mode;
+                signal_amplitude         = signal_data.amplitude;
+                signal_freq              = signal_data.frequency;
+                signal_sweep_rate        = signal_data.sweep_rate;
+                signal_phase             = 0.0;
+                signal_data.needs_update = 0;
             }
             m_signal_data.unlock();
+        }
+
+        // Update global variables with statistics
+        if (m_statistics.try_lock()) {
+            statistics.iteration = iteration_count;
+            statistics.adc_sequence_number = adc_sequence_number;
+            statistics.adc_failed_read_count = adc_failed_read_count;
+            statistics.adc_udp_sequence_error_count = adc_udp_sequence_error_count;
+            statistics.dac_sequence_number = dac_sequence_number;
+            statistics.dac_buffer_almost_full_count = dac_buffer_almost_full_count;
+            statistics.dac_buffer_underflow_count = dac_buffer_underflow_count;
+            statistics.dac_buffer_overflow_count = dac_buffer_overflow_count;
+            statistics.dac_udp_sequence_error_count = dac_udp_sequence_error_count;
+            m_statistics.unlock();
+        }
+
+        // Update dump parameters if necessary
+        if (m_dumper.try_lock()) {
+            if (dump_data.needs_update) {
+                dumps_left = dump_data.dumps_left;
+                dump_data.needs_update = 0;
+            }
+            m_dumper.unlock();
         }
 
         // Attempt to transmit if dac has room

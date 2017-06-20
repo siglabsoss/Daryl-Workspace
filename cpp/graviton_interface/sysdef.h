@@ -7,7 +7,7 @@ namespace sysdef {
     ////////////////////////////////////////////////
     // LINK CONSTANTS
     ////////////////////////////////////////////////
-    constexpr char DAC_DATA_IP[]     = "192.168.2.3";
+    constexpr char DAC_DATA_IP[]     = "10.0.0.10"; //"192.168.2.3";
     constexpr char DAC_DATA_PORT[]   = "60000";
     constexpr int  DAC_PACKET_LENGTH = 1472-4;
 

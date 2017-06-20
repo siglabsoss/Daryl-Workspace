@@ -27,6 +27,9 @@ signal_params signal_data;
 std::mutex m_statistics;
 dsp_stats statistics;
 
+std::mutex m_dumper;
+dump_params dump_data;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
@@ -56,6 +59,7 @@ int main(int argc, char const * argv[])
     magic_value = NOMAGIC;
 
     // Signal generator values to zeros
+    signal_data.needs_update = 1;
     signal_data.mode = SIGNAL_ZERO;
     signal_data.frequency = 0.0;
     signal_data.sweep_rate = 0.0;
@@ -64,12 +68,16 @@ int main(int argc, char const * argv[])
     // Statistics to zeros
     statistics.iteration = 0ULL;
     statistics.adc_sequence_number = 0U;
-    statistics.adc_failed_read_cnt = 0U;
+    statistics.adc_failed_read_count = 0U;
     statistics.dac_sequence_number = 0U;
     statistics.dac_buffer_almost_full_count = 0U;
     statistics.dac_buffer_underflow_count = 0U;
     statistics.dac_buffer_overflow_count = 0U;
     statistics.dac_udp_sequence_error_count = 0U;
+
+    // Dump data
+    dump_data.needs_update = 1;
+    dump_data.dumps_left = 0ULL;
 
     // Create UDP communication objects
     std::cout << "Creating UDP sockets..." << std::endl;

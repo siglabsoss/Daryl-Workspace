@@ -30,6 +30,9 @@ extern signal_params signal_data;
 extern std::mutex m_statistics;
 extern dsp_stats statistics;
 
+extern std::mutex m_dumper;
+extern dump_params dump_data;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
@@ -43,7 +46,9 @@ enum cmd_id_t { // Command IDs
     TXMAGIC_ID,
     RXMAGIC_ID,
     SEND_ID,
-    POLLSTATS_ID
+    POLLSTATS_ID,
+    DUMP_ID,
+    PLOT_ID
 };
 
 ////////////////////////////////
@@ -52,6 +57,7 @@ enum cmd_id_t { // Command IDs
 static bool compare(const char s1[], const char s2[]);
 int command_count(char *cmd_start, int cmd_index, std::string comm_string);
 int whitespace_count(char *cmd_start, int cmd_index);
+int nonwhitespace_count(char *cmd_start, int cmd_index);
 static bool is_whitespace(const char ch);
 static void to_lowercase(char s[], const int len);
 
@@ -67,21 +73,29 @@ void repl(void)
     // Command string definitions
     const std::string help_command {"help"}; // help <command>
     const std::string quit_command {"quit"}; // quit
+    const std::string q_command {"q"}; // quit
     const std::string exit_command {"exit"}; // exit (synonym for quit)
     const std::string txmagic_command = {"txmagic"}; // Send TX magic sample
     const std::string rxmagic_command = {"rxmagic"}; // Send RX magic sample
     const std::string send_command = {"send"}; // Send a sine wave, zeros, random sequence, etc.
     const std::string pollstats_command = {"pollstats"}; // Poll link statistics
+    const std::string p_command = {"p"}; // Poll link statistics
+    const std::string dump_command = {"dump"}; // Dump data from RX
+    const std::string plot_command = {"plot"}; // Plot data dump
 
     // Map of strings to IDs
     std::map<std::string, cmd_id_t> commands;
     commands.insert(std::pair<std::string, cmd_id_t>(help_command, HELP_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(quit_command, QUIT_ID));
+    commands.insert(std::pair<std::string, cmd_id_t>(q_command, QUIT_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(exit_command, QUIT_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(txmagic_command, TXMAGIC_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(rxmagic_command, RXMAGIC_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(send_command, SEND_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(pollstats_command, POLLSTATS_ID));
+    commands.insert(std::pair<std::string, cmd_id_t>(p_command, POLLSTATS_ID));
+    commands.insert(std::pair<std::string, cmd_id_t>(dump_command, DUMP_ID));
+    commands.insert(std::pair<std::string, cmd_id_t>(plot_command, PLOT_ID));
 
     // Help string definitions
     const std::string help_help {"displays a list of commands; help <command> : lists help about a command"};
@@ -90,6 +104,8 @@ void repl(void)
     const std::string help_rxmagic {"sends rxmagic to graviton"};
     const std::string help_send {"sends signal to graviton"};
     const std::string help_pollstats {"polls stats of link to graviton"};
+    const std::string help_dump {"dumps adc data to a file"};
+    const std::string help_plot {"plots adc data previously dumped to a file (eventually will allow subsets to be plotted)"};
 
     // Map of help strings
     std::map<std::string, std::string> help_strings;
@@ -99,6 +115,8 @@ void repl(void)
     help_strings.insert(std::pair<std::string, std::string>(rxmagic_command, help_rxmagic));
     help_strings.insert(std::pair<std::string, std::string>(send_command, help_send));
     help_strings.insert(std::pair<std::string, std::string>(pollstats_command, help_pollstats));
+    help_strings.insert(std::pair<std::string, std::string>(dump_command, help_dump));
+    help_strings.insert(std::pair<std::string, std::string>(plot_command, help_plot));
 
     while (!local_quit) {
         // Request user for command input
@@ -197,7 +215,7 @@ void repl(void)
                 acnt = whitespace_count(cmd_start, cmd_index);
                 cmd_start += acnt; cmd_index += acnt;
                 // If there is no more text, then print the command usage.
-                if(std::strlen(cmd_start) == 0) {
+                if (std::strlen(cmd_start) == 0) {
                     constexpr int FMT_WIDTH = 45;
                     std::cout << "    Usage:" << std::endl;
                     // SEND NOTHING
@@ -228,6 +246,7 @@ void repl(void)
                     if (compare(cmd_start, "nothing")) {
                         std::cout << "Sending zero signal" << std::endl;
                         m_signal_data.lock();
+                        signal_data.needs_update = 1;
                         signal_data.mode = SIGNAL_ZERO;
                         signal_data.amplitude = 0.0;
                         signal_data.frequency = 0.0;
@@ -237,6 +256,7 @@ void repl(void)
                     else if (compare(cmd_start, "ramp")) {
                         std::cout << "Sending ramp signal" << std::endl;
                         m_signal_data.lock();
+                        signal_data.needs_update = 1;
                         signal_data.mode = SIGNAL_RAMP;
                         signal_data.amplitude = 0.0;
                         signal_data.frequency = 0.0;
@@ -246,6 +266,7 @@ void repl(void)
                     else if (compare(cmd_start, "random")) {
                         std::cout << "Sending random signal" << std::endl;
                         m_signal_data.lock();
+                        signal_data.needs_update = 1;
                         signal_data.mode = SIGNAL_RANDOM;
                         signal_data.amplitude = 0.0;
                         signal_data.frequency = 0.0;
@@ -253,36 +274,155 @@ void repl(void)
                         m_signal_data.unlock();
                     }
                     else if (compare(cmd_start, "sine")) {
+                        double frequency = 0.0;
+                        double amplitude = DAC_FULL_SCALE;
+
+                        // Consume "sine" + whitespace
+                        cmd_start += 4; cmd_index += 4;
+                        acnt = whitespace_count(cmd_start, cmd_index);
+                        cmd_start += acnt; cmd_index += acnt;
+
+                        // If there is more text, then read frequency
+                        if (std::strlen(cmd_start) > 0) {
+                            std::sscanf(cmd_start, "%lf", &frequency);
+                            frequency *= 2.0 * PI;
+                        }
+
+                        // Consume number + whitespace
+                        acnt = nonwhitespace_count(cmd_start, cmd_index);
+                        cmd_start += acnt; cmd_index += acnt;
+                        acnt = whitespace_count(cmd_start, cmd_index);
+                        cmd_start += acnt; cmd_index += acnt;
+
+                        // If there is more text, then read amplitude
+                        if (std::strlen(cmd_start) > 0) {
+                            std::sscanf(cmd_start, "%lf", &amplitude);
+                        }
+
                         std::cout << "Sending sine signal" << std::endl;
                         m_signal_data.lock();
+                        signal_data.needs_update = 1;
                         signal_data.mode = SIGNAL_SINE;
-                        signal_data.amplitude = DAC_FULL_SCALE;
-                        signal_data.frequency = 0.0;
+                        signal_data.amplitude = amplitude;
+                        signal_data.frequency = frequency;
                         signal_data.sweep_rate = 0.0;
                         m_signal_data.unlock();
                     }
                     else if (compare(cmd_start, "sweep")) {
+                        double rate = 2.0 * PI * 0.00025;
+                        double amplitude = DAC_FULL_SCALE;
+
+                        // Consume "sweep" + whitespace
+                        cmd_start += 5; cmd_index += 5;
+                        acnt = whitespace_count(cmd_start, cmd_index);
+                        cmd_start += acnt; cmd_index += acnt;
+
+                        // If there is more text, then read rate
+                        if (std::strlen(cmd_start) > 0) {
+                            std::sscanf(cmd_start, "%lf", &rate);
+                            rate *= 2.0 * PI;
+                        }
+
+                        // Consume number + whitespace
+                        acnt = nonwhitespace_count(cmd_start, cmd_index);
+                        cmd_start += acnt; cmd_index += acnt;
+                        acnt = whitespace_count(cmd_start, cmd_index);
+                        cmd_start += acnt; cmd_index += acnt;
+
+                        // If there is more text, then read amplitude
+                        if (std::strlen(cmd_start) > 0) {
+                            std::sscanf(cmd_start, "%lf", &amplitude);
+                        }
+
                         std::cout << "Sending sweep signal" << std::endl;
                         m_signal_data.lock();
+                        signal_data.needs_update = 1;
                         signal_data.mode = SIGNAL_SWEEP;
-                        signal_data.amplitude = DAC_FULL_SCALE;
+                        signal_data.amplitude = amplitude;
                         signal_data.frequency = 0.0;
-                        signal_data.sweep_rate = 0.0005;
+                        signal_data.sweep_rate = rate;
                         m_signal_data.unlock();
                     }
                     else {
                         std::cout << "Unrecognized signal " << cmd_start << std::endl;
                     }
                     std::cout << std::endl;
-                    std::cerr << "SEND_ID not fully implemented..." << std::endl;
                 }
                 break;
             }
             case POLLSTATS_ID: {
                 // TODO: make this work
                 std::cout << "Polling Link Statistics" << std::endl;
+                m_statistics.lock();
+                std::cout << "           iteration: " << statistics.iteration << std::endl;
                 std::cout << std::endl;
-                std::cerr << "POLLSTATS_ID not yet implemented..." << std::endl;
+                std::cout << "  <<<<<<<<<<<<<<<<<<< ADC STATS >>>>>>>>>>>>>>>>>>>" << std::endl;
+                std::cout << "     sequence number: " << statistics.adc_sequence_number << std::endl;
+                std::cout << "        failed reads: " << statistics.adc_failed_read_count << std::endl;
+                std::cout << " UDP sequence errors: " << statistics.adc_udp_sequence_error_count << std::endl;
+                std::cout << std::endl;
+                std::cout << "  <<<<<<<<<<<<<<<<<<< DAC STATS >>>>>>>>>>>>>>>>>>>" << std::endl;
+                std::cout << "     sequence number: " << statistics.dac_sequence_number << std::endl;
+                std::cout << "   almost full flags: " << statistics.dac_buffer_almost_full_count << std::endl;
+                std::cout << "     underflow flags: " << statistics.dac_buffer_underflow_count << std::endl;
+                std::cout << "      overflow flags: " << statistics.dac_buffer_overflow_count << std::endl;
+                std::cout << " UDP sequence errors: " << statistics.dac_udp_sequence_error_count << std::endl;
+                std::cout << std::endl;
+                m_statistics.unlock();
+                std::cout << std::endl;
+                break;
+            }
+            case DUMP_ID: {
+                int acnt = command_count(cmd_start, cmd_index, dump_command);
+                cmd_start += acnt; cmd_index += acnt;
+                // skip whitespace
+                acnt = whitespace_count(cmd_start, cmd_index);
+                cmd_start += acnt; cmd_index += acnt;
+
+                if (std::strlen(cmd_start) == 0) {
+                    constexpr int FMT_WIDTH = 45;
+                    std::cout << "    Usage:" << std::endl;
+                    // DUMP ON
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump on";
+                    std::cout << " : enable data dumping for ADC" << std::endl;
+                    // DUMP OFF
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump off";
+                    std::cout << " : disable data dumping for ADC" << std::endl;
+                    // DUMP [N]
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump 10";
+                    std::cout << " : enable data dumping for 10 packets, then disable" << std::endl;
+                }
+                else {
+                    if (((*cmd_start) > '0') && ((*cmd_start) < '9')) {
+                        unsigned long long dumps_to_get = 0;
+                        std::sscanf(cmd_start, "%llu", &dumps_to_get);
+                        std::cout << "        ADC data dump enabled for ";
+                        std::cout << dumps_to_get << " packets." << std::endl;
+                        dump_data.needs_update = 1;
+                        dump_data.dumps_left = dumps_to_get;
+                    }
+                    else if (compare(cmd_start, "on")) {
+                        std::cout << "        ADC data dump enabled." << std::endl;
+                        dump_data.needs_update = 1;
+                        dump_data.dumps_left = 0xFFFFFFFFFFFFFFFFULL;
+                    }
+                    else if (compare(cmd_start, "off")) {
+                        std::cout << "        ADC data dump disabled." << std::endl;
+                        dump_data.needs_update = 1;
+                        dump_data.dumps_left = 0;
+                    }
+                    else {
+                        std::cout << "Unrecognized format of dump command." << std::endl;
+                    }
+                }
+
+                std::cout << std::endl;
+                break;
+            }
+            case PLOT_ID: {
+                std::cout << "Plotting dumped data" << std::endl;
+                std::system("python plot_adc_data.py");
+                std::cout << std::endl;
                 break;
             }
             default: {
@@ -328,6 +468,18 @@ int whitespace_count(char *cmd_start, int cmd_index)
     int index = 0;
     for (index = 0; cmd_index < MAX_CMD_TXT; ++cmd_index, ++cmd_start, ++index) {
         if (is_whitespace(*cmd_start)) {
+            continue;
+        }
+        break;
+    }
+    return index;
+}
+
+int nonwhitespace_count(char *cmd_start, int cmd_index)
+{
+    int index = 0;
+    for (index = 0; cmd_index < MAX_CMD_TXT; ++cmd_index, ++cmd_start, ++index) {
+        if (!is_whitespace(*cmd_start)) {
             continue;
         }
         break;
