@@ -82,7 +82,7 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
     double signal_phase = 0.0;
 
     unsigned dumps_left;
-    std::ofstream adcfile("adcdata.bin", std::ofstream::binary);
+    std::ofstream adcfile("adcdata.bin", std::ofstream::binary | std::ofstream::trunc);
 
     while (!local_quit) {
         // Sleep to simulate some kind of work/rest scenario
@@ -177,6 +177,10 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
             if (dump_data.needs_update) {
                 dumps_left = dump_data.dumps_left;
                 dump_data.needs_update = 0;
+                if (dump_data.reset_file) {
+                    adcfile.close();
+                    adcfile.open("adcdata.bin", std::ofstream::binary | std::ofstream::trunc);
+                }
             }
             m_dumper.unlock();
         }
@@ -224,7 +228,8 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
                         local_tx_bytes[i+3] = (quad_value >> 8) & 0xFF;
                         // Update phase for sine computation
                         signal_phase += signal_freq;
-                        signal_phase = signal_phase > PI ? signal_phase - (2*PI) : signal_phase;
+                        signal_phase = (signal_phase >= PI) ? signal_phase - (2*PI) : signal_phase;
+                        signal_phase = (signal_phase < -PI) ? signal_phase + (2*PI) : signal_phase;
                     }
                     // Update frequency for sine computation
                     if (signal_mode == SIGNAL_SWEEP) {

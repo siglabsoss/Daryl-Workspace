@@ -177,8 +177,9 @@ void repl(void)
                 }
                 else {
                     // Otherwise, print the help messages
+                    std::cout << "    Usage:" << std::endl;
                     for(auto it = help_strings.begin(); it != help_strings.end(); ++it) {
-                        std::cout << std::setw(20);
+                        std::cout << "      " << std::left << std::setw(20);
                         std::cout << it->first << " : " << it->second << std::endl;
                     }
                     std::cout << std::endl;
@@ -388,6 +389,12 @@ void repl(void)
                     // DUMP OFF
                     std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump off";
                     std::cout << " : disable data dumping for ADC" << std::endl;
+                    // DUMP RESET
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump reset";
+                    std::cout << " : erases dump file contents (for a new capture)" << std::endl;
+                    // DUMP COPY [FILENAME]
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump copy newfile.bin";
+                    std::cout << " : creates/overwrites file ""newfile.bin"" with dump file contents" << std::endl;
                     // DUMP [N]
                     std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "dump 10";
                     std::cout << " : enable data dumping for 10 packets, then disable" << std::endl;
@@ -409,6 +416,12 @@ void repl(void)
                     else if (compare(cmd_start, "off")) {
                         std::cout << "        ADC data dump disabled." << std::endl;
                         dump_data.needs_update = 1;
+                        dump_data.dumps_left = 0;
+                    }
+                    else if (compare(cmd_start, "reset")) {
+                        std::cout << "        ADC data file reset." << std::endl;
+                        dump_data.needs_update = 1;
+                        dump_data.reset_file = 1;
                         dump_data.dumps_left = 0;
                     }
                     else {

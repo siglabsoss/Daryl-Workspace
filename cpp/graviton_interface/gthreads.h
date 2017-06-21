@@ -17,9 +17,11 @@ struct signal_params
 struct dsp_stats
 {
     unsigned long long iteration;
+    // ADC stream stats
     unsigned adc_sequence_number;
     unsigned adc_failed_read_count;
     unsigned adc_udp_sequence_error_count;
+    // DAC stream stats
     unsigned dac_sequence_number;
     unsigned dac_buffer_almost_full_count;
     unsigned dac_buffer_underflow_count;
@@ -30,6 +32,7 @@ struct dsp_stats
 struct dump_params
 {
     bool needs_update;
+    bool reset_file;
     unsigned long long dumps_left;
 };
 

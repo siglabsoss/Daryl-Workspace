@@ -77,6 +77,7 @@ int main(int argc, char const * argv[])
 
     // Dump data
     dump_data.needs_update = 1;
+    dump_data.reset_file = 0;
     dump_data.dumps_left = 0ULL;
 
     // Create UDP communication objects
