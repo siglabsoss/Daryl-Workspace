@@ -31,9 +31,18 @@ def root_cosine(N, L, alpha, apply_window=False):
 
     return h
 
-def nyquist(N, M, alpha):
+
+def nyquist(N, M, alpha=1.0):
     ''' Nyquist-M Eigen Filter Design'''
-    pass
+    phi = np.zeros((N*M, N*M), dtype=np.double)
+    fc = 0.5 * (1.0 + alpha) / M
+    for ii in range(N*M):
+        for jj in range(N*M):
+            if ii == jj:
+                phi[ii,jj] = 1 - 2 * fc
+            else:
+                phi[ii,jj] = -2 * fc * np.sinc(2 * fc * (ii - jj))
+    # TODO: Complete this
 
 def polyphase_sequence(period=8, periods=1, q=1, s=1):
     ''' Generate a polyphase sequence (q, s, and period should be relatively prime) '''

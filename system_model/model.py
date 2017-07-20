@@ -23,7 +23,12 @@ if __name__ == '__main__':
     pt.plot(np.real(x))
     pt.plot(np.imag(x), 'r')
 
-    y = np.convolve(x, h[::-1])
+    sigma = 0.001
+    delta_f = 0.001
+
+    y = np.convolve(x * np.exp(2j*np.pi*delta_f*np.arange(x.size)), h[::-1])
+    n = sigma * np.random.standard_normal(y.shape)
+    y += n
 
     pt.figure()
     pt.plot(np.real(y))
@@ -38,14 +43,13 @@ if __name__ == '__main__':
     z2 = np.convolve(y, xs2)
     z3 = np.sqrt(np.convolve(y*np.conjugate(y), np.ones(L*P)/(L*P)))
 
-
     pt.figure()
     pt.subplot(311)
-    pt.plot(np.real(z1))
-    pt.plot(np.imag(z1), 'r')
+    pt.plot(np.real(z1)/(0.5 + z3))
+    pt.plot(np.imag(z1)/(0.5 + z3), 'r')
     pt.subplot(312)
-    pt.plot(np.real(z2))
-    pt.plot(np.imag(z2), 'r')
+    pt.plot(np.real(z2)/(0.5 + z3))
+    pt.plot(np.imag(z2)/(0.5 + z3), 'r')
     pt.subplot(313)
     pt.plot(np.real(z3))
     pt.plot(np.imag(z3), 'r')
