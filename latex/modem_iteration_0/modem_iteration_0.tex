@@ -1,0 +1,143 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[pdftex]{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\interdisplaylinepenalty=2500
+
+\usepackage{array}
+
+\begin{document}
+\title{Proposed Modem Design}
+\author{\IEEEauthorblockN{Daryl Leon Wasden, Ph.D.\\
+Signal Laboratories, Inc.}
+\IEEEauthorblockA{Salt Lake City, Utah\\
+Email: daryl@siglabs.com}}
+
+\maketitle
+
+\begin{abstract}
+This document summarizes the design decisions/trade offs of the zeroth
+iteration of the multicarrier modem used for distributed beamforming by
+Signal Laboratories, Inc. All material should be considered confidential
+and should only be used by authorized persons employed by Signal
+Laboratories, Inc.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+In the context here, \emph{distributed beamforming} is defined as a
+protocol for several wireless modems coordinating their transmissions
+to boost the signal-to-noise ratio (SNR) at a receiving wireless modem
+by pre equalizing their transmission sequences such that all (or most)
+of the signals coherently combine at the intended receiving wireless modem.
+
+This document is meant to act as a reference for the implementation
+of the modem, and it will discuss design decisions, trade offs, and
+provide some simulation and theoretical results to help guide the
+system implementation. It is primarily concerned with the PHY layer
+(although it may touch on MAC issues).
+
+We now describe the structure of this document. Section~\ref{sec:hardware}
+introduces the relevant hardware parameters that relate to our modem
+design. The modem parameters are selected to complement the hardware
+platform. Section~\ref{sec:FMTintro} presents the multicarrier modulation
+scheme that will be employed in this version of the modem. This scheme was
+chosen due to its similarity with the narrowband modem that has already been
+developed, and a different choice (notably OFDM) may be employed
+later if it is deemed advantageous. The modem parameters such as subcarrier
+spacing, occupied bandwidth, etc. are also developed in this section.
+Section~\ref{sec:chan} introduces the RF channel impairments under
+consideration in the current iteration (i.e. multipath, doppler, etc).
+Symbol recovery in the presence of RF impairments will be addressed in
+the description of the demodulation procedures for the receiver in
+Section~\ref{sec:rx}.
+
+\section{Hardware}
+\label{sec:hardware}
+
+The hardware used to implement this modem design is a Circuit Card
+Assembly (CCA) consisting of two printed circuit boards (PCBs), namely
+a \emph{Graviton} PCB (Revision 2 or 3) with a \emph{Copper Suicide} PCB
+(Revision 2) and a PC for providing software-related tasks.
+
+\subsection*{Graviton}
+
+The \emph{Graviton} PCB performs all tasks related to the RF analog
+processing chain (amplification, attenuation, filtering, mixing, etc.)
+as well as housing the analog-to-digital converter (ADC) and the
+digital-to-analog converter (DAC).
+
+The DAC on \emph{Graviton} is a Texas Instruments part DAC3484. It has
+four channels (only 2 are available for use). It supports clock rates
+up to 1.25 GSPS, but is currently clocked at 250 MSPS. It supports
+digital upconversion and mixing internally, but we only make use of a
+simple halfband interpolation filter and an inverse sinc functionality.
+Other required interpolation and mixing is handled in the FPGA fabric.
+
+The RF front end mixes the DAC signal output up from an IF of 35 MHz
+to a carrier frequency of 915 MHz using the lower vestigial sideband.
+This is noted here, because the DAC must provide an output centered
+at the IF frequency with a frequency-reversed spectrum to match the
+physical frequencies seen over-the-air. The RF front end should transmit
+at a constant power level of approximately 1 W when the full dynamic
+range of the DAC is used. While there are two RF signaling chains
+available on \emph{Graviton}, we restrict our current design to use
+only a single transmit/receive chain.
+
+The RF front end contains a variable attenuator before it mixes the
+signal at 915 MHz down to the 35 MHz IF. There is then a variable
+gain and attenuation stage following the mixer before the signal
+gets digitized by the ADC. The ADC on \emph{Graviton} is a Texas
+Instruments part ADS42LB69. It has 16-bit inputs operating at
+250 MSPS. One input
+
+\begin{table}
+\begin{tabular}{cc}
+DAC Sampling Rate & 250 MSPS \\
+ADC Sampling Rate & 250 MSPS \\
+IF Frequency & 35 MHz \\
+Sideband Used & Lower
+\end{tabular}
+\centering
+\end{table}
+
+
+\subsection*{Copper Suicide}
+
+
+
+\subsection*{Personal Computer}
+
+
+
+\section{Filtered Multitone Modulation}
+\label{sec:FMTintro}
+
+FMT is a modulation scheme that is essentially the same thing as a
+traditional FDM system, except that it employs a polyphase filter
+bank for efficient modulation and demodulation of the multicarrier
+streams.
+
+\subsection*{Transmit Mode}
+
+\subsection*{Receive Mode}
+
+\section{RF Channel Impairments}
+\label{sec:chan}
+
+
+\section{Transmitter Structure}
+\label{sec:tx}
+
+\section{Receiver Structure}
+\label{sec:rx}
+
+\section{Conclusion and Future Work}
+\label{sec:conc}
+
+\end{document}
