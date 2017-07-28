@@ -81,7 +81,7 @@ def quantize(x, Nb = 18, bypass=False, maximize_range=True, integral_type=False)
 if __name__ == '__main__':
     import matplotlib.pyplot as pt
 
-    h = root_cosine(6*128, 128, 1.0)
+    h = root_cosine(6*128+1, 128, 1.0)
 
     pt.figure()
     pt.plot(h)
@@ -91,6 +91,7 @@ if __name__ == '__main__':
     pt.figure()
     pt.plot(g)
     tau = 64
+
     pt.plot(np.arange(tau, g.size, 128), g[tau::128], 'o')
 
     pt.show()
