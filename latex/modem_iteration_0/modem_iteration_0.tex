@@ -48,14 +48,14 @@ design. The modem parameters are selected to complement the hardware
 platform. Section~\ref{sec:FMTintro} presents the multicarrier modulation
 scheme that will be employed in this version of the modem. This scheme was
 chosen due to its similarity with the narrowband modem that has already been
-developed, and a different choice (notably OFDM) may be employed
-later if it is deemed advantageous. The modem parameters such as subcarrier
-spacing, occupied bandwidth, etc. are also developed in this section.
-Section~\ref{sec:chan} introduces the RF channel impairments under
-consideration in the current iteration (i.e. multipath, doppler, etc).
-Symbol recovery in the presence of RF impairments will be addressed in
-the description of the demodulation procedures for the receiver in
-Section~\ref{sec:rx}.
+developed (at Signal Laboratories), and a different choice (notably OFDM)
+may be employed later if it is deemed advantageous. The modem parameters
+such as subcarrier spacing, occupied bandwidth, etc. are also developed
+in this section. Section~\ref{sec:chan} introduces the RF channel
+impairments under consideration in the current iteration (i.e. multipath,
+doppler, etc). Symbol recovery in the presence of RF impairments will be
+addressed in the description of the demodulation procedures for the
+receiver in Section~\ref{sec:rx}.
 
 \section{Hardware}
 \label{sec:hardware}
@@ -73,63 +73,202 @@ as well as housing the analog-to-digital converter (ADC) and the
 digital-to-analog converter (DAC).
 
 The DAC on \emph{Graviton} is a Texas Instruments part DAC3484. It has
-four channels (only 2 are available for use). It supports clock rates
-up to 1.25 GSPS, but is currently clocked at 250 MSPS. It supports
+four channels (only $2$ are available for use). It supports clock rates
+up to $1.25$ GSPS, but is currently clocked at $250$ MSPS. It supports
 digital upconversion and mixing internally, but we only make use of a
 simple halfband interpolation filter and an inverse sinc functionality.
 Other required interpolation and mixing is handled in the FPGA fabric.
 
-The RF front end mixes the DAC signal output up from an IF of 35 MHz
-to a carrier frequency of 915 MHz using the lower vestigial sideband.
+The RF front end mixes the DAC signal output up from an IF of $35$ MHz
+to a carrier frequency of $915$ MHz using the lower vestigial sideband.
 This is noted here, because the DAC must provide an output centered
 at the IF frequency with a frequency-reversed spectrum to match the
 physical frequencies seen over-the-air. The RF front end should transmit
-at a constant power level of approximately 1 W when the full dynamic
+at a constant power level of approximately $1$ W when the full dynamic
 range of the DAC is used. While there are two RF signaling chains
 available on \emph{Graviton}, we restrict our current design to use
 only a single transmit/receive chain.
 
 The RF front end contains a variable attenuator before it mixes the
-signal at 915 MHz down to the 35 MHz IF. There is then a variable
+signal at 915 MHz down to the $35$ MHz IF. There is then a variable
 gain and attenuation stage following the mixer before the signal
 gets digitized by the ADC. The ADC on \emph{Graviton} is a Texas
-Instruments part ADS42LB69. It has 16-bit inputs operating at
-250 MSPS. One input
+Instruments part ADS42LB69. It has $16$-bit inputs operating at
+$250$ MSPS. One input
 
 \begin{table}
-\begin{tabular}{cc}
-DAC Sampling Rate & 250 MSPS \\
-ADC Sampling Rate & 250 MSPS \\
-IF Frequency & 35 MHz \\
-Sideband Used & Lower
+\begin{tabular}{|r|l|}
+\hline
+DAC Sampling Rate & $250$ MSPS \\
+\hline
+ADC Sampling Rate & $250$ MSPS \\
+\hline
+IF Frequency & $35$ MHz \\
+\hline
+Sideband Used & Lower \\
+\hline
 \end{tabular}
 \centering
+\vspace{0.125in}
+\caption[Hardware Parameters]{Hardware Design Parameters}
 \end{table}
-
 
 \subsection*{Copper Suicide}
 
+The \emph{Copper Suicide} board is a low cost ASIC prototyping platform that contains
+$8$ ECP5 FPGAs from Lattice Semiconductor. Each FPGA has a $1$ GB of SDRAM that can be
+used for large data storage. The FPGAs are all connected via a high speed bus interface
+(the MIB Bus). In addition adjacent FPGAs have more than $34$ pins (exact amount?) for
+high speed data transfers.
 
+This layout means that the design needs to be properly divided up among the FPGAs, and
+it is also preferably to use a stream processing with limited or no feedback in the design.
+We are operating most of the DSP operations in a $125$ MHz clock domain with faster
+clocks used when required.
 
 \subsection*{Personal Computer}
 
-
+The personal computer (PC) is connected to \emph{Copper Suicide} or \emph{Graviton}
+Revision 2 through a high speed gigabit ethernet connection. The ethernet connection
+is used for general purpose data transfers, debugging data transfers, and
+command-and-control data transfer (i.e., reading and writing registers on the FPGAs,
+controlling peripherals, etc.).
+The PC is also used for some final signal processing related tasks such as encoding
+and decoding of the data message, controlling the beamforming phase adjustment for
+each symbol period, etc. Additionally, the PC controls reads/writes registers in
+the FPGA during setup to put the modem into its initial state and monitors flag
+registers to detect errors during normal operation.
 
 \section{Filtered Multitone Modulation}
 \label{sec:FMTintro}
 
-FMT is a modulation scheme that is essentially the same thing as a
-traditional FDM system, except that it employs a polyphase filter
-bank for efficient modulation and demodulation of the multicarrier
-streams.
+Filtered Multitone (FMT) is a modulation scheme that is essentially the same thing
+as a traditional multi-user frequency division multiplexing (FDM) systems. In
+traditional FDM, multiple distinct users encode their data on non-overlapping
+frequency bands (often called channels or carriers). In FMT, each frequency band
+is used by the same user to increase the aggregate transmission rate of that
+user. In FMT, each non-overlapping band is called a \emph{subchannel} or
+\emph{subcarrier} to emphasize that it is part of a larger whole.
+
+For efficient modulation and demodulation, a polyphase filter bank is used with
+a prototype filter that is a square root Nyquist filter at the transmitter and
+receiver. This filter bank takes the place of traditional pulse shaping and
+matched filtering in single carrier narrowband modems.
+
+The majority of the design operates in a $125$ MHz clock domain, but in order
+to have multiple clock cycles per sample period (for resource sharing in the FPGA),
+we operate on a signal that is decimated by $8$. Between the decimation filters
+and the filter bank, our sampling rate is therefore $250 \mbox{MHz} / 8 = 31.25$ MHz.
+We use a filter bank with an FFT size of $1024$ on both the transmit and receive.
+The baud rate for each subcarrier signal is $31.25 \mbox{MHz} / 2048 = 15.287890625$ kHz.
+The transmitter filter bank (TXFB) is designed such that the input rate should come in
+at $1024 \mbox{channels} \times 15.287890625 \mbox{kHz per channel}$ whereas the output
+of the receiver filter bank {RXFB} is designed to be oversampled by a factor of $2$. This
+is designed this way so that software can perform a fractionally-spaced equalizer and to
+ease resampling for timing adjustment if necessary.
+
+\begin{table}
+\begin{tabular}{|r|l|}
+\hline
+TXFB Input Sampling Rate per Channel & $15.287890625$ kHz \\
+\hline
+TXFB Output Sampling Rate & $31.25$ MHz \\
+\hline
+RXFB Input Sampling Rate & $31.25$ MHz \\
+\hline
+RXFB Output Sampling Rate per Channel & $30.517578125$ kHz \\
+\hline
+Subcarrier Spacing & $30.517578125$ kHz \\
+\hline
+\end{tabular}
+\centering
+\vspace{0.125in}
+\caption[FMT Parameters]{FMT design parameters}
+\end{table}
 
 \subsection*{Transmit Mode}
 
+The TXFB is efficiently implemented using a synthesis polyphase filter bank.
+% Cite vaidyanathan, harris, farhang
+The prototype filter used for pulse shaping at the transmitter is a square root
+Nyquist pulse shape designed with a baud interval of $2048$ samples and a
+roll-off of $0.5$. The purpose of the filter bank is to generate a sampled version of
+\begin{equation}
+x(t) = \sum_{k=0}^{N-1} \sum_{m=-\infty}^{+\infty} s[m, k] p(t - m T_b) e^{j \frac{2 \pi t k f_a}{T_b}}
+\end{equation}
+where the sampled version replaces $t$ with $n T_s$ and we choose $\frac{T_s f_a}{T_b} = \frac{1}{N}$
+and $T_b = 2 N T_s$ so that the expression simplifies to
+\begin{equation}
+x(n T_s) = \sum_{k=0}^{N-1} \sum_{m=-\infty}^{+\infty} s[m, k] p(n T_s - 2 m N T_s) e^{j \frac{2 \pi n k}{N}}.
+\end{equation}
+Swapping the order of summations and pulling the pulse shaping filter out of the inner summation
+brings us to the form
+\begin{equation}
+x(n T_s) = \sum_{m=-\infty}^{+\infty} p(n T_s - 2 m N T_s) \sum_{k=0}^{N-1} s[m, k] e^{j \frac{2 \pi n k}{N}}.
+\end{equation}
+This form suggests the efficient implementation that we will use. For each fixed symbol sequence $m$,
+we compute the IFFT of the $N$ subcarrier symbols and pass that sequence through a polyphase decomposition
+of our sampled pulse shaping filter $p(n T_s)$ and pass them through a network of polyphase filters. For
+our system, we are using $N=1024$.
+% TODO: Put a block diagram here
+
 \subsection*{Receive Mode}
+
+The RXFB is efficiently implemented using an analysis polyphase filter bank.
+The prototype filter is matched to the TXFB prototype filter (by conjugation and
+time-reversal). In the case of a real symmetric prototype filter, the matched
+version is identical to the original pulse shape.
 
 \section{RF Channel Impairments}
 \label{sec:chan}
 
+\subsection*{Thermal Noise}
+We consider a thermal noise model that is additive white gaussian noise (AWGN).
+That is, the receive signal is perturbed by noise that is constant across the
+operating band (white) and follows a gaussian distribution. This can be motivated
+from the statistical mechanics of charged particles bashing into each other on an
+atomic scale. The thermal noise density is given as $N_0 = k T$ where $k$ is
+Boltzmann's constant $k = 1.38 \times 10^-23 \mbox{J/K}$ and $T$ is the
+temperature in Kelvin. At room temperature (i.e., $T = 290 \mbox{K}$),
+$N_0 \approx -174 \mbox{dBm/Hz}$.
+
+If the signal $y(t)$ represents the received signal and $x(t)$ is the transmitted
+signal, then we can represent an AWGN $v(t)$ through the equation
+\begin{equation}
+y(t) = x(t) + v(t).
+\end{equation}
+
+\subsection*{Local Oscillator Phase Noise}
+No oscillator is perfect. Even very good oscillators exhibit some phase noise.
+Phase noise manifests itself as random fluctuations about the desired phase. For
+a local oscillator (LO) designed to operate at $f_c\:\mbox{Hz}$, this can be
+expressed as
+\begin{equation}
+x(t) = x_{BB}(t) \exp\left(j 2 \pi \left( f_c t + v_c(t) \right)\right)
+\end{equation}
+where $x(t)$ is the signal to be transmitted at the antenna, $x_{BB}(t)$
+represents the baseband signal (I and Q), and finally
+$\exp\left(j 2 \pi f_c t + v_c(t)\right)$ modulates the baseband signal
+to the carrier or IF frequency $f_c$.
+
+These random phase fluctuations typically manifest themselves as phase
+rotations in the constellation diagram. This results in the points
+being smeared in a circular direction, points with higher amplitude
+being smeared more (since the arc length of the angle has increased).
+
+\subsection*{Sampling Clock Jitter}
+
+\subsection*{Local Oscillator Offset}
+
+\subsection*{Sampling Clock Offset}
+
+\subsection*{Multipath Channel}
+
+\subsection*{Slow and Fast Fading}
+
+\subsection*{Doppler Effects}
+
+\subsection*{Shadowing (Large-scale Fading)}
 
 \section{Transmitter Structure}
 \label{sec:tx}
