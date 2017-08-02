@@ -10,6 +10,7 @@ def dds_gen(phi_seq, N=16, K=256, M=256):
     for a direct digital synthesizer of a complex exponential with an arbitrary
     phase input phi_seq.
 
+    phi_seq is an iterable that provides integer multiples of 1/(M*K)
     M is the samples per period of the stored values.
     2*K is the number of periods of the raised cosine to use.
     2*N*K+1 is the length of the filter to use. '''
@@ -22,6 +23,9 @@ def dds_gen(phi_seq, N=16, K=256, M=256):
     cos_buf = quantize(np.cos(2*np.pi*np.arange(M / 2) / float(M)))
     # Note: cos[n] = (-1)**float(n % M >= M/2) * cos_buf[n % (M/2)] due to half wave symmetry
     # Note: sin[n] = cos[n - M/4] since M is a power of 2
+    for phi in phi_seq:
+        phi
+
 
 
 def arbitrary_cos_lookup(n, cos_buf, M):
