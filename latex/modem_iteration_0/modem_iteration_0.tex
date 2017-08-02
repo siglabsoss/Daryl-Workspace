@@ -228,9 +228,9 @@ That is, the receive signal is perturbed by noise that is constant across the
 operating band (white) and follows a gaussian distribution. This can be motivated
 from the statistical mechanics of charged particles bashing into each other on an
 atomic scale. The thermal noise density is given as $N_0 = k T$ where $k$ is
-Boltzmann's constant $k = 1.38 \times 10^-23 \mbox{J/K}$ and $T$ is the
-temperature in Kelvin. At room temperature (i.e., $T = 290 \mbox{K}$),
-$N_0 \approx -174 \mbox{dBm/Hz}$.
+Boltzmann's constant $k = 1.38 \times 10^-23\:\mbox{J/K}$ and $T$ is the
+temperature in Kelvin. At room temperature (i.e., $T = 290\:\mbox{K}$),
+$N_0 \approx -174\:\mbox{dBm/Hz}$.
 
 If the signal $y(t)$ represents the received signal and $x(t)$ is the transmitted
 signal, then we can represent an AWGN $v(t)$ through the equation
@@ -253,14 +253,81 @@ to the carrier or IF frequency $f_c$.
 
 These random phase fluctuations typically manifest themselves as phase
 rotations in the constellation diagram. This results in the points
-being smeared in a circular direction, points with higher amplitude
-being smeared more (since the arc length of the angle has increased).
+being smeared in a circular direction. Points with a higher amplitude
+are smeared more than points with a smaller amplitude (since the arc
+length of the angle is larger).
+
+In our system, we make the assumption that our clocks are insanely
+good. Under this assumption, we ignore the effects of LO phase noise.
 
 \subsection*{Sampling Clock Jitter}
+In addition to phase noise on the local oscillator used for RF up/down
+conversion, there is also potential for jitter in the phase of the
+sampling clock. In our system, the sampling clock and the mixer LO
+are derived from the same crystal. For that reason, we expect the
+jitter on these two to be approximately equal (and highly correlated
+if the processing delays are taken into account). In traditional
+model designs, the phase noise from the LO and the phase noise
+introduced from the sampling clock jitter are considered separately.
 
-\subsection*{Local Oscillator Offset}
+As before, our system has insanely good clocks so we assume the
+sampling clock jitter is near zero and ignore the effects of jitter-induced
+phase noise.
 
-\subsection*{Sampling Clock Offset}
+\subsection*{Carrier Frequency Offset}
+In addition to random noise, it is often the case that the LO at the
+transmitter and the LO at the receiver contain some fixed offset from
+each other. This shows up in the receiver baseband signal as a slightly
+modulated version of the desired signal,
+\begin{equation}
+\hat{x}_{BB}(t) = x_{BB}(t) \exp\left(-j 2 \pi \Delta_f t\right),
+\end{equation}
+where $\Delta_f = f'_c - f_c$, $f'_c$ is the carrier frequency
+at the receiver, and $f_c$ is the carrier frequency at the transmitter.
+We have neglected any additive noise to improve the clarity of the
+equation.
+
+So far, we have observed offsets from $-100$ to $100$ Hz. We assume
+that we will not have to deal with offsets greater than this.
+
+\subsection*{Sampling Frequency Offset}
+A sampling clock offset between the transmitter and receiver has a
+similar, but slightly more complicated effect on the observed signal.
+It causes the receiver to observe a time-scaled version of the signal,
+\begin{equation}
+\hat{x}_{BB}(t) = x_{BB}(t') \exp\left(-j 2 \pi f_c \left(t - t'\right)\right),
+\end{equation}
+where $t' = (1 + \gamma) t$ and $\gamma$ is a small parameter in the
+range from $-\Delta_t$ to $\Delta_t$ and $\Delta_t$ is typically much
+smaller than $1$. So, we can write this expression in terms of $\gamma$
+as
+\begin{equation}
+\hat{x}_{BB}(t) = x_{BB}(t') \exp\left(-j 2 \pi f_c \gamma t\right).
+\end{equation}
+This shows that the new signal is a time-scaled and slightly modulated
+version of the desired signal. The modulation is at an offset of $-f_c \gamma$.
+
+Notice that things are even more complicated when considering Carrier
+Frequency Offset (CFO) and Sampling Frequency Offset (SFO) together, since
+we obtain
+\begin{equation}
+\hat{x}_{BB}(t) = x_{BB}(t') \exp\left(-j 2 \pi \left(f_c t - f'_c t'\right)\right).
+\end{equation}
+Now, we can apply the fact that $f'_c = f_c + \Delta_f$ and $t' = (1 + \gamma) t$
+to obtain
+\begin{equation}
+\hat{x}_{BB}(t) = x_{BB}(t') \exp\left(-j 2 \pi \left(f_c t - \left(f_c + \Delta_f\right) \left(1 + \gamma\right) t \right)\right)
+\end{equation}
+or if we simplify,
+\begin{equation}
+\hat{x}_{BB}(t) = x_{BB}(t') \exp\left(-j 2 \pi f_c \gamma t\right) \exp\left(-j 2 \pi \Delta_f \left(1 + \gamma\right) t\right).
+\end{equation}
+Notice that in this case, the CFO and SFO both contribute to a CFO-like phase
+error, and the time-scaling associated with the received signal is still present.
+We again assume that our oscillators are near enough so that a CFO estimate is
+necessary, but an SFO estimate will have a negligible effect over the duration
+of the transmission before another estimation event occurs.
+
 
 \subsection*{Multipath Channel}
 
