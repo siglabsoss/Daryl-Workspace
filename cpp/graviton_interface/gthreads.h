@@ -36,7 +36,13 @@ struct dump_params
     unsigned long long dumps_left;
 };
 
+// Transmit/Receive Loop (send samples)
 void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx);
+
+// Read/Eval/Print Loop (simple user interface)
 void repl(void);
+
+// Command and Control Loop (read/write regs)
+void cncl(udp_transmitter cc_tx, udp_receiver cc_rx);
 
 #endif

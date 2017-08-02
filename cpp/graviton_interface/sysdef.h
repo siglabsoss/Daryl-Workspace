@@ -17,9 +17,11 @@ namespace sysdef {
 
     constexpr char CCTX_DATA_IP[]     = "192.168.2.2";
     constexpr char CCTX_DATA_PORT[]   = "60000";
+    constexpr int  CCTX_PACKET_LENGTH = 1500;
 
-    constexpr char ADC_DATA_PORT[]   = "60001";
-    constexpr char ADC_DATA_TIMEOUT  = 100; // microseconds
+    constexpr char CCRX_DATA_PORT[]   = "60001";
+    constexpr char CCRX_DATA_TIMEOUT  = 100; // microseconds
+    constexpr int  CCRX_PACKET_LENGTH = 1500;
 
     ////////////////////////////////////////////////
     // MAGIC NUMBER CONSTANTS
@@ -50,7 +52,19 @@ namespace sysdef {
     ////////////////////////////////////////////////
     // COMMAND AND CONTROL INTERFACE
     ////////////////////////////////////////////////
-    constexpr
+    constexpr unsigned char WRITE_REQUEST_LENGTH = 13; // Bytes
+    constexpr unsigned char READ_REQUEST_LENGTH = 9; // Bytes
+
+    ////////////////////////////////////////////////
+    // COMMAND AND CONTROL PACKET TYPES
+    ////////////////////////////////////////////////
+    constexpr unsigned char REG_WRITE_REQUEST = 0;
+    constexpr unsigned char REG_READ_REQUEST = 1;
+    constexpr unsigned char MEM_WRITE_REQUEST = 2; // Unsupported
+    constexpr unsigned char MEM_READ_REQUEST = 3; // Unsupported
+    constexpr unsigned char MSG_ACK = 0xF0;
+    constexpr unsigned char MSG_NACK = 0xF1;
+    constexpr unsigned char MSG_UNKNOWN = 0xFF;
 
 } // end sysdef
 

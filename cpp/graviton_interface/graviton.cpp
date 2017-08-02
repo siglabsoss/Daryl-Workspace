@@ -31,11 +31,6 @@ std::mutex m_dumper;
 dump_params dump_data;
 
 ////////////////////////////////
-// Local constants
-////////////////////////////////
-
-
-////////////////////////////////
 // Main program entry point
 ////////////////////////////////
 int main(int argc, char const * argv[])
@@ -84,6 +79,8 @@ int main(int argc, char const * argv[])
     std::cout << "Creating UDP sockets..." << std::endl;
     auto adc_data_rx = udp_receiver(ADC_DATA_PORT, ADC_PACKET_LENGTH, ADC_DATA_TIMEOUT);
     auto dac_data_tx = udp_transmitter(DAC_DATA_IP, DAC_DATA_PORT, DAC_PACKET_LENGTH);
+    auto cc_rx = udp_receiver(CCRX_DATA_PORT, CCRX_PACKET_LENGTH, CCRX_DATA_TIMEOUT);
+    auto cc_tx = udp_transmitter(CCTX_DATA_IP, CCTX_DATA_PORT, CCTX_PACKET_LENGTH);
 
     // Initialize DAC data socket and verify that initialization worked
     std::cout << "Initializing DAC data UDP socket..." << std::endl;
