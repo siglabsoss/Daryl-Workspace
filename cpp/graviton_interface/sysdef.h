@@ -56,7 +56,12 @@ namespace sysdef {
     constexpr unsigned char READ_REQUEST_LENGTH = 9; // Bytes
 
     ////////////////////////////////////////////////
-    // COMMAND AND CONTROL PACKET TYPES
+    // Max messages in command and control queue
+    ////////////////////////////////////////////////
+    constexpr int CC_QUEUE_LENGTH = 16; // inter-thread comms
+
+    ////////////////////////////////////////////////
+    // COMMAND AND CONTROL MESSAGE/PACKET TYPES
     ////////////////////////////////////////////////
     constexpr unsigned char REG_WRITE_REQUEST = 0;
     constexpr unsigned char REG_READ_REQUEST = 1;

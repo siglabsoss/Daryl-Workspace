@@ -72,9 +72,6 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
     unsigned dac_buffer_overflow_count = 0;
     unsigned dac_udp_sequence_error_count = 0;
 
-    unsigned dac_sample_count = 0;
-    unsigned adc_sample_count = 0;
-
     unsigned char local_rx_bytes[ADC_PACKET_LENGTH] { 0 };
     unsigned char local_tx_bytes[DAC_PACKET_LENGTH] { 0 };
 
