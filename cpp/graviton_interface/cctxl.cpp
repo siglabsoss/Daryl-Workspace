@@ -30,6 +30,20 @@ constexpr int MAX_READ_ATTEMPTS = 1024;
 void cctxl(udp_transmitter cc_tx)
 {
     bool local_quit = false;
+    cc_msg message;
 
+    while (!local_quit) {
+        // Handle incoming messages from the REPL
+        if (cctx_messages.dequeue(message)) {
 
+        }
+
+        // Verify that no one has signaled us to quit.
+        {
+            std::unique_lock<std::mutex>(m_global_quit);
+            if (global_quit != 0) {
+                local_quit = global_quit;
+            }
+        }
+    }
 }

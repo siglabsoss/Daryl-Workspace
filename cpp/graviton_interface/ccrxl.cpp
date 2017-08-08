@@ -31,5 +31,14 @@ void ccrxl(udp_receiver cc_rx)
 {
     bool local_quit = false;
 
+    while (!local_quit) {
 
+        // Verify that no one has signaled us to quit.
+        {
+            std::unique_lock<std::mutex>(m_global_quit);
+            if (global_quit != 0) {
+                local_quit = global_quit;
+            }
+        }
+    }
 }
