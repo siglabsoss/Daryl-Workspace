@@ -475,6 +475,17 @@ void repl(void)
                         if (std::sscanf(cmd_start, "%d", &address) == 1) {
                             std::cout << "I'll try to read " << address << "." << std::endl;
                             std::cout << std::endl;
+
+                            if ((address & 0x3) != 0) {
+                                std::cout << "Byte address not 32-bit word aligned." << std::endl;
+                                std::cout << std::endl;
+                            }
+                            else {
+                                // Everything looks good, send register read request
+                                m_cctx_msg.lock();
+                                cctx_messages.enqueue_read(address);
+                                m_cctx_msg.unlock();
+                            }
                         }
                         else {
                             std::cout << "Unexpected usage of reg read... Type reg for usage info." << std::endl;
@@ -487,6 +498,17 @@ void repl(void)
                         if (std::sscanf(cmd_start, "%d %d", &address, &value) == 2) {
                             std::cout << "I'll try to write " << value << " to " << address << "." << std::endl;
                             std::cout << std::endl;
+
+                            if ((address & 0x3) != 0) {
+                                std::cout << "Byte address not 32-bit word aligned." << std::endl;
+                                std::cout << std::endl;
+                            }
+                            else {
+                                // Everything looks good, send register write request
+                                m_cctx_msg.lock();
+                                cctx_messages.enqueue_write(address, value);
+                                m_cctx_msg.unlock();
+                            }
                         }
                         else {
                             std::cout << "Unexpected usage of reg write... Type reg for usage info." << std::endl;
@@ -502,6 +524,7 @@ void repl(void)
             }
             default: {
                 std::cout << "Unrecognized command: " << cmd_start << std::endl;
+                std::cout << std::endl;
                 break;
             } // end default
         } // end switch
