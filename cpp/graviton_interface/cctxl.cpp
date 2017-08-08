@@ -9,6 +9,7 @@
 
 #include "gthreads.h"
 #include "udp_transmitter.h"
+#include "command.h"
 #include "sysdef.h"
 using namespace sysdef;
 
@@ -32,10 +33,23 @@ void cctxl(udp_transmitter cc_tx)
     bool local_quit = false;
     cc_msg message;
 
+    char buffer[65536];
+
     while (!local_quit) {
         // Handle incoming messages from the REPL
         if (cctx_messages.dequeue(message)) {
-
+            if (message.msg_type == REG_READ_REQUEST) {
+                form_read_request(&buffer[0], message.sequence_number, message.address);
+                cc_tx.copy_from(&buffer[0], READ_REQUEST_LENGTH);
+            }
+            else {
+                form_write_request(&buffer[0], message.sequence_number, message.address, message.value);
+                cc_tx.copy_from(&buffer[0], WRITE_REQUEST_LENGTH);
+            }
+            cc_tx.write();
+        }
+        else {
+            std::this_thread::sleep_for(std::chrono::microseconds(10));
         }
 
         // Verify that no one has signaled us to quit.
