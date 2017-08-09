@@ -26,10 +26,10 @@ extern cc_msg_queue ccrx_messages;
 void ccrxl(udp_receiver cc_rx)
 {
     bool local_quit = false;
-    char buffer[1500] {0};
+    char buffer[CCRX_PACKET_LENGTH] {0};
 
     while (!local_quit) {
-        if (cc_rx.read() >= 0) {
+        if (cc_rx.read(10) != -1) {
             std::cerr << "Detected a CCRX msg!" << std::endl;
             cc_rx.copy_to(&buffer[0]);
 

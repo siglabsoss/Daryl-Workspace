@@ -13,10 +13,9 @@ udp_receiver::udp_receiver(const char port[], const int packet_length, const int
         std::cerr << "Error converting port " << port << " to an integer." << std::endl;
     }
 
-
     target.sin_family = AF_INET;
     target.sin_port = htons(myport);
-    target.sin_addr.s_addr = INADDR_ANY;
+    target.sin_addr.s_addr = htonl(INADDR_ANY);
 
     buflen = packet_length;
     buf.resize(buflen+1);
@@ -63,11 +62,16 @@ int udp_receiver::cleanup(void)
     return 0;
 }
 
-int udp_receiver::read(void) // non-blocking
+int udp_receiver::read(int bytes) // non-blocking
 {
     int rvalue;
 
-    rvalue = recvfrom(sock_fd, &buf[0], buflen, 0, 0, 0);
+    if (bytes < 0) {
+        rvalue = recvfrom(sock_fd, &buf[0], buflen, 0, 0, 0);
+    }
+    else {
+        rvalue = recvfrom(sock_fd, &buf[0], bytes, 0, 0, 0);
+    }
 
     static bool first_time = true;
     if ((timeout_in_microsecs == 0) && first_time) {
