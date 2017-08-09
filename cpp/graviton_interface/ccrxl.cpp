@@ -8,6 +8,7 @@
 #include <cmath>
 
 #include "gthreads.h"
+#include "command.h"
 #include "udp_receiver.h"
 #include "sysdef.h"
 using namespace sysdef;
@@ -21,17 +22,30 @@ extern bool global_quit;
 extern std::mutex m_ccrx_msg;
 extern cc_msg_queue ccrx_messages;
 
-////////////////////////////////
-// Local constants
-////////////////////////////////
-// Maximum number of UDP reads to try each iteration
-constexpr int MAX_READ_ATTEMPTS = 1024;
 
 void ccrxl(udp_receiver cc_rx)
 {
     bool local_quit = false;
+    char buffer[1500] {0};
 
     while (!local_quit) {
+        if (cc_rx.read() >= 0) {
+            std::cerr << "Detected a CCRX msg!" << std::endl;
+            cc_rx.copy_to(&buffer[0]);
+
+            unsigned sequence;
+            unsigned value;
+            bool success;
+
+            decode_message(&buffer[0], sequence, value, success);
+            std::cerr << "REG MSG RECEIVED:" << std::endl;
+            std::cerr << "    SEQ=" << sequence << std::endl;
+            std::cerr << "    VAL=" << value << std::endl;
+            std::cerr << "    SUCCESS=" << success << std::endl;
+        }
+        else {
+            std::this_thread::sleep_for(std::chrono::microseconds(100));
+        }
 
         // Verify that no one has signaled us to quit.
         {

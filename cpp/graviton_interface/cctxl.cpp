@@ -22,11 +22,6 @@ extern bool global_quit;
 extern std::mutex m_cctx_msg;
 extern cc_msg_queue cctx_messages;
 
-////////////////////////////////
-// Local constants
-////////////////////////////////
-// Maximum number of UDP reads to try each iteration
-constexpr int MAX_READ_ATTEMPTS = 1024;
 
 void cctxl(udp_transmitter cc_tx)
 {
