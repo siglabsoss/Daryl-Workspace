@@ -184,6 +184,7 @@ void repl(void)
                     // TODO: print help for a specified command
                     std::cout << "No information for command: ";
                     std::cout << (&cmd_start[0]) << std::endl;
+                    std::cout << "If " << cmd_start << " is a valid command, then this feature is not yet implemented..." << std::endl;
                     std::cout << std::endl;
                 }
                 else {

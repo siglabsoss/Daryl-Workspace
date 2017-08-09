@@ -8,8 +8,8 @@
 #include <cmath>
 
 #include "gthreads.h"
-#include "udp_transmitter.h"
 #include "command.h"
+#include "udp_transmitter.h"
 #include "sysdef.h"
 using namespace sysdef;
 
@@ -34,10 +34,14 @@ void cctxl(udp_transmitter cc_tx)
         // Handle incoming messages from the REPL
         if (cctx_messages.dequeue(message)) {
             if (message.msg_type == REG_READ_REQUEST) {
+                // Debug print
+                std::cerr << "Sending " << message.sequence_number << ":" << message.address << std::endl;
                 form_read_request(&buffer[0], message.sequence_number, message.address);
                 cc_tx.copy_from(&buffer[0], READ_REQUEST_LENGTH);
             }
             else {
+                // Debug print
+                std::cerr << "Sending " << message.sequence_number << ":" << message.address << ":" << message.value << std::endl;
                 form_write_request(&buffer[0], message.sequence_number, message.address, message.value);
                 cc_tx.copy_from(&buffer[0], WRITE_REQUEST_LENGTH);
             }
