@@ -62,28 +62,31 @@ int udp_receiver::cleanup(void)
     return 0;
 }
 
-int udp_receiver::read(int bytes) // non-blocking
+int udp_receiver::read(int bytes) // non-blocking (0 on success)
 {
     int rvalue;
 
     if (bytes < 0) {
         rvalue = recvfrom(sock_fd, &buf[0], buflen, 0, 0, 0);
+
+        if (rvalue != buflen) {
+            // This is only an error if timeouts are not active
+            if (timeout_in_microsecs <= 0) {
+                perror("recvfrom");
+            }
+            return -1;
+        }
     }
     else {
         rvalue = recvfrom(sock_fd, &buf[0], bytes, 0, 0, 0);
-    }
 
-    static bool first_time = true;
-    if ((timeout_in_microsecs == 0) && first_time) {
-        first_time = false;
-    }
-
-    if (rvalue != buflen) {
-        // This is only an error if timeouts are not active
-        if (timeout_in_microsecs <= 0) {
-            perror("recvfrom");
+        if (rvalue != bytes) {
+            // This is only an error if timeouts are not active
+            if (timeout_in_microsecs <= 0) {
+                perror("recvfrom");
+            }
+            return -1;
         }
-        return -1;
     }
 
     return 0;

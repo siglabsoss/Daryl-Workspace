@@ -29,7 +29,7 @@ void ccrxl(udp_receiver cc_rx)
     char buffer[CCRX_PACKET_LENGTH] {0};
 
     while (!local_quit) {
-        if (cc_rx.read(10) != -1) {
+        if (cc_rx.read(10) == 0) {
             std::cerr << "Detected a CCRX msg!" << std::endl;
             cc_rx.copy_to(&buffer[0]);
 
@@ -42,9 +42,6 @@ void ccrxl(udp_receiver cc_rx)
             std::cerr << "    SEQ=" << sequence << std::endl;
             std::cerr << "    VAL=" << value << std::endl;
             std::cerr << "    SUCCESS=" << success << std::endl;
-        }
-        else {
-            std::this_thread::sleep_for(std::chrono::microseconds(100));
         }
 
         // Verify that no one has signaled us to quit.
