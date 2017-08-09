@@ -19,7 +19,7 @@ graviton.o: graviton.cpp udp_receiver.h udp_transmitter.h gthreads.h sysdef.h
 txrxl.o: txrxl.cpp udp_receiver.h udp_transmitter.h gthreads.h sysdef.h
 	$(CXX) $(WARNINGS) -o txrxl.o txrxl.cpp -std=c++11 -c
 
-cctxl.o: ccrxl.cpp gthreads.h sysdef.h command.h
+cctxl.o: cctxl.cpp gthreads.h sysdef.h command.h
 	$(CXX) $(WARNINGS) -o cctxl.o cctxl.cpp -std=c++11 -c
 
 ccrxl.o: ccrxl.cpp gthreads.h sysdef.h command.h
