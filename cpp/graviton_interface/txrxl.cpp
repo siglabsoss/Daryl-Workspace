@@ -88,7 +88,6 @@ void txrxl(udp_transmitter dac_data_tx, udp_receiver adc_data_rx)
         // Sleep to simulate some kind of work/rest scenario
         int read_attempts = 0;
         while (adc_data_rx.read() != 0) {
-            std::this_thread::sleep_for(std::chrono::microseconds(4));
             if (++read_attempts == MAX_READ_ATTEMPTS) {
                 break;
             }

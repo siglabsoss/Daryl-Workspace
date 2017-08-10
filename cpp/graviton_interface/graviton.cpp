@@ -30,10 +30,11 @@ dsp_stats statistics;
 std::mutex m_dumper;
 dump_params dump_data;
 
-////////////////////////////////
-// Local constants
-////////////////////////////////
+std::mutex m_cctx_msg;
+cc_msg_queue cctx_messages;
 
+std::mutex m_ccrx_msg;
+cc_msg_queue ccrx_messages;
 
 ////////////////////////////////
 // Main program entry point
@@ -84,6 +85,8 @@ int main(int argc, char const * argv[])
     std::cout << "Creating UDP sockets..." << std::endl;
     auto adc_data_rx = udp_receiver(ADC_DATA_PORT, ADC_PACKET_LENGTH, ADC_DATA_TIMEOUT);
     auto dac_data_tx = udp_transmitter(DAC_DATA_IP, DAC_DATA_PORT, DAC_PACKET_LENGTH);
+    auto cc_rx = udp_receiver(CCRX_DATA_PORT, CCRX_PACKET_LENGTH, CCRX_DATA_TIMEOUT);
+    auto cc_tx = udp_transmitter(CCTX_DATA_IP, CCTX_DATA_PORT, CCTX_PACKET_LENGTH);
 
     // Initialize DAC data socket and verify that initialization worked
     std::cout << "Initializing DAC data UDP socket..." << std::endl;
@@ -92,20 +95,34 @@ int main(int argc, char const * argv[])
         std::cout << "Error in initialization..." << std::endl;
         return -1;
     }
+    std::cout << "Initializing CCTX UDP socket..." << std::endl;
+    cc_tx.initialize();
+    if (!cc_tx.initialized()) {
+        std::cout << "Error in initialization..." << std::endl;
+        return -1;
+    }
 
     // Initialize ADC data socket
     std::cout << "Initializing ADC data UDP socket..." << std::endl;
     adc_data_rx.initialize();
+    std::cout << "Initializing CCRX data UDP socket..." << std::endl;
+    cc_rx.initialize();
 
     // Launch the threads
     std::cout << "Launching TX/RX thread..." << std::endl;
     auto txrx_thread = std::thread(txrxl, dac_data_tx, adc_data_rx);
     std::cout << "Launching REPL thread..." << std::endl;
     auto repl_thread = std::thread(repl);
+    std::cout << "Launching CCTX thread..." << std::endl;
+    auto cctx_thread = std::thread(cctxl, cc_tx);
+    std::cout << "Launching CCRX thread..." << std::endl;
+    auto ccrx_thread = std::thread(ccrxl, cc_rx);
 
     // Wait for the threads to finish
     txrx_thread.join();
     repl_thread.join();
+    cctx_thread.join();
+    ccrx_thread.join();
 
     // Perform clean up
     if (dac_data_tx.cleanup() != 0) {
@@ -113,6 +130,12 @@ int main(int argc, char const * argv[])
     }
     if (adc_data_rx.cleanup() != 0) {
         std::cout << "Error in RX cleanup." << std::endl;
+    }
+    if (cc_tx.cleanup() != 0) {
+        std::cout << "Error in CCTX cleanup." << std::endl;
+    }
+    if (cc_rx.cleanup() != 0) {
+        std::cout << "Error in CCRX cleanup." << std::endl;
     }
 
     // Report that we are done.

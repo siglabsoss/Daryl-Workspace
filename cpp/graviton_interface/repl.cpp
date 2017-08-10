@@ -33,6 +33,12 @@ extern dsp_stats statistics;
 extern std::mutex m_dumper;
 extern dump_params dump_data;
 
+extern std::mutex m_cctx_msg;
+extern cc_msg_queue cctx_messages;
+
+extern std::mutex m_ccrx_msg;
+extern cc_msg_queue ccrx_messages;
+
 ////////////////////////////////
 // Local constants
 ////////////////////////////////
@@ -48,7 +54,8 @@ enum cmd_id_t { // Command IDs
     SEND_ID,
     POLLSTATS_ID,
     DUMP_ID,
-    PLOT_ID
+    PLOT_ID,
+    REG_ID
 };
 
 ////////////////////////////////
@@ -75,13 +82,14 @@ void repl(void)
     const std::string quit_command {"quit"}; // quit
     const std::string q_command {"q"}; // quit
     const std::string exit_command {"exit"}; // exit (synonym for quit)
-    const std::string txmagic_command = {"txmagic"}; // Send TX magic sample
-    const std::string rxmagic_command = {"rxmagic"}; // Send RX magic sample
-    const std::string send_command = {"send"}; // Send a sine wave, zeros, random sequence, etc.
-    const std::string pollstats_command = {"pollstats"}; // Poll link statistics
-    const std::string p_command = {"p"}; // Poll link statistics
-    const std::string dump_command = {"dump"}; // Dump data from RX
-    const std::string plot_command = {"plot"}; // Plot data dump
+    const std::string txmagic_command {"txmagic"}; // Send TX magic sample
+    const std::string rxmagic_command {"rxmagic"}; // Send RX magic sample
+    const std::string send_command {"send"}; // Send a sine wave, zeros, random sequence, etc.
+    const std::string pollstats_command {"pollstats"}; // Poll link statistics
+    const std::string p_command {"p"}; // Poll link statistics
+    const std::string dump_command {"dump"}; // Dump data from RX
+    const std::string plot_command {"plot"}; // Plot data dump
+    const std::string reg_command {"reg"};
 
     // Map of strings to IDs
     std::map<std::string, cmd_id_t> commands;
@@ -96,6 +104,7 @@ void repl(void)
     commands.insert(std::pair<std::string, cmd_id_t>(p_command, POLLSTATS_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(dump_command, DUMP_ID));
     commands.insert(std::pair<std::string, cmd_id_t>(plot_command, PLOT_ID));
+    commands.insert(std::pair<std::string, cmd_id_t>(reg_command, REG_ID));
 
     // Help string definitions
     const std::string help_help {"displays a list of commands; help <command> : lists help about a command"};
@@ -106,6 +115,7 @@ void repl(void)
     const std::string help_pollstats {"polls stats of link to graviton"};
     const std::string help_dump {"dumps adc data to a file"};
     const std::string help_plot {"plots adc data previously dumped to a file (eventually will allow subsets to be plotted)"};
+    const std::string help_reg {"read/write registers over MIB bus"};
 
     // Map of help strings
     std::map<std::string, std::string> help_strings;
@@ -117,6 +127,7 @@ void repl(void)
     help_strings.insert(std::pair<std::string, std::string>(pollstats_command, help_pollstats));
     help_strings.insert(std::pair<std::string, std::string>(dump_command, help_dump));
     help_strings.insert(std::pair<std::string, std::string>(plot_command, help_plot));
+    help_strings.insert(std::pair<std::string, std::string>(reg_command, help_reg));
 
     while (!local_quit) {
         // Request user for command input
@@ -173,6 +184,7 @@ void repl(void)
                     // TODO: print help for a specified command
                     std::cout << "No information for command: ";
                     std::cout << (&cmd_start[0]) << std::endl;
+                    std::cout << "If " << cmd_start << " is a valid command, then this feature is not yet implemented..." << std::endl;
                     std::cout << std::endl;
                 }
                 else {
@@ -438,8 +450,82 @@ void repl(void)
                 std::cout << std::endl;
                 break;
             }
+            case REG_ID: {
+                int acnt = command_count(cmd_start, cmd_index, dump_command);
+                cmd_start += acnt; cmd_index += acnt;
+                // skip whitespace
+                acnt = whitespace_count(cmd_start, cmd_index);
+                cmd_start += acnt; cmd_index += acnt;
+
+                if (std::strlen(cmd_start) == 0) {
+                    constexpr int FMT_WIDTH = 45;
+                    std::cout << "    Usage:" << std::endl;
+                    // REG READ
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "reg read <address>";
+                    std::cout << " : Read register at <address> (decimal)" << std::endl;
+                    // REG WRITE
+                    std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "reg write <address> <value>";
+                    std::cout << " : Write <value> to register at <address> (decimal)" << std::endl;
+                    std::cout << std::endl;
+                }
+                else {
+                    // Test for read or write as next token...
+                    if (compare(cmd_start, "read")) {
+                        int address;
+                        cmd_start += 4;
+                        if (std::sscanf(cmd_start, "%d", &address) == 1) {
+                            std::cout << "I'll try to read " << address << "." << std::endl;
+                            std::cout << std::endl;
+
+                            if ((address & 0x3) != 0) {
+                                std::cout << "Byte address not 32-bit word aligned." << std::endl;
+                                std::cout << std::endl;
+                            }
+                            else {
+                                // Everything looks good, send register read request
+                                m_cctx_msg.lock();
+                                cctx_messages.enqueue_read(address);
+                                m_cctx_msg.unlock();
+                            }
+                        }
+                        else {
+                            std::cout << "Unexpected usage of reg read... Type reg for usage info." << std::endl;
+                            std::cout << std::endl;
+                        }
+                    }
+                    else if (compare(cmd_start, "write")) {
+                        int address, value;
+                        cmd_start += 5;
+                        if (std::sscanf(cmd_start, "%d %d", &address, &value) == 2) {
+                            std::cout << "I'll try to write " << value << " to " << address << "." << std::endl;
+                            std::cout << std::endl;
+
+                            if ((address & 0x3) != 0) {
+                                std::cout << "Byte address not 32-bit word aligned." << std::endl;
+                                std::cout << std::endl;
+                            }
+                            else {
+                                // Everything looks good, send register write request
+                                m_cctx_msg.lock();
+                                cctx_messages.enqueue_write(address, value);
+                                m_cctx_msg.unlock();
+                            }
+                        }
+                        else {
+                            std::cout << "Unexpected usage of reg write... Type reg for usage info." << std::endl;
+                            std::cout << std::endl;
+                        }
+                    }
+                    else {
+                        std::cout << "Unrecognized reg request format." << std::endl;
+                        std::cout << std::endl;
+                    }
+                }
+                break;
+            }
             default: {
                 std::cout << "Unrecognized command: " << cmd_start << std::endl;
+                std::cout << std::endl;
                 break;
             } // end default
         } // end switch

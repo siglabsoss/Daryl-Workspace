@@ -23,7 +23,7 @@ public:
     udp_receiver(const char port[], const int packet_length, const int timeout_us=-1);
     int initialize(void);
     int cleanup(void);
-    int read(void);
+    int read(int bytes=-1);
     void copy_to(const char *buffer);
     void copy_to(const unsigned char *buffer);
     void copy_to(const char *buffer, const int len);

@@ -7,13 +7,21 @@ namespace sysdef {
     ////////////////////////////////////////////////
     // LINK CONSTANTS
     ////////////////////////////////////////////////
-    constexpr char DAC_DATA_IP[]     = "10.0.0.10"; //"192.168.2.3";
-    constexpr char DAC_DATA_PORT[]   = "60000";
+    constexpr char DAC_DATA_IP[]     = "192.168.2.2";
+    constexpr char DAC_DATA_PORT[]   = "50000";
     constexpr int  DAC_PACKET_LENGTH = 1472-4;
 
-    constexpr char ADC_DATA_PORT[]   = "50000";
+    constexpr char ADC_DATA_PORT[]   = "50001";
     constexpr char ADC_DATA_TIMEOUT  = 100; // microseconds
     constexpr int  ADC_PACKET_LENGTH = 1472;
+
+    constexpr char CCTX_DATA_IP[]     = "192.168.2.2";
+    constexpr char CCTX_DATA_PORT[]   = "60000";
+    constexpr int  CCTX_PACKET_LENGTH = 1500;
+
+    constexpr char CCRX_DATA_PORT[]   = "60001";
+    constexpr char CCRX_DATA_TIMEOUT  = 100; // microseconds
+    constexpr int  CCRX_PACKET_LENGTH = 1500;
 
     ////////////////////////////////////////////////
     // MAGIC NUMBER CONSTANTS
@@ -40,6 +48,28 @@ namespace sysdef {
     // DSP NORMALIZATION CONSTANTS
     ////////////////////////////////////////////////
     constexpr double DAC_FULL_SCALE = 27969.0;
+
+    ////////////////////////////////////////////////
+    // COMMAND AND CONTROL INTERFACE
+    ////////////////////////////////////////////////
+    constexpr unsigned char WRITE_REQUEST_LENGTH = 13; // Bytes
+    constexpr unsigned char READ_REQUEST_LENGTH = 9; // Bytes
+
+    ////////////////////////////////////////////////
+    // Max messages in command and control queue
+    ////////////////////////////////////////////////
+    constexpr int CC_QUEUE_LENGTH = 16; // inter-thread comms
+
+    ////////////////////////////////////////////////
+    // COMMAND AND CONTROL MESSAGE/PACKET TYPES
+    ////////////////////////////////////////////////
+    constexpr unsigned char REG_WRITE_REQUEST = 0;
+    constexpr unsigned char REG_READ_REQUEST = 1;
+    constexpr unsigned char MEM_WRITE_REQUEST = 2; // Unsupported
+    constexpr unsigned char MEM_READ_REQUEST = 3; // Unsupported
+    constexpr unsigned char MSG_ACK = 0xF0;
+    constexpr unsigned char MSG_NACK = 0xF1;
+    constexpr unsigned char MSG_UNKNOWN = 0xFF;
 
 } // end sysdef
 
