@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as pt
 
-SNR_list     = [-20, -15, -10, -5, -3, 0, 1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
+SNR_list     = [-20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30]
 ac_mean      = []
 ac_std_dev   = []
 diff_mean    = []
@@ -18,9 +18,9 @@ for SNR in SNR_list:
                     diff.append(int(val))
 
     pt.figure()
-    pt.plot(ac, diff, '.')
-    pt.xlabel('AC estimate')
-    pt.ylabel('Diff estimate')
+    pt.hist(ac)
+    pt.hist(diff)
+    pt.title('SNR = {0}'.format(SNR))
 
     ac_mean.append(np.mean(ac))
     ac_std_dev.append(np.sqrt(np.var(ac)))

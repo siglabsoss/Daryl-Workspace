@@ -83,7 +83,7 @@ def spp_gen(sample_gen, hproto, N, L):
             for q in range(L):
                 yield np.sum(pp_buf[p,:] * hproto[q::L])
                 p = (p + 1) % N
-for SNR in [-20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30]:
+for SNR in [-10, -5, -3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30]:
     ##################################
     # Start of Simulation Parameters
     ##################################
@@ -224,8 +224,8 @@ for SNR in [-20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30]:
     diffy = np.abs(ac_output)**2.0 - np.abs(pow_output)**2.0
     # pt.plot(diffy)
 
-    k1 = 50000 + np.argmin(np.abs(ac_output[50000:55000] - np.max(np.abs(ac_output[50000:55000]))))
-    k2 = 50000 + np.argmin(np.abs(diffy[50000:55000] - np.max(diffy[50000:55000])))
+    k1 = 48000 + np.argmin(np.abs(ac_output[48000:55000] - np.max(np.abs(ac_output[48000:55000]))))
+    k2 = 48000 + np.argmin(np.abs(diffy[48000:55000] - np.max(diffy[48000:55000])))
 
     print("ac = {0}; diff = {1}".format(k1, k2))
 
