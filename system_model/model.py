@@ -27,17 +27,17 @@ if __name__ == '__main__':
     delta_f = 0.001
 
     y = np.convolve(x * np.exp(2j*np.pi*delta_f*np.arange(x.size)), h[::-1])
-    n = sigma * np.random.standard_normal(y.shape)
+    n = sigma * (np.random.standard_normal(y.shape) + 1j*np.random.standard_normal(y.shape))
     y += n
 
     pt.figure()
     pt.plot(np.real(y))
     pt.plot(np.imag(y), 'r')
 
-    P3 = np.sqrt(np.sum(np.abs(xs[zero_size+P*L/2:zero_size+3*P*L/2])**2.0) / P)
+    P3 = np.sqrt(np.sum(np.abs(xs[zero_size+P*L/2:zero_size+3*P*L/2])**2.0) / (0.001+P))
 
-    xs1 = np.conjugate(xs[zero_size+P*L/2:zero_size+3*P*L/2]) / P3
-    xs2 = np.conjugate(xs[zero_size+P*L/2-L:zero_size+3*P*L/2-L]) / P3
+    xs1 = np.conjugate(xs[zero_size+P*L/2:zero_size+3*P*L/2]) / (0.001+P3)
+    xs2 = np.conjugate(xs[zero_size+P*L/2-L:zero_size+3*P*L/2-L]) / (0.001+P3)
 
     z1 = np.convolve(y, xs1)
     z2 = np.convolve(y, xs2)
