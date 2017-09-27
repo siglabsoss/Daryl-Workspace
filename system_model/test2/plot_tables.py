@@ -22,14 +22,14 @@ for SNR in SNR_list:
     # pt.xlabel('AC estimate')
     # pt.ylabel('Diff estimate')
 
-    if SNR == 20:
+    if SNR == 30:
         ac_mse_est = 10**(-SNR/10.0)
         ac_mean_est = ac[0]
         unsmoothed_mean = []
         smoothed_mean = []
         smoothed_mse = []
         for k, ac_est in enumerate(ac):
-            # ac_est += np.floor(k/100.0)
+            ac_est += np.floor(k/100.0)
             unsmoothed_mean.append(ac_est)
             ac_predicted = ac_mean_est
             mse_predicted = ac_mse_est + 5e-2*10**(-SNR/10)
