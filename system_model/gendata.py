@@ -160,7 +160,7 @@ def pn(Q, initial_value=None):
         fb_taps = [Q, 63, 61, 60]
     else:
         raise ValueError("Q must be between 3 and 64.")
-    
+
     taps = np.zeros(Q, dtype=np.int64)
     if initial_value is not None:
         taps[:] = initial_value[:]
@@ -177,7 +177,7 @@ def pn(Q, initial_value=None):
         taps[0] = fb & 0x1
 
         b[idx] = 1 - 2 * float(taps[0])
-    
+
     return b
 
 h = root_cosine(16*4+1, 4, 1.0)
@@ -237,6 +237,7 @@ pmem = np.zeros(2048*8, dtype=np.complex)
 qacc = 0.0
 qout = np.zeros_like(preamble, dtype=np.complex)
 qmem = np.zeros(4*x.size, dtype=np.complex)
+print(qmem.size, x.size, )
 
 for n, p in enumerate(preamble):
     q = p * np.conjugate(pmem[-1])
@@ -265,4 +266,3 @@ pt.show()
 # with open('preamble.txt', 'w') as fid:
 #     for qsample in quantized_preamble:
 #         fid.write('{0}, 0\n'.format(int(np.real(qsample))))
-
