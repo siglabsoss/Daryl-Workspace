@@ -242,7 +242,7 @@ void repl(void)
                     std::cout << " : sends completely random data" << std::endl;
                     // SEND SINE
                     std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send sine <frequency=0.0> <amplitude=MAX>";
-                    std::cout << " : sends sinusoid to dac" << std::endl;
+                    std::cout << " : sends sinusoid to dac (rads/sample)" << std::endl;
                     // SEND SWEEP
                     std::cout << "      " << std::setw(FMT_WIDTH) << std::left << "send sweep <rate=0.00025> <amplitude=MAX>";
                     std::cout << " : sends swept sine to dac" << std::endl;
